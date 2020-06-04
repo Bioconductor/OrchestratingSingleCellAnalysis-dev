@@ -5,25 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Feature selection | Orchestrating Single-Cell Analysis with Bioconductor</title>
-  <meta name="description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Feature selection | Orchestrating Single-Cell Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
+  <meta property="og:description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 8 Feature selection | Orchestrating Single-Cell Analysis with Bioconductor" />
   
-  <meta name="twitter:description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
+  <meta name="twitter:description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
   
 
 
 
-<meta name="date" content="2020-05-07" />
+<meta name="date" content="2020-06-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -112,7 +112,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.1.1" data-path="introduction.html"><a href="introduction.html#preliminaries"><i class="fa fa-check"></i><b>1.1.1</b> Preliminaries</a></li>
 <li class="chapter" data-level="1.1.2" data-path="introduction.html"><a href="introduction.html#workflows"><i class="fa fa-check"></i><b>1.1.2</b> Workflows</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#what-you-wont-learn"><i class="fa fa-check"></i><b>1.2</b> What you won’t learn</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#what-you-wont-learn"><i class="fa fa-check"></i><b>1.2</b> What you won't learn</a></li>
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#who-we-wrote-this-for"><i class="fa fa-check"></i><b>1.3</b> Who we wrote this for</a></li>
 <li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#why-we-wrote-this"><i class="fa fa-check"></i><b>1.4</b> Why we wrote this</a></li>
 <li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#acknowledgements"><i class="fa fa-check"></i><b>1.5</b> Acknowledgements</a></li>
@@ -227,19 +227,18 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.3.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#based-on-population-structure"><i class="fa fa-check"></i><b>9.3.4</b> Based on population structure</a></li>
 <li class="chapter" data-level="9.3.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#putting-it-together"><i class="fa fa-check"></i><b>9.3.5</b> Putting it together</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#non-negative-matrix-factorization"><i class="fa fa-check"></i><b>9.4</b> Non-negative matrix factorization</a></li>
-<li class="chapter" data-level="9.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction-for-visualization"><i class="fa fa-check"></i><b>9.5</b> Dimensionality reduction for visualization</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#motivation-3"><i class="fa fa-check"></i><b>9.5.1</b> Motivation</a></li>
-<li class="chapter" data-level="9.5.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizing-with-pca"><i class="fa fa-check"></i><b>9.5.2</b> Visualizing with PCA</a></li>
-<li class="chapter" data-level="9.5.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#t-stochastic-neighbor-embedding"><i class="fa fa-check"></i><b>9.5.3</b> <span class="math inline">\(t\)</span>-stochastic neighbor embedding</a></li>
-<li class="chapter" data-level="9.5.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection"><i class="fa fa-check"></i><b>9.5.4</b> Uniform manifold approximation and projection</a></li>
-<li class="chapter" data-level="9.5.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualization-interpretation"><i class="fa fa-check"></i><b>9.5.5</b> Interpreting the plots</a></li>
+<li class="chapter" data-level="9.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction-for-visualization"><i class="fa fa-check"></i><b>9.4</b> Dimensionality reduction for visualization</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#motivation-3"><i class="fa fa-check"></i><b>9.4.1</b> Motivation</a></li>
+<li class="chapter" data-level="9.4.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizing-with-pca"><i class="fa fa-check"></i><b>9.4.2</b> Visualizing with PCA</a></li>
+<li class="chapter" data-level="9.4.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#t-stochastic-neighbor-embedding"><i class="fa fa-check"></i><b>9.4.3</b> <span class="math inline">\(t\)</span>-stochastic neighbor embedding</a></li>
+<li class="chapter" data-level="9.4.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection"><i class="fa fa-check"></i><b>9.4.4</b> Uniform manifold approximation and projection</a></li>
+<li class="chapter" data-level="9.4.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualization-interpretation"><i class="fa fa-check"></i><b>9.4.5</b> Interpreting the plots</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#session-info-4"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>10</b> Clustering</a><ul>
 <li class="chapter" data-level="10.1" data-path="clustering.html"><a href="clustering.html#motivation-4"><i class="fa fa-check"></i><b>10.1</b> Motivation</a></li>
-<li class="chapter" data-level="10.2" data-path="clustering.html"><a href="clustering.html#what-is-the-true-clustering"><i class="fa fa-check"></i><b>10.2</b> What is the “true clustering”?</a></li>
+<li class="chapter" data-level="10.2" data-path="clustering.html"><a href="clustering.html#what-is-the-true-clustering"><i class="fa fa-check"></i><b>10.2</b> What is the &quot;true clustering&quot;?</a></li>
 <li class="chapter" data-level="10.3" data-path="clustering.html"><a href="clustering.html#clustering-graph"><i class="fa fa-check"></i><b>10.3</b> Graph-based clustering</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="clustering.html"><a href="clustering.html#background-3"><i class="fa fa-check"></i><b>10.3.1</b> Background</a></li>
 <li class="chapter" data-level="10.3.2" data-path="clustering.html"><a href="clustering.html#implementation"><i class="fa fa-check"></i><b>10.3.2</b> Implementation</a></li>
@@ -278,7 +277,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.4.1" data-path="marker-detection.html"><a href="marker-detection.html#using-the-block-argument"><i class="fa fa-check"></i><b>11.4.1</b> Using the <code>block=</code> argument</a></li>
 <li class="chapter" data-level="11.4.2" data-path="marker-detection.html"><a href="marker-detection.html#using-the-design-argument"><i class="fa fa-check"></i><b>11.4.2</b> Using the <code>design=</code> argument</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="marker-detection.html"><a href="marker-detection.html#invalidity-of-p-values"><i class="fa fa-check"></i><b>11.5</b> Invalidity of <span class="math inline">\(p\)</span>-values</a><ul>
+<li class="chapter" data-level="11.5" data-path="marker-detection.html"><a href="marker-detection.html#p-value-invalidity"><i class="fa fa-check"></i><b>11.5</b> Invalidity of <span class="math inline">\(p\)</span>-values</a><ul>
 <li class="chapter" data-level="11.5.1" data-path="marker-detection.html"><a href="marker-detection.html#from-data-snooping"><i class="fa fa-check"></i><b>11.5.1</b> From data snooping</a></li>
 <li class="chapter" data-level="11.5.2" data-path="marker-detection.html"><a href="marker-detection.html#false-replicates"><i class="fa fa-check"></i><b>11.5.2</b> Nature of replication</a></li>
 </ul></li>
@@ -360,18 +359,22 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="17" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html"><i class="fa fa-check"></i><b>17</b> Trajectory Analysis</a><ul>
 <li class="chapter" data-level="17.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-6"><i class="fa fa-check"></i><b>17.1</b> Overview</a></li>
-<li class="chapter" data-level="17.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#obtaining-pseudo-times"><i class="fa fa-check"></i><b>17.2</b> Obtaining pseudo-times</a><ul>
-<li class="chapter" data-level="17.2.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#cluster-based-minimum-spanning-tree"><i class="fa fa-check"></i><b>17.2.1</b> Cluster-based minimum spanning tree</a></li>
-<li class="chapter" data-level="17.2.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#principal-curves"><i class="fa fa-check"></i><b>17.2.2</b> Principal curves</a></li>
+<li class="chapter" data-level="17.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#obtaining-pseudotime-orderings"><i class="fa fa-check"></i><b>17.2</b> Obtaining pseudotime orderings</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-7"><i class="fa fa-check"></i><b>17.2.1</b> Overview</a></li>
+<li class="chapter" data-level="17.2.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#cluster-based-minimum-spanning-tree"><i class="fa fa-check"></i><b>17.2.2</b> Cluster-based minimum spanning tree</a></li>
+<li class="chapter" data-level="17.2.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#principal-curves"><i class="fa fa-check"></i><b>17.2.3</b> Principal curves</a></li>
 </ul></li>
 <li class="chapter" data-level="17.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#characterizing-trajectories"><i class="fa fa-check"></i><b>17.3</b> Characterizing trajectories</a><ul>
-<li class="chapter" data-level="17.3.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-along-a-trajectory"><i class="fa fa-check"></i><b>17.3.1</b> Changes along a trajectory</a></li>
-<li class="chapter" data-level="17.3.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-between-lineages"><i class="fa fa-check"></i><b>17.3.2</b> Changes between lineages</a></li>
+<li class="chapter" data-level="17.3.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-8"><i class="fa fa-check"></i><b>17.3.1</b> Overview</a></li>
+<li class="chapter" data-level="17.3.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-along-a-trajectory"><i class="fa fa-check"></i><b>17.3.2</b> Changes along a trajectory</a></li>
+<li class="chapter" data-level="17.3.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-between-paths"><i class="fa fa-check"></i><b>17.3.3</b> Changes between paths</a></li>
+<li class="chapter" data-level="17.3.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#further-comments-2"><i class="fa fa-check"></i><b>17.3.4</b> Further comments</a></li>
 </ul></li>
 <li class="chapter" data-level="17.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#finding-the-root"><i class="fa fa-check"></i><b>17.4</b> Finding the root</a><ul>
-<li class="chapter" data-level="17.4.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-7"><i class="fa fa-check"></i><b>17.4.1</b> Overview</a></li>
+<li class="chapter" data-level="17.4.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-9"><i class="fa fa-check"></i><b>17.4.1</b> Overview</a></li>
 <li class="chapter" data-level="17.4.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#entropy-based-methods"><i class="fa fa-check"></i><b>17.4.2</b> Entropy-based methods</a></li>
 <li class="chapter" data-level="17.4.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#rna-velocity"><i class="fa fa-check"></i><b>17.4.3</b> RNA velocity</a></li>
+<li class="chapter" data-level="17.4.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#real-timepoints"><i class="fa fa-check"></i><b>17.4.4</b> Real timepoints</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#session-information"><i class="fa fa-check"></i>Session information</a></li>
 </ul></li>
@@ -392,15 +395,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="19" data-path="repertoire-seq.html"><a href="repertoire-seq.html"><i class="fa fa-check"></i><b>19</b> Analyzing repertoire sequencing data</a><ul>
 <li class="chapter" data-level="19.1" data-path="repertoire-seq.html"><a href="repertoire-seq.html#motivation-12"><i class="fa fa-check"></i><b>19.1</b> Motivation</a></li>
-<li class="chapter" data-level="19.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#analyzing-the-t-cell-receptor-repertoire"><i class="fa fa-check"></i><b>19.2</b> Analyzing the T cell receptor repertoire</a><ul>
-<li class="chapter" data-level="19.2.1" data-path="repertoire-seq.html"><a href="repertoire-seq.html#data-processing"><i class="fa fa-check"></i><b>19.2.1</b> Data processing</a></li>
-<li class="chapter" data-level="19.2.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#basic-diagnostics"><i class="fa fa-check"></i><b>19.2.2</b> Basic diagnostics</a></li>
-<li class="chapter" data-level="19.2.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#complex-diagnostics"><i class="fa fa-check"></i><b>19.2.3</b> Complex diagnostics</a></li>
-<li class="chapter" data-level="19.2.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#quantifying-clonal-expansion"><i class="fa fa-check"></i><b>19.2.4</b> Quantifying clonal expansion</a></li>
-<li class="chapter" data-level="19.2.5" data-path="repertoire-seq.html"><a href="repertoire-seq.html#quantifying-gene-expression-and-properties"><i class="fa fa-check"></i><b>19.2.5</b> Quantifying gene expression and properties</a></li>
-</ul></li>
-<li class="chapter" data-level="19.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#analyzing-the-immunoglobulin-repertoire"><i class="fa fa-check"></i><b>19.3</b> Analyzing the immunoglobulin repertoire</a></li>
-<li class="chapter" data-level="19.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#multi-sample-analyses"><i class="fa fa-check"></i><b>19.4</b> Multi-sample analyses</a></li>
+<li class="chapter" data-level="19.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#loading-the-tcr-repertoire"><i class="fa fa-check"></i><b>19.2</b> Loading the TCR repertoire</a></li>
+<li class="chapter" data-level="19.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#leveraging-list-semantics"><i class="fa fa-check"></i><b>19.3</b> Leveraging <code>List</code> semantics</a></li>
+<li class="chapter" data-level="19.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#converting-back-to-dataframes"><i class="fa fa-check"></i><b>19.4</b> Converting back to <code>DataFrame</code>s</a></li>
+<li class="chapter" data-level="19.5" data-path="repertoire-seq.html"><a href="repertoire-seq.html#case-study-for-clonotype-analyses"><i class="fa fa-check"></i><b>19.5</b> Case study for clonotype analyses</a></li>
+<li class="chapter" data-level="19.6" data-path="repertoire-seq.html"><a href="repertoire-seq.html#repeating-for-immunoglobulins"><i class="fa fa-check"></i><b>19.6</b> Repeating for immunoglobulins</a></li>
 <li class="chapter" data-level="" data-path="repertoire-seq.html"><a href="repertoire-seq.html#session-info-13"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="interactive-sharing.html"><a href="interactive-sharing.html"><i class="fa fa-check"></i><b>20</b> Interactive data exploration</a><ul>
@@ -478,16 +477,14 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="26.8" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#data-integration"><i class="fa fa-check"></i><b>26.8</b> Data integration</a></li>
 <li class="chapter" data-level="" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#session-info-20"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="27" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html"><i class="fa fa-check"></i><b>27</b> Human PBMC 10X dataset (surface proteins)</a><ul>
-<li class="chapter" data-level="27.1" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#introduction-7"><i class="fa fa-check"></i><b>27.1</b> Introduction</a></li>
-<li class="chapter" data-level="27.2" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#analysis-code"><i class="fa fa-check"></i><b>27.2</b> Analysis code</a><ul>
-<li class="chapter" data-level="27.2.1" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#data-loading-4"><i class="fa fa-check"></i><b>27.2.1</b> Data loading</a></li>
-<li class="chapter" data-level="27.2.2" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#quality-control-7"><i class="fa fa-check"></i><b>27.2.2</b> Quality control</a></li>
-<li class="chapter" data-level="27.2.3" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#normalization-6"><i class="fa fa-check"></i><b>27.2.3</b> Normalization</a></li>
-<li class="chapter" data-level="27.2.4" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#dimensionality-reduction-5"><i class="fa fa-check"></i><b>27.2.4</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="27.2.5" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#clustering-5"><i class="fa fa-check"></i><b>27.2.5</b> Clustering</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#session-info-21"><i class="fa fa-check"></i>Session Info</a></li>
+<li class="chapter" data-level="27" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html"><i class="fa fa-check"></i><b>27</b> Human PBMC with surface proteins (10X Genomics)</a><ul>
+<li class="chapter" data-level="27.1" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#introduction-7"><i class="fa fa-check"></i><b>27.1</b> Introduction</a></li>
+<li class="chapter" data-level="27.2" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#data-loading-4"><i class="fa fa-check"></i><b>27.2</b> Data loading</a></li>
+<li class="chapter" data-level="27.3" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#quality-control-7"><i class="fa fa-check"></i><b>27.3</b> Quality control</a></li>
+<li class="chapter" data-level="27.4" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#normalization-6"><i class="fa fa-check"></i><b>27.4</b> Normalization</a></li>
+<li class="chapter" data-level="27.5" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#dimensionality-reduction-5"><i class="fa fa-check"></i><b>27.5</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="27.6" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#clustering-5"><i class="fa fa-check"></i><b>27.6</b> Clustering</a></li>
+<li class="chapter" data-level="" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#session-info-21"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="28" data-path="grun-human-pancreas-cel-seq2.html"><a href="grun-human-pancreas-cel-seq2.html"><i class="fa fa-check"></i><b>28</b> Grun human pancreas (CEL-seq2)</a><ul>
 <li class="chapter" data-level="28.1" data-path="grun-human-pancreas-cel-seq2.html"><a href="grun-human-pancreas-cel-seq2.html#introduction-8"><i class="fa fa-check"></i><b>28.1</b> Introduction</a></li>
@@ -504,12 +501,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="29.1" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#introduction-9"><i class="fa fa-check"></i><b>29.1</b> Introduction</a></li>
 <li class="chapter" data-level="29.2" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-loading-6"><i class="fa fa-check"></i><b>29.2</b> Data loading</a></li>
 <li class="chapter" data-level="29.3" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#quality-control-9"><i class="fa fa-check"></i><b>29.3</b> Quality control</a></li>
-<li class="chapter" data-level="29.4" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#normalization-8"><i class="fa fa-check"></i><b>29.4</b> Normalization</a><ul>
-<li class="chapter" data-level="29.4.1" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#variance-modelling-5"><i class="fa fa-check"></i><b>29.4.1</b> Variance modelling</a></li>
-</ul></li>
-<li class="chapter" data-level="29.5" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-integration-2"><i class="fa fa-check"></i><b>29.5</b> Data integration</a></li>
-<li class="chapter" data-level="29.6" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#dimensionality-reduction-7"><i class="fa fa-check"></i><b>29.6</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="29.7" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#clustering-7"><i class="fa fa-check"></i><b>29.7</b> Clustering</a></li>
+<li class="chapter" data-level="29.4" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#normalization-8"><i class="fa fa-check"></i><b>29.4</b> Normalization</a></li>
+<li class="chapter" data-level="29.5" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#variance-modelling-5"><i class="fa fa-check"></i><b>29.5</b> Variance modelling</a></li>
+<li class="chapter" data-level="29.6" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-integration-2"><i class="fa fa-check"></i><b>29.6</b> Data integration</a></li>
+<li class="chapter" data-level="29.7" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#dimensionality-reduction-7"><i class="fa fa-check"></i><b>29.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="29.8" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#clustering-7"><i class="fa fa-check"></i><b>29.8</b> Clustering</a></li>
 <li class="chapter" data-level="" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#session-info-23"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="30" data-path="lawlor-human-pancreas-smarter.html"><a href="lawlor-human-pancreas-smarter.html"><i class="fa fa-check"></i><b>30</b> Lawlor human pancreas (SMARTer)</a><ul>
@@ -525,12 +521,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="31" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html"><i class="fa fa-check"></i><b>31</b> Segerstolpe human pancreas (Smart-seq2)</a><ul>
 <li class="chapter" data-level="31.1" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#introduction-11"><i class="fa fa-check"></i><b>31.1</b> Introduction</a></li>
 <li class="chapter" data-level="31.2" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#data-loading-8"><i class="fa fa-check"></i><b>31.2</b> Data loading</a></li>
-<li class="chapter" data-level="31.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#quality-control-11"><i class="fa fa-check"></i><b>31.3</b> Quality control</a><ul>
-<li class="chapter" data-level="31.3.1" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#normalization-10"><i class="fa fa-check"></i><b>31.3.1</b> Normalization</a></li>
-<li class="chapter" data-level="31.3.2" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#variance-modelling-7"><i class="fa fa-check"></i><b>31.3.2</b> Variance modelling</a></li>
-<li class="chapter" data-level="31.3.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#dimensionality-reduction-9"><i class="fa fa-check"></i><b>31.3.3</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="31.3.4" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#clustering-9"><i class="fa fa-check"></i><b>31.3.4</b> Clustering</a></li>
-</ul></li>
+<li class="chapter" data-level="31.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#quality-control-11"><i class="fa fa-check"></i><b>31.3</b> Quality control</a></li>
+<li class="chapter" data-level="31.4" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#normalization-10"><i class="fa fa-check"></i><b>31.4</b> Normalization</a></li>
+<li class="chapter" data-level="31.5" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#variance-modelling-7"><i class="fa fa-check"></i><b>31.5</b> Variance modelling</a></li>
+<li class="chapter" data-level="31.6" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#dimensionality-reduction-9"><i class="fa fa-check"></i><b>31.6</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="31.7" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#clustering-9"><i class="fa fa-check"></i><b>31.7</b> Clustering</a></li>
 <li class="chapter" data-level="" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#session-info-25"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="32" data-path="merged-pancreas.html"><a href="merged-pancreas.html"><i class="fa fa-check"></i><b>32</b> Merged human pancreas datasets</a><ul>
@@ -589,14 +584,13 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="37.1" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#introduction-17"><i class="fa fa-check"></i><b>37.1</b> Introduction</a></li>
 <li class="chapter" data-level="37.2" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-loading-13"><i class="fa fa-check"></i><b>37.2</b> Data loading</a></li>
 <li class="chapter" data-level="37.3" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#quality-control-16"><i class="fa fa-check"></i><b>37.3</b> Quality control</a></li>
-<li class="chapter" data-level="37.4" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#normalization-15"><i class="fa fa-check"></i><b>37.4</b> Normalization</a><ul>
-<li class="chapter" data-level="37.4.1" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#variance-modeling"><i class="fa fa-check"></i><b>37.4.1</b> Variance modeling</a></li>
-</ul></li>
-<li class="chapter" data-level="37.5" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-integration-3"><i class="fa fa-check"></i><b>37.5</b> Data integration</a></li>
-<li class="chapter" data-level="37.6" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#dimensionality-reduction-14"><i class="fa fa-check"></i><b>37.6</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="37.7" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#clustering-14"><i class="fa fa-check"></i><b>37.7</b> Clustering</a></li>
-<li class="chapter" data-level="37.8" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#differential-expression"><i class="fa fa-check"></i><b>37.8</b> Differential expression</a></li>
-<li class="chapter" data-level="37.9" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#cell-type-classification"><i class="fa fa-check"></i><b>37.9</b> Cell type classification</a></li>
+<li class="chapter" data-level="37.4" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#normalization-15"><i class="fa fa-check"></i><b>37.4</b> Normalization</a></li>
+<li class="chapter" data-level="37.5" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#variance-modeling"><i class="fa fa-check"></i><b>37.5</b> Variance modeling</a></li>
+<li class="chapter" data-level="37.6" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-integration-3"><i class="fa fa-check"></i><b>37.6</b> Data integration</a></li>
+<li class="chapter" data-level="37.7" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#dimensionality-reduction-14"><i class="fa fa-check"></i><b>37.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="37.8" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#clustering-14"><i class="fa fa-check"></i><b>37.8</b> Clustering</a></li>
+<li class="chapter" data-level="37.9" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#differential-expression"><i class="fa fa-check"></i><b>37.9</b> Differential expression</a></li>
+<li class="chapter" data-level="37.10" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#cell-type-classification"><i class="fa fa-check"></i><b>37.10</b> Cell type classification</a></li>
 <li class="chapter" data-level="" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#session-info-31"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
@@ -636,9 +630,9 @@ document.addEventListener("click", function (event) {
         event.target.classList.toggle("active");
         var content = event.target.nextElementSibling;
         if (content.style.display === "block") {
-          content.style.display = "none";
+            content.style.display = "none";
         } else {
-          content.style.display = "block";
+            content.style.display = "block";
         }
     }
 })
@@ -666,7 +660,7 @@ document.addEventListener("click", function (event) {
 <div id="motivation-1" class="section level2">
 <h2><span class="header-section-number">8.1</span> Motivation</h2>
 <p>We often use scRNA-seq data in exploratory analyses to characterize heterogeneity across cells. Procedures like clustering and dimensionality reduction compare cells based on their gene expression profiles, which involves aggregating per-gene differences into a single (dis)similarity metric between a pair of cells. The choice of genes to use in this calculation has a major impact on the behavior of the metric and the performance of downstream methods. We want to select genes that contain useful information about the biology of the system while removing genes that contain random noise. This aims to preserve interesting biological structure without the variance that obscures that structure, and to reduce the size of the data to improve computational efficiency of later steps.</p>
-<p>The simplest approach to feature selection is to select the most variable genes based on their expression across the population. This assumes that genuine biological differences will manifest as increased variation in the affected genes, compared to other genes that are only affected by technical noise or a baseline level of “uninteresting” biological variation (e.g., from transcriptional bursting). Several methods are available to quantify the variation per gene and to select an appropriate set of highly variable genes (HVGs). We will discuss these below using the 10X PBMC dataset for demonstration:</p>
+<p>The simplest approach to feature selection is to select the most variable genes based on their expression across the population. This assumes that genuine biological differences will manifest as increased variation in the affected genes, compared to other genes that are only affected by technical noise or a baseline level of &quot;uninteresting&quot; biological variation (e.g., from transcriptional bursting). Several methods are available to quantify the variation per gene and to select an appropriate set of highly variable genes (HVGs). We will discuss these below using the 10X PBMC dataset for demonstration:</p>
 <button class="aaron-collapse">
 View history
 </button>
@@ -775,7 +769,7 @@ sce<span class="fl">.416</span>b &lt;-<span class="st"> </span><span class="kw">
 <h2><span class="header-section-number">8.2</span> Quantifying per-gene variation</h2>
 <div id="variance-of-the-log-counts" class="section level3">
 <h3><span class="header-section-number">8.2.1</span> Variance of the log-counts</h3>
-<p>The simplest approach to quantifying per-gene variation is to simply compute the variance of the log-normalized expression values (referred to as “log-counts” for simplicity) for each gene across all cells in the population <span class="citation">(Lun, McCarthy, and Marioni <a href="#ref-lun2016step">2016</a>)</span>. This has an advantage in that the feature selection is based on the same log-values that are used for later downstream steps. In particular, genes with the largest variances in log-values will contribute the most to the Euclidean distances between cells. By using log-values here, we ensure that our quantitative definition of heterogeneity is consistent throughout the entire analysis.</p>
+<p>The simplest approach to quantifying per-gene variation is to simply compute the variance of the log-normalized expression values (referred to as &quot;log-counts&quot; for simplicity) for each gene across all cells in the population <span class="citation">(Lun, McCarthy, and Marioni <a href="#ref-lun2016step">2016</a>)</span>. This has an advantage in that the feature selection is based on the same log-values that are used for later downstream steps. In particular, genes with the largest variances in log-values will contribute the most to the Euclidean distances between cells. By using log-values here, we ensure that our quantitative definition of heterogeneity is consistent throughout the entire analysis.</p>
 <p>Calculation of the per-gene variance is simple but feature selection requires modelling of the mean-variance relationship. As discussed briefly in Section <a href="normalization.html#normalization-transformation">7.5.1</a>, the log-transformation does not achieve perfect variance stabilization, which means that the variance of a gene is driven more by its abundance than its underlying biological heterogeneity. To account for this effect, we use the <code>modelGeneVar()</code> function to fit a trend to the variance with respect to abundance across all genes (Figure <a href="feature-selection.html#fig:trend-plot-pbmc">8.1</a>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(scran)
 dec.pbmc &lt;-<span class="st"> </span><span class="kw">modelGeneVar</span>(sce.pbmc)
@@ -786,12 +780,12 @@ fit.pbmc &lt;-<span class="st"> </span><span class="kw">metadata</span>(dec.pbmc
     <span class="dt">ylab=</span><span class="st">&quot;Variance of log-expression&quot;</span>)
 <span class="kw">curve</span>(fit.pbmc<span class="op">$</span><span class="kw">trend</span>(x), <span class="dt">col=</span><span class="st">&quot;dodgerblue&quot;</span>, <span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</code></pre></div>
 <div class="figure"><span id="fig:trend-plot-pbmc"></span>
-<img src="P2_W04.feature-selection_files/figure-html/trend-plot-pbmc-1.png" alt="Variance in the PBMC data set as a function of the mean. Each point represents a gene while the blue line represents the trend fitted to all genes." width="672" />
+<img src="feature-selection_files/figure-html/trend-plot-pbmc-1.png" alt="Variance in the PBMC data set as a function of the mean. Each point represents a gene while the blue line represents the trend fitted to all genes." width="672" />
 <p class="caption">
 Figure 8.1: Variance in the PBMC data set as a function of the mean. Each point represents a gene while the blue line represents the trend fitted to all genes.
 </p>
 </div>
-<p>At any given abundance, we assume that the expression profiles of most genes are dominated by random technical noise (see Section <a href="feature-selection.html#sec:spikeins">8.2.3</a> for details). Under this assumption, our trend represents an estimate of the technical noise as a function of abundance. We then break down the total variance of each gene into the technical component, i.e., the fitted value of the trend at that gene’s abundance; and the biological component, defined as the difference between the total variance and the technical component. This biological component represents the “interesting” variation for each gene and can be used as the metric for HVG selection.</p>
+<p>At any given abundance, we assume that the expression profiles of most genes are dominated by random technical noise (see Section <a href="feature-selection.html#sec:spikeins">8.2.3</a> for details). Under this assumption, our trend represents an estimate of the technical noise as a function of abundance. We then break down the total variance of each gene into the technical component, i.e., the fitted value of the trend at that gene's abundance; and the biological component, defined as the difference between the total variance and the technical component. This biological component represents the &quot;interesting&quot; variation for each gene and can be used as the metric for HVG selection.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Ordering by most interesting genes for inspection.</span>
 dec.pbmc[<span class="kw">order</span>(dec.pbmc<span class="op">$</span>bio, <span class="dt">decreasing=</span><span class="ot">TRUE</span>),] </code></pre></div>
 <pre><code>## DataFrame with 33694 rows and 6 columns
@@ -819,7 +813,7 @@ dec.pbmc[<span class="kw">order</span>(dec.pbmc<span class="op">$</span>bio, <sp
 <span class="kw">plot</span>(fit.cv2.pbmc<span class="op">$</span>mean, fit.cv2.pbmc<span class="op">$</span>cv2, <span class="dt">log=</span><span class="st">&quot;xy&quot;</span>)
 <span class="kw">curve</span>(fit.cv2.pbmc<span class="op">$</span><span class="kw">trend</span>(x), <span class="dt">col=</span><span class="st">&quot;dodgerblue&quot;</span>, <span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</code></pre></div>
 <div class="figure"><span id="fig:cv2-pbmc"></span>
-<img src="P2_W04.feature-selection_files/figure-html/cv2-pbmc-1.png" alt="CV^2^ in the PBMC data set as a function of the mean. Each point represents a gene while the blue line represents the fitted trend." width="672" />
+<img src="feature-selection_files/figure-html/cv2-pbmc-1.png" alt="CV^2^ in the PBMC data set as a function of the mean. Each point represents a gene while the blue line represents the fitted trend." width="672" />
 <p class="caption">
 Figure 8.2: CV<sup>2</sup> in the PBMC data set as a function of the mean. Each point represents a gene while the blue line represents the fitted trend.
 </p>
@@ -844,7 +838,7 @@ Figure 8.2: CV<sup>2</sup> in the PBMC data set as a function of the mean. Each 
 </div>
 <div id="sec:spikeins" class="section level3">
 <h3><span class="header-section-number">8.2.3</span> Quantifying technical noise</h3>
-<p>Strictly speaking, the use of a trend fitted to endogenous genes assumes that the expression profiles of most genes are dominated by random technical noise. In practice, all expressed genes will exhibit some non-zero level of biological variability due to events like transcriptional bursting. This suggests that our estimates of the technical component are likely to be inflated. It would be more appropriate to consider these estimates as technical noise plus “uninteresting” biological variation, under the assumption that most genes are unaffected by the relevant heterogeneity in the population.</p>
+<p>Strictly speaking, the use of a trend fitted to endogenous genes assumes that the expression profiles of most genes are dominated by random technical noise. In practice, all expressed genes will exhibit some non-zero level of biological variability due to events like transcriptional bursting. This suggests that our estimates of the technical component are likely to be inflated. It would be more appropriate to consider these estimates as technical noise plus &quot;uninteresting&quot; biological variation, under the assumption that most genes are unaffected by the relevant heterogeneity in the population.</p>
 <p>This revised assumption is generally reasonable but may be problematic in some scenarios where many genes at a particular abundance are affected by a biological process. For example, strong upregulation of cell type-specific genes may result in an enrichment of HVGs at high abundances. This would inflate the fitted trend in that abundance interval and compromise the detection of the relevant genes. We can avoid this problem by fitting a mean-dependent trend to the variance of the spike-in transcripts (Figure <a href="feature-selection.html#fig:spike-416b">8.3</a>), if they are available. The premise here is that spike-ins should not be affected by biological variation, so the fitted value of the spike-in trend should represent a better estimate of the technical component for each gene.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dec.spike<span class="fl">.416</span>b &lt;-<span class="st"> </span><span class="kw">modelGeneVarWithSpikes</span>(sce<span class="fl">.416</span>b, <span class="st">&quot;ERCC&quot;</span>)
 dec.spike<span class="fl">.416</span>b[<span class="kw">order</span>(dec.spike<span class="fl">.416</span>b<span class="op">$</span>bio, <span class="dt">decreasing=</span><span class="ot">TRUE</span>),]</code></pre></div>
@@ -868,12 +862,12 @@ fit.spike<span class="fl">.416</span>b &lt;-<span class="st"> </span><span class
 <span class="kw">points</span>(fit.spike<span class="fl">.416</span>b<span class="op">$</span>mean, fit.spike<span class="fl">.416</span>b<span class="op">$</span>var, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)
 <span class="kw">curve</span>(fit.spike<span class="fl">.416</span>b<span class="op">$</span><span class="kw">trend</span>(x), <span class="dt">col=</span><span class="st">&quot;dodgerblue&quot;</span>, <span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</code></pre></div>
 <div class="figure"><span id="fig:spike-416b"></span>
-<img src="P2_W04.feature-selection_files/figure-html/spike-416b-1.png" alt="Variance in the 416B data set as a function of the mean. Each point represents a gene (black) or spike-in transcript (red) and the blue line represents the trend fitted to all spike-ins." width="672" />
+<img src="feature-selection_files/figure-html/spike-416b-1.png" alt="Variance in the 416B data set as a function of the mean. Each point represents a gene (black) or spike-in transcript (red) and the blue line represents the trend fitted to all spike-ins." width="672" />
 <p class="caption">
 Figure 8.3: Variance in the 416B data set as a function of the mean. Each point represents a gene (black) or spike-in transcript (red) and the blue line represents the trend fitted to all spike-ins.
 </p>
 </div>
-<p>In the absence of spike-in data, one can attempt to create a trend by making some distributional assumptions about the noise. For example, UMI counts typically exhibit near-Poisson variation if we only consider technical noise from library preparation and sequencing. This can be used to construct a mean-variance trend in the log-counts (Figure <a href="feature-selection.html#fig:tech-pbmc">8.4</a>) with the <code>modelGeneVarByPoisson()</code> function. Note the increased residuals of the high-abundance genes, which can be interpreted as the amount of biological variation that was assumed to be “uninteresting” when fitting the gene-based trend in Figure <a href="feature-selection.html#fig:trend-plot-pbmc">8.1</a>.</p>
+<p>In the absence of spike-in data, one can attempt to create a trend by making some distributional assumptions about the noise. For example, UMI counts typically exhibit near-Poisson variation if we only consider technical noise from library preparation and sequencing. This can be used to construct a mean-variance trend in the log-counts (Figure <a href="feature-selection.html#fig:tech-pbmc">8.4</a>) with the <code>modelGeneVarByPoisson()</code> function. Note the increased residuals of the high-abundance genes, which can be interpreted as the amount of biological variation that was assumed to be &quot;uninteresting&quot; when fitting the gene-based trend in Figure <a href="feature-selection.html#fig:trend-plot-pbmc">8.1</a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">0010101</span>)
 dec.pois.pbmc &lt;-<span class="st"> </span><span class="kw">modelGeneVarByPoisson</span>(sce.pbmc)
 dec.pois.pbmc &lt;-<span class="st"> </span>dec.pois.pbmc[<span class="kw">order</span>(dec.pois.pbmc<span class="op">$</span>bio, <span class="dt">decreasing=</span><span class="ot">TRUE</span>),]
@@ -891,12 +885,12 @@ dec.pois.pbmc &lt;-<span class="st"> </span>dec.pois.pbmc[<span class="kw">order
     <span class="dt">ylab=</span><span class="st">&quot;Variance of log-expression&quot;</span>)
 <span class="kw">curve</span>(<span class="kw">metadata</span>(dec.pois.pbmc)<span class="op">$</span><span class="kw">trend</span>(x), <span class="dt">col=</span><span class="st">&quot;dodgerblue&quot;</span>, <span class="dt">add=</span><span class="ot">TRUE</span>)</code></pre></div>
 <div class="figure"><span id="fig:tech-pbmc"></span>
-<img src="P2_W04.feature-selection_files/figure-html/tech-pbmc-1.png" alt="Variance of normalized log-expression values for each gene in the PBMC dataset, plotted against the mean log-expression. The blue line represents represents the mean-variance relationship corresponding to Poisson noise." width="672" />
+<img src="feature-selection_files/figure-html/tech-pbmc-1.png" alt="Variance of normalized log-expression values for each gene in the PBMC dataset, plotted against the mean log-expression. The blue line represents represents the mean-variance relationship corresponding to Poisson noise." width="672" />
 <p class="caption">
 Figure 8.4: Variance of normalized log-expression values for each gene in the PBMC dataset, plotted against the mean log-expression. The blue line represents represents the mean-variance relationship corresponding to Poisson noise.
 </p>
 </div>
-<p>Interestingly, trends based purely on technical noise tend to yield large biological components for highly-expressed genes. This often includes so-called “house-keeping” genes coding for essential cellular components such as ribosomal proteins, which are considered uninteresting for characterizing cellular heterogeneity. These observations suggest that a more accurate noise model does not necessarily yield a better ranking of HVGs, though one should keep an open mind - house-keeping genes are regularly DE in a variety of conditions <span class="citation">(Glare et al. <a href="#ref-glare2002betaactin">2002</a>; Nazari, Parham, and Maleki <a href="#ref-nazari2015gapdh">2015</a>; Guimaraes and Zavolan <a href="#ref-guimaraes2016patterns">2016</a>)</span>, and the fact that they have large biological components indicates that there is strong variation across cells that may not be completely irrelevant.</p>
+<p>Interestingly, trends based purely on technical noise tend to yield large biological components for highly-expressed genes. This often includes so-called &quot;house-keeping&quot; genes coding for essential cellular components such as ribosomal proteins, which are considered uninteresting for characterizing cellular heterogeneity. These observations suggest that a more accurate noise model does not necessarily yield a better ranking of HVGs, though one should keep an open mind - house-keeping genes are regularly DE in a variety of conditions <span class="citation">(Glare et al. <a href="#ref-glare2002betaactin">2002</a>; Nazari, Parham, and Maleki <a href="#ref-nazari2015gapdh">2015</a>; Guimaraes and Zavolan <a href="#ref-guimaraes2016patterns">2016</a>)</span>, and the fact that they have large biological components indicates that there is strong variation across cells that may not be completely irrelevant.</p>
 </div>
 <div id="accounting-for-blocking-factors" class="section level3">
 <h3><span class="header-section-number">8.2.4</span> Accounting for blocking factors</h3>
@@ -926,7 +920,7 @@ blocked.stats &lt;-<span class="st"> </span>dec.block<span class="fl">.416</span
     <span class="kw">curve</span>(curfit<span class="op">$</span><span class="kw">trend</span>(x), <span class="dt">col=</span><span class="st">&#39;dodgerblue&#39;</span>, <span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">lwd=</span><span class="dv">2</span>) 
 }</code></pre></div>
 <div class="figure"><span id="fig:blocked-fit"></span>
-<img src="P2_W04.feature-selection_files/figure-html/blocked-fit-1.png" alt="Variance in the 416B data set as a function of the mean after blocking on the plate of origin. Each plot represents the results for a single plate, each point represents a gene (black) or spike-in transcript (red) and the blue line represents the trend fitted to all spike-ins." width="960" />
+<img src="feature-selection_files/figure-html/blocked-fit-1.png" alt="Variance in the 416B data set as a function of the mean after blocking on the plate of origin. Each plot represents the results for a single plate, each point represents a gene (black) or spike-in transcript (red) and the blue line represents the trend fitted to all spike-ins." width="960" />
 <p class="caption">
 Figure 8.5: Variance in the 416B data set as a function of the mean after blocking on the plate of origin. Each plot represents the results for a single plate, each point represents a gene (black) or spike-in transcript (red) and the blue line represents the trend fitted to all spike-ins.
 </p>
@@ -980,7 +974,7 @@ hvg.pbmc.var &lt;-<span class="st"> </span><span class="kw">getTopHVGs</span>(de
 Similarly, abundance-dependent changes in the magnitude of the chosen variance metric can introduce unexpected biases in competitive gene selection. 
 For example, the wave shape in Figure \@ref(fig:blocked-fit) means that the largest biological components usually occur around the peak and will be preferentially selected, while an upper bound on the CV^2^ discriminates against selection of low-abundance genes.
 -->
-<p>Another possible concern with this approach is the fact that the choice of <span class="math inline">\(X\)</span> is fairly arbitrary, with any value from 500 to 5000 considered “reasonable”. We have chosen <span class="math inline">\(X=1000\)</span> in the code above though there is no particular <em>a priori</em> reason for doing so. Our recommendation is to simply pick an arbitrary <span class="math inline">\(X\)</span> and proceed with the rest of the analysis, with the intention of testing other choices later, rather than spending much time worrying about obtaining the “optimal” value.</p>
+<p>Another possible concern with this approach is the fact that the choice of <span class="math inline">\(X\)</span> is fairly arbitrary, with any value from 500 to 5000 considered &quot;reasonable&quot;. We have chosen <span class="math inline">\(X=1000\)</span> in the code above though there is no particular <em>a priori</em> reason for doing so. Our recommendation is to simply pick an arbitrary <span class="math inline">\(X\)</span> and proceed with the rest of the analysis, with the intention of testing other choices later, rather than spending much time worrying about obtaining the &quot;optimal&quot; value.</p>
 </div>
 <div id="based-on-significance" class="section level3">
 <h3><span class="header-section-number">8.3.3</span> Based on significance</h3>
@@ -1009,7 +1003,7 @@ For example, the wave shape in Figure \@ref(fig:blocked-fit) means that the larg
 <div id="apriori-hvgs" class="section level2">
 <h2><span class="header-section-number">8.4</span> Selecting <em>a priori</em> genes of interest</h2>
 <p>A blunt yet effective feature selection strategy is to use pre-defined sets of interesting genes. The aim is to focus on specific aspects of biological heterogeneity that may be masked by other factors when using unsupervised methods for HVG selection. One example application lies in the dissection of transcriptional changes during the earliest stages of cell fate commitment <span class="citation">(Messmer et al. <a href="#ref-messmer2019transcriptional">2019</a>)</span>, which may be modest relative to activity in other pathways (e.g., cell cycle, metabolism). Indeed, if our aim is to show that there is no meaningful heterogeneity in a given pathway, we would - at the very least - be obliged to repeat our analysis using only the genes in that pathway to maximize power for detecting such heterogeneity.</p>
-<p>Using scRNA-seq data in this manner is conceptually equivalent to a fluorescence activated cell sorting (FACS) experiment, with the convenience of being able to (re)define the features of interest at any time. For example, in the PBMC dataset, we might use some of the C7 immunologic signatures from MSigDB <span class="citation">(Godec et al. <a href="#ref-godec2016compendium">2016</a>)</span> to improve resolution of the various T cell subtypes. We stress that there is no shame in leveraging prior biological knowledge to address specific hypotheses in this manner. We say this because a common refrain in genomics is that the data analysis should be “unbiased”, i.e., free from any biological preconceptions. Attempting to derive biological insight <em>ab initio</em> is admirable but such “biases” are already present at every stage, starting from experimental design (why are we interested in this cell population in the first place?) and continuing through to interpretation of marker genes (Section <a href="marker-detection.html#marker-detection">11</a>).</p>
+<p>Using scRNA-seq data in this manner is conceptually equivalent to a fluorescence activated cell sorting (FACS) experiment, with the convenience of being able to (re)define the features of interest at any time. For example, in the PBMC dataset, we might use some of the C7 immunologic signatures from MSigDB <span class="citation">(Godec et al. <a href="#ref-godec2016compendium">2016</a>)</span> to improve resolution of the various T cell subtypes. We stress that there is no shame in leveraging prior biological knowledge to address specific hypotheses in this manner. We say this because a common refrain in genomics is that the data analysis should be &quot;unbiased&quot;, i.e., free from any biological preconceptions. Attempting to derive biological insight <em>ab initio</em> is admirable but such &quot;biases&quot; are already present at every stage, starting from experimental design (why are we interested in this cell population in the first place?) and continuing through to interpretation of marker genes (Section <a href="marker-detection.html#marker-detection">11</a>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(msigdbr)
 c7.sets &lt;-<span class="st"> </span><span class="kw">msigdbr</span>(<span class="dt">species =</span> <span class="st">&quot;Homo sapiens&quot;</span>, <span class="dt">category =</span> <span class="st">&quot;C7&quot;</span>)
 <span class="kw">head</span>(<span class="kw">unique</span>(c7.sets<span class="op">$</span>gs_name))</code></pre></div>
@@ -1024,19 +1018,19 @@ cd8.sets &lt;-<span class="st"> </span>c7.sets[<span class="kw">grep</span>(<spa
 cd8.genes &lt;-<span class="st"> </span><span class="kw">rowData</span>(sce.pbmc)<span class="op">$</span>Symbol <span class="op">%in%</span><span class="st"> </span>cd8.sets<span class="op">$</span>human_gene_symbol
 <span class="kw">summary</span>(cd8.genes)</code></pre></div>
 <pre><code>##    Mode   FALSE    TRUE 
-## logical   32866     828</code></pre>
+## logical   32869     825</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using GSE11924 to distinguish between T helper subtypes</span>
 th.sets &lt;-<span class="st"> </span>c7.sets[<span class="kw">grep</span>(<span class="st">&quot;GSE11924&quot;</span>, c7.sets<span class="op">$</span>gs_name),]
 th.genes &lt;-<span class="st"> </span><span class="kw">rowData</span>(sce.pbmc)<span class="op">$</span>Symbol <span class="op">%in%</span><span class="st"> </span>th.sets<span class="op">$</span>human_gene_symbol
 <span class="kw">summary</span>(th.genes)</code></pre></div>
 <pre><code>##    Mode   FALSE    TRUE 
-## logical   31781    1913</code></pre>
+## logical   31786    1908</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using GSE11961 to distinguish between B cell subtypes</span>
 b.sets &lt;-<span class="st"> </span>c7.sets[<span class="kw">grep</span>(<span class="st">&quot;GSE11961&quot;</span>, c7.sets<span class="op">$</span>gs_name),]
 b.genes &lt;-<span class="st"> </span><span class="kw">rowData</span>(sce.pbmc)<span class="op">$</span>Symbol <span class="op">%in%</span><span class="st"> </span>b.sets<span class="op">$</span>human_gene_symbol
 <span class="kw">summary</span>(b.genes)</code></pre></div>
 <pre><code>##    Mode   FALSE    TRUE 
-## logical   28158    5536</code></pre>
+## logical   28185    5509</code></pre>
 <p>Of course, the downside of focusing on pre-defined genes is that it will limit our capacity to detect novel or unexpected aspects of variation. Thus, this kind of focused analysis should be complementary to (rather than a replacement for) the unsupervised feature selection strategies discussed previously.</p>
 <p>Alternatively, we can also invert this reasoning to remove genes that are unlikely to be of interest prior to downstream analyses, thus avoiding unwanted variation that interferes with downstream interpretation. Common candidates for removal include ribosomal protein genes or mitochondrial genes; for immune cell subsets, we might also be inclined to remove immunoglobulin genes and T cell receptor genes, where clonal expression introduces (possibly irrelevant) population structure.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Identifying ribosomal proteins:</span>
@@ -1048,7 +1042,7 @@ c2.sets &lt;-<span class="st"> </span><span class="kw">msigdbr</span>(<span clas
 ribo.set &lt;-<span class="st"> </span>c2.sets[c2.sets<span class="op">$</span>gs_name<span class="op">==</span><span class="st">&quot;KEGG_RIBOSOME&quot;</span>,]<span class="op">$</span>human_gene_symbol
 ribo.discard &lt;-<span class="st"> </span><span class="kw">rownames</span>(sce.pbmc) <span class="op">%in%</span><span class="st"> </span>ribo.set
 <span class="kw">sum</span>(ribo.discard)</code></pre></div>
-<pre><code>## [1] 86</code></pre>
+<pre><code>## [1] 87</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(AnnotationHub)
 edb &lt;-<span class="st"> </span><span class="kw">AnnotationHub</span>()[[<span class="st">&quot;AH73881&quot;</span>]]
 anno &lt;-<span class="st"> </span><span class="kw">select</span>(edb, <span class="dt">keys=</span><span class="kw">rowData</span>(sce.pbmc)<span class="op">$</span>ID, <span class="dt">keytype=</span><span class="st">&quot;GENEID&quot;</span>, 
@@ -1085,7 +1079,7 @@ chosen &lt;-<span class="st"> </span><span class="kw">getTopHVGs</span>(dec.pbmc
 sce.pbmc &lt;-<span class="st"> </span><span class="kw">runPCA</span>(sce.pbmc, <span class="dt">subset_row=</span>chosen)
 <span class="kw">reducedDimNames</span>(sce.pbmc)</code></pre></div>
 <pre><code>## [1] &quot;PCA&quot;</code></pre></li>
-<li><p>We can have our cake and eat it too by (ab)using the “alternative Experiment” system in the <code>SingleCellExperiment</code> class. Initially designed for storing alternative features like spike-ins or antibody tags, we can instead use it to hold our full dataset while we perform our downstream operations conveniently on the HVG subset. This avoids book-keeping problems in long analyses when the original dataset is not synchronized with the HVG subsetted data.</p>
+<li><p>We can have our cake and eat it too by (ab)using the &quot;alternative Experiment&quot; system in the <code>SingleCellExperiment</code> class. Initially designed for storing alternative features like spike-ins or antibody tags, we can instead use it to hold our full dataset while we perform our downstream operations conveniently on the HVG subset. This avoids book-keeping problems in long analyses when the original dataset is not synchronized with the HVG subsetted data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Recycling the class above.</span>
 <span class="kw">altExp</span>(sce.pbmc.hvg, <span class="st">&quot;original&quot;</span>) &lt;-<span class="st"> </span>sce.pbmc
 <span class="kw">altExpNames</span>(sce.pbmc.hvg)</code></pre></div>
@@ -1124,68 +1118,71 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] scater_1.17.0               ggplot2_3.3.0              
- [3] ensembldb_2.13.0            AnnotationFilter_1.13.0    
- [5] GenomicFeatures_1.41.0      AnnotationDbi_1.51.0       
- [7] AnnotationHub_2.21.0        BiocFileCache_1.13.0       
- [9] dbplyr_1.4.3                msigdbr_7.0.1              
-[11] scran_1.17.0                SingleCellExperiment_1.11.1
-[13] SummarizedExperiment_1.19.2 DelayedArray_0.15.1        
-[15] matrixStats_0.56.0          Biobase_2.49.0             
-[17] GenomicRanges_1.41.1        GenomeInfoDb_1.25.0        
-[19] IRanges_2.23.4              S4Vectors_0.27.4           
-[21] BiocGenerics_0.35.1         OSCAUtils_0.0.2            
-[23] BiocStyle_2.17.0           
+ [1] scater_1.17.1               ggplot2_3.3.1              
+ [3] scuttle_0.99.8              ensembldb_2.13.1           
+ [5] AnnotationFilter_1.13.0     GenomicFeatures_1.41.0     
+ [7] AnnotationDbi_1.51.0        AnnotationHub_2.21.0       
+ [9] BiocFileCache_1.13.0        dbplyr_1.4.4               
+[11] msigdbr_7.1.1               scran_1.17.1               
+[13] SingleCellExperiment_1.11.2 SummarizedExperiment_1.19.4
+[15] DelayedArray_0.15.1         matrixStats_0.56.0         
+[17] Biobase_2.49.0              GenomicRanges_1.41.1       
+[19] GenomeInfoDb_1.25.0         IRanges_2.23.6             
+[21] S4Vectors_0.27.10           BiocGenerics_0.35.2        
+[23] rebook_0.99.0               OSCAUtils_0.0.2            
+[25] BiocStyle_2.17.0           
 
 loaded via a namespace (and not attached):
  [1] ggbeeswarm_0.6.0              colorspace_1.4-1             
- [3] ellipsis_0.3.0                XVector_0.29.0               
+ [3] ellipsis_0.3.1                XVector_0.29.1               
  [5] BiocNeighbors_1.7.0           bit64_0.9-7                  
- [7] interactiveDisplayBase_1.27.0 codetools_0.2-16             
- [9] knitr_1.28                    Rsamtools_2.5.0              
-[11] shiny_1.4.0.2                 BiocManager_1.30.10          
-[13] compiler_4.0.0                httr_1.4.1                   
-[15] dqrng_0.2.1                   lazyeval_0.2.2               
+ [7] interactiveDisplayBase_1.27.5 codetools_0.2-16             
+ [9] knitr_1.28                    Rsamtools_2.5.1              
+[11] graph_1.67.1                  shiny_1.4.0.2                
+[13] BiocManager_1.30.10           compiler_4.0.0               
+[15] httr_1.4.1                    dqrng_0.2.1                  
 [17] assertthat_0.2.1              Matrix_1.2-18                
-[19] fastmap_1.0.1                 limma_3.45.0                 
-[21] later_1.0.0                   BiocSingular_1.5.0           
-[23] htmltools_0.4.0               prettyunits_1.1.1            
-[25] tools_4.0.0                   rsvd_1.0.3                   
-[27] igraph_1.2.5                  gtable_0.3.0                 
-[29] glue_1.4.0                    GenomeInfoDbData_1.2.3       
-[31] dplyr_0.8.5                   rappdirs_0.3.1               
-[33] Rcpp_1.0.4.6                  vctrs_0.2.4                  
-[35] Biostrings_2.57.0             rtracklayer_1.49.1           
-[37] DelayedMatrixStats_1.11.0     xfun_0.13                    
-[39] stringr_1.4.0                 ps_1.3.2                     
-[41] mime_0.9                      lifecycle_0.2.0              
-[43] irlba_2.3.3                   statmod_1.4.34               
-[45] XML_3.99-0.3                  edgeR_3.31.0                 
-[47] zlibbioc_1.35.0               scales_1.1.0                 
-[49] ProtGenerics_1.21.0           hms_0.5.3                    
-[51] promises_1.1.0                yaml_2.2.1                   
-[53] curl_4.3                      memoise_1.1.0                
-[55] gridExtra_2.3                 biomaRt_2.45.0               
-[57] stringi_1.4.6                 RSQLite_2.2.0                
-[59] BiocVersion_3.12.0            highr_0.8                    
-[61] BiocParallel_1.23.0           rlang_0.4.6                  
-[63] pkgconfig_2.0.3               bitops_1.0-6                 
-[65] evaluate_0.14                 lattice_0.20-41              
-[67] purrr_0.3.4                   GenomicAlignments_1.25.0     
-[69] bit_1.1-15.2                  processx_3.4.2               
-[71] tidyselect_1.0.0              magrittr_1.5                 
-[73] bookdown_0.18                 R6_2.4.1                     
-[75] DBI_1.1.0                     withr_2.2.0                  
-[77] pillar_1.4.4                  RCurl_1.98-1.2               
-[79] tibble_3.0.1                  crayon_1.3.4                 
-[81] rmarkdown_2.1                 viridis_0.5.1                
-[83] progress_1.2.2                locfit_1.5-9.4               
-[85] grid_4.0.0                    blob_1.2.1                   
-[87] callr_3.4.3                   digest_0.6.25                
-[89] xtable_1.8-4                  httpuv_1.5.2                 
-[91] openssl_1.4.1                 munsell_0.5.0                
-[93] beeswarm_0.2.3                viridisLite_0.3.0            
-[95] vipor_0.4.5                   askpass_1.1                  </code></pre>
+[19] fastmap_1.0.1                 lazyeval_0.2.2               
+[21] limma_3.45.0                  later_1.0.0                  
+[23] BiocSingular_1.5.0            htmltools_0.4.0              
+[25] prettyunits_1.1.1             tools_4.0.0                  
+[27] rsvd_1.0.3                    igraph_1.2.5                 
+[29] gtable_0.3.0                  glue_1.4.1                   
+[31] GenomeInfoDbData_1.2.3        dplyr_1.0.0                  
+[33] rappdirs_0.3.1                Rcpp_1.0.4.6                 
+[35] vctrs_0.3.0                   Biostrings_2.57.1            
+[37] rtracklayer_1.49.2            DelayedMatrixStats_1.11.0    
+[39] xfun_0.14                     stringr_1.4.0                
+[41] ps_1.3.3                      mime_0.9                     
+[43] lifecycle_0.2.0               irlba_2.3.3                  
+[45] statmod_1.4.34                XML_3.99-0.3                 
+[47] edgeR_3.31.1                  zlibbioc_1.35.0              
+[49] scales_1.1.1                  hms_0.5.3                    
+[51] promises_1.1.0                ProtGenerics_1.21.0          
+[53] yaml_2.2.1                    curl_4.3                     
+[55] gridExtra_2.3                 memoise_1.1.0                
+[57] biomaRt_2.45.0                stringi_1.4.6                
+[59] RSQLite_2.2.0                 BiocVersion_3.12.0           
+[61] highr_0.8                     BiocParallel_1.23.0          
+[63] rlang_0.4.6                   pkgconfig_2.0.3              
+[65] bitops_1.0-6                  evaluate_0.14                
+[67] lattice_0.20-41               purrr_0.3.4                  
+[69] GenomicAlignments_1.25.1      CodeDepends_0.6.5            
+[71] bit_1.1-15.2                  processx_3.4.2               
+[73] tidyselect_1.1.0              magrittr_1.5                 
+[75] bookdown_0.19                 R6_2.4.1                     
+[77] generics_0.0.2                DBI_1.1.0                    
+[79] withr_2.2.0                   pillar_1.4.4                 
+[81] RCurl_1.98-1.2                tibble_3.0.1                 
+[83] crayon_1.3.4                  rmarkdown_2.2                
+[85] viridis_0.5.1                 progress_1.2.2               
+[87] locfit_1.5-9.4                grid_4.0.0                   
+[89] blob_1.2.1                    callr_3.4.3                  
+[91] digest_0.6.25                 xtable_1.8-4                 
+[93] httpuv_1.5.3.1                openssl_1.4.1                
+[95] munsell_0.5.0                 viridisLite_0.3.0            
+[97] beeswarm_0.2.3                vipor_0.4.5                  
+[99] askpass_1.1                  </code></pre>
 </div>
 
 </div>

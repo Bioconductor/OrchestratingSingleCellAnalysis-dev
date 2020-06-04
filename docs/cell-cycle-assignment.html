@@ -5,25 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 16 Cell cycle assignment | Orchestrating Single-Cell Analysis with Bioconductor</title>
-  <meta name="description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 16 Cell cycle assignment | Orchestrating Single-Cell Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
+  <meta property="og:description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 16 Cell cycle assignment | Orchestrating Single-Cell Analysis with Bioconductor" />
   
-  <meta name="twitter:description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
+  <meta name="twitter:description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
   
 
 
 
-<meta name="date" content="2020-05-07" />
+<meta name="date" content="2020-06-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -112,7 +112,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.1.1" data-path="introduction.html"><a href="introduction.html#preliminaries"><i class="fa fa-check"></i><b>1.1.1</b> Preliminaries</a></li>
 <li class="chapter" data-level="1.1.2" data-path="introduction.html"><a href="introduction.html#workflows"><i class="fa fa-check"></i><b>1.1.2</b> Workflows</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#what-you-wont-learn"><i class="fa fa-check"></i><b>1.2</b> What you won’t learn</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#what-you-wont-learn"><i class="fa fa-check"></i><b>1.2</b> What you won't learn</a></li>
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#who-we-wrote-this-for"><i class="fa fa-check"></i><b>1.3</b> Who we wrote this for</a></li>
 <li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#why-we-wrote-this"><i class="fa fa-check"></i><b>1.4</b> Why we wrote this</a></li>
 <li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#acknowledgements"><i class="fa fa-check"></i><b>1.5</b> Acknowledgements</a></li>
@@ -227,19 +227,18 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.3.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#based-on-population-structure"><i class="fa fa-check"></i><b>9.3.4</b> Based on population structure</a></li>
 <li class="chapter" data-level="9.3.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#putting-it-together"><i class="fa fa-check"></i><b>9.3.5</b> Putting it together</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#non-negative-matrix-factorization"><i class="fa fa-check"></i><b>9.4</b> Non-negative matrix factorization</a></li>
-<li class="chapter" data-level="9.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction-for-visualization"><i class="fa fa-check"></i><b>9.5</b> Dimensionality reduction for visualization</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#motivation-3"><i class="fa fa-check"></i><b>9.5.1</b> Motivation</a></li>
-<li class="chapter" data-level="9.5.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizing-with-pca"><i class="fa fa-check"></i><b>9.5.2</b> Visualizing with PCA</a></li>
-<li class="chapter" data-level="9.5.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#t-stochastic-neighbor-embedding"><i class="fa fa-check"></i><b>9.5.3</b> <span class="math inline">\(t\)</span>-stochastic neighbor embedding</a></li>
-<li class="chapter" data-level="9.5.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection"><i class="fa fa-check"></i><b>9.5.4</b> Uniform manifold approximation and projection</a></li>
-<li class="chapter" data-level="9.5.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualization-interpretation"><i class="fa fa-check"></i><b>9.5.5</b> Interpreting the plots</a></li>
+<li class="chapter" data-level="9.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction-for-visualization"><i class="fa fa-check"></i><b>9.4</b> Dimensionality reduction for visualization</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#motivation-3"><i class="fa fa-check"></i><b>9.4.1</b> Motivation</a></li>
+<li class="chapter" data-level="9.4.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizing-with-pca"><i class="fa fa-check"></i><b>9.4.2</b> Visualizing with PCA</a></li>
+<li class="chapter" data-level="9.4.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#t-stochastic-neighbor-embedding"><i class="fa fa-check"></i><b>9.4.3</b> <span class="math inline">\(t\)</span>-stochastic neighbor embedding</a></li>
+<li class="chapter" data-level="9.4.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection"><i class="fa fa-check"></i><b>9.4.4</b> Uniform manifold approximation and projection</a></li>
+<li class="chapter" data-level="9.4.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualization-interpretation"><i class="fa fa-check"></i><b>9.4.5</b> Interpreting the plots</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#session-info-4"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>10</b> Clustering</a><ul>
 <li class="chapter" data-level="10.1" data-path="clustering.html"><a href="clustering.html#motivation-4"><i class="fa fa-check"></i><b>10.1</b> Motivation</a></li>
-<li class="chapter" data-level="10.2" data-path="clustering.html"><a href="clustering.html#what-is-the-true-clustering"><i class="fa fa-check"></i><b>10.2</b> What is the “true clustering”?</a></li>
+<li class="chapter" data-level="10.2" data-path="clustering.html"><a href="clustering.html#what-is-the-true-clustering"><i class="fa fa-check"></i><b>10.2</b> What is the &quot;true clustering&quot;?</a></li>
 <li class="chapter" data-level="10.3" data-path="clustering.html"><a href="clustering.html#clustering-graph"><i class="fa fa-check"></i><b>10.3</b> Graph-based clustering</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="clustering.html"><a href="clustering.html#background-3"><i class="fa fa-check"></i><b>10.3.1</b> Background</a></li>
 <li class="chapter" data-level="10.3.2" data-path="clustering.html"><a href="clustering.html#implementation"><i class="fa fa-check"></i><b>10.3.2</b> Implementation</a></li>
@@ -278,7 +277,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.4.1" data-path="marker-detection.html"><a href="marker-detection.html#using-the-block-argument"><i class="fa fa-check"></i><b>11.4.1</b> Using the <code>block=</code> argument</a></li>
 <li class="chapter" data-level="11.4.2" data-path="marker-detection.html"><a href="marker-detection.html#using-the-design-argument"><i class="fa fa-check"></i><b>11.4.2</b> Using the <code>design=</code> argument</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="marker-detection.html"><a href="marker-detection.html#invalidity-of-p-values"><i class="fa fa-check"></i><b>11.5</b> Invalidity of <span class="math inline">\(p\)</span>-values</a><ul>
+<li class="chapter" data-level="11.5" data-path="marker-detection.html"><a href="marker-detection.html#p-value-invalidity"><i class="fa fa-check"></i><b>11.5</b> Invalidity of <span class="math inline">\(p\)</span>-values</a><ul>
 <li class="chapter" data-level="11.5.1" data-path="marker-detection.html"><a href="marker-detection.html#from-data-snooping"><i class="fa fa-check"></i><b>11.5.1</b> From data snooping</a></li>
 <li class="chapter" data-level="11.5.2" data-path="marker-detection.html"><a href="marker-detection.html#false-replicates"><i class="fa fa-check"></i><b>11.5.2</b> Nature of replication</a></li>
 </ul></li>
@@ -360,18 +359,22 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="17" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html"><i class="fa fa-check"></i><b>17</b> Trajectory Analysis</a><ul>
 <li class="chapter" data-level="17.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-6"><i class="fa fa-check"></i><b>17.1</b> Overview</a></li>
-<li class="chapter" data-level="17.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#obtaining-pseudo-times"><i class="fa fa-check"></i><b>17.2</b> Obtaining pseudo-times</a><ul>
-<li class="chapter" data-level="17.2.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#cluster-based-minimum-spanning-tree"><i class="fa fa-check"></i><b>17.2.1</b> Cluster-based minimum spanning tree</a></li>
-<li class="chapter" data-level="17.2.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#principal-curves"><i class="fa fa-check"></i><b>17.2.2</b> Principal curves</a></li>
+<li class="chapter" data-level="17.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#obtaining-pseudotime-orderings"><i class="fa fa-check"></i><b>17.2</b> Obtaining pseudotime orderings</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-7"><i class="fa fa-check"></i><b>17.2.1</b> Overview</a></li>
+<li class="chapter" data-level="17.2.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#cluster-based-minimum-spanning-tree"><i class="fa fa-check"></i><b>17.2.2</b> Cluster-based minimum spanning tree</a></li>
+<li class="chapter" data-level="17.2.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#principal-curves"><i class="fa fa-check"></i><b>17.2.3</b> Principal curves</a></li>
 </ul></li>
 <li class="chapter" data-level="17.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#characterizing-trajectories"><i class="fa fa-check"></i><b>17.3</b> Characterizing trajectories</a><ul>
-<li class="chapter" data-level="17.3.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-along-a-trajectory"><i class="fa fa-check"></i><b>17.3.1</b> Changes along a trajectory</a></li>
-<li class="chapter" data-level="17.3.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-between-lineages"><i class="fa fa-check"></i><b>17.3.2</b> Changes between lineages</a></li>
+<li class="chapter" data-level="17.3.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-8"><i class="fa fa-check"></i><b>17.3.1</b> Overview</a></li>
+<li class="chapter" data-level="17.3.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-along-a-trajectory"><i class="fa fa-check"></i><b>17.3.2</b> Changes along a trajectory</a></li>
+<li class="chapter" data-level="17.3.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-between-paths"><i class="fa fa-check"></i><b>17.3.3</b> Changes between paths</a></li>
+<li class="chapter" data-level="17.3.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#further-comments-2"><i class="fa fa-check"></i><b>17.3.4</b> Further comments</a></li>
 </ul></li>
 <li class="chapter" data-level="17.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#finding-the-root"><i class="fa fa-check"></i><b>17.4</b> Finding the root</a><ul>
-<li class="chapter" data-level="17.4.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-7"><i class="fa fa-check"></i><b>17.4.1</b> Overview</a></li>
+<li class="chapter" data-level="17.4.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-9"><i class="fa fa-check"></i><b>17.4.1</b> Overview</a></li>
 <li class="chapter" data-level="17.4.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#entropy-based-methods"><i class="fa fa-check"></i><b>17.4.2</b> Entropy-based methods</a></li>
 <li class="chapter" data-level="17.4.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#rna-velocity"><i class="fa fa-check"></i><b>17.4.3</b> RNA velocity</a></li>
+<li class="chapter" data-level="17.4.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#real-timepoints"><i class="fa fa-check"></i><b>17.4.4</b> Real timepoints</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#session-information"><i class="fa fa-check"></i>Session information</a></li>
 </ul></li>
@@ -392,15 +395,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="19" data-path="repertoire-seq.html"><a href="repertoire-seq.html"><i class="fa fa-check"></i><b>19</b> Analyzing repertoire sequencing data</a><ul>
 <li class="chapter" data-level="19.1" data-path="repertoire-seq.html"><a href="repertoire-seq.html#motivation-12"><i class="fa fa-check"></i><b>19.1</b> Motivation</a></li>
-<li class="chapter" data-level="19.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#analyzing-the-t-cell-receptor-repertoire"><i class="fa fa-check"></i><b>19.2</b> Analyzing the T cell receptor repertoire</a><ul>
-<li class="chapter" data-level="19.2.1" data-path="repertoire-seq.html"><a href="repertoire-seq.html#data-processing"><i class="fa fa-check"></i><b>19.2.1</b> Data processing</a></li>
-<li class="chapter" data-level="19.2.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#basic-diagnostics"><i class="fa fa-check"></i><b>19.2.2</b> Basic diagnostics</a></li>
-<li class="chapter" data-level="19.2.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#complex-diagnostics"><i class="fa fa-check"></i><b>19.2.3</b> Complex diagnostics</a></li>
-<li class="chapter" data-level="19.2.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#quantifying-clonal-expansion"><i class="fa fa-check"></i><b>19.2.4</b> Quantifying clonal expansion</a></li>
-<li class="chapter" data-level="19.2.5" data-path="repertoire-seq.html"><a href="repertoire-seq.html#quantifying-gene-expression-and-properties"><i class="fa fa-check"></i><b>19.2.5</b> Quantifying gene expression and properties</a></li>
-</ul></li>
-<li class="chapter" data-level="19.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#analyzing-the-immunoglobulin-repertoire"><i class="fa fa-check"></i><b>19.3</b> Analyzing the immunoglobulin repertoire</a></li>
-<li class="chapter" data-level="19.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#multi-sample-analyses"><i class="fa fa-check"></i><b>19.4</b> Multi-sample analyses</a></li>
+<li class="chapter" data-level="19.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#loading-the-tcr-repertoire"><i class="fa fa-check"></i><b>19.2</b> Loading the TCR repertoire</a></li>
+<li class="chapter" data-level="19.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#leveraging-list-semantics"><i class="fa fa-check"></i><b>19.3</b> Leveraging <code>List</code> semantics</a></li>
+<li class="chapter" data-level="19.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#converting-back-to-dataframes"><i class="fa fa-check"></i><b>19.4</b> Converting back to <code>DataFrame</code>s</a></li>
+<li class="chapter" data-level="19.5" data-path="repertoire-seq.html"><a href="repertoire-seq.html#case-study-for-clonotype-analyses"><i class="fa fa-check"></i><b>19.5</b> Case study for clonotype analyses</a></li>
+<li class="chapter" data-level="19.6" data-path="repertoire-seq.html"><a href="repertoire-seq.html#repeating-for-immunoglobulins"><i class="fa fa-check"></i><b>19.6</b> Repeating for immunoglobulins</a></li>
 <li class="chapter" data-level="" data-path="repertoire-seq.html"><a href="repertoire-seq.html#session-info-13"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="interactive-sharing.html"><a href="interactive-sharing.html"><i class="fa fa-check"></i><b>20</b> Interactive data exploration</a><ul>
@@ -478,16 +477,14 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="26.8" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#data-integration"><i class="fa fa-check"></i><b>26.8</b> Data integration</a></li>
 <li class="chapter" data-level="" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#session-info-20"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="27" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html"><i class="fa fa-check"></i><b>27</b> Human PBMC 10X dataset (surface proteins)</a><ul>
-<li class="chapter" data-level="27.1" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#introduction-7"><i class="fa fa-check"></i><b>27.1</b> Introduction</a></li>
-<li class="chapter" data-level="27.2" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#analysis-code"><i class="fa fa-check"></i><b>27.2</b> Analysis code</a><ul>
-<li class="chapter" data-level="27.2.1" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#data-loading-4"><i class="fa fa-check"></i><b>27.2.1</b> Data loading</a></li>
-<li class="chapter" data-level="27.2.2" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#quality-control-7"><i class="fa fa-check"></i><b>27.2.2</b> Quality control</a></li>
-<li class="chapter" data-level="27.2.3" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#normalization-6"><i class="fa fa-check"></i><b>27.2.3</b> Normalization</a></li>
-<li class="chapter" data-level="27.2.4" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#dimensionality-reduction-5"><i class="fa fa-check"></i><b>27.2.4</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="27.2.5" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#clustering-5"><i class="fa fa-check"></i><b>27.2.5</b> Clustering</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#session-info-21"><i class="fa fa-check"></i>Session Info</a></li>
+<li class="chapter" data-level="27" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html"><i class="fa fa-check"></i><b>27</b> Human PBMC with surface proteins (10X Genomics)</a><ul>
+<li class="chapter" data-level="27.1" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#introduction-7"><i class="fa fa-check"></i><b>27.1</b> Introduction</a></li>
+<li class="chapter" data-level="27.2" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#data-loading-4"><i class="fa fa-check"></i><b>27.2</b> Data loading</a></li>
+<li class="chapter" data-level="27.3" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#quality-control-7"><i class="fa fa-check"></i><b>27.3</b> Quality control</a></li>
+<li class="chapter" data-level="27.4" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#normalization-6"><i class="fa fa-check"></i><b>27.4</b> Normalization</a></li>
+<li class="chapter" data-level="27.5" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#dimensionality-reduction-5"><i class="fa fa-check"></i><b>27.5</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="27.6" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#clustering-5"><i class="fa fa-check"></i><b>27.6</b> Clustering</a></li>
+<li class="chapter" data-level="" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#session-info-21"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="28" data-path="grun-human-pancreas-cel-seq2.html"><a href="grun-human-pancreas-cel-seq2.html"><i class="fa fa-check"></i><b>28</b> Grun human pancreas (CEL-seq2)</a><ul>
 <li class="chapter" data-level="28.1" data-path="grun-human-pancreas-cel-seq2.html"><a href="grun-human-pancreas-cel-seq2.html#introduction-8"><i class="fa fa-check"></i><b>28.1</b> Introduction</a></li>
@@ -504,12 +501,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="29.1" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#introduction-9"><i class="fa fa-check"></i><b>29.1</b> Introduction</a></li>
 <li class="chapter" data-level="29.2" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-loading-6"><i class="fa fa-check"></i><b>29.2</b> Data loading</a></li>
 <li class="chapter" data-level="29.3" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#quality-control-9"><i class="fa fa-check"></i><b>29.3</b> Quality control</a></li>
-<li class="chapter" data-level="29.4" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#normalization-8"><i class="fa fa-check"></i><b>29.4</b> Normalization</a><ul>
-<li class="chapter" data-level="29.4.1" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#variance-modelling-5"><i class="fa fa-check"></i><b>29.4.1</b> Variance modelling</a></li>
-</ul></li>
-<li class="chapter" data-level="29.5" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-integration-2"><i class="fa fa-check"></i><b>29.5</b> Data integration</a></li>
-<li class="chapter" data-level="29.6" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#dimensionality-reduction-7"><i class="fa fa-check"></i><b>29.6</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="29.7" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#clustering-7"><i class="fa fa-check"></i><b>29.7</b> Clustering</a></li>
+<li class="chapter" data-level="29.4" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#normalization-8"><i class="fa fa-check"></i><b>29.4</b> Normalization</a></li>
+<li class="chapter" data-level="29.5" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#variance-modelling-5"><i class="fa fa-check"></i><b>29.5</b> Variance modelling</a></li>
+<li class="chapter" data-level="29.6" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-integration-2"><i class="fa fa-check"></i><b>29.6</b> Data integration</a></li>
+<li class="chapter" data-level="29.7" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#dimensionality-reduction-7"><i class="fa fa-check"></i><b>29.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="29.8" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#clustering-7"><i class="fa fa-check"></i><b>29.8</b> Clustering</a></li>
 <li class="chapter" data-level="" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#session-info-23"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="30" data-path="lawlor-human-pancreas-smarter.html"><a href="lawlor-human-pancreas-smarter.html"><i class="fa fa-check"></i><b>30</b> Lawlor human pancreas (SMARTer)</a><ul>
@@ -525,12 +521,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="31" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html"><i class="fa fa-check"></i><b>31</b> Segerstolpe human pancreas (Smart-seq2)</a><ul>
 <li class="chapter" data-level="31.1" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#introduction-11"><i class="fa fa-check"></i><b>31.1</b> Introduction</a></li>
 <li class="chapter" data-level="31.2" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#data-loading-8"><i class="fa fa-check"></i><b>31.2</b> Data loading</a></li>
-<li class="chapter" data-level="31.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#quality-control-11"><i class="fa fa-check"></i><b>31.3</b> Quality control</a><ul>
-<li class="chapter" data-level="31.3.1" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#normalization-10"><i class="fa fa-check"></i><b>31.3.1</b> Normalization</a></li>
-<li class="chapter" data-level="31.3.2" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#variance-modelling-7"><i class="fa fa-check"></i><b>31.3.2</b> Variance modelling</a></li>
-<li class="chapter" data-level="31.3.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#dimensionality-reduction-9"><i class="fa fa-check"></i><b>31.3.3</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="31.3.4" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#clustering-9"><i class="fa fa-check"></i><b>31.3.4</b> Clustering</a></li>
-</ul></li>
+<li class="chapter" data-level="31.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#quality-control-11"><i class="fa fa-check"></i><b>31.3</b> Quality control</a></li>
+<li class="chapter" data-level="31.4" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#normalization-10"><i class="fa fa-check"></i><b>31.4</b> Normalization</a></li>
+<li class="chapter" data-level="31.5" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#variance-modelling-7"><i class="fa fa-check"></i><b>31.5</b> Variance modelling</a></li>
+<li class="chapter" data-level="31.6" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#dimensionality-reduction-9"><i class="fa fa-check"></i><b>31.6</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="31.7" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#clustering-9"><i class="fa fa-check"></i><b>31.7</b> Clustering</a></li>
 <li class="chapter" data-level="" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#session-info-25"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="32" data-path="merged-pancreas.html"><a href="merged-pancreas.html"><i class="fa fa-check"></i><b>32</b> Merged human pancreas datasets</a><ul>
@@ -589,14 +584,13 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="37.1" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#introduction-17"><i class="fa fa-check"></i><b>37.1</b> Introduction</a></li>
 <li class="chapter" data-level="37.2" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-loading-13"><i class="fa fa-check"></i><b>37.2</b> Data loading</a></li>
 <li class="chapter" data-level="37.3" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#quality-control-16"><i class="fa fa-check"></i><b>37.3</b> Quality control</a></li>
-<li class="chapter" data-level="37.4" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#normalization-15"><i class="fa fa-check"></i><b>37.4</b> Normalization</a><ul>
-<li class="chapter" data-level="37.4.1" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#variance-modeling"><i class="fa fa-check"></i><b>37.4.1</b> Variance modeling</a></li>
-</ul></li>
-<li class="chapter" data-level="37.5" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-integration-3"><i class="fa fa-check"></i><b>37.5</b> Data integration</a></li>
-<li class="chapter" data-level="37.6" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#dimensionality-reduction-14"><i class="fa fa-check"></i><b>37.6</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="37.7" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#clustering-14"><i class="fa fa-check"></i><b>37.7</b> Clustering</a></li>
-<li class="chapter" data-level="37.8" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#differential-expression"><i class="fa fa-check"></i><b>37.8</b> Differential expression</a></li>
-<li class="chapter" data-level="37.9" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#cell-type-classification"><i class="fa fa-check"></i><b>37.9</b> Cell type classification</a></li>
+<li class="chapter" data-level="37.4" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#normalization-15"><i class="fa fa-check"></i><b>37.4</b> Normalization</a></li>
+<li class="chapter" data-level="37.5" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#variance-modeling"><i class="fa fa-check"></i><b>37.5</b> Variance modeling</a></li>
+<li class="chapter" data-level="37.6" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-integration-3"><i class="fa fa-check"></i><b>37.6</b> Data integration</a></li>
+<li class="chapter" data-level="37.7" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#dimensionality-reduction-14"><i class="fa fa-check"></i><b>37.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="37.8" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#clustering-14"><i class="fa fa-check"></i><b>37.8</b> Clustering</a></li>
+<li class="chapter" data-level="37.9" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#differential-expression"><i class="fa fa-check"></i><b>37.9</b> Differential expression</a></li>
+<li class="chapter" data-level="37.10" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#cell-type-classification"><i class="fa fa-check"></i><b>37.10</b> Cell type classification</a></li>
 <li class="chapter" data-level="" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#session-info-31"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
@@ -636,9 +630,9 @@ document.addEventListener("click", function (event) {
         event.target.classList.toggle("active");
         var content = event.target.nextElementSibling;
         if (content.style.display === "block") {
-          content.style.display = "none";
+            content.style.display = "none";
         } else {
-          content.style.display = "block";
+            content.style.display = "block";
         }
     }
 })
@@ -753,7 +747,7 @@ cyclin.genes</code></pre></div>
 <span class="kw">plotHeatmap</span>(sce<span class="fl">.416</span>b, <span class="dt">order_columns_by=</span><span class="st">&quot;label&quot;</span>, 
     <span class="dt">cluster_rows=</span><span class="ot">FALSE</span>, <span class="dt">features=</span><span class="kw">sort</span>(cyclin.genes))</code></pre></div>
 <div class="figure"><span id="fig:heat-cyclin"></span>
-<img src="P2_W12.cell-cycle_files/figure-html/heat-cyclin-1.png" alt="Heatmap of the log-normalized expression values of the cyclin genes in the 416B dataset." width="672" />
+<img src="cell-cycle_files/figure-html/heat-cyclin-1.png" alt="Heatmap of the log-normalized expression values of the cyclin genes in the 416B dataset." width="672" />
 <p class="caption">
 Figure 16.1: Heatmap of the log-normalized expression values of the cyclin genes in the 416B dataset.
 </p>
@@ -791,7 +785,7 @@ markers[[<span class="dv">4</span>]]</code></pre></div>
 ## Ccnd3  0.273810
 ## Ccnd2  0.306548
 ## Ccnb3  0.500000</code></pre>
-<p>Direct examination of cyclin expression is easily to understand, interpret and experimentally validate. However, it is best suited for statements about relative cell cycle activity; for example, we would find it difficult to assign cell cycle phase in Figure <a href="cell-cycle-assignment.html#fig:heat-cyclin">16.1</a> without the presence of clusters spanning all phases to provide benchmarks for “high” and “low” expression of each cyclin. We also assume that cyclin expression is not affected by biological processes other than the cell cycle, which may be a strong assumption in some cases, e.g., malignant cells. This strategy is strongly dependent on having good sequencing coverage of the cyclins, which is less of an issue for the whole-of-transcriptome methods described below that use information from more genes.</p>
+<p>Direct examination of cyclin expression is easily to understand, interpret and experimentally validate. However, it is best suited for statements about relative cell cycle activity; for example, we would find it difficult to assign cell cycle phase in Figure <a href="cell-cycle-assignment.html#fig:heat-cyclin">16.1</a> without the presence of clusters spanning all phases to provide benchmarks for &quot;high&quot; and &quot;low&quot; expression of each cyclin. We also assume that cyclin expression is not affected by biological processes other than the cell cycle, which may be a strong assumption in some cases, e.g., malignant cells. This strategy is strongly dependent on having good sequencing coverage of the cyclins, which is less of an issue for the whole-of-transcriptome methods described below that use information from more genes.</p>
 </div>
 <div id="using-reference-profiles" class="section level2">
 <h2><span class="header-section-number">16.3</span> Using reference profiles</h2>
@@ -819,13 +813,13 @@ cycle.anno &lt;-<span class="st"> </span><span class="kw">select</span>(org.Mm.e
 candidates &lt;-<span class="st"> </span><span class="kw">Reduce</span>(intersect, 
     <span class="kw">list</span>(<span class="kw">rownames</span>(sce.ref), <span class="kw">rowData</span>(sce<span class="fl">.416</span>b)<span class="op">$</span>ENSEMBL, cycle.anno))
 <span class="kw">str</span>(candidates)</code></pre></div>
-<pre><code>##  chr [1:1605] &quot;ENSMUSG00000000001&quot; &quot;ENSMUSG00000000028&quot; ...</code></pre>
+<pre><code>##  chr [1:1606] &quot;ENSMUSG00000000001&quot; &quot;ENSMUSG00000000028&quot; ...</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Identifying markers between cell cycle phases.</span>
 sce.ref &lt;-<span class="st"> </span><span class="kw">logNormCounts</span>(sce.ref)
 phase.stats &lt;-<span class="st"> </span><span class="kw">pairwiseWilcox</span>(<span class="kw">logcounts</span>(sce.ref), sce.ref<span class="op">$</span>phase, 
     <span class="dt">direction=</span><span class="st">&quot;up&quot;</span>, <span class="dt">subset.row=</span>candidates)
 cycle.markers &lt;-<span class="st"> </span><span class="kw">getTopMarkers</span>(phase.stats[[<span class="dv">1</span>]], phase.stats[[<span class="dv">2</span>]])</code></pre></div>
-<p>We use the identified markers to assign labels to the 416B data with the <code>SingleR()</code> function. Cluster 1 mostly consists of G1 cells while the other clusters have more cells in the other phases, which is broadly consistent with our conclusions from the cyclin-based analysis. Unlike the cyclin-based analysis, this approach yields “absolute” assignments of cell cycle phase that do not need to be interpreted relative to other cells in the same dataset.</p>
+<p>We use the identified markers to assign labels to the 416B data with the <code>SingleR()</code> function. Cluster 1 mostly consists of G1 cells while the other clusters have more cells in the other phases, which is broadly consistent with our conclusions from the cyclin-based analysis. Unlike the cyclin-based analysis, this approach yields &quot;absolute&quot; assignments of cell cycle phase that do not need to be interpreted relative to other cells in the same dataset.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Switching row names back to Ensembl to match the reference.</span>
 test.data &lt;-<span class="st"> </span><span class="kw">logcounts</span>(sce<span class="fl">.416</span>b)
 <span class="kw">rownames</span>(test.data) &lt;-<span class="st"> </span><span class="kw">rowData</span>(sce<span class="fl">.416</span>b)<span class="op">$</span>ENSEMBL
@@ -846,7 +840,7 @@ tab</code></pre></div>
     <span class="kw">plotExpression</span>(sce<span class="fl">.416</span>b, <span class="dt">features=</span><span class="st">&quot;Lef1&quot;</span>, <span class="dt">x=</span><span class="st">&quot;label&quot;</span>),
     <span class="dt">ncol=</span><span class="dv">2</span>)</code></pre></div>
 <div class="figure"><span id="fig:dist-lef1"></span>
-<img src="P2_W12.cell-cycle_files/figure-html/dist-lef1-1.png" alt="Distribution of log-normalized expression values for _Lef1_ in the reference dataset (left) and in the 416B dataset (right)." width="672" />
+<img src="cell-cycle_files/figure-html/dist-lef1-1.png" alt="Distribution of log-normalized expression values for _Lef1_ in the reference dataset (left) and in the 416B dataset (right)." width="672" />
 <p class="caption">
 Figure 16.2: Distribution of log-normalized expression values for <em>Lef1</em> in the reference dataset (left) and in the 416B dataset (right).
 </p>
@@ -874,7 +868,7 @@ assignments &lt;-<span class="st"> </span><span class="kw">cyclone</span>(sce<sp
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(assignments<span class="op">$</span>score<span class="op">$</span>G1, assignments<span class="op">$</span>score<span class="op">$</span>G2M,
     <span class="dt">xlab=</span><span class="st">&quot;G1 score&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;G2/M score&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</code></pre></div>
 <div class="figure"><span id="fig:phaseplot416b"></span>
-<img src="P2_W12.cell-cycle_files/figure-html/phaseplot416b-1.png" alt="Cell cycle phase scores from applying the pair-based classifier on the 416B dataset. Each point represents a cell, plotted according to its scores for G1 and G2/M phases." width="672" />
+<img src="cell-cycle_files/figure-html/phaseplot416b-1.png" alt="Cell cycle phase scores from applying the pair-based classifier on the 416B dataset. Each point represents a cell, plotted according to its scores for G1 and G2/M phases." width="672" />
 <p class="caption">
 Figure 16.3: Cell cycle phase scores from applying the pair-based classifier on the 416B dataset. Each point represents a cell, plotted according to its scores for G1 and G2/M phases.
 </p>
@@ -932,79 +926,87 @@ locale:
 [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
-[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[1] stats4    parallel  stats     graphics  grDevices utils     datasets 
 [8] methods   base     
 
 other attached packages:
- [1] batchelor_1.5.0             fossil_0.4.0               
- [3] shapefiles_0.7              foreign_0.8-79             
- [5] maps_3.3.0                  sp_1.4-1                   
- [7] SingleR_1.3.1               org.Mm.eg.db_3.11.1        
- [9] ensembldb_2.13.0            AnnotationFilter_1.13.0    
-[11] GenomicFeatures_1.41.0      AnnotationDbi_1.51.0       
-[13] scRNAseq_2.3.0              scran_1.17.0               
-[15] scater_1.17.0               ggplot2_3.3.0              
-[17] SingleCellExperiment_1.11.1 SummarizedExperiment_1.19.2
-[19] DelayedArray_0.15.1         matrixStats_0.56.0         
-[21] Biobase_2.49.0              GenomicRanges_1.41.1       
-[23] GenomeInfoDb_1.25.0         IRanges_2.23.4             
-[25] S4Vectors_0.27.4            BiocGenerics_0.35.1        
-[27] OSCAUtils_0.0.2             BiocStyle_2.17.0           
+ [1] batchelor_1.5.0             ensembldb_2.13.1           
+ [3] AnnotationFilter_1.13.0     GenomicFeatures_1.41.0     
+ [5] rebook_0.99.0               limma_3.45.0               
+ [7] org.Mm.eg.db_3.11.4         BiocFileCache_1.13.0       
+ [9] dbplyr_1.4.4                DelayedMatrixStats_1.11.0  
+[11] AUCell_1.11.0               GSEABase_1.51.1            
+[13] graph_1.67.1                annotate_1.67.0            
+[15] XML_3.99-0.3                AnnotationDbi_1.51.0       
+[17] scRNAseq_2.3.2              pheatmap_1.0.12            
+[19] SingleR_1.3.4               TENxBrainData_1.9.0        
+[21] HDF5Array_1.17.0            rhdf5_2.33.0               
+[23] BiocSingular_1.5.0          scater_1.17.1              
+[25] scuttle_0.99.8              ggplot2_3.3.1              
+[27] fossil_0.4.0                shapefiles_0.7             
+[29] foreign_0.8-80              maps_3.3.0                 
+[31] sp_1.4-2                    BiocNeighbors_1.7.0        
+[33] scran_1.17.1                SingleCellExperiment_1.11.2
+[35] SummarizedExperiment_1.19.4 DelayedArray_0.15.1        
+[37] BiocParallel_1.23.0         matrixStats_0.56.0         
+[39] Biobase_2.49.0              GenomicRanges_1.41.1       
+[41] GenomeInfoDb_1.25.0         IRanges_2.23.6             
+[43] S4Vectors_0.27.10           BiocGenerics_0.35.2        
+[45] OSCAUtils_0.0.2             BiocStyle_2.17.0           
 
 loaded via a namespace (and not attached):
-  [1] ggbeeswarm_0.6.0              colorspace_1.4-1             
-  [3] ellipsis_0.3.0                XVector_0.29.0               
-  [5] BiocNeighbors_1.7.0           farver_2.0.3                 
-  [7] bit64_0.9-7                   interactiveDisplayBase_1.27.0
-  [9] codetools_0.2-16              knitr_1.28                   
- [11] Rsamtools_2.5.0               dbplyr_1.4.3                 
- [13] pheatmap_1.0.12               shiny_1.4.0.2                
- [15] BiocManager_1.30.10           compiler_4.0.0               
- [17] httr_1.4.1                    dqrng_0.2.1                  
- [19] lazyeval_0.2.2                assertthat_0.2.1             
- [21] Matrix_1.2-18                 fastmap_1.0.1                
- [23] limma_3.45.0                  later_1.0.0                  
- [25] BiocSingular_1.5.0            prettyunits_1.1.1            
- [27] htmltools_0.4.0               tools_4.0.0                  
- [29] rsvd_1.0.3                    igraph_1.2.5                 
- [31] gtable_0.3.0                  glue_1.4.0                   
- [33] GenomeInfoDbData_1.2.3        dplyr_0.8.5                  
- [35] rappdirs_0.3.1                Rcpp_1.0.4.6                 
- [37] vctrs_0.2.4                   Biostrings_2.57.0            
- [39] rtracklayer_1.49.1            ExperimentHub_1.15.0         
- [41] DelayedMatrixStats_1.11.0     xfun_0.13                    
- [43] stringr_1.4.0                 ps_1.3.2                     
- [45] mime_0.9                      lifecycle_0.2.0              
- [47] irlba_2.3.3                   statmod_1.4.34               
- [49] XML_3.99-0.3                  AnnotationHub_2.21.0         
- [51] edgeR_3.31.0                  zlibbioc_1.35.0              
- [53] scales_1.1.0                  ProtGenerics_1.21.0          
- [55] hms_0.5.3                     promises_1.1.0               
- [57] RColorBrewer_1.1-2            yaml_2.2.1                   
- [59] curl_4.3                      memoise_1.1.0                
- [61] gridExtra_2.3                 biomaRt_2.45.0               
- [63] stringi_1.4.6                 RSQLite_2.2.0                
- [65] BiocVersion_3.12.0            highr_0.8                    
- [67] BiocParallel_1.23.0           rlang_0.4.6                  
- [69] pkgconfig_2.0.3               bitops_1.0-6                 
- [71] evaluate_0.14                 lattice_0.20-41              
- [73] purrr_0.3.4                   labeling_0.3                 
- [75] GenomicAlignments_1.25.0      cowplot_1.0.0                
- [77] bit_1.1-15.2                  processx_3.4.2               
- [79] tidyselect_1.0.0              magrittr_1.5                 
- [81] bookdown_0.18                 R6_2.4.1                     
- [83] DBI_1.1.0                     pillar_1.4.4                 
- [85] withr_2.2.0                   RCurl_1.98-1.2               
- [87] tibble_3.0.1                  crayon_1.3.4                 
- [89] BiocFileCache_1.13.0          rmarkdown_2.1                
- [91] viridis_0.5.1                 progress_1.2.2               
- [93] locfit_1.5-9.4                grid_4.0.0                   
- [95] blob_1.2.1                    callr_3.4.3                  
- [97] digest_0.6.25                 xtable_1.8-4                 
- [99] httpuv_1.5.2                  openssl_1.4.1                
-[101] munsell_0.5.0                 beeswarm_0.2.3               
-[103] viridisLite_0.3.0             vipor_0.4.5                  
-[105] askpass_1.1                  </code></pre>
+  [1] AnnotationHub_2.21.0          igraph_1.2.5                 
+  [3] lazyeval_0.2.2                digest_0.6.25                
+  [5] htmltools_0.4.0               viridis_0.5.1                
+  [7] magrittr_1.5                  memoise_1.1.0                
+  [9] Biostrings_2.57.1             R.utils_2.9.2                
+ [11] askpass_1.1                   prettyunits_1.1.1            
+ [13] colorspace_1.4-1              blob_1.2.1                   
+ [15] rappdirs_0.3.1                xfun_0.14                    
+ [17] dplyr_1.0.0                   callr_3.4.3                  
+ [19] crayon_1.3.4                  RCurl_1.98-1.2               
+ [21] glue_1.4.1                    gtable_0.3.0                 
+ [23] zlibbioc_1.35.0               XVector_0.29.1               
+ [25] Rhdf5lib_1.11.0               scales_1.1.1                 
+ [27] DBI_1.1.0                     edgeR_3.31.1                 
+ [29] Rcpp_1.0.4.6                  viridisLite_0.3.0            
+ [31] xtable_1.8-4                  progress_1.2.2               
+ [33] dqrng_0.2.1                   bit_1.1-15.2                 
+ [35] rsvd_1.0.3                    httr_1.4.1                   
+ [37] RColorBrewer_1.1-2            ellipsis_0.3.1               
+ [39] pkgconfig_2.0.3               R.methodsS3_1.8.0            
+ [41] farver_2.0.3                  CodeDepends_0.6.5            
+ [43] locfit_1.5-9.4                labeling_0.3                 
+ [45] tidyselect_1.1.0              rlang_0.4.6                  
+ [47] later_1.0.0                   munsell_0.5.0                
+ [49] BiocVersion_3.12.0            tools_4.0.0                  
+ [51] generics_0.0.2                RSQLite_2.2.0                
+ [53] ExperimentHub_1.15.0          evaluate_0.14                
+ [55] stringr_1.4.0                 fastmap_1.0.1                
+ [57] yaml_2.2.1                    processx_3.4.2               
+ [59] knitr_1.28                    bit64_0.9-7                  
+ [61] purrr_0.3.4                   mime_0.9                     
+ [63] R.oo_1.23.0                   biomaRt_2.45.0               
+ [65] compiler_4.0.0                beeswarm_0.2.3               
+ [67] curl_4.3                      interactiveDisplayBase_1.27.5
+ [69] tibble_3.0.1                  statmod_1.4.34               
+ [71] stringi_1.4.6                 highr_0.8                    
+ [73] ps_1.3.3                      lattice_0.20-41              
+ [75] ProtGenerics_1.21.0           Matrix_1.2-18                
+ [77] vctrs_0.3.0                   pillar_1.4.4                 
+ [79] lifecycle_0.2.0               BiocManager_1.30.10          
+ [81] cowplot_1.0.0                 data.table_1.12.8            
+ [83] bitops_1.0-6                  irlba_2.3.3                  
+ [85] rtracklayer_1.49.2            httpuv_1.5.3.1               
+ [87] R6_2.4.1                      bookdown_0.19                
+ [89] promises_1.1.0                gridExtra_2.3                
+ [91] vipor_0.4.5                   codetools_0.2-16             
+ [93] assertthat_0.2.1              openssl_1.4.1                
+ [95] withr_2.2.0                   GenomicAlignments_1.25.1     
+ [97] Rsamtools_2.5.1               GenomeInfoDbData_1.2.3       
+ [99] hms_0.5.3                     grid_4.0.0                   
+[101] rmarkdown_2.2                 shiny_1.4.0.2                
+[103] ggbeeswarm_0.6.0             </code></pre>
 </div>
 
 </div>

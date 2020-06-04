@@ -5,25 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Quality Control | Orchestrating Single-Cell Analysis with Bioconductor</title>
-  <meta name="description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Quality Control | Orchestrating Single-Cell Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
+  <meta property="og:description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 6 Quality Control | Orchestrating Single-Cell Analysis with Bioconductor" />
   
-  <meta name="twitter:description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
+  <meta name="twitter:description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
   
 
 
 
-<meta name="date" content="2020-05-07" />
+<meta name="date" content="2020-06-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -112,7 +112,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.1.1" data-path="introduction.html"><a href="introduction.html#preliminaries"><i class="fa fa-check"></i><b>1.1.1</b> Preliminaries</a></li>
 <li class="chapter" data-level="1.1.2" data-path="introduction.html"><a href="introduction.html#workflows"><i class="fa fa-check"></i><b>1.1.2</b> Workflows</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#what-you-wont-learn"><i class="fa fa-check"></i><b>1.2</b> What you won’t learn</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#what-you-wont-learn"><i class="fa fa-check"></i><b>1.2</b> What you won't learn</a></li>
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#who-we-wrote-this-for"><i class="fa fa-check"></i><b>1.3</b> Who we wrote this for</a></li>
 <li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#why-we-wrote-this"><i class="fa fa-check"></i><b>1.4</b> Why we wrote this</a></li>
 <li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#acknowledgements"><i class="fa fa-check"></i><b>1.5</b> Acknowledgements</a></li>
@@ -227,19 +227,18 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.3.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#based-on-population-structure"><i class="fa fa-check"></i><b>9.3.4</b> Based on population structure</a></li>
 <li class="chapter" data-level="9.3.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#putting-it-together"><i class="fa fa-check"></i><b>9.3.5</b> Putting it together</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#non-negative-matrix-factorization"><i class="fa fa-check"></i><b>9.4</b> Non-negative matrix factorization</a></li>
-<li class="chapter" data-level="9.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction-for-visualization"><i class="fa fa-check"></i><b>9.5</b> Dimensionality reduction for visualization</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#motivation-3"><i class="fa fa-check"></i><b>9.5.1</b> Motivation</a></li>
-<li class="chapter" data-level="9.5.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizing-with-pca"><i class="fa fa-check"></i><b>9.5.2</b> Visualizing with PCA</a></li>
-<li class="chapter" data-level="9.5.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#t-stochastic-neighbor-embedding"><i class="fa fa-check"></i><b>9.5.3</b> <span class="math inline">\(t\)</span>-stochastic neighbor embedding</a></li>
-<li class="chapter" data-level="9.5.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection"><i class="fa fa-check"></i><b>9.5.4</b> Uniform manifold approximation and projection</a></li>
-<li class="chapter" data-level="9.5.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualization-interpretation"><i class="fa fa-check"></i><b>9.5.5</b> Interpreting the plots</a></li>
+<li class="chapter" data-level="9.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction-for-visualization"><i class="fa fa-check"></i><b>9.4</b> Dimensionality reduction for visualization</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#motivation-3"><i class="fa fa-check"></i><b>9.4.1</b> Motivation</a></li>
+<li class="chapter" data-level="9.4.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizing-with-pca"><i class="fa fa-check"></i><b>9.4.2</b> Visualizing with PCA</a></li>
+<li class="chapter" data-level="9.4.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#t-stochastic-neighbor-embedding"><i class="fa fa-check"></i><b>9.4.3</b> <span class="math inline">\(t\)</span>-stochastic neighbor embedding</a></li>
+<li class="chapter" data-level="9.4.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection"><i class="fa fa-check"></i><b>9.4.4</b> Uniform manifold approximation and projection</a></li>
+<li class="chapter" data-level="9.4.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualization-interpretation"><i class="fa fa-check"></i><b>9.4.5</b> Interpreting the plots</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#session-info-4"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>10</b> Clustering</a><ul>
 <li class="chapter" data-level="10.1" data-path="clustering.html"><a href="clustering.html#motivation-4"><i class="fa fa-check"></i><b>10.1</b> Motivation</a></li>
-<li class="chapter" data-level="10.2" data-path="clustering.html"><a href="clustering.html#what-is-the-true-clustering"><i class="fa fa-check"></i><b>10.2</b> What is the “true clustering”?</a></li>
+<li class="chapter" data-level="10.2" data-path="clustering.html"><a href="clustering.html#what-is-the-true-clustering"><i class="fa fa-check"></i><b>10.2</b> What is the &quot;true clustering&quot;?</a></li>
 <li class="chapter" data-level="10.3" data-path="clustering.html"><a href="clustering.html#clustering-graph"><i class="fa fa-check"></i><b>10.3</b> Graph-based clustering</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="clustering.html"><a href="clustering.html#background-3"><i class="fa fa-check"></i><b>10.3.1</b> Background</a></li>
 <li class="chapter" data-level="10.3.2" data-path="clustering.html"><a href="clustering.html#implementation"><i class="fa fa-check"></i><b>10.3.2</b> Implementation</a></li>
@@ -278,7 +277,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.4.1" data-path="marker-detection.html"><a href="marker-detection.html#using-the-block-argument"><i class="fa fa-check"></i><b>11.4.1</b> Using the <code>block=</code> argument</a></li>
 <li class="chapter" data-level="11.4.2" data-path="marker-detection.html"><a href="marker-detection.html#using-the-design-argument"><i class="fa fa-check"></i><b>11.4.2</b> Using the <code>design=</code> argument</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="marker-detection.html"><a href="marker-detection.html#invalidity-of-p-values"><i class="fa fa-check"></i><b>11.5</b> Invalidity of <span class="math inline">\(p\)</span>-values</a><ul>
+<li class="chapter" data-level="11.5" data-path="marker-detection.html"><a href="marker-detection.html#p-value-invalidity"><i class="fa fa-check"></i><b>11.5</b> Invalidity of <span class="math inline">\(p\)</span>-values</a><ul>
 <li class="chapter" data-level="11.5.1" data-path="marker-detection.html"><a href="marker-detection.html#from-data-snooping"><i class="fa fa-check"></i><b>11.5.1</b> From data snooping</a></li>
 <li class="chapter" data-level="11.5.2" data-path="marker-detection.html"><a href="marker-detection.html#false-replicates"><i class="fa fa-check"></i><b>11.5.2</b> Nature of replication</a></li>
 </ul></li>
@@ -360,18 +359,22 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="17" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html"><i class="fa fa-check"></i><b>17</b> Trajectory Analysis</a><ul>
 <li class="chapter" data-level="17.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-6"><i class="fa fa-check"></i><b>17.1</b> Overview</a></li>
-<li class="chapter" data-level="17.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#obtaining-pseudo-times"><i class="fa fa-check"></i><b>17.2</b> Obtaining pseudo-times</a><ul>
-<li class="chapter" data-level="17.2.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#cluster-based-minimum-spanning-tree"><i class="fa fa-check"></i><b>17.2.1</b> Cluster-based minimum spanning tree</a></li>
-<li class="chapter" data-level="17.2.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#principal-curves"><i class="fa fa-check"></i><b>17.2.2</b> Principal curves</a></li>
+<li class="chapter" data-level="17.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#obtaining-pseudotime-orderings"><i class="fa fa-check"></i><b>17.2</b> Obtaining pseudotime orderings</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-7"><i class="fa fa-check"></i><b>17.2.1</b> Overview</a></li>
+<li class="chapter" data-level="17.2.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#cluster-based-minimum-spanning-tree"><i class="fa fa-check"></i><b>17.2.2</b> Cluster-based minimum spanning tree</a></li>
+<li class="chapter" data-level="17.2.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#principal-curves"><i class="fa fa-check"></i><b>17.2.3</b> Principal curves</a></li>
 </ul></li>
 <li class="chapter" data-level="17.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#characterizing-trajectories"><i class="fa fa-check"></i><b>17.3</b> Characterizing trajectories</a><ul>
-<li class="chapter" data-level="17.3.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-along-a-trajectory"><i class="fa fa-check"></i><b>17.3.1</b> Changes along a trajectory</a></li>
-<li class="chapter" data-level="17.3.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-between-lineages"><i class="fa fa-check"></i><b>17.3.2</b> Changes between lineages</a></li>
+<li class="chapter" data-level="17.3.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-8"><i class="fa fa-check"></i><b>17.3.1</b> Overview</a></li>
+<li class="chapter" data-level="17.3.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-along-a-trajectory"><i class="fa fa-check"></i><b>17.3.2</b> Changes along a trajectory</a></li>
+<li class="chapter" data-level="17.3.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-between-paths"><i class="fa fa-check"></i><b>17.3.3</b> Changes between paths</a></li>
+<li class="chapter" data-level="17.3.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#further-comments-2"><i class="fa fa-check"></i><b>17.3.4</b> Further comments</a></li>
 </ul></li>
 <li class="chapter" data-level="17.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#finding-the-root"><i class="fa fa-check"></i><b>17.4</b> Finding the root</a><ul>
-<li class="chapter" data-level="17.4.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-7"><i class="fa fa-check"></i><b>17.4.1</b> Overview</a></li>
+<li class="chapter" data-level="17.4.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-9"><i class="fa fa-check"></i><b>17.4.1</b> Overview</a></li>
 <li class="chapter" data-level="17.4.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#entropy-based-methods"><i class="fa fa-check"></i><b>17.4.2</b> Entropy-based methods</a></li>
 <li class="chapter" data-level="17.4.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#rna-velocity"><i class="fa fa-check"></i><b>17.4.3</b> RNA velocity</a></li>
+<li class="chapter" data-level="17.4.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#real-timepoints"><i class="fa fa-check"></i><b>17.4.4</b> Real timepoints</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#session-information"><i class="fa fa-check"></i>Session information</a></li>
 </ul></li>
@@ -392,15 +395,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="19" data-path="repertoire-seq.html"><a href="repertoire-seq.html"><i class="fa fa-check"></i><b>19</b> Analyzing repertoire sequencing data</a><ul>
 <li class="chapter" data-level="19.1" data-path="repertoire-seq.html"><a href="repertoire-seq.html#motivation-12"><i class="fa fa-check"></i><b>19.1</b> Motivation</a></li>
-<li class="chapter" data-level="19.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#analyzing-the-t-cell-receptor-repertoire"><i class="fa fa-check"></i><b>19.2</b> Analyzing the T cell receptor repertoire</a><ul>
-<li class="chapter" data-level="19.2.1" data-path="repertoire-seq.html"><a href="repertoire-seq.html#data-processing"><i class="fa fa-check"></i><b>19.2.1</b> Data processing</a></li>
-<li class="chapter" data-level="19.2.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#basic-diagnostics"><i class="fa fa-check"></i><b>19.2.2</b> Basic diagnostics</a></li>
-<li class="chapter" data-level="19.2.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#complex-diagnostics"><i class="fa fa-check"></i><b>19.2.3</b> Complex diagnostics</a></li>
-<li class="chapter" data-level="19.2.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#quantifying-clonal-expansion"><i class="fa fa-check"></i><b>19.2.4</b> Quantifying clonal expansion</a></li>
-<li class="chapter" data-level="19.2.5" data-path="repertoire-seq.html"><a href="repertoire-seq.html#quantifying-gene-expression-and-properties"><i class="fa fa-check"></i><b>19.2.5</b> Quantifying gene expression and properties</a></li>
-</ul></li>
-<li class="chapter" data-level="19.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#analyzing-the-immunoglobulin-repertoire"><i class="fa fa-check"></i><b>19.3</b> Analyzing the immunoglobulin repertoire</a></li>
-<li class="chapter" data-level="19.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#multi-sample-analyses"><i class="fa fa-check"></i><b>19.4</b> Multi-sample analyses</a></li>
+<li class="chapter" data-level="19.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#loading-the-tcr-repertoire"><i class="fa fa-check"></i><b>19.2</b> Loading the TCR repertoire</a></li>
+<li class="chapter" data-level="19.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#leveraging-list-semantics"><i class="fa fa-check"></i><b>19.3</b> Leveraging <code>List</code> semantics</a></li>
+<li class="chapter" data-level="19.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#converting-back-to-dataframes"><i class="fa fa-check"></i><b>19.4</b> Converting back to <code>DataFrame</code>s</a></li>
+<li class="chapter" data-level="19.5" data-path="repertoire-seq.html"><a href="repertoire-seq.html#case-study-for-clonotype-analyses"><i class="fa fa-check"></i><b>19.5</b> Case study for clonotype analyses</a></li>
+<li class="chapter" data-level="19.6" data-path="repertoire-seq.html"><a href="repertoire-seq.html#repeating-for-immunoglobulins"><i class="fa fa-check"></i><b>19.6</b> Repeating for immunoglobulins</a></li>
 <li class="chapter" data-level="" data-path="repertoire-seq.html"><a href="repertoire-seq.html#session-info-13"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="interactive-sharing.html"><a href="interactive-sharing.html"><i class="fa fa-check"></i><b>20</b> Interactive data exploration</a><ul>
@@ -478,16 +477,14 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="26.8" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#data-integration"><i class="fa fa-check"></i><b>26.8</b> Data integration</a></li>
 <li class="chapter" data-level="" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#session-info-20"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="27" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html"><i class="fa fa-check"></i><b>27</b> Human PBMC 10X dataset (surface proteins)</a><ul>
-<li class="chapter" data-level="27.1" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#introduction-7"><i class="fa fa-check"></i><b>27.1</b> Introduction</a></li>
-<li class="chapter" data-level="27.2" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#analysis-code"><i class="fa fa-check"></i><b>27.2</b> Analysis code</a><ul>
-<li class="chapter" data-level="27.2.1" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#data-loading-4"><i class="fa fa-check"></i><b>27.2.1</b> Data loading</a></li>
-<li class="chapter" data-level="27.2.2" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#quality-control-7"><i class="fa fa-check"></i><b>27.2.2</b> Quality control</a></li>
-<li class="chapter" data-level="27.2.3" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#normalization-6"><i class="fa fa-check"></i><b>27.2.3</b> Normalization</a></li>
-<li class="chapter" data-level="27.2.4" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#dimensionality-reduction-5"><i class="fa fa-check"></i><b>27.2.4</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="27.2.5" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#clustering-5"><i class="fa fa-check"></i><b>27.2.5</b> Clustering</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#session-info-21"><i class="fa fa-check"></i>Session Info</a></li>
+<li class="chapter" data-level="27" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html"><i class="fa fa-check"></i><b>27</b> Human PBMC with surface proteins (10X Genomics)</a><ul>
+<li class="chapter" data-level="27.1" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#introduction-7"><i class="fa fa-check"></i><b>27.1</b> Introduction</a></li>
+<li class="chapter" data-level="27.2" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#data-loading-4"><i class="fa fa-check"></i><b>27.2</b> Data loading</a></li>
+<li class="chapter" data-level="27.3" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#quality-control-7"><i class="fa fa-check"></i><b>27.3</b> Quality control</a></li>
+<li class="chapter" data-level="27.4" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#normalization-6"><i class="fa fa-check"></i><b>27.4</b> Normalization</a></li>
+<li class="chapter" data-level="27.5" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#dimensionality-reduction-5"><i class="fa fa-check"></i><b>27.5</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="27.6" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#clustering-5"><i class="fa fa-check"></i><b>27.6</b> Clustering</a></li>
+<li class="chapter" data-level="" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#session-info-21"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="28" data-path="grun-human-pancreas-cel-seq2.html"><a href="grun-human-pancreas-cel-seq2.html"><i class="fa fa-check"></i><b>28</b> Grun human pancreas (CEL-seq2)</a><ul>
 <li class="chapter" data-level="28.1" data-path="grun-human-pancreas-cel-seq2.html"><a href="grun-human-pancreas-cel-seq2.html#introduction-8"><i class="fa fa-check"></i><b>28.1</b> Introduction</a></li>
@@ -504,12 +501,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="29.1" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#introduction-9"><i class="fa fa-check"></i><b>29.1</b> Introduction</a></li>
 <li class="chapter" data-level="29.2" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-loading-6"><i class="fa fa-check"></i><b>29.2</b> Data loading</a></li>
 <li class="chapter" data-level="29.3" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#quality-control-9"><i class="fa fa-check"></i><b>29.3</b> Quality control</a></li>
-<li class="chapter" data-level="29.4" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#normalization-8"><i class="fa fa-check"></i><b>29.4</b> Normalization</a><ul>
-<li class="chapter" data-level="29.4.1" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#variance-modelling-5"><i class="fa fa-check"></i><b>29.4.1</b> Variance modelling</a></li>
-</ul></li>
-<li class="chapter" data-level="29.5" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-integration-2"><i class="fa fa-check"></i><b>29.5</b> Data integration</a></li>
-<li class="chapter" data-level="29.6" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#dimensionality-reduction-7"><i class="fa fa-check"></i><b>29.6</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="29.7" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#clustering-7"><i class="fa fa-check"></i><b>29.7</b> Clustering</a></li>
+<li class="chapter" data-level="29.4" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#normalization-8"><i class="fa fa-check"></i><b>29.4</b> Normalization</a></li>
+<li class="chapter" data-level="29.5" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#variance-modelling-5"><i class="fa fa-check"></i><b>29.5</b> Variance modelling</a></li>
+<li class="chapter" data-level="29.6" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-integration-2"><i class="fa fa-check"></i><b>29.6</b> Data integration</a></li>
+<li class="chapter" data-level="29.7" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#dimensionality-reduction-7"><i class="fa fa-check"></i><b>29.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="29.8" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#clustering-7"><i class="fa fa-check"></i><b>29.8</b> Clustering</a></li>
 <li class="chapter" data-level="" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#session-info-23"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="30" data-path="lawlor-human-pancreas-smarter.html"><a href="lawlor-human-pancreas-smarter.html"><i class="fa fa-check"></i><b>30</b> Lawlor human pancreas (SMARTer)</a><ul>
@@ -525,12 +521,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="31" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html"><i class="fa fa-check"></i><b>31</b> Segerstolpe human pancreas (Smart-seq2)</a><ul>
 <li class="chapter" data-level="31.1" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#introduction-11"><i class="fa fa-check"></i><b>31.1</b> Introduction</a></li>
 <li class="chapter" data-level="31.2" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#data-loading-8"><i class="fa fa-check"></i><b>31.2</b> Data loading</a></li>
-<li class="chapter" data-level="31.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#quality-control-11"><i class="fa fa-check"></i><b>31.3</b> Quality control</a><ul>
-<li class="chapter" data-level="31.3.1" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#normalization-10"><i class="fa fa-check"></i><b>31.3.1</b> Normalization</a></li>
-<li class="chapter" data-level="31.3.2" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#variance-modelling-7"><i class="fa fa-check"></i><b>31.3.2</b> Variance modelling</a></li>
-<li class="chapter" data-level="31.3.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#dimensionality-reduction-9"><i class="fa fa-check"></i><b>31.3.3</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="31.3.4" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#clustering-9"><i class="fa fa-check"></i><b>31.3.4</b> Clustering</a></li>
-</ul></li>
+<li class="chapter" data-level="31.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#quality-control-11"><i class="fa fa-check"></i><b>31.3</b> Quality control</a></li>
+<li class="chapter" data-level="31.4" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#normalization-10"><i class="fa fa-check"></i><b>31.4</b> Normalization</a></li>
+<li class="chapter" data-level="31.5" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#variance-modelling-7"><i class="fa fa-check"></i><b>31.5</b> Variance modelling</a></li>
+<li class="chapter" data-level="31.6" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#dimensionality-reduction-9"><i class="fa fa-check"></i><b>31.6</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="31.7" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#clustering-9"><i class="fa fa-check"></i><b>31.7</b> Clustering</a></li>
 <li class="chapter" data-level="" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#session-info-25"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="32" data-path="merged-pancreas.html"><a href="merged-pancreas.html"><i class="fa fa-check"></i><b>32</b> Merged human pancreas datasets</a><ul>
@@ -589,14 +584,13 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="37.1" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#introduction-17"><i class="fa fa-check"></i><b>37.1</b> Introduction</a></li>
 <li class="chapter" data-level="37.2" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-loading-13"><i class="fa fa-check"></i><b>37.2</b> Data loading</a></li>
 <li class="chapter" data-level="37.3" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#quality-control-16"><i class="fa fa-check"></i><b>37.3</b> Quality control</a></li>
-<li class="chapter" data-level="37.4" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#normalization-15"><i class="fa fa-check"></i><b>37.4</b> Normalization</a><ul>
-<li class="chapter" data-level="37.4.1" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#variance-modeling"><i class="fa fa-check"></i><b>37.4.1</b> Variance modeling</a></li>
-</ul></li>
-<li class="chapter" data-level="37.5" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-integration-3"><i class="fa fa-check"></i><b>37.5</b> Data integration</a></li>
-<li class="chapter" data-level="37.6" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#dimensionality-reduction-14"><i class="fa fa-check"></i><b>37.6</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="37.7" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#clustering-14"><i class="fa fa-check"></i><b>37.7</b> Clustering</a></li>
-<li class="chapter" data-level="37.8" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#differential-expression"><i class="fa fa-check"></i><b>37.8</b> Differential expression</a></li>
-<li class="chapter" data-level="37.9" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#cell-type-classification"><i class="fa fa-check"></i><b>37.9</b> Cell type classification</a></li>
+<li class="chapter" data-level="37.4" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#normalization-15"><i class="fa fa-check"></i><b>37.4</b> Normalization</a></li>
+<li class="chapter" data-level="37.5" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#variance-modeling"><i class="fa fa-check"></i><b>37.5</b> Variance modeling</a></li>
+<li class="chapter" data-level="37.6" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-integration-3"><i class="fa fa-check"></i><b>37.6</b> Data integration</a></li>
+<li class="chapter" data-level="37.7" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#dimensionality-reduction-14"><i class="fa fa-check"></i><b>37.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="37.8" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#clustering-14"><i class="fa fa-check"></i><b>37.8</b> Clustering</a></li>
+<li class="chapter" data-level="37.9" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#differential-expression"><i class="fa fa-check"></i><b>37.9</b> Differential expression</a></li>
+<li class="chapter" data-level="37.10" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#cell-type-classification"><i class="fa fa-check"></i><b>37.10</b> Cell type classification</a></li>
 <li class="chapter" data-level="" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#session-info-31"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
@@ -636,9 +630,9 @@ document.addEventListener("click", function (event) {
         event.target.classList.toggle("active");
         var content = event.target.nextElementSibling;
         if (content.style.display === "block") {
-          content.style.display = "none";
+            content.style.display = "none";
         } else {
-          content.style.display = "block";
+            content.style.display = "block";
         }
     }
 })
@@ -665,13 +659,13 @@ document.addEventListener("click", function (event) {
 </style>
 <div id="quality-control-motivation" class="section level2">
 <h2><span class="header-section-number">6.1</span> Motivation</h2>
-<p>Low-quality libraries in scRNA-seq data can arise from a variety of sources such as cell damage during dissociation or failure in library preparation (e.g., inefficient reverse transcription or PCR amplification). These usually manifest as “cells” with low total counts, few expressed genes and high mitochondrial or spike-in proportions. These low-quality libraries are problematic as they can contribute to misleading results in downstream analyses:</p>
+<p>Low-quality libraries in scRNA-seq data can arise from a variety of sources such as cell damage during dissociation or failure in library preparation (e.g., inefficient reverse transcription or PCR amplification). These usually manifest as &quot;cells&quot; with low total counts, few expressed genes and high mitochondrial or spike-in proportions. These low-quality libraries are problematic as they can contribute to misleading results in downstream analyses:</p>
 <ul>
 <li>They form their own distinct cluster(s), complicating interpretation of the results. This is most obviously driven by increased mitochondrial proportions or enrichment for nuclear RNAs after cell damage. In the worst case, low-quality libraries generated from different cell types can cluster together based on similarities in the damage-induced expression profiles, creating artificial intermediate states or trajectories between otherwise distinct subpopulations. Additionally, very small libraries can form their own clusters due to shifts in the mean upon transformation <span class="citation">(Lun <a href="#ref-lun2018overcoming">2018</a>)</span>.</li>
 <li>They distort the characterization of population heterogeneity during variance estimation or principal components analysis. The first few principal components will capture differences in quality rather than biology, reducing the effectiveness of dimensionality reduction. Similarly, genes with the largest variances will be driven by differences between low- and high-quality cells. The most obvious example involves low-quality libraries with very low counts where scaling normalization inflates the apparent variance of genes that happen to have a non-zero count in those libraries.</li>
-<li>They contain genes that appear to be strongly “upregulated” due to aggressive scaling to normalize for small library sizes. This is most problematic for contaminating transcripts (e.g., from the ambient solution) that are present in all libraries at low but constant levels. Increased scaling in low-quality libraries transforms small counts for these transcripts in large normalized expression values, resulting in apparent upregulation compared to other cells. This can be misleading as the affected genes are often biologically sensible but are actually expressed in another subpopulation.</li>
+<li>They contain genes that appear to be strongly &quot;upregulated&quot; due to aggressive scaling to normalize for small library sizes. This is most problematic for contaminating transcripts (e.g., from the ambient solution) that are present in all libraries at low but constant levels. Increased scaling in low-quality libraries transforms small counts for these transcripts in large normalized expression values, resulting in apparent upregulation compared to other cells. This can be misleading as the affected genes are often biologically sensible but are actually expressed in another subpopulation.</li>
 </ul>
-<p>To avoid - or at least mitigate - these problems, we need to remove these cells at the start of the analysis. This step is commonly referred to as quality control (QC) on the cells. (We will use “library” and “cell” rather interchangeably here, though the distinction will become important when dealing with droplet-based data.) We will demonstrate using a small scRNA-seq dataset from <span class="citation">Lun et al. (<a href="#ref-lun2017assessing">2017</a>)</span>, which is provided with no prior QC so that we can apply our own procedures.</p>
+<p>To avoid - or at least mitigate - these problems, we need to remove these cells at the start of the analysis. This step is commonly referred to as quality control (QC) on the cells. (We will use &quot;library&quot; and &quot;cell&quot; rather interchangeably here, though the distinction will become important when dealing with droplet-based data.) We will demonstrate using a small scRNA-seq dataset from <span class="citation">Lun et al. (<a href="#ref-lun2017assessing">2017</a>)</span>, which is provided with no prior QC so that we can apply our own procedures.</p>
 <button class="aaron-collapse">
 View history
 </button>
@@ -704,7 +698,7 @@ sce<span class="fl">.416</span>b<span class="op">$</span>block &lt;-<span class=
 <li>The library size is defined as the total sum of counts across all relevant features for each cell. Here, we will consider the relevant features to be the endogenous genes. Cells with small library sizes are of low quality as the RNA has been lost at some point during library preparation, either due to cell lysis or inefficient cDNA capture and amplification.</li>
 <li>The number of expressed features in each cell is defined as the number of endogenous genes with non-zero counts for that cell. Any cell with very few expressed genes is likely to be of poor quality as the diverse transcript population has not been successfully captured.</li>
 <li>The proportion of reads mapped to spike-in transcripts is calculated relative to the total count across all features (including spike-ins) for each cell. As the same amount of spike-in RNA should have been added to each cell, any enrichment in spike-in counts is symptomatic of loss of endogenous RNA. Thus, high proportions are indicative of poor-quality cells where endogenous RNA has been lost due to, e.g., partial cell lysis or RNA degradation during dissociation.</li>
-<li>In the absence of spike-in transcripts, the proportion of reads mapped to genes in the mitochondrial genome can be used. High proportions are indicative of poor-quality cells <span class="citation">(Islam et al. <a href="#ref-islam2014quantitative">2014</a>; Ilicic et al. <a href="#ref-ilicic2016classification">2016</a>)</span>, presumably because of loss of cytoplasmic RNA from perforated cells. The reasoning is that, in the presence of modest damage, the holes in the cell membrane permit efflux of individual transcript molecules but are too small to allow mitochondria to escape, leading to a relative enrichment of mitochondrial transcripts.</li>
+<li>In the absence of spike-in transcripts, the proportion of reads mapped to genes in the mitochondrial genome can be used. High proportions are indicative of poor-quality cells <span class="citation">(Islam et al. <a href="#ref-islam2014quantitative">2014</a>; Ilicic et al. <a href="#ref-ilicic2016classification">2016</a>)</span>, presumably because of loss of cytoplasmic RNA from perforated cells. The reasoning is that, in the presence of modest damage, the holes in the cell membrane permit efflux of individual transcript molecules but are too small to allow mitochondria to escape, leading to a relative enrichment of mitochondrial transcripts. For single-nuclei RNA-seq experiments, high proportions are also useful as they can mark cells where the cytoplasm has not been successfully stripped.</li>
 </ul>
 <p>For each cell, we calculate these QC metrics using the <code>perCellQCMetrics()</code> function from the <em><a href="https://bioconductor.org/packages/3.12/scater">scater</a></em> package <span class="citation">(McCarthy et al. <a href="#ref-mccarthy2017scater">2017</a>)</span>. The <code>sum</code> column contains the total count for each cell and the <code>detected</code> column contains the number of detected genes. The <code>subsets_Mito_percent</code> column contains the percentage of reads mapped to mitochondrial transcripts. (For demonstration purposes, we show two different approaches of determining the genomic location of each transcript.) Finally, the <code>altexps_ERCC_percent</code> column contains the percentage of reads mapped to ERCC transcripts.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Retrieving the mitochondrial transcripts using genomic locations included in</span>
@@ -713,69 +707,69 @@ location &lt;-<span class="st"> </span><span class="kw">rowRanges</span>(sce<spa
 is.mito &lt;-<span class="st"> </span><span class="kw">any</span>(<span class="kw">seqnames</span>(location)<span class="op">==</span><span class="st">&quot;MT&quot;</span>)
 
 <span class="co"># ALTERNATIVELY: using resources in AnnotationHub to retrieve chromosomal</span>
-<span class="co"># locations given the Ensembl IDs. Same result.</span>
+<span class="co"># locations given the Ensembl IDs; this should yield the same result.</span>
 <span class="kw">library</span>(AnnotationHub)
 ens.mm.v97 &lt;-<span class="st"> </span><span class="kw">AnnotationHub</span>()[[<span class="st">&quot;AH73905&quot;</span>]]
 chr.loc &lt;-<span class="st"> </span><span class="kw">mapIds</span>(ens.mm.v97, <span class="dt">keys=</span><span class="kw">rownames</span>(sce<span class="fl">.416</span>b),
     <span class="dt">keytype=</span><span class="st">&quot;GENEID&quot;</span>, <span class="dt">column=</span><span class="st">&quot;SEQNAME&quot;</span>)
-is.mito &lt;-<span class="st"> </span><span class="kw">which</span>(chr.loc<span class="op">==</span><span class="st">&quot;MT&quot;</span>)
+is.mito.alt &lt;-<span class="st"> </span><span class="kw">which</span>(chr.loc<span class="op">==</span><span class="st">&quot;MT&quot;</span>)
 
 <span class="kw">library</span>(scater)
 df &lt;-<span class="st"> </span><span class="kw">perCellQCMetrics</span>(sce<span class="fl">.416</span>b, <span class="dt">subsets=</span><span class="kw">list</span>(<span class="dt">Mito=</span>is.mito))
 df</code></pre></div>
-<pre><code>## DataFrame with 192 rows and 16 columns
-##           sum  detected percent_top_50 percent_top_100 percent_top_200
-##     &lt;integer&gt; &lt;integer&gt;      &lt;numeric&gt;       &lt;numeric&gt;       &lt;numeric&gt;
-## 1      865936      7618        26.7218         32.2773         39.7208
-## 2     1076277      7521        29.4043         35.0354         42.2581
-## 3     1180138      8306        27.3454         32.4770         39.3296
-## 4     1342593      8143        35.8092         40.2666         46.2460
-## 5     1668311      7154        34.1198         39.0901         45.6660
-## ...       ...       ...            ...             ...             ...
-## 188    776622      8174        45.9362         49.7010         54.6101
-## 189   1299950      8956        38.0829         42.8930         49.0622
-## 190   1800696      9530        30.6675         35.5839         41.8550
-## 191     46731      6649        32.2998         37.9149         44.5999
-## 192   1866692     10964        26.6632         31.2584         37.5608
-##     percent_top_500 subsets_Mito_sum subsets_Mito_detected subsets_Mito_percent
-##           &lt;numeric&gt;        &lt;integer&gt;             &lt;integer&gt;            &lt;numeric&gt;
-## 1           52.9038            78790                    20              9.09882
-## 2           55.7454            98613                    20              9.16242
-## 3           51.9337           100341                    19              8.50248
-## 4           57.1210           104882                    20              7.81190
-## 5           58.2004           129559                    22              7.76588
-## ...             ...              ...                   ...                  ...
-## 188         64.4249            48126                    20              6.19684
-## 189         60.6675           112225                    25              8.63302
-## 190         53.6781           135693                    23              7.53559
-## 191         56.5235             3505                    16              7.50037
-## 192         48.9489           150375                    29              8.05569
-##     altexps_ERCC_sum altexps_ERCC_detected altexps_ERCC_percent
-##            &lt;integer&gt;             &lt;integer&gt;            &lt;numeric&gt;
-## 1              65278                    39              6.80658
-## 2              74748                    40              6.28030
-## 3              60878                    42              4.78949
-## 4              60073                    42              4.18567
-## 5             136810                    44              7.28887
-## ...              ...                   ...                  ...
-## 188            61575                    39              7.17620
-## 189            94982                    41              6.65764
-## 190           113707                    40              5.81467
-## 191             7580                    44             13.48898
-## 192            48664                    39              2.51930
-##     altexps_SIRV_sum altexps_SIRV_detected altexps_SIRV_percent     total
-##            &lt;integer&gt;             &lt;integer&gt;            &lt;numeric&gt; &lt;integer&gt;
-## 1              27828                     7              2.90165    959042
-## 2              39173                     7              3.29130   1190198
-## 3              30058                     7              2.36477   1271074
-## 4              32542                     7              2.26741   1435208
-## 5              71850                     7              3.82798   1876971
-## ...              ...                   ...                  ...       ...
-## 188            19848                     7             2.313165    858045
-## 189            31729                     7             2.224004   1426661
-## 190            41116                     7             2.102562   1955519
-## 191             1883                     7             3.350892     56194
-## 192            16289                     7             0.843271   1931645</code></pre>
+<pre><code>## DataFrame with 192 rows and 12 columns
+##           sum  detected subsets_Mito_sum subsets_Mito_detected
+##     &lt;integer&gt; &lt;integer&gt;        &lt;integer&gt;             &lt;integer&gt;
+## 1      865936      7618            78790                    20
+## 2     1076277      7521            98613                    20
+## 3     1180138      8306           100341                    19
+## 4     1342593      8143           104882                    20
+## 5     1668311      7154           129559                    22
+## ...       ...       ...              ...                   ...
+## 188    776622      8174            48126                    20
+## 189   1299950      8956           112225                    25
+## 190   1800696      9530           135693                    23
+## 191     46731      6649             3505                    16
+## 192   1866692     10964           150375                    29
+##     subsets_Mito_percent altexps_ERCC_sum altexps_ERCC_detected
+##                &lt;numeric&gt;        &lt;integer&gt;             &lt;integer&gt;
+## 1                9.09882            65278                    39
+## 2                9.16242            74748                    40
+## 3                8.50248            60878                    42
+## 4                7.81190            60073                    42
+## 5                7.76588           136810                    44
+## ...                  ...              ...                   ...
+## 188              6.19684            61575                    39
+## 189              8.63302            94982                    41
+## 190              7.53559           113707                    40
+## 191              7.50037             7580                    44
+## 192              8.05569            48664                    39
+##     altexps_ERCC_percent altexps_SIRV_sum altexps_SIRV_detected
+##                &lt;numeric&gt;        &lt;integer&gt;             &lt;integer&gt;
+## 1                6.80658            27828                     7
+## 2                6.28030            39173                     7
+## 3                4.78949            30058                     7
+## 4                4.18567            32542                     7
+## 5                7.28887            71850                     7
+## ...                  ...              ...                   ...
+## 188              7.17620            19848                     7
+## 189              6.65764            31729                     7
+## 190              5.81467            41116                     7
+## 191             13.48898             1883                     7
+## 192              2.51930            16289                     7
+##     altexps_SIRV_percent     total
+##                &lt;numeric&gt; &lt;integer&gt;
+## 1                2.90165    959042
+## 2                3.29130   1190198
+## 3                2.36477   1271074
+## 4                2.26741   1435208
+## 5                3.82798   1876971
+## ...                  ...       ...
+## 188             2.313165    858045
+## 189             2.224004   1426661
+## 190             2.102562   1955519
+## 191             3.350892     56194
+## 192             0.843271   1931645</code></pre>
 <p>Alternatively, users may prefer to use the <code>addPerCellQC()</code> function. This computes and appends the per-cell QC statistics to the <code>colData</code> of the <code>SingleCellExperiment</code> object, allowing us to retain all relevant information in a single object for later manipulation.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sce<span class="fl">.416</span>b &lt;-<span class="st"> </span><span class="kw">addPerCellQC</span>(sce<span class="fl">.416</span>b, <span class="dt">subsets=</span><span class="kw">list</span>(<span class="dt">Mito=</span>is.mito))
 <span class="kw">colnames</span>(<span class="kw">colData</span>(sce<span class="fl">.416</span>b))</code></pre></div>
@@ -784,14 +778,12 @@ df</code></pre></div>
 ##  [5] &quot;genotype&quot;                 &quot;phenotype&quot;               
 ##  [7] &quot;strain&quot;                   &quot;spike-in addition&quot;       
 ##  [9] &quot;block&quot;                    &quot;sum&quot;                     
-## [11] &quot;detected&quot;                 &quot;percent_top_50&quot;          
-## [13] &quot;percent_top_100&quot;          &quot;percent_top_200&quot;         
-## [15] &quot;percent_top_500&quot;          &quot;subsets_Mito_sum&quot;        
-## [17] &quot;subsets_Mito_detected&quot;    &quot;subsets_Mito_percent&quot;    
-## [19] &quot;altexps_ERCC_sum&quot;         &quot;altexps_ERCC_detected&quot;   
-## [21] &quot;altexps_ERCC_percent&quot;     &quot;altexps_SIRV_sum&quot;        
-## [23] &quot;altexps_SIRV_detected&quot;    &quot;altexps_SIRV_percent&quot;    
-## [25] &quot;total&quot;</code></pre>
+## [11] &quot;detected&quot;                 &quot;subsets_Mito_sum&quot;        
+## [13] &quot;subsets_Mito_detected&quot;    &quot;subsets_Mito_percent&quot;    
+## [15] &quot;altexps_ERCC_sum&quot;         &quot;altexps_ERCC_detected&quot;   
+## [17] &quot;altexps_ERCC_percent&quot;     &quot;altexps_SIRV_sum&quot;        
+## [19] &quot;altexps_SIRV_detected&quot;    &quot;altexps_SIRV_percent&quot;    
+## [21] &quot;total&quot;</code></pre>
 <p>A key assumption here is that the QC metrics are independent of the biological state of each cell. Poor values (e.g., low library sizes, high mitochondrial proportions) are presumed to be driven by technical factors rather than biological processes, meaning that the subsequent removal of cells will not misrepresent the biology in downstream analyses. Major violations of this assumption would potentially result in the loss of cell types that have, say, systematically low RNA content or high numbers of mitochondria. We can check for such violations using some diagnostics described in Sections <a href="quality-control.html#quality-control-plots">6.4</a> and <a href="quality-control.html#quality-control-discarded">6.6</a>.</p>
 </div>
 <div id="identifying-low-quality-cells" class="section level2">
@@ -818,7 +810,7 @@ discard &lt;-<span class="st"> </span>qc.lib <span class="op">|</span><span clas
 <h3><span class="header-section-number">6.3.2</span> With adaptive thresholds</h3>
 <div id="identifying-outliers" class="section level4">
 <h4><span class="header-section-number">6.3.2.1</span> Identifying outliers</h4>
-<p>To obtain an adaptive threshold, we assume that most of the dataset consists of high-quality cells. We then identify cells that are outliers for the various QC metrics, based on the median absolute deviation (MAD) from the median value of each metric across all cells. Specifically, a value is considered an outlier if it is more than 3 MADs from the median in the “problematic” direction. This is loosely motivated by the fact that such a filter will retain 99% of non-outlier values that follow a normal distribution.</p>
+<p>To obtain an adaptive threshold, we assume that most of the dataset consists of high-quality cells. We then identify cells that are outliers for the various QC metrics, based on the median absolute deviation (MAD) from the median value of each metric across all cells. Specifically, a value is considered an outlier if it is more than 3 MADs from the median in the &quot;problematic&quot; direction. This is loosely motivated by the fact that such a filter will retain 99% of non-outlier values that follow a normal distribution.</p>
 <p>For the 416B data, we identify cells with log-transformed library sizes that are more than 3 MADs below the median. A log-transformation is used to improve resolution at small values when <code>type=&quot;lower&quot;</code>. Specifically, it guarantees that the threshold is not a negative value, which would be meaningless for a non-negative metric. Furthermore, it is not uncommon for the distribution of library sizes to exhibit a heavy right tail; the log-transformation avoids inflation of the MAD in a manner that might compromise outlier detection on the left tail. (More generally, it makes the distribution seem more normal to justify the 99% rationale mentioned above.)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qc.lib2 &lt;-<span class="st"> </span><span class="kw">isOutlier</span>(df<span class="op">$</span>sum, <span class="dt">log=</span><span class="ot">TRUE</span>, <span class="dt">type=</span><span class="st">&quot;lower&quot;</span>)</code></pre></div>
 <p>We do the same for the log-transformed number of expressed genes.</p>
@@ -869,7 +861,7 @@ discard &lt;-<span class="st"> </span>qc.lib <span class="op">|</span><span clas
 <h4><span class="header-section-number">6.3.2.3</span> Considering experimental factors</h4>
 <p>More complex studies may involve batches of cells generated with different experimental parameters (e.g., sequencing depth). In such cases, the adaptive strategy should be applied to each batch separately. It makes little sense to compute medians and MADs from a mixture distribution containing samples from multiple batches. For example, if the sequencing coverage is lower in one batch compared to the others, it will drag down the median and inflate the MAD. This will reduce the suitability of the adaptive threshold for the other batches.</p>
 <p>If each batch is represented by its own <code>SingleCellExperiment</code>, the <code>isOutlier()</code> function can be directly applied to each batch as shown above. However, if cells from all batches have been merged into a single <code>SingleCellExperiment</code>, the <code>batch=</code> argument should be used to ensure that outliers are identified <em>within</em> each batch. This allows <code>isOutlier()</code> to accommodate systematic differences in the QC metrics across batches.</p>
-<p>We will again illustrate using the 416B dataset, which contains two experimental factors - plate of origin and oncogene induction status. We combine these factors together and use this in the <code>batch=</code> argument to <code>isOutlier()</code> via <code>quickPerCellQC()</code>. This results in the removal of more cells as the MAD is no longer inflated by (i) systematic differences in sequencing depth between batches and (ii) differences in number of genes expressed upon oncogene induction.</p>
+<p>We will again illustrate using the 416B dataset, which contains two experimental factors - plate of origin and oncogene induction status. We combine these factors together and use this in the <code>batch=</code> argument to <code>isOutlier()</code> via <code>quickPerCellQC()</code>. This results in the removal of slightly more cells as the MAD is no longer inflated by (i) systematic differences in sequencing depth between batches and (ii) differences in number of genes expressed upon oncogene induction.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">batch &lt;-<span class="st"> </span><span class="kw">paste0</span>(sce<span class="fl">.416</span>b<span class="op">$</span>phenotype, <span class="st">&quot;-&quot;</span>, sce<span class="fl">.416</span>b<span class="op">$</span>Plate)
 batch.reasons &lt;-<span class="st"> </span><span class="kw">quickPerCellQC</span>(df, <span class="dt">percent_subsets=</span><span class="kw">c</span>(<span class="st">&quot;subsets_Mito_percent&quot;</span>,
     <span class="st">&quot;altexps_ERCC_percent&quot;</span>), <span class="dt">batch=</span>batch)
@@ -899,12 +891,12 @@ without.blocking &lt;-<span class="st"> </span><span class="kw">plotColData</spa
 
 gridExtra<span class="op">::</span><span class="kw">grid.arrange</span>(with.blocking, without.blocking, <span class="dt">ncol=</span><span class="dv">2</span>)</code></pre></div>
 <div class="figure"><span id="fig:qc-plot-pancreas"></span>
-<img src="P2_W02.quality-control_files/figure-html/qc-plot-pancreas-1.png" alt="Distribution of the proportion of ERCC transcripts in each donor of the Grun pancreas dataset. Each point represents a cell and is coloured according to whether it was identified as an outlier within each batch (left) or using a common threshold (right)." width="672" />
+<img src="quality-control_files/figure-html/qc-plot-pancreas-1.png" alt="Distribution of the proportion of ERCC transcripts in each donor of the Grun pancreas dataset. Each point represents a cell and is coloured according to whether it was identified as an outlier within each batch (left) or using a common threshold (right)." width="672" />
 <p class="caption">
 Figure 6.1: Distribution of the proportion of ERCC transcripts in each donor of the Grun pancreas dataset. Each point represents a cell and is coloured according to whether it was identified as an outlier within each batch (left) or using a common threshold (right).
 </p>
 </div>
-<p>To identify problematic batches, one useful rule of thumb is to find batches with QC thresholds that are <em>themselves</em> outliers compared to the thresholds of other batches. The assumption here is that most batches consist of a majority of high quality cells such that the threshold value should follow some unimodal distribution across “typical” batches. If we observe a batch with an extreme threshold value, we may suspect that it contains a large number of low-quality cells that inflate the per-batch MAD. We demonstrate this process below for the <span class="citation">Grun et al. (<a href="#ref-grun2016denovo">2016</a>)</span> data.</p>
+<p>To identify problematic batches, one useful rule of thumb is to find batches with QC thresholds that are <em>themselves</em> outliers compared to the thresholds of other batches. The assumption here is that most batches consist of a majority of high quality cells such that the threshold value should follow some unimodal distribution across &quot;typical&quot; batches. If we observe a batch with an extreme threshold value, we may suspect that it contains a large number of low-quality cells that inflate the per-batch MAD. We demonstrate this process below for the <span class="citation">Grun et al. (<a href="#ref-grun2016denovo">2016</a>)</span> data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ercc.thresholds &lt;-<span class="st"> </span><span class="kw">attr</span>(discard.ercc, <span class="st">&quot;thresholds&quot;</span>)[<span class="st">&quot;higher&quot;</span>,]
 ercc.thresholds</code></pre></div>
 <pre><code>##        D10        D17         D2         D3         D7 
@@ -916,7 +908,7 @@ ercc.thresholds</code></pre></div>
 </div>
 <div id="other-approaches" class="section level3">
 <h3><span class="header-section-number">6.3.3</span> Other approaches</h3>
-<p>Another strategy is to identify outliers in high-dimensional space based on the QC metrics for each cell. We use methods from <em><a href="https://CRAN.R-project.org/package=robustbase">robustbase</a></em> to quantify the “outlyingness” of each cells based on their QC metrics, and then use <code>isOutlier()</code> to identify low-quality cells that exhibit unusually high levels of outlyingness.</p>
+<p>Another strategy is to identify outliers in high-dimensional space based on the QC metrics for each cell. We use methods from <em><a href="https://CRAN.R-project.org/package=robustbase">robustbase</a></em> to quantify the &quot;outlyingness&quot; of each cells based on their QC metrics, and then use <code>isOutlier()</code> to identify low-quality cells that exhibit unusually high levels of outlyingness.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stats &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">log10</span>(df<span class="op">$</span>sum), <span class="kw">log10</span>(df<span class="op">$</span>detected),
     df<span class="op">$</span>subsets_Mito_percent, df<span class="op">$</span>altexps_ERCC_percent)
 
@@ -925,14 +917,14 @@ outlying &lt;-<span class="st"> </span><span class="kw">adjOutlyingness</span>(s
 multi.outlier &lt;-<span class="st"> </span><span class="kw">isOutlier</span>(outlying, <span class="dt">type =</span> <span class="st">&quot;higher&quot;</span>)
 <span class="kw">summary</span>(multi.outlier)</code></pre></div>
 <pre><code>##    Mode   FALSE    TRUE 
-## logical     182      10</code></pre>
+## logical     181      11</code></pre>
 <p>This and related approaches like PCA-based outlier detection and support vector machines can provide more power to distinguish low-quality cells from high-quality counterparts <span class="citation">(Ilicic et al. <a href="#ref-ilicic2016classification">2016</a>)</span> as they can exploit patterns across many QC metrics. However, this comes at some cost to interpretability, as the reason for removing a given cell may not always be obvious.</p>
 <p>For completeness, we note that outliers can also be identified from the gene expression profiles, rather than QC metrics. We consider this to be a risky strategy as it can remove high-quality cells in rare populations.</p>
 </div>
 </div>
 <div id="quality-control-plots" class="section level2">
 <h2><span class="header-section-number">6.4</span> Checking diagnostic plots</h2>
-<p>It is good practice to inspect the distributions of QC metrics (Figure <a href="quality-control.html#fig:qc-dist-416b">6.2</a>) to identify possible problems. In the most ideal case, we would see normal distributions that would justify the 3 MAD threshold used in outlier detection. A large proportion of cells in another mode suggests that the QC metrics might be correlated with some biological state, potentially leading to the loss of distinct cell types during filtering. Batches with systematically poor values for any metric can also be quickly identified for further troubleshooting or outright removal, as done in Figure <a href="quality-control.html#fig:qc-plot-pancreas">6.1</a> above.</p>
+<p>It is good practice to inspect the distributions of QC metrics (Figure <a href="quality-control.html#fig:qc-dist-416b">6.2</a>) to identify possible problems. In the most ideal case, we would see normal distributions that would justify the 3 MAD threshold used in outlier detection. A large proportion of cells in another mode suggests that the QC metrics might be correlated with some biological state, potentially leading to the loss of distinct cell types during filtering; or that there were inconsistencies with library preparation for a subset of cells, a not-uncommon phenomenon in plate-based protocols. Batches with systematically poor values for any metric can then be quickly identified for further troubleshooting or outright removal, much like in Figure <a href="quality-control.html#fig:qc-plot-pancreas">6.1</a> above.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colData</span>(sce<span class="fl">.416</span>b) &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">colData</span>(sce<span class="fl">.416</span>b), df)
 sce<span class="fl">.416</span>b<span class="op">$</span>block &lt;-<span class="st"> </span><span class="kw">factor</span>(sce<span class="fl">.416</span>b<span class="op">$</span>block)
 sce<span class="fl">.416</span>b<span class="op">$</span>phenotype &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span class="kw">grepl</span>(<span class="st">&quot;induced&quot;</span>, sce<span class="fl">.416</span>b<span class="op">$</span>phenotype),
@@ -955,34 +947,12 @@ gridExtra<span class="op">::</span><span class="kw">grid.arrange</span>(
     <span class="dt">ncol=</span><span class="dv">1</span>
 )</code></pre></div>
 <div class="figure"><span id="fig:qc-dist-416b"></span>
-<img src="P2_W02.quality-control_files/figure-html/qc-dist-416b-1.png" alt="Distribution of QC metrics for each batch and phenotype in the 416B dataset. Each point represents a cell and is colored according to whether it was discarded, respectively." width="672" />
+<img src="quality-control_files/figure-html/qc-dist-416b-1.png" alt="Distribution of QC metrics for each batch and phenotype in the 416B dataset. Each point represents a cell and is colored according to whether it was discarded, respectively." width="672" />
 <p class="caption">
 Figure 6.2: Distribution of QC metrics for each batch and phenotype in the 416B dataset. Each point represents a cell and is colored according to whether it was discarded, respectively.
 </p>
 </div>
-<p>Another useful diagnostic involves plotting the proportion of mitochondrial counts against some of the other QC metrics. The aim is to confirm that there are no cells with both large total counts and large mitochondrial counts, to ensure that we are not inadvertently removing high-quality cells that happen to be highly metabolically active (e.g., hepatocytes). In this case, we do not observe any points in the top-right corner in Figure <a href="quality-control.html#fig:qc-mito-416b">6.3</a>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotColData</span>(sce<span class="fl">.416</span>b, <span class="dt">x=</span><span class="st">&quot;sum&quot;</span>, <span class="dt">y=</span><span class="st">&quot;subsets_Mito_percent&quot;</span>, 
-    <span class="dt">colour_by=</span><span class="st">&quot;discard&quot;</span>, <span class="dt">other_fields=</span><span class="kw">c</span>(<span class="st">&quot;block&quot;</span>, <span class="st">&quot;phenotype&quot;</span>)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">facet_grid</span>(block<span class="op">~</span>phenotype) <span class="op">+</span>
-<span class="st">    </span><span class="kw">theme</span>(<span class="dt">panel.border =</span> <span class="kw">element_rect</span>(<span class="dt">color =</span> <span class="st">&quot;grey&quot;</span>))</code></pre></div>
-<div class="figure"><span id="fig:qc-mito-416b"></span>
-<img src="P2_W02.quality-control_files/figure-html/qc-mito-416b-1.png" alt="Percentage of reads assigned to mitochondrial transcripts, plotted against the library size for each phenotype and batch." width="672" />
-<p class="caption">
-Figure 6.3: Percentage of reads assigned to mitochondrial transcripts, plotted against the library size for each phenotype and batch.
-</p>
-</div>
-<p>Comparison of the ERCC and mitochondrial percentages can also be informative (Figure <a href="quality-control.html#fig:qc-mito2-416b">6.4</a>). Low-quality cells with small mitochondrial percentages, large spike-in percentages and small library sizes are likely to be stripped nuclei, i.e., they have been so extensively damaged that they have lost all cytoplasmic content. Conversely, cells with high mitochondrial percentages and low ERCC percentages may represent undamaged cells that are metabolically active.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotColData</span>(sce<span class="fl">.416</span>b, <span class="dt">x=</span><span class="st">&quot;altexps_ERCC_percent&quot;</span>, <span class="dt">y=</span><span class="st">&quot;subsets_Mito_percent&quot;</span>,
-    <span class="dt">colour_by=</span><span class="st">&quot;discard&quot;</span>, <span class="dt">other_fields=</span><span class="kw">c</span>(<span class="st">&quot;block&quot;</span>, <span class="st">&quot;phenotype&quot;</span>)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">facet_grid</span>(block<span class="op">~</span>phenotype) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">theme</span>(<span class="dt">panel.border =</span> <span class="kw">element_rect</span>(<span class="dt">color =</span> <span class="st">&quot;grey&quot;</span>))</code></pre></div>
-<div class="figure"><span id="fig:qc-mito2-416b"></span>
-<img src="P2_W02.quality-control_files/figure-html/qc-mito2-416b-1.png" alt="Percentage of reads assigned to mitochondrial transcripts, plotted against the percentage of reads assigned to ERCC transcripts for each phenotype and batch." width="672" />
-<p class="caption">
-Figure 6.4: Percentage of reads assigned to mitochondrial transcripts, plotted against the percentage of reads assigned to ERCC transcripts for each phenotype and batch.
-</p>
-</div>
-<p>For larger experiments, a more typical example of such plots is provided in Figure <a href="quality-control.html#fig:qc-mito-spike-zeisel">6.5</a> using data from a mouse brain dataset <span class="citation">(Zeisel et al. <a href="#ref-zeisel2015brain">2015</a>)</span>. We can see that these metrics exhibit weak correlations to each other, presumably a manifestation of a common underlying effect of cell damage. The weakness of the correlations highlights the utility of using several metrics to capture different aspects of technical quality. (Of course, the flipside is that these metrics may also represent different aspects of biology, increasing the risk of discarding entire cell types as discussed in Section <a href="quality-control.html#outlier-assumptions">6.3.2.2</a>.)</p>
+<p>Another useful diagnostic involves plotting the proportion of mitochondrial counts against some of the other QC metrics. The aim is to confirm that there are no cells with both large total counts and large mitochondrial counts, to ensure that we are not inadvertently removing high-quality cells that happen to be highly metabolically active (e.g., hepatocytes). We demonstrate using data from a larger experiment involving the mouse brain <span class="citation">(Zeisel et al. <a href="#ref-zeisel2015brain">2015</a>)</span>; in this case, we do not observe any points in the top-right corner in Figure <a href="quality-control.html#fig:qc-mito-zeisel">6.3</a> that might potentially correspond to metabolically active, undamaged cells.</p>
 <button class="aaron-collapse">
 View history
 </button>
@@ -997,45 +967,33 @@ sce.zeisel &lt;-<span class="st"> </span><span class="kw">aggregateAcrossFeature
 
 <span class="co">#--- gene-annotation ---#</span>
 <span class="kw">library</span>(org.Mm.eg.db)
-<span class="kw">rowData</span>(sce.zeisel) &lt;-<span class="st"> </span><span class="kw">mapIds</span>(org.Mm.eg.db, <span class="dt">keys=</span><span class="kw">rownames</span>(sce.zeisel),
-    <span class="dt">keytype=</span><span class="st">&quot;SYMBOL&quot;</span>, <span class="dt">column=</span><span class="st">&quot;ENSEMBL&quot;</span>)
-
-<span class="co">#--- quality-control ---#</span>
-stats &lt;-<span class="st"> </span><span class="kw">perCellQCMetrics</span>(sce.zeisel, <span class="dt">subsets=</span><span class="kw">list</span>(
-    <span class="dt">Mt=</span><span class="kw">rowData</span>(sce.zeisel)<span class="op">$</span>featureType<span class="op">==</span><span class="st">&quot;mito&quot;</span>))
-qc &lt;-<span class="st"> </span><span class="kw">quickPerCellQC</span>(stats, <span class="dt">percent_subsets=</span><span class="kw">c</span>(<span class="st">&quot;altexps_ERCC_percent&quot;</span>, 
-    <span class="st">&quot;subsets_Mt_percent&quot;</span>))
-sce.zeisel &lt;-<span class="st"> </span>sce.zeisel[,<span class="op">!</span>qc<span class="op">$</span>discard]
-
-<span class="co">#--- normalization ---#</span>
-<span class="kw">library</span>(scran)
-<span class="kw">set.seed</span>(<span class="dv">1000</span>)
-clusters &lt;-<span class="st"> </span><span class="kw">quickCluster</span>(sce.zeisel)
-sce.zeisel &lt;-<span class="st"> </span><span class="kw">computeSumFactors</span>(sce.zeisel, <span class="dt">cluster=</span>clusters) 
-sce.zeisel &lt;-<span class="st"> </span><span class="kw">logNormCounts</span>(sce.zeisel)
-
-<span class="co">#--- variance-modelling ---#</span>
-dec.zeisel &lt;-<span class="st"> </span><span class="kw">modelGeneVarWithSpikes</span>(sce.zeisel, <span class="st">&quot;ERCC&quot;</span>)
-top.hvgs &lt;-<span class="st"> </span><span class="kw">getTopHVGs</span>(dec.zeisel, <span class="dt">prop=</span><span class="fl">0.1</span>)</code></pre></div>
+<span class="kw">rowData</span>(sce.zeisel)<span class="op">$</span>Ensembl &lt;-<span class="st"> </span><span class="kw">mapIds</span>(org.Mm.eg.db, 
+    <span class="dt">keys=</span><span class="kw">rownames</span>(sce.zeisel), <span class="dt">keytype=</span><span class="st">&quot;SYMBOL&quot;</span>, <span class="dt">column=</span><span class="st">&quot;ENSEMBL&quot;</span>)</code></pre></div>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sce.zeisel &lt;-<span class="st"> </span><span class="kw">addPerCellQC</span>(sce.zeisel, 
     <span class="dt">subsets=</span><span class="kw">list</span>(<span class="dt">Mt=</span><span class="kw">rowData</span>(sce.zeisel)<span class="op">$</span>featureType<span class="op">==</span><span class="st">&quot;mito&quot;</span>))
+
 qc &lt;-<span class="st"> </span><span class="kw">quickPerCellQC</span>(<span class="kw">colData</span>(sce.zeisel), 
     <span class="dt">percent_subsets=</span><span class="kw">c</span>(<span class="st">&quot;altexps_ERCC_percent&quot;</span>, <span class="st">&quot;subsets_Mt_percent&quot;</span>))
 sce.zeisel<span class="op">$</span>discard &lt;-<span class="st"> </span>qc<span class="op">$</span>discard
 
-gridExtra<span class="op">::</span><span class="kw">grid.arrange</span>(
-    <span class="kw">plotColData</span>(sce.zeisel, <span class="dt">x=</span><span class="st">&quot;sum&quot;</span>, <span class="dt">y=</span><span class="st">&quot;subsets_Mt_percent&quot;</span>,
-        <span class="dt">colour_by=</span><span class="st">&quot;discard&quot;</span>),
-    <span class="kw">plotColData</span>(sce.zeisel, <span class="dt">x=</span><span class="st">&quot;altexps_ERCC_percent&quot;</span>, <span class="dt">y=</span><span class="st">&quot;subsets_Mt_percent&quot;</span>,
-        <span class="dt">colour_by=</span><span class="st">&quot;discard&quot;</span>)
-)</code></pre></div>
-<div class="figure"><span id="fig:qc-mito-spike-zeisel"></span>
-<img src="P2_W02.quality-control_files/figure-html/qc-mito-spike-zeisel-1.png" alt="Percentage of UMIs assigned to mitochondrial transcripts in the Zeisel brain dataset, plotted against the total number of UMIs (top) or the percentage assigned to spike-in transcripts (bottom). Each point represents a cell and is colored according to whether it was considered low-quality and discarded." width="672" />
+<span class="kw">plotColData</span>(sce.zeisel, <span class="dt">x=</span><span class="st">&quot;sum&quot;</span>, <span class="dt">y=</span><span class="st">&quot;subsets_Mt_percent&quot;</span>, <span class="dt">colour_by=</span><span class="st">&quot;discard&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:qc-mito-zeisel"></span>
+<img src="quality-control_files/figure-html/qc-mito-zeisel-1.png" alt="Percentage of UMIs assigned to mitochondrial transcripts in the Zeisel brain dataset, plotted against the total number of UMIs (top). Each point represents a cell and is colored according to whether it was considered low-quality and discarded." width="672" />
 <p class="caption">
-Figure 6.5: Percentage of UMIs assigned to mitochondrial transcripts in the Zeisel brain dataset, plotted against the total number of UMIs (top) or the percentage assigned to spike-in transcripts (bottom). Each point represents a cell and is colored according to whether it was considered low-quality and discarded.
+Figure 6.3: Percentage of UMIs assigned to mitochondrial transcripts in the Zeisel brain dataset, plotted against the total number of UMIs (top). Each point represents a cell and is colored according to whether it was considered low-quality and discarded.
 </p>
 </div>
+<p>Comparison of the ERCC and mitochondrial percentages can also be informative (Figure <a href="quality-control.html#fig:qc-mito-spike-zeisel">6.4</a>). Low-quality cells with small mitochondrial percentages, large spike-in percentages and small library sizes are likely to be stripped nuclei, i.e., they have been so extensively damaged that they have lost all cytoplasmic content. On the other hand, cells with high mitochondrial percentages and low ERCC percentages may represent undamaged cells that are metabolically active. This interpretation also applies for single-nuclei studies but with a switch of focus: the stripped nuclei become the libraries of interest while the undamaged cells are considered to be low quality.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotColData</span>(sce.zeisel, <span class="dt">x=</span><span class="st">&quot;altexps_ERCC_percent&quot;</span>, <span class="dt">y=</span><span class="st">&quot;subsets_Mt_percent&quot;</span>,
+    <span class="dt">colour_by=</span><span class="st">&quot;discard&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:qc-mito-spike-zeisel"></span>
+<img src="quality-control_files/figure-html/qc-mito-spike-zeisel-1.png" alt="Percentage of UMIs assigned to mitochondrial transcripts in the Zeisel brain dataset, plotted against the percentage of UMIs assigned to spike-in transcripts (bottom). Each point represents a cell and is colored according to whether it was considered low-quality and discarded." width="672" />
+<p class="caption">
+Figure 6.4: Percentage of UMIs assigned to mitochondrial transcripts in the Zeisel brain dataset, plotted against the percentage of UMIs assigned to spike-in transcripts (bottom). Each point represents a cell and is colored according to whether it was considered low-quality and discarded.
+</p>
+</div>
+<p>We see that all of these metrics exhibit weak correlations to each other, presumably a manifestation of a common underlying effect of cell damage. The weakness of the correlations motivates the use of several metrics to capture different aspects of technical quality. Of course, the flipside is that these metrics may also represent different aspects of biology, increasing the risk of discarding entire cell types as discussed in Section <a href="quality-control.html#outlier-assumptions">6.3.2.2</a>.</p>
 </div>
 <div id="qc-droplets" class="section level2">
 <h2><span class="header-section-number">6.5</span> Cell calling for droplet data</h2>
@@ -1065,7 +1023,7 @@ sce.pbmc</code></pre></div>
 ## colData names(2): Sample Barcode
 ## reducedDimNames(0):
 ## altExpNames(0):</code></pre>
-<p>The distribution of total counts exhibits a sharp transition between barcodes with large and small total counts (Figure <a href="quality-control.html#fig:rankplot">6.6</a>), probably corresponding to cell-containing and empty droplets respectively. A simple approach would be to apply a threshold on the total count to only retain those barcodes with large totals. However, this unnecessarily discards libraries derived from cell types with low RNA content.</p>
+<p>The distribution of total counts exhibits a sharp transition between barcodes with large and small total counts (Figure <a href="quality-control.html#fig:rankplot">6.5</a>), probably corresponding to cell-containing and empty droplets respectively. A simple approach would be to apply a threshold on the total count to only retain those barcodes with large totals. However, this unnecessarily discards libraries derived from cell types with low RNA content.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bcrank &lt;-<span class="st"> </span><span class="kw">barcodeRanks</span>(<span class="kw">counts</span>(sce.pbmc))
 
 <span class="co"># Only showing unique points for plotting speed.</span>
@@ -1079,15 +1037,15 @@ uniq &lt;-<span class="st"> </span><span class="op">!</span><span class="kw">dup
 <span class="kw">legend</span>(<span class="st">&quot;bottomleft&quot;</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;Inflection&quot;</span>, <span class="st">&quot;Knee&quot;</span>), 
         <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;darkgreen&quot;</span>, <span class="st">&quot;dodgerblue&quot;</span>), <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">cex=</span><span class="fl">1.2</span>)</code></pre></div>
 <div class="figure"><span id="fig:rankplot"></span>
-<img src="P2_W02.quality-control_files/figure-html/rankplot-1.png" alt="Total UMI count for each barcode in the PBMC dataset, plotted against its rank (in decreasing order of total counts). The inferred locations of the inflection and knee points are also shown." width="672" />
+<img src="quality-control_files/figure-html/rankplot-1.png" alt="Total UMI count for each barcode in the PBMC dataset, plotted against its rank (in decreasing order of total counts). The inferred locations of the inflection and knee points are also shown." width="672" />
 <p class="caption">
-Figure 6.6: Total UMI count for each barcode in the PBMC dataset, plotted against its rank (in decreasing order of total counts). The inferred locations of the inflection and knee points are also shown.
+Figure 6.5: Total UMI count for each barcode in the PBMC dataset, plotted against its rank (in decreasing order of total counts). The inferred locations of the inflection and knee points are also shown.
 </p>
 </div>
 </div>
 <div id="testing-for-empty-droplets" class="section level3">
 <h3><span class="header-section-number">6.5.2</span> Testing for empty droplets</h3>
-<p>We use the <code>emptyDrops()</code> function to test whether the expression profile for each cell barcode is significantly different from the ambient RNA pool <span class="citation">(Lun et al. <a href="#ref-lun2018distinguishing">2019</a>)</span>. Any significant deviation indicates that the barcode corresponds to a cell-containing droplet. This allows us to discriminate between well-sequenced empty droplets and droplets derived from cells with little RNA, both of which would have similar total counts in Figure <a href="quality-control.html#fig:rankplot">6.6</a>. We call cells at a false discovery rate (FDR) of 0.1%, meaning that no more than 0.1% of our called barcodes should be empty droplets on average.</p>
+<p>We use the <code>emptyDrops()</code> function to test whether the expression profile for each cell barcode is significantly different from the ambient RNA pool <span class="citation">(Lun et al. <a href="#ref-lun2018distinguishing">2019</a>)</span>. Any significant deviation indicates that the barcode corresponds to a cell-containing droplet. This allows us to discriminate between well-sequenced empty droplets and droplets derived from cells with little RNA, both of which would have similar total counts in Figure <a href="quality-control.html#fig:rankplot">6.5</a>. We call cells at a false discovery rate (FDR) of 0.1%, meaning that no more than 0.1% of our called barcodes should be empty droplets on average.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># emptyDrops performs Monte Carlo simulations to compute p-values,</span>
 <span class="co"># so we need to set the seed to obtain reproducible results.</span>
 <span class="kw">set.seed</span>(<span class="dv">100</span>)
@@ -1103,16 +1061,16 @@ e.out &lt;-<span class="st"> </span><span class="kw">emptyDrops</span>(<span cla
 ## Sig     FALSE TRUE
 ##   FALSE  1056    0
 ##   TRUE   1661 2572</code></pre>
-<p>As mentioned above, <code>emptyDrops()</code> assumes that barcodes with low total UMI counts are empty droplets. Thus, the null hypothesis should be true for all of these barcodes. We can check whether the hypothesis testing procedure holds its size by examining the distribution of <span class="math inline">\(p\)</span>-values for low-total barcodes with <code>test.ambient=TRUE</code>. Ideally, the distribution should be close to uniform (Figure <a href="quality-control.html#fig:ambientpvalhist">6.7</a>). Large peaks near zero indicate that barcodes with total counts below <code>lower</code> are not all ambient in origin. This can be resolved by decreasing <code>lower</code> further to ensure that barcodes corresponding to droplets with very small cells are not used to estimate the ambient profile.</p>
+<p>As mentioned above, <code>emptyDrops()</code> assumes that barcodes with low total UMI counts are empty droplets. Thus, the null hypothesis should be true for all of these barcodes. We can check whether the hypothesis testing procedure holds its size by examining the distribution of <span class="math inline">\(p\)</span>-values for low-total barcodes with <code>test.ambient=TRUE</code>. Ideally, the distribution should be close to uniform (Figure <a href="quality-control.html#fig:ambientpvalhist">6.6</a>). Large peaks near zero indicate that barcodes with total counts below <code>lower</code> are not all ambient in origin. This can be resolved by decreasing <code>lower</code> further to ensure that barcodes corresponding to droplets with very small cells are not used to estimate the ambient profile.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">100</span>)
 limit &lt;-<span class="st"> </span><span class="dv">100</span>   
 all.out &lt;-<span class="st"> </span><span class="kw">emptyDrops</span>(<span class="kw">counts</span>(sce.pbmc), <span class="dt">lower=</span>limit, <span class="dt">test.ambient=</span><span class="ot">TRUE</span>)
 <span class="kw">hist</span>(all.out<span class="op">$</span>PValue[all.out<span class="op">$</span>Total <span class="op">&lt;=</span><span class="st"> </span>limit <span class="op">&amp;</span><span class="st"> </span>all.out<span class="op">$</span>Total <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>],
     <span class="dt">xlab=</span><span class="st">&quot;P-value&quot;</span>, <span class="dt">main=</span><span class="st">&quot;&quot;</span>, <span class="dt">col=</span><span class="st">&quot;grey80&quot;</span>) </code></pre></div>
 <div class="figure"><span id="fig:ambientpvalhist"></span>
-<img src="P2_W02.quality-control_files/figure-html/ambientpvalhist-1.png" alt="Distribution of $p$-values for the assumed empty droplets." width="672" />
+<img src="quality-control_files/figure-html/ambientpvalhist-1.png" alt="Distribution of $p$-values for the assumed empty droplets." width="672" />
 <p class="caption">
-Figure 6.7: Distribution of <span class="math inline">\(p\)</span>-values for the assumed empty droplets.
+Figure 6.6: Distribution of <span class="math inline">\(p\)</span>-values for the assumed empty droplets.
 </p>
 </div>
 <p>Once we are satisfied with the performance of <code>emptyDrops()</code>, we subset our <code>SingleCellExperiment</code> object to retain only the detected cells. Discerning readers will notice the use of <code>which()</code>, which conveniently removes the <code>NA</code>s prior to the subsetting.</p>
@@ -1121,7 +1079,7 @@ Figure 6.7: Distribution of <span class="math inline">\(p\)</span>-values for th
 </div>
 <div id="relationship-with-other-qc-metrics" class="section level3">
 <h3><span class="header-section-number">6.5.3</span> Relationship with other QC metrics</h3>
-<p>While <code>emptyDrops()</code> will distinguish cells from empty droplets, it makes no statement about the quality of the cells. It is entirely possible for droplets to contain damaged or dying cells, which need to be removed prior to downstream analysis. This is achieved using the same outlier-based strategy described in Section <a href="quality-control.html#quality-control-outlier">6.3.2</a>. Filtering on the mitochondrial proportion provides the most additional benefit in this situation, provided that we check that we are not removing a subpopulation of metabolically active cells (Figure <a href="quality-control.html#fig:qc-mito-pbmc">6.8</a>).</p>
+<p>While <code>emptyDrops()</code> will distinguish cells from empty droplets, it makes no statement about the quality of the cells. It is entirely possible for droplets to contain damaged or dying cells, which need to be removed prior to downstream analysis. This is achieved using the same outlier-based strategy described in Section <a href="quality-control.html#quality-control-outlier">6.3.2</a>. Filtering on the mitochondrial proportion provides the most additional benefit in this situation, provided that we check that we are not removing a subpopulation of metabolically active cells (Figure <a href="quality-control.html#fig:qc-mito-pbmc">6.7</a>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">is.mito &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">&quot;^MT-&quot;</span>, <span class="kw">rowData</span>(sce.pbmc)<span class="op">$</span>Symbol)
 pbmc.qc &lt;-<span class="st"> </span><span class="kw">perCellQCMetrics</span>(sce.pbmc, <span class="dt">subsets=</span><span class="kw">list</span>(<span class="dt">MT=</span>is.mito))
 discard.mito &lt;-<span class="st"> </span><span class="kw">isOutlier</span>(pbmc.qc<span class="op">$</span>subsets_MT_percent, <span class="dt">type=</span><span class="st">&quot;higher&quot;</span>)
@@ -1132,9 +1090,9 @@ discard.mito &lt;-<span class="st"> </span><span class="kw">isOutlier</span>(pbm
     <span class="dt">xlab=</span><span class="st">&quot;Total count&quot;</span>, <span class="dt">ylab=</span><span class="st">&#39;Mitochondrial %&#39;</span>)
 <span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">attr</span>(discard.mito, <span class="st">&quot;thresholds&quot;</span>)[<span class="st">&quot;higher&quot;</span>], <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</code></pre></div>
 <div class="figure"><span id="fig:qc-mito-pbmc"></span>
-<img src="P2_W02.quality-control_files/figure-html/qc-mito-pbmc-1.png" alt="Percentage of reads assigned to mitochondrial transcripts, plotted against the library size. The red line represents the upper threshold used for QC filtering." width="672" />
+<img src="quality-control_files/figure-html/qc-mito-pbmc-1.png" alt="Percentage of reads assigned to mitochondrial transcripts, plotted against the library size. The red line represents the upper threshold used for QC filtering." width="672" />
 <p class="caption">
-Figure 6.8: Percentage of reads assigned to mitochondrial transcripts, plotted against the library size. The red line represents the upper threshold used for QC filtering.
+Figure 6.7: Percentage of reads assigned to mitochondrial transcripts, plotted against the library size. The red line represents the upper threshold used for QC filtering.
 </p>
 </div>
 <p><code>emptyDrops()</code> already removes cells with very low library sizes or (by association) low numbers of expressed genes. Thus, further filtering on these metrics is not strictly necessary. It may still be desirable to filter on both of these metrics to remove non-empty droplets containing cell fragments or stripped nuclei that were not caught by the mitochondrial filter. However, this should be weighed against the risk of losing genuine cell types as discussed in Section <a href="quality-control.html#outlier-assumptions">6.3.2.2</a>.</p>
@@ -1156,16 +1114,16 @@ kept &lt;-<span class="st"> </span><span class="kw">calculateAverage</span>(<spa
 logged &lt;-<span class="st"> </span><span class="kw">cpm</span>(<span class="kw">cbind</span>(lost, kept), <span class="dt">log=</span><span class="ot">TRUE</span>, <span class="dt">prior.count=</span><span class="dv">2</span>)
 logFC &lt;-<span class="st"> </span>logged[,<span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>logged[,<span class="dv">2</span>]
 abundance &lt;-<span class="st"> </span><span class="kw">rowMeans</span>(logged)</code></pre></div>
-<p>If the discarded pool is enriched for a certain cell type, we should observe increased expression of the corresponding marker genes. No systematic upregulation of genes is apparent in the discarded pool in Figure <a href="quality-control.html#fig:discardplot416b">6.9</a>, suggesting that the QC step did not inadvertently filter out a cell type in the 416B dataset.</p>
+<p>If the discarded pool is enriched for a certain cell type, we should observe increased expression of the corresponding marker genes. No systematic upregulation of genes is apparent in the discarded pool in Figure <a href="quality-control.html#fig:discardplot416b">6.8</a>, suggesting that the QC step did not inadvertently filter out a cell type in the 416B dataset.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(abundance, logFC, <span class="dt">xlab=</span><span class="st">&quot;Average count&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Log-FC (lost/kept)&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)
 <span class="kw">points</span>(abundance[is.mito], logFC[is.mito], <span class="dt">col=</span><span class="st">&quot;dodgerblue&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</code></pre></div>
 <div class="figure"><span id="fig:discardplot416b"></span>
-<img src="P2_W02.quality-control_files/figure-html/discardplot416b-1.png" alt="Log-fold change in expression in the discarded cells compared to the retained cells in the 416B dataset. Each point represents a gene with mitochondrial transcripts in blue." width="672" />
+<img src="quality-control_files/figure-html/discardplot416b-1.png" alt="Log-fold change in expression in the discarded cells compared to the retained cells in the 416B dataset. Each point represents a gene with mitochondrial transcripts in blue." width="672" />
 <p class="caption">
-Figure 6.9: Log-fold change in expression in the discarded cells compared to the retained cells in the 416B dataset. Each point represents a gene with mitochondrial transcripts in blue.
+Figure 6.8: Log-fold change in expression in the discarded cells compared to the retained cells in the 416B dataset. Each point represents a gene with mitochondrial transcripts in blue.
 </p>
 </div>
-<p>For comparison, let’s pretend that we applied a fixed threshold on the library size to filter cells in the PBMC data set. Specifically, we remove all libraries with a library size below 500.</p>
+<p>For comparison, let's pretend that we applied a fixed threshold on the library size to filter cells in the PBMC data set. Specifically, we remove all libraries with a library size below 500.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">alt.discard &lt;-<span class="st"> </span><span class="kw">colSums</span>(<span class="kw">counts</span>(sce.pbmc)) <span class="op">&lt;</span><span class="st"> </span><span class="dv">500</span>
 lost &lt;-<span class="st"> </span><span class="kw">calculateAverage</span>(<span class="kw">counts</span>(sce.pbmc)[,alt.discard])
 kept &lt;-<span class="st"> </span><span class="kw">calculateAverage</span>(<span class="kw">counts</span>(sce.pbmc)[,<span class="op">!</span>alt.discard])
@@ -1173,7 +1131,7 @@ kept &lt;-<span class="st"> </span><span class="kw">calculateAverage</span>(<spa
 logged &lt;-<span class="st"> </span>edgeR<span class="op">::</span><span class="kw">cpm</span>(<span class="kw">cbind</span>(lost, kept), <span class="dt">log=</span><span class="ot">TRUE</span>, <span class="dt">prior.count=</span><span class="dv">2</span>)
 logFC &lt;-<span class="st"> </span>logged[,<span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>logged[,<span class="dv">2</span>]
 abundance &lt;-<span class="st"> </span><span class="kw">rowMeans</span>(logged)</code></pre></div>
-<p>The presence of a distinct population in the discarded pool manifests in Figure <a href="quality-control.html#fig:discardplotpbmc">6.10</a> as a set of genes that are strongly upregulated in <code>lost</code>. This includes <em>PF4</em>, <em>PPBP</em> and <em>CAVIN2</em>, which (spoiler alert!) indicates that there is a platelet population that has been discarded by <code>alt.discard</code>.</p>
+<p>The presence of a distinct population in the discarded pool manifests in Figure <a href="quality-control.html#fig:discardplotpbmc">6.9</a> as a set of genes that are strongly upregulated in <code>lost</code>. This includes <em>PF4</em>, <em>PPBP</em> and <em>CAVIN2</em>, which (spoiler alert!) indicates that there is a platelet population that has been discarded by <code>alt.discard</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(abundance, logFC, <span class="dt">xlab=</span><span class="st">&quot;Average count&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Log-FC (lost/kept)&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)
 platelet &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;PF4&quot;</span>, <span class="st">&quot;PPBP&quot;</span>, <span class="st">&quot;CAVIN2&quot;</span>)
 
@@ -1181,21 +1139,21 @@ platelet &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st
 ids &lt;-<span class="st"> </span><span class="kw">mapIds</span>(org.Hs.eg.db, <span class="dt">keys=</span>platelet, <span class="dt">column=</span><span class="st">&quot;ENSEMBL&quot;</span>, <span class="dt">keytype=</span><span class="st">&quot;SYMBOL&quot;</span>)
 <span class="kw">points</span>(abundance[ids], logFC[ids], <span class="dt">col=</span><span class="st">&quot;orange&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</code></pre></div>
 <div class="figure"><span id="fig:discardplotpbmc"></span>
-<img src="P2_W02.quality-control_files/figure-html/discardplotpbmc-1.png" alt="Average counts across all discarded and retained cells in the PBMC dataset, after using a more stringent filter on the total UMI count. Each point represents a gene, with platelet-related genes highlighted in orange." width="672" />
+<img src="quality-control_files/figure-html/discardplotpbmc-1.png" alt="Average counts across all discarded and retained cells in the PBMC dataset, after using a more stringent filter on the total UMI count. Each point represents a gene, with platelet-related genes highlighted in orange." width="672" />
 <p class="caption">
-Figure 6.10: Average counts across all discarded and retained cells in the PBMC dataset, after using a more stringent filter on the total UMI count. Each point represents a gene, with platelet-related genes highlighted in orange.
+Figure 6.9: Average counts across all discarded and retained cells in the PBMC dataset, after using a more stringent filter on the total UMI count. Each point represents a gene, with platelet-related genes highlighted in orange.
 </p>
 </div>
 <p>If we suspect that cell types have been incorrectly discarded by our QC procedure, the most direct solution is to relax the QC filters for metrics that are associated with genuine biological differences. For example, outlier detection can be relaxed by increasing <code>nmads=</code> in the <code>isOutlier()</code> calls. Of course, this increases the risk of retaining more low-quality cells and encountering the problems discussed in Section <a href="quality-control.html#quality-control-motivation">6.1</a>. The logical endpoint of this line of reasoning is to avoid filtering altogether, as discussed in Section <a href="quality-control.html#marking-qc">6.7</a>.</p>
-<p>As an aside, it is worth mentioning that the true technical quality of a cell may also be correlated with its type. (This differs from a correlation between the cell type and the QC metrics, as the latter are our imperfect proxies for quality.) This can arise if some cell types are not amenable to dissociation or microfluidics handling during the scRNA-seq protocol. In such cases, it is possible to “correctly” discard an entire cell type during QC if all of its cells are damaged. Indeed, concerns over the computational removal of cell types during QC are probably minor compared to losses in the experimental protocol.</p>
+<p>As an aside, it is worth mentioning that the true technical quality of a cell may also be correlated with its type. (This differs from a correlation between the cell type and the QC metrics, as the latter are our imperfect proxies for quality.) This can arise if some cell types are not amenable to dissociation or microfluidics handling during the scRNA-seq protocol. In such cases, it is possible to &quot;correctly&quot; discard an entire cell type during QC if all of its cells are damaged. Indeed, concerns over the computational removal of cell types during QC are probably minor compared to losses in the experimental protocol.</p>
 </div>
 <div id="marking-qc" class="section level2">
 <h2><span class="header-section-number">6.7</span> Marking low-quality cells</h2>
 <p>The other option is to simply mark the low-quality cells as such and retain them in the downstream analysis. The aim here is to allow clusters of low-quality cells to form, and then to identify and ignore such clusters during interpretation of the results. This approach avoids discarding cell types that have poor values for the QC metrics, giving users an opportunity to decide whether a cluster of such cells represents a genuine biological state.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">marked &lt;-<span class="st"> </span>sce<span class="fl">.416</span>b
 marked<span class="op">$</span>discard &lt;-<span class="st"> </span>batch.reasons<span class="op">$</span>discard</code></pre></div>
-<p>The downside is that it shifts the burden of QC to the interpretation of the clusters, which is already the bottleneck in scRNA-seq data analysis (Chapters <a href="clustering.html#clustering">10</a>, <a href="marker-detection.html#marker-detection">11</a> and <a href="cell-type-annotation.html#cell-type-annotation">12</a>). Indeed, if we do not trust the QC metrics, we would have to distinguish between genuine cell types and low-quality cells based only on marker genes, and this is not always easy due to the tendency of the latter to “express” interesting genes (Section <a href="quality-control.html#quality-control-motivation">6.1</a>). Retention of low-quality cells also compromises the accuracy of the variance modelling, requiring, e.g., use of more PCs to offset the fact that the early PCs are driven by differences between low-quality and other cells.</p>
-<p>For routine analyses, we suggest performing removal by default to avoid complications from low-quality cells. This allows most of the population structure to be characterized with no - or, at least, fewer - concerns about its validity. Once the initial analysis is done, and if there are any concerns about discarded cell types (Section <a href="quality-control.html#quality-control-discarded">6.6</a>), a more thorough re-analysis can be performed where the low-quality cells are only marked. This recovers cell types with low RNA content, high mitochondrial proportions, etc. that only need to be interpreted insofar as they “fill the gaps” in the initial analysis.</p>
+<p>The downside is that it shifts the burden of QC to the interpretation of the clusters, which is already the bottleneck in scRNA-seq data analysis (Chapters <a href="clustering.html#clustering">10</a>, <a href="marker-detection.html#marker-detection">11</a> and <a href="cell-type-annotation.html#cell-type-annotation">12</a>). Indeed, if we do not trust the QC metrics, we would have to distinguish between genuine cell types and low-quality cells based only on marker genes, and this is not always easy due to the tendency of the latter to &quot;express&quot; interesting genes (Section <a href="quality-control.html#quality-control-motivation">6.1</a>). Retention of low-quality cells also compromises the accuracy of the variance modelling, requiring, e.g., use of more PCs to offset the fact that the early PCs are driven by differences between low-quality and other cells.</p>
+<p>For routine analyses, we suggest performing removal by default to avoid complications from low-quality cells. This allows most of the population structure to be characterized with no - or, at least, fewer - concerns about its validity. Once the initial analysis is done, and if there are any concerns about discarded cell types (Section <a href="quality-control.html#quality-control-discarded">6.6</a>), a more thorough re-analysis can be performed where the low-quality cells are only marked. This recovers cell types with low RNA content, high mitochondrial proportions, etc. that only need to be interpreted insofar as they &quot;fill the gaps&quot; in the initial analysis.</p>
 </div>
 <div id="session-info-1" class="section level2 unnumbered">
 <h2>Session Info</h2>
@@ -1224,71 +1182,72 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] org.Hs.eg.db_3.11.1         edgeR_3.31.0               
+ [1] org.Hs.eg.db_3.11.4         edgeR_3.31.1               
  [3] limma_3.45.0                Matrix_1.2-18              
  [5] DropletUtils_1.9.0          robustbase_0.93-6          
- [7] scRNAseq_2.3.0              scater_1.17.0              
- [9] ggplot2_3.3.0               ensembldb_2.13.0           
-[11] AnnotationFilter_1.13.0     GenomicFeatures_1.41.0     
-[13] AnnotationDbi_1.51.0        AnnotationHub_2.21.0       
-[15] BiocFileCache_1.13.0        dbplyr_1.4.3               
-[17] SingleCellExperiment_1.11.1 SummarizedExperiment_1.19.2
-[19] DelayedArray_0.15.1         matrixStats_0.56.0         
-[21] Biobase_2.49.0              GenomicRanges_1.41.1       
-[23] GenomeInfoDb_1.25.0         IRanges_2.23.4             
-[25] S4Vectors_0.27.4            BiocGenerics_0.35.1        
-[27] OSCAUtils_0.0.2             BiocStyle_2.17.0           
+ [7] scRNAseq_2.3.2              scater_1.17.1              
+ [9] ggplot2_3.3.1               scuttle_0.99.8             
+[11] ensembldb_2.13.1            AnnotationFilter_1.13.0    
+[13] GenomicFeatures_1.41.0      AnnotationDbi_1.51.0       
+[15] AnnotationHub_2.21.0        BiocFileCache_1.13.0       
+[17] dbplyr_1.4.4                SingleCellExperiment_1.11.2
+[19] SummarizedExperiment_1.19.4 DelayedArray_0.15.1        
+[21] matrixStats_0.56.0          Biobase_2.49.0             
+[23] GenomicRanges_1.41.1        GenomeInfoDb_1.25.0        
+[25] IRanges_2.23.6              S4Vectors_0.27.10          
+[27] BiocGenerics_0.35.2         rebook_0.99.0              
+[29] OSCAUtils_0.0.2             BiocStyle_2.17.0           
 
 loaded via a namespace (and not attached):
   [1] ggbeeswarm_0.6.0              colorspace_1.4-1             
-  [3] ellipsis_0.3.0                XVector_0.29.0               
+  [3] ellipsis_0.3.1                XVector_0.29.1               
   [5] BiocNeighbors_1.7.0           farver_2.0.3                 
-  [7] bit64_0.9-7                   interactiveDisplayBase_1.27.0
+  [7] bit64_0.9-7                   interactiveDisplayBase_1.27.5
   [9] R.methodsS3_1.8.0             codetools_0.2-16             
- [11] knitr_1.28                    Rsamtools_2.5.0              
- [13] R.oo_1.23.0                   HDF5Array_1.17.0             
- [15] shiny_1.4.0.2                 BiocManager_1.30.10          
- [17] compiler_4.0.0                httr_1.4.1                   
- [19] dqrng_0.2.1                   assertthat_0.2.1             
- [21] fastmap_1.0.1                 lazyeval_0.2.2               
- [23] later_1.0.0                   BiocSingular_1.5.0           
- [25] htmltools_0.4.0               prettyunits_1.1.1            
- [27] tools_4.0.0                   igraph_1.2.5                 
+ [11] knitr_1.28                    Rsamtools_2.5.1              
+ [13] R.oo_1.23.0                   graph_1.67.1                 
+ [15] HDF5Array_1.17.0              shiny_1.4.0.2                
+ [17] BiocManager_1.30.10           compiler_4.0.0               
+ [19] httr_1.4.1                    dqrng_0.2.1                  
+ [21] assertthat_0.2.1              fastmap_1.0.1                
+ [23] lazyeval_0.2.2                later_1.0.0                  
+ [25] BiocSingular_1.5.0            htmltools_0.4.0              
+ [27] prettyunits_1.1.1             tools_4.0.0                  
  [29] rsvd_1.0.3                    gtable_0.3.0                 
- [31] glue_1.4.0                    GenomeInfoDbData_1.2.3       
- [33] dplyr_0.8.5                   rappdirs_0.3.1               
- [35] Rcpp_1.0.4.6                  vctrs_0.2.4                  
- [37] Biostrings_2.57.0             ExperimentHub_1.15.0         
- [39] rtracklayer_1.49.1            DelayedMatrixStats_1.11.0    
- [41] xfun_0.13                     stringr_1.4.0                
- [43] ps_1.3.2                      mime_0.9                     
+ [31] glue_1.4.1                    GenomeInfoDbData_1.2.3       
+ [33] dplyr_1.0.0                   rappdirs_0.3.1               
+ [35] Rcpp_1.0.4.6                  vctrs_0.3.0                  
+ [37] Biostrings_2.57.1             ExperimentHub_1.15.0         
+ [39] rtracklayer_1.49.2            DelayedMatrixStats_1.11.0    
+ [41] xfun_0.14                     stringr_1.4.0                
+ [43] ps_1.3.3                      mime_0.9                     
  [45] lifecycle_0.2.0               irlba_2.3.3                  
- [47] statmod_1.4.34                XML_3.99-0.3                 
- [49] DEoptimR_1.0-8                zlibbioc_1.35.0              
- [51] scales_1.1.0                  hms_0.5.3                    
- [53] promises_1.1.0                ProtGenerics_1.21.0          
- [55] rhdf5_2.33.0                  yaml_2.2.1                   
- [57] curl_4.3                      memoise_1.1.0                
- [59] gridExtra_2.3                 biomaRt_2.45.0               
- [61] stringi_1.4.6                 RSQLite_2.2.0                
- [63] BiocVersion_3.12.0            highr_0.8                    
- [65] scran_1.17.0                  BiocParallel_1.23.0          
- [67] rlang_0.4.6                   pkgconfig_2.0.3              
- [69] bitops_1.0-6                  evaluate_0.14                
- [71] lattice_0.20-41               Rhdf5lib_1.11.0              
- [73] purrr_0.3.4                   GenomicAlignments_1.25.0     
- [75] labeling_0.3                  cowplot_1.0.0                
- [77] bit_1.1-15.2                  processx_3.4.2               
- [79] tidyselect_1.0.0              magrittr_1.5                 
- [81] bookdown_0.18                 R6_2.4.1                     
+ [47] XML_3.99-0.3                  DEoptimR_1.0-8               
+ [49] zlibbioc_1.35.0               scales_1.1.1                 
+ [51] hms_0.5.3                     promises_1.1.0               
+ [53] ProtGenerics_1.21.0           rhdf5_2.33.0                 
+ [55] yaml_2.2.1                    curl_4.3                     
+ [57] memoise_1.1.0                 gridExtra_2.3                
+ [59] biomaRt_2.45.0                stringi_1.4.6                
+ [61] RSQLite_2.2.0                 highr_0.8                    
+ [63] BiocVersion_3.12.0            BiocParallel_1.23.0          
+ [65] rlang_0.4.6                   pkgconfig_2.0.3              
+ [67] bitops_1.0-6                  evaluate_0.14                
+ [69] lattice_0.20-41               Rhdf5lib_1.11.0              
+ [71] purrr_0.3.4                   GenomicAlignments_1.25.1     
+ [73] CodeDepends_0.6.5             labeling_0.3                 
+ [75] cowplot_1.0.0                 bit_1.1-15.2                 
+ [77] processx_3.4.2                tidyselect_1.1.0             
+ [79] magrittr_1.5                  bookdown_0.19                
+ [81] R6_2.4.1                      generics_0.0.2               
  [83] DBI_1.1.0                     pillar_1.4.4                 
  [85] withr_2.2.0                   RCurl_1.98-1.2               
  [87] tibble_3.0.1                  crayon_1.3.4                 
- [89] rmarkdown_2.1                 viridis_0.5.1                
+ [89] rmarkdown_2.2                 viridis_0.5.1                
  [91] progress_1.2.2                locfit_1.5-9.4               
  [93] grid_4.0.0                    blob_1.2.1                   
  [95] callr_3.4.3                   digest_0.6.25                
- [97] xtable_1.8-4                  httpuv_1.5.2                 
+ [97] xtable_1.8-4                  httpuv_1.5.3.1               
  [99] R.utils_2.9.2                 openssl_1.4.1                
 [101] munsell_0.5.0                 beeswarm_0.2.3               
 [103] viridisLite_0.3.0             vipor_0.4.5                  

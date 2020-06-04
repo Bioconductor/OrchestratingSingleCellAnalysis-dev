@@ -5,25 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 14 Multi-sample comparisons | Orchestrating Single-Cell Analysis with Bioconductor</title>
-  <meta name="description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 14 Multi-sample comparisons | Orchestrating Single-Cell Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
+  <meta property="og:description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 14 Multi-sample comparisons | Orchestrating Single-Cell Analysis with Bioconductor" />
   
-  <meta name="twitter:description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
+  <meta name="twitter:description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
   
 
 
 
-<meta name="date" content="2020-05-07" />
+<meta name="date" content="2020-06-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -112,7 +112,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.1.1" data-path="introduction.html"><a href="introduction.html#preliminaries"><i class="fa fa-check"></i><b>1.1.1</b> Preliminaries</a></li>
 <li class="chapter" data-level="1.1.2" data-path="introduction.html"><a href="introduction.html#workflows"><i class="fa fa-check"></i><b>1.1.2</b> Workflows</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#what-you-wont-learn"><i class="fa fa-check"></i><b>1.2</b> What you won’t learn</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#what-you-wont-learn"><i class="fa fa-check"></i><b>1.2</b> What you won't learn</a></li>
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#who-we-wrote-this-for"><i class="fa fa-check"></i><b>1.3</b> Who we wrote this for</a></li>
 <li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#why-we-wrote-this"><i class="fa fa-check"></i><b>1.4</b> Why we wrote this</a></li>
 <li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#acknowledgements"><i class="fa fa-check"></i><b>1.5</b> Acknowledgements</a></li>
@@ -227,19 +227,18 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.3.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#based-on-population-structure"><i class="fa fa-check"></i><b>9.3.4</b> Based on population structure</a></li>
 <li class="chapter" data-level="9.3.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#putting-it-together"><i class="fa fa-check"></i><b>9.3.5</b> Putting it together</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#non-negative-matrix-factorization"><i class="fa fa-check"></i><b>9.4</b> Non-negative matrix factorization</a></li>
-<li class="chapter" data-level="9.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction-for-visualization"><i class="fa fa-check"></i><b>9.5</b> Dimensionality reduction for visualization</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#motivation-3"><i class="fa fa-check"></i><b>9.5.1</b> Motivation</a></li>
-<li class="chapter" data-level="9.5.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizing-with-pca"><i class="fa fa-check"></i><b>9.5.2</b> Visualizing with PCA</a></li>
-<li class="chapter" data-level="9.5.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#t-stochastic-neighbor-embedding"><i class="fa fa-check"></i><b>9.5.3</b> <span class="math inline">\(t\)</span>-stochastic neighbor embedding</a></li>
-<li class="chapter" data-level="9.5.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection"><i class="fa fa-check"></i><b>9.5.4</b> Uniform manifold approximation and projection</a></li>
-<li class="chapter" data-level="9.5.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualization-interpretation"><i class="fa fa-check"></i><b>9.5.5</b> Interpreting the plots</a></li>
+<li class="chapter" data-level="9.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction-for-visualization"><i class="fa fa-check"></i><b>9.4</b> Dimensionality reduction for visualization</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#motivation-3"><i class="fa fa-check"></i><b>9.4.1</b> Motivation</a></li>
+<li class="chapter" data-level="9.4.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizing-with-pca"><i class="fa fa-check"></i><b>9.4.2</b> Visualizing with PCA</a></li>
+<li class="chapter" data-level="9.4.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#t-stochastic-neighbor-embedding"><i class="fa fa-check"></i><b>9.4.3</b> <span class="math inline">\(t\)</span>-stochastic neighbor embedding</a></li>
+<li class="chapter" data-level="9.4.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection"><i class="fa fa-check"></i><b>9.4.4</b> Uniform manifold approximation and projection</a></li>
+<li class="chapter" data-level="9.4.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualization-interpretation"><i class="fa fa-check"></i><b>9.4.5</b> Interpreting the plots</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#session-info-4"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>10</b> Clustering</a><ul>
 <li class="chapter" data-level="10.1" data-path="clustering.html"><a href="clustering.html#motivation-4"><i class="fa fa-check"></i><b>10.1</b> Motivation</a></li>
-<li class="chapter" data-level="10.2" data-path="clustering.html"><a href="clustering.html#what-is-the-true-clustering"><i class="fa fa-check"></i><b>10.2</b> What is the “true clustering”?</a></li>
+<li class="chapter" data-level="10.2" data-path="clustering.html"><a href="clustering.html#what-is-the-true-clustering"><i class="fa fa-check"></i><b>10.2</b> What is the &quot;true clustering&quot;?</a></li>
 <li class="chapter" data-level="10.3" data-path="clustering.html"><a href="clustering.html#clustering-graph"><i class="fa fa-check"></i><b>10.3</b> Graph-based clustering</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="clustering.html"><a href="clustering.html#background-3"><i class="fa fa-check"></i><b>10.3.1</b> Background</a></li>
 <li class="chapter" data-level="10.3.2" data-path="clustering.html"><a href="clustering.html#implementation"><i class="fa fa-check"></i><b>10.3.2</b> Implementation</a></li>
@@ -278,7 +277,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.4.1" data-path="marker-detection.html"><a href="marker-detection.html#using-the-block-argument"><i class="fa fa-check"></i><b>11.4.1</b> Using the <code>block=</code> argument</a></li>
 <li class="chapter" data-level="11.4.2" data-path="marker-detection.html"><a href="marker-detection.html#using-the-design-argument"><i class="fa fa-check"></i><b>11.4.2</b> Using the <code>design=</code> argument</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="marker-detection.html"><a href="marker-detection.html#invalidity-of-p-values"><i class="fa fa-check"></i><b>11.5</b> Invalidity of <span class="math inline">\(p\)</span>-values</a><ul>
+<li class="chapter" data-level="11.5" data-path="marker-detection.html"><a href="marker-detection.html#p-value-invalidity"><i class="fa fa-check"></i><b>11.5</b> Invalidity of <span class="math inline">\(p\)</span>-values</a><ul>
 <li class="chapter" data-level="11.5.1" data-path="marker-detection.html"><a href="marker-detection.html#from-data-snooping"><i class="fa fa-check"></i><b>11.5.1</b> From data snooping</a></li>
 <li class="chapter" data-level="11.5.2" data-path="marker-detection.html"><a href="marker-detection.html#false-replicates"><i class="fa fa-check"></i><b>11.5.2</b> Nature of replication</a></li>
 </ul></li>
@@ -360,18 +359,22 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="17" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html"><i class="fa fa-check"></i><b>17</b> Trajectory Analysis</a><ul>
 <li class="chapter" data-level="17.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-6"><i class="fa fa-check"></i><b>17.1</b> Overview</a></li>
-<li class="chapter" data-level="17.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#obtaining-pseudo-times"><i class="fa fa-check"></i><b>17.2</b> Obtaining pseudo-times</a><ul>
-<li class="chapter" data-level="17.2.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#cluster-based-minimum-spanning-tree"><i class="fa fa-check"></i><b>17.2.1</b> Cluster-based minimum spanning tree</a></li>
-<li class="chapter" data-level="17.2.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#principal-curves"><i class="fa fa-check"></i><b>17.2.2</b> Principal curves</a></li>
+<li class="chapter" data-level="17.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#obtaining-pseudotime-orderings"><i class="fa fa-check"></i><b>17.2</b> Obtaining pseudotime orderings</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-7"><i class="fa fa-check"></i><b>17.2.1</b> Overview</a></li>
+<li class="chapter" data-level="17.2.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#cluster-based-minimum-spanning-tree"><i class="fa fa-check"></i><b>17.2.2</b> Cluster-based minimum spanning tree</a></li>
+<li class="chapter" data-level="17.2.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#principal-curves"><i class="fa fa-check"></i><b>17.2.3</b> Principal curves</a></li>
 </ul></li>
 <li class="chapter" data-level="17.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#characterizing-trajectories"><i class="fa fa-check"></i><b>17.3</b> Characterizing trajectories</a><ul>
-<li class="chapter" data-level="17.3.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-along-a-trajectory"><i class="fa fa-check"></i><b>17.3.1</b> Changes along a trajectory</a></li>
-<li class="chapter" data-level="17.3.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-between-lineages"><i class="fa fa-check"></i><b>17.3.2</b> Changes between lineages</a></li>
+<li class="chapter" data-level="17.3.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-8"><i class="fa fa-check"></i><b>17.3.1</b> Overview</a></li>
+<li class="chapter" data-level="17.3.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-along-a-trajectory"><i class="fa fa-check"></i><b>17.3.2</b> Changes along a trajectory</a></li>
+<li class="chapter" data-level="17.3.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-between-paths"><i class="fa fa-check"></i><b>17.3.3</b> Changes between paths</a></li>
+<li class="chapter" data-level="17.3.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#further-comments-2"><i class="fa fa-check"></i><b>17.3.4</b> Further comments</a></li>
 </ul></li>
 <li class="chapter" data-level="17.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#finding-the-root"><i class="fa fa-check"></i><b>17.4</b> Finding the root</a><ul>
-<li class="chapter" data-level="17.4.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-7"><i class="fa fa-check"></i><b>17.4.1</b> Overview</a></li>
+<li class="chapter" data-level="17.4.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-9"><i class="fa fa-check"></i><b>17.4.1</b> Overview</a></li>
 <li class="chapter" data-level="17.4.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#entropy-based-methods"><i class="fa fa-check"></i><b>17.4.2</b> Entropy-based methods</a></li>
 <li class="chapter" data-level="17.4.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#rna-velocity"><i class="fa fa-check"></i><b>17.4.3</b> RNA velocity</a></li>
+<li class="chapter" data-level="17.4.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#real-timepoints"><i class="fa fa-check"></i><b>17.4.4</b> Real timepoints</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#session-information"><i class="fa fa-check"></i>Session information</a></li>
 </ul></li>
@@ -392,15 +395,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="19" data-path="repertoire-seq.html"><a href="repertoire-seq.html"><i class="fa fa-check"></i><b>19</b> Analyzing repertoire sequencing data</a><ul>
 <li class="chapter" data-level="19.1" data-path="repertoire-seq.html"><a href="repertoire-seq.html#motivation-12"><i class="fa fa-check"></i><b>19.1</b> Motivation</a></li>
-<li class="chapter" data-level="19.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#analyzing-the-t-cell-receptor-repertoire"><i class="fa fa-check"></i><b>19.2</b> Analyzing the T cell receptor repertoire</a><ul>
-<li class="chapter" data-level="19.2.1" data-path="repertoire-seq.html"><a href="repertoire-seq.html#data-processing"><i class="fa fa-check"></i><b>19.2.1</b> Data processing</a></li>
-<li class="chapter" data-level="19.2.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#basic-diagnostics"><i class="fa fa-check"></i><b>19.2.2</b> Basic diagnostics</a></li>
-<li class="chapter" data-level="19.2.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#complex-diagnostics"><i class="fa fa-check"></i><b>19.2.3</b> Complex diagnostics</a></li>
-<li class="chapter" data-level="19.2.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#quantifying-clonal-expansion"><i class="fa fa-check"></i><b>19.2.4</b> Quantifying clonal expansion</a></li>
-<li class="chapter" data-level="19.2.5" data-path="repertoire-seq.html"><a href="repertoire-seq.html#quantifying-gene-expression-and-properties"><i class="fa fa-check"></i><b>19.2.5</b> Quantifying gene expression and properties</a></li>
-</ul></li>
-<li class="chapter" data-level="19.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#analyzing-the-immunoglobulin-repertoire"><i class="fa fa-check"></i><b>19.3</b> Analyzing the immunoglobulin repertoire</a></li>
-<li class="chapter" data-level="19.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#multi-sample-analyses"><i class="fa fa-check"></i><b>19.4</b> Multi-sample analyses</a></li>
+<li class="chapter" data-level="19.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#loading-the-tcr-repertoire"><i class="fa fa-check"></i><b>19.2</b> Loading the TCR repertoire</a></li>
+<li class="chapter" data-level="19.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#leveraging-list-semantics"><i class="fa fa-check"></i><b>19.3</b> Leveraging <code>List</code> semantics</a></li>
+<li class="chapter" data-level="19.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#converting-back-to-dataframes"><i class="fa fa-check"></i><b>19.4</b> Converting back to <code>DataFrame</code>s</a></li>
+<li class="chapter" data-level="19.5" data-path="repertoire-seq.html"><a href="repertoire-seq.html#case-study-for-clonotype-analyses"><i class="fa fa-check"></i><b>19.5</b> Case study for clonotype analyses</a></li>
+<li class="chapter" data-level="19.6" data-path="repertoire-seq.html"><a href="repertoire-seq.html#repeating-for-immunoglobulins"><i class="fa fa-check"></i><b>19.6</b> Repeating for immunoglobulins</a></li>
 <li class="chapter" data-level="" data-path="repertoire-seq.html"><a href="repertoire-seq.html#session-info-13"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="interactive-sharing.html"><a href="interactive-sharing.html"><i class="fa fa-check"></i><b>20</b> Interactive data exploration</a><ul>
@@ -478,16 +477,14 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="26.8" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#data-integration"><i class="fa fa-check"></i><b>26.8</b> Data integration</a></li>
 <li class="chapter" data-level="" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#session-info-20"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="27" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html"><i class="fa fa-check"></i><b>27</b> Human PBMC 10X dataset (surface proteins)</a><ul>
-<li class="chapter" data-level="27.1" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#introduction-7"><i class="fa fa-check"></i><b>27.1</b> Introduction</a></li>
-<li class="chapter" data-level="27.2" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#analysis-code"><i class="fa fa-check"></i><b>27.2</b> Analysis code</a><ul>
-<li class="chapter" data-level="27.2.1" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#data-loading-4"><i class="fa fa-check"></i><b>27.2.1</b> Data loading</a></li>
-<li class="chapter" data-level="27.2.2" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#quality-control-7"><i class="fa fa-check"></i><b>27.2.2</b> Quality control</a></li>
-<li class="chapter" data-level="27.2.3" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#normalization-6"><i class="fa fa-check"></i><b>27.2.3</b> Normalization</a></li>
-<li class="chapter" data-level="27.2.4" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#dimensionality-reduction-5"><i class="fa fa-check"></i><b>27.2.4</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="27.2.5" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#clustering-5"><i class="fa fa-check"></i><b>27.2.5</b> Clustering</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#session-info-21"><i class="fa fa-check"></i>Session Info</a></li>
+<li class="chapter" data-level="27" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html"><i class="fa fa-check"></i><b>27</b> Human PBMC with surface proteins (10X Genomics)</a><ul>
+<li class="chapter" data-level="27.1" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#introduction-7"><i class="fa fa-check"></i><b>27.1</b> Introduction</a></li>
+<li class="chapter" data-level="27.2" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#data-loading-4"><i class="fa fa-check"></i><b>27.2</b> Data loading</a></li>
+<li class="chapter" data-level="27.3" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#quality-control-7"><i class="fa fa-check"></i><b>27.3</b> Quality control</a></li>
+<li class="chapter" data-level="27.4" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#normalization-6"><i class="fa fa-check"></i><b>27.4</b> Normalization</a></li>
+<li class="chapter" data-level="27.5" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#dimensionality-reduction-5"><i class="fa fa-check"></i><b>27.5</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="27.6" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#clustering-5"><i class="fa fa-check"></i><b>27.6</b> Clustering</a></li>
+<li class="chapter" data-level="" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#session-info-21"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="28" data-path="grun-human-pancreas-cel-seq2.html"><a href="grun-human-pancreas-cel-seq2.html"><i class="fa fa-check"></i><b>28</b> Grun human pancreas (CEL-seq2)</a><ul>
 <li class="chapter" data-level="28.1" data-path="grun-human-pancreas-cel-seq2.html"><a href="grun-human-pancreas-cel-seq2.html#introduction-8"><i class="fa fa-check"></i><b>28.1</b> Introduction</a></li>
@@ -504,12 +501,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="29.1" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#introduction-9"><i class="fa fa-check"></i><b>29.1</b> Introduction</a></li>
 <li class="chapter" data-level="29.2" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-loading-6"><i class="fa fa-check"></i><b>29.2</b> Data loading</a></li>
 <li class="chapter" data-level="29.3" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#quality-control-9"><i class="fa fa-check"></i><b>29.3</b> Quality control</a></li>
-<li class="chapter" data-level="29.4" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#normalization-8"><i class="fa fa-check"></i><b>29.4</b> Normalization</a><ul>
-<li class="chapter" data-level="29.4.1" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#variance-modelling-5"><i class="fa fa-check"></i><b>29.4.1</b> Variance modelling</a></li>
-</ul></li>
-<li class="chapter" data-level="29.5" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-integration-2"><i class="fa fa-check"></i><b>29.5</b> Data integration</a></li>
-<li class="chapter" data-level="29.6" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#dimensionality-reduction-7"><i class="fa fa-check"></i><b>29.6</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="29.7" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#clustering-7"><i class="fa fa-check"></i><b>29.7</b> Clustering</a></li>
+<li class="chapter" data-level="29.4" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#normalization-8"><i class="fa fa-check"></i><b>29.4</b> Normalization</a></li>
+<li class="chapter" data-level="29.5" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#variance-modelling-5"><i class="fa fa-check"></i><b>29.5</b> Variance modelling</a></li>
+<li class="chapter" data-level="29.6" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-integration-2"><i class="fa fa-check"></i><b>29.6</b> Data integration</a></li>
+<li class="chapter" data-level="29.7" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#dimensionality-reduction-7"><i class="fa fa-check"></i><b>29.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="29.8" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#clustering-7"><i class="fa fa-check"></i><b>29.8</b> Clustering</a></li>
 <li class="chapter" data-level="" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#session-info-23"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="30" data-path="lawlor-human-pancreas-smarter.html"><a href="lawlor-human-pancreas-smarter.html"><i class="fa fa-check"></i><b>30</b> Lawlor human pancreas (SMARTer)</a><ul>
@@ -525,12 +521,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="31" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html"><i class="fa fa-check"></i><b>31</b> Segerstolpe human pancreas (Smart-seq2)</a><ul>
 <li class="chapter" data-level="31.1" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#introduction-11"><i class="fa fa-check"></i><b>31.1</b> Introduction</a></li>
 <li class="chapter" data-level="31.2" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#data-loading-8"><i class="fa fa-check"></i><b>31.2</b> Data loading</a></li>
-<li class="chapter" data-level="31.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#quality-control-11"><i class="fa fa-check"></i><b>31.3</b> Quality control</a><ul>
-<li class="chapter" data-level="31.3.1" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#normalization-10"><i class="fa fa-check"></i><b>31.3.1</b> Normalization</a></li>
-<li class="chapter" data-level="31.3.2" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#variance-modelling-7"><i class="fa fa-check"></i><b>31.3.2</b> Variance modelling</a></li>
-<li class="chapter" data-level="31.3.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#dimensionality-reduction-9"><i class="fa fa-check"></i><b>31.3.3</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="31.3.4" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#clustering-9"><i class="fa fa-check"></i><b>31.3.4</b> Clustering</a></li>
-</ul></li>
+<li class="chapter" data-level="31.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#quality-control-11"><i class="fa fa-check"></i><b>31.3</b> Quality control</a></li>
+<li class="chapter" data-level="31.4" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#normalization-10"><i class="fa fa-check"></i><b>31.4</b> Normalization</a></li>
+<li class="chapter" data-level="31.5" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#variance-modelling-7"><i class="fa fa-check"></i><b>31.5</b> Variance modelling</a></li>
+<li class="chapter" data-level="31.6" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#dimensionality-reduction-9"><i class="fa fa-check"></i><b>31.6</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="31.7" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#clustering-9"><i class="fa fa-check"></i><b>31.7</b> Clustering</a></li>
 <li class="chapter" data-level="" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#session-info-25"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="32" data-path="merged-pancreas.html"><a href="merged-pancreas.html"><i class="fa fa-check"></i><b>32</b> Merged human pancreas datasets</a><ul>
@@ -589,14 +584,13 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="37.1" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#introduction-17"><i class="fa fa-check"></i><b>37.1</b> Introduction</a></li>
 <li class="chapter" data-level="37.2" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-loading-13"><i class="fa fa-check"></i><b>37.2</b> Data loading</a></li>
 <li class="chapter" data-level="37.3" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#quality-control-16"><i class="fa fa-check"></i><b>37.3</b> Quality control</a></li>
-<li class="chapter" data-level="37.4" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#normalization-15"><i class="fa fa-check"></i><b>37.4</b> Normalization</a><ul>
-<li class="chapter" data-level="37.4.1" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#variance-modeling"><i class="fa fa-check"></i><b>37.4.1</b> Variance modeling</a></li>
-</ul></li>
-<li class="chapter" data-level="37.5" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-integration-3"><i class="fa fa-check"></i><b>37.5</b> Data integration</a></li>
-<li class="chapter" data-level="37.6" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#dimensionality-reduction-14"><i class="fa fa-check"></i><b>37.6</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="37.7" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#clustering-14"><i class="fa fa-check"></i><b>37.7</b> Clustering</a></li>
-<li class="chapter" data-level="37.8" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#differential-expression"><i class="fa fa-check"></i><b>37.8</b> Differential expression</a></li>
-<li class="chapter" data-level="37.9" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#cell-type-classification"><i class="fa fa-check"></i><b>37.9</b> Cell type classification</a></li>
+<li class="chapter" data-level="37.4" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#normalization-15"><i class="fa fa-check"></i><b>37.4</b> Normalization</a></li>
+<li class="chapter" data-level="37.5" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#variance-modeling"><i class="fa fa-check"></i><b>37.5</b> Variance modeling</a></li>
+<li class="chapter" data-level="37.6" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-integration-3"><i class="fa fa-check"></i><b>37.6</b> Data integration</a></li>
+<li class="chapter" data-level="37.7" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#dimensionality-reduction-14"><i class="fa fa-check"></i><b>37.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="37.8" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#clustering-14"><i class="fa fa-check"></i><b>37.8</b> Clustering</a></li>
+<li class="chapter" data-level="37.9" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#differential-expression"><i class="fa fa-check"></i><b>37.9</b> Differential expression</a></li>
+<li class="chapter" data-level="37.10" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#cell-type-classification"><i class="fa fa-check"></i><b>37.10</b> Cell type classification</a></li>
 <li class="chapter" data-level="" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#session-info-31"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
@@ -636,9 +630,9 @@ document.addEventListener("click", function (event) {
         event.target.classList.toggle("active");
         var content = event.target.nextElementSibling;
         if (content.style.display === "block") {
-          content.style.display = "none";
+            content.style.display = "none";
         } else {
-          content.style.display = "block";
+            content.style.display = "block";
         }
     }
 })
@@ -670,7 +664,7 @@ document.addEventListener("click", function (event) {
 </div>
 <div id="setting-up-the-data-1" class="section level2">
 <h2><span class="header-section-number">14.2</span> Setting up the data</h2>
-<p>Our demonstration scRNA-seq dataset was generated from chimeric mouse embryos at the E8.5 developmental stage. Each chimeric embryo was generated by injecting td-Tomato-positive embryonic stem cells (ESCs) into a wild-type (WT) blastocyst. Unlike in previous experiments <span class="citation">(Scialdone et al. <a href="#ref-scialdone2016resolving">2016</a>)</span>, there is no genetic difference between the injected and background cells other than the expression of td-Tomato in the former. Instead, the aim of this “wild-type chimera” study is to determine whether the injection procedure itself introduces differences in lineage commitment compared to the background cells.</p>
+<p>Our demonstration scRNA-seq dataset was generated from chimeric mouse embryos at the E8.5 developmental stage. Each chimeric embryo was generated by injecting td-Tomato-positive embryonic stem cells (ESCs) into a wild-type (WT) blastocyst. Unlike in previous experiments <span class="citation">(Scialdone et al. <a href="#ref-scialdone2016resolving">2016</a>)</span>, there is no genetic difference between the injected and background cells other than the expression of td-Tomato in the former. Instead, the aim of this &quot;wild-type chimera&quot; study is to determine whether the injection procedure itself introduces differences in lineage commitment compared to the background cells.</p>
 <p>The experiment used a paired design with three replicate batches of two samples each. Specifically, each batch contains one sample consisting of td-Tomato positive cells and another consisting of negative cells, obtained by fluorescence-activated cell sorting from a single pool of dissociated cells from 6-7 chimeric embryos. For each sample, scRNA-seq data was generated using the 10X Genomics protocol <span class="citation">(Zheng et al. <a href="#ref-zheng2017massively">2017</a>)</span> to obtain 2000-7000 cells.</p>
 <button class="aaron-collapse">
 View history
@@ -724,10 +718,10 @@ merged &lt;-<span class="st"> </span><span class="kw">runUMAP</span>(merged, <sp
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">merged</code></pre></div>
 <pre><code>## class: SingleCellExperiment 
 ## dim: 14699 19426 
-## metadata(2): merge.info pca.info
+## metadata(1): merge.info
 ## assays(3): reconstructed counts logcounts
 ## rownames(14699): Xkr4 Rp1 ... Vmn2r122 CAAA01147332.1
-## rowData names(3): rotation ENSEMBL SYMBOL
+## rowData names(3): ENSEMBL SYMBOL rotation
 ## colnames(19426): cell_9769 cell_9770 ... cell_30701 cell_30702
 ## colData names(13): batch cell ... sizeFactor label
 ## reducedDimNames(3): corrected TSNE UMAP
@@ -798,17 +792,17 @@ merged &lt;-<span class="st"> </span><span class="kw">runUMAP</span>(merged, <sp
     <span class="dt">ncol=</span><span class="dv">2</span>
 )</code></pre></div>
 <div class="figure"><span id="fig:tsne-initial"></span>
-<img src="P2_W10.sample-comparisons_files/figure-html/tsne-initial-1.png" alt="$t$-SNE plot of the WT chimeric dataset, where each point represents a cell and is colored according to td-Tomato expression (left) or batch of origin (right). Cluster numbers are superimposed based on the median coordinate of cells assigned to that cluster." width="672" />
+<img src="sample-comparisons_files/figure-html/tsne-initial-1.png" alt="$t$-SNE plot of the WT chimeric dataset, where each point represents a cell and is colored according to td-Tomato expression (left) or batch of origin (right). Cluster numbers are superimposed based on the median coordinate of cells assigned to that cluster." width="672" />
 <p class="caption">
 Figure 14.1: <span class="math inline">\(t\)</span>-SNE plot of the WT chimeric dataset, where each point represents a cell and is colored according to td-Tomato expression (left) or batch of origin (right). Cluster numbers are superimposed based on the median coordinate of cells assigned to that cluster.
 </p>
 </div>
-<p>Ordinarily, we would be obliged to perform marker detection to assign biological meaning to these clusters. For simplicity, we will skip this step by directly using the cell type labels provided by <span class="citation">Pijuan-Sala et al. (<a href="#ref-pijuansala2019single">2019</a>)</span>. These were obtained by mapping the cells in this dataset to a larger, pre-annotated “atlas” of mouse early embryonic development. While broadly consistent, many of our clusters map to multiple labels (Figure @ref(fig:heat-cluster-label}), which reflects the difficulties in unambiguously resolving cell types undergoing differentiation.</p>
+<p>Ordinarily, we would be obliged to perform marker detection to assign biological meaning to these clusters. For simplicity, we will skip this step by directly using the cell type labels provided by <span class="citation">Pijuan-Sala et al. (<a href="#ref-pijuansala2019single">2019</a>)</span>. These were obtained by mapping the cells in this dataset to a larger, pre-annotated &quot;atlas&quot; of mouse early embryonic development. While broadly consistent, many of our clusters map to multiple labels (Figure @ref(fig:heat-cluster-label}), which reflects the difficulties in unambiguously resolving cell types undergoing differentiation.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">by.label &lt;-<span class="st"> </span><span class="kw">table</span>(<span class="kw">colLabels</span>(merged), merged<span class="op">$</span>celltype.mapped)
 pheatmap<span class="op">::</span><span class="kw">pheatmap</span>(<span class="kw">log2</span>(by.label<span class="op">+</span><span class="dv">1</span>), <span class="dt">cluster_cols=</span><span class="ot">FALSE</span>, <span class="dt">cluster_rows=</span><span class="ot">FALSE</span>,
     <span class="dt">color=</span>viridis<span class="op">::</span><span class="kw">viridis</span>(<span class="dv">101</span>))</code></pre></div>
 <div class="figure"><span id="fig:heat-cluster-label"></span>
-<img src="P2_W10.sample-comparisons_files/figure-html/heat-cluster-label-1.png" alt="Heatmap showing the abundance of cells with each combination of cluster (row) and cell type label (column). The color scale represents the log~2~-count for each combination." width="672" />
+<img src="sample-comparisons_files/figure-html/heat-cluster-label-1.png" alt="Heatmap showing the abundance of cells with each combination of cluster (row) and cell type label (column). The color scale represents the log~2~-count for each combination." width="672" />
 <p class="caption">
 Figure 14.2: Heatmap showing the abundance of cells with each combination of cluster (row) and cell type label (column). The color scale represents the log<sub>2</sub>-count for each combination.
 </p>
@@ -818,7 +812,7 @@ Figure 14.2: Heatmap showing the abundance of cells with each combination of clu
 <h2><span class="header-section-number">14.3</span> Differential expression between conditions</h2>
 <div id="creating-pseudo-bulk-samples" class="section level3">
 <h3><span class="header-section-number">14.3.1</span> Creating pseudo-bulk samples</h3>
-<p>The most obvious differential analysis is to look for changes in expression between conditions. We perform the DE analysis separately for each label to identify cell type-specific transcriptional effects of injection. The actual DE testing is performed on “pseudo-bulk” expression profiles <span class="citation">(Tung et al. <a href="#ref-tung2017batch">2017</a>)</span>, generated by summing counts together for all cells with the same combination of label and sample. This leverages the resolution offered by single-cell technologies to define the labels, and combines it with the statistical rigor of existing methods for DE analyses involving a small number of samples.</p>
+<p>The most obvious differential analysis is to look for changes in expression between conditions. We perform the DE analysis separately for each label to identify cell type-specific transcriptional effects of injection. The actual DE testing is performed on &quot;pseudo-bulk&quot; expression profiles <span class="citation">(Tung et al. <a href="#ref-tung2017batch">2017</a>)</span>, generated by summing counts together for all cells with the same combination of label and sample. This leverages the resolution offered by single-cell technologies to define the labels, and combines it with the statistical rigor of existing methods for DE analyses involving a small number of samples.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using &#39;label&#39; and &#39;sample&#39; as our two factors; each column of the output</span>
 <span class="co"># corresponds to one unique combination of these two factors.</span>
 summed &lt;-<span class="st"> </span><span class="kw">aggregateAcrossCells</span>(merged, 
@@ -826,10 +820,10 @@ summed &lt;-<span class="st"> </span><span class="kw">aggregateAcrossCells</span
 summed</code></pre></div>
 <pre><code>## class: SingleCellExperiment 
 ## dim: 14699 186 
-## metadata(2): merge.info pca.info
+## metadata(1): merge.info
 ## assays(1): counts
 ## rownames(14699): Xkr4 Rp1 ... Vmn2r122 CAAA01147332.1
-## rowData names(3): rotation ENSEMBL SYMBOL
+## rowData names(3): ENSEMBL SYMBOL rotation
 ## colnames: NULL
 ## colData names(16): batch cell ... sample ncells
 ## reducedDimNames(3): corrected TSNE UMAP
@@ -889,7 +883,7 @@ y</code></pre></div>
 </div>
 <div id="pre-processing" class="section level4">
 <h4><span class="header-section-number">14.3.2.2</span> Pre-processing</h4>
-<p>A typical step in bulk RNA-seq data analyses is to remove samples with very low library sizes due to failed library preparation or sequencing. The very low counts in these samples can be troublesome in downstream steps such as normalization (Chapter <a href="normalization.html#normalization">7</a>) or for some statistical approximations used in the DE analysis. In our situation, this is equivalent to removing label-sample combinations that have very few or lowly-sequenced cells. The exact definition of “very low” will vary, but in this case, we remove combinations containing fewer than 20 cells <span class="citation">(Crowell et al. <a href="#ref-crowell2019discovery">2019</a>)</span>. Alternatively, we could apply the outlier-based strategy described in Chapter <a href="quality-control.html#quality-control">6</a>, but this makes the strong assumption that all label-sample combinations have similar numbers of cells that are sequenced to similar depth.</p>
+<p>A typical step in bulk RNA-seq data analyses is to remove samples with very low library sizes due to failed library preparation or sequencing. The very low counts in these samples can be troublesome in downstream steps such as normalization (Chapter <a href="normalization.html#normalization">7</a>) or for some statistical approximations used in the DE analysis. In our situation, this is equivalent to removing label-sample combinations that have very few or lowly-sequenced cells. The exact definition of &quot;very low&quot; will vary, but in this case, we remove combinations containing fewer than 20 cells <span class="citation">(Crowell et al. <a href="#ref-crowell2019discovery">2019</a>)</span>. Alternatively, we could apply the outlier-based strategy described in Chapter <a href="quality-control.html#quality-control">6</a>, but this makes the strong assumption that all label-sample combinations have similar numbers of cells that are sequenced to similar depth.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">discarded &lt;-<span class="st"> </span>current<span class="op">$</span>ncells <span class="op">&lt;</span><span class="st"> </span><span class="dv">20</span>
 y &lt;-<span class="st"> </span>y[,<span class="op">!</span>discarded]
 <span class="kw">summary</span>(discarded)</code></pre></div>
@@ -905,12 +899,12 @@ y &lt;-<span class="st"> </span>y[keep,]
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">calcNormFactors</span>(y)
 y<span class="op">$</span>samples</code></pre></div>
 <pre><code>##         group lib.size norm.factors batch cell barcode sample stage tomato pool
-## Sample1     1  4607053       1.0683     5 &lt;NA&gt;    &lt;NA&gt;      5  E8.5   TRUE    3
-## Sample2     1  1064970       1.0487     6 &lt;NA&gt;    &lt;NA&gt;      6  E8.5  FALSE    3
-## Sample3     1  2494010       0.9582     7 &lt;NA&gt;    &lt;NA&gt;      7  E8.5   TRUE    4
-## Sample4     1  1028668       0.9774     8 &lt;NA&gt;    &lt;NA&gt;      8  E8.5  FALSE    4
-## Sample5     1  4290221       0.9707     9 &lt;NA&gt;    &lt;NA&gt;      9  E8.5   TRUE    5
-## Sample6     1  1950840       0.9817    10 &lt;NA&gt;    &lt;NA&gt;     10  E8.5  FALSE    5
+## Sample1     1  4607053    1.0683392     5 &lt;NA&gt;    &lt;NA&gt;      5  E8.5   TRUE    3
+## Sample2     1  1064970    1.0487418     6 &lt;NA&gt;    &lt;NA&gt;      6  E8.5  FALSE    3
+## Sample3     1  2494010    0.9582296     7 &lt;NA&gt;    &lt;NA&gt;      7  E8.5   TRUE    4
+## Sample4     1  1028668    0.9774156     8 &lt;NA&gt;    &lt;NA&gt;      8  E8.5  FALSE    4
+## Sample5     1  4290221    0.9707300     9 &lt;NA&gt;    &lt;NA&gt;      9  E8.5   TRUE    5
+## Sample6     1  1950840    0.9816914    10 &lt;NA&gt;    &lt;NA&gt;     10  E8.5  FALSE    5
 ##         stage.mapped celltype.mapped closest.cell doub.density sizeFactor label
 ## Sample1         &lt;NA&gt;      Mesenchyme         &lt;NA&gt;           NA         NA    NA
 ## Sample2         &lt;NA&gt;      Mesenchyme         &lt;NA&gt;           NA         NA    NA
@@ -950,10 +944,10 @@ design</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">estimateDisp</span>(y, design)
 <span class="kw">summary</span>(y<span class="op">$</span>trended.dispersion)</code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0103  0.0167  0.0213  0.0202  0.0235  0.0266</code></pre>
+## 0.01026 0.01670 0.02128 0.02020 0.02349 0.02665</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotBCV</span>(y)</code></pre></div>
 <div class="figure"><span id="fig:bcvplot"></span>
-<img src="P2_W10.sample-comparisons_files/figure-html/bcvplot-1.png" alt="Biological coefficient of variation (BCV) for each gene as a function of the average abundance. The BCV is computed as the square root of the NB dispersion after empirical Bayes shrinkage towards the trend. Trended and common BCV estimates are shown in blue and red, respectively." width="672" />
+<img src="sample-comparisons_files/figure-html/bcvplot-1.png" alt="Biological coefficient of variation (BCV) for each gene as a function of the average abundance. The BCV is computed as the square root of the NB dispersion after empirical Bayes shrinkage towards the trend. Trended and common BCV estimates are shown in blue and red, respectively." width="672" />
 <p class="caption">
 Figure 14.3: Biological coefficient of variation (BCV) for each gene as a function of the average abundance. The BCV is computed as the square root of the NB dispersion after empirical Bayes shrinkage towards the trend. Trended and common BCV estimates are shown in blue and red, respectively.
 </p>
@@ -962,13 +956,13 @@ Figure 14.3: Biological coefficient of variation (BCV) for each gene as a functi
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit &lt;-<span class="st"> </span><span class="kw">glmQLFit</span>(y, design, <span class="dt">robust=</span><span class="ot">TRUE</span>)
 <span class="kw">summary</span>(fit<span class="op">$</span>var.prior)</code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   0.318   0.714   0.854   0.804   0.913   1.067</code></pre>
+##  0.3179  0.7143  0.8538  0.8045  0.9128  1.0665</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(fit<span class="op">$</span>df.prior)</code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   0.227  12.675  12.675  12.339  12.675  12.675</code></pre>
+##  0.2267 12.6749 12.6749 12.3390 12.6749 12.6749</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotQLDisp</span>(fit)</code></pre></div>
 <div class="figure"><span id="fig:qlplot"></span>
-<img src="P2_W10.sample-comparisons_files/figure-html/qlplot-1.png" alt="QL dispersion estimates for each gene as a function of abundance. Raw estimates (black) are shrunk towards the trend (blue) to yield squeezed estimates (red)." width="672" />
+<img src="sample-comparisons_files/figure-html/qlplot-1.png" alt="QL dispersion estimates for each gene as a function of abundance. Raw estimates (black) are shrunk towards the trend (blue) to yield squeezed estimates (red)." width="672" />
 <p class="caption">
 Figure 14.4: QL dispersion estimates for each gene as a function of abundance. Raw estimates (black) are shrunk towards the trend (blue) to yield squeezed estimates (red).
 </p>
@@ -982,17 +976,17 @@ Figure 14.4: QL dispersion estimates for each gene as a function of abundance. R
 ## Up                      8</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">topTags</span>(res)</code></pre></div>
 <pre><code>## Coefficient:  factor(tomato)TRUE 
-##            logFC logCPM       F    PValue       FDR
-## Phlda2   -4.3874  9.934 1638.59 1.812e-16 1.031e-12
-## Erdr1     2.0691  8.833  356.37 1.061e-11 3.017e-08
-## Mid1      1.5191  6.931  120.15 1.844e-08 3.497e-05
-## H13      -1.0596  7.540   80.80 2.373e-07 2.527e-04
-## Kcnq1ot1  1.3763  7.242   83.31 2.392e-07 2.527e-04
-## Akr1e1   -1.7206  5.128   79.31 2.665e-07 2.527e-04
-## Zdbf2     1.8008  6.797   83.66 6.809e-07 5.533e-04
-## Asb4     -0.9235  7.341   53.45 2.918e-06 2.075e-03
-## Impact    0.8516  7.353   50.31 4.145e-06 2.620e-03
-## Lum      -0.6031  9.275   41.67 1.205e-05 6.851e-03</code></pre>
+##               logFC   logCPM          F       PValue          FDR
+## Phlda2   -4.3873546 9.934130 1638.59469 1.812293e-16 1.030832e-12
+## Erdr1     2.0690698 8.832662  356.36590 1.060836e-11 3.017019e-08
+## Mid1      1.5190728 6.931325  120.14656 1.844351e-08 3.496889e-05
+## H13      -1.0596020 7.540121   80.79795 2.373001e-07 2.526790e-04
+## Kcnq1ot1  1.3762700 7.241651   83.30701 2.392052e-07 2.526790e-04
+## Akr1e1   -1.7205826 5.127802   79.31386 2.665390e-07 2.526790e-04
+## Zdbf2     1.8008336 6.797367   83.66324 6.808994e-07 5.532794e-04
+## Asb4     -0.9234911 7.340648   53.44578 2.918297e-06 2.074909e-03
+## Impact    0.8516300 7.353208   50.31429 4.145416e-06 2.619903e-03
+## Lum      -0.6031413 9.274529   41.67104 1.204523e-05 6.851324e-03</code></pre>
 </div>
 </div>
 <div id="putting-it-all-together" class="section level3">
@@ -1018,7 +1012,7 @@ de.results &lt;-<span class="st"> </span><span class="kw">pseudoBulkDGE</span>(s
     <span class="co"># to perfectly mimic our previous manual analysis.</span>
     <span class="dt">condition=</span>targets<span class="op">$</span>tomato 
 )</code></pre></div>
-<p>We examine the numbers of DEGs at a FDR of 5% for each label using the <code>decideTestsPerLabel()</code> function. In general, there seems to be very little differential expression that is introduced by injection. Note that genes listed as <code>NA</code> were either filtered out as low-abundance genes for a given label’s analysis, or the comparison of interest was not possible for a particular label, e.g., due to lack of residual degrees of freedom or an absence of samples from both conditions.</p>
+<p>We examine the numbers of DEGs at a FDR of 5% for each label using the <code>decideTestsPerLabel()</code> function. In general, there seems to be very little differential expression that is introduced by injection. Note that genes listed as <code>NA</code> were either filtered out as low-abundance genes for a given label's analysis, or the comparison of interest was not possible for a particular label, e.g., due to lack of residual degrees of freedom or an absence of samples from both conditions.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">is.de &lt;-<span class="st"> </span><span class="kw">decideTestsPerLabel</span>(de.results, <span class="dt">threshold=</span><span class="fl">0.05</span>)
 <span class="kw">summarizeTestsPerLabel</span>(is.de)</code></pre></div>
 <pre><code>##                                -1    0  1    NA
@@ -1052,17 +1046,17 @@ de.results &lt;-<span class="st"> </span><span class="kw">pseudoBulkDGE</span>(s
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Upregulated across most cell types.</span>
 up.de &lt;-<span class="st"> </span>is.de <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(is.de)
 <span class="kw">head</span>(<span class="kw">sort</span>(<span class="kw">rowMeans</span>(up.de), <span class="dt">decreasing=</span><span class="ot">TRUE</span>), <span class="dv">10</span>)</code></pre></div>
-<pre><code>##     Mid1    Erdr1   Impact    Mcts2     Nnat Kcnq1ot1  Slc38a4    Zdbf2 
-##   0.7692   0.6538   0.5385   0.5000   0.5000   0.5000   0.3846   0.3462 
-##     Hopx     Peg3 
-##   0.3462   0.2308</code></pre>
+<pre><code>##      Mid1     Erdr1    Impact     Mcts2      Nnat  Kcnq1ot1   Slc38a4     Zdbf2 
+## 0.7692308 0.6538462 0.5384615 0.5000000 0.5000000 0.5000000 0.3846154 0.3461538 
+##      Hopx      Peg3 
+## 0.3461538 0.2307692</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Downregulated across cell types.</span>
 down.de &lt;-<span class="st"> </span>is.de <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(is.de)
 <span class="kw">head</span>(<span class="kw">sort</span>(<span class="kw">rowMeans</span>(down.de), <span class="dt">decreasing=</span><span class="ot">TRUE</span>), <span class="dv">10</span>)</code></pre></div>
 <pre><code>##        Akr1e1          Xist        Cdkn1c        Phlda2           H13 
-##       0.61538       0.57692       0.57692       0.57692       0.46154 
+##    0.61538462    0.57692308    0.57692308    0.57692308    0.46153846 
 ##         Wfdc2         Hbb-y         Grb10 B930036N10Rik         Pink1 
-##       0.19231       0.11538       0.11538       0.07692       0.07692</code></pre>
+##    0.19230769    0.11538462    0.11538462    0.07692308    0.07692308</code></pre>
 <p>We further identify label-specific DE genes that are significant in our label of interest yet not DE in any other label. As hypothesis tests are not typically geared towards identifying genes that are not DE, we use an <em>ad hoc</em> approach where we consider a gene to be consistent with the null hypothesis for a label if it fails to be detected even at a generous FDR threshold of 50%. We demonstrate this approach below by identifying injection-induced DE genes that are unique to the allantois, though differences in power between labels suggest that this should be interpreted with some caution; for example, Figure <a href="multi-sample-comparisons.html#fig:exprs-unique-de-allantois">14.5</a> shows that the top-ranked allantois-specific gene exhibits some evidence of DE in other labels but was not detected for various reasons like low abundance or insufficient replicates.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">remotely.de &lt;-<span class="st"> </span><span class="kw">decideTestsPerLabel</span>(de.results, <span class="dt">threshold=</span><span class="fl">0.5</span>)
 not.de &lt;-<span class="st"> </span>remotely.de<span class="op">==</span><span class="dv">0</span> <span class="op">|</span><span class="st"> </span><span class="kw">is.na</span>(remotely.de)
@@ -1091,12 +1085,12 @@ de.allantois &lt;-<span class="st"> </span>de.allantois[<span class="kw">rowname
     <span class="dt">other_fields=</span><span class="st">&quot;celltype.mapped&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span>celltype.mapped)</code></pre></div>
 <div class="figure"><span id="fig:exprs-unique-de-allantois"></span>
-<img src="P2_W10.sample-comparisons_files/figure-html/exprs-unique-de-allantois-1.png" alt="Distribution of summed log-expression values for each label in the chimeric embryo dataset. Each facet represents a label with distributions stratified by injection status." width="960" />
+<img src="sample-comparisons_files/figure-html/exprs-unique-de-allantois-1.png" alt="Distribution of summed log-expression values for each label in the chimeric embryo dataset. Each facet represents a label with distributions stratified by injection status." width="960" />
 <p class="caption">
 Figure 14.5: Distribution of summed log-expression values for each label in the chimeric embryo dataset. Each facet represents a label with distributions stratified by injection status.
 </p>
 </div>
-<p>We also list the labels that were skipped due to the absence of replicates or contrasts. If it is necessary to extract statistics in the absence of replicates, several strategies can be applied such as reducing the complexity of the model or using a predefined value for the NB dispersion. We refer readers to the <em><a href="https://bioconductor.org/packages/3.12/edgeR">edgeR</a></em> user’s guide for more details.</p>
+<p>We also list the labels that were skipped due to the absence of replicates or contrasts. If it is necessary to extract statistics in the absence of replicates, several strategies can be applied such as reducing the complexity of the model or using a predefined value for the NB dispersion. We refer readers to the <em><a href="https://bioconductor.org/packages/3.12/edgeR">edgeR</a></em> user's guide for more details.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">metadata</span>(de.results)<span class="op">$</span>failed</code></pre></div>
 <pre><code>## [1] &quot;Caudal epiblast&quot;      &quot;Caudal Mesoderm&quot;      &quot;Def. endoderm&quot;       
 ## [4] &quot;ExE ectoderm&quot;         &quot;Parietal endoderm&quot;    &quot;Rostral neurectoderm&quot;</code></pre>
@@ -1106,7 +1100,7 @@ Figure 14.5: Distribution of summed log-expression values for each label in the 
 <h2><span class="header-section-number">14.4</span> Differential abundance between conditions</h2>
 <div id="overview-4" class="section level3">
 <h3><span class="header-section-number">14.4.1</span> Overview</h3>
-<p>In a DA analysis, we test for significant changes in per-label cell abundance across conditions. This will reveal which cell types are depleted or enriched upon treatment, which is arguably just as interesting as changes in expression within each cell type. The DA analysis has a long history in flow cytometry <span class="citation">(Finak et al. <a href="#ref-finak2014opencyto">2014</a>; Lun, Richard, and Marioni <a href="#ref-lun2017testing">2017</a>)</span> where it is routinely used to examine the effects of different conditions on the composition of complex cell populations. By performing it here, we effectively treat scRNA-seq as a “super-FACS” technology for defining relevant subpopulations using the entire transcriptome.</p>
+<p>In a DA analysis, we test for significant changes in per-label cell abundance across conditions. This will reveal which cell types are depleted or enriched upon treatment, which is arguably just as interesting as changes in expression within each cell type. The DA analysis has a long history in flow cytometry <span class="citation">(Finak et al. <a href="#ref-finak2014opencyto">2014</a>; Lun, Richard, and Marioni <a href="#ref-lun2017testing">2017</a>)</span> where it is routinely used to examine the effects of different conditions on the composition of complex cell populations. By performing it here, we effectively treat scRNA-seq as a &quot;super-FACS&quot; technology for defining relevant subpopulations using the entire transcriptome.</p>
 <p>We prepare for the DA analysis by quantifying the number of cells assigned to each label (or cluster). In this case, we are aiming to identify labels that change in abundance among the compartment of injected cells compared to the background.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">abundances &lt;-<span class="st"> </span><span class="kw">table</span>(merged<span class="op">$</span>celltype.mapped, merged<span class="op">$</span>sample) 
 abundances &lt;-<span class="st"> </span><span class="kw">unclass</span>(abundances) 
@@ -1154,19 +1148,19 @@ y.ab</code></pre></div>
 ## 9    TRUE    5         E8.0                 ExE mesoderm  cell_116116
 ## 10  FALSE    5         E8.5 Forebrain/Midbrain/Hindbrain   cell_39343
 ##    doub.density sizeFactor label
-## 5      0.029850     1.6349    19
-## 6      0.291916     2.5981     6
-## 7      0.601740     1.5939    17
-## 8      0.004733     0.8707     9
-## 9      0.079415     0.8933    15
-## 10     0.040747     0.3947     1</code></pre>
+## 5    0.02985045  1.6348759    19
+## 6    0.29191572  2.5980769     6
+## 7    0.60173979  1.5939009    17
+## 8    0.00473259  0.8707367     9
+## 9    0.07941464  0.8932525    15
+## 10   0.04074704  0.3947355     1</code></pre>
 <p>We filter out low-abundance labels as previously described. This avoids cluttering the result table with very rare subpopulations that contain only a handful of cells. For a DA analysis of cluster abundances, filtering is generally not required as most clusters will not be of low-abundance (otherwise there would not have been enough evidence to define the cluster in the first place).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">keep &lt;-<span class="st"> </span><span class="kw">filterByExpr</span>(y.ab, <span class="dt">group=</span>y.ab<span class="op">$</span>samples<span class="op">$</span>tomato)
 y.ab &lt;-<span class="st"> </span>y.ab[keep,]
 <span class="kw">summary</span>(keep)</code></pre></div>
 <pre><code>##    Mode   FALSE    TRUE 
 ## logical      10      24</code></pre>
-<p>Unlike DE analyses, we do not perform an additional normalization step with <code>calcNormFactors()</code>. This means that we are only normalizing based on the “library size”, i.e., the total number of cells in each sample. Any changes we detect between conditions will subsequently represent differences in the proportion of cells in each cluster. The motivation behind this decision is discussed in more detail in Section <a href="multi-sample-comparisons.html#composition-effects">14.4.3</a>.</p>
+<p>Unlike DE analyses, we do not perform an additional normalization step with <code>calcNormFactors()</code>. This means that we are only normalizing based on the &quot;library size&quot;, i.e., the total number of cells in each sample. Any changes we detect between conditions will subsequently represent differences in the proportion of cells in each cluster. The motivation behind this decision is discussed in more detail in Section <a href="multi-sample-comparisons.html#composition-effects">14.4.3</a>.</p>
 <p>We formulate the design matrix with a blocking factor for the batch of origin for each sample and an additive term for the td-Tomato status (i.e., injection effect). Here, the log-fold change in our model refers to the change in cell abundance after injection, rather than the change in gene expression.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">design &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(<span class="op">~</span><span class="kw">factor</span>(pool) <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(tomato), y.ab<span class="op">$</span>samples)</code></pre></div>
 <p>We use the <code>estimateDisp()</code> function to estimate the NB dipersion for each cluster (Figure <a href="multi-sample-comparisons.html#fig:abplotbcv">14.6</a>). We turn off the trend as we do not have enough points for its stable estimation.</p>
@@ -1176,7 +1170,7 @@ y.ab &lt;-<span class="st"> </span>y.ab[keep,]
 ##  0.0614  0.0614  0.0614  0.0614  0.0614  0.0614</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotBCV</span>(y.ab, <span class="dt">cex=</span><span class="dv">1</span>)</code></pre></div>
 <div class="figure"><span id="fig:abplotbcv"></span>
-<img src="P2_W10.sample-comparisons_files/figure-html/abplotbcv-1.png" alt="Biological coefficient of variation (BCV) for each label with respect to its average abundance. BCVs are defined as the square root of the NB dispersion. Common dispersion estimates are shown in red." width="672" />
+<img src="sample-comparisons_files/figure-html/abplotbcv-1.png" alt="Biological coefficient of variation (BCV) for each label with respect to its average abundance. BCVs are defined as the square root of the NB dispersion. Common dispersion estimates are shown in red." width="672" />
 <p class="caption">
 Figure 14.6: Biological coefficient of variation (BCV) for each label with respect to its average abundance. BCVs are defined as the square root of the NB dispersion. Common dispersion estimates are shown in red.
 </p>
@@ -1185,13 +1179,13 @@ Figure 14.6: Biological coefficient of variation (BCV) for each label with respe
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit.ab &lt;-<span class="st"> </span><span class="kw">glmQLFit</span>(y.ab, design, <span class="dt">robust=</span><span class="ot">TRUE</span>, <span class="dt">abundance.trend=</span><span class="ot">FALSE</span>)
 <span class="kw">summary</span>(fit.ab<span class="op">$</span>var.prior)</code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    1.25    1.25    1.25    1.25    1.25    1.25</code></pre>
+##   1.254   1.254   1.254   1.254   1.254   1.254</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(fit.ab<span class="op">$</span>df.prior)</code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##     Inf     Inf     Inf     Inf     Inf     Inf</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotQLDisp</span>(fit.ab, <span class="dt">cex=</span><span class="dv">1</span>)</code></pre></div>
 <div class="figure"><span id="fig:abplotql"></span>
-<img src="P2_W10.sample-comparisons_files/figure-html/abplotql-1.png" alt="QL dispersion estimates for each label with respect to its average abundance. Quarter-root values of the raw estimates are shown in black while the shrunken estimates are shown in red. Shrinkage is performed towards the common dispersion in blue." width="672" />
+<img src="sample-comparisons_files/figure-html/abplotql-1.png" alt="QL dispersion estimates for each label with respect to its average abundance. Quarter-root values of the raw estimates are shown in black while the shrunken estimates are shown in red. Shrinkage is performed towards the common dispersion in blue." width="672" />
 <p class="caption">
 Figure 14.7: QL dispersion estimates for each label with respect to its average abundance. Quarter-root values of the raw estimates are shown in black while the shrunken estimates are shown in red. Shrinkage is performed towards the common dispersion in blue.
 </p>
@@ -1205,17 +1199,28 @@ Figure 14.7: QL dispersion estimates for each label with respect to its average 
 ## Up                      1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">topTags</span>(res)</code></pre></div>
 <pre><code>## Coefficient:  factor(tomato)TRUE 
-##                                  logFC logCPM      F    PValue       FDR
-## ExE ectoderm                   -6.5663  13.02 66.267 1.352e-10 3.245e-09
-## Mesenchyme                      1.1652  16.29 11.291 1.535e-03 1.841e-02
-## Allantois                       0.8345  15.51  5.312 2.555e-02 1.621e-01
-## Cardiomyocytes                  0.8484  14.86  5.204 2.701e-02 1.621e-01
-## Neural crest                   -0.7706  14.76  4.106 4.830e-02 2.149e-01
-## Endothelium                     0.7519  14.29  3.912 5.371e-02 2.149e-01
-## Erythroid3                     -0.6431  17.28  3.604 6.367e-02 2.183e-01
-## Haematoendothelial progenitors  0.6581  14.72  3.124 8.351e-02 2.505e-01
-## ExE mesoderm                    0.3805  15.68  1.181 2.827e-01 6.258e-01
-## Pharyngeal mesoderm             0.3793  15.72  1.169 2.850e-01 6.258e-01</code></pre>
+##                                     logFC   logCPM         F       PValue
+## ExE ectoderm                   -6.5663339 13.02497 66.266874 1.352022e-10
+## Mesenchyme                      1.1651500 16.29382 11.290523 1.534506e-03
+## Allantois                       0.8345294 15.50702  5.312163 2.554581e-02
+## Cardiomyocytes                  0.8484008 14.86430  5.203963 2.701306e-02
+## Neural crest                   -0.7706378 14.76462  4.106177 4.830292e-02
+## Endothelium                     0.7518608 14.28905  3.911511 5.371320e-02
+## Erythroid3                     -0.6430834 17.28041  3.603666 6.367366e-02
+## Haematoendothelial progenitors  0.6581135 14.72323  3.123946 8.350641e-02
+## ExE mesoderm                    0.3805309 15.67835  1.180627 2.826550e-01
+## Pharyngeal mesoderm             0.3793160 15.72073  1.169279 2.849523e-01
+##                                         FDR
+## ExE ectoderm                   3.244852e-09
+## Mesenchyme                     1.841407e-02
+## Allantois                      1.620784e-01
+## Cardiomyocytes                 1.620784e-01
+## Neural crest                   2.148528e-01
+## Endothelium                    2.148528e-01
+## Erythroid3                     2.183097e-01
+## Haematoendothelial progenitors 2.505192e-01
+## ExE mesoderm                   6.257608e-01
+## Pharyngeal mesoderm            6.257608e-01</code></pre>
 </div>
 <div id="composition-effects" class="section level3">
 <h3><span class="header-section-number">14.4.3</span> Handling composition effects</h3>
@@ -1229,24 +1234,35 @@ Figure 14.7: QL dispersion estimates for each label with respect to its average 
 <p>If it is possible to assume that most labels (i.e., cell types) do not change in abundance, we can use <code>calcNormFactors()</code> to compute normalization factors. This seems to be a fairly reasonable assumption for the WT chimeras where the injection is expected to have only a modest effect at most.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y.ab2 &lt;-<span class="st"> </span><span class="kw">calcNormFactors</span>(y.ab)
 y.ab2<span class="op">$</span>samples<span class="op">$</span>norm.factors</code></pre></div>
-<pre><code>## [1] 1.0055 1.0833 1.1658 0.7614 1.0616 0.9743</code></pre>
+<pre><code>## [1] 1.0055014 1.0832868 1.1658013 0.7613537 1.0615834 0.9743361</code></pre>
 <p>We then proceed with the remainder of the <em><a href="https://bioconductor.org/packages/3.12/edgeR">edgeR</a></em> analysis, shown below in condensed format. Many of the positive log-fold changes are shifted towards zero, consistent with the removal of composition biases from the presence of extra-embryonic ectoderm in only background cells. In particular, the mesenchyme is no longer significantly DA after injection.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y.ab2 &lt;-<span class="st"> </span><span class="kw">estimateDisp</span>(y.ab2, design, <span class="dt">trend=</span><span class="st">&quot;none&quot;</span>)
 fit.ab2 &lt;-<span class="st"> </span><span class="kw">glmQLFit</span>(y.ab2, design, <span class="dt">robust=</span><span class="ot">TRUE</span>, <span class="dt">abundance.trend=</span><span class="ot">FALSE</span>)
 res2 &lt;-<span class="st"> </span><span class="kw">glmQLFTest</span>(fit.ab2, <span class="dt">coef=</span><span class="kw">ncol</span>(design))
 <span class="kw">topTags</span>(res2, <span class="dt">n=</span><span class="dv">10</span>)</code></pre></div>
 <pre><code>## Coefficient:  factor(tomato)TRUE 
-##                                  logFC logCPM      F    PValue       FDR
-## ExE ectoderm                   -6.9215  13.17 70.364 5.738e-11 1.377e-09
-## Mesenchyme                      0.9513  16.27  6.787 1.219e-02 1.143e-01
-## Neural crest                   -1.0032  14.78  6.464 1.429e-02 1.143e-01
-## Erythroid3                     -0.8504  17.35  5.517 2.299e-02 1.380e-01
-## Cardiomyocytes                  0.6400  14.84  2.735 1.047e-01 4.809e-01
-## Allantois                       0.6054  15.51  2.503 1.202e-01 4.809e-01
-## Forebrain/Midbrain/Hindbrain   -0.4943  16.55  1.928 1.713e-01 5.178e-01
-## Endothelium                     0.5482  14.27  1.917 1.726e-01 5.178e-01
-## Erythroid2                     -0.4818  16.00  1.677 2.015e-01 5.373e-01
-## Haematoendothelial progenitors  0.4262  14.73  1.185 2.818e-01 6.240e-01</code></pre>
+##                                     logFC   logCPM         F       PValue
+## ExE ectoderm                   -6.9215053 13.17310 70.364441 5.737569e-11
+## Mesenchyme                      0.9512514 16.26914  6.786568 1.219244e-02
+## Neural crest                   -1.0031930 14.78020  6.463970 1.428911e-02
+## Erythroid3                     -0.8503855 17.34945  5.517254 2.299442e-02
+## Cardiomyocytes                  0.6400437 14.83561  2.734575 1.047239e-01
+## Allantois                       0.6054049 15.51064  2.502557 1.202293e-01
+## Forebrain/Midbrain/Hindbrain   -0.4943126 16.54751  1.928484 1.713349e-01
+## Endothelium                     0.5481902 14.26928  1.916766 1.726164e-01
+## Erythroid2                     -0.4818165 16.00028  1.677363 2.014700e-01
+## Haematoendothelial progenitors  0.4262409 14.73329  1.184785 2.818191e-01
+##                                         FDR
+## ExE ectoderm                   1.377017e-09
+## Mesenchyme                     1.143129e-01
+## Neural crest                   1.143129e-01
+## Erythroid3                     1.379665e-01
+## Cardiomyocytes                 4.809171e-01
+## Allantois                      4.809171e-01
+## Forebrain/Midbrain/Hindbrain   5.178491e-01
+## Endothelium                    5.178491e-01
+## Erythroid2                     5.372534e-01
+## Haematoendothelial progenitors 6.239689e-01</code></pre>
 </div>
 <div id="removing-the-offending-labels" class="section level4">
 <h4><span class="header-section-number">14.4.3.3</span> Removing the offending labels</h4>
@@ -1269,28 +1285,39 @@ y.ab3<span class="op">$</span>samples   </code></pre></div>
 ## 9    TRUE    5         E8.0                 ExE mesoderm  cell_116116
 ## 10  FALSE    5         E8.5 Forebrain/Midbrain/Hindbrain   cell_39343
 ##    doub.density sizeFactor label
-## 5      0.029850     1.6349    19
-## 6      0.291916     2.5981     6
-## 7      0.601740     1.5939    17
-## 8      0.004733     0.8707     9
-## 9      0.079415     0.8933    15
-## 10     0.040747     0.3947     1</code></pre>
+## 5    0.02985045  1.6348759    19
+## 6    0.29191572  2.5980769     6
+## 7    0.60173979  1.5939009    17
+## 8    0.00473259  0.8707367     9
+## 9    0.07941464  0.8932525    15
+## 10   0.04074704  0.3947355     1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y.ab3 &lt;-<span class="st"> </span><span class="kw">estimateDisp</span>(y.ab3, design, <span class="dt">trend=</span><span class="st">&quot;none&quot;</span>)
 fit.ab3 &lt;-<span class="st"> </span><span class="kw">glmQLFit</span>(y.ab3, design, <span class="dt">robust=</span><span class="ot">TRUE</span>, <span class="dt">abundance.trend=</span><span class="ot">FALSE</span>)
 res3 &lt;-<span class="st"> </span><span class="kw">glmQLFTest</span>(fit.ab3, <span class="dt">coef=</span><span class="kw">ncol</span>(design))
 <span class="kw">topTags</span>(res3, <span class="dt">n=</span><span class="dv">10</span>)</code></pre></div>
 <pre><code>## Coefficient:  factor(tomato)TRUE 
-##                                  logFC logCPM      F   PValue     FDR
-## Mesenchyme                      1.1274  16.32 11.501 0.001438 0.03308
-## Allantois                       0.7950  15.54  5.231 0.026836 0.18284
-## Cardiomyocytes                  0.8104  14.90  5.152 0.027956 0.18284
-## Neural crest                   -0.8085  14.80  4.903 0.031798 0.18284
-## Erythroid3                     -0.6808  17.32  4.387 0.041743 0.19202
-## Endothelium                     0.7151  14.32  3.830 0.056443 0.21636
-## Haematoendothelial progenitors  0.6189  14.76  2.993 0.090338 0.29683
-## Def. endoderm                   0.4911  12.43  1.084 0.303347 0.67818
-## ExE mesoderm                    0.3419  15.71  1.036 0.314058 0.67818
-## Pharyngeal mesoderm             0.3407  15.76  1.025 0.316623 0.67818</code></pre>
+##                                     logFC   logCPM         F      PValue
+## Mesenchyme                      1.1273676 16.32364 11.500591 0.001438179
+## Allantois                       0.7950021 15.54087  5.231036 0.026836234
+## Cardiomyocytes                  0.8104480 14.89525  5.151667 0.027956411
+## Neural crest                   -0.8085349 14.80374  4.903456 0.031797636
+## Erythroid3                     -0.6808430 17.32343  4.387347 0.041743200
+## Endothelium                     0.7151421 14.31988  3.829515 0.056442770
+## Haematoendothelial progenitors  0.6189006 14.75818  2.992844 0.090338383
+## Def. endoderm                   0.4910584 12.43440  1.083539 0.303347413
+## ExE mesoderm                    0.3418509 15.71309  1.036082 0.314058396
+## Pharyngeal mesoderm             0.3406974 15.75566  1.025040 0.316622575
+##                                       FDR
+## Mesenchyme                     0.03307812
+## Allantois                      0.18283641
+## Cardiomyocytes                 0.18283641
+## Neural crest                   0.18283641
+## Erythroid3                     0.19201872
+## Endothelium                    0.21636395
+## Haematoendothelial progenitors 0.29682612
+## Def. endoderm                  0.67818078
+## ExE mesoderm                   0.67818078
+## Pharyngeal mesoderm            0.67818078</code></pre>
 <p>A similar strategy can be used to focus on proportional changes within a single subpopulation of a very heterogeneous data set. For example, if we collected a whole blood data set, we could subset to T cells and test for changes in T cell subtypes (memory, killer, regulatory, etc.) using the total number of T cells in each sample as the library size. This avoids detecting changes in T cell subsets that are driven by compositional effects from changes in abundance of, say, B cells in the same sample.</p>
 </div>
 <div id="testing-against-a-log-fold-change-threshold" class="section level4">
@@ -1304,28 +1331,28 @@ res3 &lt;-<span class="st"> </span><span class="kw">glmQLFTest</span>(fit.ab3, <
 ## Up                      0</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">topTags</span>(res.lfc)</code></pre></div>
 <pre><code>## Coefficient:  factor(tomato)TRUE 
-##                                  logFC unshrunk.logFC logCPM    PValue
-## ExE ectoderm                   -6.5663        -7.0015  13.02 2.626e-09
-## Mesenchyme                      1.1652         1.1658  16.29 1.323e-01
-## Cardiomyocytes                  0.8484         0.8498  14.86 3.796e-01
-## Allantois                       0.8345         0.8354  15.51 3.975e-01
-## Neural crest                   -0.7706        -0.7719  14.76 4.501e-01
-## Endothelium                     0.7519         0.7536  14.29 4.665e-01
-## Haematoendothelial progenitors  0.6581         0.6591  14.72 5.622e-01
-## Def. endoderm                   0.5262         0.5311  12.40 5.934e-01
-## Erythroid3                     -0.6431        -0.6432  17.28 6.118e-01
-## Caudal Mesoderm                -0.3996        -0.4036  12.09 6.827e-01
-##                                      FDR
-## ExE ectoderm                   6.303e-08
-## Mesenchyme                     9.950e-01
-## Cardiomyocytes                 9.950e-01
-## Allantois                      9.950e-01
-## Neural crest                   9.950e-01
-## Endothelium                    9.950e-01
-## Haematoendothelial progenitors 9.950e-01
-## Def. endoderm                  9.950e-01
-## Erythroid3                     9.950e-01
-## Caudal Mesoderm                9.950e-01</code></pre>
+##                                     logFC unshrunk.logFC   logCPM       PValue
+## ExE ectoderm                   -6.5663339     -7.0014662 13.02497 2.626129e-09
+## Mesenchyme                      1.1651500      1.1657834 16.29382 1.323301e-01
+## Cardiomyocytes                  0.8484008      0.8498209 14.86430 3.795840e-01
+## Allantois                       0.8345294      0.8353651 15.50702 3.974675e-01
+## Neural crest                   -0.7706378     -0.7719154 14.76462 4.501007e-01
+## Endothelium                     0.7518608      0.7536317 14.28905 4.665427e-01
+## Haematoendothelial progenitors  0.6581135      0.6591452 14.72323 5.621684e-01
+## Def. endoderm                   0.5262140      0.5310753 12.40076 5.933582e-01
+## Erythroid3                     -0.6430834     -0.6432463 17.28041 6.118154e-01
+## Caudal Mesoderm                -0.3996254     -0.4035521 12.08574 6.827271e-01
+##                                         FDR
+## ExE ectoderm                   6.302709e-08
+## Mesenchyme                     9.950204e-01
+## Cardiomyocytes                 9.950204e-01
+## Allantois                      9.950204e-01
+## Neural crest                   9.950204e-01
+## Endothelium                    9.950204e-01
+## Haematoendothelial progenitors 9.950204e-01
+## Def. endoderm                  9.950204e-01
+## Erythroid3                     9.950204e-01
+## Caudal Mesoderm                9.950204e-01</code></pre>
 <p>The choice of <span class="math inline">\(\tau\)</span> can be loosely motivated by external experimental data. For example, if we observe a doubling of cell numbers in an <em>in vitro</em> system after treatment, we might be inclined to set <span class="math inline">\(\tau=1\)</span>. This ensures that any non-DA subpopulation is not reported as being depleted after treatment. Some caution is still required, though - even if the external numbers are accurate, we need to assume that cell capture efficiency is (on average) equal between conditions to justify their use as <span class="math inline">\(\tau\)</span>. And obviously, the use of a non-zero <span class="math inline">\(\tau\)</span> will reduce power to detect real changes when the composition bias is not present.</p>
 </div>
 </div>
@@ -1354,10 +1381,12 @@ res3 &lt;-<span class="st"> </span><span class="kw">glmQLFTest</span>(fit.ab3, <
 <h2><span class="header-section-number">14.6</span> Avoiding problems with ambient RNA</h2>
 <div id="motivation-9" class="section level3">
 <h3><span class="header-section-number">14.6.1</span> Motivation</h3>
-<p>Ambient contamination is a phenomenon that is generally most pronounced in massively multiplexed scRNA-seq protocols. Briefly, extracellular RNA (most commonly released upon cell lysis) is captured along with each cell in its reaction chamber, contributing counts to genes that are not otherwise expressed in that cell (see Section <a href="quality-control.html#qc-droplets">6.5</a>). Differences in the ambient profile across samples are not uncommon when dealing with strong experimental perturbations where strong expression of a gene in a condition-specific cell type can “bleed over” into all other cell types in the same sample. This is problematic for DE analyses between conditions, as DEGs detected for a particular cell type may be driven by differences in the ambient profiles rather than any intrinsic change in gene regulation.</p>
+<p>Ambient contamination is a phenomenon that is generally most pronounced in massively multiplexed scRNA-seq protocols. Briefly, extracellular RNA (most commonly released upon cell lysis) is captured along with each cell in its reaction chamber, contributing counts to genes that are not otherwise expressed in that cell (see Section <a href="quality-control.html#qc-droplets">6.5</a>). Differences in the ambient profile across samples are not uncommon when dealing with strong experimental perturbations where strong expression of a gene in a condition-specific cell type can &quot;bleed over&quot; into all other cell types in the same sample. This is problematic for DE analyses between conditions, as DEGs detected for a particular cell type may be driven by differences in the ambient profiles rather than any intrinsic change in gene regulation.</p>
 <p>To illustrate, we consider the <em>Tal1</em>-knockout (KO) chimera data from <span class="citation">Pijuan-Sala et al. (<a href="#ref-pijuansala2019single">2019</a>)</span>. This is very similar to the WT chimera dataset we previously examined, only differing in that the <em>Tal1</em> gene was knocked out in the injected cells. <em>Tal1</em> is a transcription factor that has known roles in erythroid differentiation; the aim of the experiment was to determine if blocking of the erythroid lineage diverted cells to other developmental fates. (To cut a long story short: yes, it did.)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(MouseGastrulationData)
 sce.tal1 &lt;-<span class="st"> </span><span class="kw">Tal1ChimeraData</span>()
+
+<span class="kw">library</span>(scuttle)
 <span class="kw">rownames</span>(sce.tal1) &lt;-<span class="st"> </span><span class="kw">uniquifyFeatureNames</span>(
     <span class="kw">rowData</span>(sce.tal1)<span class="op">$</span>ENSEMBL, 
     <span class="kw">rowData</span>(sce.tal1)<span class="op">$</span>SYMBOL
@@ -1373,7 +1402,7 @@ sce.tal1</code></pre></div>
 ## colData names(9): cell barcode ... pool sizeFactor
 ## reducedDimNames(1): pca.corrected
 ## altExpNames(0):</code></pre>
-<p>We will perform a DE analysis between WT and KO cells labelled as “neural crest”. We observe that the strongest DEGs are the hemoglobins, which are downregulated in the injected cells. This is rather surprising as these cells are distinct from the erythroid lineage and should not express hemoglobins at all. The most sober explanation is that the background samples contain more hemoglobin transcripts in the ambient solution due to leakage from erythrocytes (or their precursors) during sorting and dissociation.</p>
+<p>We will perform a DE analysis between WT and KO cells labelled as &quot;neural crest&quot;. We observe that the strongest DEGs are the hemoglobins, which are downregulated in the injected cells. This is rather surprising as these cells are distinct from the erythroid lineage and should not express hemoglobins at all. The most sober explanation is that the background samples contain more hemoglobin transcripts in the ambient solution due to leakage from erythrocytes (or their precursors) during sorting and dissociation.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">summed.tal1 &lt;-<span class="st"> </span><span class="kw">aggregateAcrossCells</span>(sce.tal1, 
     <span class="dt">ids=</span><span class="kw">DataFrame</span>(<span class="dt">sample=</span>sce.tal1<span class="op">$</span>sample,
         <span class="dt">label=</span>sce.tal1<span class="op">$</span>celltype.mapped)
@@ -1408,22 +1437,22 @@ res.neural &lt;-<span class="st"> </span><span class="kw">glmQLFTest</span>(fit.
 ## Up                    481</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">topTags</span>(res.neural, <span class="dt">n=</span><span class="dv">10</span>)</code></pre></div>
 <pre><code>## Coefficient:  factor(tomato)TRUE 
-##           logFC logCPM       F     PValue        FDR
-## Hba-a1  -8.5967  6.744  2756.6  0.000e+00  0.000e+00
-## Hbb-y   -8.4156  8.357  7364.3  0.000e+00  0.000e+00
-## Hbb-bh1 -8.0910  9.160 10758.3  0.000e+00  0.000e+00
-## Hba-x   -7.7248  8.533  7896.5  0.000e+00  0.000e+00
-## Xist    -7.5557  8.212  6657.3  0.000e+00  0.000e+00
-## Hba-a2  -8.8662  5.813  1517.7 1.724e-310 3.060e-307
-## Erdr1    1.8895  7.616  1407.1 2.347e-289 3.570e-286
-## Cdkn1c  -8.8645  4.961   814.9 8.800e-173 1.171e-169
-## Uba52   -0.8797  8.386   424.2  1.866e-92  2.208e-89
-## Grb10   -1.4034  6.583   401.4  1.139e-87  1.213e-84</code></pre>
-<p>As an aside, it is worth mentioning that the “replicates” in this study are more technical than biological, so some exaggeration of the significance of the effects is to be expected. Nonetheless, it is a useful dataset to demonstrate some strategies for mitigating issues caused by ambient contamination.</p>
+##             logFC   logCPM          F        PValue           FDR
+## Hba-a1  -8.596706 6.744291  2756.5730  0.000000e+00  0.000000e+00
+## Hbb-y   -8.415622 8.357047  7364.2897  0.000000e+00  0.000000e+00
+## Hbb-bh1 -8.091042 9.159723 10758.2563  0.000000e+00  0.000000e+00
+## Hba-x   -7.724803 8.532843  7896.4567  0.000000e+00  0.000000e+00
+## Xist    -7.555686 8.212319  6657.2984  0.000000e+00  0.000000e+00
+## Hba-a2  -8.866232 5.813004  1517.7259 1.723785e-310 3.059718e-307
+## Erdr1    1.889536 7.615930  1407.1122 2.346783e-289 3.570463e-286
+## Cdkn1c  -8.864528 4.960967   814.9364 8.799796e-173 1.171473e-169
+## Uba52   -0.879668 8.386176   424.1907  1.865845e-92  2.207916e-89
+## Grb10   -1.403427 6.583140   401.3530  1.138985e-87  1.213019e-84</code></pre>
+<p>As an aside, it is worth mentioning that the &quot;replicates&quot; in this study are more technical than biological, so some exaggeration of the significance of the effects is to be expected. Nonetheless, it is a useful dataset to demonstrate some strategies for mitigating issues caused by ambient contamination.</p>
 </div>
 <div id="discarding-ambient-degs" class="section level3">
 <h3><span class="header-section-number">14.6.2</span> Discarding ambient DEGs</h3>
-<p>As shown above, the presence of ambient contamination makes it difficult to interpret multi-condition DE analyses. To mitigate its effects, we need to obtain an estimate of the ambient “expression” profile from the raw count matrix for each sample. We follow the approach used in <code>emptyDrops()</code> <span class="citation">(Lun et al. <a href="#ref-lun2018distinguishing">2019</a>)</span> and consider all barcodes with total counts below 100 to represent empty droplets. We then sum the counts for each gene across these barcodes to obtain an expression vector representing the ambient profile for each sample.</p>
+<p>As shown above, the presence of ambient contamination makes it difficult to interpret multi-condition DE analyses. To mitigate its effects, we need to obtain an estimate of the ambient &quot;expression&quot; profile from the raw count matrix for each sample. We follow the approach used in <code>emptyDrops()</code> <span class="citation">(Lun et al. <a href="#ref-lun2018distinguishing">2019</a>)</span> and consider all barcodes with total counts below 100 to represent empty droplets. We then sum the counts for each gene across these barcodes to obtain an expression vector representing the ambient profile for each sample.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DropletUtils)
 ambient &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;list&quot;</span>, <span class="kw">ncol</span>(summed.neural))
 
@@ -1463,13 +1492,13 @@ max.ambient &lt;-<span class="st"> </span><span class="kw">list</span>()
 max.ambient &lt;-<span class="st"> </span><span class="kw">do.call</span>(cbind, max.ambient)
 <span class="kw">dimnames</span>(max.ambient) &lt;-<span class="st"> </span><span class="kw">dimnames</span>(ambient)
 <span class="kw">head</span>(max.ambient)</code></pre></div>
-<pre><code>##              1      2     3   4
-## Xkr4       NaN    NaN   NaN NaN
-## Gm1992     NaN    NaN   NaN NaN
-## Gm37381    NaN    NaN   NaN NaN
-## Rp1        NaN    NaN   NaN NaN
-## Sox17   0.1775 0.1833 0.468   1
-## Gm37323    NaN    NaN   NaN NaN</code></pre>
+<pre><code>##                 1         2         3   4
+## Xkr4          NaN       NaN       NaN NaN
+## Gm1992        NaN       NaN       NaN NaN
+## Gm37381       NaN       NaN       NaN NaN
+## Rp1           NaN       NaN       NaN NaN
+## Sox17   0.1775295 0.1833289 0.4680235   1
+## Gm37323       NaN       NaN       NaN NaN</code></pre>
 <p>Genes in which over 10% of the counts are ambient-derived (averaged across samples) are subsequently discarded from our analysis. For balanced designs, this threshold prevents ambient contribution from biasing the true fold-change by more than 10%, which is a tolerable margin of error for most applications. (Unbalanced designs may warrant the use of a weighted average to account for sample size differences between groups.) This approach yields a slightly smaller list of DEGs without the hemoglobins, which is encouraging as it suggests that any other (less obvious) effects of ambient contamination have also been removed.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">non.ambient &lt;-<span class="st"> </span><span class="kw">rowMeans</span>(max.ambient, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.1</span>
 <span class="kw">summary</span>(non.ambient)</code></pre></div>
@@ -1484,36 +1513,37 @@ res.neural2 &lt;-<span class="st"> </span>res.neural[<span class="kw">rownames</
 ## Up                    449</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">topTags</span>(res.neural2)</code></pre></div>
 <pre><code>## Coefficient:  factor(tomato)TRUE 
-##                 logFC logCPM      F     PValue        FDR
-## Xist          -7.5557  8.212 6657.3  0.000e+00  0.000e+00
-## Erdr1          1.8895  7.616 1407.1 2.347e-289 1.217e-285
-## Uba52         -0.8797  8.386  424.2  1.866e-92  6.450e-89
-## Grb10         -1.4034  6.583  401.4  1.139e-87  2.953e-84
-## Gt(ROSA)26Sor  1.4813  5.716  351.9  2.801e-77  5.809e-74
-## Fdps           0.9814  7.218  337.2  3.677e-74  6.354e-71
-## Mest           0.5493 10.983  319.7  1.798e-70  2.664e-67
-## Impact         1.3967  5.718  314.7  2.051e-69  2.658e-66
-## H13           -1.4817  5.909  301.7  1.174e-66  1.352e-63
-## Msmo1          1.4938  5.439  301.1  1.580e-66  1.638e-63</code></pre>
+##                    logFC    logCPM         F        PValue           FDR
+## Xist          -7.5556862  8.212319 6657.2984  0.000000e+00  0.000000e+00
+## Erdr1          1.8895361  7.615930 1407.1122 2.346783e-289 1.216807e-285
+## Uba52         -0.8796680  8.386176  424.1907  1.865845e-92  6.449603e-89
+## Grb10         -1.4034273  6.583140  401.3530  1.138985e-87  2.952818e-84
+## Gt(ROSA)26Sor  1.4812935  5.716166  351.9402  2.800719e-77  5.808691e-74
+## Fdps           0.9813884  7.218053  337.1586  3.676550e-74  6.354304e-71
+## Mest           0.5493493 10.982691  319.6971  1.798324e-70  2.664089e-67
+## Impact         1.3966656  5.718008  314.7000  2.050571e-69  2.658053e-66
+## H13           -1.4816581  5.909020  301.6749  1.173722e-66  1.352388e-63
+## Msmo1          1.4937714  5.439231  301.0658  1.579834e-66  1.638288e-63</code></pre>
 <p>An alternative approach to estimating the ambient proportions involves the use of prior knowledge of mutually exclusive gene expression profiles <span class="citation">(Young and Behjati <a href="#ref-young2018soupx">2018</a>)</span>. In this case, we assume (reasonably) that hemoglobins should not be expressed in neural crest cells and use this to estimate the contamination in each sample. Specifically, we scale <code>ambient.hb</code> so that the hemoglobin coverage is the same as the corresponding sample of <code>neural.hb</code>; this represents an direct estimate of the contaminating counts in each pseudo-bulk sample, unlike the upper bound provided by <code>maximumAmbience()</code>. It is then straightforward to use this to filter out genes in the same manner as described above.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">is.hbb &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">&quot;^Hb[ab]-&quot;</span>, <span class="kw">rownames</span>(summed.neural))
 neural.hb &lt;-<span class="st"> </span><span class="kw">colSums</span>(<span class="kw">counts</span>(summed.neural)[is.hbb,])
 ambient.hb &lt;-<span class="st"> </span><span class="kw">colSums</span>(ambient[is.hbb,])
 scaled.ambient &lt;-<span class="st"> </span><span class="kw">t</span>(<span class="kw">t</span>(ambient) <span class="op">*</span><span class="st"> </span>neural.hb<span class="op">/</span>ambient.hb)
 <span class="kw">head</span>(scaled.ambient)</code></pre></div>
-<pre><code>##                1       2       3       4
-## Xkr4    0.003565 0.00000 0.00000 0.00000
-## Gm1992  0.000000 0.00000 0.00000 0.00000
-## Gm37381 0.003565 0.00000 0.07736 0.00000
-## Rp1     0.000000 0.00463 0.00000 0.07029
-## Sox17   0.270955 0.35191 2.39810 3.72511
-## Gm37323 0.000000 0.00000 0.00000 0.00000</code></pre>
+<pre><code>##                   1           2         3          4
+## Xkr4    0.003565198 0.000000000 0.0000000 0.00000000
+## Gm1992  0.000000000 0.000000000 0.0000000 0.00000000
+## Gm37381 0.003565198 0.000000000 0.0773581 0.00000000
+## Rp1     0.000000000 0.004630344 0.0000000 0.07028513
+## Sox17   0.270955018 0.351906158 2.3981011 3.72511196
+## Gm37323 0.000000000 0.000000000 0.0000000 0.00000000</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">alt.prop &lt;-<span class="st"> </span>scaled.ambient<span class="op">/</span><span class="kw">counts</span>(summed.neural)
 alt.prop[<span class="op">!</span><span class="kw">is.finite</span>(alt.prop)] &lt;-<span class="st"> </span><span class="ot">NA</span>
 alt.non.ambient &lt;-<span class="st"> </span><span class="kw">rowMeans</span>(alt.prop, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.1</span>
 <span class="kw">summary</span>(alt.non.ambient)</code></pre></div>
 <pre><code>##    Mode   FALSE    TRUE    NA&#39;s 
 ## logical    1388   15393   12672</code></pre>
+<p>Any highly expressed cell type-specific gene is a good candidate for this procedure, most typically in cell types that are highly specialized towards manufacturing a protein product. Aside from hemoglobin, we have immunoglobulins in populations containing B cells, or insulin and glucagon in pancreas datasets (Figure <a href="marker-detection.html#fig:viol-gcg-lawlor">11.6</a>). The experimental setting may also provide some genes that must only be present in the ambient solution; for example, the mitochondrial transcripts can be used to estimate ambient contamination in single-nucleus RNA-seq, while <em>Xist</em> can be used for datasets involving mixtures of male and female cells (assuming that the rate of contamination does not differ by sex).</p>
 </div>
 <div id="subtracting-ambient-counts" class="section level3">
 <h3><span class="header-section-number">14.6.3</span> Subtracting ambient counts</h3>
@@ -1531,7 +1561,7 @@ subtracted[is.hbb,]</code></pre></div>
 ## Hba-x      1    1    0    0
 ## Hba-a1     0    0  365  452
 ## Hba-a2     0    0  314  329</code></pre>
-<p>Another tempting approach is to use interaction models to implicitly subtract the ambient effect during GLM fitting. The assumption is that, for a genuine DEG, the log-fold change within cells is larger in magnitude than that in the ambient solution. This is based on the expectation that any DE in the latter is “diluted” by contributions from cell types where that gene is not DE. Unfortunately, this is not always the case; a DE analysis of the ambient counts indicates that the hemoglobin log-fold change is actually stronger in the neural crest cells compared to the ambient solution, which leads to the rather awkward conclusion that the WT neural crest cells are expressing hemoglobin beyond that explained by ambient contamination.</p>
+<p>Another tempting approach is to use interaction models to implicitly subtract the ambient effect during GLM fitting. The assumption is that, for a genuine DEG, the log-fold change within cells is larger in magnitude than that in the ambient solution. This is based on the expectation that any DE in the latter is &quot;diluted&quot; by contributions from cell types where that gene is not DE. Unfortunately, this is not always the case; a DE analysis of the ambient counts indicates that the hemoglobin log-fold change is actually stronger in the neural crest cells compared to the ambient solution, which leads to the rather awkward conclusion that the WT neural crest cells are expressing hemoglobin beyond that explained by ambient contamination.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Re-using keep.neural to simplify comparison.</span>
 y.ambient &lt;-<span class="st"> </span><span class="kw">DGEList</span>(ambient)
 y.ambient &lt;-<span class="st"> </span>y.ambient[keep.neural,]
@@ -1546,17 +1576,17 @@ res.ambient &lt;-<span class="st"> </span><span class="kw">glmQLFTest</span>(fit
 ## Up                   1518</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">topTags</span>(res.ambient, <span class="dt">n=</span><span class="dv">10</span>)</code></pre></div>
 <pre><code>## Coefficient:  factor(tomato)TRUE 
-##          logFC logCPM     F PValue FDR
-## Hbb-y   -5.265 12.802 13989      0   0
-## Gypa    -5.135  7.213  3372      0   0
-## Hbb-bh1 -5.072 13.723 13972      0   0
-## Hbb-bs  -4.939  7.208  3271      0   0
-## Snca    -4.932  5.927  1711      0   0
-## Hba-x   -4.825 13.121 12652      0   0
-## Cited4  -4.670  7.181  3086      0   0
-## Hba-a1  -4.659 10.733  9903      0   0
-## Alas2   -4.556  6.227  1842      0   0
-## Hba-a2  -4.519  9.479  7410      0   0</code></pre>
+##             logFC    logCPM         F PValue FDR
+## Hbb-y   -5.264642 12.801878 13988.712      0   0
+## Gypa    -5.135445  7.212652  3372.190      0   0
+## Hbb-bh1 -5.072497 13.723493 13971.667      0   0
+## Hbb-bs  -4.938881  7.208200  3270.821      0   0
+## Snca    -4.932156  5.927167  1710.676      0   0
+## Hba-x   -4.824607 13.120984 12652.347      0   0
+## Cited4  -4.670161  7.181243  3085.772      0   0
+## Hba-a1  -4.659419 10.732972  9902.504      0   0
+## Alas2   -4.556286  6.227442  1841.931      0   0
+## Hba-a2  -4.518519  9.478764  7409.562      0   0</code></pre>
 <p>One possible explanation is that erythrocyte fragments are present in the cell-containing libraries but are not used to estimate the ambient profile, presumably because the UMI counts are too high for fragment-containing libraries to be treated as empty. Technically speaking, this is not incorrect as, after all, those libraries are not actually empty (Section <a href="quality-control.html#qc-droplets">6.5</a>). In effect, every cell in the WT sample is a fractional multiplet with partial erythrocyte identity from the included fragments, which results in stronger log-fold changes between genotypes for hemoglobin compared to those for the ambient solution.</p>
 <p>That aside, there are other issues with implicit subtraction in the fitted GLM that warrant caution with its use. This strategy precludes detection of DEGs that are common to all cell types as there is no longer a dilution effect being applied to the log-fold change in the ambient solution. It requires inclusion of the ambient profiles in the model, which is cause for at least some concern as they are unlikely to have the same degree of variability as the cell-derived pseudo-bulk profiles. Interpretation is also complicated by the fact that we are only interested in log-fold changes that are more extreme in the cells compared to the ambient solution; a non-zero interaction term is not sufficient for removing spurious DE.</p>
 <!--
@@ -1644,67 +1674,67 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] DropletUtils_1.9.0          MouseGastrulationData_1.3.0
- [3] scran_1.17.0                edgeR_3.31.0               
- [5] limma_3.45.0                scater_1.17.0              
- [7] ggplot2_3.3.0               BiocSingular_1.5.0         
- [9] SingleCellExperiment_1.11.1 SummarizedExperiment_1.19.2
-[11] DelayedArray_0.15.1         matrixStats_0.56.0         
-[13] Biobase_2.49.0              GenomicRanges_1.41.1       
-[15] GenomeInfoDb_1.25.0         IRanges_2.23.4             
-[17] S4Vectors_0.27.4            BiocGenerics_0.35.1        
-[19] OSCAUtils_0.0.2             BiocStyle_2.17.0           
+ [1] DropletUtils_1.9.0          scran_1.17.1               
+ [3] edgeR_3.31.1                limma_3.45.0               
+ [5] scater_1.17.1               ggplot2_3.3.1              
+ [7] BiocSingular_1.5.0          rebook_0.99.0              
+ [9] scuttle_0.99.8              MouseGastrulationData_1.3.0
+[11] SingleCellExperiment_1.11.2 SummarizedExperiment_1.19.4
+[13] DelayedArray_0.15.1         matrixStats_0.56.0         
+[15] Biobase_2.49.0              GenomicRanges_1.41.1       
+[17] GenomeInfoDb_1.25.0         IRanges_2.23.6             
+[19] S4Vectors_0.27.10           BiocGenerics_0.35.2        
+[21] BiocStyle_2.17.0           
 
 loaded via a namespace (and not attached):
- [1] ggbeeswarm_0.6.0              colorspace_1.4-1             
- [3] ellipsis_0.3.0                XVector_0.29.0               
- [5] BiocNeighbors_1.7.0           farver_2.0.3                 
- [7] bit64_0.9-7                   interactiveDisplayBase_1.27.0
- [9] AnnotationDbi_1.51.0          R.methodsS3_1.8.0            
-[11] codetools_0.2-16              splines_4.0.0                
-[13] knitr_1.28                    dbplyr_1.4.3                 
-[15] R.oo_1.23.0                   pheatmap_1.0.12              
-[17] shiny_1.4.0.2                 HDF5Array_1.17.0             
-[19] BiocManager_1.30.10           compiler_4.0.0               
-[21] httr_1.4.1                    dqrng_0.2.1                  
-[23] assertthat_0.2.1              Matrix_1.2-18                
-[25] fastmap_1.0.1                 later_1.0.0                  
-[27] htmltools_0.4.0               tools_4.0.0                  
-[29] rsvd_1.0.3                    igraph_1.2.5                 
-[31] gtable_0.3.0                  glue_1.4.0                   
-[33] GenomeInfoDbData_1.2.3        dplyr_0.8.5                  
-[35] rappdirs_0.3.1                Rcpp_1.0.4.6                 
-[37] vctrs_0.2.4                   ExperimentHub_1.15.0         
-[39] DelayedMatrixStats_1.11.0     xfun_0.13                    
-[41] stringr_1.4.0                 ps_1.3.2                     
-[43] mime_0.9                      lifecycle_0.2.0              
-[45] irlba_2.3.3                   statmod_1.4.34               
-[47] AnnotationHub_2.21.0          zlibbioc_1.35.0              
-[49] scales_1.1.0                  promises_1.1.0               
-[51] rhdf5_2.33.0                  RColorBrewer_1.1-2           
-[53] yaml_2.2.1                    curl_4.3                     
-[55] memoise_1.1.0                 gridExtra_2.3                
-[57] stringi_1.4.6                 RSQLite_2.2.0                
-[59] BiocVersion_3.12.0            highr_0.8                    
-[61] BiocParallel_1.23.0           rlang_0.4.6                  
-[63] pkgconfig_2.0.3               bitops_1.0-6                 
-[65] evaluate_0.14                 lattice_0.20-41              
-[67] Rhdf5lib_1.11.0               purrr_0.3.4                  
-[69] labeling_0.3                  cowplot_1.0.0                
-[71] bit_1.1-15.2                  processx_3.4.2               
-[73] tidyselect_1.0.0              magrittr_1.5                 
-[75] bookdown_0.18                 R6_2.4.1                     
-[77] DBI_1.1.0                     pillar_1.4.4                 
-[79] withr_2.2.0                   RCurl_1.98-1.2               
-[81] tibble_3.0.1                  crayon_1.3.4                 
-[83] BiocFileCache_1.13.0          rmarkdown_2.1                
-[85] viridis_0.5.1                 locfit_1.5-9.4               
-[87] grid_4.0.0                    blob_1.2.1                   
-[89] callr_3.4.3                   digest_0.6.25                
-[91] xtable_1.8-4                  httpuv_1.5.2                 
-[93] R.utils_2.9.2                 munsell_0.5.0                
-[95] beeswarm_0.2.3                viridisLite_0.3.0            
-[97] vipor_0.4.5                  </code></pre>
+ [1] bitops_1.0-6                  bit64_0.9-7                  
+ [3] httr_1.4.1                    tools_4.0.0                  
+ [5] R6_2.4.1                      irlba_2.3.3                  
+ [7] HDF5Array_1.17.0              vipor_0.4.5                  
+ [9] DBI_1.1.0                     colorspace_1.4-1             
+[11] withr_2.2.0                   gridExtra_2.3                
+[13] tidyselect_1.1.0              processx_3.4.2               
+[15] bit_1.1-15.2                  curl_4.3                     
+[17] compiler_4.0.0                graph_1.67.1                 
+[19] BiocNeighbors_1.7.0           bookdown_0.19                
+[21] scales_1.1.1                  callr_3.4.3                  
+[23] rappdirs_0.3.1                stringr_1.4.0                
+[25] digest_0.6.25                 R.utils_2.9.2                
+[27] rmarkdown_2.2                 XVector_0.29.1               
+[29] pkgconfig_2.0.3               htmltools_0.4.0              
+[31] dbplyr_1.4.4                  fastmap_1.0.1                
+[33] rlang_0.4.6                   RSQLite_2.2.0                
+[35] shiny_1.4.0.2                 DelayedMatrixStats_1.11.0    
+[37] generics_0.0.2                BiocParallel_1.23.0          
+[39] R.oo_1.23.0                   dplyr_1.0.0                  
+[41] RCurl_1.98-1.2                magrittr_1.5                 
+[43] GenomeInfoDbData_1.2.3        Matrix_1.2-18                
+[45] Rhdf5lib_1.11.0               Rcpp_1.0.4.6                 
+[47] ggbeeswarm_0.6.0              munsell_0.5.0                
+[49] viridis_0.5.1                 R.methodsS3_1.8.0            
+[51] lifecycle_0.2.0               stringi_1.4.6                
+[53] yaml_2.2.1                    zlibbioc_1.35.0              
+[55] rhdf5_2.33.0                  BiocFileCache_1.13.0         
+[57] AnnotationHub_2.21.0          grid_4.0.0                   
+[59] blob_1.2.1                    dqrng_0.2.1                  
+[61] promises_1.1.0                ExperimentHub_1.15.0         
+[63] crayon_1.3.4                  lattice_0.20-41              
+[65] splines_4.0.0                 locfit_1.5-9.4               
+[67] CodeDepends_0.6.5             knitr_1.28                   
+[69] ps_1.3.3                      pillar_1.4.4                 
+[71] igraph_1.2.5                  codetools_0.2-16             
+[73] XML_3.99-0.3                  glue_1.4.1                   
+[75] BiocVersion_3.12.0            evaluate_0.14                
+[77] BiocManager_1.30.10           vctrs_0.3.0                  
+[79] httpuv_1.5.3.1                gtable_0.3.0                 
+[81] purrr_0.3.4                   assertthat_0.2.1             
+[83] xfun_0.14                     rsvd_1.0.3                   
+[85] mime_0.9                      xtable_1.8-4                 
+[87] later_1.0.0                   viridisLite_0.3.0            
+[89] tibble_3.0.1                  beeswarm_0.2.3               
+[91] AnnotationDbi_1.51.0          memoise_1.1.0                
+[93] statmod_1.4.34                ellipsis_0.3.1               
+[95] interactiveDisplayBase_1.27.5</code></pre>
 </div>
 
 </div>

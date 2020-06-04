@@ -5,25 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Normalization | Orchestrating Single-Cell Analysis with Bioconductor</title>
-  <meta name="description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Normalization | Orchestrating Single-Cell Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
+  <meta property="og:description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 7 Normalization | Orchestrating Single-Cell Analysis with Bioconductor" />
   
-  <meta name="twitter:description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
+  <meta name="twitter:description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
   
 
 
 
-<meta name="date" content="2020-05-07" />
+<meta name="date" content="2020-06-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -112,7 +112,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.1.1" data-path="introduction.html"><a href="introduction.html#preliminaries"><i class="fa fa-check"></i><b>1.1.1</b> Preliminaries</a></li>
 <li class="chapter" data-level="1.1.2" data-path="introduction.html"><a href="introduction.html#workflows"><i class="fa fa-check"></i><b>1.1.2</b> Workflows</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#what-you-wont-learn"><i class="fa fa-check"></i><b>1.2</b> What you won’t learn</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#what-you-wont-learn"><i class="fa fa-check"></i><b>1.2</b> What you won't learn</a></li>
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#who-we-wrote-this-for"><i class="fa fa-check"></i><b>1.3</b> Who we wrote this for</a></li>
 <li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#why-we-wrote-this"><i class="fa fa-check"></i><b>1.4</b> Why we wrote this</a></li>
 <li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#acknowledgements"><i class="fa fa-check"></i><b>1.5</b> Acknowledgements</a></li>
@@ -227,19 +227,18 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.3.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#based-on-population-structure"><i class="fa fa-check"></i><b>9.3.4</b> Based on population structure</a></li>
 <li class="chapter" data-level="9.3.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#putting-it-together"><i class="fa fa-check"></i><b>9.3.5</b> Putting it together</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#non-negative-matrix-factorization"><i class="fa fa-check"></i><b>9.4</b> Non-negative matrix factorization</a></li>
-<li class="chapter" data-level="9.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction-for-visualization"><i class="fa fa-check"></i><b>9.5</b> Dimensionality reduction for visualization</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#motivation-3"><i class="fa fa-check"></i><b>9.5.1</b> Motivation</a></li>
-<li class="chapter" data-level="9.5.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizing-with-pca"><i class="fa fa-check"></i><b>9.5.2</b> Visualizing with PCA</a></li>
-<li class="chapter" data-level="9.5.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#t-stochastic-neighbor-embedding"><i class="fa fa-check"></i><b>9.5.3</b> <span class="math inline">\(t\)</span>-stochastic neighbor embedding</a></li>
-<li class="chapter" data-level="9.5.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection"><i class="fa fa-check"></i><b>9.5.4</b> Uniform manifold approximation and projection</a></li>
-<li class="chapter" data-level="9.5.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualization-interpretation"><i class="fa fa-check"></i><b>9.5.5</b> Interpreting the plots</a></li>
+<li class="chapter" data-level="9.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction-for-visualization"><i class="fa fa-check"></i><b>9.4</b> Dimensionality reduction for visualization</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#motivation-3"><i class="fa fa-check"></i><b>9.4.1</b> Motivation</a></li>
+<li class="chapter" data-level="9.4.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizing-with-pca"><i class="fa fa-check"></i><b>9.4.2</b> Visualizing with PCA</a></li>
+<li class="chapter" data-level="9.4.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#t-stochastic-neighbor-embedding"><i class="fa fa-check"></i><b>9.4.3</b> <span class="math inline">\(t\)</span>-stochastic neighbor embedding</a></li>
+<li class="chapter" data-level="9.4.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection"><i class="fa fa-check"></i><b>9.4.4</b> Uniform manifold approximation and projection</a></li>
+<li class="chapter" data-level="9.4.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualization-interpretation"><i class="fa fa-check"></i><b>9.4.5</b> Interpreting the plots</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#session-info-4"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>10</b> Clustering</a><ul>
 <li class="chapter" data-level="10.1" data-path="clustering.html"><a href="clustering.html#motivation-4"><i class="fa fa-check"></i><b>10.1</b> Motivation</a></li>
-<li class="chapter" data-level="10.2" data-path="clustering.html"><a href="clustering.html#what-is-the-true-clustering"><i class="fa fa-check"></i><b>10.2</b> What is the “true clustering”?</a></li>
+<li class="chapter" data-level="10.2" data-path="clustering.html"><a href="clustering.html#what-is-the-true-clustering"><i class="fa fa-check"></i><b>10.2</b> What is the &quot;true clustering&quot;?</a></li>
 <li class="chapter" data-level="10.3" data-path="clustering.html"><a href="clustering.html#clustering-graph"><i class="fa fa-check"></i><b>10.3</b> Graph-based clustering</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="clustering.html"><a href="clustering.html#background-3"><i class="fa fa-check"></i><b>10.3.1</b> Background</a></li>
 <li class="chapter" data-level="10.3.2" data-path="clustering.html"><a href="clustering.html#implementation"><i class="fa fa-check"></i><b>10.3.2</b> Implementation</a></li>
@@ -278,7 +277,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.4.1" data-path="marker-detection.html"><a href="marker-detection.html#using-the-block-argument"><i class="fa fa-check"></i><b>11.4.1</b> Using the <code>block=</code> argument</a></li>
 <li class="chapter" data-level="11.4.2" data-path="marker-detection.html"><a href="marker-detection.html#using-the-design-argument"><i class="fa fa-check"></i><b>11.4.2</b> Using the <code>design=</code> argument</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="marker-detection.html"><a href="marker-detection.html#invalidity-of-p-values"><i class="fa fa-check"></i><b>11.5</b> Invalidity of <span class="math inline">\(p\)</span>-values</a><ul>
+<li class="chapter" data-level="11.5" data-path="marker-detection.html"><a href="marker-detection.html#p-value-invalidity"><i class="fa fa-check"></i><b>11.5</b> Invalidity of <span class="math inline">\(p\)</span>-values</a><ul>
 <li class="chapter" data-level="11.5.1" data-path="marker-detection.html"><a href="marker-detection.html#from-data-snooping"><i class="fa fa-check"></i><b>11.5.1</b> From data snooping</a></li>
 <li class="chapter" data-level="11.5.2" data-path="marker-detection.html"><a href="marker-detection.html#false-replicates"><i class="fa fa-check"></i><b>11.5.2</b> Nature of replication</a></li>
 </ul></li>
@@ -360,18 +359,22 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="17" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html"><i class="fa fa-check"></i><b>17</b> Trajectory Analysis</a><ul>
 <li class="chapter" data-level="17.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-6"><i class="fa fa-check"></i><b>17.1</b> Overview</a></li>
-<li class="chapter" data-level="17.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#obtaining-pseudo-times"><i class="fa fa-check"></i><b>17.2</b> Obtaining pseudo-times</a><ul>
-<li class="chapter" data-level="17.2.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#cluster-based-minimum-spanning-tree"><i class="fa fa-check"></i><b>17.2.1</b> Cluster-based minimum spanning tree</a></li>
-<li class="chapter" data-level="17.2.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#principal-curves"><i class="fa fa-check"></i><b>17.2.2</b> Principal curves</a></li>
+<li class="chapter" data-level="17.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#obtaining-pseudotime-orderings"><i class="fa fa-check"></i><b>17.2</b> Obtaining pseudotime orderings</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-7"><i class="fa fa-check"></i><b>17.2.1</b> Overview</a></li>
+<li class="chapter" data-level="17.2.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#cluster-based-minimum-spanning-tree"><i class="fa fa-check"></i><b>17.2.2</b> Cluster-based minimum spanning tree</a></li>
+<li class="chapter" data-level="17.2.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#principal-curves"><i class="fa fa-check"></i><b>17.2.3</b> Principal curves</a></li>
 </ul></li>
 <li class="chapter" data-level="17.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#characterizing-trajectories"><i class="fa fa-check"></i><b>17.3</b> Characterizing trajectories</a><ul>
-<li class="chapter" data-level="17.3.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-along-a-trajectory"><i class="fa fa-check"></i><b>17.3.1</b> Changes along a trajectory</a></li>
-<li class="chapter" data-level="17.3.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-between-lineages"><i class="fa fa-check"></i><b>17.3.2</b> Changes between lineages</a></li>
+<li class="chapter" data-level="17.3.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-8"><i class="fa fa-check"></i><b>17.3.1</b> Overview</a></li>
+<li class="chapter" data-level="17.3.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-along-a-trajectory"><i class="fa fa-check"></i><b>17.3.2</b> Changes along a trajectory</a></li>
+<li class="chapter" data-level="17.3.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-between-paths"><i class="fa fa-check"></i><b>17.3.3</b> Changes between paths</a></li>
+<li class="chapter" data-level="17.3.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#further-comments-2"><i class="fa fa-check"></i><b>17.3.4</b> Further comments</a></li>
 </ul></li>
 <li class="chapter" data-level="17.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#finding-the-root"><i class="fa fa-check"></i><b>17.4</b> Finding the root</a><ul>
-<li class="chapter" data-level="17.4.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-7"><i class="fa fa-check"></i><b>17.4.1</b> Overview</a></li>
+<li class="chapter" data-level="17.4.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-9"><i class="fa fa-check"></i><b>17.4.1</b> Overview</a></li>
 <li class="chapter" data-level="17.4.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#entropy-based-methods"><i class="fa fa-check"></i><b>17.4.2</b> Entropy-based methods</a></li>
 <li class="chapter" data-level="17.4.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#rna-velocity"><i class="fa fa-check"></i><b>17.4.3</b> RNA velocity</a></li>
+<li class="chapter" data-level="17.4.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#real-timepoints"><i class="fa fa-check"></i><b>17.4.4</b> Real timepoints</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#session-information"><i class="fa fa-check"></i>Session information</a></li>
 </ul></li>
@@ -392,15 +395,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="19" data-path="repertoire-seq.html"><a href="repertoire-seq.html"><i class="fa fa-check"></i><b>19</b> Analyzing repertoire sequencing data</a><ul>
 <li class="chapter" data-level="19.1" data-path="repertoire-seq.html"><a href="repertoire-seq.html#motivation-12"><i class="fa fa-check"></i><b>19.1</b> Motivation</a></li>
-<li class="chapter" data-level="19.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#analyzing-the-t-cell-receptor-repertoire"><i class="fa fa-check"></i><b>19.2</b> Analyzing the T cell receptor repertoire</a><ul>
-<li class="chapter" data-level="19.2.1" data-path="repertoire-seq.html"><a href="repertoire-seq.html#data-processing"><i class="fa fa-check"></i><b>19.2.1</b> Data processing</a></li>
-<li class="chapter" data-level="19.2.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#basic-diagnostics"><i class="fa fa-check"></i><b>19.2.2</b> Basic diagnostics</a></li>
-<li class="chapter" data-level="19.2.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#complex-diagnostics"><i class="fa fa-check"></i><b>19.2.3</b> Complex diagnostics</a></li>
-<li class="chapter" data-level="19.2.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#quantifying-clonal-expansion"><i class="fa fa-check"></i><b>19.2.4</b> Quantifying clonal expansion</a></li>
-<li class="chapter" data-level="19.2.5" data-path="repertoire-seq.html"><a href="repertoire-seq.html#quantifying-gene-expression-and-properties"><i class="fa fa-check"></i><b>19.2.5</b> Quantifying gene expression and properties</a></li>
-</ul></li>
-<li class="chapter" data-level="19.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#analyzing-the-immunoglobulin-repertoire"><i class="fa fa-check"></i><b>19.3</b> Analyzing the immunoglobulin repertoire</a></li>
-<li class="chapter" data-level="19.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#multi-sample-analyses"><i class="fa fa-check"></i><b>19.4</b> Multi-sample analyses</a></li>
+<li class="chapter" data-level="19.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#loading-the-tcr-repertoire"><i class="fa fa-check"></i><b>19.2</b> Loading the TCR repertoire</a></li>
+<li class="chapter" data-level="19.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#leveraging-list-semantics"><i class="fa fa-check"></i><b>19.3</b> Leveraging <code>List</code> semantics</a></li>
+<li class="chapter" data-level="19.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#converting-back-to-dataframes"><i class="fa fa-check"></i><b>19.4</b> Converting back to <code>DataFrame</code>s</a></li>
+<li class="chapter" data-level="19.5" data-path="repertoire-seq.html"><a href="repertoire-seq.html#case-study-for-clonotype-analyses"><i class="fa fa-check"></i><b>19.5</b> Case study for clonotype analyses</a></li>
+<li class="chapter" data-level="19.6" data-path="repertoire-seq.html"><a href="repertoire-seq.html#repeating-for-immunoglobulins"><i class="fa fa-check"></i><b>19.6</b> Repeating for immunoglobulins</a></li>
 <li class="chapter" data-level="" data-path="repertoire-seq.html"><a href="repertoire-seq.html#session-info-13"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="interactive-sharing.html"><a href="interactive-sharing.html"><i class="fa fa-check"></i><b>20</b> Interactive data exploration</a><ul>
@@ -478,16 +477,14 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="26.8" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#data-integration"><i class="fa fa-check"></i><b>26.8</b> Data integration</a></li>
 <li class="chapter" data-level="" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#session-info-20"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="27" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html"><i class="fa fa-check"></i><b>27</b> Human PBMC 10X dataset (surface proteins)</a><ul>
-<li class="chapter" data-level="27.1" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#introduction-7"><i class="fa fa-check"></i><b>27.1</b> Introduction</a></li>
-<li class="chapter" data-level="27.2" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#analysis-code"><i class="fa fa-check"></i><b>27.2</b> Analysis code</a><ul>
-<li class="chapter" data-level="27.2.1" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#data-loading-4"><i class="fa fa-check"></i><b>27.2.1</b> Data loading</a></li>
-<li class="chapter" data-level="27.2.2" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#quality-control-7"><i class="fa fa-check"></i><b>27.2.2</b> Quality control</a></li>
-<li class="chapter" data-level="27.2.3" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#normalization-6"><i class="fa fa-check"></i><b>27.2.3</b> Normalization</a></li>
-<li class="chapter" data-level="27.2.4" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#dimensionality-reduction-5"><i class="fa fa-check"></i><b>27.2.4</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="27.2.5" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#clustering-5"><i class="fa fa-check"></i><b>27.2.5</b> Clustering</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#session-info-21"><i class="fa fa-check"></i>Session Info</a></li>
+<li class="chapter" data-level="27" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html"><i class="fa fa-check"></i><b>27</b> Human PBMC with surface proteins (10X Genomics)</a><ul>
+<li class="chapter" data-level="27.1" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#introduction-7"><i class="fa fa-check"></i><b>27.1</b> Introduction</a></li>
+<li class="chapter" data-level="27.2" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#data-loading-4"><i class="fa fa-check"></i><b>27.2</b> Data loading</a></li>
+<li class="chapter" data-level="27.3" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#quality-control-7"><i class="fa fa-check"></i><b>27.3</b> Quality control</a></li>
+<li class="chapter" data-level="27.4" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#normalization-6"><i class="fa fa-check"></i><b>27.4</b> Normalization</a></li>
+<li class="chapter" data-level="27.5" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#dimensionality-reduction-5"><i class="fa fa-check"></i><b>27.5</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="27.6" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#clustering-5"><i class="fa fa-check"></i><b>27.6</b> Clustering</a></li>
+<li class="chapter" data-level="" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#session-info-21"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="28" data-path="grun-human-pancreas-cel-seq2.html"><a href="grun-human-pancreas-cel-seq2.html"><i class="fa fa-check"></i><b>28</b> Grun human pancreas (CEL-seq2)</a><ul>
 <li class="chapter" data-level="28.1" data-path="grun-human-pancreas-cel-seq2.html"><a href="grun-human-pancreas-cel-seq2.html#introduction-8"><i class="fa fa-check"></i><b>28.1</b> Introduction</a></li>
@@ -504,12 +501,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="29.1" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#introduction-9"><i class="fa fa-check"></i><b>29.1</b> Introduction</a></li>
 <li class="chapter" data-level="29.2" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-loading-6"><i class="fa fa-check"></i><b>29.2</b> Data loading</a></li>
 <li class="chapter" data-level="29.3" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#quality-control-9"><i class="fa fa-check"></i><b>29.3</b> Quality control</a></li>
-<li class="chapter" data-level="29.4" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#normalization-8"><i class="fa fa-check"></i><b>29.4</b> Normalization</a><ul>
-<li class="chapter" data-level="29.4.1" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#variance-modelling-5"><i class="fa fa-check"></i><b>29.4.1</b> Variance modelling</a></li>
-</ul></li>
-<li class="chapter" data-level="29.5" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-integration-2"><i class="fa fa-check"></i><b>29.5</b> Data integration</a></li>
-<li class="chapter" data-level="29.6" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#dimensionality-reduction-7"><i class="fa fa-check"></i><b>29.6</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="29.7" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#clustering-7"><i class="fa fa-check"></i><b>29.7</b> Clustering</a></li>
+<li class="chapter" data-level="29.4" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#normalization-8"><i class="fa fa-check"></i><b>29.4</b> Normalization</a></li>
+<li class="chapter" data-level="29.5" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#variance-modelling-5"><i class="fa fa-check"></i><b>29.5</b> Variance modelling</a></li>
+<li class="chapter" data-level="29.6" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-integration-2"><i class="fa fa-check"></i><b>29.6</b> Data integration</a></li>
+<li class="chapter" data-level="29.7" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#dimensionality-reduction-7"><i class="fa fa-check"></i><b>29.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="29.8" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#clustering-7"><i class="fa fa-check"></i><b>29.8</b> Clustering</a></li>
 <li class="chapter" data-level="" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#session-info-23"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="30" data-path="lawlor-human-pancreas-smarter.html"><a href="lawlor-human-pancreas-smarter.html"><i class="fa fa-check"></i><b>30</b> Lawlor human pancreas (SMARTer)</a><ul>
@@ -525,12 +521,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="31" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html"><i class="fa fa-check"></i><b>31</b> Segerstolpe human pancreas (Smart-seq2)</a><ul>
 <li class="chapter" data-level="31.1" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#introduction-11"><i class="fa fa-check"></i><b>31.1</b> Introduction</a></li>
 <li class="chapter" data-level="31.2" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#data-loading-8"><i class="fa fa-check"></i><b>31.2</b> Data loading</a></li>
-<li class="chapter" data-level="31.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#quality-control-11"><i class="fa fa-check"></i><b>31.3</b> Quality control</a><ul>
-<li class="chapter" data-level="31.3.1" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#normalization-10"><i class="fa fa-check"></i><b>31.3.1</b> Normalization</a></li>
-<li class="chapter" data-level="31.3.2" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#variance-modelling-7"><i class="fa fa-check"></i><b>31.3.2</b> Variance modelling</a></li>
-<li class="chapter" data-level="31.3.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#dimensionality-reduction-9"><i class="fa fa-check"></i><b>31.3.3</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="31.3.4" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#clustering-9"><i class="fa fa-check"></i><b>31.3.4</b> Clustering</a></li>
-</ul></li>
+<li class="chapter" data-level="31.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#quality-control-11"><i class="fa fa-check"></i><b>31.3</b> Quality control</a></li>
+<li class="chapter" data-level="31.4" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#normalization-10"><i class="fa fa-check"></i><b>31.4</b> Normalization</a></li>
+<li class="chapter" data-level="31.5" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#variance-modelling-7"><i class="fa fa-check"></i><b>31.5</b> Variance modelling</a></li>
+<li class="chapter" data-level="31.6" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#dimensionality-reduction-9"><i class="fa fa-check"></i><b>31.6</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="31.7" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#clustering-9"><i class="fa fa-check"></i><b>31.7</b> Clustering</a></li>
 <li class="chapter" data-level="" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#session-info-25"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="32" data-path="merged-pancreas.html"><a href="merged-pancreas.html"><i class="fa fa-check"></i><b>32</b> Merged human pancreas datasets</a><ul>
@@ -589,14 +584,13 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="37.1" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#introduction-17"><i class="fa fa-check"></i><b>37.1</b> Introduction</a></li>
 <li class="chapter" data-level="37.2" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-loading-13"><i class="fa fa-check"></i><b>37.2</b> Data loading</a></li>
 <li class="chapter" data-level="37.3" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#quality-control-16"><i class="fa fa-check"></i><b>37.3</b> Quality control</a></li>
-<li class="chapter" data-level="37.4" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#normalization-15"><i class="fa fa-check"></i><b>37.4</b> Normalization</a><ul>
-<li class="chapter" data-level="37.4.1" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#variance-modeling"><i class="fa fa-check"></i><b>37.4.1</b> Variance modeling</a></li>
-</ul></li>
-<li class="chapter" data-level="37.5" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-integration-3"><i class="fa fa-check"></i><b>37.5</b> Data integration</a></li>
-<li class="chapter" data-level="37.6" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#dimensionality-reduction-14"><i class="fa fa-check"></i><b>37.6</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="37.7" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#clustering-14"><i class="fa fa-check"></i><b>37.7</b> Clustering</a></li>
-<li class="chapter" data-level="37.8" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#differential-expression"><i class="fa fa-check"></i><b>37.8</b> Differential expression</a></li>
-<li class="chapter" data-level="37.9" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#cell-type-classification"><i class="fa fa-check"></i><b>37.9</b> Cell type classification</a></li>
+<li class="chapter" data-level="37.4" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#normalization-15"><i class="fa fa-check"></i><b>37.4</b> Normalization</a></li>
+<li class="chapter" data-level="37.5" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#variance-modeling"><i class="fa fa-check"></i><b>37.5</b> Variance modeling</a></li>
+<li class="chapter" data-level="37.6" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-integration-3"><i class="fa fa-check"></i><b>37.6</b> Data integration</a></li>
+<li class="chapter" data-level="37.7" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#dimensionality-reduction-14"><i class="fa fa-check"></i><b>37.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="37.8" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#clustering-14"><i class="fa fa-check"></i><b>37.8</b> Clustering</a></li>
+<li class="chapter" data-level="37.9" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#differential-expression"><i class="fa fa-check"></i><b>37.9</b> Differential expression</a></li>
+<li class="chapter" data-level="37.10" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#cell-type-classification"><i class="fa fa-check"></i><b>37.10</b> Cell type classification</a></li>
 <li class="chapter" data-level="" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#session-info-31"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
@@ -636,9 +630,9 @@ document.addEventListener("click", function (event) {
         event.target.classList.toggle("active");
         var content = event.target.nextElementSibling;
         if (content.style.display === "block") {
-          content.style.display = "none";
+            content.style.display = "none";
         } else {
-          content.style.display = "block";
+            content.style.display = "block";
         }
     }
 })
@@ -666,8 +660,8 @@ document.addEventListener("click", function (event) {
 <div id="motivation" class="section level2">
 <h2><span class="header-section-number">7.1</span> Motivation</h2>
 <p>Systematic differences in sequencing coverage between libraries are often observed in single-cell RNA sequencing data <span class="citation">(Stegle, Teichmann, and Marioni <a href="#ref-stegle2015computational">2015</a>)</span>. They typically arise from technical differences in cDNA capture or PCR amplification efficiency across cells, attributable to the difficulty of achieving consistent library preparation with minimal starting material. Normalization aims to remove these differences such that they do not interfere with comparisons of the expression profiles between cells. This ensures that any observed heterogeneity or differential expression within the cell population are driven by biology and not technical biases.</p>
-<p>At this point, it is worth noting the difference between normalization and batch correction (Chapter <a href="filtered-human-pbmcs-10x-genomics.html#data-integration">26.8</a>). Normalization occurs regardless of the batch structure and only considers technical biases, while batch correction - as the name suggests - only occurs across batches and must consider both technical biases and biological differences. Technical biases tend to affect genes in a similar manner, or at least in a manner related to their biophysical properties (e.g., length, GC content), while biological differences between batches can be highly unpredictable. As such, these two tasks involve different assumptions and generally involve different computational methods (though some packages aim to perform both steps at once, e.g., <em><a href="https://bioconductor.org/packages/3.12/zinbwave">zinbwave</a></em>). Thus, it is important to avoid conflating “normalized” and “batch-corrected” data, as these usually refer to different things.</p>
-<p>We will mostly focus our attention on scaling normalization, which is the simplest and most commonly used class of normalization strategies. This involves dividing all counts for each cell by a cell-specific scaling factor, often called a “size factor” <span class="citation">(Anders and Huber <a href="#ref-anders2010differential">2010</a>)</span>. The assumption here is that any cell-specific bias (e.g., in capture or amplification efficiency) affects all genes equally via scaling of the expected mean count for that cell. The size factor for each cell represents the estimate of the relative bias in that cell, so division of its counts by its size factor should remove that bias. The resulting “normalized expression values” can then be used for downstream analyses such as clustering and dimensionality reduction. To demonstrate, we will use the <span class="citation">Zeisel et al. (<a href="#ref-zeisel2015brain">2015</a>)</span> dataset from the <em><a href="https://bioconductor.org/packages/3.12/scRNAseq">scRNAseq</a></em> package.</p>
+<p>At this point, it is worth noting the difference between normalization and batch correction (Chapter <a href="filtered-human-pbmcs-10x-genomics.html#data-integration">26.8</a>). Normalization occurs regardless of the batch structure and only considers technical biases, while batch correction - as the name suggests - only occurs across batches and must consider both technical biases and biological differences. Technical biases tend to affect genes in a similar manner, or at least in a manner related to their biophysical properties (e.g., length, GC content), while biological differences between batches can be highly unpredictable. As such, these two tasks involve different assumptions and generally involve different computational methods (though some packages aim to perform both steps at once, e.g., <em><a href="https://bioconductor.org/packages/3.12/zinbwave">zinbwave</a></em>). Thus, it is important to avoid conflating &quot;normalized&quot; and &quot;batch-corrected&quot; data, as these usually refer to different things.</p>
+<p>We will mostly focus our attention on scaling normalization, which is the simplest and most commonly used class of normalization strategies. This involves dividing all counts for each cell by a cell-specific scaling factor, often called a &quot;size factor&quot; <span class="citation">(Anders and Huber <a href="#ref-anders2010differential">2010</a>)</span>. The assumption here is that any cell-specific bias (e.g., in capture or amplification efficiency) affects all genes equally via scaling of the expected mean count for that cell. The size factor for each cell represents the estimate of the relative bias in that cell, so division of its counts by its size factor should remove that bias. The resulting &quot;normalized expression values&quot; can then be used for downstream analyses such as clustering and dimensionality reduction. To demonstrate, we will use the <span class="citation">Zeisel et al. (<a href="#ref-zeisel2015brain">2015</a>)</span> dataset from the <em><a href="https://bioconductor.org/packages/3.12/scRNAseq">scRNAseq</a></em> package.</p>
 <button class="aaron-collapse">
 View history
 </button>
@@ -682,8 +676,8 @@ sce.zeisel &lt;-<span class="st"> </span><span class="kw">aggregateAcrossFeature
 
 <span class="co">#--- gene-annotation ---#</span>
 <span class="kw">library</span>(org.Mm.eg.db)
-<span class="kw">rowData</span>(sce.zeisel) &lt;-<span class="st"> </span><span class="kw">mapIds</span>(org.Mm.eg.db, <span class="dt">keys=</span><span class="kw">rownames</span>(sce.zeisel),
-    <span class="dt">keytype=</span><span class="st">&quot;SYMBOL&quot;</span>, <span class="dt">column=</span><span class="st">&quot;ENSEMBL&quot;</span>)
+<span class="kw">rowData</span>(sce.zeisel)<span class="op">$</span>Ensembl &lt;-<span class="st"> </span><span class="kw">mapIds</span>(org.Mm.eg.db, 
+    <span class="dt">keys=</span><span class="kw">rownames</span>(sce.zeisel), <span class="dt">keytype=</span><span class="st">&quot;SYMBOL&quot;</span>, <span class="dt">column=</span><span class="st">&quot;ENSEMBL&quot;</span>)
 
 <span class="co">#--- quality-control ---#</span>
 stats &lt;-<span class="st"> </span><span class="kw">perCellQCMetrics</span>(sce.zeisel, <span class="dt">subsets=</span><span class="kw">list</span>(
@@ -694,52 +688,52 @@ sce.zeisel &lt;-<span class="st"> </span>sce.zeisel[,<span class="op">!</span>qc
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sce.zeisel </code></pre></div>
 <pre><code>## class: SingleCellExperiment 
-## dim: 19839 2937 
+## dim: 19839 2816 
 ## metadata(0):
 ## assays(1): counts
 ## rownames(19839): 0610005C13Rik 0610007N19Rik ... Zzef1 Zzz3
-## rowData names(1): value
-## colnames(2937): 1772071015_C02 1772071017_G12 ... 1772066098_A12
-##   1772058148_F03
+## rowData names(2): featureType Ensembl
+## colnames(2816): 1772071015_C02 1772071017_G12 ... 1772063068_D01
+##   1772066098_A12
 ## colData names(10): tissue group # ... level1class level2class
 ## reducedDimNames(0):
 ## altExpNames(2): ERCC repeat</code></pre>
 </div>
 <div id="library-size-normalization" class="section level2">
 <h2><span class="header-section-number">7.2</span> Library size normalization</h2>
-<p>Library size normalization is the simplest strategy for performing scaling normalization. We define the library size as the total sum of counts across all genes for each cell, the expected value of which is assumed to scale with any cell-specific biases. The “library size factor” for each cell is then directly proportional to its library size where the proportionality constant is defined such that the mean size factor across all cells is equal to 1. This definition ensures that the normalized expression values are on the same scale as the original counts, which is useful for interpretation - especially when dealing with transformed data (see Section <a href="normalization.html#normalization-transformation">7.5.1</a>).</p>
+<p>Library size normalization is the simplest strategy for performing scaling normalization. We define the library size as the total sum of counts across all genes for each cell, the expected value of which is assumed to scale with any cell-specific biases. The &quot;library size factor&quot; for each cell is then directly proportional to its library size where the proportionality constant is defined such that the mean size factor across all cells is equal to 1. This definition ensures that the normalized expression values are on the same scale as the original counts, which is useful for interpretation - especially when dealing with transformed data (see Section <a href="normalization.html#normalization-transformation">7.5.1</a>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(scater)
 lib.sf.zeisel &lt;-<span class="st"> </span><span class="kw">librarySizeFactors</span>(sce.zeisel)
 <span class="kw">summary</span>(lib.sf.zeisel)</code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.1797  0.5571  0.8648  1.0000  1.2827  4.1778</code></pre>
+##  0.1757  0.5680  0.8680  1.0000  1.2783  4.0839</code></pre>
 <p>In the Zeisel brain data, the library size factors differ by up to 10-fold across cells (Figure <a href="normalization.html#fig:histlib">7.1</a>). This is typical of the variability in coverage in scRNA-seq data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(<span class="kw">log10</span>(lib.sf.zeisel), <span class="dt">xlab=</span><span class="st">&quot;Log10[Size factor]&quot;</span>, <span class="dt">col=</span><span class="st">&#39;grey80&#39;</span>)</code></pre></div>
 <div class="figure"><span id="fig:histlib"></span>
-<img src="P2_W03.normalization_files/figure-html/histlib-1.png" alt="Distribution of size factors derived from the library size in the Zeisel brain dataset." width="672" />
+<img src="normalization_files/figure-html/histlib-1.png" alt="Distribution of size factors derived from the library size in the Zeisel brain dataset." width="672" />
 <p class="caption">
 Figure 7.1: Distribution of size factors derived from the library size in the Zeisel brain dataset.
 </p>
 </div>
-<p>Strictly speaking, the use of library size factors assumes that there is no “imbalance” in the differentially expressed (DE) genes between any pair of cells. That is, any upregulation for a subset of genes is cancelled out by the same magnitude of downregulation in a different subset of genes. This ensures that the library size is an unbiased estimate of the relative cell-specific bias by avoiding composition effects <span class="citation">(Robinson and Oshlack <a href="#ref-robinson2010scaling">2010</a>)</span>. However, balanced DE is not generally present in scRNA-seq applications, which means that library size normalization may not yield accurate normalized expression values for downstream analyses.</p>
+<p>Strictly speaking, the use of library size factors assumes that there is no &quot;imbalance&quot; in the differentially expressed (DE) genes between any pair of cells. That is, any upregulation for a subset of genes is cancelled out by the same magnitude of downregulation in a different subset of genes. This ensures that the library size is an unbiased estimate of the relative cell-specific bias by avoiding composition effects <span class="citation">(Robinson and Oshlack <a href="#ref-robinson2010scaling">2010</a>)</span>. However, balanced DE is not generally present in scRNA-seq applications, which means that library size normalization may not yield accurate normalized expression values for downstream analyses.</p>
 <p>In practice, normalization accuracy is not a major consideration for exploratory scRNA-seq data analyses. Composition biases do not usually affect the separation of clusters, only the magnitude - and to a lesser extent, direction - of the log-fold changes between clusters or cell types. As such, library size normalization is usually sufficient in many applications where the aim is to identify clusters and the top markers that define each cluster.</p>
 </div>
 <div id="normalization-by-deconvolution" class="section level2">
 <h2><span class="header-section-number">7.3</span> Normalization by deconvolution</h2>
 <p>As previously mentioned, composition biases will be present when any unbalanced differential expression exists between samples. Consider the simple example of two cells where a single gene <span class="math inline">\(X\)</span> is upregulated in one cell <span class="math inline">\(A\)</span> compared to the other cell <span class="math inline">\(B\)</span>. This upregulation means that either (i) more sequencing resources are devoted to <span class="math inline">\(X\)</span> in <span class="math inline">\(A\)</span>, thus decreasing coverage of all other non-DE genes when the total library size of each cell is experimentally fixed (e.g., due to library quantification); or (ii) the library size of <span class="math inline">\(A\)</span> increases when <span class="math inline">\(X\)</span> is assigned more reads or UMIs, increasing the library size factor and yielding smaller normalized expression values for all non-DE genes. In both cases, the net effect is that non-DE genes in <span class="math inline">\(A\)</span> will incorrectly appear to be downregulated compared to <span class="math inline">\(B\)</span>.</p>
 <p>The removal of composition biases is a well-studied problem for bulk RNA sequencing data analysis. Normalization can be performed with the <code>estimateSizeFactorsFromMatrix()</code> function in the <em><a href="https://bioconductor.org/packages/3.12/DESeq2">DESeq2</a></em> package <span class="citation">(Anders and Huber <a href="#ref-anders2010differential">2010</a>; Love, Huber, and Anders <a href="#ref-love2014moderated">2014</a>)</span> or with the <code>calcNormFactors()</code> function <span class="citation">(Robinson and Oshlack <a href="#ref-robinson2010scaling">2010</a>)</span> in the <em><a href="https://bioconductor.org/packages/3.12/edgeR">edgeR</a></em> package. These assume that most genes are not DE between cells. Any systematic difference in count size across the non-DE majority of genes between two cells is assumed to represent bias that is used to compute an appropriate size factor for its removal.</p>
-<p>However, single-cell data can be problematic for these bulk normalization methods due to the dominance of low and zero counts. To overcome this, we pool counts from many cells to increase the size of the counts for accurate size factor estimation <span class="citation">(Lun, Bach, and Marioni <a href="#ref-lun2016pooling">2016</a>)</span>. Pool-based size factors are then “deconvolved” into cell-based factors for normalization of each cell’s expression profile. This is performed using the <code>calculateSumFactors()</code> function from <em><a href="https://bioconductor.org/packages/3.12/scran">scran</a></em>, as shown below.</p>
+<p>However, single-cell data can be problematic for these bulk normalization methods due to the dominance of low and zero counts. To overcome this, we pool counts from many cells to increase the size of the counts for accurate size factor estimation <span class="citation">(Lun, Bach, and Marioni <a href="#ref-lun2016pooling">2016</a>)</span>. Pool-based size factors are then &quot;deconvolved&quot; into cell-based factors for normalization of each cell's expression profile. This is performed using the <code>calculateSumFactors()</code> function from <em><a href="https://bioconductor.org/packages/3.12/scran">scran</a></em>, as shown below.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(scran)
 <span class="kw">set.seed</span>(<span class="dv">100</span>)
 clust.zeisel &lt;-<span class="st"> </span><span class="kw">quickCluster</span>(sce.zeisel) 
 <span class="kw">table</span>(clust.zeisel)</code></pre></div>
 <pre><code>## clust.zeisel
-##   1   2   3   4   5   6   7   8   9  10  11  12 
-## 243 386 147 322 179 401 362 158 105 222 173 239</code></pre>
+##   1   2   3   4   5   6   7   8   9  10  11  12  13  14 
+## 170 254 441 178 393 148 219 240 189 123 112 103 135 111</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">deconv.sf.zeisel &lt;-<span class="st"> </span><span class="kw">calculateSumFactors</span>(sce.zeisel, <span class="dt">cluster=</span>clust.zeisel)
 <span class="kw">summary</span>(deconv.sf.zeisel)</code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.1349  0.4664  0.8182  1.0000  1.3195  4.6872</code></pre>
+##  0.1186  0.4860  0.8314  1.0000  1.3209  4.5090</code></pre>
 <p>We use a pre-clustering step with <code>quickCluster()</code> where cells in each cluster are normalized separately and the size factors are rescaled to be comparable across clusters. This avoids the assumption that most genes are non-DE across the entire population - only a non-DE majority is required between pairs of clusters, which is a weaker assumption for highly heterogeneous populations. By default, <code>quickCluster()</code> will use an approximate algorithm for PCA based on methods from the <em><a href="https://CRAN.R-project.org/package=irlba">irlba</a></em> package. The approximation relies on stochastic initialization so we need to set the random seed (via <code>set.seed()</code>) for reproducibility.</p>
 <p>We see that the deconvolution size factors exhibit cell type-specific deviations from the library size factors in Figure <a href="normalization.html#fig:deconv-zeisel">7.2</a>. This is consistent with the presence of composition biases that are introduced by strong differential expression between cell types. Use of the deconvolution size factors adjusts for these biases to improve normalization accuracy for downstream applications.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(lib.sf.zeisel, deconv.sf.zeisel, <span class="dt">xlab=</span><span class="st">&quot;Library size factor&quot;</span>,
@@ -747,7 +741,7 @@ clust.zeisel &lt;-<span class="st"> </span><span class="kw">quickCluster</span>(
     <span class="dt">col=</span><span class="kw">as.integer</span>(<span class="kw">factor</span>(sce.zeisel<span class="op">$</span>level1class)))
 <span class="kw">abline</span>(<span class="dt">a=</span><span class="dv">0</span>, <span class="dt">b=</span><span class="dv">1</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</code></pre></div>
 <div class="figure"><span id="fig:deconv-zeisel"></span>
-<img src="P2_W03.normalization_files/figure-html/deconv-zeisel-1.png" alt="Deconvolution size factor for each cell in the Zeisel brain dataset, compared to the equivalent size factor derived from the library size. The red line corresponds to identity between the two size factors." width="672" />
+<img src="normalization_files/figure-html/deconv-zeisel-1.png" alt="Deconvolution size factor for each cell in the Zeisel brain dataset, compared to the equivalent size factor derived from the library size. The red line corresponds to identity between the two size factors." width="672" />
 <p class="caption">
 Figure 7.2: Deconvolution size factor for each cell in the Zeisel brain dataset, compared to the equivalent size factor derived from the library size. The red line corresponds to identity between the two size factors.
 </p>
@@ -756,7 +750,7 @@ Figure 7.2: Deconvolution size factor for each cell in the Zeisel brain dataset,
 </div>
 <div id="spike-norm" class="section level2">
 <h2><span class="header-section-number">7.4</span> Normalization by spike-ins</h2>
-<p>Spike-in normalization is based on the assumption that the same amount of spike-in RNA was added to each cell <span class="citation">(Lun et al. <a href="#ref-lun2017assessing">2017</a>)</span>. Systematic differences in the coverage of the spike-in transcripts can only be due to cell-specific biases, e.g., in capture efficiency or sequencing depth. To remove these biases, we equalize spike-in coverage across cells by scaling with “spike-in size factors”. Compared to the previous methods, spike-in normalization requires no assumption about the biology of the system (i.e., the absence of many DE genes). Instead, it assumes that the spike-in transcripts were (i) added at a constant level to each cell, and (ii) respond to biases in the same relative manner as endogenous genes.</p>
+<p>Spike-in normalization is based on the assumption that the same amount of spike-in RNA was added to each cell <span class="citation">(Lun et al. <a href="#ref-lun2017assessing">2017</a>)</span>. Systematic differences in the coverage of the spike-in transcripts can only be due to cell-specific biases, e.g., in capture efficiency or sequencing depth. To remove these biases, we equalize spike-in coverage across cells by scaling with &quot;spike-in size factors&quot;. Compared to the previous methods, spike-in normalization requires no assumption about the biology of the system (i.e., the absence of many DE genes). Instead, it assumes that the spike-in transcripts were (i) added at a constant level to each cell, and (ii) respond to biases in the same relative manner as endogenous genes.</p>
 <p>Practically, spike-in normalization should be used if differences in the total RNA content of individual cells are of interest and must be preserved in downstream analyses. For a given cell, an increase in its overall amount of endogenous RNA will not increase its spike-in size factor. This ensures that the effects of total RNA content on expression across the population will not be removed upon scaling. By comparison, the other normalization methods described above will simply interpret any change in total RNA content as part of the bias and remove it.</p>
 <p>We demonstrate the use of spike-in normalization on a different dataset involving T cell activation after stimulation with T cell recepter ligands of varying affinity <span class="citation">(Richard et al. <a href="#ref-richard2018tcell">2018</a>)</span>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(scRNAseq)
@@ -792,7 +786,7 @@ sce.richard</code></pre></div>
 <span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Stimulus) <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">scale_y_log10</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">intercept=</span><span class="dv">0</span>, <span class="dt">slope=</span><span class="dv">1</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>)</code></pre></div>
 <div class="figure"><span id="fig:norm-spike-t"></span>
-<img src="P2_W03.normalization_files/figure-html/norm-spike-t-1.png" alt="Size factors from spike-in normalization, plotted against the library size factors for all cells in the T cell dataset. Each plot represents a different ligand treatment and each point is a cell coloured according by time from stimulation." width="768" />
+<img src="normalization_files/figure-html/norm-spike-t-1.png" alt="Size factors from spike-in normalization, plotted against the library size factors for all cells in the T cell dataset. Each plot represents a different ligand treatment and each point is a cell coloured according by time from stimulation." width="768" />
 <p class="caption">
 Figure 7.3: Size factors from spike-in normalization, plotted against the library size factors for all cells in the T cell dataset. Each plot represents a different ligand treatment and each point is a cell coloured according by time from stimulation.
 </p>
@@ -814,19 +808,19 @@ gridExtra<span class="op">::</span><span class="kw">grid.arrange</span>(
     <span class="dt">ncol=</span><span class="dv">2</span>
 )</code></pre></div>
 <div class="figure"><span id="fig:norm-effect-malat"></span>
-<img src="P2_W03.normalization_files/figure-html/norm-effect-malat-1.png" alt="Distribution of log-normalized expression values for _Malat1_ after normalization with the deconvolution size factors (left) or spike-in size factors (right). Cells are stratified by the ligand affinity and colored by the time after stimulation." width="672" />
+<img src="normalization_files/figure-html/norm-effect-malat-1.png" alt="Distribution of log-normalized expression values for _Malat1_ after normalization with the deconvolution size factors (left) or spike-in size factors (right). Cells are stratified by the ligand affinity and colored by the time after stimulation." width="672" />
 <p class="caption">
 Figure 7.4: Distribution of log-normalized expression values for <em>Malat1</em> after normalization with the deconvolution size factors (left) or spike-in size factors (right). Cells are stratified by the ligand affinity and colored by the time after stimulation.
 </p>
 </div>
-<p>Whether or not total RNA content is relevant – and thus, the choice of normalization strategy – depends on the biological hypothesis. In most cases, changes in total RNA content are not interesting and can be normalized out by applying the library size or deconvolution factors. However, this may not always be appropriate if differences in total RNA are associated with a biological process of interest, e.g., cell cycle activity or T cell activation. Spike-in normalization will preserve these differences such that any changes in expression between biological groups have the correct sign.</p>
+<p>Whether or not total RNA content is relevant -- and thus, the choice of normalization strategy -- depends on the biological hypothesis. In most cases, changes in total RNA content are not interesting and can be normalized out by applying the library size or deconvolution factors. However, this may not always be appropriate if differences in total RNA are associated with a biological process of interest, e.g., cell cycle activity or T cell activation. Spike-in normalization will preserve these differences such that any changes in expression between biological groups have the correct sign.</p>
 <p><strong>However!</strong> Regardless of whether we care about total RNA content, it is critical that the spike-in transcripts are normalized using the spike-in size factors. Size factors computed from the counts for endogenous genes should not be applied to the spike-in transcripts, precisely because the former captures differences in total RNA content that are not experienced by the latter. Attempting to normalize the spike-in counts with the gene-based size factors will lead to over-normalization and incorrect quantification. Thus, if normalized spike-in data is required, we must compute a separate set of size factors for the spike-in transcripts; this is automatically performed by functions such as <code>modelGeneVarWithSpikes()</code>.</p>
 </div>
 <div id="applying-the-size-factors" class="section level2">
 <h2><span class="header-section-number">7.5</span> Applying the size factors</h2>
 <div id="normalization-transformation" class="section level3">
 <h3><span class="header-section-number">7.5.1</span> Scaling and log-transforming</h3>
-<p>Once we have computed the size factors, we use the <code>logNormCounts()</code> function from <em><a href="https://bioconductor.org/packages/3.12/scater">scater</a></em> to compute normalized expression values for each cell. This is done by dividing the count for each gene/spike-in transcript with the appropriate size factor for that cell. The function also log-transforms the normalized values, creating a new assay called <code>&quot;logcounts&quot;</code>. (Technically, these are “log-transformed normalized expression values”, but that’s too much of a mouthful to fit into the assay name.) These log-values will be the basis of our downstream analyses in the following chapters.</p>
+<p>Once we have computed the size factors, we use the <code>logNormCounts()</code> function from <em><a href="https://bioconductor.org/packages/3.12/scater">scater</a></em> to compute normalized expression values for each cell. This is done by dividing the count for each gene/spike-in transcript with the appropriate size factor for that cell. The function also log-transforms the normalized values, creating a new assay called <code>&quot;logcounts&quot;</code>. (Technically, these are &quot;log-transformed normalized expression values&quot;, but that's too much of a mouthful to fit into the assay name.) These log-values will be the basis of our downstream analyses in the following chapters.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">100</span>)
 clust.zeisel &lt;-<span class="st"> </span><span class="kw">quickCluster</span>(sce.zeisel) 
 sce.zeisel &lt;-<span class="st"> </span><span class="kw">computeSumFactors</span>(sce.zeisel, <span class="dt">cluster=</span>clust.zeisel, <span class="dt">min.mean=</span><span class="fl">0.1</span>)
@@ -858,7 +852,7 @@ gridExtra<span class="op">::</span><span class="kw">grid.arrange</span>(
     <span class="dt">ncol=</span><span class="dv">2</span>
 )</code></pre></div>
 <div class="figure"><span id="fig:cellbench-lognorm-fail"></span>
-<img src="P2_W03.normalization_files/figure-html/cellbench-lognorm-fail-1.png" alt="PCA plot of all pool-and-split libraries in the SORT-seq CellBench data, computed from the log-normalized expression values with library size-derived size factors. Each point represents a library and is colored by the mixing ratio used to construct it (left) or by the size factor (right)." width="672" />
+<img src="normalization_files/figure-html/cellbench-lognorm-fail-1.png" alt="PCA plot of all pool-and-split libraries in the SORT-seq CellBench data, computed from the log-normalized expression values with library size-derived size factors. Each point represents a library and is colored by the mixing ratio used to construct it (left) or by the size factor (right)." width="672" />
 <p class="caption">
 Figure 7.5: PCA plot of all pool-and-split libraries in the SORT-seq CellBench data, computed from the log-normalized expression values with library size-derived size factors. Each point represents a library and is colored by the mixing ratio used to construct it (left) or by the size factor (right).
 </p>
@@ -872,7 +866,7 @@ gridExtra<span class="op">::</span><span class="kw">grid.arrange</span>(
     <span class="dt">ncol=</span><span class="dv">2</span>
 )</code></pre></div>
 <div class="figure"><span id="fig:cellbench-lognorm-downsample"></span>
-<img src="P2_W03.normalization_files/figure-html/cellbench-lognorm-downsample-1.png" alt="PCA plot of pool-and-split libraries in the SORT-seq CellBench data, computed from the log-transformed counts after downsampling in proportion to the library size factors. Each point represents a library and is colored by the mixing ratio used to construct it (left) or by the size factor (right)." width="672" />
+<img src="normalization_files/figure-html/cellbench-lognorm-downsample-1.png" alt="PCA plot of pool-and-split libraries in the SORT-seq CellBench data, computed from the log-transformed counts after downsampling in proportion to the library size factors. Each point represents a library and is colored by the mixing ratio used to construct it (left) or by the size factor (right)." width="672" />
 <p class="caption">
 Figure 7.6: PCA plot of pool-and-split libraries in the SORT-seq CellBench data, computed from the log-transformed counts after downsampling in proportion to the library size factors. Each point represents a library and is colored by the mixing ratio used to construct it (left) or by the size factor (right).
 </p>
@@ -911,73 +905,72 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] BiocFileCache_1.13.0        dbplyr_1.4.3               
- [3] ensembldb_2.13.0            AnnotationFilter_1.13.0    
+ [1] BiocFileCache_1.13.0        dbplyr_1.4.4               
+ [3] ensembldb_2.13.1            AnnotationFilter_1.13.0    
  [5] GenomicFeatures_1.41.0      AnnotationDbi_1.51.0       
- [7] scRNAseq_2.3.0              scran_1.17.0               
- [9] scater_1.17.0               ggplot2_3.3.0              
-[11] SingleCellExperiment_1.11.1 SummarizedExperiment_1.19.2
-[13] DelayedArray_0.15.1         matrixStats_0.56.0         
-[15] Biobase_2.49.0              GenomicRanges_1.41.1       
-[17] GenomeInfoDb_1.25.0         IRanges_2.23.4             
-[19] S4Vectors_0.27.4            BiocGenerics_0.35.1        
-[21] OSCAUtils_0.0.2             BiocStyle_2.17.0           
+ [7] scRNAseq_2.3.2              scran_1.17.1               
+ [9] scater_1.17.1               ggplot2_3.3.1              
+[11] scuttle_0.99.8              SingleCellExperiment_1.11.2
+[13] SummarizedExperiment_1.19.4 DelayedArray_0.15.1        
+[15] matrixStats_0.56.0          Biobase_2.49.0             
+[17] GenomicRanges_1.41.1        GenomeInfoDb_1.25.0        
+[19] IRanges_2.23.6              S4Vectors_0.27.10          
+[21] BiocGenerics_0.35.2         rebook_0.99.0              
+[23] OSCAUtils_0.0.2             BiocStyle_2.17.0           
 
 loaded via a namespace (and not attached):
   [1] ggbeeswarm_0.6.0              colorspace_1.4-1             
-  [3] ellipsis_0.3.0                XVector_0.29.0               
+  [3] ellipsis_0.3.1                XVector_0.29.1               
   [5] BiocNeighbors_1.7.0           farver_2.0.3                 
-  [7] bit64_0.9-7                   interactiveDisplayBase_1.27.0
-  [9] R.methodsS3_1.8.0             codetools_0.2-16             
- [11] knitr_1.28                    Rsamtools_2.5.0              
- [13] R.oo_1.23.0                   HDF5Array_1.17.0             
- [15] shiny_1.4.0.2                 BiocManager_1.30.10          
- [17] compiler_4.0.0                httr_1.4.1                   
- [19] dqrng_0.2.1                   lazyeval_0.2.2               
- [21] assertthat_0.2.1              Matrix_1.2-18                
- [23] fastmap_1.0.1                 limma_3.45.0                 
- [25] later_1.0.0                   BiocSingular_1.5.0           
- [27] htmltools_0.4.0               prettyunits_1.1.1            
- [29] tools_4.0.0                   rsvd_1.0.3                   
- [31] igraph_1.2.5                  gtable_0.3.0                 
- [33] glue_1.4.0                    GenomeInfoDbData_1.2.3       
- [35] dplyr_0.8.5                   rappdirs_0.3.1               
- [37] Rcpp_1.0.4.6                  vctrs_0.2.4                  
- [39] Biostrings_2.57.0             rtracklayer_1.49.1           
- [41] ExperimentHub_1.15.0          DelayedMatrixStats_1.11.0    
- [43] xfun_0.13                     stringr_1.4.0                
- [45] ps_1.3.2                      mime_0.9                     
- [47] lifecycle_0.2.0               irlba_2.3.3                  
- [49] statmod_1.4.34                XML_3.99-0.3                 
- [51] AnnotationHub_2.21.0          edgeR_3.31.0                 
- [53] zlibbioc_1.35.0               scales_1.1.0                 
- [55] ProtGenerics_1.21.0           hms_0.5.3                    
- [57] promises_1.1.0                rhdf5_2.33.0                 
- [59] yaml_2.2.1                    curl_4.3                     
- [61] memoise_1.1.0                 gridExtra_2.3                
- [63] biomaRt_2.45.0                stringi_1.4.6                
- [65] RSQLite_2.2.0                 BiocVersion_3.12.0           
- [67] highr_0.8                     BiocParallel_1.23.0          
- [69] rlang_0.4.6                   pkgconfig_2.0.3              
- [71] bitops_1.0-6                  evaluate_0.14                
- [73] lattice_0.20-41               Rhdf5lib_1.11.0              
- [75] purrr_0.3.4                   labeling_0.3                 
- [77] GenomicAlignments_1.25.0      cowplot_1.0.0                
- [79] bit_1.1-15.2                  processx_3.4.2               
- [81] tidyselect_1.0.0              magrittr_1.5                 
- [83] bookdown_0.18                 R6_2.4.1                     
- [85] DBI_1.1.0                     pillar_1.4.4                 
- [87] withr_2.2.0                   RCurl_1.98-1.2               
- [89] tibble_3.0.1                  crayon_1.3.4                 
- [91] DropletUtils_1.9.0            rmarkdown_2.1                
- [93] viridis_0.5.1                 progress_1.2.2               
- [95] locfit_1.5-9.4                grid_4.0.0                   
- [97] blob_1.2.1                    callr_3.4.3                  
- [99] digest_0.6.25                 xtable_1.8-4                 
-[101] httpuv_1.5.2                  R.utils_2.9.2                
-[103] openssl_1.4.1                 munsell_0.5.0                
-[105] beeswarm_0.2.3                viridisLite_0.3.0            
-[107] vipor_0.4.5                   askpass_1.1                  </code></pre>
+  [7] bit64_0.9-7                   interactiveDisplayBase_1.27.5
+  [9] codetools_0.2-16              knitr_1.28                   
+ [11] Rsamtools_2.5.1               graph_1.67.1                 
+ [13] shiny_1.4.0.2                 BiocManager_1.30.10          
+ [15] compiler_4.0.0                httr_1.4.1                   
+ [17] dqrng_0.2.1                   lazyeval_0.2.2               
+ [19] assertthat_0.2.1              Matrix_1.2-18                
+ [21] fastmap_1.0.1                 limma_3.45.0                 
+ [23] later_1.0.0                   BiocSingular_1.5.0           
+ [25] prettyunits_1.1.1             htmltools_0.4.0              
+ [27] tools_4.0.0                   rsvd_1.0.3                   
+ [29] igraph_1.2.5                  gtable_0.3.0                 
+ [31] glue_1.4.1                    GenomeInfoDbData_1.2.3       
+ [33] dplyr_1.0.0                   rappdirs_0.3.1               
+ [35] Rcpp_1.0.4.6                  vctrs_0.3.0                  
+ [37] Biostrings_2.57.1             rtracklayer_1.49.2           
+ [39] ExperimentHub_1.15.0          DelayedMatrixStats_1.11.0    
+ [41] xfun_0.14                     stringr_1.4.0                
+ [43] ps_1.3.3                      mime_0.9                     
+ [45] lifecycle_0.2.0               irlba_2.3.3                  
+ [47] statmod_1.4.34                XML_3.99-0.3                 
+ [49] AnnotationHub_2.21.0          edgeR_3.31.1                 
+ [51] zlibbioc_1.35.0               scales_1.1.1                 
+ [53] ProtGenerics_1.21.0           hms_0.5.3                    
+ [55] promises_1.1.0                yaml_2.2.1                   
+ [57] curl_4.3                      memoise_1.1.0                
+ [59] gridExtra_2.3                 biomaRt_2.45.0               
+ [61] stringi_1.4.6                 RSQLite_2.2.0                
+ [63] BiocVersion_3.12.0            highr_0.8                    
+ [65] BiocParallel_1.23.0           rlang_0.4.6                  
+ [67] pkgconfig_2.0.3               bitops_1.0-6                 
+ [69] evaluate_0.14                 lattice_0.20-41              
+ [71] purrr_0.3.4                   labeling_0.3                 
+ [73] GenomicAlignments_1.25.1      CodeDepends_0.6.5            
+ [75] cowplot_1.0.0                 bit_1.1-15.2                 
+ [77] processx_3.4.2                tidyselect_1.1.0             
+ [79] magrittr_1.5                  bookdown_0.19                
+ [81] R6_2.4.1                      generics_0.0.2               
+ [83] DBI_1.1.0                     pillar_1.4.4                 
+ [85] withr_2.2.0                   RCurl_1.98-1.2               
+ [87] tibble_3.0.1                  crayon_1.3.4                 
+ [89] rmarkdown_2.2                 viridis_0.5.1                
+ [91] progress_1.2.2                locfit_1.5-9.4               
+ [93] grid_4.0.0                    blob_1.2.1                   
+ [95] callr_3.4.3                   digest_0.6.25                
+ [97] xtable_1.8-4                  httpuv_1.5.3.1               
+ [99] openssl_1.4.1                 munsell_0.5.0                
+[101] beeswarm_0.2.3                viridisLite_0.3.0            
+[103] vipor_0.4.5                   askpass_1.1                  </code></pre>
 </div>
 
 </div>

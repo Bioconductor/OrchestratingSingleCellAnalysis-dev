@@ -5,25 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 17 Trajectory Analysis | Orchestrating Single-Cell Analysis with Bioconductor</title>
-  <meta name="description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 17 Trajectory Analysis | Orchestrating Single-Cell Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
+  <meta property="og:description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 17 Trajectory Analysis | Orchestrating Single-Cell Analysis with Bioconductor" />
   
-  <meta name="twitter:description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
+  <meta name="twitter:description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
   
 
 
 
-<meta name="date" content="2020-05-07" />
+<meta name="date" content="2020-06-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -112,7 +112,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.1.1" data-path="introduction.html"><a href="introduction.html#preliminaries"><i class="fa fa-check"></i><b>1.1.1</b> Preliminaries</a></li>
 <li class="chapter" data-level="1.1.2" data-path="introduction.html"><a href="introduction.html#workflows"><i class="fa fa-check"></i><b>1.1.2</b> Workflows</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#what-you-wont-learn"><i class="fa fa-check"></i><b>1.2</b> What you won’t learn</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#what-you-wont-learn"><i class="fa fa-check"></i><b>1.2</b> What you won't learn</a></li>
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#who-we-wrote-this-for"><i class="fa fa-check"></i><b>1.3</b> Who we wrote this for</a></li>
 <li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#why-we-wrote-this"><i class="fa fa-check"></i><b>1.4</b> Why we wrote this</a></li>
 <li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#acknowledgements"><i class="fa fa-check"></i><b>1.5</b> Acknowledgements</a></li>
@@ -227,19 +227,18 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.3.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#based-on-population-structure"><i class="fa fa-check"></i><b>9.3.4</b> Based on population structure</a></li>
 <li class="chapter" data-level="9.3.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#putting-it-together"><i class="fa fa-check"></i><b>9.3.5</b> Putting it together</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#non-negative-matrix-factorization"><i class="fa fa-check"></i><b>9.4</b> Non-negative matrix factorization</a></li>
-<li class="chapter" data-level="9.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction-for-visualization"><i class="fa fa-check"></i><b>9.5</b> Dimensionality reduction for visualization</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#motivation-3"><i class="fa fa-check"></i><b>9.5.1</b> Motivation</a></li>
-<li class="chapter" data-level="9.5.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizing-with-pca"><i class="fa fa-check"></i><b>9.5.2</b> Visualizing with PCA</a></li>
-<li class="chapter" data-level="9.5.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#t-stochastic-neighbor-embedding"><i class="fa fa-check"></i><b>9.5.3</b> <span class="math inline">\(t\)</span>-stochastic neighbor embedding</a></li>
-<li class="chapter" data-level="9.5.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection"><i class="fa fa-check"></i><b>9.5.4</b> Uniform manifold approximation and projection</a></li>
-<li class="chapter" data-level="9.5.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualization-interpretation"><i class="fa fa-check"></i><b>9.5.5</b> Interpreting the plots</a></li>
+<li class="chapter" data-level="9.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction-for-visualization"><i class="fa fa-check"></i><b>9.4</b> Dimensionality reduction for visualization</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#motivation-3"><i class="fa fa-check"></i><b>9.4.1</b> Motivation</a></li>
+<li class="chapter" data-level="9.4.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizing-with-pca"><i class="fa fa-check"></i><b>9.4.2</b> Visualizing with PCA</a></li>
+<li class="chapter" data-level="9.4.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#t-stochastic-neighbor-embedding"><i class="fa fa-check"></i><b>9.4.3</b> <span class="math inline">\(t\)</span>-stochastic neighbor embedding</a></li>
+<li class="chapter" data-level="9.4.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection"><i class="fa fa-check"></i><b>9.4.4</b> Uniform manifold approximation and projection</a></li>
+<li class="chapter" data-level="9.4.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualization-interpretation"><i class="fa fa-check"></i><b>9.4.5</b> Interpreting the plots</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#session-info-4"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>10</b> Clustering</a><ul>
 <li class="chapter" data-level="10.1" data-path="clustering.html"><a href="clustering.html#motivation-4"><i class="fa fa-check"></i><b>10.1</b> Motivation</a></li>
-<li class="chapter" data-level="10.2" data-path="clustering.html"><a href="clustering.html#what-is-the-true-clustering"><i class="fa fa-check"></i><b>10.2</b> What is the “true clustering”?</a></li>
+<li class="chapter" data-level="10.2" data-path="clustering.html"><a href="clustering.html#what-is-the-true-clustering"><i class="fa fa-check"></i><b>10.2</b> What is the &quot;true clustering&quot;?</a></li>
 <li class="chapter" data-level="10.3" data-path="clustering.html"><a href="clustering.html#clustering-graph"><i class="fa fa-check"></i><b>10.3</b> Graph-based clustering</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="clustering.html"><a href="clustering.html#background-3"><i class="fa fa-check"></i><b>10.3.1</b> Background</a></li>
 <li class="chapter" data-level="10.3.2" data-path="clustering.html"><a href="clustering.html#implementation"><i class="fa fa-check"></i><b>10.3.2</b> Implementation</a></li>
@@ -278,7 +277,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.4.1" data-path="marker-detection.html"><a href="marker-detection.html#using-the-block-argument"><i class="fa fa-check"></i><b>11.4.1</b> Using the <code>block=</code> argument</a></li>
 <li class="chapter" data-level="11.4.2" data-path="marker-detection.html"><a href="marker-detection.html#using-the-design-argument"><i class="fa fa-check"></i><b>11.4.2</b> Using the <code>design=</code> argument</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="marker-detection.html"><a href="marker-detection.html#invalidity-of-p-values"><i class="fa fa-check"></i><b>11.5</b> Invalidity of <span class="math inline">\(p\)</span>-values</a><ul>
+<li class="chapter" data-level="11.5" data-path="marker-detection.html"><a href="marker-detection.html#p-value-invalidity"><i class="fa fa-check"></i><b>11.5</b> Invalidity of <span class="math inline">\(p\)</span>-values</a><ul>
 <li class="chapter" data-level="11.5.1" data-path="marker-detection.html"><a href="marker-detection.html#from-data-snooping"><i class="fa fa-check"></i><b>11.5.1</b> From data snooping</a></li>
 <li class="chapter" data-level="11.5.2" data-path="marker-detection.html"><a href="marker-detection.html#false-replicates"><i class="fa fa-check"></i><b>11.5.2</b> Nature of replication</a></li>
 </ul></li>
@@ -360,18 +359,22 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="17" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html"><i class="fa fa-check"></i><b>17</b> Trajectory Analysis</a><ul>
 <li class="chapter" data-level="17.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-6"><i class="fa fa-check"></i><b>17.1</b> Overview</a></li>
-<li class="chapter" data-level="17.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#obtaining-pseudo-times"><i class="fa fa-check"></i><b>17.2</b> Obtaining pseudo-times</a><ul>
-<li class="chapter" data-level="17.2.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#cluster-based-minimum-spanning-tree"><i class="fa fa-check"></i><b>17.2.1</b> Cluster-based minimum spanning tree</a></li>
-<li class="chapter" data-level="17.2.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#principal-curves"><i class="fa fa-check"></i><b>17.2.2</b> Principal curves</a></li>
+<li class="chapter" data-level="17.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#obtaining-pseudotime-orderings"><i class="fa fa-check"></i><b>17.2</b> Obtaining pseudotime orderings</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-7"><i class="fa fa-check"></i><b>17.2.1</b> Overview</a></li>
+<li class="chapter" data-level="17.2.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#cluster-based-minimum-spanning-tree"><i class="fa fa-check"></i><b>17.2.2</b> Cluster-based minimum spanning tree</a></li>
+<li class="chapter" data-level="17.2.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#principal-curves"><i class="fa fa-check"></i><b>17.2.3</b> Principal curves</a></li>
 </ul></li>
 <li class="chapter" data-level="17.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#characterizing-trajectories"><i class="fa fa-check"></i><b>17.3</b> Characterizing trajectories</a><ul>
-<li class="chapter" data-level="17.3.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-along-a-trajectory"><i class="fa fa-check"></i><b>17.3.1</b> Changes along a trajectory</a></li>
-<li class="chapter" data-level="17.3.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-between-lineages"><i class="fa fa-check"></i><b>17.3.2</b> Changes between lineages</a></li>
+<li class="chapter" data-level="17.3.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-8"><i class="fa fa-check"></i><b>17.3.1</b> Overview</a></li>
+<li class="chapter" data-level="17.3.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-along-a-trajectory"><i class="fa fa-check"></i><b>17.3.2</b> Changes along a trajectory</a></li>
+<li class="chapter" data-level="17.3.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-between-paths"><i class="fa fa-check"></i><b>17.3.3</b> Changes between paths</a></li>
+<li class="chapter" data-level="17.3.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#further-comments-2"><i class="fa fa-check"></i><b>17.3.4</b> Further comments</a></li>
 </ul></li>
 <li class="chapter" data-level="17.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#finding-the-root"><i class="fa fa-check"></i><b>17.4</b> Finding the root</a><ul>
-<li class="chapter" data-level="17.4.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-7"><i class="fa fa-check"></i><b>17.4.1</b> Overview</a></li>
+<li class="chapter" data-level="17.4.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-9"><i class="fa fa-check"></i><b>17.4.1</b> Overview</a></li>
 <li class="chapter" data-level="17.4.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#entropy-based-methods"><i class="fa fa-check"></i><b>17.4.2</b> Entropy-based methods</a></li>
 <li class="chapter" data-level="17.4.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#rna-velocity"><i class="fa fa-check"></i><b>17.4.3</b> RNA velocity</a></li>
+<li class="chapter" data-level="17.4.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#real-timepoints"><i class="fa fa-check"></i><b>17.4.4</b> Real timepoints</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#session-information"><i class="fa fa-check"></i>Session information</a></li>
 </ul></li>
@@ -392,15 +395,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="19" data-path="repertoire-seq.html"><a href="repertoire-seq.html"><i class="fa fa-check"></i><b>19</b> Analyzing repertoire sequencing data</a><ul>
 <li class="chapter" data-level="19.1" data-path="repertoire-seq.html"><a href="repertoire-seq.html#motivation-12"><i class="fa fa-check"></i><b>19.1</b> Motivation</a></li>
-<li class="chapter" data-level="19.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#analyzing-the-t-cell-receptor-repertoire"><i class="fa fa-check"></i><b>19.2</b> Analyzing the T cell receptor repertoire</a><ul>
-<li class="chapter" data-level="19.2.1" data-path="repertoire-seq.html"><a href="repertoire-seq.html#data-processing"><i class="fa fa-check"></i><b>19.2.1</b> Data processing</a></li>
-<li class="chapter" data-level="19.2.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#basic-diagnostics"><i class="fa fa-check"></i><b>19.2.2</b> Basic diagnostics</a></li>
-<li class="chapter" data-level="19.2.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#complex-diagnostics"><i class="fa fa-check"></i><b>19.2.3</b> Complex diagnostics</a></li>
-<li class="chapter" data-level="19.2.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#quantifying-clonal-expansion"><i class="fa fa-check"></i><b>19.2.4</b> Quantifying clonal expansion</a></li>
-<li class="chapter" data-level="19.2.5" data-path="repertoire-seq.html"><a href="repertoire-seq.html#quantifying-gene-expression-and-properties"><i class="fa fa-check"></i><b>19.2.5</b> Quantifying gene expression and properties</a></li>
-</ul></li>
-<li class="chapter" data-level="19.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#analyzing-the-immunoglobulin-repertoire"><i class="fa fa-check"></i><b>19.3</b> Analyzing the immunoglobulin repertoire</a></li>
-<li class="chapter" data-level="19.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#multi-sample-analyses"><i class="fa fa-check"></i><b>19.4</b> Multi-sample analyses</a></li>
+<li class="chapter" data-level="19.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#loading-the-tcr-repertoire"><i class="fa fa-check"></i><b>19.2</b> Loading the TCR repertoire</a></li>
+<li class="chapter" data-level="19.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#leveraging-list-semantics"><i class="fa fa-check"></i><b>19.3</b> Leveraging <code>List</code> semantics</a></li>
+<li class="chapter" data-level="19.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#converting-back-to-dataframes"><i class="fa fa-check"></i><b>19.4</b> Converting back to <code>DataFrame</code>s</a></li>
+<li class="chapter" data-level="19.5" data-path="repertoire-seq.html"><a href="repertoire-seq.html#case-study-for-clonotype-analyses"><i class="fa fa-check"></i><b>19.5</b> Case study for clonotype analyses</a></li>
+<li class="chapter" data-level="19.6" data-path="repertoire-seq.html"><a href="repertoire-seq.html#repeating-for-immunoglobulins"><i class="fa fa-check"></i><b>19.6</b> Repeating for immunoglobulins</a></li>
 <li class="chapter" data-level="" data-path="repertoire-seq.html"><a href="repertoire-seq.html#session-info-13"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="interactive-sharing.html"><a href="interactive-sharing.html"><i class="fa fa-check"></i><b>20</b> Interactive data exploration</a><ul>
@@ -478,16 +477,14 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="26.8" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#data-integration"><i class="fa fa-check"></i><b>26.8</b> Data integration</a></li>
 <li class="chapter" data-level="" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#session-info-20"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="27" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html"><i class="fa fa-check"></i><b>27</b> Human PBMC 10X dataset (surface proteins)</a><ul>
-<li class="chapter" data-level="27.1" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#introduction-7"><i class="fa fa-check"></i><b>27.1</b> Introduction</a></li>
-<li class="chapter" data-level="27.2" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#analysis-code"><i class="fa fa-check"></i><b>27.2</b> Analysis code</a><ul>
-<li class="chapter" data-level="27.2.1" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#data-loading-4"><i class="fa fa-check"></i><b>27.2.1</b> Data loading</a></li>
-<li class="chapter" data-level="27.2.2" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#quality-control-7"><i class="fa fa-check"></i><b>27.2.2</b> Quality control</a></li>
-<li class="chapter" data-level="27.2.3" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#normalization-6"><i class="fa fa-check"></i><b>27.2.3</b> Normalization</a></li>
-<li class="chapter" data-level="27.2.4" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#dimensionality-reduction-5"><i class="fa fa-check"></i><b>27.2.4</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="27.2.5" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#clustering-5"><i class="fa fa-check"></i><b>27.2.5</b> Clustering</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#session-info-21"><i class="fa fa-check"></i>Session Info</a></li>
+<li class="chapter" data-level="27" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html"><i class="fa fa-check"></i><b>27</b> Human PBMC with surface proteins (10X Genomics)</a><ul>
+<li class="chapter" data-level="27.1" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#introduction-7"><i class="fa fa-check"></i><b>27.1</b> Introduction</a></li>
+<li class="chapter" data-level="27.2" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#data-loading-4"><i class="fa fa-check"></i><b>27.2</b> Data loading</a></li>
+<li class="chapter" data-level="27.3" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#quality-control-7"><i class="fa fa-check"></i><b>27.3</b> Quality control</a></li>
+<li class="chapter" data-level="27.4" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#normalization-6"><i class="fa fa-check"></i><b>27.4</b> Normalization</a></li>
+<li class="chapter" data-level="27.5" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#dimensionality-reduction-5"><i class="fa fa-check"></i><b>27.5</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="27.6" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#clustering-5"><i class="fa fa-check"></i><b>27.6</b> Clustering</a></li>
+<li class="chapter" data-level="" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#session-info-21"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="28" data-path="grun-human-pancreas-cel-seq2.html"><a href="grun-human-pancreas-cel-seq2.html"><i class="fa fa-check"></i><b>28</b> Grun human pancreas (CEL-seq2)</a><ul>
 <li class="chapter" data-level="28.1" data-path="grun-human-pancreas-cel-seq2.html"><a href="grun-human-pancreas-cel-seq2.html#introduction-8"><i class="fa fa-check"></i><b>28.1</b> Introduction</a></li>
@@ -504,12 +501,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="29.1" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#introduction-9"><i class="fa fa-check"></i><b>29.1</b> Introduction</a></li>
 <li class="chapter" data-level="29.2" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-loading-6"><i class="fa fa-check"></i><b>29.2</b> Data loading</a></li>
 <li class="chapter" data-level="29.3" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#quality-control-9"><i class="fa fa-check"></i><b>29.3</b> Quality control</a></li>
-<li class="chapter" data-level="29.4" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#normalization-8"><i class="fa fa-check"></i><b>29.4</b> Normalization</a><ul>
-<li class="chapter" data-level="29.4.1" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#variance-modelling-5"><i class="fa fa-check"></i><b>29.4.1</b> Variance modelling</a></li>
-</ul></li>
-<li class="chapter" data-level="29.5" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-integration-2"><i class="fa fa-check"></i><b>29.5</b> Data integration</a></li>
-<li class="chapter" data-level="29.6" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#dimensionality-reduction-7"><i class="fa fa-check"></i><b>29.6</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="29.7" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#clustering-7"><i class="fa fa-check"></i><b>29.7</b> Clustering</a></li>
+<li class="chapter" data-level="29.4" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#normalization-8"><i class="fa fa-check"></i><b>29.4</b> Normalization</a></li>
+<li class="chapter" data-level="29.5" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#variance-modelling-5"><i class="fa fa-check"></i><b>29.5</b> Variance modelling</a></li>
+<li class="chapter" data-level="29.6" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-integration-2"><i class="fa fa-check"></i><b>29.6</b> Data integration</a></li>
+<li class="chapter" data-level="29.7" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#dimensionality-reduction-7"><i class="fa fa-check"></i><b>29.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="29.8" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#clustering-7"><i class="fa fa-check"></i><b>29.8</b> Clustering</a></li>
 <li class="chapter" data-level="" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#session-info-23"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="30" data-path="lawlor-human-pancreas-smarter.html"><a href="lawlor-human-pancreas-smarter.html"><i class="fa fa-check"></i><b>30</b> Lawlor human pancreas (SMARTer)</a><ul>
@@ -525,12 +521,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="31" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html"><i class="fa fa-check"></i><b>31</b> Segerstolpe human pancreas (Smart-seq2)</a><ul>
 <li class="chapter" data-level="31.1" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#introduction-11"><i class="fa fa-check"></i><b>31.1</b> Introduction</a></li>
 <li class="chapter" data-level="31.2" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#data-loading-8"><i class="fa fa-check"></i><b>31.2</b> Data loading</a></li>
-<li class="chapter" data-level="31.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#quality-control-11"><i class="fa fa-check"></i><b>31.3</b> Quality control</a><ul>
-<li class="chapter" data-level="31.3.1" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#normalization-10"><i class="fa fa-check"></i><b>31.3.1</b> Normalization</a></li>
-<li class="chapter" data-level="31.3.2" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#variance-modelling-7"><i class="fa fa-check"></i><b>31.3.2</b> Variance modelling</a></li>
-<li class="chapter" data-level="31.3.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#dimensionality-reduction-9"><i class="fa fa-check"></i><b>31.3.3</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="31.3.4" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#clustering-9"><i class="fa fa-check"></i><b>31.3.4</b> Clustering</a></li>
-</ul></li>
+<li class="chapter" data-level="31.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#quality-control-11"><i class="fa fa-check"></i><b>31.3</b> Quality control</a></li>
+<li class="chapter" data-level="31.4" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#normalization-10"><i class="fa fa-check"></i><b>31.4</b> Normalization</a></li>
+<li class="chapter" data-level="31.5" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#variance-modelling-7"><i class="fa fa-check"></i><b>31.5</b> Variance modelling</a></li>
+<li class="chapter" data-level="31.6" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#dimensionality-reduction-9"><i class="fa fa-check"></i><b>31.6</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="31.7" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#clustering-9"><i class="fa fa-check"></i><b>31.7</b> Clustering</a></li>
 <li class="chapter" data-level="" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#session-info-25"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="32" data-path="merged-pancreas.html"><a href="merged-pancreas.html"><i class="fa fa-check"></i><b>32</b> Merged human pancreas datasets</a><ul>
@@ -589,14 +584,13 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="37.1" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#introduction-17"><i class="fa fa-check"></i><b>37.1</b> Introduction</a></li>
 <li class="chapter" data-level="37.2" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-loading-13"><i class="fa fa-check"></i><b>37.2</b> Data loading</a></li>
 <li class="chapter" data-level="37.3" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#quality-control-16"><i class="fa fa-check"></i><b>37.3</b> Quality control</a></li>
-<li class="chapter" data-level="37.4" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#normalization-15"><i class="fa fa-check"></i><b>37.4</b> Normalization</a><ul>
-<li class="chapter" data-level="37.4.1" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#variance-modeling"><i class="fa fa-check"></i><b>37.4.1</b> Variance modeling</a></li>
-</ul></li>
-<li class="chapter" data-level="37.5" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-integration-3"><i class="fa fa-check"></i><b>37.5</b> Data integration</a></li>
-<li class="chapter" data-level="37.6" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#dimensionality-reduction-14"><i class="fa fa-check"></i><b>37.6</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="37.7" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#clustering-14"><i class="fa fa-check"></i><b>37.7</b> Clustering</a></li>
-<li class="chapter" data-level="37.8" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#differential-expression"><i class="fa fa-check"></i><b>37.8</b> Differential expression</a></li>
-<li class="chapter" data-level="37.9" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#cell-type-classification"><i class="fa fa-check"></i><b>37.9</b> Cell type classification</a></li>
+<li class="chapter" data-level="37.4" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#normalization-15"><i class="fa fa-check"></i><b>37.4</b> Normalization</a></li>
+<li class="chapter" data-level="37.5" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#variance-modeling"><i class="fa fa-check"></i><b>37.5</b> Variance modeling</a></li>
+<li class="chapter" data-level="37.6" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-integration-3"><i class="fa fa-check"></i><b>37.6</b> Data integration</a></li>
+<li class="chapter" data-level="37.7" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#dimensionality-reduction-14"><i class="fa fa-check"></i><b>37.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="37.8" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#clustering-14"><i class="fa fa-check"></i><b>37.8</b> Clustering</a></li>
+<li class="chapter" data-level="37.9" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#differential-expression"><i class="fa fa-check"></i><b>37.9</b> Differential expression</a></li>
+<li class="chapter" data-level="37.10" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#cell-type-classification"><i class="fa fa-check"></i><b>37.10</b> Cell type classification</a></li>
 <li class="chapter" data-level="" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#session-info-31"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
@@ -636,9 +630,9 @@ document.addEventListener("click", function (event) {
         event.target.classList.toggle("active");
         var content = event.target.nextElementSibling;
         if (content.style.display === "block") {
-          content.style.display = "none";
+            content.style.display = "none";
         } else {
-          content.style.display = "block";
+            content.style.display = "block";
         }
     }
 })
@@ -663,16 +657,10 @@ document.addEventListener("click", function (event) {
   background-color: #f1f1f1;
 }
 </style>
-<div class="figure"><span id="fig:dio-fail"></span>
-<img src="https://raw.githubusercontent.com/Bioconductor/OSCABase/images/images/placeholder_dio.jpg" alt="Waiting for Stephanie to finish her PR."  />
-<p class="caption">
-Figure 17.1: Waiting for Stephanie to finish her PR.
-</p>
-</div>
 <div id="overview-6" class="section level2">
 <h2><span class="header-section-number">17.1</span> Overview</h2>
-<p>Many biological processes manifest as a continuum of dynamic changes in the cellular state. The most obvious example is that of differentiation into increasingly specialized cell subtypes, but we might also consider phenomena like the cell cycle or immune cell activation that are accompanied by gradual changes in the cell’s transcriptome. We characterize these processes from single-cell expression data by identifying a “trajectory”, i.e., a path through the high-dimensional expression space that traverses the various cellular states associated with a continuous process like differentiation. In the simplest case, a trajectory will be a simple path from one point to another, but we can also observe more complex trajectories involve branching to multiple endpoints.</p>
-<p>A related concept is that of “pseudotime”, defined as the positioning of cells along the trajectory that quantifies the relative activity of the underlying biological process. For example, the pseudotime for a differentiation trajectory might represent the degree of differentiation from a pluripotent cell to a terminal state. This metric allows us to tackle questions related to the global population structure in a more quantitative manner. (It is worth noting that pseudotime is rather poorly named as it may or may not have much to do with actual time. For example, one can imagine a continuum of stress states with cells moving in either direction over time, but the pseudotime will only increase in one direction.)</p>
+<p>Many biological processes manifest as a continuum of dynamic changes in the cellular state. The most obvious example is that of differentiation into increasingly specialized cell subtypes, but we might also consider phenomena like the cell cycle or immune cell activation that are accompanied by gradual changes in the cell's transcriptome. We characterize these processes from single-cell expression data by identifying a &quot;trajectory&quot;, i.e., a path through the high-dimensional expression space that traverses the various cellular states associated with a continuous process like differentiation. In the simplest case, a trajectory will be a simple path from one point to another, but we can also observe more complex trajectories that branch to multiple endpoints.</p>
+<p>The &quot;pseudotime&quot; is defined as the positioning of cells along the trajectory that quantifies the relative activity or progression of the underlying biological process. For example, the pseudotime for a differentiation trajectory might represent the degree of differentiation from a pluripotent cell to a terminal state where cells with larger pseudotime values are more differentiated. This metric allows us to tackle questions related to the global population structure in a more quantitative manner. The most common application is to fit models to gene expression against the pseudotime to identify the genes responsible for generating the trajectory in the first place, especially around interesting branch events.</p>
 <p>In this section, we will demonstrate several different approaches to trajectory analysis using the haematopoietic stem cell (HSC) dataset from <span class="citation">Nestorowa et al. (<a href="#ref-nestorowa2016singlecell">2016</a>)</span>.</p>
 <button class="aaron-collapse">
 View history
@@ -729,174 +717,73 @@ snn.gr &lt;-<span class="st"> </span><span class="kw">buildSNNGraph</span>(sce.n
 ## reducedDimNames(3): diffusion PCA TSNE
 ## altExpNames(1): ERCC</code></pre>
 </div>
-<div id="obtaining-pseudo-times" class="section level2">
-<h2><span class="header-section-number">17.2</span> Obtaining pseudo-times</h2>
+<div id="obtaining-pseudotime-orderings" class="section level2">
+<h2><span class="header-section-number">17.2</span> Obtaining pseudotime orderings</h2>
+<div id="overview-7" class="section level3">
+<h3><span class="header-section-number">17.2.1</span> Overview</h3>
+<p>The pseudotime is simply a number describing the relative position of each cell in the trajectory, where cells with larger values are consider to be &quot;after&quot; cells with smaller values. Branched trajectories will typically be associated with multiple pseudotimes, one per path through the trajectory; these values are not usually comparable across paths. It is worth noting that &quot;pseudotime&quot; is a rather unfortunate name as the trajectory may not have much to do with real-life time. For example, one can imagine a continuum of stress states with cells moving in either direction over time, but the pseudotime only describes the transition from one end to another and so will only increase in one direction.</p>
+<p>The big question is how to identify the trajectory from high-dimensional expression data and map individual cells onto it. A massive variety of different algorithms are available for doing so <span class="citation">(Saelens et al. <a href="#ref-sealens2019comparison">2019</a>)</span>, and while we will demonstrate only a few specific methods below, many of the concepts apply generally to all trajectory inference strategies. A more philosophical question is whether a trajectory even exists in the dataset. One can intepret a continuum of states as a series of closely related (but distinct) subpopulations, or two well-separated clusters as the endpoints of a trajectory with rare intermediates. The choice between these two perspectives is left to the analyst based on which is more useful, convenient or biologically sensible.</p>
+</div>
 <div id="cluster-based-minimum-spanning-tree" class="section level3">
-<h3><span class="header-section-number">17.2.1</span> Cluster-based minimum spanning tree</h3>
-<p>The <em><a href="https://bioconductor.org/packages/3.12/TSCAN">TSCAN</a></em> package employs a simple yet effective approach to trajectory reconstruction. It clusters cells to summarize the data into a smaller set of discrete units, computes cluster centroids by averaging the cell coordinates and then forms the minimum spanning tree (MST) across centroids. The MST is simply an undirected acyclic graph that passes through each centroid exactly once and can be thought of as the most parsimonious structure that captures the transitions between clusters. We demonstrate below on the Nestorowa dataset (Figure <a href="trajectory-analysis.html#fig:tscan-nest-mst">17.2</a>), computing the centroids in the low-dimensional space to take advantage of data compaction and denoising (Chapter <a href="dimensionality-reduction.html#dimensionality-reduction">9</a>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># </span><span class="al">TODO</span><span class="co">: get the TSCAN authors to allow me to plug in existing</span>
-<span class="co"># dimensionality reduction and clustering results, rather than</span>
-<span class="co"># forcing users to go along with their defaults.</span>
-<span class="kw">library</span>(scater)
+<h3><span class="header-section-number">17.2.2</span> Cluster-based minimum spanning tree</h3>
+<p>The <em><a href="https://bioconductor.org/packages/3.12/TSCAN">TSCAN</a></em> algorithm uses a simple yet effective approach to trajectory reconstruction. It uses the clustering to summarize the data into a smaller set of discrete units, computes cluster centroids by averaging the coordinates of its member cells, and then forms the minimum spanning tree (MST) across those centroids. The MST is simply an undirected acyclic graph that passes through each centroid exactly once and can be thought of as the most parsimonious structure that captures the transitions between clusters. We demonstrate below on the Nestorowa dataset, computing the cluster centroids in the low-dimensional PC space to take advantage of data compaction and denoising (Chapter <a href="dimensionality-reduction.html#dimensionality-reduction">9</a>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(scater)
 by.cluster &lt;-<span class="st"> </span><span class="kw">aggregateAcrossCells</span>(sce.nest, <span class="dt">ids=</span><span class="kw">colLabels</span>(sce.nest))
 centroids &lt;-<span class="st"> </span><span class="kw">reducedDim</span>(by.cluster, <span class="st">&quot;PCA&quot;</span>)
 
-dmat &lt;-<span class="st"> </span><span class="kw">dist</span>(centroids)
-dmat &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(dmat)
-g &lt;-<span class="st"> </span>igraph<span class="op">::</span><span class="kw">graph.adjacency</span>(dmat, <span class="dt">mode =</span> <span class="st">&quot;undirected&quot;</span>, <span class="dt">weighted =</span> <span class="ot">TRUE</span>)
-mst &lt;-<span class="st"> </span>igraph<span class="op">::</span><span class="kw">minimum.spanning.tree</span>(g)
-
-<span class="kw">set.seed</span>(<span class="dv">1000</span>)
-<span class="kw">plot</span>(mst)</code></pre></div>
-<div class="figure"><span id="fig:tscan-nest-mst"></span>
-<img src="P2_W13.trajectory_files/figure-html/tscan-nest-mst-1.png" alt="Minimum spanning tree constructed using a _TSCAN_-like algorithm in the Nestorowa HSC dataset. Each node represents a cluster and is labelled according to the cluster number." width="672" />
-<p class="caption">
-Figure 17.2: Minimum spanning tree constructed using a <em>TSCAN</em>-like algorithm in the Nestorowa HSC dataset. Each node represents a cluster and is labelled according to the cluster number.
-</p>
-</div>
-<p>For reference, we can draw the same lines between the centroids in a <span class="math inline">\(t\)</span>-SNE plot (Figure <a href="trajectory-analysis.html#fig:tscan-nest-tsne">17.3</a>). It is then straightforward to identify interesting clusters such as those at bifurcations or endpoints. Keep in mind that the MST is generated from distances in the PC space and is merely being visualized in the <span class="math inline">\(t\)</span>-SNE space; its interpretation is not compromised by the distortions required to obtain a two-dimensional visualization.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># </span><span class="al">TODO</span><span class="co">: stuff this into a function somewhere.</span>
-pairs &lt;-<span class="st"> </span>Matrix<span class="op">::</span><span class="kw">which</span>(mst[] <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dt">arr.ind=</span><span class="ot">TRUE</span>)
-coords &lt;-<span class="st"> </span><span class="kw">reducedDim</span>(by.cluster, <span class="st">&quot;TSNE&quot;</span>)
-group &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">seq_len</span>(<span class="kw">nrow</span>(pairs)), <span class="dv">2</span>)
-stuff &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">rbind</span>(coords[pairs[,<span class="dv">1</span>],], coords[pairs[,<span class="dv">2</span>],]), group)
-
+<span class="co"># Using an implementation of the TSCAN algorithm in scran:</span>
+<span class="kw">library</span>(scran)
+mst &lt;-<span class="st"> </span><span class="kw">createClusterMST</span>(centroids)
+mst</code></pre></div>
+<pre><code>## IGRAPH 71c8ff4 UNW- 9 8 -- 
+## + attr: name (v/c), weight (e/n)
+## + edges from 71c8ff4 (vertex names):
+## [1] 1--3 1--9 2--3 2--6 3--4 5--8 5--9 6--7</code></pre>
+<p>For reference, we can draw the same lines between the centroids in a <span class="math inline">\(t\)</span>-SNE plot (Figure <a href="trajectory-analysis.html#fig:tscan-nest-tsne">17.1</a>). This allows us to identify interesting clusters such as those at bifurcations or endpoints. Note that the MST is generated from distances in the PC space and is merely being visualized in the <span class="math inline">\(t\)</span>-SNE space, for the same reasons as discussed in Section <a href="dimensionality-reduction.html#visualization-interpretation">9.4.5</a>; this may occasionally result in some visually unappealing plots if the original ordering of clusters is not preserved in the plot.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">line.data &lt;-<span class="st"> </span><span class="kw">connectClusterMST</span>(<span class="kw">reducedDim</span>(by.cluster, <span class="st">&quot;TSNE&quot;</span>), <span class="dt">mst=</span>mst)
 <span class="kw">plotTSNE</span>(sce.nest, <span class="dt">colour_by=</span><span class="st">&quot;label&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">data=</span>stuff, <span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>X1, <span class="dt">y=</span>X2, <span class="dt">group=</span>group))</code></pre></div>
+<span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">data=</span>line.data, <span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>dim1, <span class="dt">y=</span>dim2, <span class="dt">group=</span>edge))</code></pre></div>
 <div class="figure"><span id="fig:tscan-nest-tsne"></span>
-<img src="P2_W13.trajectory_files/figure-html/tscan-nest-tsne-1.png" alt="$t$-SNE plot of the Nestorowa HSC dataset, where each point is a cell and is colored according to its cluster assignment. The MST obtained using a _TSCAN_-like algorithm is overlaid on top." width="672" />
+<img src="trajectory_files/figure-html/tscan-nest-tsne-1.png" alt="$t$-SNE plot of the Nestorowa HSC dataset, where each point is a cell and is colored according to its cluster assignment. The MST obtained using a _TSCAN_-like algorithm is overlaid on top." width="672" />
 <p class="caption">
-Figure 17.3: <span class="math inline">\(t\)</span>-SNE plot of the Nestorowa HSC dataset, where each point is a cell and is colored according to its cluster assignment. The MST obtained using a <em>TSCAN</em>-like algorithm is overlaid on top.
+Figure 17.1: <span class="math inline">\(t\)</span>-SNE plot of the Nestorowa HSC dataset, where each point is a cell and is colored according to its cluster assignment. The MST obtained using a <em>TSCAN</em>-like algorithm is overlaid on top.
 </p>
 </div>
-<p>We obtain a pseudotime ordering by projecting the cells onto the MST. In other words, we move each cell onto the edge of the MST to which it is closest; the pseudotime is then calculated as the distance along the MST from this new position to a “root node”. For our purposes, we will arbitrarily pick one of the endpoint nodes as the root, though a more careful choice based on the biological annotation of each node may yield more relevant orderings (e.g., picking a node corresponding to a more pluripotent state).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># </span><span class="al">TODO</span><span class="co">: for the love of god, we definitely need to move this into a function!</span>
-.map2edges &lt;-<span class="st"> </span><span class="cf">function</span>(points, center, edge.ends, previous) {
-    all.distances &lt;-<span class="st"> </span><span class="kw">list</span>()
-    all.pseudo &lt;-<span class="st"> </span><span class="kw">list</span>()
-    edge.len &lt;-<span class="st"> </span><span class="kw">list</span>()
-
-    <span class="co"># Computing distance of each point from each edge.</span>
-    <span class="co"># Edges defined from &#39;center&#39; to &#39;edge.ends&#39;.</span>
-    <span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">rownames</span>(edge.ends)) {
-        edge.end &lt;-<span class="st"> </span>edge.ends[i,]
-        delta &lt;-<span class="st"> </span>center <span class="op">-</span><span class="st"> </span>edge.end
-        max.d &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">sum</span>(delta<span class="op">^</span><span class="dv">2</span>))
-        delta &lt;-<span class="st"> </span>delta<span class="op">/</span>max.d
-
-        centered &lt;-<span class="st"> </span><span class="kw">t</span>(<span class="kw">t</span>(points) <span class="op">-</span><span class="st"> </span>center)
-        proj &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(centered <span class="op">%*%</span><span class="st"> </span>delta)
-        proj &lt;-<span class="st"> </span><span class="kw">pmax</span>(<span class="dv">0</span>, <span class="kw">pmin</span>(proj, max.d))
-        mapped &lt;-<span class="st"> </span><span class="kw">outer</span>(proj, delta)
-
-        dist &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">rowSums</span>((centered <span class="op">-</span><span class="st"> </span>mapped)<span class="op">^</span><span class="dv">2</span>))
-        all.distances[[i]] &lt;-<span class="st"> </span>dist
-        all.pseudo[[i]] &lt;-<span class="st"> </span>proj
-        edge.len[[i]] &lt;-<span class="st"> </span>max.d
-    }
-
-    all.distances &lt;-<span class="st"> </span><span class="kw">do.call</span>(cbind, all.distances)
-    all.pseudo &lt;-<span class="st"> </span><span class="kw">do.call</span>(cbind, all.pseudo)
-    chosen &lt;-<span class="st"> </span><span class="kw">colnames</span>(all.distances)[<span class="kw">max.col</span>(<span class="op">-</span>all.distances)]
-
-    <span class="co"># Flipping the distance of points to the previous node,</span>
-    <span class="co"># in order to enforce a directional pseudo-time.</span>
-    dist.previous &lt;-<span class="st"> </span><span class="dv">0</span>
-    <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.na</span>(previous)) {
-        on.previous &lt;-<span class="st"> </span>chosen<span class="op">==</span>previous
-        dist.previous &lt;-<span class="st"> </span>edge.len[[previous]]
-        previous.proj &lt;-<span class="st"> </span>dist.previous <span class="op">-</span><span class="st"> </span>all.pseudo[on.previous,previous,drop=<span class="ot">FALSE</span>]
-
-        <span class="cf">if</span> (<span class="kw">all</span>(on.previous)) {
-            <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">dist=</span>dist.previous, <span class="dt">pseudo=</span><span class="kw">list</span>(previous.proj)))
-        }
-    }
-
-    <span class="co"># Filling out the branches, where points are NA for a branch&#39;s</span>
-    <span class="co"># pseudo-time if they were assigned to another branch.</span>
-    output &lt;-<span class="st"> </span><span class="kw">list</span>()
-    <span class="cf">for</span> (leftover <span class="cf">in</span> <span class="kw">setdiff</span>(<span class="kw">rownames</span>(edge.ends), previous)) {
-        empty &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA_real_</span>, <span class="kw">nrow</span>(points))
-        <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.na</span>(previous)) {
-            empty[on.previous] &lt;-<span class="st"> </span>previous.proj
-        }
-        current &lt;-<span class="st"> </span>chosen<span class="op">==</span>leftover
-        empty[current] &lt;-<span class="st"> </span>all.pseudo[current,leftover]
-        output[[leftover]] &lt;-<span class="st"> </span>empty
-    }
-
-    <span class="kw">list</span>(<span class="dt">dist=</span>dist.previous, <span class="dt">pseudo=</span>output)
-}
-
-originals &lt;-<span class="st"> </span><span class="kw">reducedDim</span>(sce.nest, <span class="st">&quot;PCA&quot;</span>)
-cluster &lt;-<span class="st"> </span><span class="kw">colLabels</span>(sce.nest)
-starting.cluster &lt;-<span class="st"> </span><span class="kw">names</span>(igraph<span class="op">::</span><span class="kw">V</span>(mst)[igraph<span class="op">::</span><span class="kw">degree</span>(mst)<span class="op">==</span><span class="dv">1</span>])[<span class="dv">1</span>]
-collated &lt;-<span class="st"> </span><span class="kw">list</span>()
-
-latest &lt;-<span class="st"> </span>starting.cluster
-parents &lt;-<span class="st"> </span><span class="ot">NA_character_</span> 
-progress &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">rep</span>(<span class="ot">NA_real_</span>, <span class="kw">length</span>(cluster)))
-cumulative &lt;-<span class="st"> </span><span class="dv">0</span>
-
-<span class="cf">while</span> (<span class="kw">length</span>(latest)) {
-    new.latest &lt;-<span class="st"> </span>new.parents &lt;-<span class="st"> </span><span class="kw">character</span>(<span class="dv">0</span>)
-    new.progress &lt;-<span class="st"> </span><span class="kw">list</span>()
-    new.cumulative &lt;-<span class="st"> </span><span class="kw">numeric</span>(<span class="dv">0</span>)
-
-    <span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(latest)) {
-        curnode &lt;-<span class="st"> </span>latest[i]
-        all.neighbors &lt;-<span class="st"> </span><span class="kw">names</span>(igraph<span class="op">::</span><span class="kw">adjacent_vertices</span>(mst, curnode, <span class="dt">mode=</span><span class="st">&quot;all&quot;</span>)[[<span class="dv">1</span>]])
-        in.cluster &lt;-<span class="st"> </span>cluster<span class="op">==</span>curnode 
-
-        mapped &lt;-<span class="st"> </span><span class="kw">.map2edges</span>(originals[in.cluster,,<span class="dt">drop=</span><span class="ot">FALSE</span>], <span class="dt">center=</span>centroids[curnode,], 
-            <span class="dt">edge.ends=</span>centroids[all.neighbors,,<span class="dt">drop=</span><span class="ot">FALSE</span>], <span class="dt">previous=</span>parents[i])
-        edge.len &lt;-<span class="st"> </span>mapped<span class="op">$</span>dist
-        pseudo &lt;-<span class="st"> </span>mapped<span class="op">$</span>pseudo
-
-        collected.progress &lt;-<span class="st"> </span><span class="kw">list</span>()
-        <span class="cf">for</span> (j <span class="cf">in</span> <span class="kw">seq_along</span>(pseudo)) {
-            sofar &lt;-<span class="st"> </span>progress[[i]] <span class="co"># yes, using &#39;i&#39; here.</span>
-            sofar[in.cluster] &lt;-<span class="st"> </span>pseudo[[j]] <span class="op">+</span><span class="st"> </span>cumulative[i]
-            collected.progress[[j]] &lt;-<span class="st"> </span>sofar
-        }
-
-        all.children &lt;-<span class="st"> </span><span class="kw">setdiff</span>(all.neighbors, parents[i])
-        <span class="cf">if</span> (<span class="kw">length</span>(all.children)<span class="op">==</span><span class="dv">0</span>) {
-            collated[[curnode]] &lt;-<span class="st"> </span>collected.progress[[<span class="dv">1</span>]]
-        } <span class="cf">else</span> {
-            new.latest &lt;-<span class="st"> </span><span class="kw">c</span>(new.latest, all.children)
-            new.parents &lt;-<span class="st"> </span><span class="kw">c</span>(new.parents, <span class="kw">rep</span>(curnode, <span class="kw">length</span>(all.children)))
-            new.progress &lt;-<span class="st"> </span><span class="kw">c</span>(new.progress, collected.progress)
-            new.cumulative &lt;-<span class="st"> </span><span class="kw">c</span>(new.cumulative, <span class="kw">rep</span>(cumulative[i] <span class="op">+</span><span class="st"> </span>edge.len, <span class="kw">length</span>(all.children)))
-        }
-    }
-
-    latest &lt;-<span class="st"> </span>new.latest
-    parents &lt;-<span class="st"> </span>new.parents
-    progress &lt;-<span class="st"> </span>new.progress
-    cumulative &lt;-<span class="st"> </span>new.cumulative
-}
-tscan.pseudo &lt;-<span class="st"> </span><span class="kw">do.call</span>(cbind, collated)
-
-<span class="kw">plotTSNE</span>(sce.nest, <span class="dt">colour_by=</span><span class="kw">I</span>(<span class="kw">rowMeans</span>(tscan.pseudo, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)), <span class="dt">text_by=</span><span class="st">&quot;label&quot;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">data=</span>stuff, <span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>X1, <span class="dt">y=</span>X2, <span class="dt">group=</span>group))</code></pre></div>
+<p>We obtain a pseudotime ordering by projecting the cells onto the MST with <code>orderClusterMST()</code>. More specifically, we move each cell onto the closest edge of the MST; the pseudotime is then calculated as the distance along the MST to this new position from a &quot;root node&quot;. For our purposes, we will arbitrarily pick one of the endpoint nodes as the root, though a more careful choice based on the biological annotation of each node may yield more relevant orderings (e.g., picking a node corresponding to a more pluripotent state). Here, multiple sets of pseudotimes are reported for a branched trajectory where each ordering corresponds to one path from the root node to one of the terminal nodes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tscan.pseudo &lt;-<span class="st"> </span><span class="kw">orderClusterMST</span>(<span class="kw">reducedDim</span>(sce.nest, <span class="st">&quot;PCA&quot;</span>), 
+    <span class="dt">ids=</span><span class="kw">colLabels</span>(sce.nest), <span class="dt">centers=</span>centroids, <span class="dt">mst=</span>mst)
+<span class="kw">head</span>(tscan.pseudo)</code></pre></div>
+<pre><code>##             7  8
+## [1,] 33.89744 NA
+## [2,] 53.34097 NA
+## [3,] 47.94699 NA
+## [4,] 59.92395 NA
+## [5,] 54.35901 NA
+## [6,] 70.73120 NA</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Taking the rowMeans just gives us a single pseudo-time for all cells. Cells</span>
+<span class="co"># in segments that are shared across paths have the same pseudo-time value for</span>
+<span class="co"># those paths anyway, so the rowMeans doesn&#39;t change anything.</span>
+common.pseudo &lt;-<span class="st"> </span><span class="kw">rowMeans</span>(tscan.pseudo, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
+<span class="kw">plotTSNE</span>(sce.nest, <span class="dt">colour_by=</span><span class="kw">I</span>(common.pseudo), 
+        <span class="dt">text_by=</span><span class="st">&quot;label&quot;</span>, <span class="dt">text_colour=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">data=</span>line.data, <span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>dim1, <span class="dt">y=</span>dim2, <span class="dt">group=</span>edge))</code></pre></div>
 <div class="figure"><span id="fig:tscan-nest-pseudo"></span>
-<img src="P2_W13.trajectory_files/figure-html/tscan-nest-pseudo-1.png" alt="$t$-SNE plot of the Nestorowa HSC dataset, where each point is a cell and is colored according to its pseudo-time value. The MST obtained using a _TSCAN_-like algorithm is overlaid on top." width="672" />
+<img src="trajectory_files/figure-html/tscan-nest-pseudo-1.png" alt="$t$-SNE plot of the Nestorowa HSC dataset, where each point is a cell and is colored according to its pseudotime value. The MST obtained using a _TSCAN_-like algorithm is overlaid on top." width="672" />
 <p class="caption">
-Figure 17.4: <span class="math inline">\(t\)</span>-SNE plot of the Nestorowa HSC dataset, where each point is a cell and is colored according to its pseudo-time value. The MST obtained using a <em>TSCAN</em>-like algorithm is overlaid on top.
+Figure 17.2: <span class="math inline">\(t\)</span>-SNE plot of the Nestorowa HSC dataset, where each point is a cell and is colored according to its pseudotime value. The MST obtained using a <em>TSCAN</em>-like algorithm is overlaid on top.
 </p>
 </div>
-<p><em><a href="https://bioconductor.org/packages/3.12/TSCAN">TSCAN</a></em> gains several advantages from using clusters to form the MST. The most obvious is that of computational speed as calculations are performed over clusters rather than cells. The relative coarseness of clusters protects against the per-cell noise that would otherwise reduce the stability of the MST. The interpretation of the MST is also relatively straightforward as it uses the same clusters as the rest of the analysis, allowing us to recycle previous knowledge about the biological annotations assigned to each cluster.</p>
-<p>However, the reliance on clustering is also a double-edged sword. If the clusters are not sufficiently granular, it is possible for <em><a href="https://bioconductor.org/packages/3.12/TSCAN">TSCAN</a></em> to overlook a trajectory if the entirety of the trajectory occurs in a single cluster. In addition, the MST does poorly at handling more complex events like cycles (e.g., the cell cycle, obviously) or bubbles (e.g., multiple differentation paths to the same terminal cell type). Whether or not this is a problem depends on the complexity of the global structure of the population of interest.</p>
+<p>In the <em><a href="https://bioconductor.org/packages/3.12/TSCAN">TSCAN</a></em> approach, there are several advantages from using clusters to form the MST. The most obvious is that of computational speed as calculations are performed over clusters rather than cells. The relative coarseness of clusters protects against the per-cell noise that would otherwise reduce the stability of the MST. The interpretation of the MST is also relatively straightforward as it uses the same clusters as the rest of the analysis, allowing us to recycle previous knowledge about the biological annotations assigned to each cluster.</p>
+<p>However, the reliance on clustering is a double-edged sword. If the clusters are not sufficiently granular, it is possible for <em><a href="https://bioconductor.org/packages/3.12/TSCAN">TSCAN</a></em> to overlook a trajectory that occurs inside a single cluster. The requirement of the MST to pass through each cluster exactly once can lead to excessively circuitous paths in overclustered datasets as well as the formation of irrelevant paths between distinct cell subpopulations. The MST also failed to handle more complex events such as &quot;bubbles&quot; (i.e., a bifurcation and then a merging) or cycles.</p>
 </div>
 <div id="principal-curves" class="section level3">
-<h3><span class="header-section-number">17.2.2</span> Principal curves</h3>
-<p>To identify a trajectory, one might imagine simply “fitting” a one-dimensional curve so that it passes through the cloud of cells in the high-dimensional expression space. This is the idea behind principal curves <span class="citation">(Hastie and Stuetzle <a href="#ref-hastie1989principal">1989</a>)</span>, effectively a non-linear generalization of PCA where the axes of most variation are allowed to bend. We use the <em><a href="https://bioconductor.org/packages/3.12/slingshot">slingshot</a></em> package <span class="citation">(Street et al. <a href="#ref-street2018slingshot">2018</a>)</span> to fit a principal curve to the PC coordinates, which yields a pseudotime ordering of cells based on their relative positions when projected onto the curve.</p>
+<h3><span class="header-section-number">17.2.3</span> Principal curves</h3>
+<p>To identify a trajectory, one might imagine simply &quot;fitting&quot; a one-dimensional curve so that it passes through the cloud of cells in the high-dimensional expression space. This is the idea behind principal curves <span class="citation">(Hastie and Stuetzle <a href="#ref-hastie1989principal">1989</a>)</span>, effectively a non-linear generalization of PCA where the axes of most variation are allowed to bend. We use the <em><a href="https://bioconductor.org/packages/3.12/slingshot">slingshot</a></em> package <span class="citation">(Street et al. <a href="#ref-street2018slingshot">2018</a>)</span> to fit a principal curve to the PC coordinates, which yields a pseudotime ordering of cells based on their relative positions when projected onto the curve.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(slingshot)
 sce.sling &lt;-<span class="st"> </span><span class="kw">slingshot</span>(sce.nest, <span class="dt">reducedDim=</span><span class="st">&#39;PCA&#39;</span>)
 <span class="kw">head</span>(sce.sling<span class="op">$</span>slingPseudotime_<span class="dv">1</span>)</code></pre></div>
 <pre><code>## [1] 89.44417 76.33613 87.88466 76.93112 82.40780 72.09984</code></pre>
-<p>Here, we fitted the principal curve to the PC space for the same reasons as described above. We can then visualize the literal path taken by the fitted curve in that space (Figure <a href="trajectory-analysis.html#fig:traj-princurve-pca-nest">17.5</a>).</p>
+<p>Here, we fitted the principal curve to the PC space for the same reasons as described above. We can then visualize the literal path taken by the fitted curve in that space (Figure <a href="trajectory-analysis.html#fig:traj-princurve-pca-nest">17.3</a>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Setting up the colors.</span>
 <span class="kw">library</span>(RColorBrewer)
 colors &lt;-<span class="st"> </span><span class="kw">colorRampPalette</span>(<span class="kw">brewer.pal</span>(<span class="dv">11</span>,<span class="st">&#39;Spectral&#39;</span>)[<span class="op">-</span><span class="dv">6</span>])(<span class="dv">100</span>)
@@ -906,12 +793,12 @@ plotcol &lt;-<span class="st"> </span>colors[<span class="kw">cut</span>(sce.sli
 <span class="kw">plot</span>(<span class="kw">reducedDim</span>(sce.sling, <span class="st">&quot;PCA&quot;</span>), <span class="dt">col =</span> plotcol, <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">asp =</span> <span class="dv">1</span>)
 <span class="kw">lines</span>(<span class="kw">SlingshotDataSet</span>(sce.sling), <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&#39;black&#39;</span>)</code></pre></div>
 <div class="figure"><span id="fig:traj-princurve-pca-nest"></span>
-<img src="P2_W13.trajectory_files/figure-html/traj-princurve-pca-nest-1.png" alt="Plot of the first 2 PCs in the Nestorowa HSC dataset, where each point is a cell and is colored by the _slingshot_ pseudotime ordering. The path taken by the fitted principal curve is shown in black." width="672" />
+<img src="trajectory_files/figure-html/traj-princurve-pca-nest-1.png" alt="Plot of the first 2 PCs in the Nestorowa HSC dataset, where each point is a cell and is colored by the _slingshot_ pseudotime ordering. The path taken by the fitted principal curve is shown in black." width="672" />
 <p class="caption">
-Figure 17.5: Plot of the first 2 PCs in the Nestorowa HSC dataset, where each point is a cell and is colored by the <em>slingshot</em> pseudotime ordering. The path taken by the fitted principal curve is shown in black.
+Figure 17.3: Plot of the first 2 PCs in the Nestorowa HSC dataset, where each point is a cell and is colored by the <em>slingshot</em> pseudotime ordering. The path taken by the fitted principal curve is shown in black.
 </p>
 </div>
-<p>For other dimensionality reduction results, we color by the pseudotime ordering to identify the direction of the trajectory (Figure <a href="trajectory-analysis.html#fig:traj-princurve-umap-nest">17.6</a>). This is effectively a continuous generalization of the coloring by cluster assignment observed in other chapters.</p>
+<p>For other dimensionality reduction results, we color by the pseudotime ordering to identify the direction of the trajectory (Figure <a href="trajectory-analysis.html#fig:traj-princurve-umap-nest">17.4</a>). This is effectively a continuous generalization of the coloring by cluster assignment observed in other chapters.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(scater)
 sce.sling &lt;-<span class="st"> </span><span class="kw">runUMAP</span>(sce.sling, <span class="dt">dimred=</span><span class="st">&quot;PCA&quot;</span>)
 
@@ -924,61 +811,384 @@ sce.sling<span class="op">$</span>cell.type &lt;-<span class="st"> </span>sce.sl
         <span class="dt">y=</span>UMAP<span class="fl">.2</span>, <span class="dt">col=</span>slingPseudotime_<span class="dv">1</span>)) <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_viridis</span>()</code></pre></div>
 <div class="figure"><span id="fig:traj-princurve-umap-nest"></span>
-<img src="P2_W13.trajectory_files/figure-html/traj-princurve-umap-nest-1.png" alt="UMAP plot of the Nestorowa HSC dataset, where each point is a cell and is colored by the _slingshot_ pseudotime ordering." width="672" />
+<img src="trajectory_files/figure-html/traj-princurve-umap-nest-1.png" alt="UMAP plot of the Nestorowa HSC dataset, where each point is a cell and is colored by the _slingshot_ pseudotime ordering." width="672" />
 <p class="caption">
-Figure 17.6: UMAP plot of the Nestorowa HSC dataset, where each point is a cell and is colored by the <em>slingshot</em> pseudotime ordering.
+Figure 17.4: UMAP plot of the Nestorowa HSC dataset, where each point is a cell and is colored by the <em>slingshot</em> pseudotime ordering.
 </p>
 </div>
-<p>The previous <code>slingshot()</code> call assumed that all cells in the dataset were part of a single one-dimensional trajectory, which fails to consider more complex events like bifurcations. To accommodate this, we use our previously computed cluster assignments to build a rough sketch for the global structure in the form of a MST across the cluster centroids. Each path through the MST from a designated root node is treated as a lineage; principal curves are then simultaneously fitted to all lineages, with some averaging across curves to encourage consistency in regions that are common to multiple lineages. This allows <code>slingshot()</code> to capture branching events based on divergence in the principal curves (Figure <a href="trajectory-analysis.html#fig:traj-princurve-clustered-nest">17.7</a>).</p>
+<p>The previous <code>slingshot()</code> call assumed that all cells in the dataset were part of a single one-dimensional trajectory, which fails to consider more complex events like bifurcations. To accommodate this, we use our previously computed cluster assignments to build a rough sketch for the global structure in the form of a MST across the cluster centroids. Each path through the MST from a designated root node is treated as a lineage; principal curves are then simultaneously fitted to all lineages, with some averaging across curves to encourage consistency in regions that are common to multiple lineages. This allows <code>slingshot()</code> to capture branching events based on divergence in the principal curves (Figure <a href="trajectory-analysis.html#fig:traj-princurve-clustered-nest">17.5</a>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sce.sling2 &lt;-<span class="st"> </span><span class="kw">slingshot</span>(sce.nest, <span class="dt">cluster=</span><span class="kw">colLabels</span>(sce.nest), <span class="dt">reducedDim=</span><span class="st">&#39;PCA&#39;</span>)
 
 <span class="kw">plot</span>(<span class="kw">reducedDim</span>(sce.sling2, <span class="st">&quot;PCA&quot;</span>), <span class="dt">col=</span><span class="st">&quot;grey80&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">asp =</span> <span class="dv">1</span>)
 <span class="kw">lines</span>(<span class="kw">SlingshotDataSet</span>(sce.sling2), <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&#39;black&#39;</span>)</code></pre></div>
 <div class="figure"><span id="fig:traj-princurve-clustered-nest"></span>
-<img src="P2_W13.trajectory_files/figure-html/traj-princurve-clustered-nest-1.png" alt="Plot of the first 2 PCs in the Nestorowa HSC dataset, where the paths taken by the fitted principal curves are shown in black." width="672" />
+<img src="trajectory_files/figure-html/traj-princurve-clustered-nest-1.png" alt="Plot of the first 2 PCs in the Nestorowa HSC dataset, where the paths taken by the fitted principal curves are shown in black." width="672" />
 <p class="caption">
-Figure 17.7: Plot of the first 2 PCs in the Nestorowa HSC dataset, where the paths taken by the fitted principal curves are shown in black.
+Figure 17.5: Plot of the first 2 PCs in the Nestorowa HSC dataset, where the paths taken by the fitted principal curves are shown in black.
 </p>
 </div>
-<p>When operating in this mode, <code>slingshot()</code> produces one pseudotime ordering for each principal curve. Cells not assigned to a particular curve will be assigned <code>NA</code> values for that curve’s ordering. We can use <code>slingshotBranchID()</code> to determine whether a particular cell is shared across multiple curves or is unique to a subset of curves (i.e., is located “after” branching). In this case, we can see that most cells jump directly from a global common segment (<code>1,2,3</code>) to one of the curves (<code>1</code>, <code>2</code>, <code>3</code>) without any further hierarchy, i.e., no noticeable internal branch points.</p>
+<p>When operating in this mode, <code>slingshot()</code> produces one pseudotime ordering for each principal curve. Cells not assigned to a particular curve will be assigned <code>NA</code> values for that curve's ordering. We can use <code>slingshotBranchID()</code> to determine whether a particular cell is shared across multiple curves or is unique to a subset of curves (i.e., is located &quot;after&quot; branching). In this case, we can see that most cells jump directly from a global common segment (<code>1,2,3</code>) to one of the curves (<code>1</code>, <code>2</code>, <code>3</code>) without any further hierarchy, i.e., no noticeable internal branch points.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">curve.assignments &lt;-<span class="st"> </span><span class="kw">slingBranchID</span>(sce.sling2)
 <span class="kw">table</span>(curve.assignments)</code></pre></div>
 <pre><code>## curve.assignments
 ##     1   1,2 1,2,3   1,3     2   2,3     3 
 ##   435     6   892     2   222    39    60</code></pre>
-<p>For larger datasets, we can speed up the algorithm by approximating each principal curve with a fixed number of points. By default, <code>slingshot()</code> uses one point per cell to define the curve, which is unnecessarily precise when the number of cells is large. Indeed, the approximated curves in Figure <a href="trajectory-analysis.html#fig:traj-princurve-clustered-nest-approx">17.8</a> are quite similar to those in Figure <a href="trajectory-analysis.html#fig:traj-princurve-clustered-nest">17.7</a>.</p>
+<p>For larger datasets, we can speed up the algorithm by approximating each principal curve with a fixed number of points. By default, <code>slingshot()</code> uses one point per cell to define the curve, which is unnecessarily precise when the number of cells is large. Indeed, the approximated curves in Figure <a href="trajectory-analysis.html#fig:traj-princurve-clustered-nest-approx">17.6</a> are quite similar to those in Figure <a href="trajectory-analysis.html#fig:traj-princurve-clustered-nest">17.5</a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sce.sling3 &lt;-<span class="st"> </span><span class="kw">slingshot</span>(sce.nest, <span class="dt">cluster=</span><span class="kw">colLabels</span>(sce.nest), 
     <span class="dt">reducedDim=</span><span class="st">&#39;PCA&#39;</span>, <span class="dt">approx_points=</span><span class="dv">100</span>)
 
 <span class="kw">plot</span>(<span class="kw">reducedDim</span>(sce.sling3, <span class="st">&quot;PCA&quot;</span>), <span class="dt">col=</span><span class="st">&quot;grey80&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">asp =</span> <span class="dv">1</span>)
 <span class="kw">lines</span>(<span class="kw">SlingshotDataSet</span>(sce.sling3), <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&#39;black&#39;</span>)</code></pre></div>
 <div class="figure"><span id="fig:traj-princurve-clustered-nest-approx"></span>
-<img src="P2_W13.trajectory_files/figure-html/traj-princurve-clustered-nest-approx-1.png" alt="Plot of the first 2 PCs in the Nestorowa HSC dataset, where the paths taken by the fitted principal curves are shown in black." width="672" />
+<img src="trajectory_files/figure-html/traj-princurve-clustered-nest-approx-1.png" alt="Plot of the first 2 PCs in the Nestorowa HSC dataset, where the paths taken by the fitted principal curves are shown in black." width="672" />
 <p class="caption">
-Figure 17.8: Plot of the first 2 PCs in the Nestorowa HSC dataset, where the paths taken by the fitted principal curves are shown in black.
+Figure 17.6: Plot of the first 2 PCs in the Nestorowa HSC dataset, where the paths taken by the fitted principal curves are shown in black.
 </p>
 </div>
 </div>
 </div>
 <div id="characterizing-trajectories" class="section level2">
 <h2><span class="header-section-number">17.3</span> Characterizing trajectories</h2>
-<div id="changes-along-a-trajectory" class="section level3">
-<h3><span class="header-section-number">17.3.1</span> Changes along a trajectory</h3>
+<div id="overview-8" class="section level3">
+<h3><span class="header-section-number">17.3.1</span> Overview</h3>
+<p>Once we have constructed a trajectory, the next step is to characterize the underlying biology based on its DE genes. The aim here is to find the genes that exhibit significant changes in expression across pseudotime, as these are the most likely to have driven the formation of the trajectory in the first place. The overall strategy is to fit a model to the per-gene expression with respect to pseudotime, allowing us to obtain inferences about the significance of any association. We can then prioritize interesting genes as those with low <span class="math inline">\(p\)</span>-values for further investigation. A diversity of options are available for model fitting but we will focus on the simplest strategy of fitting a linear model to the log-expression values with respect to the pseudotime; we will discuss some of the more advanced models later.</p>
 </div>
-<div id="changes-between-lineages" class="section level3">
-<h3><span class="header-section-number">17.3.2</span> Changes between lineages</h3>
+<div id="changes-along-a-trajectory" class="section level3">
+<h3><span class="header-section-number">17.3.2</span> Changes along a trajectory</h3>
+<p>To demonstrate, we will identify genes with significant changes with respect to one of the TSCAN pseudotimes in the Nestorowa data. We use the <code>testPseudotime()</code> utility to fit a natural spline to the expression of each gene, allowing us to model a range of non-linear relationships in the data. We then perform an analysis of variance (ANOVA) to determine if any of the spline coefficients are significantly non-zero, i.e., there is some significant trend with respect to pseudotime.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(scran)
+pseudo &lt;-<span class="st"> </span><span class="kw">testPseudotime</span>(sce.nest, <span class="dt">pseudotime=</span>tscan.pseudo[,<span class="dv">1</span>])
+pseudo<span class="op">$</span>SYMBOL &lt;-<span class="st"> </span><span class="kw">rowData</span>(sce.nest)<span class="op">$</span>SYMBOL
+pseudo[<span class="kw">order</span>(pseudo<span class="op">$</span>p.value),]</code></pre></div>
+<pre><code>## DataFrame with 46078 rows and 4 columns
+##                         logFC      p.value          FDR      SYMBOL
+##                     &lt;numeric&gt;    &lt;numeric&gt;    &lt;numeric&gt; &lt;character&gt;
+## ENSMUSG00000029322 -0.0872517  0.00000e+00  0.00000e+00       Plac8
+## ENSMUSG00000105231  0.0158450  0.00000e+00  0.00000e+00       Iglj3
+## ENSMUSG00000076608  0.0118768 2.76194e-310 3.91579e-306       Igkj5
+## ENSMUSG00000106668  0.0153919 2.59403e-300 2.75829e-296       Iglj1
+## ENSMUSG00000022496  0.0229337 4.90552e-297 4.17293e-293    Tnfrsf17
+## ...                       ...          ...          ...         ...
+## ENSMUSG00000107367          0          NaN          NaN      Mir192
+## ENSMUSG00000107372          0          NaN          NaN          NA
+## ENSMUSG00000107381          0          NaN          NaN          NA
+## ENSMUSG00000107382          0          NaN          NaN     Gm37714
+## ENSMUSG00000107391          0          NaN          NaN        Rian</code></pre>
+<p>In practice, it is helpful to pair the ANOVA results with a fit from a much simpler model where we assume that there exists a linear relationship between expression and the pseudotime. This yields an interpretable summary of the overall direction of change in the <code>logFC</code> field above, complementing the more poweful spline-based model used to populate the <code>p.value</code> field. (In contrast, the magnitude and sign of the spline coefficients cannot be easily interpreted.)</p>
+<p>To simplify the results, we will repeat our DE analysis after filtering out cluster 7. This cluster seems to contain a set of B cell precursors that are located at one end of the trajectory, causing immunoglobulins to dominate the set of DE genes and mask other interesting effects.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">discard &lt;-<span class="st"> &quot;7&quot;</span>
+keep &lt;-<span class="st"> </span><span class="kw">colLabels</span>(sce.nest)<span class="op">!=</span>discard
+pseudo &lt;-<span class="st"> </span><span class="kw">testPseudotime</span>(sce.nest[,keep], <span class="dt">pseudotime=</span>tscan.pseudo[keep,<span class="dv">1</span>])
+pseudo<span class="op">$</span>SYMBOL &lt;-<span class="st"> </span><span class="kw">rowData</span>(sce.nest)<span class="op">$</span>SYMBOL
+sorted &lt;-<span class="st"> </span>pseudo[<span class="kw">order</span>(pseudo<span class="op">$</span>p.value),]</code></pre></div>
+<p>Examination of the top downregulated genes suggests that this pseudotime represents a transition away from myeloid identity, based on the decrease in expression of genes such as <em>Mpo</em> and <em>Plac8</em> (Figure <a href="trajectory-analysis.html#fig:nest-1-simple-down">17.7</a>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">up.left &lt;-<span class="st"> </span>sorted[sorted<span class="op">$</span>logFC <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>,]
+<span class="kw">head</span>(up.left, <span class="dv">10</span>)</code></pre></div>
+<pre><code>## DataFrame with 10 rows and 4 columns
+##                         logFC      p.value          FDR      SYMBOL
+##                     &lt;numeric&gt;    &lt;numeric&gt;    &lt;numeric&gt; &lt;character&gt;
+## ENSMUSG00000029322 -0.0951619  0.00000e+00  0.00000e+00       Plac8
+## ENSMUSG00000009350 -0.1230460 5.84393e-245 1.24154e-240         Mpo
+## ENSMUSG00000040314 -0.1247572 4.88021e-231 6.91200e-227        Ctsg
+## ENSMUSG00000031722 -0.0772702 3.46421e-217 3.67985e-213          Hp
+## ENSMUSG00000020125 -0.1055643 2.16570e-211 1.84042e-207       Elane
+## ENSMUSG00000015937 -0.0439171 7.20289e-204 5.10085e-200       H2afy
+## ENSMUSG00000035004 -0.0770322 7.79177e-201 4.72961e-197       Igsf6
+## ENSMUSG00000045799 -0.0270218 8.81597e-197 4.68238e-193      Gm9800
+## ENSMUSG00000026238 -0.0255206 1.30289e-194 6.15111e-191        Ptma
+## ENSMUSG00000096544 -0.0264184 3.68479e-177 1.56567e-173      Gm4617</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">best &lt;-<span class="st"> </span><span class="kw">head</span>(<span class="kw">rownames</span>(up.left), <span class="dv">10</span>)
+<span class="kw">plotExpression</span>(sce.nest, <span class="dt">features=</span>best,
+    <span class="dt">x=</span><span class="kw">I</span>(tscan.pseudo[,<span class="dv">1</span>]), <span class="dt">colour_by=</span><span class="st">&quot;label&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:nest-1-simple-down"></span>
+<img src="trajectory_files/figure-html/nest-1-simple-down-1.png" alt="Expression of the top 10 genes that decrease in expression with increasing pseudotime along the first path in the MST of the Nestorowa dataset. Each point represents a cell that is mapped to this path and is colored by the assigned cluster." width="576" />
+<p class="caption">
+Figure 17.7: Expression of the top 10 genes that decrease in expression with increasing pseudotime along the first path in the MST of the Nestorowa dataset. Each point represents a cell that is mapped to this path and is colored by the assigned cluster.
+</p>
+</div>
+<p>Conversely, the later parts of the pseudotime may correspond to a more stem-like state based on upregulation of genes like <em>Hlf</em>. There is also increased expression of genes associated with the lymphoid lineage (e.g., <em>Ltb</em>), consistent with reduced commitment to the myeloid lineage at earlier pseudotime values.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">up.right &lt;-<span class="st"> </span>sorted[sorted<span class="op">$</span>logFC <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>,]
+<span class="kw">head</span>(up.right, <span class="dv">10</span>)</code></pre></div>
+<pre><code>## DataFrame with 10 rows and 4 columns
+##                        logFC      p.value          FDR      SYMBOL
+##                    &lt;numeric&gt;    &lt;numeric&gt;    &lt;numeric&gt; &lt;character&gt;
+## ENSMUSG00000047867 0.0869463 1.07588e-173 4.15581e-170      Gimap6
+## ENSMUSG00000028716 0.1023233 4.34777e-172 1.53947e-168    Pdzk1ip1
+## ENSMUSG00000086567 0.0294706 9.70407e-165 2.57704e-161      Gm2830
+## ENSMUSG00000027562 0.0646994 5.71870e-156 1.01245e-152        Car2
+## ENSMUSG00000006389 0.1096438 4.35705e-151 7.12043e-148         Mpl
+## ENSMUSG00000037820 0.0702660 1.80951e-135 1.78805e-132        Tgm2
+## ENSMUSG00000003949 0.0934931 3.07301e-126 2.37404e-123         Hlf
+## ENSMUSG00000061232 0.0191498 1.23937e-125 9.40368e-123       H2-K1
+## ENSMUSG00000044258 0.0557909 3.64193e-121 2.38070e-118      Ctla2a
+## ENSMUSG00000024399 0.0998322 5.51208e-116 3.16498e-113         Ltb</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">best &lt;-<span class="st"> </span><span class="kw">head</span>(<span class="kw">rownames</span>(up.right), <span class="dv">10</span>)
+<span class="kw">plotExpression</span>(sce.nest, <span class="dt">features=</span>best, 
+    <span class="dt">x=</span><span class="kw">I</span>(tscan.pseudo[,<span class="dv">1</span>]), <span class="dt">colour_by=</span><span class="st">&quot;label&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:nest-1-simple-up"></span>
+<img src="trajectory_files/figure-html/nest-1-simple-up-1.png" alt="Expression of the top 10 genes that increase in expression with increasing pseudotime along the first path in the MST of the Nestorowa dataset. Each point represents a cell that is mapped to this path and is colored by the assigned cluster." width="576" />
+<p class="caption">
+Figure 17.8: Expression of the top 10 genes that increase in expression with increasing pseudotime along the first path in the MST of the Nestorowa dataset. Each point represents a cell that is mapped to this path and is colored by the assigned cluster.
+</p>
+</div>
+</div>
+<div id="changes-between-paths" class="section level3">
+<h3><span class="header-section-number">17.3.3</span> Changes between paths</h3>
+<p>A more advanced analysis involves looking for differences in expression between paths of a branched trajectory. This is most interesting for cells close to the branch point between two or more paths where the differential expression analysis may highlight genes is responsible for the branching event. The general strategy here is to fit one trend to the unique part of each path immediately following the branch point, followed by a comparison of the fits between paths.</p>
+<p>To this end, a particularly tempting approach is to perform another ANOVA with our spline-based model and test for significant differences in the spline parameters between paths. While this can be done with <code>testPseudotime()</code>, we do not do so because the magnitude of the pseudotime has little meaning across lineages. A pseudotime value in one path of the MST does not, in general, have any relation to the same value in another path; this compromises any comparison of trends as we cannot reliably say that they are being fitted to comparable <span class="math inline">\(x\)</span>-axes.</p>
+<p>Rather, we employ the much simpler <em>ad hoc</em> approach of fitting a spline to each trajectory and comparing the sets of DE genes. To demonstrate, we focus on the cluster containing the branch point in the Nestorowa-derived MST. We recompute the pseudotimes so that changes in expression are detected with respect to separation of paths from each other, allowing us to detect genes that are associated with the divergence of the branches.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">starter &lt;-<span class="st"> &quot;3&quot;</span>
+tscan.pseudo2 &lt;-<span class="st"> </span><span class="kw">orderClusterMST</span>(<span class="kw">reducedDim</span>(sce.nest, <span class="st">&quot;PCA&quot;</span>), 
+    <span class="dt">ids=</span><span class="kw">colLabels</span>(sce.nest), <span class="dt">centers=</span>centroids, <span class="dt">mst=</span>mst, 
+    <span class="dt">start=</span>starter)</code></pre></div>
+<p>We then apply <code>testPseudotime()</code> to each path involving cluster 3. We subset our analysis to only that cluster's cells so as to focus on DE events close to the branch point. Because we are operating over a relatively short pseudotime interval, we do not expect complex trends and so we set <code>df=1</code> (i.e., a linear trend) to avoid problems from overfitting.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">keep &lt;-<span class="st"> </span><span class="kw">colLabels</span>(sce.nest) <span class="op">==</span><span class="st"> </span>starter
+sub.nest &lt;-<span class="st"> </span>sce.nest[,keep]
+
+pseudo1 &lt;-<span class="st"> </span><span class="kw">testPseudotime</span>(sub.nest, <span class="dt">df=</span><span class="dv">1</span>, <span class="dt">pseudotime=</span>tscan.pseudo2[keep,<span class="dv">1</span>])
+pseudo1<span class="op">$</span>SYMBOL &lt;-<span class="st"> </span><span class="kw">rowData</span>(sce.nest)<span class="op">$</span>SYMBOL
+pseudo1[<span class="kw">order</span>(pseudo1<span class="op">$</span>p.value),]</code></pre></div>
+<pre><code>## DataFrame with 46078 rows and 5 columns
+##                        logFC   logFC.1     p.value         FDR        SYMBOL
+##                    &lt;numeric&gt; &lt;numeric&gt;   &lt;numeric&gt;   &lt;numeric&gt;   &lt;character&gt;
+## ENSMUSG00000009350  0.332855  0.332855 2.67471e-18 9.59018e-14           Mpo
+## ENSMUSG00000040314  0.475509  0.475509 5.65148e-16 1.01317e-11          Ctsg
+## ENSMUSG00000064147  0.449444  0.449444 3.76156e-15 4.49569e-11         Rab44
+## ENSMUSG00000026581  0.379946  0.379946 3.86978e-14 3.46877e-10          Sell
+## ENSMUSG00000085611  0.266637  0.266637 7.51248e-12 5.38720e-08     Ap3s1-ps1
+## ...                      ...       ...         ...         ...           ...
+## ENSMUSG00000107380         0         0         NaN         NaN     Vmn1r-ps6
+## ENSMUSG00000107381         0         0         NaN         NaN            NA
+## ENSMUSG00000107382         0         0         NaN         NaN       Gm37714
+## ENSMUSG00000107387         0         0         NaN         NaN 5430435K18Rik
+## ENSMUSG00000107391         0         0         NaN         NaN          Rian</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pseudo2 &lt;-<span class="st"> </span><span class="kw">testPseudotime</span>(sub.nest, <span class="dt">df=</span><span class="dv">1</span>, <span class="dt">pseudotime=</span>tscan.pseudo2[keep,<span class="dv">2</span>])
+pseudo2<span class="op">$</span>SYMBOL &lt;-<span class="st"> </span><span class="kw">rowData</span>(sce.nest)<span class="op">$</span>SYMBOL
+pseudo2[<span class="kw">order</span>(pseudo2<span class="op">$</span>p.value),]</code></pre></div>
+<pre><code>## DataFrame with 46078 rows and 5 columns
+##                         logFC    logFC.1     p.value         FDR      SYMBOL
+##                     &lt;numeric&gt;  &lt;numeric&gt;   &lt;numeric&gt;   &lt;numeric&gt; &lt;character&gt;
+## ENSMUSG00000027342 -0.1265815 -0.1265815 1.14035e-11 4.01425e-07        Pcna
+## ENSMUSG00000025747 -0.3693852 -0.3693852 5.06241e-09 6.43725e-05        Tyms
+## ENSMUSG00000020358 -0.1001289 -0.1001289 6.95055e-09 6.43725e-05     Hnrnpab
+## ENSMUSG00000035198 -0.4166721 -0.4166721 7.31465e-09 6.43725e-05       Tubg1
+## ENSMUSG00000045799 -0.0452833 -0.0452833 5.43487e-08 3.19298e-04      Gm9800
+## ...                       ...        ...         ...         ...         ...
+## ENSMUSG00000107380          0          0         NaN         NaN   Vmn1r-ps6
+## ENSMUSG00000107381          0          0         NaN         NaN          NA
+## ENSMUSG00000107382          0          0         NaN         NaN     Gm37714
+## ENSMUSG00000107386          0          0         NaN         NaN     Gm42800
+## ENSMUSG00000107391          0          0         NaN         NaN        Rian</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pseudo3 &lt;-<span class="st"> </span><span class="kw">testPseudotime</span>(sub.nest, <span class="dt">df=</span><span class="dv">1</span>, <span class="dt">pseudotime=</span>tscan.pseudo2[keep,<span class="dv">3</span>])
+pseudo3<span class="op">$</span>SYMBOL &lt;-<span class="st"> </span><span class="kw">rowData</span>(sce.nest)<span class="op">$</span>SYMBOL
+pseudo3[<span class="kw">order</span>(pseudo3<span class="op">$</span>p.value),]</code></pre></div>
+<pre><code>## DataFrame with 46078 rows and 5 columns
+##                        logFC   logFC.1     p.value         FDR        SYMBOL
+##                    &lt;numeric&gt; &lt;numeric&gt;   &lt;numeric&gt;   &lt;numeric&gt;   &lt;character&gt;
+## ENSMUSG00000042817 -0.411375 -0.411375 7.83960e-14 2.00860e-09          Flt3
+## ENSMUSG00000015937 -0.163091 -0.163091 1.18901e-13 2.00860e-09         H2afy
+## ENSMUSG00000002985  0.351661  0.351661 7.64160e-13 8.60597e-09          Apoe
+## ENSMUSG00000053168 -0.398684 -0.398684 8.17626e-12 6.90608e-08 9030619P08Rik
+## ENSMUSG00000029247 -0.137079 -0.137079 1.78997e-10 1.06448e-06         Paics
+## ...                      ...       ...         ...         ...           ...
+## ENSMUSG00000107381         0         0         NaN         NaN            NA
+## ENSMUSG00000107382         0         0         NaN         NaN       Gm37714
+## ENSMUSG00000107384         0         0         NaN         NaN       Gm42557
+## ENSMUSG00000107387         0         0         NaN         NaN 5430435K18Rik
+## ENSMUSG00000107391         0         0         NaN         NaN          Rian</code></pre>
+<p>We informally compare these results by looking for genes that are significant in our path of interest and are not significant or changing in the opposite direction in the other paths. We use the raw <span class="math inline">\(p\)</span>-values to look for non-significant genes in order to increase the stringency of the definition of unique genes in our path.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">only3 &lt;-<span class="st"> </span>pseudo3[<span class="kw">which</span>(pseudo3<span class="op">$</span>FDR <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.05</span> <span class="op">&amp;</span><span class="st"> </span>
+<span class="st">    </span>(pseudo2<span class="op">$</span>p.value <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.05</span> <span class="op">|</span><span class="st"> </span><span class="kw">sign</span>(pseudo1<span class="op">$</span>logFC)<span class="op">!=</span><span class="kw">sign</span>(pseudo3<span class="op">$</span>logFC)) <span class="op">&amp;</span>
+<span class="st">    </span>(pseudo2<span class="op">$</span>p.value <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.05</span> <span class="op">|</span><span class="st"> </span><span class="kw">sign</span>(pseudo2<span class="op">$</span>logFC)<span class="op">!=</span><span class="kw">sign</span>(pseudo3<span class="op">$</span>logFC))),]
+only3[<span class="kw">order</span>(only3<span class="op">$</span>p.value),]</code></pre></div>
+<pre><code>## DataFrame with 64 rows and 5 columns
+##                        logFC   logFC.1     p.value         FDR      SYMBOL
+##                    &lt;numeric&gt; &lt;numeric&gt;   &lt;numeric&gt;   &lt;numeric&gt; &lt;character&gt;
+## ENSMUSG00000042817 -0.411375 -0.411375 7.83960e-14 2.00860e-09        Flt3
+## ENSMUSG00000002985  0.351661  0.351661 7.64160e-13 8.60597e-09        Apoe
+## ENSMUSG00000016494 -0.248953 -0.248953 1.89039e-10 1.06448e-06        Cd34
+## ENSMUSG00000000486 -0.217213 -0.217213 1.24423e-09 5.25468e-06       Sept1
+## ENSMUSG00000021728 -0.293032 -0.293032 3.56762e-09 1.20535e-05         Emb
+## ...                      ...       ...         ...         ...         ...
+## ENSMUSG00000004609 -0.205262 -0.205262 0.000118937   0.0422992        Cd33
+## ENSMUSG00000083657  0.100788  0.100788 0.000145710   0.0484448     Gm12245
+## ENSMUSG00000023942 -0.144269 -0.144269 0.000146255   0.0484448     Slc29a1
+## ENSMUSG00000091408 -0.149411 -0.149411 0.000157634   0.0499154      Gm6728
+## ENSMUSG00000053559  0.135833  0.135833 0.000159559   0.0499154       Smagp</code></pre>
+<p>We observe upregulation of interesting genes such as <em>Gata2</em>, <em>Cd9</em> and <em>Apoe</em> in this path, along with downregulation of <em>Flt3</em> (Figure <a href="trajectory-analysis.html#fig:nest-3-versus">17.9</a>). One might speculate that this path leads to a less differentiated HSC state compared to the other directions.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Showing only the lines to/from our cluster of interest.</span>
+line.data.sub &lt;-<span class="st"> </span>line.data[<span class="kw">grepl</span>(<span class="st">&quot;^3--&quot;</span>, line.data<span class="op">$</span>edge) <span class="op">|</span>
+<span class="st">    </span><span class="kw">grepl</span>(<span class="st">&quot;--3$&quot;</span>, line.data<span class="op">$</span>edge),]
+ggline &lt;-<span class="st"> </span><span class="kw">geom_line</span>(<span class="dt">data=</span>line.data.sub, 
+    <span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>dim1, <span class="dt">y=</span>dim2, <span class="dt">group=</span>edge))
+
+gridExtra<span class="op">::</span><span class="kw">grid.arrange</span>(
+    <span class="kw">plotTSNE</span>(sub.nest, <span class="dt">colour_by=</span><span class="st">&quot;ENSMUSG00000042817&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">ggtitle</span>(<span class="st">&quot;Flt3&quot;</span>) <span class="op">+</span><span class="st"> </span>ggline,
+    <span class="kw">plotTSNE</span>(sub.nest, <span class="dt">colour_by=</span><span class="st">&quot;ENSMUSG00000002985&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">ggtitle</span>(<span class="st">&quot;Apoe&quot;</span>) <span class="op">+</span><span class="st"> </span>ggline,
+    <span class="kw">plotTSNE</span>(sub.nest, <span class="dt">colour_by=</span><span class="st">&quot;ENSMUSG00000015053&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">ggtitle</span>(<span class="st">&quot;Gata2&quot;</span>) <span class="op">+</span><span class="st"> </span>ggline,
+    <span class="kw">plotTSNE</span>(sub.nest, <span class="dt">colour_by=</span><span class="st">&quot;ENSMUSG00000030342&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">ggtitle</span>(<span class="st">&quot;Cd9&quot;</span>) <span class="op">+</span><span class="st"> </span>ggline
+)</code></pre></div>
+<div class="figure"><span id="fig:nest-3-versus"></span>
+<img src="trajectory_files/figure-html/nest-3-versus-1.png" alt="$t$-SNE plots of cells in the cluster containing the branch point of the MST in the Nestorowa dataset. Each point is a cell colored by the expression of a gene of interest and the relevant edges of the MST are overlaid on top." width="576" />
+<p class="caption">
+Figure 17.9: <span class="math inline">\(t\)</span>-SNE plots of cells in the cluster containing the branch point of the MST in the Nestorowa dataset. Each point is a cell colored by the expression of a gene of interest and the relevant edges of the MST are overlaid on top.
+</p>
+</div>
+<p>While simple and practical, this comparison strategy is even less statistically defensible than usual. The differential testing machinery is not suited to making inferences on the absence of differences, and we should not have used the non-significant genes to draw any conclusions. Another limitation is that this approach cannot detect differences in the magnitude of the gradient of the trend between paths; a gene that is significantly upregulated in each of two paths but with a sharper gradient in one of the paths will not be DE. (Of course, this is only a limitation if the pseudotimes were comparable in the first place.)</p>
+</div>
+<div id="further-comments-2" class="section level3">
+<h3><span class="header-section-number">17.3.4</span> Further comments</h3>
+<p>The magnitudes of the <span class="math inline">\(p\)</span>-values reported here should be treated with some skepticism. The same fundamental problems discussed in Section <a href="marker-detection.html#p-value-invalidity">11.5</a> remain; the <span class="math inline">\(p\)</span>-values are computed from the same data used to define the trajectory, and there is only a sample size of 1 in this analysis regardless of the number of cells. Nonetheless, the <span class="math inline">\(p\)</span>-value is still useful for prioritizing interesting genes in the same manner that it is used to identify markers between clusters.</p>
+<p>The previous sections have focused on a very simple and efficient - but largely effective - approach to trend fitting. Alternatively, we can use more complex strategies that involve various generalizations to the concept of linear models. For example, generalized additive models (GAMs) are quite popular for pseudotime-based DE analyses as they are able to handle non-normal noise distributions and a greater diversity of non-linear trends. We demonstrate the use of the GAM implementation from the <em><a href="https://bioconductor.org/packages/3.12/tradeSeq">tradeSeq</a></em> package on the Nestorowa dataset below. Specifically, we will take a leap of faith and assume that our pseudotime values are comparable across paths of the MST, allowing us to use the <code>patternTest()</code> function to test for significant differences in expression between paths.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Getting rid of the NA&#39;s; using the cell weights</span>
+<span class="co"># to indicate which cell belongs on which path.</span>
+nonna.pseudo &lt;-<span class="st"> </span>tscan.pseudo
+nonna.pseudo[<span class="kw">is.na</span>(nonna.pseudo)] &lt;-<span class="st"> </span><span class="dv">0</span>
+cell.weights &lt;-<span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(tscan.pseudo)
+<span class="kw">storage.mode</span>(cell.weights) &lt;-<span class="st"> &quot;numeric&quot;</span>
+
+<span class="co"># Fitting a GAM on the subset of genes for speed.</span>
+<span class="kw">library</span>(tradeSeq)
+fit &lt;-<span class="st"> </span><span class="kw">fitGAM</span>(<span class="kw">counts</span>(sce.nest)[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>,], 
+    <span class="dt">pseudotime=</span>nonna.pseudo,
+    <span class="dt">cellWeights=</span>cell.weights)
+
+res &lt;-<span class="st"> </span><span class="kw">patternTest</span>(fit)
+res<span class="op">$</span>Symbol &lt;-<span class="st"> </span><span class="kw">rowData</span>(sce.nest)[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>,<span class="st">&quot;SYMBOL&quot;</span>]
+res &lt;-<span class="st"> </span>res[<span class="kw">order</span>(res<span class="op">$</span>pvalue),]
+<span class="kw">head</span>(res, <span class="dv">10</span>)</code></pre></div>
+<pre><code>##                     waldStat df pvalue  fcMedian Symbol
+## ENSMUSG00000000028 272.78820  6      0 1.5227282  Cdc45
+## ENSMUSG00000000058 142.87726  6      0 1.6828836   Cav2
+## ENSMUSG00000000078 190.51655  6      0 0.9729204   Klf6
+## ENSMUSG00000000088 123.87411  6      0 0.5435416  Cox5a
+## ENSMUSG00000000184 214.92003  6      0 0.2201818  Ccnd2
+## ENSMUSG00000000247 110.18854  6      0 0.2690563   Lhx2
+## ENSMUSG00000000248 122.74330  6      0 1.1146978 Clec2g
+## ENSMUSG00000000278 202.47554  6      0 1.9992955 Scpep1
+## ENSMUSG00000000290  89.77732  6      0 0.6293415  Itgb2
+## ENSMUSG00000000303 123.02573  6      0 1.1249760   Cdh1</code></pre>
+<p>From a statistical perspective, the GAM is superior to linear models as the former uses the raw counts. This accounts for the idiosyncrasies of the mean-variance relationship for low counts and avoids some problems with spurious trajectories introduced by the log-transformation (Section <a href="normalization.html#normalization-transformation">7.5.1</a>). However, this sophistication comes at the cost of increased complexity and compute time, requiring parallelization via <em><a href="https://bioconductor.org/packages/3.12/BiocParallel">BiocParallel</a></em> even for relatively small datasets.</p>
+<p>When a trajectory consists of a series of clusters (as in the Nestorowa dataset), pseudotime-based DE tests can be considered a continuous generalization of cluster-based marker detection. One would expect to identify similar genes by performing an ANOVA on the per-cluster expression values, and indeed, this may be a more interpretable approach as it avoids imposing the assumption that a trajectory exists at all. The main benefit of pseudotime-based tests is that they encourage expression to be a smooth function of pseudotime, assuming that the degrees of freedom in the trend fit prevents overfitting. This smoothness reflects an expectation that changes in expression along a trajectory should be gradual.</p>
 </div>
 </div>
 <div id="finding-the-root" class="section level2">
 <h2><span class="header-section-number">17.4</span> Finding the root</h2>
-<div id="overview-7" class="section level3">
+<div id="overview-9" class="section level3">
 <h3><span class="header-section-number">17.4.1</span> Overview</h3>
+<p>The pseudotime calculations rely on some specification of the root of the trajectory to define &quot;position zero&quot;. In some cases, this choice has little effect beyond flipping the sign of the gradients of the DE genes. In other cases, this choice may necessarily arbitrary depending on the questions being asked, e.g., what are the genes driving the transition to or from a particular part of the trajectory? However, in situations where the trajectory is associated with a time-dependent biological process, the position on the trajectory corresponding to the earliest timepoint is clearly the best default choice for the root. This simplifies interpretation by allowing the pseudotime to be treated as a proxy for real time.</p>
+<!--
+The task of finding a root has some analogies in other fields such as phylogenetics,
+where practitioners typically root a tree using outgroups or midpoints.
+However, the problem here is fundamentally different; the ancestral nodes are not directly observed in phylogenetic trees
+whereas all states of a trajectory are present in a single-cell dataset.
+This precludes the use of existing phylogenetic methods (e.g., midpoint rooting makes little sense for a trajectory)
+and requires some more bespoke approaches that will be discussed below.
+-->
 </div>
 <div id="entropy-based-methods" class="section level3">
 <h3><span class="header-section-number">17.4.2</span> Entropy-based methods</h3>
+<p>Trajectories are commonly used to characterize differentiation where branches are interpreted as multiple lineages. In this setting, the root of the trajectory is best set to the &quot;start&quot; of the differentiation process, i.e., the most undifferentiated state that is observed in the dataset. It is usually possible to identify this state based on the genes that are expressed at each point of the trajectory. However, when such prior biological knowledge is not available, we can fall back to the more general concept that undifferentiated cells have more diverse expression profiles <span class="citation">(Gulati et al. <a href="#ref-gulati2020singlecell">2020</a>)</span>. The assumption is that terminally differentiated cells have expression profiles that are highly specialized for their function while multipotent cells have no such constraints - and indeed, may need to have active expression programs for many lineages in preparation for commitment to any of them.</p>
+<p>We quantify the diversity of expression by computing the entropy of the expression profile within each cell <span class="citation">(Grun et al. <a href="#ref-grun2016denovo">2016</a>; Guo et al. <a href="#ref-guo2017slice">2017</a>; Teschendorff and Enver <a href="#ref-teschendorff2017singlecell">2017</a>)</span>, with higher entropy corresponding to greater diversity and thus reduced differentiation. To demonstrate, we examine the entropies for each cluster in the Nestorowa HSC dataset (Figure <a href="trajectory-analysis.html#fig:entropy-nest">17.10</a>). We observe that clusters 2 and 6 have the highest entropies - note that the y-axis is flipped here - which suggests that they represent the least differentiated state within the trajectory. It is also reassuring that these two clusters are adjacent on the MST (Figure <a href="trajectory-analysis.html#fig:tscan-nest-tsne">17.1</a>), which is consistent with branched differentiation &quot;away&quot; from a single root.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(scuttle)
+nzero &lt;-<span class="st"> </span><span class="kw">whichNonZero</span>(<span class="kw">counts</span>(sce.nest)) 
+entropy &lt;-<span class="st"> </span><span class="op">-</span><span class="st"> </span>nzero<span class="op">$</span>x <span class="op">*</span><span class="st"> </span><span class="kw">log</span>(nzero<span class="op">$</span>x)
+entropy &lt;-<span class="st"> </span><span class="kw">by</span>(entropy, <span class="dt">INDICES=</span>nzero<span class="op">$</span>j, <span class="dt">FUN=</span>sum)
+
+ent.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">cluster=</span><span class="kw">colLabels</span>(sce.nest), 
+    <span class="dt">entropy=</span><span class="kw">as.vector</span>(entropy))
+<span class="kw">ggplot</span>(ent.data, <span class="kw">aes</span>(<span class="dt">x=</span>cluster, <span class="dt">y=</span><span class="op">-</span>entropy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_violin</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">scale_y_log10</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Negative entropy&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">stat_summary</span>(<span class="dt">fun=</span>median, <span class="dt">geom=</span><span class="st">&quot;point&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:entropy-nest"></span>
+<img src="trajectory_files/figure-html/entropy-nest-1.png" alt="Distribution of per-cell entropies for each cluster in the Nestorowa dataset. For visualization purposes, the negative entropy is shown on a log-scale. The median entropy for each cluster is shown as a point in the violin plot." width="672" />
+<p class="caption">
+Figure 17.10: Distribution of per-cell entropies for each cluster in the Nestorowa dataset. For visualization purposes, the negative entropy is shown on a log-scale. The median entropy for each cluster is shown as a point in the violin plot.
+</p>
+</div>
+<p>Of course, this interpretation is fully dependent on whether the underlying assumption is reasonable. While the association between diversity and differentiation potential is likely to be generally applicable, it may not be sufficiently precise to enable claims on the relative potency of closely related subpopulations. Other processes such as stress or metabolic responses may also introduce some interference to the entropy calculations.</p>
 </div>
 <div id="rna-velocity" class="section level3">
 <h3><span class="header-section-number">17.4.3</span> RNA velocity</h3>
+<p>Another strategy is to use the concept of &quot;RNA velocity&quot; to identify the root <span class="citation">(La Manno et al. <a href="#ref-lamanno2018rna">2018</a>)</span>. For a given gene, a high ratio of unspliced to spliced transcripts indicates that that gene is being actively upregulated, under the assumption that the increase in transcription exceeds the capability of the splicing machinery to process the pre-mRNA. Conversely, a low ratio indicates that the gene is being downregulated as the rate of production and processing of pre-mRNAs cannot compensate for the degradation of mature transcripts. Thus, we can infer that cells with high and low ratios are moving towards a high- and low-expression state, respectively, allowing us to assign temporal directionality to any trajectory (or even individual cells).</p>
+<p>To demonstrate, we will use matrices of spliced and unspliced counts from <strong>INSERT DATASET HERE</strong>. The spliced count matrix can be generated in the standard manner while the unspliced count matrix considers the entire genomic sequence of the nascent transcript. Conveniently, both matrices have the same shape and thus can be stored as separate assays in our usual <code>SingleCellExperiment</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(scuttle)
+sce1 &lt;-<span class="st"> </span><span class="kw">mockSCE</span>()
+sce2 &lt;-<span class="st"> </span><span class="kw">mockSCE</span>()
+
+exonic &lt;-<span class="st"> </span><span class="kw">counts</span>(sce1)
+unspliced &lt;-<span class="st"> </span><span class="kw">counts</span>(sce2)</code></pre></div>
+<p>We use the <a href="https://pypi.org/project/scvelo">scvelo</a> Python package <span class="citation">(Bergen et al. <a href="#ref-bergen2019generalizing">2019</a>)</span> to perform the velocity calculations. This offers some improvements over the original implementation by <span class="citation">La Manno et al. (<a href="#ref-lamanno2018rna">2018</a>)</span>, most notably eliminating the need for observed subpopulations at steady state (i.e., where the rates of transcription, splicing and degradation are equal). We use the <em><a href="https://bioconductor.org/packages/3.12/basilisk">basilisk</a></em> package to provision a Python environment with which we can run <a href="https://pypi.org/project/scvelo">scvelo</a> via <em><a href="https://CRAN.R-project.org/package=reticulate">reticulate</a></em>. We refer readers to the <a href="https://scvelo.readthedocs.io/">relevant documentation</a> for more details about the Python function calls.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(basilisk)
+<span class="kw">setupBasiliskEnv</span>(<span class="st">&quot;scvelo&quot;</span>, <span class="dt">packages=</span><span class="ot">NULL</span>, <span class="dt">pip=</span><span class="st">&quot;scvelo==0.2.1&quot;</span>)</code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">output &lt;-<span class="st"> </span><span class="kw">basiliskRun</span>(<span class="dt">env=</span><span class="st">&quot;scvelo&quot;</span>, <span class="dt">fun=</span><span class="cf">function</span>(exonic, unspliced) {
+    and &lt;-<span class="st"> </span>reticulate<span class="op">::</span><span class="kw">import</span>(<span class="st">&quot;anndata&quot;</span>)
+    scv &lt;-<span class="st"> </span>reticulate<span class="op">::</span><span class="kw">import</span>(<span class="st">&quot;scvelo&quot;</span>)
+
+    adata &lt;-<span class="st"> </span>and<span class="op">$</span><span class="kw">AnnData</span>(exonic, 
+        <span class="dt">layers=</span><span class="kw">list</span>(<span class="dt">spliced=</span>exonic, <span class="dt">unspliced=</span>unspliced))
+    scv<span class="op">$</span>pp<span class="op">$</span><span class="kw">filter_and_normalize</span>(adata)
+    scv<span class="op">$</span>pp<span class="op">$</span><span class="kw">moments</span>(adata) 
+
+    scv<span class="op">$</span>tl<span class="op">$</span><span class="kw">velocity</span>(adata, <span class="dt">mode=</span><span class="st">&#39;stochastic&#39;</span>)
+    scv<span class="op">$</span>tl<span class="op">$</span><span class="kw">velocity_graph</span>(adata)
+    scv<span class="op">$</span>tl<span class="op">$</span><span class="kw">velocity_pseudotime</span>(adata)
+
+    <span class="kw">list</span>(<span class="dt">pseudotime=</span>adata<span class="op">$</span>obs<span class="op">$</span>velocity_pseudotime,
+        <span class="dt">roots=</span>adata<span class="op">$</span>obs<span class="op">$</span>root_cells,
+        <span class="dt">endpoints=</span>adata<span class="op">$</span>obs<span class="op">$</span>end_points)
+}, <span class="dt">exonic=</span><span class="kw">counts</span>(sce1), <span class="dt">unspliced=</span><span class="kw">counts</span>(sce2))</code></pre></div>
+<p><strong>Say something about the results here when we actually get some data.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(output)</code></pre></div>
+<pre><code>## List of 3
+##  $ pseudotime: num [1:2000] 0.9081 0.9689 0.0226 0.853 0.9719 ...
+##  $ roots     : num [1:2000] 3.77e-08 2.18e-08 4.50e-01 3.26e-04 1.67e-08 ...
+##  $ endpoints : num [1:2000] 2.19e-01 6.57e-01 8.28e-08 9.57e-04 7.38e-01 ...</code></pre>
+<p>Needless to say, this lunch is not entirely free. The inferences rely on a somewhat sophisticated mathematical model that has a few assumptions, the most obvious of which being that the transcriptional dynamics are the same across different cell populations. The use of unspliced counts increases the sensitivity of the analysis to annotation errors, novel transcripts (e.g., microRNAs in the gene body) and intron retention events that could interfere with the velocity calculations. There is also the question of whether there is enough intronic coverage to reliably estimate the velocity for each gene, and if not, whether the lack of information for important genes may bias the resulting velocity estimates. (From a purely practical perspective, the main difficulty with RNA velocity is that the unspliced counts are often unavailable. This is perhaps unsurprising as users need to go out of their way to generate it from the raw sequencing data.)</p>
+<!--
+The most obvious example of a bias is a trajectory driven by a few genes, all of which lack intronic counts. 
+What happens then?
+The trajectory is still there but who knows where the arrows might point?
+-->
+</div>
+<div id="real-timepoints" class="section level3">
+<h3><span class="header-section-number">17.4.4</span> Real timepoints</h3>
+<p>There does, however, exist a gold-standard approach to rooting a trajectory: simply collect multiple real-life timepoints over the course of a biological process and use the population(s) at the earliest time point as the root. This approach experimentally defines a link between pseudotime and real time without requiring any further assumptions. To demonstrate, we will use the activated T cell dataset from <span class="citation">Richard et al. (<a href="#ref-richard2018tcell">2018</a>)</span> where they collected CD8<sup>+</sup> T cells at various time points after ovalbumin stimulation.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(scRNAseq)
+sce.richard &lt;-<span class="st"> </span><span class="kw">RichardTCellData</span>()
+sce.richard &lt;-<span class="st"> </span>sce.richard[,sce.richard<span class="op">$</span><span class="st">`</span><span class="dt">single cell quality</span><span class="st">`</span><span class="op">==</span><span class="st">&quot;OK&quot;</span>]
+
+<span class="co"># Only using cells treated with the highest affinity peptide </span>
+<span class="co"># plus the unstimulated cells as time zero.</span>
+sub.richard &lt;-<span class="st"> </span>sce.richard[,sce.richard<span class="op">$</span>stimulus <span class="op">%in%</span>
+<span class="st">    </span><span class="kw">c</span>(<span class="st">&quot;OT-I high affinity peptide N4 (SIINFEKL)&quot;</span>, <span class="st">&quot;unstimulated&quot;</span>)]
+sub.richard<span class="op">$</span>time[<span class="kw">is.na</span>(sub.richard<span class="op">$</span>time)] &lt;-<span class="st"> </span><span class="dv">0</span>
+<span class="kw">table</span>(sub.richard<span class="op">$</span>time)</code></pre></div>
+<pre><code>## 
+##  0  1  3  6 
+## 44 51 64 91</code></pre>
+<p>We run through the standard workflow for single-cell data with spike-ins - see Sections <a href="normalization.html#spike-norm">7.4</a> and <a href="feature-selection.html#sec:spikeins">8.2.3</a> for more details.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sub.richard &lt;-<span class="st"> </span><span class="kw">computeSpikeFactors</span>(sub.richard, <span class="st">&quot;ERCC&quot;</span>)
+sub.richard &lt;-<span class="st"> </span><span class="kw">logNormCounts</span>(sub.richard)
+dec.richard &lt;-<span class="st"> </span><span class="kw">modelGeneVarWithSpikes</span>(sub.richard, <span class="st">&quot;ERCC&quot;</span>)
+top.hvgs &lt;-<span class="st"> </span><span class="kw">getTopHVGs</span>(dec.richard, <span class="dt">prop=</span><span class="fl">0.2</span>)
+sub.richard &lt;-<span class="st"> </span><span class="kw">denoisePCA</span>(sub.richard, <span class="dt">technical=</span>dec.richard, <span class="dt">subset.row=</span>top.hvgs)</code></pre></div>
+<p>We can then run our trajectory inference method of choice. As we expecting a fairly simple trajectory, we will keep matters simple and use <code>slingshot()</code> without any clusters. This yields a pseudotime that is strongly associated with real time (Figure <a href="trajectory-analysis.html#fig:tcell-pseudotime">17.11</a>) and from which it is straightforward to identify the best location of the root. The rooted trajectory can then be used to determine the &quot;real time equivalent&quot; of other activation stimuli, see <span class="citation">Richard et al. (<a href="#ref-richard2018tcell">2018</a>)</span> for more details.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sub.richard &lt;-<span class="st"> </span><span class="kw">slingshot</span>(sub.richard, <span class="dt">reducedDim=</span><span class="st">&quot;PCA&quot;</span>)
+<span class="kw">plot</span>(sub.richard<span class="op">$</span>time, sub.richard<span class="op">$</span>slingPseudotime_<span class="dv">1</span>, 
+    <span class="dt">xlab=</span><span class="st">&quot;Time (hours)&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Pseudotime&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:tcell-pseudotime"></span>
+<img src="trajectory_files/figure-html/tcell-pseudotime-1.png" alt="Pseudotime as a function of real time in the Richard T cell dataset." width="672" />
+<p class="caption">
+Figure 17.11: Pseudotime as a function of real time in the Richard T cell dataset.
+</p>
+</div>
+<p>Of course, this strategy relies on careful experimental design to ensure that multiple timepoints are actually collected. This requires more planning and resources (i.e., cost!) and is frequently absent from many scRNA-seq studies that only consider a single &quot;snapshot&quot; of the system. Generation of multiple timepoints also requires an amenable experimental system where the initiation of the process of interest can be tightly controlled. This is often more complex to set up than a strictly observational study, though having causal information arguably makes the data more useful for making inferences.</p>
 </div>
 </div>
 <div id="session-information" class="section level2 unnumbered">
@@ -1008,65 +1218,118 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] viridis_0.5.1               viridisLite_0.3.0          
- [3] RColorBrewer_1.1-2          slingshot_1.7.0            
- [5] princurve_2.1.4             scater_1.17.0              
- [7] ggplot2_3.3.0               SingleCellExperiment_1.11.1
- [9] SummarizedExperiment_1.19.2 DelayedArray_0.15.1        
-[11] matrixStats_0.56.0          Biobase_2.49.0             
-[13] GenomicRanges_1.41.1        GenomeInfoDb_1.25.0        
-[15] IRanges_2.23.4              S4Vectors_0.27.4           
-[17] BiocGenerics_0.35.1         OSCAUtils_0.0.2            
-[19] BiocStyle_2.17.0           
+ [1] ensembldb_2.13.1            AnnotationFilter_1.13.0    
+ [3] GenomicFeatures_1.41.0      AnnotationDbi_1.51.0       
+ [5] scRNAseq_2.3.2              basilisk_1.1.8             
+ [7] tradeSeq_1.3.08             viridis_0.5.1              
+ [9] viridisLite_0.3.0           RColorBrewer_1.1-2         
+[11] slingshot_1.7.0             princurve_2.1.4            
+[13] scran_1.17.1                scater_1.17.1              
+[15] ggplot2_3.3.1               scuttle_0.99.8             
+[17] SingleCellExperiment_1.11.2 SummarizedExperiment_1.19.4
+[19] DelayedArray_0.15.1         matrixStats_0.56.0         
+[21] Biobase_2.49.0              GenomicRanges_1.41.1       
+[23] GenomeInfoDb_1.25.0         IRanges_2.23.6             
+[25] S4Vectors_0.27.10           BiocGenerics_0.35.2        
+[27] rebook_0.99.0               BiocStyle_2.17.0           
 
 loaded via a namespace (and not attached):
- [1] BiocSingular_1.5.0        DelayedMatrixStats_1.11.0
- [3] assertthat_0.2.1          BiocManager_1.30.10      
- [5] highr_0.8                 GenomeInfoDbData_1.2.3   
- [7] vipor_0.4.5               yaml_2.2.1               
- [9] pillar_1.4.4              lattice_0.20-41          
-[11] glue_1.4.0                digest_0.6.25            
-[13] XVector_0.29.0            colorspace_1.4-1         
-[15] cowplot_1.0.0             htmltools_0.4.0          
-[17] Matrix_1.2-18             pkgconfig_2.0.3          
-[19] bookdown_0.18             zlibbioc_1.35.0          
-[21] purrr_0.3.4               scales_1.1.0             
-[23] processx_3.4.2            RSpectra_0.16-0          
-[25] BiocParallel_1.23.0       tibble_3.0.1             
-[27] farver_2.0.3              ellipsis_0.3.0           
-[29] withr_2.2.0               magrittr_1.5             
-[31] crayon_1.3.4              evaluate_0.14            
-[33] ps_1.3.2                  nlme_3.1-147             
-[35] FNN_1.1.3                 beeswarm_0.2.3           
-[37] tools_4.0.0               lifecycle_0.2.0          
-[39] stringr_1.4.0             munsell_0.5.0            
-[41] irlba_2.3.3               callr_3.4.3              
-[43] compiler_4.0.0            rsvd_1.0.3               
-[45] rlang_0.4.6               grid_4.0.0               
-[47] RCurl_1.98-1.2            BiocNeighbors_1.7.0      
-[49] igraph_1.2.5              bitops_1.0-6             
-[51] labeling_0.3              rmarkdown_2.1            
-[53] gtable_0.3.0              codetools_0.2-16         
-[55] R6_2.4.1                  gridExtra_2.3            
-[57] knitr_1.28                dplyr_0.8.5              
-[59] uwot_0.1.8                ape_5.3                  
-[61] stringi_1.4.6             ggbeeswarm_0.6.0         
-[63] Rcpp_1.0.4.6              vctrs_0.2.4              
-[65] tidyselect_1.0.0          xfun_0.13                </code></pre>
+  [1] AnnotationHub_2.21.0          BiocFileCache_1.13.0         
+  [3] igraph_1.2.5                  lazyeval_0.2.2               
+  [5] splines_4.0.0                 BiocParallel_1.23.0          
+  [7] digest_0.6.25                 htmltools_0.4.0              
+  [9] magrittr_1.5                  memoise_1.1.0                
+ [11] limma_3.45.0                  Biostrings_2.57.1            
+ [13] askpass_1.1                   prettyunits_1.1.1            
+ [15] colorspace_1.4-1              blob_1.2.1                   
+ [17] rappdirs_0.3.1                xfun_0.14                    
+ [19] dplyr_1.0.0                   callr_3.4.3                  
+ [21] crayon_1.3.4                  RCurl_1.98-1.2               
+ [23] jsonlite_1.6.1                graph_1.67.1                 
+ [25] ape_5.4                       glue_1.4.1                   
+ [27] gtable_0.3.0                  zlibbioc_1.35.0              
+ [29] XVector_0.29.1                BiocSingular_1.5.0           
+ [31] scales_1.1.1                  DBI_1.1.0                    
+ [33] edgeR_3.31.1                  Rcpp_1.0.4.6                 
+ [35] xtable_1.8-4                  progress_1.2.2               
+ [37] reticulate_1.16               dqrng_0.2.1                  
+ [39] bit_1.1-15.2                  rsvd_1.0.3                   
+ [41] httr_1.4.1                    FNN_1.1.3                    
+ [43] ellipsis_0.3.1                pkgconfig_2.0.3              
+ [45] XML_3.99-0.3                  farver_2.0.3                 
+ [47] CodeDepends_0.6.5             uwot_0.1.8                   
+ [49] dbplyr_1.4.4                  locfit_1.5-9.4               
+ [51] tidyselect_1.1.0              labeling_0.3                 
+ [53] rlang_0.4.6                   later_1.0.0                  
+ [55] munsell_0.5.0                 BiocVersion_3.12.0           
+ [57] tools_4.0.0                   generics_0.0.2               
+ [59] RSQLite_2.2.0                 ExperimentHub_1.15.0         
+ [61] evaluate_0.14                 stringr_1.4.0                
+ [63] fastmap_1.0.1                 yaml_2.2.1                   
+ [65] processx_3.4.2                knitr_1.28                   
+ [67] bit64_0.9-7                   purrr_0.3.4                  
+ [69] pbapply_1.4-2                 nlme_3.1-148                 
+ [71] mime_0.9                      biomaRt_2.45.0               
+ [73] compiler_4.0.0                beeswarm_0.2.3               
+ [75] curl_4.3                      interactiveDisplayBase_1.27.5
+ [77] tibble_3.0.1                  statmod_1.4.34               
+ [79] stringi_1.4.6                 highr_0.8                    
+ [81] basilisk.utils_1.1.7          ps_1.3.3                     
+ [83] RSpectra_0.16-0               lattice_0.20-41              
+ [85] ProtGenerics_1.21.0           Matrix_1.2-18                
+ [87] vctrs_0.3.0                   pillar_1.4.4                 
+ [89] lifecycle_0.2.0               BiocManager_1.30.10          
+ [91] BiocNeighbors_1.7.0           cowplot_1.0.0                
+ [93] bitops_1.0-6                  irlba_2.3.3                  
+ [95] rtracklayer_1.49.2            httpuv_1.5.3.1               
+ [97] R6_2.4.1                      bookdown_0.19                
+ [99] promises_1.1.0                gridExtra_2.3                
+[101] vipor_0.4.5                   codetools_0.2-16             
+[103] assertthat_0.2.1              openssl_1.4.1                
+[105] withr_2.2.0                   GenomicAlignments_1.25.1     
+[107] Rsamtools_2.5.1               GenomeInfoDbData_1.2.3       
+[109] mgcv_1.8-31                   hms_0.5.3                    
+[111] grid_4.0.0                    rmarkdown_2.2                
+[113] DelayedMatrixStats_1.11.0     shiny_1.4.0.2                
+[115] ggbeeswarm_0.6.0             </code></pre>
 </div>
 
 </div>
 </div>
 <h3> Bibliography</h3>
 <div id="refs" class="references">
+<div id="ref-bergen2019generalizing">
+<p>Bergen, Volker, Marius Lange, Stefan Peidli, F. Alexander Wolf, and Fabian J. Theis. 2019. “Generalizing Rna Velocity to Transient Cell States Through Dynamical Modeling.” <em>bioRxiv</em>. Cold Spring Harbor Laboratory. doi:<a href="https://doi.org/10.1101/820936">10.1101/820936</a>.</p>
+</div>
+<div id="ref-grun2016denovo">
+<p>Grun, D., M. J. Muraro, J. C. Boisset, K. Wiebrands, A. Lyubimova, G. Dharmadhikari, M. van den Born, et al. 2016. “De Novo Prediction of Stem Cell Identity using Single-Cell Transcriptome Data.” <em>Cell Stem Cell</em> 19 (2): 266–77.</p>
+</div>
+<div id="ref-gulati2020singlecell">
+<p>Gulati, G. S., S. S. Sikandar, D. J. Wesche, A. Manjunath, A. Bharadwaj, M. J. Berger, F. Ilagan, et al. 2020. “Single-cell transcriptional diversity is a hallmark of developmental potential.” <em>Science</em> 367 (6476): 405–11.</p>
+</div>
+<div id="ref-guo2017slice">
+<p>Guo, M., E. L. Bao, M. Wagner, J. A. Whitsett, and Y. Xu. 2017. “SLICE: determining cell differentiation and lineage based on single cell entropy.” <em>Nucleic Acids Res.</em> 45 (7): e54.</p>
+</div>
 <div id="ref-hastie1989principal">
 <p>Hastie, T., and W. Stuetzle. 1989. “Principal Curves.” <em>J Am Stat Assoc</em> 84 (406): 502–16.</p>
+</div>
+<div id="ref-lamanno2018rna">
+<p>La Manno, G., R. Soldatov, A. Zeisel, E. Braun, H. Hochgerner, V. Petukhov, K. Lidschreiber, et al. 2018. “RNA velocity of single cells.” <em>Nature</em> 560 (7719): 494–98.</p>
 </div>
 <div id="ref-nestorowa2016singlecell">
 <p>Nestorowa, S., F. K. Hamey, B. Pijuan Sala, E. Diamanti, M. Shepherd, E. Laurenti, N. K. Wilson, D. G. Kent, and B. Gottgens. 2016. “A single-cell resolution map of mouse hematopoietic stem and progenitor cell differentiation.” <em>Blood</em> 128 (8): 20–31.</p>
 </div>
+<div id="ref-richard2018tcell">
+<p>Richard, A. C., A. T. L. Lun, W. W. Y. Lau, B. Gottgens, J. C. Marioni, and G. M. Griffiths. 2018. “T cell cytolytic capacity is independent of initial stimulation strength.” <em>Nat. Immunol.</em> 19 (8): 849–58.</p>
+</div>
+<div id="ref-sealens2019comparison">
+<p>Saelens, W., R. Cannoodt, H. Todorov, and Y. Saeys. 2019. “A comparison of single-cell trajectory inference methods.” <em>Nat. Biotechnol.</em> 37 (5): 547–54.</p>
+</div>
 <div id="ref-street2018slingshot">
 <p>Street, K., D. Risso, R. B. Fletcher, D. Das, J. Ngai, N. Yosef, E. Purdom, and S. Dudoit. 2018. “Slingshot: cell lineage and pseudotime inference for single-cell transcriptomics.” <em>BMC Genomics</em> 19 (1): 477.</p>
+</div>
+<div id="ref-teschendorff2017singlecell">
+<p>Teschendorff, A. E., and T. Enver. 2017. “Single-cell entropy for accurate estimation of differentiation potency from a cell’s transcriptome.” <em>Nat Commun</em> 8 (June): 15599.</p>
 </div>
 </div>
             </section>

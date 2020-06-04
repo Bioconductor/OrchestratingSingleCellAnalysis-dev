@@ -5,25 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 13 Integrating Datasets | Orchestrating Single-Cell Analysis with Bioconductor</title>
-  <meta name="description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 13 Integrating Datasets | Orchestrating Single-Cell Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
+  <meta property="og:description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 13 Integrating Datasets | Orchestrating Single-Cell Analysis with Bioconductor" />
   
-  <meta name="twitter:description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
+  <meta name="twitter:description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
   
 
 
 
-<meta name="date" content="2020-05-07" />
+<meta name="date" content="2020-06-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -112,7 +112,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.1.1" data-path="introduction.html"><a href="introduction.html#preliminaries"><i class="fa fa-check"></i><b>1.1.1</b> Preliminaries</a></li>
 <li class="chapter" data-level="1.1.2" data-path="introduction.html"><a href="introduction.html#workflows"><i class="fa fa-check"></i><b>1.1.2</b> Workflows</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#what-you-wont-learn"><i class="fa fa-check"></i><b>1.2</b> What you won’t learn</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#what-you-wont-learn"><i class="fa fa-check"></i><b>1.2</b> What you won't learn</a></li>
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#who-we-wrote-this-for"><i class="fa fa-check"></i><b>1.3</b> Who we wrote this for</a></li>
 <li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#why-we-wrote-this"><i class="fa fa-check"></i><b>1.4</b> Why we wrote this</a></li>
 <li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#acknowledgements"><i class="fa fa-check"></i><b>1.5</b> Acknowledgements</a></li>
@@ -227,19 +227,18 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.3.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#based-on-population-structure"><i class="fa fa-check"></i><b>9.3.4</b> Based on population structure</a></li>
 <li class="chapter" data-level="9.3.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#putting-it-together"><i class="fa fa-check"></i><b>9.3.5</b> Putting it together</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#non-negative-matrix-factorization"><i class="fa fa-check"></i><b>9.4</b> Non-negative matrix factorization</a></li>
-<li class="chapter" data-level="9.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction-for-visualization"><i class="fa fa-check"></i><b>9.5</b> Dimensionality reduction for visualization</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#motivation-3"><i class="fa fa-check"></i><b>9.5.1</b> Motivation</a></li>
-<li class="chapter" data-level="9.5.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizing-with-pca"><i class="fa fa-check"></i><b>9.5.2</b> Visualizing with PCA</a></li>
-<li class="chapter" data-level="9.5.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#t-stochastic-neighbor-embedding"><i class="fa fa-check"></i><b>9.5.3</b> <span class="math inline">\(t\)</span>-stochastic neighbor embedding</a></li>
-<li class="chapter" data-level="9.5.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection"><i class="fa fa-check"></i><b>9.5.4</b> Uniform manifold approximation and projection</a></li>
-<li class="chapter" data-level="9.5.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualization-interpretation"><i class="fa fa-check"></i><b>9.5.5</b> Interpreting the plots</a></li>
+<li class="chapter" data-level="9.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction-for-visualization"><i class="fa fa-check"></i><b>9.4</b> Dimensionality reduction for visualization</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#motivation-3"><i class="fa fa-check"></i><b>9.4.1</b> Motivation</a></li>
+<li class="chapter" data-level="9.4.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizing-with-pca"><i class="fa fa-check"></i><b>9.4.2</b> Visualizing with PCA</a></li>
+<li class="chapter" data-level="9.4.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#t-stochastic-neighbor-embedding"><i class="fa fa-check"></i><b>9.4.3</b> <span class="math inline">\(t\)</span>-stochastic neighbor embedding</a></li>
+<li class="chapter" data-level="9.4.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection"><i class="fa fa-check"></i><b>9.4.4</b> Uniform manifold approximation and projection</a></li>
+<li class="chapter" data-level="9.4.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualization-interpretation"><i class="fa fa-check"></i><b>9.4.5</b> Interpreting the plots</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#session-info-4"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>10</b> Clustering</a><ul>
 <li class="chapter" data-level="10.1" data-path="clustering.html"><a href="clustering.html#motivation-4"><i class="fa fa-check"></i><b>10.1</b> Motivation</a></li>
-<li class="chapter" data-level="10.2" data-path="clustering.html"><a href="clustering.html#what-is-the-true-clustering"><i class="fa fa-check"></i><b>10.2</b> What is the “true clustering”?</a></li>
+<li class="chapter" data-level="10.2" data-path="clustering.html"><a href="clustering.html#what-is-the-true-clustering"><i class="fa fa-check"></i><b>10.2</b> What is the &quot;true clustering&quot;?</a></li>
 <li class="chapter" data-level="10.3" data-path="clustering.html"><a href="clustering.html#clustering-graph"><i class="fa fa-check"></i><b>10.3</b> Graph-based clustering</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="clustering.html"><a href="clustering.html#background-3"><i class="fa fa-check"></i><b>10.3.1</b> Background</a></li>
 <li class="chapter" data-level="10.3.2" data-path="clustering.html"><a href="clustering.html#implementation"><i class="fa fa-check"></i><b>10.3.2</b> Implementation</a></li>
@@ -278,7 +277,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.4.1" data-path="marker-detection.html"><a href="marker-detection.html#using-the-block-argument"><i class="fa fa-check"></i><b>11.4.1</b> Using the <code>block=</code> argument</a></li>
 <li class="chapter" data-level="11.4.2" data-path="marker-detection.html"><a href="marker-detection.html#using-the-design-argument"><i class="fa fa-check"></i><b>11.4.2</b> Using the <code>design=</code> argument</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="marker-detection.html"><a href="marker-detection.html#invalidity-of-p-values"><i class="fa fa-check"></i><b>11.5</b> Invalidity of <span class="math inline">\(p\)</span>-values</a><ul>
+<li class="chapter" data-level="11.5" data-path="marker-detection.html"><a href="marker-detection.html#p-value-invalidity"><i class="fa fa-check"></i><b>11.5</b> Invalidity of <span class="math inline">\(p\)</span>-values</a><ul>
 <li class="chapter" data-level="11.5.1" data-path="marker-detection.html"><a href="marker-detection.html#from-data-snooping"><i class="fa fa-check"></i><b>11.5.1</b> From data snooping</a></li>
 <li class="chapter" data-level="11.5.2" data-path="marker-detection.html"><a href="marker-detection.html#false-replicates"><i class="fa fa-check"></i><b>11.5.2</b> Nature of replication</a></li>
 </ul></li>
@@ -360,18 +359,22 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="17" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html"><i class="fa fa-check"></i><b>17</b> Trajectory Analysis</a><ul>
 <li class="chapter" data-level="17.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-6"><i class="fa fa-check"></i><b>17.1</b> Overview</a></li>
-<li class="chapter" data-level="17.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#obtaining-pseudo-times"><i class="fa fa-check"></i><b>17.2</b> Obtaining pseudo-times</a><ul>
-<li class="chapter" data-level="17.2.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#cluster-based-minimum-spanning-tree"><i class="fa fa-check"></i><b>17.2.1</b> Cluster-based minimum spanning tree</a></li>
-<li class="chapter" data-level="17.2.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#principal-curves"><i class="fa fa-check"></i><b>17.2.2</b> Principal curves</a></li>
+<li class="chapter" data-level="17.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#obtaining-pseudotime-orderings"><i class="fa fa-check"></i><b>17.2</b> Obtaining pseudotime orderings</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-7"><i class="fa fa-check"></i><b>17.2.1</b> Overview</a></li>
+<li class="chapter" data-level="17.2.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#cluster-based-minimum-spanning-tree"><i class="fa fa-check"></i><b>17.2.2</b> Cluster-based minimum spanning tree</a></li>
+<li class="chapter" data-level="17.2.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#principal-curves"><i class="fa fa-check"></i><b>17.2.3</b> Principal curves</a></li>
 </ul></li>
 <li class="chapter" data-level="17.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#characterizing-trajectories"><i class="fa fa-check"></i><b>17.3</b> Characterizing trajectories</a><ul>
-<li class="chapter" data-level="17.3.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-along-a-trajectory"><i class="fa fa-check"></i><b>17.3.1</b> Changes along a trajectory</a></li>
-<li class="chapter" data-level="17.3.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-between-lineages"><i class="fa fa-check"></i><b>17.3.2</b> Changes between lineages</a></li>
+<li class="chapter" data-level="17.3.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-8"><i class="fa fa-check"></i><b>17.3.1</b> Overview</a></li>
+<li class="chapter" data-level="17.3.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-along-a-trajectory"><i class="fa fa-check"></i><b>17.3.2</b> Changes along a trajectory</a></li>
+<li class="chapter" data-level="17.3.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-between-paths"><i class="fa fa-check"></i><b>17.3.3</b> Changes between paths</a></li>
+<li class="chapter" data-level="17.3.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#further-comments-2"><i class="fa fa-check"></i><b>17.3.4</b> Further comments</a></li>
 </ul></li>
 <li class="chapter" data-level="17.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#finding-the-root"><i class="fa fa-check"></i><b>17.4</b> Finding the root</a><ul>
-<li class="chapter" data-level="17.4.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-7"><i class="fa fa-check"></i><b>17.4.1</b> Overview</a></li>
+<li class="chapter" data-level="17.4.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-9"><i class="fa fa-check"></i><b>17.4.1</b> Overview</a></li>
 <li class="chapter" data-level="17.4.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#entropy-based-methods"><i class="fa fa-check"></i><b>17.4.2</b> Entropy-based methods</a></li>
 <li class="chapter" data-level="17.4.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#rna-velocity"><i class="fa fa-check"></i><b>17.4.3</b> RNA velocity</a></li>
+<li class="chapter" data-level="17.4.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#real-timepoints"><i class="fa fa-check"></i><b>17.4.4</b> Real timepoints</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#session-information"><i class="fa fa-check"></i>Session information</a></li>
 </ul></li>
@@ -392,15 +395,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="19" data-path="repertoire-seq.html"><a href="repertoire-seq.html"><i class="fa fa-check"></i><b>19</b> Analyzing repertoire sequencing data</a><ul>
 <li class="chapter" data-level="19.1" data-path="repertoire-seq.html"><a href="repertoire-seq.html#motivation-12"><i class="fa fa-check"></i><b>19.1</b> Motivation</a></li>
-<li class="chapter" data-level="19.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#analyzing-the-t-cell-receptor-repertoire"><i class="fa fa-check"></i><b>19.2</b> Analyzing the T cell receptor repertoire</a><ul>
-<li class="chapter" data-level="19.2.1" data-path="repertoire-seq.html"><a href="repertoire-seq.html#data-processing"><i class="fa fa-check"></i><b>19.2.1</b> Data processing</a></li>
-<li class="chapter" data-level="19.2.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#basic-diagnostics"><i class="fa fa-check"></i><b>19.2.2</b> Basic diagnostics</a></li>
-<li class="chapter" data-level="19.2.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#complex-diagnostics"><i class="fa fa-check"></i><b>19.2.3</b> Complex diagnostics</a></li>
-<li class="chapter" data-level="19.2.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#quantifying-clonal-expansion"><i class="fa fa-check"></i><b>19.2.4</b> Quantifying clonal expansion</a></li>
-<li class="chapter" data-level="19.2.5" data-path="repertoire-seq.html"><a href="repertoire-seq.html#quantifying-gene-expression-and-properties"><i class="fa fa-check"></i><b>19.2.5</b> Quantifying gene expression and properties</a></li>
-</ul></li>
-<li class="chapter" data-level="19.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#analyzing-the-immunoglobulin-repertoire"><i class="fa fa-check"></i><b>19.3</b> Analyzing the immunoglobulin repertoire</a></li>
-<li class="chapter" data-level="19.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#multi-sample-analyses"><i class="fa fa-check"></i><b>19.4</b> Multi-sample analyses</a></li>
+<li class="chapter" data-level="19.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#loading-the-tcr-repertoire"><i class="fa fa-check"></i><b>19.2</b> Loading the TCR repertoire</a></li>
+<li class="chapter" data-level="19.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#leveraging-list-semantics"><i class="fa fa-check"></i><b>19.3</b> Leveraging <code>List</code> semantics</a></li>
+<li class="chapter" data-level="19.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#converting-back-to-dataframes"><i class="fa fa-check"></i><b>19.4</b> Converting back to <code>DataFrame</code>s</a></li>
+<li class="chapter" data-level="19.5" data-path="repertoire-seq.html"><a href="repertoire-seq.html#case-study-for-clonotype-analyses"><i class="fa fa-check"></i><b>19.5</b> Case study for clonotype analyses</a></li>
+<li class="chapter" data-level="19.6" data-path="repertoire-seq.html"><a href="repertoire-seq.html#repeating-for-immunoglobulins"><i class="fa fa-check"></i><b>19.6</b> Repeating for immunoglobulins</a></li>
 <li class="chapter" data-level="" data-path="repertoire-seq.html"><a href="repertoire-seq.html#session-info-13"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="interactive-sharing.html"><a href="interactive-sharing.html"><i class="fa fa-check"></i><b>20</b> Interactive data exploration</a><ul>
@@ -478,16 +477,14 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="26.8" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#data-integration"><i class="fa fa-check"></i><b>26.8</b> Data integration</a></li>
 <li class="chapter" data-level="" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#session-info-20"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="27" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html"><i class="fa fa-check"></i><b>27</b> Human PBMC 10X dataset (surface proteins)</a><ul>
-<li class="chapter" data-level="27.1" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#introduction-7"><i class="fa fa-check"></i><b>27.1</b> Introduction</a></li>
-<li class="chapter" data-level="27.2" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#analysis-code"><i class="fa fa-check"></i><b>27.2</b> Analysis code</a><ul>
-<li class="chapter" data-level="27.2.1" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#data-loading-4"><i class="fa fa-check"></i><b>27.2.1</b> Data loading</a></li>
-<li class="chapter" data-level="27.2.2" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#quality-control-7"><i class="fa fa-check"></i><b>27.2.2</b> Quality control</a></li>
-<li class="chapter" data-level="27.2.3" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#normalization-6"><i class="fa fa-check"></i><b>27.2.3</b> Normalization</a></li>
-<li class="chapter" data-level="27.2.4" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#dimensionality-reduction-5"><i class="fa fa-check"></i><b>27.2.4</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="27.2.5" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#clustering-5"><i class="fa fa-check"></i><b>27.2.5</b> Clustering</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#session-info-21"><i class="fa fa-check"></i>Session Info</a></li>
+<li class="chapter" data-level="27" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html"><i class="fa fa-check"></i><b>27</b> Human PBMC with surface proteins (10X Genomics)</a><ul>
+<li class="chapter" data-level="27.1" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#introduction-7"><i class="fa fa-check"></i><b>27.1</b> Introduction</a></li>
+<li class="chapter" data-level="27.2" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#data-loading-4"><i class="fa fa-check"></i><b>27.2</b> Data loading</a></li>
+<li class="chapter" data-level="27.3" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#quality-control-7"><i class="fa fa-check"></i><b>27.3</b> Quality control</a></li>
+<li class="chapter" data-level="27.4" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#normalization-6"><i class="fa fa-check"></i><b>27.4</b> Normalization</a></li>
+<li class="chapter" data-level="27.5" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#dimensionality-reduction-5"><i class="fa fa-check"></i><b>27.5</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="27.6" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#clustering-5"><i class="fa fa-check"></i><b>27.6</b> Clustering</a></li>
+<li class="chapter" data-level="" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#session-info-21"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="28" data-path="grun-human-pancreas-cel-seq2.html"><a href="grun-human-pancreas-cel-seq2.html"><i class="fa fa-check"></i><b>28</b> Grun human pancreas (CEL-seq2)</a><ul>
 <li class="chapter" data-level="28.1" data-path="grun-human-pancreas-cel-seq2.html"><a href="grun-human-pancreas-cel-seq2.html#introduction-8"><i class="fa fa-check"></i><b>28.1</b> Introduction</a></li>
@@ -504,12 +501,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="29.1" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#introduction-9"><i class="fa fa-check"></i><b>29.1</b> Introduction</a></li>
 <li class="chapter" data-level="29.2" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-loading-6"><i class="fa fa-check"></i><b>29.2</b> Data loading</a></li>
 <li class="chapter" data-level="29.3" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#quality-control-9"><i class="fa fa-check"></i><b>29.3</b> Quality control</a></li>
-<li class="chapter" data-level="29.4" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#normalization-8"><i class="fa fa-check"></i><b>29.4</b> Normalization</a><ul>
-<li class="chapter" data-level="29.4.1" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#variance-modelling-5"><i class="fa fa-check"></i><b>29.4.1</b> Variance modelling</a></li>
-</ul></li>
-<li class="chapter" data-level="29.5" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-integration-2"><i class="fa fa-check"></i><b>29.5</b> Data integration</a></li>
-<li class="chapter" data-level="29.6" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#dimensionality-reduction-7"><i class="fa fa-check"></i><b>29.6</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="29.7" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#clustering-7"><i class="fa fa-check"></i><b>29.7</b> Clustering</a></li>
+<li class="chapter" data-level="29.4" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#normalization-8"><i class="fa fa-check"></i><b>29.4</b> Normalization</a></li>
+<li class="chapter" data-level="29.5" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#variance-modelling-5"><i class="fa fa-check"></i><b>29.5</b> Variance modelling</a></li>
+<li class="chapter" data-level="29.6" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-integration-2"><i class="fa fa-check"></i><b>29.6</b> Data integration</a></li>
+<li class="chapter" data-level="29.7" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#dimensionality-reduction-7"><i class="fa fa-check"></i><b>29.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="29.8" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#clustering-7"><i class="fa fa-check"></i><b>29.8</b> Clustering</a></li>
 <li class="chapter" data-level="" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#session-info-23"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="30" data-path="lawlor-human-pancreas-smarter.html"><a href="lawlor-human-pancreas-smarter.html"><i class="fa fa-check"></i><b>30</b> Lawlor human pancreas (SMARTer)</a><ul>
@@ -525,12 +521,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="31" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html"><i class="fa fa-check"></i><b>31</b> Segerstolpe human pancreas (Smart-seq2)</a><ul>
 <li class="chapter" data-level="31.1" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#introduction-11"><i class="fa fa-check"></i><b>31.1</b> Introduction</a></li>
 <li class="chapter" data-level="31.2" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#data-loading-8"><i class="fa fa-check"></i><b>31.2</b> Data loading</a></li>
-<li class="chapter" data-level="31.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#quality-control-11"><i class="fa fa-check"></i><b>31.3</b> Quality control</a><ul>
-<li class="chapter" data-level="31.3.1" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#normalization-10"><i class="fa fa-check"></i><b>31.3.1</b> Normalization</a></li>
-<li class="chapter" data-level="31.3.2" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#variance-modelling-7"><i class="fa fa-check"></i><b>31.3.2</b> Variance modelling</a></li>
-<li class="chapter" data-level="31.3.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#dimensionality-reduction-9"><i class="fa fa-check"></i><b>31.3.3</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="31.3.4" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#clustering-9"><i class="fa fa-check"></i><b>31.3.4</b> Clustering</a></li>
-</ul></li>
+<li class="chapter" data-level="31.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#quality-control-11"><i class="fa fa-check"></i><b>31.3</b> Quality control</a></li>
+<li class="chapter" data-level="31.4" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#normalization-10"><i class="fa fa-check"></i><b>31.4</b> Normalization</a></li>
+<li class="chapter" data-level="31.5" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#variance-modelling-7"><i class="fa fa-check"></i><b>31.5</b> Variance modelling</a></li>
+<li class="chapter" data-level="31.6" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#dimensionality-reduction-9"><i class="fa fa-check"></i><b>31.6</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="31.7" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#clustering-9"><i class="fa fa-check"></i><b>31.7</b> Clustering</a></li>
 <li class="chapter" data-level="" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#session-info-25"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="32" data-path="merged-pancreas.html"><a href="merged-pancreas.html"><i class="fa fa-check"></i><b>32</b> Merged human pancreas datasets</a><ul>
@@ -589,14 +584,13 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="37.1" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#introduction-17"><i class="fa fa-check"></i><b>37.1</b> Introduction</a></li>
 <li class="chapter" data-level="37.2" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-loading-13"><i class="fa fa-check"></i><b>37.2</b> Data loading</a></li>
 <li class="chapter" data-level="37.3" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#quality-control-16"><i class="fa fa-check"></i><b>37.3</b> Quality control</a></li>
-<li class="chapter" data-level="37.4" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#normalization-15"><i class="fa fa-check"></i><b>37.4</b> Normalization</a><ul>
-<li class="chapter" data-level="37.4.1" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#variance-modeling"><i class="fa fa-check"></i><b>37.4.1</b> Variance modeling</a></li>
-</ul></li>
-<li class="chapter" data-level="37.5" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-integration-3"><i class="fa fa-check"></i><b>37.5</b> Data integration</a></li>
-<li class="chapter" data-level="37.6" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#dimensionality-reduction-14"><i class="fa fa-check"></i><b>37.6</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="37.7" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#clustering-14"><i class="fa fa-check"></i><b>37.7</b> Clustering</a></li>
-<li class="chapter" data-level="37.8" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#differential-expression"><i class="fa fa-check"></i><b>37.8</b> Differential expression</a></li>
-<li class="chapter" data-level="37.9" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#cell-type-classification"><i class="fa fa-check"></i><b>37.9</b> Cell type classification</a></li>
+<li class="chapter" data-level="37.4" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#normalization-15"><i class="fa fa-check"></i><b>37.4</b> Normalization</a></li>
+<li class="chapter" data-level="37.5" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#variance-modeling"><i class="fa fa-check"></i><b>37.5</b> Variance modeling</a></li>
+<li class="chapter" data-level="37.6" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-integration-3"><i class="fa fa-check"></i><b>37.6</b> Data integration</a></li>
+<li class="chapter" data-level="37.7" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#dimensionality-reduction-14"><i class="fa fa-check"></i><b>37.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="37.8" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#clustering-14"><i class="fa fa-check"></i><b>37.8</b> Clustering</a></li>
+<li class="chapter" data-level="37.9" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#differential-expression"><i class="fa fa-check"></i><b>37.9</b> Differential expression</a></li>
+<li class="chapter" data-level="37.10" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#cell-type-classification"><i class="fa fa-check"></i><b>37.10</b> Cell type classification</a></li>
 <li class="chapter" data-level="" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#session-info-31"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
@@ -636,9 +630,9 @@ document.addEventListener("click", function (event) {
         event.target.classList.toggle("active");
         var content = event.target.nextElementSibling;
         if (content.style.display === "block") {
-          content.style.display = "none";
+            content.style.display = "none";
         } else {
-          content.style.display = "block";
+            content.style.display = "block";
         }
     }
 })
@@ -665,7 +659,7 @@ document.addEventListener("click", function (event) {
 </style>
 <div id="motivation-7" class="section level2">
 <h2><span class="header-section-number">13.1</span> Motivation</h2>
-<p>Large single-cell RNA sequencing (scRNA-seq) projects usually need to generate data across multiple batches due to logistical constraints. However, the processing of different batches is often subject to uncontrollable differences, e.g., changes in operator, differences in reagent quality. This results in systematic differences in the observed expression in cells from different batches, which we refer to as “batch effects”. Batch effects are problematic as they can be major drivers of heterogeneity in the data, masking the relevant biological differences and complicating interpretation of the results.</p>
+<p>Large single-cell RNA sequencing (scRNA-seq) projects usually need to generate data across multiple batches due to logistical constraints. However, the processing of different batches is often subject to uncontrollable differences, e.g., changes in operator, differences in reagent quality. This results in systematic differences in the observed expression in cells from different batches, which we refer to as &quot;batch effects&quot;. Batch effects are problematic as they can be major drivers of heterogeneity in the data, masking the relevant biological differences and complicating interpretation of the results.</p>
 <p>Computational correction of these effects is critical for eliminating batch-to-batch variation, allowing data across multiple batches to be combined for common downstream analysis. However, existing methods based on linear models <span class="citation">(Ritchie et al. <a href="#ref-ritchie2015limma">2015</a>; Leek et al. <a href="#ref-leek2012sva">2012</a>)</span> assume that the composition of cell populations are either known or the same across batches. To overcome these limitations, bespoke methods have been developed for batch correction of single-cell data <span class="citation">(Haghverdi et al. <a href="#ref-haghverdi2018batch">2018</a>; Butler et al. <a href="#ref-butler2018integrating">2018</a>; Lin et al. <a href="#ref-lin2019scmerge">2019</a>)</span> that do not require <em>a priori</em> knowledge about the composition of the population. This allows them to be used in workflows for exploratory analyses of scRNA-seq data where such knowledge is usually unavailable.</p>
 </div>
 <div id="setting-up-the-data" class="section level2">
@@ -752,7 +746,7 @@ pbmc4k</code></pre></div>
 ## altExpNames(0):</code></pre>
 <p>To prepare for the batch correction:</p>
 <ol style="list-style-type: decimal">
-<li><p>We subset all batches to the common “universe” of features. In this case, it is straightforward as both batches use Ensembl gene annotation.</p>
+<li><p>We subset all batches to the common &quot;universe&quot; of features. In this case, it is straightforward as both batches use Ensembl gene annotation.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">universe &lt;-<span class="st"> </span><span class="kw">intersect</span>(<span class="kw">rownames</span>(pbmc3k), <span class="kw">rownames</span>(pbmc4k))
 <span class="kw">length</span>(universe)</code></pre></div>
 <pre><code>## [1] 31232</code></pre>
@@ -825,16 +819,16 @@ tab</code></pre></div>
 uncorrected &lt;-<span class="st"> </span><span class="kw">runTSNE</span>(uncorrected, <span class="dt">dimred=</span><span class="st">&quot;PCA&quot;</span>)
 <span class="kw">plotTSNE</span>(uncorrected, <span class="dt">colour_by=</span><span class="st">&quot;batch&quot;</span>)</code></pre></div>
 <div class="figure"><span id="fig:tsne-pbmc-uncorrected"></span>
-<img src="P2_W09.data-integration_files/figure-html/tsne-pbmc-uncorrected-1.png" alt="$t$-SNE plot of the PBMC datasets without any batch correction. Each point is a cell that is colored according to its batch of origin." width="672" />
+<img src="data-integration_files/figure-html/tsne-pbmc-uncorrected-1.png" alt="$t$-SNE plot of the PBMC datasets without any batch correction. Each point is a cell that is colored according to its batch of origin." width="672" />
 <p class="caption">
 Figure 13.1: <span class="math inline">\(t\)</span>-SNE plot of the PBMC datasets without any batch correction. Each point is a cell that is colored according to its batch of origin.
 </p>
 </div>
-<p>Of course, the other explanation for batch-specific clusters is that there are cell types that are unique to each batch. The degree of intermingling of cells from different batches is not an effective diagnostic when the batches involved might actually contain unique cell subpopulations (which is not a consideration in the PBMC dataset, but the same cannot be said in general). If a cluster only contains cells from a single batch, one can always debate whether that is caused by a failure of the correction method or if there is truly a batch-specific subpopulation. For example, do batch-specific metabolic or differentiation states represent distinct subpopulations? Or should they be merged together? We will not attempt to answer this here, only noting that each batch correction algorithm will make different (and possibly inappropriate) decisions on what constitutes “shared” and “unique” populations.</p>
+<p>Of course, the other explanation for batch-specific clusters is that there are cell types that are unique to each batch. The degree of intermingling of cells from different batches is not an effective diagnostic when the batches involved might actually contain unique cell subpopulations (which is not a consideration in the PBMC dataset, but the same cannot be said in general). If a cluster only contains cells from a single batch, one can always debate whether that is caused by a failure of the correction method or if there is truly a batch-specific subpopulation. For example, do batch-specific metabolic or differentiation states represent distinct subpopulations? Or should they be merged together? We will not attempt to answer this here, only noting that each batch correction algorithm will make different (and possibly inappropriate) decisions on what constitutes &quot;shared&quot; and &quot;unique&quot; populations.</p>
 </div>
 <div id="linear-regression" class="section level2">
 <h2><span class="header-section-number">13.4</span> Linear regression</h2>
-<p>Batch effects in bulk RNA sequencing studies are commonly removed with linear regression. This involves fitting a linear model to each gene’s expression profile, setting the undesirable batch term to zero and recomputing the observations <em>sans</em> the batch effect, yielding a set of corrected expression values for downstream analyses. Linear modelling is the basis of the <code>removeBatchEffect()</code> function from the <em><a href="https://bioconductor.org/packages/3.12/limma">limma</a></em> package <span class="citation">(Ritchie et al. <a href="#ref-ritchie2015limma">2015</a>)</span> as well the <code>comBat()</code> function from the <em><a href="https://bioconductor.org/packages/3.12/sva">sva</a></em> package <span class="citation">(Leek et al. <a href="#ref-leek2012sva">2012</a>)</span>.</p>
+<p>Batch effects in bulk RNA sequencing studies are commonly removed with linear regression. This involves fitting a linear model to each gene's expression profile, setting the undesirable batch term to zero and recomputing the observations <em>sans</em> the batch effect, yielding a set of corrected expression values for downstream analyses. Linear modelling is the basis of the <code>removeBatchEffect()</code> function from the <em><a href="https://bioconductor.org/packages/3.12/limma">limma</a></em> package <span class="citation">(Ritchie et al. <a href="#ref-ritchie2015limma">2015</a>)</span> as well the <code>comBat()</code> function from the <em><a href="https://bioconductor.org/packages/3.12/sva">sva</a></em> package <span class="citation">(Leek et al. <a href="#ref-leek2012sva">2012</a>)</span>.</p>
 <p>To use this approach in a scRNA-seq context, we assume that the composition of cell subpopulations is the same across batches. We also assume that the batch effect is additive, i.e., any batch-induced fold-change in expression is the same across different cell subpopulations for any given gene. These are strong assumptions as batches derived from different individuals will naturally exhibit variation in cell type abundances and expression. Nonetheless, they may be acceptable when dealing with batches that are technical replicates generated from the same population of cells. (In fact, when its assumptions hold, linear regression is the most statistically efficient as it uses information from all cells to compute the common batch vector.) Linear modelling can also accommodate situations where the composition is known <em>a priori</em> by including the cell type as a factor in the linear model, but this situation is even less common.</p>
 <p>We use the <code>rescaleBatches()</code> function from the <em><a href="https://bioconductor.org/packages/3.12/batchelor">batchelor</a></em> package to remove the batch effect. This is roughly equivalent to applying a linear regression to the log-expression values per gene, with some adjustments to improve performance and efficiency. For each gene, the mean expression in each batch is scaled down until it is equal to the lowest mean across all batches. We deliberately choose to scale all expression values down as this mitigates differences in variance when batches lie at different positions on the mean-variance trend. (Specifically, the shrinkage effect of the pseudo-count is greater for smaller counts, suppressing any differences in variance across batches.) An additional feature of <code>rescaleBatches()</code> is that it will preserve sparsity in the input matrix for greater efficiency, whereas other methods like <code>removeBatchEffect()</code> will always return a dense matrix.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(batchelor)
@@ -884,7 +878,7 @@ tab.resc</code></pre></div>
 rescaled<span class="op">$</span>batch &lt;-<span class="st"> </span><span class="kw">factor</span>(rescaled<span class="op">$</span>batch)
 <span class="kw">plotTSNE</span>(rescaled, <span class="dt">colour_by=</span><span class="st">&quot;batch&quot;</span>)</code></pre></div>
 <div class="figure"><span id="fig:tsne-pbmc-rescaled"></span>
-<img src="P2_W09.data-integration_files/figure-html/tsne-pbmc-rescaled-1.png" alt="$t$-SNE plot of the PBMC datasets after correction with `rescaleBatches()`. Each point represents a cell and is colored according to the batch of origin." width="672" />
+<img src="data-integration_files/figure-html/tsne-pbmc-rescaled-1.png" alt="$t$-SNE plot of the PBMC datasets after correction with `rescaleBatches()`. Each point represents a cell and is colored according to the batch of origin." width="672" />
 <p class="caption">
 Figure 13.2: <span class="math inline">\(t\)</span>-SNE plot of the PBMC datasets after correction with <code>rescaleBatches()</code>. Each point represents a cell and is colored according to the batch of origin.
 </p>
@@ -895,7 +889,7 @@ Figure 13.2: <span class="math inline">\(t\)</span>-SNE plot of the PBMC dataset
 <h2><span class="header-section-number">13.5</span> Performing MNN correction</h2>
 <div id="algorithm-overview" class="section level3">
 <h3><span class="header-section-number">13.5.1</span> Algorithm overview</h3>
-<p>Consider a cell <span class="math inline">\(a\)</span> in batch <span class="math inline">\(A\)</span>, and identify the cells in batch <span class="math inline">\(B\)</span> that are nearest neighbors to <span class="math inline">\(a\)</span> in the expression space defined by the selected features. Repeat this for a cell <span class="math inline">\(b\)</span> in batch <span class="math inline">\(B\)</span>, identifying its nearest neighbors in <span class="math inline">\(A\)</span>. Mutual nearest neighbors are pairs of cells from different batches that belong in each other’s set of nearest neighbors. The reasoning is that MNN pairs represent cells from the same biological state prior to the application of a batch effect - see <span class="citation">Haghverdi et al. (<a href="#ref-haghverdi2018batch">2018</a>)</span> for full theoretical details. Thus, the difference between cells in MNN pairs can be used as an estimate of the batch effect, the subtraction of which yields batch-corrected values.</p>
+<p>Consider a cell <span class="math inline">\(a\)</span> in batch <span class="math inline">\(A\)</span>, and identify the cells in batch <span class="math inline">\(B\)</span> that are nearest neighbors to <span class="math inline">\(a\)</span> in the expression space defined by the selected features. Repeat this for a cell <span class="math inline">\(b\)</span> in batch <span class="math inline">\(B\)</span>, identifying its nearest neighbors in <span class="math inline">\(A\)</span>. Mutual nearest neighbors are pairs of cells from different batches that belong in each other's set of nearest neighbors. The reasoning is that MNN pairs represent cells from the same biological state prior to the application of a batch effect - see <span class="citation">Haghverdi et al. (<a href="#ref-haghverdi2018batch">2018</a>)</span> for full theoretical details. Thus, the difference between cells in MNN pairs can be used as an estimate of the batch effect, the subtraction of which yields batch-corrected values.</p>
 <p>Compared to linear regression, MNN correction does not assume that the population composition is the same or known beforehand. This is because it learns the shared population structure via identification of MNN pairs and uses this information to obtain an appropriate estimate of the batch effect. Instead, the key assumption of MNN-based approaches is that the batch effect is orthogonal to the biology in high-dimensional expression space. Violations reduce the effectiveness and accuracy of the correction, with the most common case arising from variations in the direction of the batch effect between clusters. Nonetheless, the assumption is usually reasonable as a random vector is very likely to be orthogonal in high-dimensional space.</p>
 </div>
 <div id="application-to-the-pbmc-data" class="section level3">
@@ -988,7 +982,7 @@ mnn.out &lt;-<span class="st"> </span><span class="kw">runTSNE</span>(mnn.out, <
 mnn.out<span class="op">$</span>batch &lt;-<span class="st"> </span><span class="kw">factor</span>(mnn.out<span class="op">$</span>batch)
 <span class="kw">plotTSNE</span>(mnn.out, <span class="dt">colour_by=</span><span class="st">&quot;batch&quot;</span>)</code></pre></div>
 <div class="figure"><span id="fig:tsne-pbmc-corrected"></span>
-<img src="P2_W09.data-integration_files/figure-html/tsne-pbmc-corrected-1.png" alt="$t$-SNE plot of the PBMC datasets after MNN correction. Each point is a cell that is colored according to its batch of origin." width="672" />
+<img src="data-integration_files/figure-html/tsne-pbmc-corrected-1.png" alt="$t$-SNE plot of the PBMC datasets after MNN correction. Each point is a cell that is colored according to its batch of origin." width="672" />
 <p class="caption">
 Figure 13.3: <span class="math inline">\(t\)</span>-SNE plot of the PBMC datasets after MNN correction. Each point is a cell that is colored according to its batch of origin.
 </p>
@@ -1023,7 +1017,7 @@ heat4k &lt;-<span class="st"> </span><span class="kw">pheatmap</span>(<span clas
 
 gridExtra<span class="op">::</span><span class="kw">grid.arrange</span>(heat3k[[<span class="dv">4</span>]], heat4k[[<span class="dv">4</span>]])</code></pre></div>
 <div class="figure"><span id="fig:heat-after-mnn"></span>
-<img src="P2_W09.data-integration_files/figure-html/heat-after-mnn-1.png" alt="Comparison between the within-batch clusters and the across-batch clusters obtained after MNN correction. One heatmap is generated for each of the PBMC 3K and 4K datasets, where each entry is colored according to the number of cells with each pair of labels (before and after correction)." width="672" />
+<img src="data-integration_files/figure-html/heat-after-mnn-1.png" alt="Comparison between the within-batch clusters and the across-batch clusters obtained after MNN correction. One heatmap is generated for each of the PBMC 3K and 4K datasets, where each entry is colored according to the number of cells with each pair of labels (before and after correction)." width="672" />
 <p class="caption">
 Figure 13.4: Comparison between the within-batch clusters and the across-batch clusters obtained after MNN correction. One heatmap is generated for each of the PBMC 3K and 4K datasets, where each entry is colored according to the number of cells with each pair of labels (before and after correction).
 </p>
@@ -1041,25 +1035,24 @@ heat4k &lt;-<span class="st"> </span><span class="kw">pheatmap</span>(tab, <span
 
 gridExtra<span class="op">::</span><span class="kw">grid.arrange</span>(heat3k[[<span class="dv">4</span>]], heat4k[[<span class="dv">4</span>]])</code></pre></div>
 <div class="figure"><span id="fig:coassign-after-mnn"></span>
-<img src="P2_W09.data-integration_files/figure-html/coassign-after-mnn-1.png" alt="Coassignment probabilities for the within-batch clusters, based on coassignment of cells in the across-batch clusters obtained after MNN correction. One heatmap is generated for each of the PBMC 3K and 4K datasets, where each entry is colored according to the coassignment probability between each pair of within-batch clusters." width="672" />
+<img src="data-integration_files/figure-html/coassign-after-mnn-1.png" alt="Coassignment probabilities for the within-batch clusters, based on coassignment of cells in the across-batch clusters obtained after MNN correction. One heatmap is generated for each of the PBMC 3K and 4K datasets, where each entry is colored according to the coassignment probability between each pair of within-batch clusters." width="672" />
 <p class="caption">
 Figure 13.5: Coassignment probabilities for the within-batch clusters, based on coassignment of cells in the across-batch clusters obtained after MNN correction. One heatmap is generated for each of the PBMC 3K and 4K datasets, where each entry is colored according to the coassignment probability between each pair of within-batch clusters.
 </p>
 </div>
 <p>Finally, we can summarize the agreement between clusterings by computing the Rand index. This provides a simple metric that we can use to assess the preservation of variation by different correction methods. Larger rand indices (i.e., closer to 1) are more desirable, though this must be balanced against the ability of each method to actually remove the batch effect.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(fossil)
-ri3k &lt;-<span class="st"> </span><span class="kw">rand.index</span>(<span class="kw">as.integer</span>(clusters.mnn[rescaled<span class="op">$</span>batch<span class="op">==</span><span class="dv">1</span>]),
-    <span class="kw">as.integer</span>(<span class="kw">colLabels</span>(pbmc3k)))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ri3k &lt;-<span class="st"> </span><span class="kw">clusterRand</span>(clusters.mnn[rescaled<span class="op">$</span>batch<span class="op">==</span><span class="dv">1</span>],
+    <span class="kw">colLabels</span>(pbmc3k), <span class="dt">mode=</span><span class="st">&quot;index&quot;</span>)
 ri3k</code></pre></div>
 <pre><code>## [1] 0.9335226</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ri4k &lt;-<span class="st"> </span><span class="kw">rand.index</span>(<span class="kw">as.integer</span>(clusters.mnn[rescaled<span class="op">$</span>batch<span class="op">==</span><span class="dv">2</span>]),
-    <span class="kw">as.integer</span>(<span class="kw">colLabels</span>(pbmc4k)))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ri4k &lt;-<span class="st"> </span><span class="kw">clusterRand</span>(clusters.mnn[rescaled<span class="op">$</span>batch<span class="op">==</span><span class="dv">2</span>],
+    <span class="kw">colLabels</span>(pbmc4k), <span class="dt">mode=</span><span class="st">&quot;index&quot;</span>)
 ri4k</code></pre></div>
 <pre><code>## [1] 0.9575746</code></pre>
 </div>
 <div id="integration-with-markers" class="section level3">
 <h3><span class="header-section-number">13.6.2</span> Encouraging consistency with marker genes</h3>
-<p>In some situations, we will already have performed within-batch analyses to characterize salient aspects of population heterogeneity. This is not uncommon when merging datasets from different sources where each dataset has already been analyzed, annotated and interpreted separately. It is subsequently desirable for the integration procedure to retain these “known interesting” aspects of each dataset in the merged dataset. We can encourage this outcome by using the marker genes within each dataset as our selected feature set for <code>fastMNN()</code> and related methods. This focuses on the relevant heterogeneity and represents a semi-supervised approach that is a natural extension of the strategy described in Section <a href="feature-selection.html#apriori-hvgs">8.4</a>.</p>
+<p>In some situations, we will already have performed within-batch analyses to characterize salient aspects of population heterogeneity. This is not uncommon when merging datasets from different sources where each dataset has already been analyzed, annotated and interpreted separately. It is subsequently desirable for the integration procedure to retain these &quot;known interesting&quot; aspects of each dataset in the merged dataset. We can encourage this outcome by using the marker genes within each dataset as our selected feature set for <code>fastMNN()</code> and related methods. This focuses on the relevant heterogeneity and represents a semi-supervised approach that is a natural extension of the strategy described in Section <a href="feature-selection.html#apriori-hvgs">8.4</a>.</p>
 <p>To illustrate, we apply this strategy to our PBMC datasets. We identify the top marker genes from pairwise Wilcoxon ranked sum tests between every pair of clusters <em>within</em> each batch, analogous to the method used by <em><a href="https://bioconductor.org/packages/3.12/SingleR">SingleR</a></em> (Chapter <a href="cell-type-annotation.html#cell-type-annotation">12</a>). In this case, we use the top 10 marker genes but any value can be used depending on the acceptable trade-off between signal and noise (and speed). We then take the union across all comparisons in all batches and use that in place of our HVG set in <code>fastMNN()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Recall that groups for marker detection</span>
 <span class="co"># are automatically defined from &#39;colLabels()&#39;. </span>
@@ -1083,7 +1076,7 @@ gridExtra<span class="op">::</span><span class="kw">grid.arrange</span>(
     <span class="dt">ncol=</span><span class="dv">2</span>
 )</code></pre></div>
 <div class="figure"><span id="fig:tsne-pbmc-corrected-markers"></span>
-<img src="P2_W09.data-integration_files/figure-html/tsne-pbmc-corrected-markers-1.png" alt="$t$-SNE plots of the merged PBMC datasets, where the merge was performed using only marker genes identified within each batch. Each point represents a cell that is colored by the assigned cluster from the within-batch analysis for the 3K (left) and 4K dataset (right)." width="672" />
+<img src="data-integration_files/figure-html/tsne-pbmc-corrected-markers-1.png" alt="$t$-SNE plots of the merged PBMC datasets, where the merge was performed using only marker genes identified within each batch. Each point represents a cell that is colored by the assigned cluster from the within-batch analysis for the 3K (left) and 4K dataset (right)." width="672" />
 <p class="caption">
 Figure 13.6: <span class="math inline">\(t\)</span>-SNE plots of the merged PBMC datasets, where the merge was performed using only marker genes identified within each batch. Each point represents a cell that is colored by the assigned cluster from the within-batch analysis for the 3K (left) and 4K dataset (right).
 </p>
@@ -1092,7 +1085,7 @@ Figure 13.6: <span class="math inline">\(t\)</span>-SNE plots of the merged PBMC
 </div>
 <div id="using-corrected-values" class="section level2">
 <h2><span class="header-section-number">13.7</span> Using the corrected values</h2>
-<p>The greatest value of batch correction lies in facilitating cell-based analysis of population heterogeneity in a consistent manner across batches. Cluster 1 in batch A is the same as cluster 1 in batch B when the clustering is performed on the merged data. There is no need to identify mappings between separate clusterings, which might not even be possible when the clusters are not well-separated. The burden of interpretation is consolidated by generating a single set of clusters for all batches, rather than requiring separate examination of each batch’s clusters. Another benefit is that the available number of cells is increased when all batches are combined, which allows for greater resolution of population structure in downstream analyses. We previously demonstrated the application of clustering methods to the batch-corrected data, but the same principles apply for other analyses like trajectory reconstruction.</p>
+<p>The greatest value of batch correction lies in facilitating cell-based analysis of population heterogeneity in a consistent manner across batches. Cluster 1 in batch A is the same as cluster 1 in batch B when the clustering is performed on the merged data. There is no need to identify mappings between separate clusterings, which might not even be possible when the clusters are not well-separated. The burden of interpretation is consolidated by generating a single set of clusters for all batches, rather than requiring separate examination of each batch's clusters. Another benefit is that the available number of cells is increased when all batches are combined, which allows for greater resolution of population structure in downstream analyses. We previously demonstrated the application of clustering methods to the batch-corrected data, but the same principles apply for other analyses like trajectory reconstruction.</p>
 <p>At this point, it is also tempting to use the corrected expression values for gene-based analyses like DE-based marker gene detection. This is not generally recommended as an arbitrary correction algorithm is not obliged to preserve the magnitude (or even direction) of differences in per-gene expression when attempting to align multiple batches. For example, cosine normalization in <code>fastMNN()</code> shrinks the magnitude of the expression values so that the computed log-fold changes have no obvious interpretation. Of greater concern is the possibility that the correction introduces artificial agreement across batches. To illustrate:</p>
 <ol style="list-style-type: decimal">
 <li>Consider a dataset (first batch) with two cell types, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. Consider a second batch with the same cell types, denoted as <span class="math inline">\(A&#39;\)</span> and <span class="math inline">\(B&#39;\)</span>. Assume that, for some reason, gene <span class="math inline">\(X\)</span> is expressed in <span class="math inline">\(A\)</span> but not in <span class="math inline">\(A&#39;\)</span>, <span class="math inline">\(B\)</span> or <span class="math inline">\(B&#39;\)</span> - possibly due to some difference in how the cells were treated, or maybe due to a donor effect.</li>
@@ -1141,7 +1134,7 @@ demo &lt;-<span class="st"> </span>m.out[[<span class="st">&quot;10&quot;</span>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotExpression</span>(uncorrected, <span class="dt">x=</span><span class="kw">I</span>(<span class="kw">factor</span>(clusters.mnn)), 
     <span class="dt">features=</span><span class="st">&quot;ENSG00000177954&quot;</span>, <span class="dt">colour_by=</span><span class="st">&quot;batch&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>colour_by)</code></pre></div>
 <div class="figure"><span id="fig:pbmc-marker-blocked"></span>
-<img src="P2_W09.data-integration_files/figure-html/pbmc-marker-blocked-1.png" alt="Distributions of RPSA uncorrected log-expression values within each cluster in each batch of the merged PBMC dataset." width="672" />
+<img src="data-integration_files/figure-html/pbmc-marker-blocked-1.png" alt="Distributions of RPSA uncorrected log-expression values within each cluster in each batch of the merged PBMC dataset." width="672" />
 <p class="caption">
 Figure 13.7: Distributions of RPSA uncorrected log-expression values within each cluster in each batch of the merged PBMC dataset.
 </p>
@@ -1175,56 +1168,56 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] fossil_0.4.0                shapefiles_0.7             
- [3] foreign_0.8-79              maps_3.3.0                 
- [5] sp_1.4-1                    pheatmap_1.0.12            
- [7] scater_1.17.0               ggplot2_3.3.0              
- [9] scran_1.17.0                batchelor_1.5.0            
-[11] SingleCellExperiment_1.11.1 SummarizedExperiment_1.19.2
-[13] Biobase_2.49.0              GenomicRanges_1.41.1       
-[15] GenomeInfoDb_1.25.0         HDF5Array_1.17.0           
-[17] rhdf5_2.33.0                DelayedArray_0.15.1        
-[19] IRanges_2.23.4              S4Vectors_0.27.4           
-[21] BiocGenerics_0.35.1         matrixStats_0.56.0         
-[23] OSCAUtils_0.0.2             BiocStyle_2.17.0           
+ [1] pheatmap_1.0.12             scater_1.17.1              
+ [3] ggplot2_3.3.1               scuttle_0.99.8             
+ [5] scran_1.17.1                batchelor_1.5.0            
+ [7] SingleCellExperiment_1.11.2 SummarizedExperiment_1.19.4
+ [9] Biobase_2.49.0              GenomicRanges_1.41.1       
+[11] GenomeInfoDb_1.25.0         HDF5Array_1.17.0           
+[13] rhdf5_2.33.0                DelayedArray_0.15.1        
+[15] IRanges_2.23.6              S4Vectors_0.27.10          
+[17] BiocGenerics_0.35.2         matrixStats_0.56.0         
+[19] rebook_0.99.0               BiocStyle_2.17.0           
 
 loaded via a namespace (and not attached):
  [1] bitops_1.0-6              RColorBrewer_1.1-2       
  [3] tools_4.0.0               R6_2.4.1                 
  [5] irlba_2.3.3               vipor_0.4.5              
  [7] colorspace_1.4-1          withr_2.2.0              
- [9] tidyselect_1.0.0          gridExtra_2.3            
+ [9] tidyselect_1.1.0          gridExtra_2.3            
 [11] processx_3.4.2            compiler_4.0.0           
-[13] BiocNeighbors_1.7.0       labeling_0.3             
-[15] bookdown_0.18             scales_1.1.0             
-[17] callr_3.4.3               stringr_1.4.0            
-[19] digest_0.6.25             rmarkdown_2.1            
-[21] XVector_0.29.0            pkgconfig_2.0.3          
-[23] htmltools_0.4.0           limma_3.45.0             
-[25] highr_0.8                 rlang_0.4.6              
-[27] DelayedMatrixStats_1.11.0 farver_2.0.3             
-[29] BiocParallel_1.23.0       dplyr_0.8.5              
-[31] RCurl_1.98-1.2            magrittr_1.5             
-[33] BiocSingular_1.5.0        GenomeInfoDbData_1.2.3   
-[35] Matrix_1.2-18             Rcpp_1.0.4.6             
-[37] ggbeeswarm_0.6.0          munsell_0.5.0            
-[39] Rhdf5lib_1.11.0           viridis_0.5.1            
-[41] lifecycle_0.2.0           stringi_1.4.6            
-[43] yaml_2.2.1                edgeR_3.31.0             
-[45] zlibbioc_1.35.0           Rtsne_0.15               
-[47] grid_4.0.0                dqrng_0.2.1              
-[49] crayon_1.3.4              lattice_0.20-41          
-[51] beachmat_2.5.0            cowplot_1.0.0            
-[53] locfit_1.5-9.4            knitr_1.28               
-[55] ps_1.3.2                  pillar_1.4.4             
-[57] igraph_1.2.5              codetools_0.2-16         
-[59] glue_1.4.0                evaluate_0.14            
-[61] BiocManager_1.30.10       vctrs_0.2.4              
-[63] gtable_0.3.0              purrr_0.3.4              
-[65] assertthat_0.2.1          xfun_0.13                
-[67] rsvd_1.0.3                viridisLite_0.3.0        
-[69] tibble_3.0.1              beeswarm_0.2.3           
-[71] statmod_1.4.34            ellipsis_0.3.0           </code></pre>
+[13] graph_1.67.1              BiocNeighbors_1.7.0      
+[15] labeling_0.3              bookdown_0.19            
+[17] scales_1.1.1              callr_3.4.3              
+[19] stringr_1.4.0             digest_0.6.25            
+[21] rmarkdown_2.2             XVector_0.29.1           
+[23] pkgconfig_2.0.3           htmltools_0.4.0          
+[25] highr_0.8                 limma_3.45.0             
+[27] rlang_0.4.6               DelayedMatrixStats_1.11.0
+[29] generics_0.0.2            farver_2.0.3             
+[31] BiocParallel_1.23.0       dplyr_1.0.0              
+[33] RCurl_1.98-1.2            magrittr_1.5             
+[35] BiocSingular_1.5.0        GenomeInfoDbData_1.2.3   
+[37] Matrix_1.2-18             Rcpp_1.0.4.6             
+[39] ggbeeswarm_0.6.0          munsell_0.5.0            
+[41] Rhdf5lib_1.11.0           viridis_0.5.1            
+[43] lifecycle_0.2.0           stringi_1.4.6            
+[45] yaml_2.2.1                edgeR_3.31.1             
+[47] zlibbioc_1.35.0           Rtsne_0.15               
+[49] grid_4.0.0                dqrng_0.2.1              
+[51] crayon_1.3.4              lattice_0.20-41          
+[53] beachmat_2.5.0            cowplot_1.0.0            
+[55] locfit_1.5-9.4            CodeDepends_0.6.5        
+[57] knitr_1.28                ps_1.3.3                 
+[59] pillar_1.4.4              igraph_1.2.5             
+[61] codetools_0.2-16          XML_3.99-0.3             
+[63] glue_1.4.1                evaluate_0.14            
+[65] BiocManager_1.30.10       vctrs_0.3.0              
+[67] gtable_0.3.0              purrr_0.3.4              
+[69] xfun_0.14                 rsvd_1.0.3               
+[71] viridisLite_0.3.0         tibble_3.0.1             
+[73] beeswarm_0.2.3            statmod_1.4.34           
+[75] ellipsis_0.3.1           </code></pre>
 </div>
 
 </div>

@@ -5,25 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Dimensionality reduction | Orchestrating Single-Cell Analysis with Bioconductor</title>
-  <meta name="description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Dimensionality reduction | Orchestrating Single-Cell Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
+  <meta property="og:description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 9 Dimensionality reduction | Orchestrating Single-Cell Analysis with Bioconductor" />
   
-  <meta name="twitter:description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
+  <meta name="twitter:description" content="Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team." />
   
 
 
 
-<meta name="date" content="2020-05-07" />
+<meta name="date" content="2020-06-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -112,7 +112,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.1.1" data-path="introduction.html"><a href="introduction.html#preliminaries"><i class="fa fa-check"></i><b>1.1.1</b> Preliminaries</a></li>
 <li class="chapter" data-level="1.1.2" data-path="introduction.html"><a href="introduction.html#workflows"><i class="fa fa-check"></i><b>1.1.2</b> Workflows</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#what-you-wont-learn"><i class="fa fa-check"></i><b>1.2</b> What you won’t learn</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#what-you-wont-learn"><i class="fa fa-check"></i><b>1.2</b> What you won't learn</a></li>
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#who-we-wrote-this-for"><i class="fa fa-check"></i><b>1.3</b> Who we wrote this for</a></li>
 <li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#why-we-wrote-this"><i class="fa fa-check"></i><b>1.4</b> Why we wrote this</a></li>
 <li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#acknowledgements"><i class="fa fa-check"></i><b>1.5</b> Acknowledgements</a></li>
@@ -227,19 +227,18 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.3.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#based-on-population-structure"><i class="fa fa-check"></i><b>9.3.4</b> Based on population structure</a></li>
 <li class="chapter" data-level="9.3.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#putting-it-together"><i class="fa fa-check"></i><b>9.3.5</b> Putting it together</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#non-negative-matrix-factorization"><i class="fa fa-check"></i><b>9.4</b> Non-negative matrix factorization</a></li>
-<li class="chapter" data-level="9.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction-for-visualization"><i class="fa fa-check"></i><b>9.5</b> Dimensionality reduction for visualization</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#motivation-3"><i class="fa fa-check"></i><b>9.5.1</b> Motivation</a></li>
-<li class="chapter" data-level="9.5.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizing-with-pca"><i class="fa fa-check"></i><b>9.5.2</b> Visualizing with PCA</a></li>
-<li class="chapter" data-level="9.5.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#t-stochastic-neighbor-embedding"><i class="fa fa-check"></i><b>9.5.3</b> <span class="math inline">\(t\)</span>-stochastic neighbor embedding</a></li>
-<li class="chapter" data-level="9.5.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection"><i class="fa fa-check"></i><b>9.5.4</b> Uniform manifold approximation and projection</a></li>
-<li class="chapter" data-level="9.5.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualization-interpretation"><i class="fa fa-check"></i><b>9.5.5</b> Interpreting the plots</a></li>
+<li class="chapter" data-level="9.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction-for-visualization"><i class="fa fa-check"></i><b>9.4</b> Dimensionality reduction for visualization</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#motivation-3"><i class="fa fa-check"></i><b>9.4.1</b> Motivation</a></li>
+<li class="chapter" data-level="9.4.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizing-with-pca"><i class="fa fa-check"></i><b>9.4.2</b> Visualizing with PCA</a></li>
+<li class="chapter" data-level="9.4.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#t-stochastic-neighbor-embedding"><i class="fa fa-check"></i><b>9.4.3</b> <span class="math inline">\(t\)</span>-stochastic neighbor embedding</a></li>
+<li class="chapter" data-level="9.4.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#uniform-manifold-approximation-and-projection"><i class="fa fa-check"></i><b>9.4.4</b> Uniform manifold approximation and projection</a></li>
+<li class="chapter" data-level="9.4.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualization-interpretation"><i class="fa fa-check"></i><b>9.4.5</b> Interpreting the plots</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#session-info-4"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>10</b> Clustering</a><ul>
 <li class="chapter" data-level="10.1" data-path="clustering.html"><a href="clustering.html#motivation-4"><i class="fa fa-check"></i><b>10.1</b> Motivation</a></li>
-<li class="chapter" data-level="10.2" data-path="clustering.html"><a href="clustering.html#what-is-the-true-clustering"><i class="fa fa-check"></i><b>10.2</b> What is the “true clustering”?</a></li>
+<li class="chapter" data-level="10.2" data-path="clustering.html"><a href="clustering.html#what-is-the-true-clustering"><i class="fa fa-check"></i><b>10.2</b> What is the &quot;true clustering&quot;?</a></li>
 <li class="chapter" data-level="10.3" data-path="clustering.html"><a href="clustering.html#clustering-graph"><i class="fa fa-check"></i><b>10.3</b> Graph-based clustering</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="clustering.html"><a href="clustering.html#background-3"><i class="fa fa-check"></i><b>10.3.1</b> Background</a></li>
 <li class="chapter" data-level="10.3.2" data-path="clustering.html"><a href="clustering.html#implementation"><i class="fa fa-check"></i><b>10.3.2</b> Implementation</a></li>
@@ -278,7 +277,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.4.1" data-path="marker-detection.html"><a href="marker-detection.html#using-the-block-argument"><i class="fa fa-check"></i><b>11.4.1</b> Using the <code>block=</code> argument</a></li>
 <li class="chapter" data-level="11.4.2" data-path="marker-detection.html"><a href="marker-detection.html#using-the-design-argument"><i class="fa fa-check"></i><b>11.4.2</b> Using the <code>design=</code> argument</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="marker-detection.html"><a href="marker-detection.html#invalidity-of-p-values"><i class="fa fa-check"></i><b>11.5</b> Invalidity of <span class="math inline">\(p\)</span>-values</a><ul>
+<li class="chapter" data-level="11.5" data-path="marker-detection.html"><a href="marker-detection.html#p-value-invalidity"><i class="fa fa-check"></i><b>11.5</b> Invalidity of <span class="math inline">\(p\)</span>-values</a><ul>
 <li class="chapter" data-level="11.5.1" data-path="marker-detection.html"><a href="marker-detection.html#from-data-snooping"><i class="fa fa-check"></i><b>11.5.1</b> From data snooping</a></li>
 <li class="chapter" data-level="11.5.2" data-path="marker-detection.html"><a href="marker-detection.html#false-replicates"><i class="fa fa-check"></i><b>11.5.2</b> Nature of replication</a></li>
 </ul></li>
@@ -360,18 +359,22 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="17" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html"><i class="fa fa-check"></i><b>17</b> Trajectory Analysis</a><ul>
 <li class="chapter" data-level="17.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-6"><i class="fa fa-check"></i><b>17.1</b> Overview</a></li>
-<li class="chapter" data-level="17.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#obtaining-pseudo-times"><i class="fa fa-check"></i><b>17.2</b> Obtaining pseudo-times</a><ul>
-<li class="chapter" data-level="17.2.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#cluster-based-minimum-spanning-tree"><i class="fa fa-check"></i><b>17.2.1</b> Cluster-based minimum spanning tree</a></li>
-<li class="chapter" data-level="17.2.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#principal-curves"><i class="fa fa-check"></i><b>17.2.2</b> Principal curves</a></li>
+<li class="chapter" data-level="17.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#obtaining-pseudotime-orderings"><i class="fa fa-check"></i><b>17.2</b> Obtaining pseudotime orderings</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-7"><i class="fa fa-check"></i><b>17.2.1</b> Overview</a></li>
+<li class="chapter" data-level="17.2.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#cluster-based-minimum-spanning-tree"><i class="fa fa-check"></i><b>17.2.2</b> Cluster-based minimum spanning tree</a></li>
+<li class="chapter" data-level="17.2.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#principal-curves"><i class="fa fa-check"></i><b>17.2.3</b> Principal curves</a></li>
 </ul></li>
 <li class="chapter" data-level="17.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#characterizing-trajectories"><i class="fa fa-check"></i><b>17.3</b> Characterizing trajectories</a><ul>
-<li class="chapter" data-level="17.3.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-along-a-trajectory"><i class="fa fa-check"></i><b>17.3.1</b> Changes along a trajectory</a></li>
-<li class="chapter" data-level="17.3.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-between-lineages"><i class="fa fa-check"></i><b>17.3.2</b> Changes between lineages</a></li>
+<li class="chapter" data-level="17.3.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-8"><i class="fa fa-check"></i><b>17.3.1</b> Overview</a></li>
+<li class="chapter" data-level="17.3.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-along-a-trajectory"><i class="fa fa-check"></i><b>17.3.2</b> Changes along a trajectory</a></li>
+<li class="chapter" data-level="17.3.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-between-paths"><i class="fa fa-check"></i><b>17.3.3</b> Changes between paths</a></li>
+<li class="chapter" data-level="17.3.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#further-comments-2"><i class="fa fa-check"></i><b>17.3.4</b> Further comments</a></li>
 </ul></li>
 <li class="chapter" data-level="17.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#finding-the-root"><i class="fa fa-check"></i><b>17.4</b> Finding the root</a><ul>
-<li class="chapter" data-level="17.4.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-7"><i class="fa fa-check"></i><b>17.4.1</b> Overview</a></li>
+<li class="chapter" data-level="17.4.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-9"><i class="fa fa-check"></i><b>17.4.1</b> Overview</a></li>
 <li class="chapter" data-level="17.4.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#entropy-based-methods"><i class="fa fa-check"></i><b>17.4.2</b> Entropy-based methods</a></li>
 <li class="chapter" data-level="17.4.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#rna-velocity"><i class="fa fa-check"></i><b>17.4.3</b> RNA velocity</a></li>
+<li class="chapter" data-level="17.4.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#real-timepoints"><i class="fa fa-check"></i><b>17.4.4</b> Real timepoints</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#session-information"><i class="fa fa-check"></i>Session information</a></li>
 </ul></li>
@@ -392,15 +395,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="19" data-path="repertoire-seq.html"><a href="repertoire-seq.html"><i class="fa fa-check"></i><b>19</b> Analyzing repertoire sequencing data</a><ul>
 <li class="chapter" data-level="19.1" data-path="repertoire-seq.html"><a href="repertoire-seq.html#motivation-12"><i class="fa fa-check"></i><b>19.1</b> Motivation</a></li>
-<li class="chapter" data-level="19.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#analyzing-the-t-cell-receptor-repertoire"><i class="fa fa-check"></i><b>19.2</b> Analyzing the T cell receptor repertoire</a><ul>
-<li class="chapter" data-level="19.2.1" data-path="repertoire-seq.html"><a href="repertoire-seq.html#data-processing"><i class="fa fa-check"></i><b>19.2.1</b> Data processing</a></li>
-<li class="chapter" data-level="19.2.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#basic-diagnostics"><i class="fa fa-check"></i><b>19.2.2</b> Basic diagnostics</a></li>
-<li class="chapter" data-level="19.2.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#complex-diagnostics"><i class="fa fa-check"></i><b>19.2.3</b> Complex diagnostics</a></li>
-<li class="chapter" data-level="19.2.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#quantifying-clonal-expansion"><i class="fa fa-check"></i><b>19.2.4</b> Quantifying clonal expansion</a></li>
-<li class="chapter" data-level="19.2.5" data-path="repertoire-seq.html"><a href="repertoire-seq.html#quantifying-gene-expression-and-properties"><i class="fa fa-check"></i><b>19.2.5</b> Quantifying gene expression and properties</a></li>
-</ul></li>
-<li class="chapter" data-level="19.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#analyzing-the-immunoglobulin-repertoire"><i class="fa fa-check"></i><b>19.3</b> Analyzing the immunoglobulin repertoire</a></li>
-<li class="chapter" data-level="19.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#multi-sample-analyses"><i class="fa fa-check"></i><b>19.4</b> Multi-sample analyses</a></li>
+<li class="chapter" data-level="19.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#loading-the-tcr-repertoire"><i class="fa fa-check"></i><b>19.2</b> Loading the TCR repertoire</a></li>
+<li class="chapter" data-level="19.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#leveraging-list-semantics"><i class="fa fa-check"></i><b>19.3</b> Leveraging <code>List</code> semantics</a></li>
+<li class="chapter" data-level="19.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#converting-back-to-dataframes"><i class="fa fa-check"></i><b>19.4</b> Converting back to <code>DataFrame</code>s</a></li>
+<li class="chapter" data-level="19.5" data-path="repertoire-seq.html"><a href="repertoire-seq.html#case-study-for-clonotype-analyses"><i class="fa fa-check"></i><b>19.5</b> Case study for clonotype analyses</a></li>
+<li class="chapter" data-level="19.6" data-path="repertoire-seq.html"><a href="repertoire-seq.html#repeating-for-immunoglobulins"><i class="fa fa-check"></i><b>19.6</b> Repeating for immunoglobulins</a></li>
 <li class="chapter" data-level="" data-path="repertoire-seq.html"><a href="repertoire-seq.html#session-info-13"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="interactive-sharing.html"><a href="interactive-sharing.html"><i class="fa fa-check"></i><b>20</b> Interactive data exploration</a><ul>
@@ -478,16 +477,14 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="26.8" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#data-integration"><i class="fa fa-check"></i><b>26.8</b> Data integration</a></li>
 <li class="chapter" data-level="" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#session-info-20"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="27" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html"><i class="fa fa-check"></i><b>27</b> Human PBMC 10X dataset (surface proteins)</a><ul>
-<li class="chapter" data-level="27.1" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#introduction-7"><i class="fa fa-check"></i><b>27.1</b> Introduction</a></li>
-<li class="chapter" data-level="27.2" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#analysis-code"><i class="fa fa-check"></i><b>27.2</b> Analysis code</a><ul>
-<li class="chapter" data-level="27.2.1" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#data-loading-4"><i class="fa fa-check"></i><b>27.2.1</b> Data loading</a></li>
-<li class="chapter" data-level="27.2.2" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#quality-control-7"><i class="fa fa-check"></i><b>27.2.2</b> Quality control</a></li>
-<li class="chapter" data-level="27.2.3" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#normalization-6"><i class="fa fa-check"></i><b>27.2.3</b> Normalization</a></li>
-<li class="chapter" data-level="27.2.4" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#dimensionality-reduction-5"><i class="fa fa-check"></i><b>27.2.4</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="27.2.5" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#clustering-5"><i class="fa fa-check"></i><b>27.2.5</b> Clustering</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="human-pbmc-10x-dataset-surface-proteins.html"><a href="human-pbmc-10x-dataset-surface-proteins.html#session-info-21"><i class="fa fa-check"></i>Session Info</a></li>
+<li class="chapter" data-level="27" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html"><i class="fa fa-check"></i><b>27</b> Human PBMC with surface proteins (10X Genomics)</a><ul>
+<li class="chapter" data-level="27.1" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#introduction-7"><i class="fa fa-check"></i><b>27.1</b> Introduction</a></li>
+<li class="chapter" data-level="27.2" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#data-loading-4"><i class="fa fa-check"></i><b>27.2</b> Data loading</a></li>
+<li class="chapter" data-level="27.3" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#quality-control-7"><i class="fa fa-check"></i><b>27.3</b> Quality control</a></li>
+<li class="chapter" data-level="27.4" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#normalization-6"><i class="fa fa-check"></i><b>27.4</b> Normalization</a></li>
+<li class="chapter" data-level="27.5" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#dimensionality-reduction-5"><i class="fa fa-check"></i><b>27.5</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="27.6" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#clustering-5"><i class="fa fa-check"></i><b>27.6</b> Clustering</a></li>
+<li class="chapter" data-level="" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html#session-info-21"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="28" data-path="grun-human-pancreas-cel-seq2.html"><a href="grun-human-pancreas-cel-seq2.html"><i class="fa fa-check"></i><b>28</b> Grun human pancreas (CEL-seq2)</a><ul>
 <li class="chapter" data-level="28.1" data-path="grun-human-pancreas-cel-seq2.html"><a href="grun-human-pancreas-cel-seq2.html#introduction-8"><i class="fa fa-check"></i><b>28.1</b> Introduction</a></li>
@@ -504,12 +501,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="29.1" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#introduction-9"><i class="fa fa-check"></i><b>29.1</b> Introduction</a></li>
 <li class="chapter" data-level="29.2" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-loading-6"><i class="fa fa-check"></i><b>29.2</b> Data loading</a></li>
 <li class="chapter" data-level="29.3" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#quality-control-9"><i class="fa fa-check"></i><b>29.3</b> Quality control</a></li>
-<li class="chapter" data-level="29.4" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#normalization-8"><i class="fa fa-check"></i><b>29.4</b> Normalization</a><ul>
-<li class="chapter" data-level="29.4.1" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#variance-modelling-5"><i class="fa fa-check"></i><b>29.4.1</b> Variance modelling</a></li>
-</ul></li>
-<li class="chapter" data-level="29.5" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-integration-2"><i class="fa fa-check"></i><b>29.5</b> Data integration</a></li>
-<li class="chapter" data-level="29.6" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#dimensionality-reduction-7"><i class="fa fa-check"></i><b>29.6</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="29.7" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#clustering-7"><i class="fa fa-check"></i><b>29.7</b> Clustering</a></li>
+<li class="chapter" data-level="29.4" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#normalization-8"><i class="fa fa-check"></i><b>29.4</b> Normalization</a></li>
+<li class="chapter" data-level="29.5" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#variance-modelling-5"><i class="fa fa-check"></i><b>29.5</b> Variance modelling</a></li>
+<li class="chapter" data-level="29.6" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#data-integration-2"><i class="fa fa-check"></i><b>29.6</b> Data integration</a></li>
+<li class="chapter" data-level="29.7" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#dimensionality-reduction-7"><i class="fa fa-check"></i><b>29.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="29.8" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#clustering-7"><i class="fa fa-check"></i><b>29.8</b> Clustering</a></li>
 <li class="chapter" data-level="" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html#session-info-23"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="30" data-path="lawlor-human-pancreas-smarter.html"><a href="lawlor-human-pancreas-smarter.html"><i class="fa fa-check"></i><b>30</b> Lawlor human pancreas (SMARTer)</a><ul>
@@ -525,12 +521,11 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="31" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html"><i class="fa fa-check"></i><b>31</b> Segerstolpe human pancreas (Smart-seq2)</a><ul>
 <li class="chapter" data-level="31.1" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#introduction-11"><i class="fa fa-check"></i><b>31.1</b> Introduction</a></li>
 <li class="chapter" data-level="31.2" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#data-loading-8"><i class="fa fa-check"></i><b>31.2</b> Data loading</a></li>
-<li class="chapter" data-level="31.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#quality-control-11"><i class="fa fa-check"></i><b>31.3</b> Quality control</a><ul>
-<li class="chapter" data-level="31.3.1" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#normalization-10"><i class="fa fa-check"></i><b>31.3.1</b> Normalization</a></li>
-<li class="chapter" data-level="31.3.2" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#variance-modelling-7"><i class="fa fa-check"></i><b>31.3.2</b> Variance modelling</a></li>
-<li class="chapter" data-level="31.3.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#dimensionality-reduction-9"><i class="fa fa-check"></i><b>31.3.3</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="31.3.4" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#clustering-9"><i class="fa fa-check"></i><b>31.3.4</b> Clustering</a></li>
-</ul></li>
+<li class="chapter" data-level="31.3" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#quality-control-11"><i class="fa fa-check"></i><b>31.3</b> Quality control</a></li>
+<li class="chapter" data-level="31.4" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#normalization-10"><i class="fa fa-check"></i><b>31.4</b> Normalization</a></li>
+<li class="chapter" data-level="31.5" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#variance-modelling-7"><i class="fa fa-check"></i><b>31.5</b> Variance modelling</a></li>
+<li class="chapter" data-level="31.6" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#dimensionality-reduction-9"><i class="fa fa-check"></i><b>31.6</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="31.7" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#clustering-9"><i class="fa fa-check"></i><b>31.7</b> Clustering</a></li>
 <li class="chapter" data-level="" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#session-info-25"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="32" data-path="merged-pancreas.html"><a href="merged-pancreas.html"><i class="fa fa-check"></i><b>32</b> Merged human pancreas datasets</a><ul>
@@ -589,14 +584,13 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="37.1" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#introduction-17"><i class="fa fa-check"></i><b>37.1</b> Introduction</a></li>
 <li class="chapter" data-level="37.2" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-loading-13"><i class="fa fa-check"></i><b>37.2</b> Data loading</a></li>
 <li class="chapter" data-level="37.3" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#quality-control-16"><i class="fa fa-check"></i><b>37.3</b> Quality control</a></li>
-<li class="chapter" data-level="37.4" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#normalization-15"><i class="fa fa-check"></i><b>37.4</b> Normalization</a><ul>
-<li class="chapter" data-level="37.4.1" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#variance-modeling"><i class="fa fa-check"></i><b>37.4.1</b> Variance modeling</a></li>
-</ul></li>
-<li class="chapter" data-level="37.5" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-integration-3"><i class="fa fa-check"></i><b>37.5</b> Data integration</a></li>
-<li class="chapter" data-level="37.6" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#dimensionality-reduction-14"><i class="fa fa-check"></i><b>37.6</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="37.7" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#clustering-14"><i class="fa fa-check"></i><b>37.7</b> Clustering</a></li>
-<li class="chapter" data-level="37.8" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#differential-expression"><i class="fa fa-check"></i><b>37.8</b> Differential expression</a></li>
-<li class="chapter" data-level="37.9" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#cell-type-classification"><i class="fa fa-check"></i><b>37.9</b> Cell type classification</a></li>
+<li class="chapter" data-level="37.4" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#normalization-15"><i class="fa fa-check"></i><b>37.4</b> Normalization</a></li>
+<li class="chapter" data-level="37.5" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#variance-modeling"><i class="fa fa-check"></i><b>37.5</b> Variance modeling</a></li>
+<li class="chapter" data-level="37.6" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#data-integration-3"><i class="fa fa-check"></i><b>37.6</b> Data integration</a></li>
+<li class="chapter" data-level="37.7" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#dimensionality-reduction-14"><i class="fa fa-check"></i><b>37.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="37.8" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#clustering-14"><i class="fa fa-check"></i><b>37.8</b> Clustering</a></li>
+<li class="chapter" data-level="37.9" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#differential-expression"><i class="fa fa-check"></i><b>37.9</b> Differential expression</a></li>
+<li class="chapter" data-level="37.10" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#cell-type-classification"><i class="fa fa-check"></i><b>37.10</b> Cell type classification</a></li>
 <li class="chapter" data-level="" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#session-info-31"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
@@ -636,9 +630,9 @@ document.addEventListener("click", function (event) {
         event.target.classList.toggle("active");
         var content = event.target.nextElementSibling;
         if (content.style.display === "block") {
-          content.style.display = "none";
+            content.style.display = "none";
         } else {
-          content.style.display = "block";
+            content.style.display = "block";
         }
     }
 })
@@ -665,8 +659,8 @@ document.addEventListener("click", function (event) {
 </style>
 <div id="overview-2" class="section level2">
 <h2><span class="header-section-number">9.1</span> Overview</h2>
-<p>Many scRNA-seq analysis procedures involve comparing cells based on their expression values across multiple genes. For example, clustering aims to identify cells with similar transcriptomic profiles by computing Euclidean distances across genes. In these applications, each individual gene represents a dimension of the data. More intuitively, if we had a scRNA-seq data set with two genes, we could make a two-dimensional plot where each axis represents the expression of one gene and each point in the plot represents a cell. This concept can be extended to data sets with thousands of genes where each cell’s expression profile defines its location in the high-dimensional expression space.</p>
-<p>As the name suggests, dimensionality reduction aims to reduce the number of separate dimensions in the data. This is possible because different genes are correlated if they are affected by the same biological process. Thus, we do not need to store separate information for individual genes, but can instead compress multiple features into a single dimension, e.g., an “eigengene” <span class="citation">(Langfelder and Horvath <a href="#ref-langfelder2007eigengene">2007</a>)</span>. This reduces computational work in downstream analyses like clustering, as calculations only need to be performed for a few dimensions rather than thousands of genes; reduces noise by averaging across multiple genes to obtain a more precise representation of the patterns in the data; and enables effective plotting of the data, for those of us who are not capable of visualizing more than 3 dimensions.</p>
+<p>Many scRNA-seq analysis procedures involve comparing cells based on their expression values across multiple genes. For example, clustering aims to identify cells with similar transcriptomic profiles by computing Euclidean distances across genes. In these applications, each individual gene represents a dimension of the data. More intuitively, if we had a scRNA-seq data set with two genes, we could make a two-dimensional plot where each axis represents the expression of one gene and each point in the plot represents a cell. This concept can be extended to data sets with thousands of genes where each cell's expression profile defines its location in the high-dimensional expression space.</p>
+<p>As the name suggests, dimensionality reduction aims to reduce the number of separate dimensions in the data. This is possible because different genes are correlated if they are affected by the same biological process. Thus, we do not need to store separate information for individual genes, but can instead compress multiple features into a single dimension, e.g., an &quot;eigengene&quot; <span class="citation">(Langfelder and Horvath <a href="#ref-langfelder2007eigengene">2007</a>)</span>. This reduces computational work in downstream analyses like clustering, as calculations only need to be performed for a few dimensions rather than thousands of genes; reduces noise by averaging across multiple genes to obtain a more precise representation of the patterns in the data; and enables effective plotting of the data, for those of us who are not capable of visualizing more than 3 dimensions.</p>
 <p>We will use the <span class="citation">Zeisel et al. (<a href="#ref-zeisel2015brain">2015</a>)</span> dataset to demonstrate the applications of various dimensionality reduction methods in this chapter.</p>
 <button class="aaron-collapse">
 View history
@@ -682,8 +676,8 @@ sce.zeisel &lt;-<span class="st"> </span><span class="kw">aggregateAcrossFeature
 
 <span class="co">#--- gene-annotation ---#</span>
 <span class="kw">library</span>(org.Mm.eg.db)
-<span class="kw">rowData</span>(sce.zeisel) &lt;-<span class="st"> </span><span class="kw">mapIds</span>(org.Mm.eg.db, <span class="dt">keys=</span><span class="kw">rownames</span>(sce.zeisel),
-    <span class="dt">keytype=</span><span class="st">&quot;SYMBOL&quot;</span>, <span class="dt">column=</span><span class="st">&quot;ENSEMBL&quot;</span>)
+<span class="kw">rowData</span>(sce.zeisel)<span class="op">$</span>Ensembl &lt;-<span class="st"> </span><span class="kw">mapIds</span>(org.Mm.eg.db, 
+    <span class="dt">keys=</span><span class="kw">rownames</span>(sce.zeisel), <span class="dt">keytype=</span><span class="st">&quot;SYMBOL&quot;</span>, <span class="dt">column=</span><span class="st">&quot;ENSEMBL&quot;</span>)
 
 <span class="co">#--- quality-control ---#</span>
 stats &lt;-<span class="st"> </span><span class="kw">perCellQCMetrics</span>(sce.zeisel, <span class="dt">subsets=</span><span class="kw">list</span>(
@@ -705,20 +699,20 @@ top.hvgs &lt;-<span class="st"> </span><span class="kw">getTopHVGs</span>(dec.ze
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sce.zeisel</code></pre></div>
 <pre><code>## class: SingleCellExperiment 
-## dim: 19839 2937 
+## dim: 19839 2816 
 ## metadata(0):
 ## assays(2): counts logcounts
 ## rownames(19839): 0610005C13Rik 0610007N19Rik ... Zzef1 Zzz3
-## rowData names(1): value
-## colnames(2937): 1772071015_C02 1772071017_G12 ... 1772066098_A12
-##   1772058148_F03
+## rowData names(2): featureType Ensembl
+## colnames(2816): 1772071015_C02 1772071017_G12 ... 1772063068_D01
+##   1772066098_A12
 ## colData names(11): tissue group # ... level2class sizeFactor
 ## reducedDimNames(0):
 ## altExpNames(2): ERCC repeat</code></pre>
 </div>
 <div id="principal-components-analysis" class="section level2">
 <h2><span class="header-section-number">9.2</span> Principal components analysis</h2>
-<p>Principal components analysis (PCA) discovers axes in high-dimensional space that capture the largest amount of variation. This is best understood by imagining each axis as a line. Say we draw a line anywhere, and we move all cells in our data set onto this line by the shortest path. The variance captured by this axis is defined as the variance across cells along that line. In PCA, the first axis (or “principal component”, PC) is chosen such that it captures the greatest variance across cells. The next PC is chosen such that it is orthogonal to the first and captures the greatest remaining amount of variation, and so on.</p>
+<p>Principal components analysis (PCA) discovers axes in high-dimensional space that capture the largest amount of variation. This is best understood by imagining each axis as a line. Say we draw a line anywhere, and we move all cells in our data set onto this line by the shortest path. The variance captured by this axis is defined as the variance across cells along that line. In PCA, the first axis (or &quot;principal component&quot;, PC) is chosen such that it captures the greatest variance across cells. The next PC is chosen such that it is orthogonal to the first and captures the greatest remaining amount of variation, and so on.</p>
 <p>By definition, the top PCs capture the dominant factors of heterogeneity in the data set. Thus, we can perform dimensionality reduction by restricting downstream analyses to the top PCs. This strategy is simple, highly effective and widely used throughout the data sciences. It takes advantage of the well-studied theoretical properties of the PCA - namely, that a low-rank approximation formed from the top PCs is the optimal approximation of the original data for a given matrix rank. It also allows us to use a wide range of fast PCA implementations for scalable and efficient data analysis.</p>
 <p>When applying PCA to scRNA-seq data, our assumption is that biological processes affect multiple genes in a coordinated manner. This means that the earlier PCs are likely to represent biological structure as more variation can be captured by considering the correlated behavior of many genes. By comparison, random technical or biological noise is expected to affect each gene independently. There is unlikely to be an axis that can capture random variation across many genes, meaning that noise should mostly be concentrated in the later PCs. This motivates the use of the earlier PCs in our downstream analyses, which concentrates the biological signal to simultaneously reduce computational work and remove noise.</p>
 <p>We perform the PCA on the log-normalized expression values using the <code>runPCA()</code> function from <em><a href="https://bioconductor.org/packages/3.12/scater">scater</a></em>. By default, <code>runPCA()</code> will compute the first 50 PCs and store them in the <code>reducedDims()</code> of the output <code>SingleCellExperiment</code> object, as shown below. Here, we use only the top 2000 genes with the largest biological components to reduce both computational work and high-dimensional random noise. In particular, while PCA is robust to random noise, an excess of it may cause the earlier PCs to capture noise instead of biological structure <span class="citation">(Johnstone and Lu <a href="#ref-johnstone2009consistency">2009</a>)</span>. This effect can be mitigated by restricting the PCA to a subset of HVGs, for which we can use any of the strategies described in Chapter <a href="feature-selection.html#feature-selection">8</a>.</p>
@@ -731,7 +725,7 @@ sce.zeisel &lt;-<span class="st"> </span><span class="kw">runPCA</span>(sce.zeis
 <span class="kw">reducedDimNames</span>(sce.zeisel)</code></pre></div>
 <pre><code>## [1] &quot;PCA&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(<span class="kw">reducedDim</span>(sce.zeisel, <span class="st">&quot;PCA&quot;</span>))</code></pre></div>
-<pre><code>## [1] 2937   50</code></pre>
+<pre><code>## [1] 2816   50</code></pre>
 <p>For large data sets, greater efficiency is obtained by using approximate SVD algorithms that only compute the top PCs. By default, most PCA-related functions in <em><a href="https://bioconductor.org/packages/3.12/scater">scater</a></em> and <em><a href="https://bioconductor.org/packages/3.12/scran">scran</a></em> will use methods from the <em><a href="https://CRAN.R-project.org/package=irlba">irlba</a></em> or <em><a href="https://CRAN.R-project.org/package=rsvd">rsvd</a></em> packages to perform the SVD. We can explicitly specify the SVD algorithm to use by passing an <code>BiocSingularParam</code> object (from the <em><a href="https://bioconductor.org/packages/3.12/BiocSingular">BiocSingular</a></em> package) to the <code>BSPARAM=</code> argument (see Section <a href="dealing-with-big-data.html#big-data-svd">21.2.2</a> for more details). Many of these approximate algorithms are based on randomization and thus require <code>set.seed()</code> to obtain reproducible results.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(BiocSingular)
 <span class="kw">set.seed</span>(<span class="dv">1000</span>)
@@ -744,11 +738,21 @@ sce.zeisel &lt;-<span class="st"> </span><span class="kw">runPCA</span>(sce.zeis
 <h2><span class="header-section-number">9.3</span> Choosing the number of PCs</h2>
 <div id="motivation-2" class="section level3">
 <h3><span class="header-section-number">9.3.1</span> Motivation</h3>
-<p>How many of the top PCs should we retain for downstream analyses? The choice of the number of PCs <span class="math inline">\(d\)</span> is a decision that is analogous to the choice of the number of HVGs to use. Using more PCs will avoid discarding biological signal in later PCs, at the cost of retaining more noise. Most practitioners will simply set <span class="math inline">\(d\)</span> to a “reasonable” but arbitrary value, typically ranging from 10 to 50. This is often satisfactory provided it is coupled with sufficient testing of alternative values to explore other perspectives of the data at a different bias-variance trade-off. Nonetheless, we will describe some more data-driven strategies to guide a suitable choice of <span class="math inline">\(d\)</span>.</p>
+<p>How many of the top PCs should we retain for downstream analyses? The choice of the number of PCs <span class="math inline">\(d\)</span> is a decision that is analogous to the choice of the number of HVGs to use. Using more PCs will retain more biological signal at the cost of including more noise that might mask said signal. Much like the choice of the number of HVGs, it is hard to determine whether an &quot;optimal&quot; choice exists for the number of PCs; putting aside the technical variation that is almost always uninteresting, one analyst's biological signal may easily be irrelevant noise to another analyst with a different scientific question.</p>
+<p>Most practitioners will simply set <span class="math inline">\(d\)</span> to a &quot;reasonable&quot; but arbitrary value, typically ranging from 10 to 50. This is often satisfactory as the later PCs explain so little variance that their inclusion or omission has no major effect. For example, in the Zeisel dataset, very few PCs explain more than 1% of the variance in the entire dataset (Figure <a href="dimensionality-reduction.html#fig:zeisel-scree">9.1</a>) and using, say, 30 <span class="math inline">\(\pm\)</span> 10 PCs would not even amount to four percentage points' worth of difference in variance. In fact, the main consequence of using more PCs is simply that downstream calculations take longer as they need to compute over more dimensions, but most PC-related calculations are fast enough that this is not a practical concern.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">percent.var &lt;-<span class="st"> </span><span class="kw">attr</span>(<span class="kw">reducedDim</span>(sce.zeisel), <span class="st">&quot;percentVar&quot;</span>)
+<span class="kw">plot</span>(percent.var, <span class="dt">log=</span><span class="st">&quot;y&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;PC&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Variance explained (%)&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:zeisel-scree"></span>
+<img src="reduced-dimensions_files/figure-html/zeisel-scree-1.png" alt="Percentage of variance explained by successive PCs in the Zeisel dataset, shown on a log-scale for visualization purposes." width="672" />
+<p class="caption">
+Figure 9.1: Percentage of variance explained by successive PCs in the Zeisel dataset, shown on a log-scale for visualization purposes.
+</p>
+</div>
+<p>Nonetheless, we will describe some more data-driven strategies to guide a suitable choice of <span class="math inline">\(d\)</span>. These automated choices are best treated as guidelines as they make some strong assumptions about what variation is &quot;interesting&quot;. More diligent readers may consider repeating the analysis with a variety of choices of <span class="math inline">\(d\)</span> to explore other perspectives of the dataset at a different bias-variance trade-off, though this tends to be more work than necessary for most questions.</p>
 </div>
 <div id="using-the-elbow-point" class="section level3">
 <h3><span class="header-section-number">9.3.2</span> Using the elbow point</h3>
-<p>A simple heuristic for choosing <span class="math inline">\(d\)</span> involves identifying the elbow point in the percentage of variance explained by successive PCs. This refers to the “elbow” in the curve of a scree plot as shown in Figure <a href="dimensionality-reduction.html#fig:elbow">9.1</a>.</p>
+<p>A simple heuristic for choosing <span class="math inline">\(d\)</span> involves identifying the elbow point in the percentage of variance explained by successive PCs. This refers to the &quot;elbow&quot; in the curve of a scree plot as shown in Figure <a href="dimensionality-reduction.html#fig:elbow">9.2</a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Percentage of variance explained is tucked away in the attributes.</span>
 percent.var &lt;-<span class="st"> </span><span class="kw">attr</span>(<span class="kw">reducedDim</span>(sce.zeisel), <span class="st">&quot;percentVar&quot;</span>)
 chosen.elbow &lt;-<span class="st"> </span>PCAtools<span class="op">::</span><span class="kw">findElbowPoint</span>(percent.var)
@@ -757,13 +761,13 @@ chosen.elbow</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(percent.var, <span class="dt">xlab=</span><span class="st">&quot;PC&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Variance explained (%)&quot;</span>)
 <span class="kw">abline</span>(<span class="dt">v=</span>chosen.elbow, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</code></pre></div>
 <div class="figure"><span id="fig:elbow"></span>
-<img src="P2_W05.reduced-dimensions_files/figure-html/elbow-1.png" alt="Percentage of variance explained by successive PCs in the Zeisel brain data. The identified elbow point is marked with a red line." width="672" />
+<img src="reduced-dimensions_files/figure-html/elbow-1.png" alt="Percentage of variance explained by successive PCs in the Zeisel brain data. The identified elbow point is marked with a red line." width="672" />
 <p class="caption">
-Figure 9.1: Percentage of variance explained by successive PCs in the Zeisel brain data. The identified elbow point is marked with a red line.
+Figure 9.2: Percentage of variance explained by successive PCs in the Zeisel brain data. The identified elbow point is marked with a red line.
 </p>
 </div>
-<p>Our assumption is that each of the top PCs capturing biological signal should explain much more variance than the remaining PCs. Thus, there should be a sharp drop in the percentage of variance explained when we move past the last “biological” PC. This manifests as an elbow in the scree plot, the location of which serves as a natural choice for <span class="math inline">\(d\)</span>.</p>
-<p>From a practical perspective, the use of the elbow point tends to retain fewer PCs compared to other methods. The definition of “much more variance” is relative so, in order to be retained, later PCs must explain a amount of variance that is comparable to that explained by the first few PCs. Strong biological variation in the early PCs will shift the elbow to the left, potentially excluding weaker (but still interesting) variation in the next PCs immediately following the elbow.</p>
+<p>Our assumption is that each of the top PCs capturing biological signal should explain much more variance than the remaining PCs. Thus, there should be a sharp drop in the percentage of variance explained when we move past the last &quot;biological&quot; PC. This manifests as an elbow in the scree plot, the location of which serves as a natural choice for <span class="math inline">\(d\)</span>.</p>
+<p>From a practical perspective, the use of the elbow point tends to retain fewer PCs compared to other methods. The definition of &quot;much more variance&quot; is relative so, in order to be retained, later PCs must explain a amount of variance that is comparable to that explained by the first few PCs. Strong biological variation in the early PCs will shift the elbow to the left, potentially excluding weaker (but still interesting) variation in the next PCs immediately following the elbow.</p>
 </div>
 <div id="using-the-technical-noise" class="section level3">
 <h3><span class="header-section-number">9.3.3</span> Using the technical noise</h3>
@@ -821,11 +825,11 @@ top.pbmc &lt;-<span class="st"> </span><span class="kw">getTopHVGs</span>(dec.pb
 denoised.pbmc &lt;-<span class="st"> </span><span class="kw">denoisePCA</span>(sce.pbmc, <span class="dt">technical=</span>dec.pbmc, <span class="dt">subset.row=</span>top.pbmc)
 <span class="kw">ncol</span>(<span class="kw">reducedDim</span>(denoised.pbmc))</code></pre></div>
 <pre><code>## [1] 8</code></pre>
-<p>The dimensionality of the output represents the lower bound on the number of PCs required to retain all biological variation. This choice of <span class="math inline">\(d\)</span> is motivated by the fact that any fewer PCs will definitely discard some aspect of biological signal. (Of course, the converse is not true; there is no guarantee that the retained PCs capture all of the signal, which is only generally possible if no dimensionality reduction is performed at all.) From a practical perspective, the <code>denoisePCA()</code> approach usually retains more PCs than the elbow point method as the former does not compare PCs to each other and is less likely to discard PCs corresponding to secondary factors of variation. The downside is that many minor aspects of variation may not be interesting (e.g., transcriptional bursting) and their retention would only add irrelevant noise. Thus, whether this is a “better” approach depends on the our willingness to increase noise in order to preserve weaker biological signals.</p>
+<p>The dimensionality of the output represents the lower bound on the number of PCs required to retain all biological variation. This choice of <span class="math inline">\(d\)</span> is motivated by the fact that any fewer PCs will definitely discard some aspect of biological signal. (Of course, the converse is not true; there is no guarantee that the retained PCs capture all of the signal, which is only generally possible if no dimensionality reduction is performed at all.) From a practical perspective, the <code>denoisePCA()</code> approach usually retains more PCs than the elbow point method as the former does not compare PCs to each other and is less likely to discard PCs corresponding to secondary factors of variation. The downside is that many minor aspects of variation may not be interesting (e.g., transcriptional bursting) and their retention would only add irrelevant noise. Thus, whether this is a &quot;better&quot; approach depends on the our willingness to increase noise in order to preserve weaker biological signals.</p>
 </div>
 <div id="additional-comments" class="section level4">
 <h4><span class="header-section-number">9.3.3.2</span> Additional comments</h4>
-<p><code>denoisePCA()</code> imposes internal caps on the number of PCs that can be chosen in this manner. By default, the number is bounded within the “reasonable” limits of 5 and 50 to avoid selection of too few PCs (when technical noise is high relative to biological variation) or too many PCs (when technical noise is very low). For example, applying this function to the Zeisel brain data hits the upper limit:</p>
+<p><code>denoisePCA()</code> imposes internal caps on the number of PCs that can be chosen in this manner. By default, the number is bounded within the &quot;reasonable&quot; limits of 5 and 50 to avoid selection of too few PCs (when technical noise is high relative to biological variation) or too many PCs (when technical noise is very low). For example, applying this function to the Zeisel brain data hits the upper limit:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">001001001</span>)
 denoised.zeisel &lt;-<span class="st"> </span><span class="kw">denoisePCA</span>(sce.zeisel, <span class="dt">technical=</span>dec.zeisel, 
     <span class="dt">subset.row=</span>top.zeisel)
@@ -851,9 +855,9 @@ choices &lt;-<span class="st"> </span><span class="kw">getClusteredPCs</span>(pc
 <span class="kw">abline</span>(<span class="dt">a=</span><span class="dv">1</span>, <span class="dt">b=</span><span class="dv">1</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)
 <span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">metadata</span>(choices)<span class="op">$</span>chosen, <span class="dt">col=</span><span class="st">&quot;grey80&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>)</code></pre></div>
 <div class="figure"><span id="fig:cluster-pc-choice"></span>
-<img src="P2_W05.reduced-dimensions_files/figure-html/cluster-pc-choice-1.png" alt="Number of clusters detected in the Zeisel brain dataset as a function of the number of PCs. The red unbroken line represents the theoretical upper constraint on the number of clusters, while the grey dashed line is the number of PCs suggested by `getClusteredPCs()`." width="672" />
+<img src="reduced-dimensions_files/figure-html/cluster-pc-choice-1.png" alt="Number of clusters detected in the Zeisel brain dataset as a function of the number of PCs. The red unbroken line represents the theoretical upper constraint on the number of clusters, while the grey dashed line is the number of PCs suggested by `getClusteredPCs()`." width="672" />
 <p class="caption">
-Figure 9.2: Number of clusters detected in the Zeisel brain dataset as a function of the number of PCs. The red unbroken line represents the theoretical upper constraint on the number of clusters, while the grey dashed line is the number of PCs suggested by <code>getClusteredPCs()</code>.
+Figure 9.3: Number of clusters detected in the Zeisel brain dataset as a function of the number of PCs. The red unbroken line represents the theoretical upper constraint on the number of clusters, while the grey dashed line is the number of PCs suggested by <code>getClusteredPCs()</code>.
 </p>
 </div>
 <p>This strategy is the most pragmatic as it directly addresses the role of the bias-variance trade-off in downstream analyses, specifically clustering. There is no need to preserve biological signal beyond what is distinguishable in later steps. However, it involves strong assumptions about the nature of the biological differences between subpopulations - and indeed, discrete subpopulations may not even exist in studies of continuous processes like differentiation.</p>
@@ -869,59 +873,88 @@ Figure 9.2: Number of clusters detected in the Zeisel brain dataset as a functio
 <span class="kw">reducedDimNames</span>(sce.zeisel)</code></pre></div>
 <pre><code>## [1] &quot;PCA&quot;    &quot;IRLBA&quot;  &quot;PCA_20&quot;</code></pre>
 <p>Note that this is not necessary if the desired number of PCs is directly specified in the initial call to <code>runPCA()</code>. Similarly, <code>denoisePCA()</code> will return its chosen number of PCs without requiring further user intervention.</p>
-</div>
-</div>
-<div id="non-negative-matrix-factorization" class="section level2">
-<h2><span class="header-section-number">9.4</span> Non-negative matrix factorization</h2>
-<p>Non-negative matrix factorization (NMF) involves approximating a matrix by the product of two lower-rank matrices <span class="math inline">\(W\)</span> and <span class="math inline">\(H\)</span>, all of which can only contain non-negative entries. This is conceptually similar to PCA in that we are aiming to summarize the major features in our matrix with a smaller matrix, reducing noise and compacting the data. However, the NMF coordinates are more interpretable as larger values unambiguously represent greater expression of genes in the corresponding factor; the same cannot be said of PCA coordinates, for which negative values could be caused by higher expression if the corresponding entry of the rotation vector is negative.</p>
-<p>scRNA-seq expression data is a popular use case for NMF <span class="citation">(Shao and Höfer <a href="#ref-shao2017robust">2017</a>; Kotliar et al. <a href="#ref-kotliar2019identifying">2019</a>)</span> as sequencing counts are always non-negative - even after log-transformation, provided that the pseudo-count is greater than 1. We demonstrate the application of NMF on the <span class="citation">Zeisel et al. (<a href="#ref-zeisel2015brain">2015</a>)</span> dataset using the <code>runNMF()</code> function from <em><a href="https://bioconductor.org/packages/3.12/scater">scater</a></em> (powered by the <em><a href="https://CRAN.R-project.org/package=NNLM">NNLM</a></em> package). As with the PCA results, <code>runNMF()</code> stores the per-cell coordinates in the <code>&quot;NMF&quot;</code> entry of the <code>reducedDims()</code> of the output, which we could then use directly for downstream steps like clustering. However, the main benefit of NMF over PCA is that we can directly interpret the individual factors based on the identity of the highly weighted genes in the basis matrix <span class="math inline">\(W\)</span> and the affected cells in the coordinate matrix <span class="math inline">\(H\)</span> (Figure <a href="dimensionality-reduction.html#fig:heat-nmf-zeisel">9.3</a>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">101001</span>)
-nmf.zeisel &lt;-<span class="st"> </span><span class="kw">runNMF</span>(sce.zeisel, <span class="dt">ncomponents=</span><span class="dv">10</span>, <span class="dt">subset_row=</span>top.zeisel)
+<!--
+## Non-negative matrix factorization
 
-<span class="co"># Extracting the basis matrix of per-gene contributions to each factor.</span>
-nmf.out &lt;-<span class="st"> </span><span class="kw">reducedDim</span>(nmf.zeisel, <span class="st">&quot;NMF&quot;</span>)
-nmf.basis &lt;-<span class="st"> </span><span class="kw">attr</span>(nmf.out, <span class="st">&quot;basis&quot;</span>)
-<span class="kw">colnames</span>(nmf.out) &lt;-<span class="st"> </span><span class="kw">colnames</span>(nmf.basis) &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
+Non-negative matrix factorization (NMF) involves approximating a matrix by the product of two lower-rank matrices $W$ and $H$,
+all of which can only contain non-negative entries.
+This is conceptually similar to PCA in that we are aiming to summarize the major features in our matrix with a smaller matrix,
+reducing noise and compacting the data.
+However, the NMF coordinates are more interpretable as larger values unambiguously represent greater expression of genes in the corresponding factor; 
+the same cannot be said of PCA coordinates, for which negative values could be caused by higher expression if the corresponding entry of the rotation vector is negative.
 
-<span class="co"># Creating a heatmap where each row is a cell:</span>
-per.cell &lt;-<span class="st"> </span>pheatmap<span class="op">::</span><span class="kw">pheatmap</span>(nmf.out, <span class="dt">silent=</span><span class="ot">TRUE</span>, 
-    <span class="dt">main=</span><span class="st">&quot;By cell&quot;</span>, <span class="dt">show_rownames=</span><span class="ot">FALSE</span>,
-    <span class="dt">color=</span><span class="kw">rev</span>(viridis<span class="op">::</span><span class="kw">magma</span>(<span class="dv">100</span>)), <span class="dt">cluster_cols=</span><span class="ot">FALSE</span>) 
+scRNA-seq expression data is a popular use case for NMF [@shao2017robust;@kotliar2019identifying] as sequencing counts are always non-negative - even after log-transformation, provided that the pseudo-count is greater than 1.
+We demonstrate the application of NMF on the @zeisel2015brain dataset using the `runNMF()` function from *[scater](https://bioconductor.org/packages/3.12/scater)* (powered by the *[NNLM](https://CRAN.R-project.org/package=NNLM)* package).
+As with the PCA results, `runNMF()` stores the per-cell coordinates in the `"NMF"` entry of the `reducedDims()` of the output, which we could then use directly for downstream steps like clustering.
+However, the main benefit of NMF over PCA is that we can directly interpret the individual factors based on the identity of the highly weighted genes in the basis matrix $W$ and the affected cells in the coordinate matrix $H$ (Figure \@ref(fig:heat-nmf-zeisel)).
 
-<span class="co"># Creating a heatmap where each row is a gene:</span>
-per.gene &lt;-<span class="st"> </span>pheatmap<span class="op">::</span><span class="kw">pheatmap</span>(nmf.basis, <span class="dt">silent=</span><span class="ot">TRUE</span>, 
-    <span class="dt">main=</span><span class="st">&quot;By gene&quot;</span>, <span class="dt">cluster_cols=</span><span class="ot">FALSE</span>, <span class="dt">show_rownames=</span><span class="ot">FALSE</span>,
-    <span class="dt">color=</span><span class="kw">rev</span>(viridis<span class="op">::</span><span class="kw">magma</span>(<span class="dv">100</span>)))
 
-gridExtra<span class="op">::</span><span class="kw">grid.arrange</span>(per.cell[[<span class="dv">4</span>]], per.gene[[<span class="dv">4</span>]], <span class="dt">ncol=</span><span class="dv">2</span>)</code></pre></div>
-<div class="figure"><span id="fig:heat-nmf-zeisel"></span>
-<img src="P2_W05.reduced-dimensions_files/figure-html/heat-nmf-zeisel-1.png" alt="Heatmaps of the NMF results in the Zeisel brain dataset. Each column represents a factor while each row represents either a cell (left) or a gene (right)." width="672" />
-<p class="caption">
-Figure 9.3: Heatmaps of the NMF results in the Zeisel brain dataset. Each column represents a factor while each row represents either a cell (left) or a gene (right).
-</p>
-</div>
-<p>Specifically, we examine the top ranking genes for each factor to attempt to assign biological meaning to them. There are at least a few marker genes here that will be familiar to readers who have studied neuronal cell types, e.g., <em>Mog</em> for oligodendrocytes and <em>Gad1</em> for interneurons. A factor with a high basis value for <em>Mog</em> can be treated as a proxy for oligodendrocyte identity; cells with high NMF coordinates for that factor (Figure <a href="dimensionality-reduction.html#fig:heat-nmf-zeisel">9.3</a>) are likely to be oligodendrocytes. Indeed, the concept of “cell type identity” is particularly amenable for NMF as the upregulation of marker genes manifests as large positive values in both <span class="math inline">\(H\)</span> and <span class="math inline">\(W\)</span> matrices, simplifying the process of interpretation for the affected factor.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">by.factor &lt;-<span class="st"> </span><span class="kw">list</span>()
-<span class="cf">for</span> (x <span class="cf">in</span> <span class="kw">colnames</span>(nmf.basis)) {
-    by.factor[[x]] &lt;-<span class="st"> </span><span class="kw">sort</span>(nmf.basis[,x], <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+```r
+set.seed(101001)
+nmf.zeisel <- runNMF(sce.zeisel, ncomponents=10, subset_row=top.zeisel)
+
+# Extracting the basis matrix of per-gene contributions to each factor.
+nmf.out <- reducedDim(nmf.zeisel, "NMF")
+nmf.basis <- attr(nmf.out, "basis")
+colnames(nmf.out) <- colnames(nmf.basis) <- 1:10
+
+# Creating a heatmap where each row is a cell:
+per.cell <- pheatmap::pheatmap(nmf.out, silent=TRUE, 
+    main="By cell", show_rownames=FALSE,
+    color=rev(viridis::magma(100)), cluster_cols=FALSE) 
+
+# Creating a heatmap where each row is a gene:
+per.gene <- pheatmap::pheatmap(nmf.basis, silent=TRUE, 
+    main="By gene", cluster_cols=FALSE, show_rownames=FALSE,
+    color=rev(viridis::magma(100)))
+
+gridExtra::grid.arrange(per.cell[[4]], per.gene[[4]], ncol=2)
+```
+
+Specifically, we examine the top ranking genes for each factor to attempt to assign biological meaning to them.
+There are at least a few marker genes here that will be familiar to readers who have studied neuronal cell types,
+e.g., _Mog_ for oligodendrocytes and _Gad1_ for interneurons.
+A factor with a high basis value for _Mog_ can be treated as a proxy for oligodendrocyte identity;
+cells with high NMF coordinates for that factor (Figure \@ref(fig:heat-nmf-zeisel)) are likely to be oligodendrocytes.
+Indeed, the concept of "cell type identity" is particularly amenable for NMF as the upregulation of marker genes manifests as large positive values in both $H$ and $W$ matrices, simplifying the process of interpretation for the affected factor.
+
+
+```r
+by.factor <- list()
+for (x in colnames(nmf.basis)) {
+    by.factor[[x]] <- sort(nmf.basis[,x], decreasing=TRUE)
 }
-<span class="kw">lapply</span>(by.factor, head, <span class="dt">n=</span><span class="dv">10</span>)</code></pre></div>
-<p>For characterizing population heterogeneity, NMF provides a fast alternative to the relatively circuitous process of clustering (Chapter <a href="clustering.html#clustering">10</a>) and marker gene detection (Chapter <a href="marker-detection.html#marker-detection">11</a>) The continuous nature of the NMF output also lends itself to describing gradients of biological state that are not easily captured by discrete clusters, while the availability of multiple factors allows simultaneous examination of many such gradients compared to a single trajectory. Of course, we do not entirely avoid clustering in Figure <a href="dimensionality-reduction.html#fig:heat-nmf-zeisel">9.3</a>, but at least the heatmap retains more information about the structure within and between clusters that is usually lost in pure cluster-based interpretations.</p>
-<p>On the other hand, NMF output is arguably more difficult to interpret than a conventional list of marker genes for distinguishing between subpopulations. There is no guarantee that each factor represents an orthogonal biological process, meaning that some care is required to ensure that the interpretation of one factor is not invalidated by other factors affecting the same genes. NMF also tends to assign higher weight to high-abundance genes to reduce approximation error - as evidenced by the recurrence of <em>Malat1</em> in multiple factors above - even though such genes may not exhibit strong DE between populations.</p>
-<p>We tend to prefer PCA for general-purpose dimensionality reduction given that the interpretability of NMF is not a critical feature for most scRNA-seq workflows. That said, NMF can provide another perspective on our high-dimensional data that can serve as a sanity check for more complicated downstream procedures. For example, we would hope that any identified clusters and marker genes would correspond to large values in the <span class="math inline">\(W\)</span> and <span class="math inline">\(H\)</span> matrices for the relevant factors.</p>
+lapply(by.factor, head, n=10)
+```
+
+
+
+For characterizing population heterogeneity, NMF provides a fast alternative to the relatively circuitous process of clustering (Chapter \@ref(clustering)) and marker gene detection (Chapter \@ref(marker-detection)) 
+The continuous nature of the NMF output also lends itself to describing gradients of biological state that are not easily captured by discrete clusters, while the availability of multiple factors allows simultaneous examination of many such gradients compared to a single trajectory.
+Of course, we do not entirely avoid clustering in Figure \@ref(fig:heat-nmf-zeisel), but at least the heatmap retains more information about the structure within and between clusters that is usually lost in pure cluster-based interpretations.
+
+On the other hand, NMF output is arguably more difficult to interpret than a conventional list of marker genes for distinguishing between subpopulations.
+There is no guarantee that each factor represents an orthogonal biological process, meaning that some care is required to ensure that the interpretation of one factor is not invalidated by other factors affecting the same genes.
+NMF also tends to assign higher weight to high-abundance genes to reduce approximation error - as evidenced by the recurrence of _Malat1_ in multiple factors above - even though such genes may not exhibit strong DE between populations.
+
+We tend to prefer PCA for general-purpose dimensionality reduction given that the interpretability of NMF is not a critical feature for most scRNA-seq workflows.
+That said, NMF can provide another perspective on our high-dimensional data that can serve as a sanity check for more complicated downstream procedures.
+For example, we would hope that any identified clusters and marker genes would correspond to large values in the $W$ and $H$ matrices for the relevant factors.
+-->
+</div>
 </div>
 <div id="dimensionality-reduction-for-visualization" class="section level2">
-<h2><span class="header-section-number">9.5</span> Dimensionality reduction for visualization</h2>
+<h2><span class="header-section-number">9.4</span> Dimensionality reduction for visualization</h2>
 <div id="motivation-3" class="section level3">
-<h3><span class="header-section-number">9.5.1</span> Motivation</h3>
+<h3><span class="header-section-number">9.4.1</span> Motivation</h3>
 <p>Another application of dimensionality reduction is to compress the data into 2 (sometimes 3) dimensions for plotting. This serves a separate purpose to the PCA-based dimensionality reduction described above. Algorithms are more than happy to operate on 10-50 PCs, but these are still too many dimensions for human comprehension. Further dimensionality reduction strategies are required to pack the most salient features of the data into 2 or 3 dimensions, which we will discuss below.</p>
 </div>
 <div id="visualizing-with-pca" class="section level3">
-<h3><span class="header-section-number">9.5.2</span> Visualizing with PCA</h3>
+<h3><span class="header-section-number">9.4.2</span> Visualizing with PCA</h3>
 <p>The simplest visualization approach is to plot the top 2 PCs (Figure <a href="dimensionality-reduction.html#fig:zeisel-pca">9.4</a>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotReducedDim</span>(sce.zeisel, <span class="dt">dimred=</span><span class="st">&quot;PCA&quot;</span>, <span class="dt">colour_by=</span><span class="st">&quot;level1class&quot;</span>)</code></pre></div>
 <div class="figure"><span id="fig:zeisel-pca"></span>
-<img src="P2_W05.reduced-dimensions_files/figure-html/zeisel-pca-1.png" alt="PCA plot of the first two PCs in the Zeisel brain data. Each point is a cell, coloured according to the annotation provided by the original authors." width="672" />
+<img src="reduced-dimensions_files/figure-html/zeisel-pca-1.png" alt="PCA plot of the first two PCs in the Zeisel brain data. Each point is a cell, coloured according to the annotation provided by the original authors." width="672" />
 <p class="caption">
 Figure 9.4: PCA plot of the first two PCs in the Zeisel brain data. Each point is a cell, coloured according to the annotation provided by the original authors.
 </p>
@@ -931,7 +964,7 @@ Figure 9.4: PCA plot of the first two PCs in the Zeisel brain data. Each point i
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotReducedDim</span>(sce.zeisel, <span class="dt">dimred=</span><span class="st">&quot;PCA&quot;</span>, <span class="dt">ncomponents=</span><span class="dv">4</span>,
     <span class="dt">colour_by=</span><span class="st">&quot;level1class&quot;</span>)</code></pre></div>
 <div class="figure"><span id="fig:zeisel-pca-multi"></span>
-<img src="P2_W05.reduced-dimensions_files/figure-html/zeisel-pca-multi-1.png" alt="PCA plot of the first two PCs in the Zeisel brain data. Each point is a cell, coloured according to the annotation provided by the original authors." width="672" />
+<img src="reduced-dimensions_files/figure-html/zeisel-pca-multi-1.png" alt="PCA plot of the first two PCs in the Zeisel brain data. Each point is a cell, coloured according to the annotation provided by the original authors." width="672" />
 <p class="caption">
 Figure 9.5: PCA plot of the first two PCs in the Zeisel brain data. Each point is a cell, coloured according to the annotation provided by the original authors.
 </p>
@@ -939,7 +972,7 @@ Figure 9.5: PCA plot of the first two PCs in the Zeisel brain data. Each point i
 <p>There are some advantages to the PCA for visualization. It is predictable and will not introduce artificial structure in the visualization. It is also deterministic and robust to small changes in the input values. However, as shown above, PCA is usually not satisfactory for visualization of complex populations.</p>
 </div>
 <div id="t-stochastic-neighbor-embedding" class="section level3">
-<h3><span class="header-section-number">9.5.3</span> <span class="math inline">\(t\)</span>-stochastic neighbor embedding</h3>
+<h3><span class="header-section-number">9.4.3</span> <span class="math inline">\(t\)</span>-stochastic neighbor embedding</h3>
 <p>The <em>de facto</em> standard for visualization of scRNA-seq data is the <span class="math inline">\(t\)</span>-stochastic neighbor embedding (<span class="math inline">\(t\)</span>-SNE) method <span class="citation">(Van der Maaten and Hinton <a href="#ref-van2008visualizing">2008</a>)</span>. This attempts to find a low-dimensional representation of the data that preserves the distances between each point and its neighbors in the high-dimensional space. Unlike PCA, it is not restricted to linear transformations, nor is it obliged to accurately represent distances between distant populations. This means that it has much more freedom in how it arranges cells in low-dimensional space, enabling it to separate many distinct clusters in a complex population (Figure <a href="dimensionality-reduction.html#fig:tsne-brain">9.6</a>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">00101001101</span>)
 
@@ -948,13 +981,13 @@ Figure 9.5: PCA plot of the first two PCs in the Zeisel brain data. Each point i
 sce.zeisel &lt;-<span class="st"> </span><span class="kw">runTSNE</span>(sce.zeisel, <span class="dt">dimred=</span><span class="st">&quot;PCA&quot;</span>)
 <span class="kw">plotReducedDim</span>(sce.zeisel, <span class="dt">dimred=</span><span class="st">&quot;TSNE&quot;</span>, <span class="dt">colour_by=</span><span class="st">&quot;level1class&quot;</span>)</code></pre></div>
 <div class="figure"><span id="fig:tsne-brain"></span>
-<img src="P2_W05.reduced-dimensions_files/figure-html/tsne-brain-1.png" alt="$t$-SNE plots constructed from the top PCs in the Zeisel brain dataset. Each point represents a cell, coloured according to the published annotation." width="672" />
+<img src="reduced-dimensions_files/figure-html/tsne-brain-1.png" alt="$t$-SNE plots constructed from the top PCs in the Zeisel brain dataset. Each point represents a cell, coloured according to the published annotation." width="672" />
 <p class="caption">
 Figure 9.6: <span class="math inline">\(t\)</span>-SNE plots constructed from the top PCs in the Zeisel brain dataset. Each point represents a cell, coloured according to the published annotation.
 </p>
 </div>
 <p>One of the main disadvantages of <span class="math inline">\(t\)</span>-SNE is that it is much more computationally intensive than other visualization methods. We mitigate this effect by setting <code>dimred=&quot;PCA&quot;</code> in <code>runtTSNE()</code>, which instructs the function to perform the <span class="math inline">\(t\)</span>-SNE calculations on the top PCs to exploit the data compaction and noise removal provided by the PCA. It is possible to run <span class="math inline">\(t\)</span>-SNE on the original expression matrix but this is less efficient.</p>
-<p>Another issue with <span class="math inline">\(t\)</span>-SNE is that it requires the user to be aware of additional parameters (discussed <a href="http://distill.pub/2016/misread-tsne/">here</a> in some depth). It involves a random initialization so we need to (i) repeat the visualization several times to ensure that the results are representative and (ii) set the seed to ensure that the chosen results are reproducible. The “perplexity” is another important parameter that determines the granularity of the visualization (Figure <a href="dimensionality-reduction.html#fig:tsne-perplexity">9.7</a>). Low perplexities will favor resolution of finer structure, possibly to the point that the visualization is compromised by random noise. Thus, it is advisable to test different perplexity values to ensure that the choice of perplexity does not drive the interpretation of the plot.</p>
+<p>Another issue with <span class="math inline">\(t\)</span>-SNE is that it requires the user to be aware of additional parameters (discussed <a href="http://distill.pub/2016/misread-tsne/">here</a> in some depth). It involves a random initialization so we need to (i) repeat the visualization several times to ensure that the results are representative and (ii) set the seed to ensure that the chosen results are reproducible. The &quot;perplexity&quot; is another important parameter that determines the granularity of the visualization (Figure <a href="dimensionality-reduction.html#fig:tsne-perplexity">9.7</a>). Low perplexities will favor resolution of finer structure, possibly to the point that the visualization is compromised by random noise. Thus, it is advisable to test different perplexity values to ensure that the choice of perplexity does not drive the interpretation of the plot.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">100</span>)
 sce.zeisel &lt;-<span class="st"> </span><span class="kw">runTSNE</span>(sce.zeisel, <span class="dt">dimred=</span><span class="st">&quot;PCA&quot;</span>, <span class="dt">perplexity=</span><span class="dv">5</span>)
 out5 &lt;-<span class="st"> </span><span class="kw">plotReducedDim</span>(sce.zeisel, <span class="dt">dimred=</span><span class="st">&quot;TSNE&quot;</span>,
@@ -972,22 +1005,22 @@ out80 &lt;-<span class="st"> </span><span class="kw">plotReducedDim</span>(sce.z
 
 <span class="kw">multiplot</span>(out5, out20, out80, <span class="dt">cols=</span><span class="dv">3</span>)</code></pre></div>
 <div class="figure"><span id="fig:tsne-perplexity"></span>
-<img src="P2_W05.reduced-dimensions_files/figure-html/tsne-perplexity-1.png" alt="$t$-SNE plots constructed from the top PCs in the Zeisel brain dataset, using a range of perplexity values. Each point represents a cell, coloured according to its annotation." width="1440" />
+<img src="reduced-dimensions_files/figure-html/tsne-perplexity-1.png" alt="$t$-SNE plots constructed from the top PCs in the Zeisel brain dataset, using a range of perplexity values. Each point represents a cell, coloured according to its annotation." width="1440" />
 <p class="caption">
 Figure 9.7: <span class="math inline">\(t\)</span>-SNE plots constructed from the top PCs in the Zeisel brain dataset, using a range of perplexity values. Each point represents a cell, coloured according to its annotation.
 </p>
 </div>
-<p>Finally, it is tempting to interpret the <span class="math inline">\(t\)</span>-SNE results as a “map” of single-cell identities. This is generally unwise as any such interpretation is easily misled by the size and positions of the visual clusters. Specifically, <span class="math inline">\(t\)</span>-SNE will inflate dense clusters and compress sparse ones, such that we cannot use the size as a measure of subpopulation heterogeneity. Similarly, <span class="math inline">\(t\)</span>-SNE is not obliged to preserve the relative locations of non-neighboring clusters, such that we cannot use their positions to determine relationships between distant clusters. We provide some suggestions on how to interpret these plots in Section <a href="dimensionality-reduction.html#visualization-interpretation">9.5.5</a>.</p>
+<p>Finally, it is tempting to interpret the <span class="math inline">\(t\)</span>-SNE results as a &quot;map&quot; of single-cell identities. This is generally unwise as any such interpretation is easily misled by the size and positions of the visual clusters. Specifically, <span class="math inline">\(t\)</span>-SNE will inflate dense clusters and compress sparse ones, such that we cannot use the size as a measure of subpopulation heterogeneity. Similarly, <span class="math inline">\(t\)</span>-SNE is not obliged to preserve the relative locations of non-neighboring clusters, such that we cannot use their positions to determine relationships between distant clusters. We provide some suggestions on how to interpret these plots in Section <a href="dimensionality-reduction.html#visualization-interpretation">9.4.5</a>.</p>
 <p>Despite its shortcomings, <span class="math inline">\(t\)</span>-SNE is proven tool for general-purpose visualization of scRNA-seq data and remains a popular choice in many analysis pipelines.</p>
 </div>
 <div id="uniform-manifold-approximation-and-projection" class="section level3">
-<h3><span class="header-section-number">9.5.4</span> Uniform manifold approximation and projection</h3>
+<h3><span class="header-section-number">9.4.4</span> Uniform manifold approximation and projection</h3>
 <p>The uniform manifold approximation and projection (UMAP) method <span class="citation">(McInnes, Healy, and Melville <a href="#ref-mcInnes2018umap">2018</a>)</span> is an alternative to <span class="math inline">\(t\)</span>-SNE for non-linear dimensionality reduction. It is roughly similar to <span class="math inline">\(t\)</span>-SNE in that it also tries to find a low-dimensional representation that preserves relationships between neighbors in high-dimensional space. However, the two methods are based on different theory, represented by differences in the various graph weighting equations. This manifests as a different visualization as shown in Figure <a href="dimensionality-reduction.html#fig:umap-brain">9.8</a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1100101001</span>)
 sce.zeisel &lt;-<span class="st"> </span><span class="kw">runUMAP</span>(sce.zeisel, <span class="dt">dimred=</span><span class="st">&quot;PCA&quot;</span>)
 <span class="kw">plotReducedDim</span>(sce.zeisel, <span class="dt">dimred=</span><span class="st">&quot;UMAP&quot;</span>, <span class="dt">colour_by=</span><span class="st">&quot;level1class&quot;</span>)</code></pre></div>
 <div class="figure"><span id="fig:umap-brain"></span>
-<img src="P2_W05.reduced-dimensions_files/figure-html/umap-brain-1.png" alt="UMAP plots constructed from the top PCs in the Zeisel brain dataset. Each point represents a cell, coloured according to the published annotation." width="672" />
+<img src="reduced-dimensions_files/figure-html/umap-brain-1.png" alt="UMAP plots constructed from the top PCs in the Zeisel brain dataset. Each point represents a cell, coloured according to the published annotation." width="672" />
 <p class="caption">
 Figure 9.8: UMAP plots constructed from the top PCs in the Zeisel brain dataset. Each point represents a cell, coloured according to the published annotation.
 </p>
@@ -997,7 +1030,7 @@ Figure 9.8: UMAP plots constructed from the top PCs in the Zeisel brain dataset.
 <p>It is arguable whether the UMAP or <span class="math inline">\(t\)</span>-SNE visualizations are more useful or aesthetically pleasing. UMAP aims to preserve more global structure but this necessarily reduces resolution within each visual cluster. However, UMAP is unarguably much faster, and for that reason alone, it is increasingly displacing <span class="math inline">\(t\)</span>-SNE as the method of choice for visualizing large scRNA-seq data sets.</p>
 </div>
 <div id="visualization-interpretation" class="section level3">
-<h3><span class="header-section-number">9.5.5</span> Interpreting the plots</h3>
+<h3><span class="header-section-number">9.4.5</span> Interpreting the plots</h3>
 <p>Dimensionality reduction for visualization necessarily involves discarding information and distorting the distances between cells in order to fit high-dimensional data into a 2-dimensional space. One might wonder whether the results of such extreme data compression can be trusted. Some of our more quantitative colleagues consider such visualizations to be more artistic than scientific, fit for little but impressing collaborators and reviewers. Perhaps this perspective is not entirely invalid, but we suggest that there is some value to be extracted from them provided that they are accompanied by an analysis of a higher-rank representation.</p>
 <p>To illustrate, consider the interaction between clustering and <span class="math inline">\(t\)</span>-SNE. As a general rule, we would not perform clustering on the <span class="math inline">\(t\)</span>-SNE coordinates. Rather, we would cluster on the first 10-50 PCs (Chapter (clustering)) and then visualize the cluster identities on the <span class="math inline">\(t\)</span>-SNE plot. This ensures that clustering makes use of the information that was lost during compression into two dimensions for visualization. The plot can then be used for a diagnostic inspection of the clustering output, e.g., to check which clusters are close neighbors or whether a cluster can be split into further subclusters; such interpretations of <span class="math inline">\(t\)</span>-SNE coordinates are generally safe.</p>
 <p>From a naive perspective, using the <span class="math inline">\(t\)</span>-SNE coordinates directly for clustering is tempting as it ensures that any results are immediately consistent with the visualization. Given that clustering is rather arbitrary anyway, there is nothing inherently wrong with this strategy - it can be treated as a rather circuitous implementation of graph-based clustering (Section <a href="clustering.html#clustering-graph">10.3</a>). However, the enforced consistency can actually be considered a disservice as it masks the ambiguity of the conclusions, either due to the loss of information from dimensionality reduction or the uncertainty of the clustering. Rather than being errors, major discrepancies can instead be useful for motivating further investigation into the less obvious aspects of the dataset; conversely, the lack of discrepancies increases trust in the conclusions.</p>
@@ -1031,61 +1064,56 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] NMF_0.22.0                  cluster_2.1.0              
- [3] rngtools_1.5                pkgmaker_0.31.1            
- [5] registry_0.5-1              BiocSingular_1.5.0         
- [7] scater_1.17.0               ggplot2_3.3.0              
- [9] scran_1.17.0                SingleCellExperiment_1.11.1
-[11] SummarizedExperiment_1.19.2 DelayedArray_0.15.1        
-[13] matrixStats_0.56.0          Biobase_2.49.0             
-[15] GenomicRanges_1.41.1        GenomeInfoDb_1.25.0        
-[17] IRanges_2.23.4              S4Vectors_0.27.4           
-[19] BiocGenerics_0.35.1         OSCAUtils_0.0.2            
-[21] BiocStyle_2.17.0           
+ [1] BiocSingular_1.5.0          scater_1.17.1              
+ [3] ggplot2_3.3.1               scuttle_0.99.8             
+ [5] scran_1.17.1                SingleCellExperiment_1.11.2
+ [7] SummarizedExperiment_1.19.4 DelayedArray_0.15.1        
+ [9] matrixStats_0.56.0          Biobase_2.49.0             
+[11] GenomicRanges_1.41.1        GenomeInfoDb_1.25.0        
+[13] IRanges_2.23.6              S4Vectors_0.27.10          
+[15] BiocGenerics_0.35.2         rebook_0.99.0              
+[17] OSCAUtils_0.0.2             BiocStyle_2.17.0           
 
 loaded via a namespace (and not attached):
- [1] bitops_1.0-6              doParallel_1.0.15        
- [3] RColorBrewer_1.1-2        tools_4.0.0              
- [5] R6_2.4.1                  irlba_2.3.3              
- [7] vipor_0.4.5               uwot_0.1.8               
- [9] colorspace_1.4-1          withr_2.2.0              
-[11] tidyselect_1.0.0          gridExtra_2.3            
-[13] processx_3.4.2            compiler_4.0.0           
-[15] BiocNeighbors_1.7.0       labeling_0.3             
-[17] bookdown_0.18             scales_1.1.0             
-[19] callr_3.4.3               stringr_1.4.0            
-[21] digest_0.6.25             rmarkdown_2.1            
-[23] XVector_0.29.0            pkgconfig_2.0.3          
-[25] htmltools_0.4.0           bibtex_0.4.2.2           
-[27] limma_3.45.0              highr_0.8                
-[29] rlang_0.4.6               FNN_1.1.3                
-[31] DelayedMatrixStats_1.11.0 farver_2.0.3             
-[33] BiocParallel_1.23.0       dplyr_0.8.5              
-[35] RCurl_1.98-1.2            magrittr_1.5             
-[37] GenomeInfoDbData_1.2.3    Matrix_1.2-18            
-[39] Rcpp_1.0.4.6              ggbeeswarm_0.6.0         
-[41] munsell_0.5.0             viridis_0.5.1            
-[43] PCAtools_2.1.0            lifecycle_0.2.0          
-[45] stringi_1.4.6             yaml_2.2.1               
-[47] edgeR_3.31.0              zlibbioc_1.35.0          
-[49] Rtsne_0.15                plyr_1.8.6               
-[51] grid_4.0.0                ggrepel_0.8.2            
-[53] dqrng_0.2.1               crayon_1.3.4             
-[55] lattice_0.20-41           cowplot_1.0.0            
-[57] locfit_1.5-9.4            knitr_1.28               
-[59] ps_1.3.2                  pillar_1.4.4             
+ [1] bitops_1.0-6              tools_4.0.0              
+ [3] R6_2.4.1                  irlba_2.3.3              
+ [5] vipor_0.4.5               uwot_0.1.8               
+ [7] colorspace_1.4-1          withr_2.2.0              
+ [9] tidyselect_1.1.0          gridExtra_2.3            
+[11] processx_3.4.2            compiler_4.0.0           
+[13] graph_1.67.1              BiocNeighbors_1.7.0      
+[15] labeling_0.3              bookdown_0.19            
+[17] scales_1.1.1              callr_3.4.3              
+[19] stringr_1.4.0             digest_0.6.25            
+[21] rmarkdown_2.2             XVector_0.29.1           
+[23] pkgconfig_2.0.3           htmltools_0.4.0          
+[25] limma_3.45.0              highr_0.8                
+[27] rlang_0.4.6               FNN_1.1.3                
+[29] DelayedMatrixStats_1.11.0 generics_0.0.2           
+[31] farver_2.0.3              BiocParallel_1.23.0      
+[33] dplyr_1.0.0               RCurl_1.98-1.2           
+[35] magrittr_1.5              GenomeInfoDbData_1.2.3   
+[37] Matrix_1.2-18             Rcpp_1.0.4.6             
+[39] ggbeeswarm_0.6.0          munsell_0.5.0            
+[41] viridis_0.5.1             PCAtools_2.1.4           
+[43] lifecycle_0.2.0           stringi_1.4.6            
+[45] yaml_2.2.1                edgeR_3.31.1             
+[47] zlibbioc_1.35.0           Rtsne_0.15               
+[49] plyr_1.8.6                grid_4.0.0               
+[51] ggrepel_0.8.2             dqrng_0.2.1              
+[53] crayon_1.3.4              lattice_0.20-41          
+[55] cowplot_1.0.0             locfit_1.5-9.4           
+[57] CodeDepends_0.6.5         knitr_1.28               
+[59] ps_1.3.3                  pillar_1.4.4             
 [61] igraph_1.2.5              reshape2_1.4.4           
-[63] codetools_0.2-16          glue_1.4.0               
-[65] evaluate_0.14             BiocManager_1.30.10      
-[67] foreach_1.5.0             vctrs_0.2.4              
+[63] codetools_0.2-16          XML_3.99-0.3             
+[65] glue_1.4.1                evaluate_0.14            
+[67] BiocManager_1.30.10       vctrs_0.3.0              
 [69] gtable_0.3.0              purrr_0.3.4              
-[71] assertthat_0.2.1          gridBase_0.4-7           
-[73] xfun_0.13                 rsvd_1.0.3               
-[75] xtable_1.8-4              RSpectra_0.16-0          
-[77] viridisLite_0.3.0         pheatmap_1.0.12          
-[79] tibble_3.0.1              iterators_1.0.12         
-[81] beeswarm_0.2.3            statmod_1.4.34           
-[83] ellipsis_0.3.0           </code></pre>
+[71] xfun_0.14                 rsvd_1.0.3               
+[73] RSpectra_0.16-0           viridisLite_0.3.0        
+[75] tibble_3.0.1              beeswarm_0.2.3           
+[77] statmod_1.4.34            ellipsis_0.3.1           </code></pre>
 </div>
 
 </div>
@@ -1095,17 +1123,11 @@ loaded via a namespace (and not attached):
 <div id="ref-johnstone2009consistency">
 <p>Johnstone, I. M., and A. Y. Lu. 2009. “On Consistency and Sparsity for Principal Components Analysis in High Dimensions.” <em>J Am Stat Assoc</em> 104 (486): 682–93.</p>
 </div>
-<div id="ref-kotliar2019identifying">
-<p>Kotliar, D., A. Veres, M. A. Nagy, S. Tabrizi, E. Hodis, D. A. Melton, and P. C. Sabeti. 2019. “Identifying gene expression programs of cell-type identity and cellular activity with single-cell RNA-Seq.” <em>Elife</em> 8 (July).</p>
-</div>
 <div id="ref-langfelder2007eigengene">
 <p>Langfelder, P., and S. Horvath. 2007. “Eigengene networks for studying the relationships between co-expression modules.” <em>BMC Syst Biol</em> 1 (November): 54.</p>
 </div>
 <div id="ref-mcInnes2018umap">
 <p>McInnes, Leland, John Healy, and James Melville. 2018. “UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction.” <em>arXiv E-Prints</em>, February, arXiv:1802.03426.</p>
-</div>
-<div id="ref-shao2017robust">
-<p>Shao, C., and T. Höfer. 2017. “Robust classification of single-cell transcriptome data by nonnegative matrix factorization.” <em>Bioinformatics</em> 33 (2): 235–42.</p>
 </div>
 <div id="ref-van2008visualizing">
 <p>Van der Maaten, L., and G. Hinton. 2008. “Visualizing Data Using T-SNE.” <em>J. Mach. Learn. Res.</em> 9 (2579-2605): 85.</p>
