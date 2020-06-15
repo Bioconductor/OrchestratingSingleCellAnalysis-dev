@@ -124,10 +124,10 @@ merged
 ```
 ## class: SingleCellExperiment 
 ## dim: 14699 19426 
-## metadata(1): merge.info
+## metadata(2): merge.info pca.info
 ## assays(3): reconstructed counts logcounts
 ## rownames(14699): Xkr4 Rp1 ... Vmn2r122 CAAA01147332.1
-## rowData names(3): ENSEMBL SYMBOL rotation
+## rowData names(3): rotation ENSEMBL SYMBOL
 ## colnames(19426): cell_9769 cell_9770 ... cell_30701 cell_30702
 ## colData names(13): batch cell ... sizeFactor label
 ## reducedDimNames(3): corrected TSNE UMAP
@@ -267,10 +267,10 @@ summed
 ```
 ## class: SingleCellExperiment 
 ## dim: 14699 186 
-## metadata(1): merge.info
+## metadata(2): merge.info pca.info
 ## assays(1): counts
 ## rownames(14699): Xkr4 Rp1 ... Vmn2r122 CAAA01147332.1
-## rowData names(3): ENSEMBL SYMBOL rotation
+## rowData names(3): rotation ENSEMBL SYMBOL
 ## colnames: NULL
 ## colData names(16): batch cell ... sample ncells
 ## reducedDimNames(3): corrected TSNE UMAP
@@ -398,12 +398,12 @@ y$samples
 
 ```
 ##         group lib.size norm.factors batch cell barcode sample stage tomato pool
-## Sample1     1  4607053    1.0683392     5 <NA>    <NA>      5  E8.5   TRUE    3
-## Sample2     1  1064970    1.0487418     6 <NA>    <NA>      6  E8.5  FALSE    3
-## Sample3     1  2494010    0.9582296     7 <NA>    <NA>      7  E8.5   TRUE    4
-## Sample4     1  1028668    0.9774156     8 <NA>    <NA>      8  E8.5  FALSE    4
-## Sample5     1  4290221    0.9707300     9 <NA>    <NA>      9  E8.5   TRUE    5
-## Sample6     1  1950840    0.9816914    10 <NA>    <NA>     10  E8.5  FALSE    5
+## Sample1     1  4607053       1.0683     5 <NA>    <NA>      5  E8.5   TRUE    3
+## Sample2     1  1064970       1.0487     6 <NA>    <NA>      6  E8.5  FALSE    3
+## Sample3     1  2494010       0.9582     7 <NA>    <NA>      7  E8.5   TRUE    4
+## Sample4     1  1028668       0.9774     8 <NA>    <NA>      8  E8.5  FALSE    4
+## Sample5     1  4290221       0.9707     9 <NA>    <NA>      9  E8.5   TRUE    5
+## Sample6     1  1950840       0.9817    10 <NA>    <NA>     10  E8.5  FALSE    5
 ##         stage.mapped celltype.mapped closest.cell doub.density sizeFactor label
 ## Sample1         <NA>      Mesenchyme         <NA>           NA         NA    NA
 ## Sample2         <NA>      Mesenchyme         <NA>           NA         NA    NA
@@ -463,7 +463,7 @@ summary(y$trended.dispersion)
 
 ```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.01026 0.01670 0.02128 0.02020 0.02349 0.02665
+##  0.0103  0.0167  0.0213  0.0202  0.0235  0.0266
 ```
 
 ```r
@@ -488,7 +488,7 @@ summary(fit$var.prior)
 
 ```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.3179  0.7143  0.8538  0.8045  0.9128  1.0665
+##   0.318   0.714   0.854   0.804   0.913   1.067
 ```
 
 ```r
@@ -497,7 +497,7 @@ summary(fit$df.prior)
 
 ```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.2267 12.6749 12.6749 12.3390 12.6749 12.6749
+##   0.227  12.675  12.675  12.339  12.675  12.675
 ```
 
 ```r
@@ -535,17 +535,17 @@ topTags(res)
 
 ```
 ## Coefficient:  factor(tomato)TRUE 
-##               logFC   logCPM          F       PValue          FDR
-## Phlda2   -4.3873546 9.934130 1638.59469 1.812293e-16 1.030832e-12
-## Erdr1     2.0690698 8.832662  356.36590 1.060836e-11 3.017019e-08
-## Mid1      1.5190728 6.931325  120.14656 1.844351e-08 3.496889e-05
-## H13      -1.0596020 7.540121   80.79795 2.373001e-07 2.526790e-04
-## Kcnq1ot1  1.3762700 7.241651   83.30701 2.392052e-07 2.526790e-04
-## Akr1e1   -1.7205826 5.127802   79.31386 2.665390e-07 2.526790e-04
-## Zdbf2     1.8008336 6.797367   83.66324 6.808994e-07 5.532794e-04
-## Asb4     -0.9234911 7.340648   53.44578 2.918297e-06 2.074909e-03
-## Impact    0.8516300 7.353208   50.31429 4.145416e-06 2.619903e-03
-## Lum      -0.6031413 9.274529   41.67104 1.204523e-05 6.851324e-03
+##            logFC logCPM       F    PValue       FDR
+## Phlda2   -4.3874  9.934 1638.59 1.812e-16 1.031e-12
+## Erdr1     2.0691  8.833  356.37 1.061e-11 3.017e-08
+## Mid1      1.5191  6.931  120.15 1.844e-08 3.497e-05
+## H13      -1.0596  7.540   80.80 2.373e-07 2.527e-04
+## Kcnq1ot1  1.3763  7.242   83.31 2.392e-07 2.527e-04
+## Akr1e1   -1.7206  5.128   79.31 2.665e-07 2.527e-04
+## Zdbf2     1.8008  6.797   83.66 6.809e-07 5.533e-04
+## Asb4     -0.9235  7.341   53.45 2.918e-06 2.075e-03
+## Impact    0.8516  7.353   50.31 4.145e-06 2.620e-03
+## Lum      -0.6031  9.275   41.67 1.205e-05 6.851e-03
 ```
 
 
@@ -655,10 +655,10 @@ head(sort(rowMeans(up.de), decreasing=TRUE), 10)
 ```
 
 ```
-##      Mid1     Erdr1    Impact     Mcts2      Nnat  Kcnq1ot1   Slc38a4     Zdbf2 
-## 0.7692308 0.6538462 0.5384615 0.5000000 0.5000000 0.5000000 0.3846154 0.3461538 
-##      Hopx      Peg3 
-## 0.3461538 0.2307692
+##     Mid1    Erdr1   Impact    Mcts2     Nnat Kcnq1ot1  Slc38a4    Zdbf2 
+##   0.7692   0.6538   0.5385   0.5000   0.5000   0.5000   0.3846   0.3462 
+##     Hopx     Peg3 
+##   0.3462   0.2308
 ```
 
 ```r
@@ -669,9 +669,9 @@ head(sort(rowMeans(down.de), decreasing=TRUE), 10)
 
 ```
 ##        Akr1e1          Xist        Cdkn1c        Phlda2           H13 
-##    0.61538462    0.57692308    0.57692308    0.57692308    0.46153846 
+##       0.61538       0.57692       0.57692       0.57692       0.46154 
 ##         Wfdc2         Hbb-y         Grb10 B930036N10Rik         Pink1 
-##    0.19230769    0.11538462    0.11538462    0.07692308    0.07692308
+##       0.19231       0.11538       0.11538       0.07692       0.07692
 ```
 
 
@@ -812,12 +812,12 @@ y.ab
 ## 9    TRUE    5         E8.0                 ExE mesoderm  cell_116116
 ## 10  FALSE    5         E8.5 Forebrain/Midbrain/Hindbrain   cell_39343
 ##    doub.density sizeFactor label
-## 5    0.02985045  1.6348759    19
-## 6    0.29191572  2.5980769     6
-## 7    0.60173979  1.5939009    17
-## 8    0.00473259  0.8707367     9
-## 9    0.07941464  0.8932525    15
-## 10   0.04074704  0.3947355     1
+## 5      0.029850     1.6349    19
+## 6      0.291916     2.5981     6
+## 7      0.601740     1.5939    17
+## 8      0.004733     0.8707     9
+## 9      0.079415     0.8933    15
+## 10     0.040747     0.3947     1
 ```
 
 We filter out low-abundance labels as previously described.
@@ -882,7 +882,7 @@ summary(fit.ab$var.prior)
 
 ```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   1.254   1.254   1.254   1.254   1.254   1.254
+##    1.25    1.25    1.25    1.25    1.25    1.25
 ```
 
 ```r
@@ -927,28 +927,17 @@ topTags(res)
 
 ```
 ## Coefficient:  factor(tomato)TRUE 
-##                                     logFC   logCPM         F       PValue
-## ExE ectoderm                   -6.5663339 13.02497 66.266874 1.352022e-10
-## Mesenchyme                      1.1651500 16.29382 11.290523 1.534506e-03
-## Allantois                       0.8345294 15.50702  5.312163 2.554581e-02
-## Cardiomyocytes                  0.8484008 14.86430  5.203963 2.701306e-02
-## Neural crest                   -0.7706378 14.76462  4.106177 4.830292e-02
-## Endothelium                     0.7518608 14.28905  3.911511 5.371320e-02
-## Erythroid3                     -0.6430834 17.28041  3.603666 6.367366e-02
-## Haematoendothelial progenitors  0.6581135 14.72323  3.123946 8.350641e-02
-## ExE mesoderm                    0.3805309 15.67835  1.180627 2.826550e-01
-## Pharyngeal mesoderm             0.3793160 15.72073  1.169279 2.849523e-01
-##                                         FDR
-## ExE ectoderm                   3.244852e-09
-## Mesenchyme                     1.841407e-02
-## Allantois                      1.620784e-01
-## Cardiomyocytes                 1.620784e-01
-## Neural crest                   2.148528e-01
-## Endothelium                    2.148528e-01
-## Erythroid3                     2.183097e-01
-## Haematoendothelial progenitors 2.505192e-01
-## ExE mesoderm                   6.257608e-01
-## Pharyngeal mesoderm            6.257608e-01
+##                                  logFC logCPM      F    PValue       FDR
+## ExE ectoderm                   -6.5663  13.02 66.267 1.352e-10 3.245e-09
+## Mesenchyme                      1.1652  16.29 11.291 1.535e-03 1.841e-02
+## Allantois                       0.8345  15.51  5.312 2.555e-02 1.621e-01
+## Cardiomyocytes                  0.8484  14.86  5.204 2.701e-02 1.621e-01
+## Neural crest                   -0.7706  14.76  4.106 4.830e-02 2.149e-01
+## Endothelium                     0.7519  14.29  3.912 5.371e-02 2.149e-01
+## Erythroid3                     -0.6431  17.28  3.604 6.367e-02 2.183e-01
+## Haematoendothelial progenitors  0.6581  14.72  3.124 8.351e-02 2.505e-01
+## ExE mesoderm                    0.3805  15.68  1.181 2.827e-01 6.258e-01
+## Pharyngeal mesoderm             0.3793  15.72  1.169 2.850e-01 6.258e-01
 ```
 
 
@@ -978,7 +967,7 @@ y.ab2$samples$norm.factors
 ```
 
 ```
-## [1] 1.0055014 1.0832868 1.1658013 0.7613537 1.0615834 0.9743361
+## [1] 1.0055 1.0833 1.1658 0.7614 1.0616 0.9743
 ```
 
 We then proceed with the remainder of the *[edgeR](https://bioconductor.org/packages/3.12/edgeR)* analysis, shown below in condensed format.
@@ -995,28 +984,17 @@ topTags(res2, n=10)
 
 ```
 ## Coefficient:  factor(tomato)TRUE 
-##                                     logFC   logCPM         F       PValue
-## ExE ectoderm                   -6.9215053 13.17310 70.364441 5.737569e-11
-## Mesenchyme                      0.9512514 16.26914  6.786568 1.219244e-02
-## Neural crest                   -1.0031930 14.78020  6.463970 1.428911e-02
-## Erythroid3                     -0.8503855 17.34945  5.517254 2.299442e-02
-## Cardiomyocytes                  0.6400437 14.83561  2.734575 1.047239e-01
-## Allantois                       0.6054049 15.51064  2.502557 1.202293e-01
-## Forebrain/Midbrain/Hindbrain   -0.4943126 16.54751  1.928484 1.713349e-01
-## Endothelium                     0.5481902 14.26928  1.916766 1.726164e-01
-## Erythroid2                     -0.4818165 16.00028  1.677363 2.014700e-01
-## Haematoendothelial progenitors  0.4262409 14.73329  1.184785 2.818191e-01
-##                                         FDR
-## ExE ectoderm                   1.377017e-09
-## Mesenchyme                     1.143129e-01
-## Neural crest                   1.143129e-01
-## Erythroid3                     1.379665e-01
-## Cardiomyocytes                 4.809171e-01
-## Allantois                      4.809171e-01
-## Forebrain/Midbrain/Hindbrain   5.178491e-01
-## Endothelium                    5.178491e-01
-## Erythroid2                     5.372534e-01
-## Haematoendothelial progenitors 6.239689e-01
+##                                  logFC logCPM      F    PValue       FDR
+## ExE ectoderm                   -6.9215  13.17 70.364 5.738e-11 1.377e-09
+## Mesenchyme                      0.9513  16.27  6.787 1.219e-02 1.143e-01
+## Neural crest                   -1.0032  14.78  6.464 1.429e-02 1.143e-01
+## Erythroid3                     -0.8504  17.35  5.517 2.299e-02 1.380e-01
+## Cardiomyocytes                  0.6400  14.84  2.735 1.047e-01 4.809e-01
+## Allantois                       0.6054  15.51  2.503 1.202e-01 4.809e-01
+## Forebrain/Midbrain/Hindbrain   -0.4943  16.55  1.928 1.713e-01 5.178e-01
+## Endothelium                     0.5482  14.27  1.917 1.726e-01 5.178e-01
+## Erythroid2                     -0.4818  16.00  1.677 2.015e-01 5.373e-01
+## Haematoendothelial progenitors  0.4262  14.73  1.185 2.818e-01 6.240e-01
 ```
 
 
@@ -1050,12 +1028,12 @@ y.ab3$samples
 ## 9    TRUE    5         E8.0                 ExE mesoderm  cell_116116
 ## 10  FALSE    5         E8.5 Forebrain/Midbrain/Hindbrain   cell_39343
 ##    doub.density sizeFactor label
-## 5    0.02985045  1.6348759    19
-## 6    0.29191572  2.5980769     6
-## 7    0.60173979  1.5939009    17
-## 8    0.00473259  0.8707367     9
-## 9    0.07941464  0.8932525    15
-## 10   0.04074704  0.3947355     1
+## 5      0.029850     1.6349    19
+## 6      0.291916     2.5981     6
+## 7      0.601740     1.5939    17
+## 8      0.004733     0.8707     9
+## 9      0.079415     0.8933    15
+## 10     0.040747     0.3947     1
 ```
 
 ```r
@@ -1067,28 +1045,17 @@ topTags(res3, n=10)
 
 ```
 ## Coefficient:  factor(tomato)TRUE 
-##                                     logFC   logCPM         F      PValue
-## Mesenchyme                      1.1273676 16.32364 11.500591 0.001438179
-## Allantois                       0.7950021 15.54087  5.231036 0.026836234
-## Cardiomyocytes                  0.8104480 14.89525  5.151667 0.027956411
-## Neural crest                   -0.8085349 14.80374  4.903456 0.031797636
-## Erythroid3                     -0.6808430 17.32343  4.387347 0.041743200
-## Endothelium                     0.7151421 14.31988  3.829515 0.056442770
-## Haematoendothelial progenitors  0.6189006 14.75818  2.992844 0.090338383
-## Def. endoderm                   0.4910584 12.43440  1.083539 0.303347413
-## ExE mesoderm                    0.3418509 15.71309  1.036082 0.314058396
-## Pharyngeal mesoderm             0.3406974 15.75566  1.025040 0.316622575
-##                                       FDR
-## Mesenchyme                     0.03307812
-## Allantois                      0.18283641
-## Cardiomyocytes                 0.18283641
-## Neural crest                   0.18283641
-## Erythroid3                     0.19201872
-## Endothelium                    0.21636395
-## Haematoendothelial progenitors 0.29682612
-## Def. endoderm                  0.67818078
-## ExE mesoderm                   0.67818078
-## Pharyngeal mesoderm            0.67818078
+##                                  logFC logCPM      F   PValue     FDR
+## Mesenchyme                      1.1274  16.32 11.501 0.001438 0.03308
+## Allantois                       0.7950  15.54  5.231 0.026836 0.18284
+## Cardiomyocytes                  0.8104  14.90  5.152 0.027956 0.18284
+## Neural crest                   -0.8085  14.80  4.903 0.031798 0.18284
+## Erythroid3                     -0.6808  17.32  4.387 0.041743 0.19202
+## Endothelium                     0.7151  14.32  3.830 0.056443 0.21636
+## Haematoendothelial progenitors  0.6189  14.76  2.993 0.090338 0.29683
+## Def. endoderm                   0.4911  12.43  1.084 0.303347 0.67818
+## ExE mesoderm                    0.3419  15.71  1.036 0.314058 0.67818
+## Pharyngeal mesoderm             0.3407  15.76  1.025 0.316623 0.67818
 ```
 
 A similar strategy can be used to focus on proportional changes within a single subpopulation of a very heterogeneous data set.
@@ -1121,28 +1088,28 @@ topTags(res.lfc)
 
 ```
 ## Coefficient:  factor(tomato)TRUE 
-##                                     logFC unshrunk.logFC   logCPM       PValue
-## ExE ectoderm                   -6.5663339     -7.0014662 13.02497 2.626129e-09
-## Mesenchyme                      1.1651500      1.1657834 16.29382 1.323301e-01
-## Cardiomyocytes                  0.8484008      0.8498209 14.86430 3.795840e-01
-## Allantois                       0.8345294      0.8353651 15.50702 3.974675e-01
-## Neural crest                   -0.7706378     -0.7719154 14.76462 4.501007e-01
-## Endothelium                     0.7518608      0.7536317 14.28905 4.665427e-01
-## Haematoendothelial progenitors  0.6581135      0.6591452 14.72323 5.621684e-01
-## Def. endoderm                   0.5262140      0.5310753 12.40076 5.933582e-01
-## Erythroid3                     -0.6430834     -0.6432463 17.28041 6.118154e-01
-## Caudal Mesoderm                -0.3996254     -0.4035521 12.08574 6.827271e-01
-##                                         FDR
-## ExE ectoderm                   6.302709e-08
-## Mesenchyme                     9.950204e-01
-## Cardiomyocytes                 9.950204e-01
-## Allantois                      9.950204e-01
-## Neural crest                   9.950204e-01
-## Endothelium                    9.950204e-01
-## Haematoendothelial progenitors 9.950204e-01
-## Def. endoderm                  9.950204e-01
-## Erythroid3                     9.950204e-01
-## Caudal Mesoderm                9.950204e-01
+##                                  logFC unshrunk.logFC logCPM    PValue
+## ExE ectoderm                   -6.5663        -7.0015  13.02 2.626e-09
+## Mesenchyme                      1.1652         1.1658  16.29 1.323e-01
+## Cardiomyocytes                  0.8484         0.8498  14.86 3.796e-01
+## Allantois                       0.8345         0.8354  15.51 3.975e-01
+## Neural crest                   -0.7706        -0.7719  14.76 4.501e-01
+## Endothelium                     0.7519         0.7536  14.29 4.665e-01
+## Haematoendothelial progenitors  0.6581         0.6591  14.72 5.622e-01
+## Def. endoderm                   0.5262         0.5311  12.40 5.934e-01
+## Erythroid3                     -0.6431        -0.6432  17.28 6.118e-01
+## Caudal Mesoderm                -0.3996        -0.4036  12.09 6.827e-01
+##                                      FDR
+## ExE ectoderm                   6.303e-08
+## Mesenchyme                     9.950e-01
+## Cardiomyocytes                 9.950e-01
+## Allantois                      9.950e-01
+## Neural crest                   9.950e-01
+## Endothelium                    9.950e-01
+## Haematoendothelial progenitors 9.950e-01
+## Def. endoderm                  9.950e-01
+## Erythroid3                     9.950e-01
+## Caudal Mesoderm                9.950e-01
 ```
 
 The choice of $\tau$ can be loosely motivated by external experimental data.
@@ -1293,17 +1260,17 @@ topTags(res.neural, n=10)
 
 ```
 ## Coefficient:  factor(tomato)TRUE 
-##             logFC   logCPM          F        PValue           FDR
-## Hba-a1  -8.596706 6.744291  2756.5730  0.000000e+00  0.000000e+00
-## Hbb-y   -8.415622 8.357047  7364.2897  0.000000e+00  0.000000e+00
-## Hbb-bh1 -8.091042 9.159723 10758.2563  0.000000e+00  0.000000e+00
-## Hba-x   -7.724803 8.532843  7896.4567  0.000000e+00  0.000000e+00
-## Xist    -7.555686 8.212319  6657.2984  0.000000e+00  0.000000e+00
-## Hba-a2  -8.866232 5.813004  1517.7259 1.723785e-310 3.059718e-307
-## Erdr1    1.889536 7.615930  1407.1122 2.346783e-289 3.570463e-286
-## Cdkn1c  -8.864528 4.960967   814.9364 8.799796e-173 1.171473e-169
-## Uba52   -0.879668 8.386176   424.1907  1.865845e-92  2.207916e-89
-## Grb10   -1.403427 6.583140   401.3530  1.138985e-87  1.213019e-84
+##           logFC logCPM       F     PValue        FDR
+## Hba-a1  -8.5967  6.744  2756.6  0.000e+00  0.000e+00
+## Hbb-y   -8.4156  8.357  7364.3  0.000e+00  0.000e+00
+## Hbb-bh1 -8.0910  9.160 10758.3  0.000e+00  0.000e+00
+## Hba-x   -7.7248  8.533  7896.5  0.000e+00  0.000e+00
+## Xist    -7.5557  8.212  6657.3  0.000e+00  0.000e+00
+## Hba-a2  -8.8662  5.813  1517.7 1.724e-310 3.060e-307
+## Erdr1    1.8895  7.616  1407.1 2.347e-289 3.570e-286
+## Cdkn1c  -8.8645  4.961   814.9 8.800e-173 1.171e-169
+## Uba52   -0.8797  8.386   424.2  1.866e-92  2.208e-89
+## Grb10   -1.4034  6.583   401.4  1.139e-87  1.213e-84
 ```
 
 
@@ -1377,13 +1344,13 @@ head(max.ambient)
 ```
 
 ```
-##                 1         2         3   4
-## Xkr4          NaN       NaN       NaN NaN
-## Gm1992        NaN       NaN       NaN NaN
-## Gm37381       NaN       NaN       NaN NaN
-## Rp1           NaN       NaN       NaN NaN
-## Sox17   0.1775295 0.1833289 0.4680235   1
-## Gm37323       NaN       NaN       NaN NaN
+##              1      2     3   4
+## Xkr4       NaN    NaN   NaN NaN
+## Gm1992     NaN    NaN   NaN NaN
+## Gm37381    NaN    NaN   NaN NaN
+## Rp1        NaN    NaN   NaN NaN
+## Sox17   0.1775 0.1833 0.468   1
+## Gm37323    NaN    NaN   NaN NaN
 ```
 
 Genes in which over 10% of the counts are ambient-derived (averaged across samples) are subsequently discarded from our analysis.
@@ -1421,17 +1388,17 @@ topTags(res.neural2)
 
 ```
 ## Coefficient:  factor(tomato)TRUE 
-##                    logFC    logCPM         F        PValue           FDR
-## Xist          -7.5556862  8.212319 6657.2984  0.000000e+00  0.000000e+00
-## Erdr1          1.8895361  7.615930 1407.1122 2.346783e-289 1.216807e-285
-## Uba52         -0.8796680  8.386176  424.1907  1.865845e-92  6.449603e-89
-## Grb10         -1.4034273  6.583140  401.3530  1.138985e-87  2.952818e-84
-## Gt(ROSA)26Sor  1.4812935  5.716166  351.9402  2.800719e-77  5.808691e-74
-## Fdps           0.9813884  7.218053  337.1586  3.676550e-74  6.354304e-71
-## Mest           0.5493493 10.982691  319.6971  1.798324e-70  2.664089e-67
-## Impact         1.3966656  5.718008  314.7000  2.050571e-69  2.658053e-66
-## H13           -1.4816581  5.909020  301.6749  1.173722e-66  1.352388e-63
-## Msmo1          1.4937714  5.439231  301.0658  1.579834e-66  1.638288e-63
+##                 logFC logCPM      F     PValue        FDR
+## Xist          -7.5557  8.212 6657.3  0.000e+00  0.000e+00
+## Erdr1          1.8895  7.616 1407.1 2.347e-289 1.217e-285
+## Uba52         -0.8797  8.386  424.2  1.866e-92  6.450e-89
+## Grb10         -1.4034  6.583  401.4  1.139e-87  2.953e-84
+## Gt(ROSA)26Sor  1.4813  5.716  351.9  2.801e-77  5.809e-74
+## Fdps           0.9814  7.218  337.2  3.677e-74  6.354e-71
+## Mest           0.5493 10.983  319.7  1.798e-70  2.664e-67
+## Impact         1.3967  5.718  314.7  2.051e-69  2.658e-66
+## H13           -1.4817  5.909  301.7  1.174e-66  1.352e-63
+## Msmo1          1.4938  5.439  301.1  1.580e-66  1.638e-63
 ```
 
 
@@ -1452,13 +1419,13 @@ head(scaled.ambient)
 ```
 
 ```
-##                   1           2         3          4
-## Xkr4    0.003565198 0.000000000 0.0000000 0.00000000
-## Gm1992  0.000000000 0.000000000 0.0000000 0.00000000
-## Gm37381 0.003565198 0.000000000 0.0773581 0.00000000
-## Rp1     0.000000000 0.004630344 0.0000000 0.07028513
-## Sox17   0.270955018 0.351906158 2.3981011 3.72511196
-## Gm37323 0.000000000 0.000000000 0.0000000 0.00000000
+##                1       2       3       4
+## Xkr4    0.003565 0.00000 0.00000 0.00000
+## Gm1992  0.000000 0.00000 0.00000 0.00000
+## Gm37381 0.003565 0.00000 0.07736 0.00000
+## Rp1     0.000000 0.00463 0.00000 0.07029
+## Sox17   0.270955 0.35191 2.39810 3.72511
+## Gm37323 0.000000 0.00000 0.00000 0.00000
 ```
 
 ```r
@@ -1539,17 +1506,17 @@ topTags(res.ambient, n=10)
 
 ```
 ## Coefficient:  factor(tomato)TRUE 
-##             logFC    logCPM         F PValue FDR
-## Hbb-y   -5.264642 12.801878 13988.712      0   0
-## Gypa    -5.135445  7.212652  3372.190      0   0
-## Hbb-bh1 -5.072497 13.723493 13971.667      0   0
-## Hbb-bs  -4.938881  7.208200  3270.821      0   0
-## Snca    -4.932156  5.927167  1710.676      0   0
-## Hba-x   -4.824607 13.120984 12652.347      0   0
-## Cited4  -4.670161  7.181243  3085.772      0   0
-## Hba-a1  -4.659419 10.732972  9902.504      0   0
-## Alas2   -4.556286  6.227442  1841.931      0   0
-## Hba-a2  -4.518519  9.478764  7409.562      0   0
+##          logFC logCPM     F PValue FDR
+## Hbb-y   -5.265 12.802 13989      0   0
+## Gypa    -5.135  7.213  3372      0   0
+## Hbb-bh1 -5.072 13.723 13972      0   0
+## Hbb-bs  -4.939  7.208  3271      0   0
+## Snca    -4.932  5.927  1711      0   0
+## Hba-x   -4.825 13.121 12652      0   0
+## Cited4  -4.670  7.181  3086      0   0
+## Hba-a1  -4.659 10.733  9903      0   0
+## Alas2   -4.556  6.227  1842      0   0
+## Hba-a2  -4.519  9.479  7410      0   0
 ```
 
 
@@ -1646,66 +1613,69 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] DropletUtils_1.9.0          scran_1.17.1               
- [3] edgeR_3.31.1                limma_3.45.0               
- [5] scater_1.17.1               ggplot2_3.3.1              
- [7] BiocSingular_1.5.0          rebook_0.99.0              
- [9] scuttle_0.99.8              MouseGastrulationData_1.3.0
-[11] SingleCellExperiment_1.11.2 SummarizedExperiment_1.19.4
-[13] DelayedArray_0.15.1         matrixStats_0.56.0         
-[15] Biobase_2.49.0              GenomicRanges_1.41.1       
-[17] GenomeInfoDb_1.25.0         IRanges_2.23.6             
-[19] S4Vectors_0.27.10           BiocGenerics_0.35.2        
-[21] BiocStyle_2.17.0           
+ [1] DropletUtils_1.9.0          scuttle_0.99.9             
+ [3] MouseGastrulationData_1.3.0 scran_1.17.2               
+ [5] edgeR_3.31.4                limma_3.45.7               
+ [7] scater_1.17.3               ggplot2_3.3.1              
+ [9] BiocSingular_1.5.0          SingleCellExperiment_1.11.4
+[11] SummarizedExperiment_1.19.5 DelayedArray_0.15.4        
+[13] matrixStats_0.56.0          Matrix_1.2-18              
+[15] Biobase_2.49.0              GenomicRanges_1.41.5       
+[17] GenomeInfoDb_1.25.2         IRanges_2.23.10            
+[19] S4Vectors_0.27.12           BiocGenerics_0.35.4        
+[21] BiocStyle_2.17.0            rebook_0.99.0              
 
 loaded via a namespace (and not attached):
- [1] bitops_1.0-6                  bit64_0.9-7                  
- [3] httr_1.4.1                    tools_4.0.0                  
- [5] R6_2.4.1                      irlba_2.3.3                  
- [7] HDF5Array_1.17.0              vipor_0.4.5                  
- [9] DBI_1.1.0                     colorspace_1.4-1             
-[11] withr_2.2.0                   gridExtra_2.3                
-[13] tidyselect_1.1.0              processx_3.4.2               
-[15] bit_1.1-15.2                  curl_4.3                     
-[17] compiler_4.0.0                graph_1.67.1                 
-[19] BiocNeighbors_1.7.0           bookdown_0.19                
-[21] scales_1.1.1                  callr_3.4.3                  
-[23] rappdirs_0.3.1                stringr_1.4.0                
-[25] digest_0.6.25                 R.utils_2.9.2                
-[27] rmarkdown_2.2                 XVector_0.29.1               
-[29] pkgconfig_2.0.3               htmltools_0.4.0              
-[31] dbplyr_1.4.4                  fastmap_1.0.1                
-[33] rlang_0.4.6                   RSQLite_2.2.0                
-[35] shiny_1.4.0.2                 DelayedMatrixStats_1.11.0    
-[37] generics_0.0.2                BiocParallel_1.23.0          
-[39] R.oo_1.23.0                   dplyr_1.0.0                  
-[41] RCurl_1.98-1.2                magrittr_1.5                 
-[43] GenomeInfoDbData_1.2.3        Matrix_1.2-18                
-[45] Rhdf5lib_1.11.0               Rcpp_1.0.4.6                 
-[47] ggbeeswarm_0.6.0              munsell_0.5.0                
-[49] viridis_0.5.1                 R.methodsS3_1.8.0            
-[51] lifecycle_0.2.0               stringi_1.4.6                
-[53] yaml_2.2.1                    zlibbioc_1.35.0              
-[55] rhdf5_2.33.0                  BiocFileCache_1.13.0         
-[57] AnnotationHub_2.21.0          grid_4.0.0                   
-[59] blob_1.2.1                    dqrng_0.2.1                  
-[61] promises_1.1.0                ExperimentHub_1.15.0         
-[63] crayon_1.3.4                  lattice_0.20-41              
-[65] splines_4.0.0                 locfit_1.5-9.4               
-[67] CodeDepends_0.6.5             knitr_1.28                   
-[69] ps_1.3.3                      pillar_1.4.4                 
-[71] igraph_1.2.5                  codetools_0.2-16             
-[73] XML_3.99-0.3                  glue_1.4.1                   
-[75] BiocVersion_3.12.0            evaluate_0.14                
-[77] BiocManager_1.30.10           vctrs_0.3.0                  
-[79] httpuv_1.5.3.1                gtable_0.3.0                 
-[81] purrr_0.3.4                   assertthat_0.2.1             
-[83] xfun_0.14                     rsvd_1.0.3                   
-[85] mime_0.9                      xtable_1.8-4                 
-[87] later_1.0.0                   viridisLite_0.3.0            
-[89] tibble_3.0.1                  beeswarm_0.2.3               
-[91] AnnotationDbi_1.51.0          memoise_1.1.0                
-[93] statmod_1.4.34                ellipsis_0.3.1               
-[95] interactiveDisplayBase_1.27.5
+  [1] ggbeeswarm_0.6.0              colorspace_1.4-1             
+  [3] ellipsis_0.3.1                XVector_0.29.2               
+  [5] BiocNeighbors_1.7.0           farver_2.0.3                 
+  [7] bit64_0.9-7                   interactiveDisplayBase_1.27.5
+  [9] AnnotationDbi_1.51.0          R.methodsS3_1.8.0            
+ [11] codetools_0.2-16              splines_4.0.0                
+ [13] knitr_1.28                    dbplyr_1.4.4                 
+ [15] R.oo_1.23.0                   pheatmap_1.0.12              
+ [17] graph_1.67.1                  HDF5Array_1.17.1             
+ [19] shiny_1.4.0.2                 BiocManager_1.30.10          
+ [21] compiler_4.0.0                httr_1.4.1                   
+ [23] dqrng_0.2.1                   assertthat_0.2.1             
+ [25] fastmap_1.0.1                 later_1.1.0.1                
+ [27] htmltools_0.4.0               tools_4.0.0                  
+ [29] rsvd_1.0.3                    igraph_1.2.5                 
+ [31] gtable_0.3.0                  glue_1.4.1                   
+ [33] GenomeInfoDbData_1.2.3        dplyr_1.0.0                  
+ [35] rappdirs_0.3.1                Rcpp_1.0.4.6                 
+ [37] rhdf5filters_1.1.0            vctrs_0.3.1                  
+ [39] ExperimentHub_1.15.0          DelayedMatrixStats_1.11.0    
+ [41] xfun_0.14                     stringr_1.4.0                
+ [43] ps_1.3.3                      mime_0.9                     
+ [45] lifecycle_0.2.0               irlba_2.3.3                  
+ [47] statmod_1.4.34                XML_3.99-0.3                 
+ [49] AnnotationHub_2.21.0          zlibbioc_1.35.0              
+ [51] scales_1.1.1                  promises_1.1.1               
+ [53] rhdf5_2.33.3                  RColorBrewer_1.1-2           
+ [55] yaml_2.2.1                    curl_4.3                     
+ [57] memoise_1.1.0                 gridExtra_2.3                
+ [59] stringi_1.4.6                 RSQLite_2.2.0                
+ [61] BiocVersion_3.12.0            highr_0.8                    
+ [63] BiocParallel_1.23.0           rlang_0.4.6                  
+ [65] pkgconfig_2.0.3               bitops_1.0-6                 
+ [67] evaluate_0.14                 lattice_0.20-41              
+ [69] Rhdf5lib_1.11.2               purrr_0.3.4                  
+ [71] CodeDepends_0.6.5             labeling_0.3                 
+ [73] cowplot_1.0.0                 bit_1.1-15.2                 
+ [75] processx_3.4.2                tidyselect_1.1.0             
+ [77] magrittr_1.5                  bookdown_0.19                
+ [79] R6_2.4.1                      generics_0.0.2               
+ [81] DBI_1.1.0                     pillar_1.4.4                 
+ [83] withr_2.2.0                   RCurl_1.98-1.2               
+ [85] tibble_3.0.1                  crayon_1.3.4                 
+ [87] BiocFileCache_1.13.0          rmarkdown_2.2                
+ [89] viridis_0.5.1                 locfit_1.5-9.4               
+ [91] grid_4.0.0                    blob_1.2.1                   
+ [93] callr_3.4.3                   digest_0.6.25                
+ [95] xtable_1.8-4                  httpuv_1.5.4                 
+ [97] R.utils_2.9.2                 munsell_0.5.0                
+ [99] beeswarm_0.2.3                viridisLite_0.3.0            
+[101] vipor_0.4.5                  
 ```
 </div>

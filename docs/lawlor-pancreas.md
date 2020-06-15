@@ -95,7 +95,7 @@ gridExtra::grid.arrange(
 
 <div class="figure">
 <img src="lawlor-pancreas_files/figure-html/unref-lawlor-qc-dist-1.png" alt="Distribution of each QC metric across cells from each donor of the Lawlor pancreas dataset. Each point represents a cell and is colored according to whether that cell was discarded." width="960" />
-<p class="caption">Distribution of each QC metric across cells from each donor of the Lawlor pancreas dataset. Each point represents a cell and is colored according to whether that cell was discarded.</p>
+<p class="caption">(\#fig:unref-lawlor-qc-dist)Distribution of each QC metric across cells from each donor of the Lawlor pancreas dataset. Each point represents a cell and is colored according to whether that cell was discarded.</p>
 </div>
 
 
@@ -106,7 +106,7 @@ plotColData(unfiltered, x="sum", y="subsets_Mito_percent",
 
 <div class="figure">
 <img src="lawlor-pancreas_files/figure-html/unref-lawlor-qc-comp-1.png" alt="Percentage of mitochondrial reads in each cell in the 416B dataset compared to the total count. Each point represents a cell and is colored according to whether that cell was discarded." width="672" />
-<p class="caption">Percentage of mitochondrial reads in each cell in the 416B dataset compared to the total count. Each point represents a cell and is colored according to whether that cell was discarded.</p>
+<p class="caption">(\#fig:unref-lawlor-qc-comp)Percentage of mitochondrial reads in each cell in the 416B dataset compared to the total count. Each point represents a cell and is colored according to whether that cell was discarded.</p>
 </div>
 
 
@@ -150,7 +150,7 @@ plot(librarySizeFactors(sce.lawlor), sizeFactors(sce.lawlor), pch=16,
 
 <div class="figure">
 <img src="lawlor-pancreas_files/figure-html/unref-lawlor-norm-1.png" alt="Relationship between the library size factors and the deconvolution size factors in the Lawlor pancreas dataset." width="672" />
-<p class="caption">Relationship between the library size factors and the deconvolution size factors in the Lawlor pancreas dataset.</p>
+<p class="caption">(\#fig:unref-lawlor-norm)Relationship between the library size factors and the deconvolution size factors in the Lawlor pancreas dataset.</p>
 </div>
 
 ## Variance modelling
@@ -178,7 +178,7 @@ for (i in colnames(blocked.stats)) {
 
 <div class="figure">
 <img src="lawlor-pancreas_files/figure-html/unnamed-chunk-4-1.png" alt="Per-gene variance as a function of the mean for the log-expression values in the Lawlor pancreas dataset. Each point represents a gene (black) with the mean-variance trend (blue) fitted separately for each donor." width="672" />
-<p class="caption">Per-gene variance as a function of the mean for the log-expression values in the Lawlor pancreas dataset. Each point represents a gene (black) with the mean-variance trend (blue) fitted separately for each donor.</p>
+<p class="caption">(\#fig:unnamed-chunk-4)Per-gene variance as a function of the mean for the log-expression values in the Lawlor pancreas dataset. Each point represents a gene (black) with the mean-variance trend (blue) fitted separately for each donor.</p>
 </div>
 
 ## Dimensionality reduction
@@ -254,13 +254,13 @@ gridExtra::grid.arrange(
 <button class="aaron-collapse">View session info</button>
 <div class="aaron-content">
 ```
-R Under development (unstable) (2020-02-05 r77773)
+R version 4.0.0 Patched (2020-05-01 r78341)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: Ubuntu 18.04.4 LTS
 
 Matrix products: default
-BLAS:   /home/luna/Software/R/trunk/lib/libRblas.so
-LAPACK: /home/luna/Software/R/trunk/lib/libRlapack.so
+BLAS:   /home/luna/Software/R/R-4-0-branch-dev/lib/libRblas.so
+LAPACK: /home/luna/Software/R/R-4-0-branch-dev/lib/libRlapack.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -275,69 +275,72 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] BiocSingular_1.3.2          scran_1.15.20              
- [3] scater_1.15.25              ggplot2_3.2.1              
- [5] ensembldb_2.11.3            AnnotationFilter_1.11.0    
- [7] GenomicFeatures_1.39.4      AnnotationDbi_1.49.1       
- [9] AnnotationHub_2.19.7        BiocFileCache_1.11.4       
-[11] dbplyr_1.4.2                scRNAseq_2.1.6             
-[13] SingleCellExperiment_1.9.2  SummarizedExperiment_1.17.2
-[15] DelayedArray_0.13.4         BiocParallel_1.21.2        
-[17] matrixStats_0.55.0          Biobase_2.47.2             
-[19] GenomicRanges_1.39.2        GenomeInfoDb_1.23.13       
-[21] IRanges_2.21.3              S4Vectors_0.25.12          
-[23] BiocGenerics_0.33.0         BiocStyle_2.15.6           
-[25] OSCAUtils_0.0.2            
+ [1] BiocSingular_1.5.0          scran_1.17.2               
+ [3] scater_1.17.3               ggplot2_3.3.1              
+ [5] ensembldb_2.13.1            AnnotationFilter_1.13.0    
+ [7] GenomicFeatures_1.41.0      AnnotationDbi_1.51.0       
+ [9] AnnotationHub_2.21.0        BiocFileCache_1.13.0       
+[11] dbplyr_1.4.4                scRNAseq_2.3.5             
+[13] SingleCellExperiment_1.11.4 SummarizedExperiment_1.19.5
+[15] DelayedArray_0.15.3         matrixStats_0.56.0         
+[17] Matrix_1.2-18               Biobase_2.49.0             
+[19] GenomicRanges_1.41.5        GenomeInfoDb_1.25.1        
+[21] IRanges_2.23.9              S4Vectors_0.27.12          
+[23] BiocGenerics_0.35.4         BiocStyle_2.17.0           
+[25] rebook_0.99.0              
 
 loaded via a namespace (and not attached):
- [1] Rtsne_0.15                    ggbeeswarm_0.6.0             
- [3] colorspace_1.4-1              XVector_0.27.0               
- [5] BiocNeighbors_1.5.1           farver_2.0.3                 
- [7] bit64_0.9-7                   interactiveDisplayBase_1.25.0
- [9] codetools_0.2-16              knitr_1.28                   
-[11] Rsamtools_2.3.4               shiny_1.4.0                  
-[13] BiocManager_1.30.10           compiler_4.0.0               
-[15] httr_1.4.1                    dqrng_0.2.1                  
-[17] assertthat_0.2.1              Matrix_1.2-18                
-[19] fastmap_1.0.1                 lazyeval_0.2.2               
-[21] limma_3.43.3                  later_1.0.0                  
-[23] htmltools_0.4.0               prettyunits_1.1.1            
-[25] tools_4.0.0                   igraph_1.2.4.2               
-[27] rsvd_1.0.2                    gtable_0.3.0                 
-[29] glue_1.3.1                    GenomeInfoDbData_1.2.2       
-[31] dplyr_0.8.4                   rappdirs_0.3.1               
-[33] Rcpp_1.0.3                    vctrs_0.2.2                  
-[35] Biostrings_2.55.4             ExperimentHub_1.13.5         
-[37] rtracklayer_1.47.0            DelayedMatrixStats_1.9.0     
-[39] xfun_0.12                     stringr_1.4.0                
-[41] ps_1.3.2                      mime_0.9                     
-[43] lifecycle_0.1.0               irlba_2.3.3                  
-[45] statmod_1.4.33                XML_3.99-0.3                 
-[47] edgeR_3.29.0                  zlibbioc_1.33.1              
-[49] scales_1.1.0                  hms_0.5.3                    
-[51] promises_1.1.0                ProtGenerics_1.19.3          
-[53] yaml_2.2.1                    curl_4.3                     
-[55] memoise_1.1.0                 gridExtra_2.3                
-[57] biomaRt_2.43.3                stringi_1.4.5                
-[59] RSQLite_2.2.0                 BiocVersion_3.11.1           
-[61] highr_0.8                     rlang_0.4.4                  
-[63] pkgconfig_2.0.3               bitops_1.0-6                 
-[65] evaluate_0.14                 lattice_0.20-38              
-[67] purrr_0.3.3                   GenomicAlignments_1.23.1     
-[69] labeling_0.3                  cowplot_1.0.0                
-[71] bit_1.1-15.2                  processx_3.4.2               
-[73] tidyselect_1.0.0              magrittr_1.5                 
-[75] R6_2.4.1                      DBI_1.1.0                    
-[77] pillar_1.4.3                  withr_2.1.2                  
-[79] RCurl_1.98-1.1                tibble_2.1.3                 
-[81] crayon_1.3.4                  rmarkdown_2.1                
-[83] viridis_0.5.1                 progress_1.2.2               
-[85] locfit_1.5-9.1                grid_4.0.0                   
-[87] blob_1.2.1                    callr_3.4.2                  
-[89] digest_0.6.24                 xtable_1.8-4                 
-[91] httpuv_1.5.2                  openssl_1.4.1                
-[93] munsell_0.5.0                 beeswarm_0.2.3               
-[95] viridisLite_0.3.0             vipor_0.4.5                  
-[97] askpass_1.1                  
+  [1] Rtsne_0.15                    ggbeeswarm_0.6.0             
+  [3] colorspace_1.4-1              ellipsis_0.3.1               
+  [5] scuttle_0.99.9                XVector_0.29.2               
+  [7] BiocNeighbors_1.7.0           farver_2.0.3                 
+  [9] bit64_0.9-7                   interactiveDisplayBase_1.27.5
+ [11] codetools_0.2-16              knitr_1.28                   
+ [13] Rsamtools_2.5.1               graph_1.67.1                 
+ [15] shiny_1.4.0.2                 BiocManager_1.30.10          
+ [17] compiler_4.0.0                httr_1.4.1                   
+ [19] dqrng_0.2.1                   assertthat_0.2.1             
+ [21] fastmap_1.0.1                 lazyeval_0.2.2               
+ [23] limma_3.45.6                  later_1.1.0.1                
+ [25] htmltools_0.4.0               prettyunits_1.1.1            
+ [27] tools_4.0.0                   igraph_1.2.5                 
+ [29] rsvd_1.0.3                    gtable_0.3.0                 
+ [31] glue_1.4.1                    GenomeInfoDbData_1.2.3       
+ [33] dplyr_1.0.0                   rappdirs_0.3.1               
+ [35] Rcpp_1.0.4.6                  vctrs_0.3.1                  
+ [37] Biostrings_2.57.2             ExperimentHub_1.15.0         
+ [39] rtracklayer_1.49.3            DelayedMatrixStats_1.11.0    
+ [41] xfun_0.14                     stringr_1.4.0                
+ [43] ps_1.3.3                      mime_0.9                     
+ [45] lifecycle_0.2.0               irlba_2.3.3                  
+ [47] statmod_1.4.34                XML_3.99-0.3                 
+ [49] edgeR_3.31.4                  zlibbioc_1.35.0              
+ [51] scales_1.1.1                  hms_0.5.3                    
+ [53] promises_1.1.1                ProtGenerics_1.21.0          
+ [55] yaml_2.2.1                    curl_4.3                     
+ [57] memoise_1.1.0                 gridExtra_2.3                
+ [59] biomaRt_2.45.0                stringi_1.4.6                
+ [61] RSQLite_2.2.0                 highr_0.8                    
+ [63] BiocVersion_3.12.0            BiocParallel_1.23.0          
+ [65] rlang_0.4.6                   pkgconfig_2.0.3              
+ [67] bitops_1.0-6                  evaluate_0.14                
+ [69] lattice_0.20-41               purrr_0.3.4                  
+ [71] labeling_0.3                  GenomicAlignments_1.25.3     
+ [73] CodeDepends_0.6.5             cowplot_1.0.0                
+ [75] bit_1.1-15.2                  processx_3.4.2               
+ [77] tidyselect_1.1.0              magrittr_1.5                 
+ [79] bookdown_0.19                 R6_2.4.1                     
+ [81] generics_0.0.2                DBI_1.1.0                    
+ [83] pillar_1.4.4                  withr_2.2.0                  
+ [85] RCurl_1.98-1.2                tibble_3.0.1                 
+ [87] crayon_1.3.4                  rmarkdown_2.2                
+ [89] viridis_0.5.1                 progress_1.2.2               
+ [91] locfit_1.5-9.4                grid_4.0.0                   
+ [93] blob_1.2.1                    callr_3.4.3                  
+ [95] digest_0.6.25                 xtable_1.8-4                 
+ [97] httpuv_1.5.4                  openssl_1.4.1                
+ [99] munsell_0.5.0                 beeswarm_0.2.3               
+[101] viridisLite_0.3.0             vipor_0.4.5                  
+[103] askpass_1.1                  
 ```
 </div>

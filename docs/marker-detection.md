@@ -1052,29 +1052,28 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] limma_3.45.0                scater_1.17.1              
- [3] ggplot2_3.3.1               scuttle_0.99.8             
- [5] pheatmap_1.0.12             scran_1.17.1               
- [7] SingleCellExperiment_1.11.2 SummarizedExperiment_1.19.4
- [9] DelayedArray_0.15.1         matrixStats_0.56.0         
-[11] Biobase_2.49.0              GenomicRanges_1.41.1       
-[13] GenomeInfoDb_1.25.0         IRanges_2.23.6             
-[15] S4Vectors_0.27.10           BiocGenerics_0.35.2        
-[17] rebook_0.99.0               OSCAUtils_0.0.2            
-[19] BiocStyle_2.17.0           
+ [1] limma_3.45.7                scater_1.17.3              
+ [3] ggplot2_3.3.1               pheatmap_1.0.12            
+ [5] scran_1.17.2                SingleCellExperiment_1.11.4
+ [7] SummarizedExperiment_1.19.5 DelayedArray_0.15.4        
+ [9] matrixStats_0.56.0          Matrix_1.2-18              
+[11] Biobase_2.49.0              GenomicRanges_1.41.5       
+[13] GenomeInfoDb_1.25.2         IRanges_2.23.10            
+[15] S4Vectors_0.27.12           BiocGenerics_0.35.4        
+[17] BiocStyle_2.17.0            rebook_0.99.0              
 
 loaded via a namespace (and not attached):
- [1] viridis_0.5.1             edgeR_3.31.1             
+ [1] viridis_0.5.1             edgeR_3.31.4             
  [3] BiocSingular_1.5.0        viridisLite_0.3.0        
- [5] DelayedMatrixStats_1.11.0 statmod_1.4.34           
- [7] BiocManager_1.30.10       highr_0.8                
- [9] dqrng_0.2.1               vipor_0.4.5              
-[11] GenomeInfoDbData_1.2.3    yaml_2.2.1               
-[13] pillar_1.4.4              lattice_0.20-41          
-[15] glue_1.4.1                digest_0.6.25            
-[17] RColorBrewer_1.1-2        XVector_0.29.1           
-[19] colorspace_1.4-1          cowplot_1.0.0            
-[21] htmltools_0.4.0           Matrix_1.2-18            
+ [5] DelayedMatrixStats_1.11.0 scuttle_0.99.9           
+ [7] statmod_1.4.34            BiocManager_1.30.10      
+ [9] highr_0.8                 dqrng_0.2.1              
+[11] vipor_0.4.5               GenomeInfoDbData_1.2.3   
+[13] yaml_2.2.1                pillar_1.4.4             
+[15] lattice_0.20-41           glue_1.4.1               
+[17] digest_0.6.25             RColorBrewer_1.1-2       
+[19] XVector_0.29.2            colorspace_1.4-1         
+[21] cowplot_1.0.0             htmltools_0.4.0          
 [23] XML_3.99-0.3              pkgconfig_2.0.3          
 [25] bookdown_0.19             zlibbioc_1.35.0          
 [27] purrr_0.3.4               scales_1.1.1             
@@ -1098,7 +1097,7 @@ loaded via a namespace (and not attached):
 [63] gridExtra_2.3             knitr_1.28               
 [65] dplyr_1.0.0               ggbeeswarm_0.6.0         
 [67] stringi_1.4.6             Rcpp_1.0.4.6             
-[69] vctrs_0.3.0               tidyselect_1.1.0         
+[69] vctrs_0.3.1               tidyselect_1.1.0         
 [71] xfun_0.14                
 ```
 </div>

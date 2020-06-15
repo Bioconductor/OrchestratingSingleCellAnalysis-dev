@@ -1,7 +1,5 @@
 ---
-output:
-  html_document
-bibliography: ../ref.bib
+bibliography: ref.bib
 ---
 
 # Clustering
@@ -535,27 +533,27 @@ tab
 ```
 
 ```
-##         wcss ncells      rms
-## 1   2872.081    153 4.332641
-## 2   4204.124    172 4.943944
-## 3   1443.475     47 5.541862
-## 4   4275.279    254 4.102659
-## 5   1711.482    125 3.700251
-## 6   3054.815    207 3.841557
-## 7   1632.526    160 3.194259
-## 8   2159.987    334 2.543035
-## 9   7026.528    204 5.868881
-## 10  2858.314    442 2.542985
-## 11  4259.492    163 5.111932
-## 12  2288.852     68 5.801688
-## 13  2111.912    192 3.316555
-## 14  6391.151    271 4.856293
-## 15  1603.372    113 3.766847
-## 16 12399.822    168 8.591185
-## 17  1823.082    124 3.834354
-## 18  7026.462    420 4.090192
-## 19  2590.561     45 7.587359
-## 20  3639.745    260 3.741526
+##     wcss ncells   rms
+## 1   2872    153 4.333
+## 2   4204    172 4.944
+## 3   1443     47 5.542
+## 4   4275    254 4.103
+## 5   1711    125 3.700
+## 6   3055    207 3.842
+## 7   1633    160 3.194
+## 8   2160    334 2.543
+## 9   7027    204 5.869
+## 10  2858    442 2.543
+## 11  4259    163 5.112
+## 12  2289     68 5.802
+## 13  2112    192 3.317
+## 14  6391    271 4.856
+## 15  1603    113 3.767
+## 16 12400    168 8.591
+## 17  1823    124 3.834
+## 18  7026    420 4.090
+## 19  2591     45 7.587
+## 20  3640    260 3.742
 ```
 
 (As an aside, the RMSDs of the clusters are poorly correlated with their sizes in Figure \@ref(fig:tsne-clust-kmeans-best).
@@ -754,7 +752,8 @@ plot(dend)
 
 To obtain explicit clusters, we "cut" the tree by removing internal branches such that every subtree represents a distinct cluster.
 This is most simply done by removing internal branches above a certain height of the tree, as performed by the `cutree()` function.
-We generally prefer to use the *[dynamicTreeCut](https://CRAN.R-project.org/package=dynamicTreeCut)* package, which uses the shape of the branches to obtain a more suitable partitioning for complex dendrograms (Figure \@ref(fig:dend-cluster)).
+A more sophisticated variant of this approach is implemented in the *[dynamicTreeCut](https://CRAN.R-project.org/package=dynamicTreeCut)* package,
+which uses the shape of the branches to obtain a better partitioning for complex dendrograms (Figure \@ref(fig:dend-cluster)).
 
 
 ```r
@@ -808,11 +807,11 @@ plotReducedDim(sce.416b, "TSNE", colour_by="label")
 
 
 
-### Assessing cluster separation
+### Assessing cluster separation {#silhouette-width}
 
 We check the separation of the clusters using the silhouette width (Figure \@ref(fig:silhouette416b)).
-For each cell, we compute the average distance to cells in each other cluster.
-We then compute the minimum of these average distances across all clusters, as well as the average distance to cells in the same cluster.
+For each cell, we compute the average distance to all cells in the same cluster.
+We also compute the average distance to all cells in another cluster, taking the minimum of the averages across all other clusters.
 The silhouette width for each cell is defined as the difference between these two values divided by their maximum.
 Cells with large positive silhouette widths are closer to other cells in the same cluster than to cells in different clusters.
 
@@ -853,7 +852,177 @@ The average silhouette width across all cells can also be used to choose cluster
 The aim is to maximize the average silhouette width in order to obtain well-separated clusters.
 This can be helpful to automatically obtain a "reasonable" clustering, though in practice, the clustering that yields the strongest separation often does not provide the most biological insight.
 
-## Evaluating cluster stability {#cluster-bootstrapping}
+## General-purpose cluster diagnostics
+
+### Cluster separation, redux
+
+We previously introduced the silhouette width in the context of hierarchical clustering (Section \@ref(silhouette-width)).
+While this can be applied with other clustering algorithms, 
+it requires calculation of all pairwise distances between cells and is not scalable for larger cdatasets.
+In such cases, we instead use an approximate approach that replaces the average of the distances with the distance to the average (i.e., centroid) of each cluster, with some tweaks to account for the distance due to the within-cluster variance.
+This is implemented in the `clusterSilhouette()` function from *[scran](https://bioconductor.org/packages/3.12/scran)*,
+allowing us to quickly identify poorly separate clusters with mostly negative widths (Figure \@ref(fig:pbmc-silhouette)).
+
+
+```r
+sil.approx <- clusterSilhouette(sce.pbmc, clusters=clust, use.dimred="PCA") 
+
+sil.data <- as.data.frame(sil.approx)
+sil.data$closest <- factor(ifelse(sil.data$width > 0, clust, sil.data$other))
+sil.data$cluster <- factor(clust)
+
+ggplot(sil.data, aes(x=cluster, y=width, colour=closest)) + 
+    ggbeeswarm::geom_quasirandom(method="smiley")
+```
+
+<div class="figure">
+<img src="clustering_files/figure-html/pbmc-silhouette-1.png" alt="Distribution of the approximate silhouette width across cells in each cluster of the PBMC dataset. Each point represents a cell and colored with the identity of its own cluster if its silhouette width is positive and that of the closest other cluster if the width is negative." width="672" />
+<p class="caption">(\#fig:pbmc-silhouette)Distribution of the approximate silhouette width across cells in each cluster of the PBMC dataset. Each point represents a cell and colored with the identity of its own cluster if its silhouette width is positive and that of the closest other cluster if the width is negative.</p>
+</div>
+
+Alternatively, we can quantify the degree to which cells from multiple clusters intermingle in expression space.
+The "clustering purity" is defined for each cell as the proportion of neighboring cells that are assigned to the same cluster.
+Well-separated clusters should exhibit little intermingling and thus high purity values for all member cells,
+as demonstrated below in Figure \@ref(fig:pbmc-box-purities).
+Median purity values are consistently greater than 0.9,
+indicating that most cells in each cluster are primarily surrounded by other cells from the same cluster.
+
+
+```r
+pure.pbmc <- clusterPurity(sce.pbmc, clusters=clust, use.dimred="PCA") 
+
+pure.data <- as.data.frame(pure.pbmc)
+pure.data$maximum <- factor(pure.data$maximum)
+pure.data$cluster <- factor(clust)
+
+ggplot(pure.data, aes(x=cluster, y=purity, colour=maximum)) +
+    ggbeeswarm::geom_quasirandom(method="smiley")
+```
+
+<div class="figure">
+<img src="clustering_files/figure-html/pbmc-box-purities-1.png" alt="Distribution of cluster purities across cells in each cluster of the PBMC dataset. Each point represents a cell and colored with the identity of the cluster contributing the largest proportion of its neighbors." width="672" />
+<p class="caption">(\#fig:pbmc-box-purities)Distribution of cluster purities across cells in each cluster of the PBMC dataset. Each point represents a cell and colored with the identity of the cluster contributing the largest proportion of its neighbors.</p>
+</div>
+
+
+
+The main difference between these two methods is that the purity is ignorant of the intra-cluster variance.
+This may or may not be desirable depending on what level of heterogeneity is of interest.
+In addition, the purity will - on average - only decrease with increasing cluster number/resolution,
+making it less effective for choosing between different clusterings.
+However, regardless of the chosen method, it is worth keeping in mind that poor separation is not synonymous with poor quality. 
+In fact, poorly separated clusters will often be observed in non-trivial analyses of scRNA-seq data 
+where the aim is to characterize closely related subtypes or states.
+These diagnostics are best used to guide interpretation by highlighting clusters that require more investigation
+rather than to rule out poorly separated clusters altogether. 
+
+### Comparing different clusterings
+
+As previously mentioned, clustering's main purpose is to obtain a discrete summary of the data for further interpretation.
+The diversity of available methods (and the subsequent variation in the clustering results)
+reflects the many different "perspectives" that can be derived from a high-dimensional scRNA-seq dataset.
+It is helpful to determine how these perspectives relate to each other by comparing the clustering results.
+More concretely, we want to know which clusters map to each other across algorithms;
+inconsistencies may be indicative of complex variation that is summarized differently by each clustering procedure.
+
+A simple yet effective approach for comparing two clusterings of the same dataset
+is to create a 2-dimensional table of label frequencies (Figure \@ref(fig:walktrap-v-others)).
+We can further improve the interpretability of this table by computing the proportions of cell assignments,
+which avoids difficulties with dynamic range when visualizing clusters of differing abundances,
+For example, we may be interested in how our Walktrap clusters from Section \@ref(clustering-graph)
+are redistributed when we switch to using Louvain community detection (Figure \@ref(fig:walktrap-v-louvain-prop)).
+Note that this heatmap is best interpreted on a row-by-row basis as the proportions are computed per row
+and there is no guarantee that cell abundances are comparable across columns.
+
+<!--
+No point interpreting it by column, as you'd get multiple 100% values.
+An entry with a larger proportion may have a lower number of cells along a column.
+-->
+
+
+```r
+tab <- table(Walktrap=clust, Louvain=clust.louvain)
+tab <- tab/rowSums(tab)
+pheatmap(tab, color=viridis::viridis(100), cluster_cols=FALSE, cluster_rows=FALSE)
+```
+
+<div class="figure">
+<img src="clustering_files/figure-html/walktrap-v-louvain-prop-1.png" alt="Heatmap of the proportions of cells from each Walktrap cluster (rows) across the Louvain clusters (columns) in the PBMC dataset." width="672" />
+<p class="caption">(\#fig:walktrap-v-louvain-prop)Heatmap of the proportions of cells from each Walktrap cluster (rows) across the Louvain clusters (columns) in the PBMC dataset.</p>
+</div>
+
+For clusterings that differ primarily in resolution (usually from different parameterizations of the same algorithm),
+we can use the *[clustree](https://CRAN.R-project.org/package=clustree)* package to visualize the relationships between them.
+Here, the aim is to capture the redistribution of cells from one clustering to another at progressively higher resolution, 
+providing a convenient depiction of how clusters split apart (Figure \@ref(fig:walktrap-res-clustree)).
+This approach is most effective with multiple nested mappings but is less useful when the mappings are "crossed",
+e.g., for comparisons involving theoretically distinct clustering procedures.
+
+
+```r
+library(clustree)
+combined <- cbind(k.50=clust.50, k.10=clust, k.5=clust.5)
+clustree(combined, prefix="k.", edge_arrow=FALSE)
+```
+
+<div class="figure">
+<img src="clustering_files/figure-html/walktrap-res-clustree-1.png" alt="Graph of the relationships between the Walktrap clusterings of the PBMC dataset, generated with varying $k$ during the nearest-neighbor graph construction. (A higher $k$ generally corresponds to a lower resolution clustering.) The size of the nodes is proportional to the number of cells in each cluster, and the edges depict cells in one cluster that are reassigned to another cluster at a different resolution. The color of the edges is defined according to the number of reassigned cells and the opacity is defined from the corresponding proportion relative to the size of the lower-resolution cluster." width="960" />
+<p class="caption">(\#fig:walktrap-res-clustree)Graph of the relationships between the Walktrap clusterings of the PBMC dataset, generated with varying $k$ during the nearest-neighbor graph construction. (A higher $k$ generally corresponds to a lower resolution clustering.) The size of the nodes is proportional to the number of cells in each cluster, and the edges depict cells in one cluster that are reassigned to another cluster at a different resolution. The color of the edges is defined according to the number of reassigned cells and the opacity is defined from the corresponding proportion relative to the size of the lower-resolution cluster.</p>
+</div>
+
+We can quantify the agreement between two clusterings by computing the Rand index with *[scran](https://bioconductor.org/packages/3.12/scran)*'s `clusterRand()`.
+This is defined as the proportion of pairs of cells that retain the same status
+(i.e., both cells in the same cluster, or each cell in different clusters) in both clusterings.
+A larger Rand index indicates that the clusters are preserved though this tends to be driven by the most abundant clusters.
+
+
+```r
+clusterRand(clust, clust.5, mode="index")
+```
+
+```
+## [1] 0.9555
+```
+
+A more granular perspective can be generated by `clusterRand()` with `mode="ratio"`,
+where the Rand index is broken down into its contributions from each cluster pair.
+Low values on the diagonal in Figure \@ref(fig:pbmc-rand-breakdown) indicate that 
+cells from the corresponding cluster in `clust` are redistributed to multiple other clusters in `clust.50`. 
+Conversely, low off-diagonal values indicate that the corresponding pair of clusters in `clust` are merged together in `clust.50`.
+
+
+```r
+breakdown <- clusterRand(ref=clust, alt=clust.5, mode="ratio")
+pheatmap(breakdown, color=viridis::magma(100), 
+    cluster_rows=FALSE, cluster_cols=FALSE)
+```
+
+<div class="figure">
+<img src="clustering_files/figure-html/pbmc-rand-breakdown-1.png" alt="Breakdown of the Rand index into its contributions from each pair of clusters in the reference Walktrap clustering compared to a higher-resolution alternative clustering for the PBMC dataset. Rows and columns of the heatmap represent clusters in the reference clustering. Each entry represents the proportion of pairs of cells involving the row/column clusters that retain the same status in the alternative clustering." width="672" />
+<p class="caption">(\#fig:pbmc-rand-breakdown)Breakdown of the Rand index into its contributions from each pair of clusters in the reference Walktrap clustering compared to a higher-resolution alternative clustering for the PBMC dataset. Rows and columns of the heatmap represent clusters in the reference clustering. Each entry represents the proportion of pairs of cells involving the row/column clusters that retain the same status in the alternative clustering.</p>
+</div>
+
+Alternatively, we can compute coassignment probabilities between every pair of original clusters in `originals`.
+For clusters $X$ and $Y$ in a reference clustering, the coassignment probability is defined as the probability that a randomly chosen cell from $X$ and a randomly chosen cell from $Y$ are assigned to the same cluster in the alternative clustering.
+High co-assignment probabilities indicate that $X$ is not stable with respect to its separation from $Y$, given that their cells are liable to cluster together in the replicates.
+This metric is closely related to the Rand index when the latter is broken down by cluster pairs 
+though the interpretation of off-diagonal elements is reversed, 
+i.e., low off-diagonal values are indicative of continued separation between the corresponding pair of clusters
+(Figure \@ref(fig:pbmc-coassignment)).
+
+
+```r
+coassign <- coassignProb(clust, clust.5)
+pheatmap(coassign, color=viridis::magma(100), 
+    cluster_rows=FALSE, cluster_cols=FALSE)
+```
+
+<div class="figure">
+<img src="clustering_files/figure-html/pbmc-coassignment-1.png" alt="Coassignment probabilities between each pair of clusters in the reference Walktrap clustering compared to a higher-resolution alternative clustering for the PBMC dataset. Rows and columns of the heatmap represent clusters in the reference clustering." width="672" />
+<p class="caption">(\#fig:pbmc-coassignment)Coassignment probabilities between each pair of clusters in the reference Walktrap clustering compared to a higher-resolution alternative clustering for the PBMC dataset. Rows and columns of the heatmap represent clusters in the reference clustering.</p>
+</div>
+
+### Evaluating cluster stability {#cluster-bootstrapping}
 
 A desirable property of a given clustering is that it is stable to perturbations to the input data [@luxburg2010clustering].
 Stable clusters are logistically convenient as small changes to upstream processing will not change the conclusions;
@@ -880,9 +1049,8 @@ dim(coassign)
 ```
 
 The function returns a matrix of coassignment probabilities between every pair of original clusters in `originals` (Figure \@ref(fig:bootstrap-matrix)).
-Each coassignment probability between clusters $X$ and $Y$ represents the probability that a randomly chosen cell from $X$ and a randomly chosen from $Y$ are assigned to the same cluster in the bootstrap replicate.
-High co-assignment probabilities indicate that $X$ is not stable with respect to its separation from $Y$, given that their cells are liable to cluster together in the replicates.
 Ideally, we would hope for high coassignment probabilities on the diagonal (i.e., $X$ cells cluster with themselves) and low probabilities off the diagonal.
+This would indicate that the clustering in the bootstrap replicates are highly consistent with that of the original dataset.
 
 
 ```r
@@ -1018,88 +1186,63 @@ locale:
 [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
-[1] stats4    parallel  stats     graphics  grDevices utils     datasets 
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
 [8] methods   base     
 
 other attached packages:
- [1] dynamicTreeCut_1.63-1       dendextend_1.13.4          
- [3] cluster_2.1.0               rebook_0.99.0              
- [5] batchelor_1.5.0             ensembldb_2.13.1           
- [7] AnnotationFilter_1.13.0     GenomicFeatures_1.41.0     
- [9] limma_3.45.0                org.Mm.eg.db_3.11.4        
-[11] BiocFileCache_1.13.0        dbplyr_1.4.4               
-[13] DelayedMatrixStats_1.11.0   AUCell_1.11.0              
-[15] GSEABase_1.51.1             graph_1.67.1               
-[17] annotate_1.67.0             XML_3.99-0.3               
-[19] AnnotationDbi_1.51.0        scRNAseq_2.3.2             
-[21] pheatmap_1.0.12             SingleR_1.3.4              
-[23] TENxBrainData_1.9.0         HDF5Array_1.17.0           
-[25] rhdf5_2.33.0                BiocSingular_1.5.0         
-[27] scater_1.17.1               scuttle_0.99.8             
-[29] ggplot2_3.3.1               fossil_0.4.0               
-[31] shapefiles_0.7              foreign_0.8-80             
-[33] maps_3.3.0                  sp_1.4-2                   
-[35] BiocNeighbors_1.7.0         scran_1.17.1               
-[37] SingleCellExperiment_1.11.2 SummarizedExperiment_1.19.4
-[39] DelayedArray_0.15.1         BiocParallel_1.23.0        
-[41] matrixStats_0.56.0          Biobase_2.49.0             
-[43] GenomicRanges_1.41.1        GenomeInfoDb_1.25.0        
-[45] IRanges_2.23.6              S4Vectors_0.27.10          
-[47] BiocGenerics_0.35.2         OSCAUtils_0.0.2            
-[49] BiocStyle_2.17.0           
+ [1] clustree_0.4.3              ggraph_2.0.3               
+ [3] dynamicTreeCut_1.63-1       dendextend_1.13.4          
+ [5] cluster_2.1.0               pheatmap_1.0.12            
+ [7] scater_1.17.3               ggplot2_3.3.1              
+ [9] scran_1.17.2                SingleCellExperiment_1.11.4
+[11] SummarizedExperiment_1.19.5 DelayedArray_0.15.4        
+[13] matrixStats_0.56.0          Matrix_1.2-18              
+[15] Biobase_2.49.0              GenomicRanges_1.41.5       
+[17] GenomeInfoDb_1.25.2         IRanges_2.23.10            
+[19] S4Vectors_0.27.12           BiocGenerics_0.35.4        
+[21] BiocStyle_2.17.0            rebook_0.99.0              
 
 loaded via a namespace (and not attached):
-  [1] AnnotationHub_2.21.0          igraph_1.2.5                 
-  [3] lazyeval_0.2.2                digest_0.6.25                
-  [5] htmltools_0.4.0               viridis_0.5.1                
-  [7] magrittr_1.5                  memoise_1.1.0                
-  [9] Biostrings_2.57.1             R.utils_2.9.2                
- [11] askpass_1.1                   prettyunits_1.1.1            
- [13] colorspace_1.4-1              blob_1.2.1                   
- [15] rappdirs_0.3.1                xfun_0.14                    
- [17] dplyr_1.0.0                   callr_3.4.3                  
- [19] crayon_1.3.4                  RCurl_1.98-1.2               
- [21] glue_1.4.1                    gtable_0.3.0                 
- [23] zlibbioc_1.35.0               XVector_0.29.1               
- [25] Rhdf5lib_1.11.0               scales_1.1.1                 
- [27] DBI_1.1.0                     edgeR_3.31.1                 
- [29] Rcpp_1.0.4.6                  viridisLite_0.3.0            
- [31] xtable_1.8-4                  progress_1.2.2               
- [33] dqrng_0.2.1                   bit_1.1-15.2                 
- [35] rsvd_1.0.3                    httr_1.4.1                   
- [37] RColorBrewer_1.1-2            ellipsis_0.3.1               
- [39] farver_2.0.3                  pkgconfig_2.0.3              
- [41] R.methodsS3_1.8.0             CodeDepends_0.6.5            
- [43] locfit_1.5-9.4                labeling_0.3                 
- [45] tidyselect_1.1.0              rlang_0.4.6                  
- [47] later_1.0.0                   munsell_0.5.0                
- [49] BiocVersion_3.12.0            tools_4.0.0                  
- [51] generics_0.0.2                RSQLite_2.2.0                
- [53] ExperimentHub_1.15.0          evaluate_0.14                
- [55] stringr_1.4.0                 fastmap_1.0.1                
- [57] yaml_2.2.1                    processx_3.4.2               
- [59] knitr_1.28                    bit64_0.9-7                  
- [61] purrr_0.3.4                   mime_0.9                     
- [63] R.oo_1.23.0                   biomaRt_2.45.0               
- [65] compiler_4.0.0                beeswarm_0.2.3               
- [67] curl_4.3                      interactiveDisplayBase_1.27.5
- [69] tibble_3.0.1                  statmod_1.4.34               
- [71] stringi_1.4.6                 highr_0.8                    
- [73] ps_1.3.3                      lattice_0.20-41              
- [75] ProtGenerics_1.21.0           Matrix_1.2-18                
- [77] vctrs_0.3.0                   pillar_1.4.4                 
- [79] lifecycle_0.2.0               BiocManager_1.30.10          
- [81] cowplot_1.0.0                 data.table_1.12.8            
- [83] bitops_1.0-6                  irlba_2.3.3                  
- [85] httpuv_1.5.3.1                rtracklayer_1.49.2           
- [87] R6_2.4.1                      bookdown_0.19                
- [89] promises_1.1.0                gridExtra_2.3                
- [91] vipor_0.4.5                   codetools_0.2-16             
- [93] assertthat_0.2.1              openssl_1.4.1                
- [95] withr_2.2.0                   GenomicAlignments_1.25.1     
- [97] Rsamtools_2.5.1               GenomeInfoDbData_1.2.3       
- [99] hms_0.5.3                     grid_4.0.0                   
-[101] rmarkdown_2.2                 shiny_1.4.0.2                
-[103] ggbeeswarm_0.6.0             
+ [1] bitops_1.0-6              RColorBrewer_1.1-2       
+ [3] backports_1.1.7           tools_4.0.0              
+ [5] R6_2.4.1                  irlba_2.3.3              
+ [7] vipor_0.4.5               colorspace_1.4-1         
+ [9] withr_2.2.0               tidyselect_1.1.0         
+[11] gridExtra_2.3             processx_3.4.2           
+[13] compiler_4.0.0            graph_1.67.1             
+[15] BiocNeighbors_1.7.0       labeling_0.3             
+[17] bookdown_0.19             checkmate_2.0.0          
+[19] scales_1.1.1              callr_3.4.3              
+[21] stringr_1.4.0             digest_0.6.25            
+[23] rmarkdown_2.2             XVector_0.29.2           
+[25] pkgconfig_2.0.3           htmltools_0.4.0          
+[27] limma_3.45.7              highr_0.8                
+[29] rlang_0.4.6               DelayedMatrixStats_1.11.0
+[31] generics_0.0.2            farver_2.0.3             
+[33] BiocParallel_1.23.0       dplyr_1.0.0              
+[35] RCurl_1.98-1.2            magrittr_1.5             
+[37] BiocSingular_1.5.0        GenomeInfoDbData_1.2.3   
+[39] scuttle_0.99.9            Rcpp_1.0.4.6             
+[41] ggbeeswarm_0.6.0          munsell_0.5.0            
+[43] viridis_0.5.1             lifecycle_0.2.0          
+[45] stringi_1.4.6             yaml_2.2.1               
+[47] edgeR_3.31.4              MASS_7.3-51.6            
+[49] zlibbioc_1.35.0           grid_4.0.0               
+[51] ggrepel_0.8.2             dqrng_0.2.1              
+[53] crayon_1.3.4              lattice_0.20-41          
+[55] graphlayouts_0.7.0        cowplot_1.0.0            
+[57] locfit_1.5-9.4            CodeDepends_0.6.5        
+[59] knitr_1.28                ps_1.3.3                 
+[61] pillar_1.4.4              igraph_1.2.5             
+[63] codetools_0.2-16          XML_3.99-0.3             
+[65] glue_1.4.1                evaluate_0.14            
+[67] BiocManager_1.30.10       tweenr_1.0.1             
+[69] vctrs_0.3.1               polyclip_1.10-0          
+[71] tidyr_1.1.0               gtable_0.3.0             
+[73] purrr_0.3.4               ggforce_0.3.1            
+[75] xfun_0.14                 rsvd_1.0.3               
+[77] tidygraph_1.2.0           viridisLite_0.3.0        
+[79] tibble_3.0.1              beeswarm_0.2.3           
+[81] statmod_1.4.34            ellipsis_0.3.1           
 ```
 </div>

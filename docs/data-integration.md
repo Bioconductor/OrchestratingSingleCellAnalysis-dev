@@ -481,30 +481,18 @@ assay(mnn.out, "reconstructed")
 
 ```
 ## <13431 x 6791> matrix of class LowRankMatrix and type "double":
-##                          [,1]          [,2]          [,3] ...       [,6790]
-## ENSG00000239945 -2.522191e-06 -1.851424e-06 -1.198984e-05   .  1.831777e-06
-## ENSG00000228463 -6.626821e-04 -6.724341e-04 -4.820230e-04   . -8.531370e-04
-## ENSG00000237094 -8.077231e-05 -8.038006e-05 -9.630608e-05   .  7.261218e-06
-## ENSG00000229905  3.838135e-06  6.179994e-06  5.432122e-06   .  8.533821e-06
-## ENSG00000237491 -4.527173e-04 -3.178168e-04 -1.510488e-04   . -3.490597e-04
-##             ...             .             .             .   .             .
-## ENSG00000198840 -0.0296507947 -0.0340100587 -0.0502384904   . -0.0362883569
-## ENSG00000212907 -0.0041681457 -0.0056569549 -0.0106420441   . -0.0083837431
-## ENSG00000198886  0.0145358352  0.0200516598 -0.0307130838   . -0.0109253965
-## ENSG00000198695  0.0014427168  0.0013489620  0.0001493234   . -0.0009825885
-## ENSG00000198727  0.0152570264  0.0106167007 -0.0256449590   . -0.0227962145
-##                       [,6791]
-## ENSG00000239945 -3.640783e-06
-## ENSG00000228463 -3.998685e-04
-## ENSG00000237094 -4.093746e-05
-## ENSG00000229905  3.484915e-06
-## ENSG00000237491 -2.082230e-04
-##             ...             .
-## ENSG00000198840 -0.0183084463
-## ENSG00000212907  0.0005995725
-## ENSG00000198886 -0.0070064062
-## ENSG00000198695 -0.0022712251
-## ENSG00000198727 -0.0022897927
+##                       [,1]       [,2]       [,3] ...    [,6790]    [,6791]
+## ENSG00000239945 -2.522e-06 -1.851e-06 -1.199e-05   .  1.832e-06 -3.641e-06
+## ENSG00000228463 -6.627e-04 -6.724e-04 -4.820e-04   . -8.531e-04 -3.999e-04
+## ENSG00000237094 -8.077e-05 -8.038e-05 -9.631e-05   .  7.261e-06 -4.094e-05
+## ENSG00000229905  3.838e-06  6.180e-06  5.432e-06   .  8.534e-06  3.485e-06
+## ENSG00000237491 -4.527e-04 -3.178e-04 -1.510e-04   . -3.491e-04 -2.082e-04
+##             ...          .          .          .   .          .          .
+## ENSG00000198840 -0.0296508 -0.0340101 -0.0502385   . -0.0362884 -0.0183084
+## ENSG00000212907 -0.0041681 -0.0056570 -0.0106420   . -0.0083837  0.0005996
+## ENSG00000198886  0.0145358  0.0200517 -0.0307131   . -0.0109254 -0.0070064
+## ENSG00000198695  0.0014427  0.0013490  0.0001493   . -0.0009826 -0.0022712
+## ENSG00000198727  0.0152570  0.0106167 -0.0256450   . -0.0227962 -0.0022898
 ```
 
 The most relevant parameter for tuning `fastMNN()` is `k`, which specifies the number of nearest neighbors to consider when defining MNN pairs.
@@ -580,8 +568,8 @@ metadata(mnn.out)$merge.info$lost.var
 ```
 
 ```
-##             [,1]        [,2]
-## [1,] 0.006617087 0.003315395
+##          [,1]     [,2]
+## [1,] 0.006617 0.003315
 ```
 
 Large proportions of lost variance (>10%) suggest that correction is removing genuine biological heterogeneity.
@@ -651,9 +639,10 @@ gridExtra::grid.arrange(heat3k[[4]], heat4k[[4]])
 <p class="caption">(\#fig:coassign-after-mnn)Coassignment probabilities for the within-batch clusters, based on coassignment of cells in the across-batch clusters obtained after MNN correction. One heatmap is generated for each of the PBMC 3K and 4K datasets, where each entry is colored according to the coassignment probability between each pair of within-batch clusters.</p>
 </div>
 
-Finally, we can summarize the agreement between clusterings by computing the Rand index.
-This provides a simple metric that we can use to assess the preservation of variation by different correction methods.
-Larger rand indices (i.e., closer to 1) are more desirable, though this must be balanced against the ability of each method to actually remove the batch effect.
+Finally, we can compute the Rand index (Section \@ref(comparing-different-clusterings))
+to quantify the agreement between the clusterings before and after batch correction. 
+Larger indices are more desirable as this indicates that within-batch heterogeneity is preserved,
+though this must be balanced against the ability of each method to actually perform batch correction.
 
 
 ```r
@@ -663,7 +652,7 @@ ri3k
 ```
 
 ```
-## [1] 0.9335226
+## [1] 0.9335
 ```
 
 ```r
@@ -673,7 +662,7 @@ ri4k
 ```
 
 ```
-## [1] 0.9575746
+## [1] 0.9576
 ```
 
 
@@ -796,27 +785,27 @@ as.data.frame(demo[1:20,c("Symbol", "Top", "p.value", "FDR")])
 ```
 
 ```
-##                 Symbol Top       p.value           FDR
-## ENSG00000177954  RPS27   1 3.398543e-168 1.061433e-163
-## ENSG00000227507    LTB   1 1.238347e-157 1.933803e-153
-## ENSG00000167286   CD3D   1  9.136016e-89  4.076229e-85
-## ENSG00000111716   LDHB   1  8.699141e-44  1.811277e-40
-## ENSG00000008517   IL32   1  4.880406e-31  6.928402e-28
-## ENSG00000172809  RPL38   1 8.726980e-143 6.814026e-139
-## ENSG00000171223   JUNB   1  8.762155e-72  2.736596e-68
-## ENSG00000071082  RPL31   2  8.612369e-78  2.988684e-74
-## ENSG00000121966  CXCR4   2  2.369668e-07  1.321598e-04
-## ENSG00000251562 MALAT1   2  3.618005e-33  5.649876e-30
-## ENSG00000133639   BTG1   2  6.847076e-12  4.549955e-09
-## ENSG00000170345    FOS   2  2.738128e-46  6.108372e-43
-## ENSG00000129824 RPS4Y1   2 1.074722e-108 6.713145e-105
-## ENSG00000177606    JUN   3  1.039395e-37  1.909553e-34
-## ENSG00000112306  RPS12   3  1.655795e-33  2.721779e-30
-## ENSG00000110700  RPS13   3  7.600217e-18  7.657096e-15
-## ENSG00000198851   CD3E   3  1.057929e-36  1.835625e-33
-## ENSG00000213741  RPS29   3 1.493885e-148 1.555234e-144
-## ENSG00000116251  RPL22   4  3.992343e-25  4.795726e-22
-## ENSG00000144713  RPL32   4  1.223940e-32  1.820290e-29
+##                 Symbol Top    p.value        FDR
+## ENSG00000177954  RPS27   1 3.399e-168 1.061e-163
+## ENSG00000227507    LTB   1 1.238e-157 1.934e-153
+## ENSG00000167286   CD3D   1  9.136e-89  4.076e-85
+## ENSG00000111716   LDHB   1  8.699e-44  1.811e-40
+## ENSG00000008517   IL32   1  4.880e-31  6.928e-28
+## ENSG00000172809  RPL38   1 8.727e-143 6.814e-139
+## ENSG00000171223   JUNB   1  8.762e-72  2.737e-68
+## ENSG00000071082  RPL31   2  8.612e-78  2.989e-74
+## ENSG00000121966  CXCR4   2  2.370e-07  1.322e-04
+## ENSG00000251562 MALAT1   2  3.618e-33  5.650e-30
+## ENSG00000133639   BTG1   2  6.847e-12  4.550e-09
+## ENSG00000170345    FOS   2  2.738e-46  6.108e-43
+## ENSG00000129824 RPS4Y1   2 1.075e-108 6.713e-105
+## ENSG00000177606    JUN   3  1.039e-37  1.910e-34
+## ENSG00000112306  RPS12   3  1.656e-33  2.722e-30
+## ENSG00000110700  RPS13   3  7.600e-18  7.657e-15
+## ENSG00000198851   CD3E   3  1.058e-36  1.836e-33
+## ENSG00000213741  RPS29   3 1.494e-148 1.555e-144
+## ENSG00000116251  RPL22   4  3.992e-25  4.796e-22
+## ENSG00000144713  RPL32   4  1.224e-32  1.820e-29
 ```
 
 ```r
@@ -861,55 +850,55 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] pheatmap_1.0.12             scater_1.17.1              
- [3] ggplot2_3.3.1               scuttle_0.99.8             
- [5] scran_1.17.1                batchelor_1.5.0            
- [7] SingleCellExperiment_1.11.2 SummarizedExperiment_1.19.4
- [9] Biobase_2.49.0              GenomicRanges_1.41.1       
-[11] GenomeInfoDb_1.25.0         HDF5Array_1.17.0           
-[13] rhdf5_2.33.0                DelayedArray_0.15.1        
-[15] IRanges_2.23.6              S4Vectors_0.27.10          
-[17] BiocGenerics_0.35.2         matrixStats_0.56.0         
-[19] rebook_0.99.0               BiocStyle_2.17.0           
+ [1] pheatmap_1.0.12             scater_1.17.3              
+ [3] ggplot2_3.3.1               scran_1.17.2               
+ [5] batchelor_1.5.1             SingleCellExperiment_1.11.4
+ [7] SummarizedExperiment_1.19.5 Biobase_2.49.0             
+ [9] GenomicRanges_1.41.5        GenomeInfoDb_1.25.2        
+[11] HDF5Array_1.17.1            rhdf5_2.33.3               
+[13] DelayedArray_0.15.4         IRanges_2.23.10            
+[15] S4Vectors_0.27.12           BiocGenerics_0.35.4        
+[17] matrixStats_0.56.0          Matrix_1.2-18              
+[19] BiocStyle_2.17.0            rebook_0.99.0              
 
 loaded via a namespace (and not attached):
  [1] bitops_1.0-6              RColorBrewer_1.1-2       
  [3] tools_4.0.0               R6_2.4.1                 
  [5] irlba_2.3.3               vipor_0.4.5              
- [7] colorspace_1.4-1          withr_2.2.0              
- [9] tidyselect_1.1.0          gridExtra_2.3            
-[11] processx_3.4.2            compiler_4.0.0           
-[13] graph_1.67.1              BiocNeighbors_1.7.0      
-[15] labeling_0.3              bookdown_0.19            
-[17] scales_1.1.1              callr_3.4.3              
-[19] stringr_1.4.0             digest_0.6.25            
-[21] rmarkdown_2.2             XVector_0.29.1           
-[23] pkgconfig_2.0.3           htmltools_0.4.0          
-[25] highr_0.8                 limma_3.45.0             
-[27] rlang_0.4.6               DelayedMatrixStats_1.11.0
-[29] generics_0.0.2            farver_2.0.3             
-[31] BiocParallel_1.23.0       dplyr_1.0.0              
-[33] RCurl_1.98-1.2            magrittr_1.5             
-[35] BiocSingular_1.5.0        GenomeInfoDbData_1.2.3   
-[37] Matrix_1.2-18             Rcpp_1.0.4.6             
-[39] ggbeeswarm_0.6.0          munsell_0.5.0            
-[41] Rhdf5lib_1.11.0           viridis_0.5.1            
-[43] lifecycle_0.2.0           stringi_1.4.6            
-[45] yaml_2.2.1                edgeR_3.31.1             
-[47] zlibbioc_1.35.0           Rtsne_0.15               
-[49] grid_4.0.0                dqrng_0.2.1              
-[51] crayon_1.3.4              lattice_0.20-41          
-[53] beachmat_2.5.0            cowplot_1.0.0            
-[55] locfit_1.5-9.4            CodeDepends_0.6.5        
-[57] knitr_1.28                ps_1.3.3                 
-[59] pillar_1.4.4              igraph_1.2.5             
-[61] codetools_0.2-16          XML_3.99-0.3             
-[63] glue_1.4.1                evaluate_0.14            
-[65] BiocManager_1.30.10       vctrs_0.3.0              
-[67] gtable_0.3.0              purrr_0.3.4              
-[69] xfun_0.14                 rsvd_1.0.3               
-[71] viridisLite_0.3.0         tibble_3.0.1             
-[73] beeswarm_0.2.3            statmod_1.4.34           
-[75] ellipsis_0.3.1           
+ [7] colorspace_1.4-1          rhdf5filters_1.1.0       
+ [9] withr_2.2.0               tidyselect_1.1.0         
+[11] gridExtra_2.3             processx_3.4.2           
+[13] compiler_4.0.0            graph_1.67.1             
+[15] BiocNeighbors_1.7.0       labeling_0.3             
+[17] bookdown_0.19             scales_1.1.1             
+[19] callr_3.4.3               stringr_1.4.0            
+[21] digest_0.6.25             rmarkdown_2.2            
+[23] XVector_0.29.2            pkgconfig_2.0.3          
+[25] htmltools_0.4.0           highr_0.8                
+[27] limma_3.45.7              rlang_0.4.6              
+[29] DelayedMatrixStats_1.11.0 farver_2.0.3             
+[31] generics_0.0.2            BiocParallel_1.23.0      
+[33] dplyr_1.0.0               RCurl_1.98-1.2           
+[35] magrittr_1.5              BiocSingular_1.5.0       
+[37] GenomeInfoDbData_1.2.3    scuttle_0.99.9           
+[39] Rcpp_1.0.4.6              ggbeeswarm_0.6.0         
+[41] munsell_0.5.0             Rhdf5lib_1.11.2          
+[43] viridis_0.5.1             lifecycle_0.2.0          
+[45] stringi_1.4.6             yaml_2.2.1               
+[47] edgeR_3.31.4              zlibbioc_1.35.0          
+[49] Rtsne_0.15                grid_4.0.0               
+[51] dqrng_0.2.1               crayon_1.3.4             
+[53] lattice_0.20-41           beachmat_2.5.0           
+[55] cowplot_1.0.0             locfit_1.5-9.4           
+[57] CodeDepends_0.6.5         knitr_1.28               
+[59] ps_1.3.3                  pillar_1.4.4             
+[61] igraph_1.2.5              codetools_0.2-16         
+[63] XML_3.99-0.3              glue_1.4.1               
+[65] evaluate_0.14             BiocManager_1.30.10      
+[67] vctrs_0.3.1               gtable_0.3.0             
+[69] purrr_0.3.4               xfun_0.14                
+[71] rsvd_1.0.3                viridisLite_0.3.0        
+[73] tibble_3.0.1              beeswarm_0.2.3           
+[75] statmod_1.4.34            ellipsis_0.3.1           
 ```
 </div>

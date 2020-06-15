@@ -295,7 +295,8 @@ dec.cv2.pbmc[order(dec.cv2.pbmc$ratio, decreasing=TRUE),]
 Both the CV^2^ and the variance of log-counts are effective metrics for quantifying variation in gene expression.
 The CV^2^ tends to give higher rank to low-abundance HVGs driven by upregulation in rare subpopulations, for which the increase in variance on the raw scale is stronger than that on the log-scale.
 However, the variation described by the CV^2^ is less directly relevant to downstream procedures operating on the log-counts, and the reliance on the ratio can assign high rank to uninteresting genes with low absolute variance.
-We generally prefer the use of the variance of log-counts and will use it in the following sections, though the many of the same principles apply to procedures based on the CV^2^.
+We prefer the use of the variance of log-counts and will use it in the following sections 
+though many of the same principles apply to procedures based on the CV^2^.
 
 ### Quantifying technical noise {#sec:spikeins}
 
@@ -683,8 +684,12 @@ summary(b.genes)
 Of course, the downside of focusing on pre-defined genes is that it will limit our capacity to detect novel or unexpected aspects of variation.
 Thus, this kind of focused analysis should be complementary to (rather than a replacement for) the unsupervised feature selection strategies discussed previously.
 
-Alternatively, we can also invert this reasoning to remove genes that are unlikely to be of interest prior to downstream analyses, thus avoiding unwanted variation that interferes with downstream interpretation.
-Common candidates for removal include ribosomal protein genes or mitochondrial genes; for immune cell subsets, we might also be inclined to remove immunoglobulin genes and T cell receptor genes, where clonal expression introduces (possibly irrelevant) population structure.
+Alternatively, we can invert this reasoning to remove genes that are unlikely to be of interest prior to downstream analyses. 
+This eliminates unwanted variation that could mask relevant biology and interfere with interpretation of the results.
+Ribosomal protein genes or mitochondrial genes are common candidates for removal,
+especially in situations with varying levels of cell damage within a population.
+For immune cell subsets, we might also be inclined to remove immunoglobulin genes and T cell receptor genes 
+for which clonal expression introduces (possibly irrelevant) population structure.
 
 
 ```r
@@ -736,7 +741,8 @@ sum(tcr.discard)
 ## [1] 138
 ```
 
-In practice, we tend to err on the side of caution and abstain from preemptive filtering on biological function until these genes are demonstrably problematic in downstream analyses.
+In practice, we tend to err on the side of caution and abstain from preemptive filtering on biological function 
+until these genes are demonstrably problematic in downstream analyses.
 
 ## Putting it all together {#feature-selection-subsetting}
 
@@ -771,7 +777,6 @@ The downside is that the non-HVGs are discarded from the new `SingleCellExperime
 
 2. We can keep the original `SingleCellExperiment` object and specify the genes to use for downstream functions via an extra argument like `subset.row=`.
 This is useful if the analysis uses multiple sets of HVGs at different steps, whereby one set of HVGs can be easily swapped for another in specific steps.
-However, it can be inconvenient to repeatedly specify the same HVG set across steps.
 
     
     ```r
@@ -784,6 +789,27 @@ However, it can be inconvenient to repeatedly specify the same HVG set across st
     ```
     ## [1] "PCA"
     ```
+
+    This approach is facilitated by the `rowSubset()` utility,
+    which allows us to easily store one or more sets of interest in our `SingleCellExperiment`.
+    By doing so, we avoid the need to keep track of a separate `chosen` variable
+    and ensure that our HVG set is synchronized with any downstream row subsetting of `sce.pbmc`.
+
+    
+    ```r
+    rowSubset(sce.pbmc) <- chosen # stored in the default 'subset'.
+    rowSubset(sce.pbmc, "HVGs.more") <- getTopHVGs(dec.pbmc, prop=0.2)
+    rowSubset(sce.pbmc, "HVGs.less") <- getTopHVGs(dec.pbmc, prop=0.3)
+    colnames(rowData(sce.pbmc))
+    ```
+    
+    ```
+    ## [1] "ID"        "Symbol"    "subset"    "HVGs.more" "HVGs.less"
+    ```
+
+    It can be inconvenient to repeatedly specify the desired feature set across steps,
+    so some downstream functions will automatically subset to the default `rowSubset()` if present in the `SingleCellExperiment`.
+    However, we find that it is generally safest to be explicit about which set is being used for a particular step.
 
 3. We can have our cake and eat it too by (ab)using the "alternative Experiment" system in the `SingleCellExperiment` class.
 Initially designed for storing alternative features like spike-ins or antibody tags, we can instead use it to hold our full dataset while we perform our downstream operations conveniently on the HVG subset.
@@ -834,47 +860,46 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] scater_1.17.1               ggplot2_3.3.1              
- [3] scuttle_0.99.8              ensembldb_2.13.1           
- [5] AnnotationFilter_1.13.0     GenomicFeatures_1.41.0     
- [7] AnnotationDbi_1.51.0        AnnotationHub_2.21.0       
- [9] BiocFileCache_1.13.0        dbplyr_1.4.4               
-[11] msigdbr_7.1.1               scran_1.17.1               
-[13] SingleCellExperiment_1.11.2 SummarizedExperiment_1.19.4
-[15] DelayedArray_0.15.1         matrixStats_0.56.0         
-[17] Biobase_2.49.0              GenomicRanges_1.41.1       
-[19] GenomeInfoDb_1.25.0         IRanges_2.23.6             
-[21] S4Vectors_0.27.10           BiocGenerics_0.35.2        
-[23] rebook_0.99.0               OSCAUtils_0.0.2            
-[25] BiocStyle_2.17.0           
+ [1] scater_1.17.3               ggplot2_3.3.1              
+ [3] ensembldb_2.13.1            AnnotationFilter_1.13.0    
+ [5] GenomicFeatures_1.41.0      AnnotationDbi_1.51.0       
+ [7] AnnotationHub_2.21.0        BiocFileCache_1.13.0       
+ [9] dbplyr_1.4.4                msigdbr_7.1.1              
+[11] scran_1.17.2                SingleCellExperiment_1.11.4
+[13] SummarizedExperiment_1.19.5 DelayedArray_0.15.4        
+[15] matrixStats_0.56.0          Matrix_1.2-18              
+[17] Biobase_2.49.0              GenomicRanges_1.41.5       
+[19] GenomeInfoDb_1.25.2         IRanges_2.23.10            
+[21] S4Vectors_0.27.12           BiocGenerics_0.35.4        
+[23] BiocStyle_2.17.0            rebook_0.99.0              
 
 loaded via a namespace (and not attached):
  [1] ggbeeswarm_0.6.0              colorspace_1.4-1             
- [3] ellipsis_0.3.1                XVector_0.29.1               
- [5] BiocNeighbors_1.7.0           bit64_0.9-7                  
- [7] interactiveDisplayBase_1.27.5 codetools_0.2-16             
- [9] knitr_1.28                    Rsamtools_2.5.1              
-[11] graph_1.67.1                  shiny_1.4.0.2                
-[13] BiocManager_1.30.10           compiler_4.0.0               
-[15] httr_1.4.1                    dqrng_0.2.1                  
-[17] assertthat_0.2.1              Matrix_1.2-18                
+ [3] ellipsis_0.3.1                scuttle_0.99.9               
+ [5] XVector_0.29.2                BiocNeighbors_1.7.0          
+ [7] bit64_0.9-7                   interactiveDisplayBase_1.27.5
+ [9] codetools_0.2-16              knitr_1.28                   
+[11] Rsamtools_2.5.1               graph_1.67.1                 
+[13] shiny_1.4.0.2                 BiocManager_1.30.10          
+[15] compiler_4.0.0                httr_1.4.1                   
+[17] dqrng_0.2.1                   assertthat_0.2.1             
 [19] fastmap_1.0.1                 lazyeval_0.2.2               
-[21] limma_3.45.0                  later_1.0.0                  
+[21] limma_3.45.7                  later_1.1.0.1                
 [23] BiocSingular_1.5.0            htmltools_0.4.0              
 [25] prettyunits_1.1.1             tools_4.0.0                  
 [27] rsvd_1.0.3                    igraph_1.2.5                 
 [29] gtable_0.3.0                  glue_1.4.1                   
 [31] GenomeInfoDbData_1.2.3        dplyr_1.0.0                  
 [33] rappdirs_0.3.1                Rcpp_1.0.4.6                 
-[35] vctrs_0.3.0                   Biostrings_2.57.1            
-[37] rtracklayer_1.49.2            DelayedMatrixStats_1.11.0    
+[35] vctrs_0.3.1                   Biostrings_2.57.2            
+[37] rtracklayer_1.49.3            DelayedMatrixStats_1.11.0    
 [39] xfun_0.14                     stringr_1.4.0                
 [41] ps_1.3.3                      mime_0.9                     
 [43] lifecycle_0.2.0               irlba_2.3.3                  
 [45] statmod_1.4.34                XML_3.99-0.3                 
-[47] edgeR_3.31.1                  zlibbioc_1.35.0              
+[47] edgeR_3.31.4                  zlibbioc_1.35.0              
 [49] scales_1.1.1                  hms_0.5.3                    
-[51] promises_1.1.0                ProtGenerics_1.21.0          
+[51] promises_1.1.1                ProtGenerics_1.21.0          
 [53] yaml_2.2.1                    curl_4.3                     
 [55] gridExtra_2.3                 memoise_1.1.0                
 [57] biomaRt_2.45.0                stringi_1.4.6                
@@ -883,7 +908,7 @@ loaded via a namespace (and not attached):
 [63] rlang_0.4.6                   pkgconfig_2.0.3              
 [65] bitops_1.0-6                  evaluate_0.14                
 [67] lattice_0.20-41               purrr_0.3.4                  
-[69] GenomicAlignments_1.25.1      CodeDepends_0.6.5            
+[69] GenomicAlignments_1.25.3      CodeDepends_0.6.5            
 [71] bit_1.1-15.2                  processx_3.4.2               
 [73] tidyselect_1.1.0              magrittr_1.5                 
 [75] bookdown_0.19                 R6_2.4.1                     
@@ -895,7 +920,7 @@ loaded via a namespace (and not attached):
 [87] locfit_1.5-9.4                grid_4.0.0                   
 [89] blob_1.2.1                    callr_3.4.3                  
 [91] digest_0.6.25                 xtable_1.8-4                 
-[93] httpuv_1.5.3.1                openssl_1.4.1                
+[93] httpuv_1.5.4                  openssl_1.4.1                
 [95] munsell_0.5.0                 viridisLite_0.3.0            
 [97] beeswarm_0.2.3                vipor_0.4.5                  
 [99] askpass_1.1                  

@@ -190,13 +190,14 @@ reducedDimNames(sce.zeisel)
 How many of the top PCs should we retain for downstream analyses?
 The choice of the number of PCs $d$ is a decision that is analogous to the choice of the number of HVGs to use.
 Using more PCs will retain more biological signal at the cost of including more noise that might mask said signal.
-Much like the choice of the number of HVGs, it is hard to determine whether an "optimal" choice exists for the number of PCs;
-putting aside the technical variation that is almost always uninteresting,
-one analyst's biological signal may easily be irrelevant noise to another analyst with a different scientific question.
+Much like the choice of the number of HVGs, it is hard to determine whether an "optimal" choice exists for the number of PCs.
+Even if we put aside the technical variation that is almost always uninteresting,
+there is no straightforward way to automatically determine which aspects of biological variation are relevant;
+one analyst's biological signal may be irrelevant noise to another analyst with a different scientific question.
 
 Most practitioners will simply set $d$ to a "reasonable" but arbitrary value, typically ranging from 10 to 50.
 This is often satisfactory as the later PCs explain so little variance that their inclusion or omission has no major effect.
-For example, in the Zeisel dataset, very few PCs explain more than 1\% of the variance in the entire dataset (Figure \@ref(fig:zeisel-scree)) and using, say, 30 $\pm$ 10 PCs would not even amount to four percentage points' worth of difference in variance.
+For example, in the Zeisel dataset, few PCs explain more than 1\% of the variance in the entire dataset (Figure \@ref(fig:zeisel-scree)) and using, say, 30 $\pm$ 10 PCs would not even amount to four percentage points' worth of difference in variance.
 In fact, the main consequence of using more PCs is simply that downstream calculations take longer as they need to compute over more dimensions, but most PC-related calculations are fast enough that this is not a practical concern.
 
 
@@ -246,14 +247,37 @@ abline(v=chosen.elbow, col="red")
 Our assumption is that each of the top PCs capturing biological signal should explain much more variance than the remaining PCs.
 Thus, there should be a sharp drop in the percentage of variance explained when we move past the last "biological" PC.
 This manifests as an elbow in the scree plot, the location of which serves as a natural choice for $d$.
+Once this is identified, we can subset the `reducedDims()` entry to only retain the first $d$ PCs of interest.
+
+
+```r
+# Creating a new entry with only the first 20 PCs, 
+# useful if we still need the full set of PCs later. 
+reducedDim(sce.zeisel, "PCA.elbow") <- reducedDim(sce.zeisel)[,1:chosen.elbow]
+reducedDimNames(sce.zeisel)
+```
+
+```
+## [1] "PCA"       "IRLBA"     "PCA.elbow"
+```
+
+```r
+# Alternatively, just overwriting the original PCA entry. For demonstration
+# purposes, we'll do this to a copy so that we still have full PCs later on.
+sce.zeisel.copy <- sce.zeisel 
+reducedDim(sce.zeisel.copy) <- reducedDim(sce.zeisel.copy)[,1:chosen.elbow]
+ncol(reducedDim(sce.zeisel.copy))
+```
+
+```
+## [1] 7
+```
 
 From a practical perspective, the use of the elbow point tends to retain fewer PCs compared to other methods.
 The definition of "much more variance" is relative so, in order to be retained, later PCs must explain a amount of variance that is comparable to that explained by the first few PCs.
 Strong biological variation in the early PCs will shift the elbow to the left, potentially excluding weaker (but still interesting) variation in the next PCs immediately following the elbow.
 
 ### Using the technical noise
-
-#### Method description
 
 Another strategy is to retain all PCs until the percentage of total variation explained reaches some threshold $T$.
 For example, we might retain the top set of PCs that explains 80% of the total variation in the data.
@@ -330,11 +354,8 @@ This choice of $d$ is motivated by the fact that any fewer PCs will definitely d
 (Of course, the converse is not true; there is no guarantee that the retained PCs capture all of the signal, which is only generally possible if no dimensionality reduction is performed at all.)
 From a practical perspective, the `denoisePCA()` approach usually retains more PCs than the elbow point method as the former does not compare PCs to each other and is less likely to discard PCs corresponding to secondary factors of variation.
 The downside is that many minor aspects of variation may not be interesting (e.g., transcriptional bursting) and their retention would only add irrelevant noise.
-Thus, whether this is a "better" approach depends on the our willingness to increase noise in order to preserve weaker biological signals.
 
-#### Additional comments
-
-`denoisePCA()` imposes internal caps on the number of PCs that can be chosen in this manner.
+Note that `denoisePCA()` imposes internal caps on the number of PCs that can be chosen in this manner.
 By default, the number is bounded within the "reasonable" limits of 5 and 50 to avoid selection of too few PCs (when technical noise is high relative to biological variation) or too many PCs (when technical noise is very low).
 For example, applying this function to the Zeisel brain data hits the upper limit:
 
@@ -388,18 +409,12 @@ This attempts to capture as many distinct (putative) subpopulations as possible 
 ```r
 pcs <- reducedDim(sce.zeisel)
 choices <- getClusteredPCs(pcs)
-metadata(choices)$chosen
-```
+val <- metadata(choices)$chosen
 
-```
-## [1] 17
-```
-
-```r
 plot(choices$n.pcs, choices$n.clusters,
     xlab="Number of PCs", ylab="Number of clusters")
 abline(a=1, b=1, col="red")
-abline(v=metadata(choices)$chosen, col="grey80", lty=2)
+abline(v=val, col="grey80", lty=2)
 ```
 
 <div class="figure">
@@ -407,41 +422,144 @@ abline(v=metadata(choices)$chosen, col="grey80", lty=2)
 <p class="caption">(\#fig:cluster-pc-choice)Number of clusters detected in the Zeisel brain dataset as a function of the number of PCs. The red unbroken line represents the theoretical upper constraint on the number of clusters, while the grey dashed line is the number of PCs suggested by `getClusteredPCs()`.</p>
 </div>
 
+We subset the PC matrix by column to retain the first $d$ PCs 
+and assign the subsetted matrix back into our `SingleCellExperiment` object.
+Downstream applications that use the `"PCA.clust"` results in `sce.zeisel` will subsequently operate on the chosen PCs only.
+
+
+```r
+reducedDim(sce.zeisel, "PCA.clust") <- pcs[,1:val]
+```
+
 This strategy is the most pragmatic as it directly addresses the role of the bias-variance trade-off in downstream analyses, specifically clustering.
 There is no need to preserve biological signal beyond what is distinguishable in later steps.
 However, it involves strong assumptions about the nature of the biological differences between subpopulations - and indeed, discrete subpopulations may not even exist in studies of continuous processes like differentiation.
+It also requires repeated applications of the clustering procedure on increasing number of PCs, which may be computational expensive.
 
-### Putting it together
+### Using random matrix theory
 
-Once we have chosen $d$, applying it is as simple as subsetting the PC matrix by column.
-We then use the `reducedDim()<-` command to reassign the subsetted matrix back into the `SingleCellExperiment` object.
-For example, if we were to take the top 20 PCs, we would do:
+We consider the observed (log-)expression matrix to be the sum of 
+(i) a low-rank matrix containing the true biological signal for each cell
+and (ii) a random matrix representing the technical noise in the data. 
+Under this interpretation, we can use random matrix theory to guide the choice of the number of PCs
+based on the properties of the noise matrix.
+
+The Marchenko-Pastur (MP) distribution defines an upper bound on the singular values of a matrix with random i.i.d. entries. 
+Thus, all PCs associated with larger singular values are likely to contain real biological structure -
+or at least, signal beyond that expected by noise - and should be retained [@shekhar2016comprehensive].
+We can implement this scheme using the `chooseMarchenkoPastur()` function from the *[PCAtools](https://bioconductor.org/packages/3.12/PCAtools)* package,
+given the dimensionality of the matrix used for the PCA (noting that we only used the HVG subset);
+the variance explained by each PC (not the percentage);
+and the variance of the noise matrix derived from our previous variance decomposition results.
+
+<!--
+We could also use the median of the total variances to account for uninteresting biological noise,
+which would be analogous to fitting the trend to the genes in the first place.
+However, this would weaken the theoretical foundation of i.i.d.'ness for the MP limit.
+-->
 
 
 ```r
-reducedDim(sce.zeisel, "PCA") <- reducedDim(sce.zeisel, "PCA")[,1:20]
-ncol(reducedDim(sce.zeisel, "PCA"))
+# Generating more PCs for demonstration purposes:
+set.seed(10100101)
+sce.zeisel2 <- runPCA(sce.zeisel, subset_row=top.hvgs, 
+    ncomponents=200)
+
+mp.choice <- PCAtools::chooseMarchenkoPastur(
+    .dim=c(length(top.hvgs), ncol(sce.zeisel2)),
+    var.explained=attr(reducedDim(sce.zeisel2), "varExplained"),
+    noise=median(dec.zeisel[top.hvgs,"tech"]))
+
+mp.choice
 ```
 
 ```
-## [1] 20
+## [1] 142
+## attr(,"limit")
+## [1] 2.236
 ```
 
-Downstream applications that use the `"PCA"` dimensionality reduction results in `sce.zeisel` will subsequently operate on the first 20 PCs only.
-Alternatively, some users may prefer to keep the full set of PCs, in which case the top set can be assigned to another name:
+
+
+We can then subset the PC coordinate matrix by the first `mp.choice` columns as previously demonstrated.
+It is best to treat this as a guideline only; PCs below the MP limit are not necessarily uninteresting, especially in noisy datasets where the higher `noise` drives a more aggressive choice of $d$.
+Conversely, many PCs above the limit may not be relevant if they are driven by uninteresting biological processes like transcriptional bursting, cell cycle or metabolic variation.
+Morever, the use of the MP distribution is not entirely justified here as the noise distribution differs by abundance for each gene and by sequencing depth for each cell.
+
+In a similar vein, Horn's parallel analysis is commonly used to pick the number of PCs to retain in factor analysis.
+This involves randomizing the input matrix, repeating the PCA and creating a scree plot of the PCs of the randomized matrix.
+The desired number of PCs is then chosen based on the intersection of the randomized scree plot with that of the original matrix (Figure \@ref(fig:zeisel-parallel-pc-choice)).
+Here, the reasoning is that PCs are unlikely to be interesting if they explain less variance that that of the corresponding PC of a random matrix.
+Note that this differs from the MP approach as we are not using the upper bound of randomized singular values to threshold the original PCs.
 
 
 ```r
-reducedDim(sce.zeisel, "PCA_20") <- reducedDim(sce.zeisel, "PCA")[,1:20]
-reducedDimNames(sce.zeisel)
+set.seed(100010)
+horn <- PCAtools::parallelPCA(logcounts(sce.zeisel)[top.hvgs,],
+    BSPARAM=BiocSingular::IrlbaParam(), niters=10)
+horn$n
 ```
 
 ```
-## [1] "PCA"    "IRLBA"  "PCA_20"
+## [1] 24
 ```
 
-Note that this is not necessary if the desired number of PCs is directly specified in the initial call to `runPCA()`.
-Similarly, `denoisePCA()` will return its chosen number of PCs without requiring further user intervention.
+```r
+plot(horn$original$variance, type="b", log="y", pch=16)
+permuted <- horn$permuted
+for (i in seq_len(ncol(permuted))) {
+    points(permuted[,i], col="grey80", pch=16)
+    lines(permuted[,i], col="grey80", pch=16)
+}
+abline(v=horn$n, col="red")
+```
+
+<div class="figure">
+<img src="reduced-dimensions_files/figure-html/zeisel-parallel-pc-choice-1.png" alt="Percentage of variance explained by each PC in the original matrix (black) and the PCs in the randomized matrix (grey) across several randomization iterations. The red line marks the chosen number of PCs." width="672" />
+<p class="caption">(\#fig:zeisel-parallel-pc-choice)Percentage of variance explained by each PC in the original matrix (black) and the PCs in the randomized matrix (grey) across several randomization iterations. The red line marks the chosen number of PCs.</p>
+</div>
+
+
+
+The `parallelPCA()` function helpfully emits the PC coordinates in  `horn$original$rotated`,
+which we can subset by `horn$n` and add to the `reducedDims()` of our `SingleCellExperiment`.
+Parallel analysis is reasonably intuitive (as random matrix methods go) and avoids any i.i.d. assumption across genes.
+However, its obvious disadvantage is the not-insignificant computational cost of randomizing and repeating the PCA.
+One can also debate whether the scree plot of the randomized matrix is even comparable to that of the original,
+given that the former includes biological variation and thus cannot be interpreted as purely technical noise.
+This manifests in Figure \@ref(fig:zeisel-parallel-pc-choice) as a consistently higher curve for the randomized matrix due to the redistribution of biological variation to the later PCs.
+
+Another approach is based on optimizing the reconstruction error of the low-rank representation [@gavish2014optimal].
+Recall that PCA produces both the matrix of per-cell coordinates and a rotation matrix of per-gene loadings,
+the product of which recovers the original log-expression matrix. 
+If we subset these two matrices to the first $d$ dimensions, the product of the resulting submatrices serves as an approximation of the original matrix.
+Under certain conditions, the difference between this approximation and the true low-rank signal (i.e., _sans_ the noise matrix) has a defined mininum at a certain number of dimensions.
+This minimum can be defined using the `chooseGavishDonoho()` function from *[PCAtools](https://bioconductor.org/packages/3.12/PCAtools)* as shown below.
+
+
+```r
+gv.choice <- PCAtools::chooseGavishDonoho(
+    .dim=c(length(top.hvgs), ncol(sce.zeisel2)),
+    var.explained=attr(reducedDim(sce.zeisel2), "varExplained"),
+    noise=median(dec.zeisel[top.hvgs,"tech"]))
+
+gv.choice
+```
+
+```
+## [1] 59
+## attr(,"limit")
+## [1] 2.992
+```
+
+
+
+The Gavish-Donoho method is appealing as, unlike the other approaches for choosing $d$,
+the concept of the optimum is rigorously defined.
+By minimizing the reconstruction error, we can most accurately represent the true biological variation in terms of the distances between cells in PC space.
+However, there remains some room for difference between "optimal" and "useful";
+for example, noisy datasets may find themselves with very low $d$ as including more PCs will only ever increase reconstruction error, regardless of whether they contain relevant biological variation.
+This approach is also dependent on some strong i.i.d. assumptions about the noise matrix.
 
 <!--
 ## Non-negative matrix factorization
@@ -704,15 +822,15 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] BiocSingular_1.5.0          scater_1.17.1              
- [3] ggplot2_3.3.1               scuttle_0.99.8             
- [5] scran_1.17.1                SingleCellExperiment_1.11.2
- [7] SummarizedExperiment_1.19.4 DelayedArray_0.15.1        
- [9] matrixStats_0.56.0          Biobase_2.49.0             
-[11] GenomicRanges_1.41.1        GenomeInfoDb_1.25.0        
-[13] IRanges_2.23.6              S4Vectors_0.27.10          
-[15] BiocGenerics_0.35.2         rebook_0.99.0              
-[17] OSCAUtils_0.0.2             BiocStyle_2.17.0           
+ [1] BiocSingular_1.5.0          scater_1.17.3              
+ [3] ggplot2_3.3.1               scran_1.17.2               
+ [5] SingleCellExperiment_1.11.4 SummarizedExperiment_1.19.5
+ [7] DelayedArray_0.15.4         matrixStats_0.56.0         
+ [9] Matrix_1.2-18               Biobase_2.49.0             
+[11] GenomicRanges_1.41.5        GenomeInfoDb_1.25.2        
+[13] IRanges_2.23.10             S4Vectors_0.27.12          
+[15] BiocGenerics_0.35.4         BiocStyle_2.17.0           
+[17] rebook_0.99.0              
 
 loaded via a namespace (and not attached):
  [1] bitops_1.0-6              tools_4.0.0              
@@ -725,19 +843,19 @@ loaded via a namespace (and not attached):
 [15] labeling_0.3              bookdown_0.19            
 [17] scales_1.1.1              callr_3.4.3              
 [19] stringr_1.4.0             digest_0.6.25            
-[21] rmarkdown_2.2             XVector_0.29.1           
+[21] rmarkdown_2.2             XVector_0.29.2           
 [23] pkgconfig_2.0.3           htmltools_0.4.0          
-[25] limma_3.45.0              highr_0.8                
+[25] limma_3.45.7              highr_0.8                
 [27] rlang_0.4.6               FNN_1.1.3                
 [29] DelayedMatrixStats_1.11.0 generics_0.0.2           
 [31] farver_2.0.3              BiocParallel_1.23.0      
 [33] dplyr_1.0.0               RCurl_1.98-1.2           
 [35] magrittr_1.5              GenomeInfoDbData_1.2.3   
-[37] Matrix_1.2-18             Rcpp_1.0.4.6             
+[37] scuttle_0.99.9            Rcpp_1.0.4.6             
 [39] ggbeeswarm_0.6.0          munsell_0.5.0            
-[41] viridis_0.5.1             PCAtools_2.1.4           
+[41] viridis_0.5.1             PCAtools_2.1.6           
 [43] lifecycle_0.2.0           stringi_1.4.6            
-[45] yaml_2.2.1                edgeR_3.31.1             
+[45] yaml_2.2.1                edgeR_3.31.4             
 [47] zlibbioc_1.35.0           Rtsne_0.15               
 [49] plyr_1.8.6                grid_4.0.0               
 [51] ggrepel_0.8.2             dqrng_0.2.1              
@@ -748,11 +866,12 @@ loaded via a namespace (and not attached):
 [61] igraph_1.2.5              reshape2_1.4.4           
 [63] codetools_0.2-16          XML_3.99-0.3             
 [65] glue_1.4.1                evaluate_0.14            
-[67] BiocManager_1.30.10       vctrs_0.3.0              
-[69] gtable_0.3.0              purrr_0.3.4              
-[71] xfun_0.14                 rsvd_1.0.3               
-[73] RSpectra_0.16-0           viridisLite_0.3.0        
-[75] tibble_3.0.1              beeswarm_0.2.3           
-[77] statmod_1.4.34            ellipsis_0.3.1           
+[67] BiocManager_1.30.10       vctrs_0.3.1              
+[69] gtable_0.3.0              RMTstat_0.3              
+[71] purrr_0.3.4               xfun_0.14                
+[73] rsvd_1.0.3                RSpectra_0.16-0          
+[75] viridisLite_0.3.0         tibble_3.0.1             
+[77] beeswarm_0.2.3            statmod_1.4.34           
+[79] ellipsis_0.3.1           
 ```
 </div>

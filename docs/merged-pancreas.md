@@ -561,15 +561,16 @@ tab
 ```
 ##         
 ## clusters Grun Lawlor Muraro Seger
-##        1  253     20    279   187
-##        2  333     27    257   387
-##        3  173    256    474   292
-##        4  199    237    834   865
-##        5   57     17    193   108
-##        6   24     18    108    55
-##        7    0      1     17     4
-##        8    5      9     19    17
-##        9   19     19    118   175
+##       1   246     20    278   187
+##       2   200    239    835   862
+##       3   171    254    473   294
+##       4   315     27    260   387
+##       5    57     17    193   108
+##       6    24     18    107    55
+##       7    26      0      0     0
+##       8     5      9     19    17
+##       9    19     19    118   176
+##       10    0      1     16     4
 ```
 
 ```r
@@ -608,24 +609,24 @@ table(proposed, clusters)
 
 ```
 ##                         clusters
-## proposed                    1    2    3    4    5    6    7    8    9
-##   acinar                  422    1    0    1    0    0    0    1    0
-##   alpha                     1    7   25 1850    1    0    0    1    2
-##   beta                      3    4  920    2    0    2    1    1    7
-##   co-expression             0    0   36    3    0    0    0    0    0
-##   delta                     0    2    5    1  306    0    0    1    1
-##   ductal                    7  612    4    0    0    6   10    0    1
-##   endothelial               0    0    0    0    0    1    0   33    0
-##   epsilon                   0    0    1    0    0    0    0    0    7
-##   gamma                     2    0    0    0    0    0    0    0  280
-##   mesenchymal               0    1    0    0    0   79    0    0    0
-##   mhc class ii              0    0    0    0    0    0    4    0    0
-##   nana                      2    8    1   13    1    0    0    1    0
-##   none/other                0    3    1    2    0    0    1    4    1
-##   stellate                  0    0    0    0    0   71    0    1    0
-##   unclassified              0    0    0    0    0    2    0    0    0
-##   unclassified endocrine    0    0    4    2    0    0    0    0    0
-##   unclear                   0    4    0    0    0    0    0    0    0
+## proposed                    1    2    3    4    5    6    7    8    9   10
+##   acinar                  422    1    0    1    0    0    0    1    0    0
+##   alpha                     1 1851   23    7    1    0    0    1    3    0
+##   beta                      3    3  919    4    0    2    0    1    7    1
+##   co-expression             0    1   38    0    0    0    0    0    0    0
+##   delta                     0    1    5    2  306    0    0    1    1    0
+##   ductal                    7    0    4  613    0    5    0    0    1   10
+##   endothelial               0    0    0    0    0    1    0   33    0    0
+##   epsilon                   0    0    1    0    0    0    0    0    7    0
+##   gamma                     2    0    0    0    0    0    0    0  280    0
+##   mesenchymal               0    0    0    1    0   79    0    0    0    0
+##   mhc class ii              0    0    0    0    0    0    0    0    0    4
+##   nana                      2   12    2    8    1    0    0    1    0    0
+##   none/other                0    2    1    3    0    0    0    4    1    1
+##   stellate                  0    0    0    0    0   71    0    1    0    0
+##   unclassified              0    0    0    0    0    2    0    0    0    0
+##   unclassified endocrine    0    2    4    0    0    0    0    0    0    0
+##   unclear                   0    0    0    4    0    0    0    0    0    0
 ```
 
 
@@ -656,28 +657,28 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] scater_1.17.1               ggplot2_3.3.1              
- [3] scuttle_0.99.8              scran_1.17.1               
- [5] batchelor_1.5.0             SingleCellExperiment_1.11.2
- [7] SummarizedExperiment_1.19.4 DelayedArray_0.15.1        
- [9] matrixStats_0.56.0          Biobase_2.49.0             
-[11] GenomicRanges_1.41.1        GenomeInfoDb_1.25.0        
-[13] IRanges_2.23.6              S4Vectors_0.27.10          
-[15] BiocGenerics_0.35.2         rebook_0.99.0              
-[17] BiocStyle_2.17.0           
+ [1] scater_1.17.3               ggplot2_3.3.1              
+ [3] scran_1.17.2                batchelor_1.5.1            
+ [5] SingleCellExperiment_1.11.4 SummarizedExperiment_1.19.5
+ [7] DelayedArray_0.15.4         matrixStats_0.56.0         
+ [9] Matrix_1.2-18               Biobase_2.49.0             
+[11] GenomicRanges_1.41.5        GenomeInfoDb_1.25.2        
+[13] IRanges_2.23.10             S4Vectors_0.27.12          
+[15] BiocGenerics_0.35.4         BiocStyle_2.17.0           
+[17] rebook_0.99.0              
 
 loaded via a namespace (and not attached):
- [1] viridis_0.5.1             edgeR_3.31.1             
+ [1] viridis_0.5.1             edgeR_3.31.4             
  [3] BiocSingular_1.5.0        viridisLite_0.3.0        
- [5] DelayedMatrixStats_1.11.0 statmod_1.4.34           
- [7] highr_0.8                 BiocManager_1.30.10      
- [9] dqrng_0.2.1               vipor_0.4.5              
-[11] GenomeInfoDbData_1.2.3    yaml_2.2.1               
-[13] pillar_1.4.4              lattice_0.20-41          
-[15] glue_1.4.1                limma_3.45.0             
-[17] digest_0.6.25             XVector_0.29.1           
-[19] colorspace_1.4-1          cowplot_1.0.0            
-[21] htmltools_0.4.0           Matrix_1.2-18            
+ [5] DelayedMatrixStats_1.11.0 scuttle_0.99.9           
+ [7] statmod_1.4.34            highr_0.8                
+ [9] BiocManager_1.30.10       dqrng_0.2.1              
+[11] vipor_0.4.5               GenomeInfoDbData_1.2.3   
+[13] yaml_2.2.1                pillar_1.4.4             
+[15] lattice_0.20-41           glue_1.4.1               
+[17] limma_3.45.7              digest_0.6.25            
+[19] XVector_0.29.2            colorspace_1.4-1         
+[21] cowplot_1.0.0             htmltools_0.4.0          
 [23] XML_3.99-0.3              pkgconfig_2.0.3          
 [25] bookdown_0.19             zlibbioc_1.35.0          
 [27] purrr_0.3.4               scales_1.1.1             
@@ -701,7 +702,7 @@ loaded via a namespace (and not attached):
 [63] R6_2.4.1                  gridExtra_2.3            
 [65] knitr_1.28                dplyr_1.0.0              
 [67] ggbeeswarm_0.6.0          stringi_1.4.6            
-[69] Rcpp_1.0.4.6              vctrs_0.3.0              
+[69] Rcpp_1.0.4.6              vctrs_0.3.1              
 [71] tidyselect_1.1.0          xfun_0.14                
 ```
 </div>

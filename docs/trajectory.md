@@ -124,13 +124,14 @@ sce.nest
 
 ### Overview
 
-The pseudotime is simply a number describing the relative position of each cell in the trajectory,
-where cells with larger values are consider to be "after" cells with smaller values.
+The pseudotime is simply a number describing the relative position of a cell in the trajectory,
+where cells with larger values are consider to be "after" their counterparts with smaller values.
 Branched trajectories will typically be associated with multiple pseudotimes, one per path through the trajectory;
-these values are not usually comparable across paths. 
-It is worth noting that "pseudotime" is a rather unfortunate name as the trajectory may not have much to do with real-life time.
-For example, one can imagine a continuum of stress states with cells moving in either direction over time, 
-but the pseudotime only describes the transition from one end to another and so will only increase in one direction.
+these values are not usually comparable across paths.
+It is worth noting that "pseudotime" is a rather unfortunate term as it may not have much to do with real-life time.
+For example, one can imagine a continuum of stress states where cells move in either direction (or not) over time
+but the pseudotime simply describes the transition from one end of the continuum to the other.
+In trajectories describing time-dependent processes like differentiation, a cell's pseudotime value may be used as a proxy for its relative age, but only if directionality can be inferred (see Section \@ref(finding-the-root)).
 
 The big question is how to identify the trajectory from high-dimensional expression data and map individual cells onto it.
 A massive variety of different algorithms are available for doing so [@sealens2019comparison], and while we will demonstrate only a few specific methods below, many of the concepts apply generally to all trajectory inference strategies.
@@ -158,9 +159,9 @@ mst
 ```
 
 ```
-## IGRAPH 71c8ff4 UNW- 9 8 -- 
+## IGRAPH bb4eee9 UNW- 9 8 -- 
 ## + attr: name (v/c), weight (e/n)
-## + edges from 71c8ff4 (vertex names):
+## + edges from bb4eee9 (vertex names):
 ## [1] 1--3 1--9 2--3 2--6 3--4 5--8 5--9 6--7
 ```
 
@@ -199,13 +200,13 @@ head(tscan.pseudo)
 ```
 
 ```
-##             7  8
-## [1,] 33.89744 NA
-## [2,] 53.34097 NA
-## [3,] 47.94699 NA
-## [4,] 59.92395 NA
-## [5,] 54.35901 NA
-## [6,] 70.73120 NA
+##          7  8
+## [1,] 33.90 NA
+## [2,] 53.34 NA
+## [3,] 47.95 NA
+## [4,] 59.92 NA
+## [5,] 54.36 NA
+## [6,] 70.73 NA
 ```
 
 ```r
@@ -233,9 +234,9 @@ allowing us to recycle previous knowledge about the biological annotations assig
 
 However, the reliance on clustering is a double-edged sword.
 If the clusters are not sufficiently granular, 
-it is possible for *[TSCAN](https://bioconductor.org/packages/3.12/TSCAN)* to overlook a trajectory that occurs inside a single cluster.
-The requirement of the MST to pass through each cluster exactly once can lead to excessively circuitous paths in overclustered datasets as well as the formation of irrelevant paths between distinct cell subpopulations.
-The MST also failed to handle more complex events such as "bubbles" (i.e., a bifurcation and then a merging) or cycles.
+it is possible for *[TSCAN](https://bioconductor.org/packages/3.12/TSCAN)* to overlook variation that occurs inside a single cluster.
+The MST is obliged to pass through each cluster exactly once, which can lead to excessively circuitous paths in overclustered datasets as well as the formation of irrelevant paths between distinct cell subpopulations.
+The MST also fails to handle more complex events such as "bubbles" (i.e., a bifurcation and then a merging) or cycles.
 
 ### Principal curves
 
@@ -243,8 +244,9 @@ To identify a trajectory, one might imagine simply "fitting" a one-dimensional c
 so that it passes through the cloud of cells in the high-dimensional expression space.
 This is the idea behind principal curves [@hastie1989principal], 
 effectively a non-linear generalization of PCA where the axes of most variation are allowed to bend.
-We use the *[slingshot](https://bioconductor.org/packages/3.12/slingshot)* package [@street2018slingshot] to fit a principal curve to the PC coordinates,
-which yields a pseudotime ordering of cells based on their relative positions when projected onto the curve.
+We use the *[slingshot](https://bioconductor.org/packages/3.12/slingshot)* package [@street2018slingshot] to fit a single principal curve to the Nestorowa dataset,
+again using the low-dimensional PC coordinates for denoising and speed.
+This yields a pseudotime ordering of cells based on their relative positions when projected onto the curve.
 
 
 ```r
@@ -254,74 +256,80 @@ head(sce.sling$slingPseudotime_1)
 ```
 
 ```
-## [1] 89.44417 76.33613 87.88466 76.93112 82.40780 72.09984
+## [1] 89.44 76.34 87.88 76.93 82.41 72.10
 ```
 
-Here, we fitted the principal curve to the PC space for the same reasons as described above.
-We can then visualize the literal path taken by the fitted curve in that space (Figure \@ref(fig:traj-princurve-pca-nest)). 
+We can then visualize the path taken by the fitted curve in any desired space with `embedCurves()`.
+For example, Figure \@ref(fig:traj-princurve-tsne-nest) shows the behavior of the principle curve on the $t$-SNE plot.
+Again, users should note that this may not always yield aesthetically pleasing plots if the $t$-SNE algorithm decides to arrange clusters so that they no longer match the ordering of the pseudotimes.
 
 
 ```r
-# Setting up the colors.
-library(RColorBrewer)
-colors <- colorRampPalette(brewer.pal(11,'Spectral')[-6])(100)
-plotcol <- colors[cut(sce.sling$slingPseudotime_1, breaks=100)]
+embedded <- embedCurves(sce.sling, "TSNE")
+embedded <- slingCurves(embedded)[[1]] # only 1 path.
+embedded <- data.frame(embedded$s[embedded$ord,])
 
-# Creating a PCA plot.
-plot(reducedDim(sce.sling, "PCA"), col = plotcol, pch=16, asp = 1)
-lines(SlingshotDataSet(sce.sling), lwd=2, col='black')
+plotTSNE(sce.sling, colour_by="slingPseudotime_1") +
+    geom_path(data=embedded, aes(x=Dim.1, y=Dim.2), size=1.2)
 ```
 
 <div class="figure">
-<img src="trajectory_files/figure-html/traj-princurve-pca-nest-1.png" alt="Plot of the first 2 PCs in the Nestorowa HSC dataset, where each point is a cell and is colored by the _slingshot_ pseudotime ordering. The path taken by the fitted principal curve is shown in black." width="672" />
-<p class="caption">(\#fig:traj-princurve-pca-nest)Plot of the first 2 PCs in the Nestorowa HSC dataset, where each point is a cell and is colored by the _slingshot_ pseudotime ordering. The path taken by the fitted principal curve is shown in black.</p>
+<img src="trajectory_files/figure-html/traj-princurve-tsne-nest-1.png" alt="$t$-SNE plot of the Nestorowa HSC dataset where each point is a cell and is colored by the _slingshot_ pseudotime ordering. The fitted principal curve is shown in black." width="672" />
+<p class="caption">(\#fig:traj-princurve-tsne-nest)$t$-SNE plot of the Nestorowa HSC dataset where each point is a cell and is colored by the _slingshot_ pseudotime ordering. The fitted principal curve is shown in black.</p>
 </div>
 
-For other dimensionality reduction results, we color by the pseudotime ordering to identify the direction of the trajectory (Figure \@ref(fig:traj-princurve-umap-nest)).
-This is effectively a continuous generalization of the coloring by cluster assignment observed in other chapters.
-
-
-```r
-library(scater)
-sce.sling <- runUMAP(sce.sling, dimred="PCA")
-
-# TODO: make ggcells robust to random crap in the colData().
-# Also need to add a function to auto-generate a path.
-sce.sling$cell.type <- sce.sling$FACS <- NULL
-
-library(viridis)
-ggcells(sce.sling, mapping=aes(x=UMAP.1, 
-        y=UMAP.2, col=slingPseudotime_1)) +
-    geom_point() + scale_color_viridis()
-```
-
-<div class="figure">
-<img src="trajectory_files/figure-html/traj-princurve-umap-nest-1.png" alt="UMAP plot of the Nestorowa HSC dataset, where each point is a cell and is colored by the _slingshot_ pseudotime ordering." width="672" />
-<p class="caption">(\#fig:traj-princurve-umap-nest)UMAP plot of the Nestorowa HSC dataset, where each point is a cell and is colored by the _slingshot_ pseudotime ordering.</p>
-</div>
-
-The previous `slingshot()` call assumed that all cells in the dataset were part of a single one-dimensional trajectory,
-which fails to consider more complex events like bifurcations.
-To accommodate this, we use our previously computed cluster assignments to build a rough sketch for the global structure in the form of a MST across the cluster centroids.
-Each path through the MST from a designated root node is treated as a lineage;
-principal curves are then simultaneously fitted to all lineages, with some averaging across curves to encourage consistency in regions that are common to multiple lineages.
-This allows `slingshot()` to capture branching events based on divergence in the principal curves (Figure \@ref(fig:traj-princurve-clustered-nest)).
+The previous call to `slingshot()` assumed that all cells in the dataset were part of a single curve.
+To accommodate more complex events like bifurcations, we use our previously computed cluster assignments to build a rough sketch for the global structure in the form of a MST across the cluster centroids.
+Each path through the MST from a designated root node is treated as a lineage that contains cells from the associated clusters.
+Principal curves are then simultaneously fitted to all lineages with some averaging across curves to encourage consistency in shared clusters across lineages.
+This process yields a matrix of pseudotimes where each column corresponds to a lineage and contains the pseudotimes of all cells assigned to that lineage.
 
 
 ```r
 sce.sling2 <- slingshot(sce.nest, cluster=colLabels(sce.nest), reducedDim='PCA')
+pseudo.paths <- slingPseudotime(sce.sling2)
+head(pseudo.paths)
+```
 
-plot(reducedDim(sce.sling2, "PCA"), col="grey80", pch=16, asp = 1)
-lines(SlingshotDataSet(sce.sling2), lwd=2, col='black')
+```
+##          curve1 curve2 curve3
+## HSPC_025 107.11     NA     NA
+## HSPC_031  95.38  101.6  117.1
+## HSPC_037 103.74  104.1  109.3
+## HSPC_008  99.25  115.7  103.9
+## HSPC_014 103.07  111.0  105.7
+## HSPC_020     NA  124.0     NA
+```
+
+By using the MST as a scaffold for the global structure, `slingshot()` can accommodate branching events based on divergence in the principal curves (Figure \@ref(fig:traj-princurve-clustered-nest)).
+However, unlike *[TSCAN](https://bioconductor.org/packages/3.12/TSCAN)*, the MST here is only used as a rough guide and does not define the final pseudotime.
+As a result, `slingshot()` is more robust to inadequacies in the clustering: 
+the principal curve has the opportunity to model variation within clusters that would otherwise be overlooked, 
+while ignoring small differences between fine clusters that are unlikely to be relevant to the overall trajectory.
+(The corresponding drawback is that `slingshot()` is no longer obliged to separate clusters in pseudotime, which may complicate intepretation of the trajectory with respect to existing cluster annotations.)
+
+
+```r
+sce.sling2 <- runUMAP(sce.sling2, dimred="PCA")
+shared.pseudo <- rowMeans(pseudo.paths, na.rm=TRUE)
+
+# Need to loop over the paths and add each one separately.
+gg <- plotUMAP(sce.sling2, colour_by=I(shared.pseudo))
+embedded <- embedCurves(sce.sling2, "UMAP")
+embedded <- slingCurves(embedded)
+for (path in embedded) {
+    embedded <- data.frame(path$s[path$ord,])
+    gg <- gg + geom_path(data=embedded, aes(x=Dim.1, y=Dim.2), size=1.2)
+}
+
+gg
 ```
 
 <div class="figure">
-<img src="trajectory_files/figure-html/traj-princurve-clustered-nest-1.png" alt="Plot of the first 2 PCs in the Nestorowa HSC dataset, where the paths taken by the fitted principal curves are shown in black." width="672" />
-<p class="caption">(\#fig:traj-princurve-clustered-nest)Plot of the first 2 PCs in the Nestorowa HSC dataset, where the paths taken by the fitted principal curves are shown in black.</p>
+<img src="trajectory_files/figure-html/traj-princurve-clustered-nest-1.png" alt="UMAP plot of the Nestorowa HSC dataset where each point is a cell and is colored by the average _slingshot_ pseudotime across paths. The principal curves fitted to each lineage are shown in black." width="672" />
+<p class="caption">(\#fig:traj-princurve-clustered-nest)UMAP plot of the Nestorowa HSC dataset where each point is a cell and is colored by the average _slingshot_ pseudotime across paths. The principal curves fitted to each lineage are shown in black.</p>
 </div>
 
-When operating in this mode, `slingshot()` produces one pseudotime ordering for each principal curve.
-Cells not assigned to a particular curve will be assigned `NA` values for that curve's ordering.
 We can use `slingshotBranchID()` to determine whether a particular cell is shared across multiple curves or is unique to a subset of curves (i.e., is located "after" branching).
 In this case, we can see that most cells jump directly from a global common segment (`1,2,3`) to one of the curves (`1`, `2`, `3`) without any further hierarchy, i.e., no noticeable internal branch points.
 
@@ -341,21 +349,27 @@ table(curve.assignments)
 
 For larger datasets, we can speed up the algorithm by approximating each principal curve with a fixed number of points.
 By default, `slingshot()` uses one point per cell to define the curve, which is unnecessarily precise when the number of cells is large.
-Indeed, the approximated curves in Figure \@ref(fig:traj-princurve-clustered-nest-approx) are quite similar to those in Figure \@ref(fig:traj-princurve-clustered-nest).
+Applying an approximation with `approx_points=` reduces computational work without any major loss of precision in the pseudotime estimates.
 
 
 ```r
 sce.sling3 <- slingshot(sce.nest, cluster=colLabels(sce.nest), 
     reducedDim='PCA', approx_points=100)
-
-plot(reducedDim(sce.sling3, "PCA"), col="grey80", pch=16, asp = 1)
-lines(SlingshotDataSet(sce.sling3), lwd=2, col='black')
+pseudo.paths3 <- slingPseudotime(sce.sling3)
+head(pseudo.paths3)
 ```
 
-<div class="figure">
-<img src="trajectory_files/figure-html/traj-princurve-clustered-nest-approx-1.png" alt="Plot of the first 2 PCs in the Nestorowa HSC dataset, where the paths taken by the fitted principal curves are shown in black." width="672" />
-<p class="caption">(\#fig:traj-princurve-clustered-nest-approx)Plot of the first 2 PCs in the Nestorowa HSC dataset, where the paths taken by the fitted principal curves are shown in black.</p>
-</div>
+```
+##          curve1 curve2 curve3
+## HSPC_025 106.84     NA     NA
+## HSPC_031  95.37  101.8  117.1
+## HSPC_037 103.07  104.1  109.0
+## HSPC_008  98.72  115.5  103.7
+## HSPC_014 103.07  110.9  105.3
+## HSPC_020     NA  123.5     NA
+```
+
+
 
 ## Characterizing trajectories
 
@@ -719,17 +733,17 @@ head(res, 10)
 ```
 
 ```
-##                     waldStat df pvalue  fcMedian Symbol
-## ENSMUSG00000000028 272.78820  6      0 1.5227282  Cdc45
-## ENSMUSG00000000058 142.87726  6      0 1.6828836   Cav2
-## ENSMUSG00000000078 190.51655  6      0 0.9729204   Klf6
-## ENSMUSG00000000088 123.87411  6      0 0.5435416  Cox5a
-## ENSMUSG00000000184 214.92003  6      0 0.2201818  Ccnd2
-## ENSMUSG00000000247 110.18854  6      0 0.2690563   Lhx2
-## ENSMUSG00000000248 122.74330  6      0 1.1146978 Clec2g
-## ENSMUSG00000000278 202.47554  6      0 1.9992955 Scpep1
-## ENSMUSG00000000290  89.77732  6      0 0.6293415  Itgb2
-## ENSMUSG00000000303 123.02573  6      0 1.1249760   Cdh1
+##                    waldStat df pvalue fcMedian Symbol
+## ENSMUSG00000000028   272.79  6      0   1.5227  Cdc45
+## ENSMUSG00000000058   142.88  6      0   1.6829   Cav2
+## ENSMUSG00000000078   190.52  6      0   0.9729   Klf6
+## ENSMUSG00000000088   123.87  6      0   0.5435  Cox5a
+## ENSMUSG00000000184   214.92  6      0   0.2202  Ccnd2
+## ENSMUSG00000000247   110.19  6      0   0.2691   Lhx2
+## ENSMUSG00000000248   122.74  6      0   1.1147 Clec2g
+## ENSMUSG00000000278   202.48  6      0   1.9993 Scpep1
+## ENSMUSG00000000290    89.78  6      0   0.6293  Itgb2
+## ENSMUSG00000000303   123.03  6      0   1.1250   Cdh1
 ```
 
 From a statistical perspective, the GAM is superior to linear models as the former uses the raw counts.
@@ -779,28 +793,29 @@ The assumption is that terminally differentiated cells have expression profiles 
 
 We quantify the diversity of expression by computing the entropy of the expression profile within each cell [@grun2016denovo;@guo2017slice;@teschendorff2017singlecell], with higher entropy corresponding to greater diversity and thus reduced differentiation.
 To demonstrate, we examine the entropies for each cluster in the Nestorowa HSC dataset (Figure \@ref(fig:entropy-nest)).
-We observe that clusters 2 and 6 have the highest entropies - note that the y-axis is flipped here -
+We observe that clusters 5 and 8 have the highest entropies, 
 which suggests that they represent the least differentiated state within the trajectory.
 It is also reassuring that these two clusters are adjacent on the MST (Figure \@ref(fig:tscan-nest-tsne)),
 which is consistent with branched differentiation "away" from a single root.
 
 
 ```r
+# TODO: shovel this into a function somewhere.
 library(scuttle)
 nzero <- whichNonZero(counts(sce.nest)) 
-entropy <- - nzero$x * log(nzero$x)
+p <- nzero$x / colSums(counts(sce.nest))[nzero$j]
+entropy <- - p * log(p)
 entropy <- by(entropy, INDICES=nzero$j, FUN=sum)
 
 ent.data <- data.frame(cluster=colLabels(sce.nest), 
     entropy=as.vector(entropy))
-ggplot(ent.data, aes(x=cluster, y=-entropy)) + geom_violin() +
-    scale_y_log10() + ylab("Negative entropy") +
+ggplot(ent.data, aes(x=cluster, y=entropy)) + geom_violin() +
     stat_summary(fun=median, geom="point")
 ```
 
 <div class="figure">
-<img src="trajectory_files/figure-html/entropy-nest-1.png" alt="Distribution of per-cell entropies for each cluster in the Nestorowa dataset. For visualization purposes, the negative entropy is shown on a log-scale. The median entropy for each cluster is shown as a point in the violin plot." width="672" />
-<p class="caption">(\#fig:entropy-nest)Distribution of per-cell entropies for each cluster in the Nestorowa dataset. For visualization purposes, the negative entropy is shown on a log-scale. The median entropy for each cluster is shown as a point in the violin plot.</p>
+<img src="trajectory_files/figure-html/entropy-nest-1.png" alt="Distribution of per-cell entropies for each cluster in the Nestorowa dataset. The median entropy for each cluster is shown as a point in the violin plot." width="672" />
+<p class="caption">(\#fig:entropy-nest)Distribution of per-cell entropies for each cluster in the Nestorowa dataset. The median entropy for each cluster is shown as a point in the violin plot.</p>
 </div>
 
 
@@ -808,7 +823,13 @@ ggplot(ent.data, aes(x=cluster, y=-entropy)) + geom_violin() +
 Of course, this interpretation is fully dependent on whether the underlying assumption is reasonable.
 While the association between diversity and differentiation potential is likely to be generally applicable,
 it may not be sufficiently precise to enable claims on the relative potency of closely related subpopulations.
-Other processes such as stress or metabolic responses may also introduce some interference to the entropy calculations.
+Indeed, other processes such as stress or metabolic responses may interfere with the entropy comparisons.
+Furthermore, at low counts, the magnitude of the entropy is dependent on sequencing depth 
+in a manner that cannot be corrected by scaling normalization.
+Cells with lower coverage will have lower entropy even if the underlying transcriptional diversity is the same,
+which may confound the interpretation of entropy as a measure of potency.
+
+
 
 ### RNA velocity
 
@@ -817,7 +838,7 @@ For a given gene, a high ratio of unspliced to spliced transcripts indicates tha
 under the assumption that the increase in transcription exceeds the capability of the splicing machinery to process the pre-mRNA.
 Conversely, a low ratio indicates that the gene is being downregulated as the rate of production and processing of pre-mRNAs cannot compensate for the degradation of mature transcripts. 
 Thus, we can infer that cells with high and low ratios are moving towards a high- and low-expression state, respectively, 
-allowing us to assign temporal directionality to any trajectory (or even individual cells).
+allowing us to assign directionality to any trajectory or even individual cells.
 
 To demonstrate, we will use matrices of spliced and unspliced counts from **INSERT DATASET HERE**.
 The spliced count matrix can be generated in the standard manner
@@ -878,25 +899,42 @@ str(output)
 
 ```
 ## List of 3
-##  $ pseudotime: num [1:2000] 0.9081 0.9689 0.0226 0.853 0.9719 ...
-##  $ roots     : num [1:2000] 3.77e-08 2.18e-08 4.50e-01 3.26e-04 1.67e-08 ...
-##  $ endpoints : num [1:2000] 2.19e-01 6.57e-01 8.28e-08 9.57e-04 7.38e-01 ...
+##  $ pseudotime: num [1:2000] 0.974 0.959 0.238 0.101 0.966 ...
+##  $ roots     : num [1:2000] 0 0 0 0 0 0 0 0 0 0 ...
+##  $ endpoints : num [1:2000] 9.54e-01 5.96e-01 2.97e-06 6.01e-06 8.59e-01 ...
 ```
 
 Needless to say, this lunch is not entirely free.
 The inferences rely on a somewhat sophisticated mathematical model that has a few assumptions,
-the most obvious of which being that the transcriptional dynamics are the same across different cell populations.
-The use of unspliced counts increases the sensitivity of the analysis to annotation errors, novel transcripts (e.g., microRNAs in the gene body) and intron retention events that could interfere with the velocity calculations.
-There is also the question of whether there is enough intronic coverage to reliably estimate the velocity for each gene, and if not, whether the lack of information for important genes may bias the resulting velocity estimates.
-(From a purely practical perspective, the main difficulty with RNA velocity is that the unspliced counts are often unavailable.
-This is perhaps unsurprising as users need to go out of their way to generate it from the raw sequencing data.)
+the most obvious of which being that the transcriptional dynamics are the same across subpopulations.
+The use of unspliced counts increases the sensitivity of the analysis to novel transcripts (e.g., microRNAs in the gene body), 
+intron retention events, annotation errors or quantification ambiguities [@soneson2020preprocessing] 
+that could interfere with the velocity calculations.
+There is also the question of whether there is enough intronic coverage to reliably estimate the velocity for the relevant genes for the process of interest, and if not, whether this lack of information may bias the resulting velocity estimates.
+From a purely practical perspective, the main difficulty with RNA velocity is that the unspliced counts are often unavailable.
 
 <!--
-The most obvious example of a bias is a trajectory driven by a few genes, all of which lack intronic counts. 
+Other assumptions that didn't make the cut to be mentioned:
+
+- Velocities can be reversed to construct the pseudotime,
+i.e., the past location of a cell is defined as the location of other cells that are moving towards that cell.
+Most obviously not the case if there are no longer any observed cells in the past location,
+though this represents a common weakness of all trajectory inference methods.
+
+- The velocity-inferred pseudotime is not a proxy for real time, which I didn't think needed to be said.
+Obviously, these cells were all collected at the same time, so it cannot be a proxy for real time!
+At best it is a proxy for the age of the cells as for other pseudotime values,
+though with the added benefit that it gets past the directionality difficulty.
+
+- There are enough cells still in transit to obtain meaningful pseudotime orderings.
+If this is not the case, the pseudotimes are scrambled, which is not wrong but not useful either.
+Related is the assumption that the velocity-defined pseudotime lies along the relevant continuum.
+A continuum in a steady-state population would simply not be captured.
+
+With respect to bias, the most obvious example is that of a trajectory driven by a few genes, all of which lack intronic counts. 
 What happens then?
 The trajectory is still there but who knows where the arrows might point?
 -->
-
 
 ### Real timepoints
 
@@ -993,77 +1031,77 @@ attached base packages:
 other attached packages:
  [1] ensembldb_2.13.1            AnnotationFilter_1.13.0    
  [3] GenomicFeatures_1.41.0      AnnotationDbi_1.51.0       
- [5] scRNAseq_2.3.2              basilisk_1.1.8             
- [7] tradeSeq_1.3.08             viridis_0.5.1              
- [9] viridisLite_0.3.0           RColorBrewer_1.1-2         
-[11] slingshot_1.7.0             princurve_2.1.4            
-[13] scran_1.17.1                scater_1.17.1              
-[15] ggplot2_3.3.1               scuttle_0.99.8             
-[17] SingleCellExperiment_1.11.2 SummarizedExperiment_1.19.4
-[19] DelayedArray_0.15.1         matrixStats_0.56.0         
-[21] Biobase_2.49.0              GenomicRanges_1.41.1       
-[23] GenomeInfoDb_1.25.0         IRanges_2.23.6             
-[25] S4Vectors_0.27.10           BiocGenerics_0.35.2        
-[27] rebook_0.99.0               BiocStyle_2.17.0           
+ [5] scRNAseq_2.3.6              basilisk_1.1.8             
+ [7] scuttle_0.99.9              tradeSeq_1.3.08            
+ [9] slingshot_1.7.0             princurve_2.1.4            
+[11] scran_1.17.2                scater_1.17.3              
+[13] ggplot2_3.3.1               SingleCellExperiment_1.11.4
+[15] SummarizedExperiment_1.19.5 DelayedArray_0.15.4        
+[17] matrixStats_0.56.0          Matrix_1.2-18              
+[19] Biobase_2.49.0              GenomicRanges_1.41.5       
+[21] GenomeInfoDb_1.25.2         IRanges_2.23.10            
+[23] S4Vectors_0.27.12           BiocGenerics_0.35.4        
+[25] BiocStyle_2.17.0            rebook_0.99.0              
 
 loaded via a namespace (and not attached):
   [1] AnnotationHub_2.21.0          BiocFileCache_1.13.0         
   [3] igraph_1.2.5                  lazyeval_0.2.2               
   [5] splines_4.0.0                 BiocParallel_1.23.0          
   [7] digest_0.6.25                 htmltools_0.4.0              
-  [9] magrittr_1.5                  memoise_1.1.0                
- [11] limma_3.45.0                  Biostrings_2.57.1            
- [13] askpass_1.1                   prettyunits_1.1.1            
- [15] colorspace_1.4-1              blob_1.2.1                   
- [17] rappdirs_0.3.1                xfun_0.14                    
- [19] dplyr_1.0.0                   callr_3.4.3                  
- [21] crayon_1.3.4                  RCurl_1.98-1.2               
- [23] jsonlite_1.6.1                graph_1.67.1                 
- [25] ape_5.4                       glue_1.4.1                   
- [27] gtable_0.3.0                  zlibbioc_1.35.0              
- [29] XVector_0.29.1                BiocSingular_1.5.0           
- [31] scales_1.1.1                  DBI_1.1.0                    
- [33] edgeR_3.31.1                  Rcpp_1.0.4.6                 
- [35] xtable_1.8-4                  progress_1.2.2               
- [37] reticulate_1.16               dqrng_0.2.1                  
- [39] bit_1.1-15.2                  rsvd_1.0.3                   
- [41] httr_1.4.1                    FNN_1.1.3                    
- [43] ellipsis_0.3.1                pkgconfig_2.0.3              
- [45] XML_3.99-0.3                  farver_2.0.3                 
- [47] CodeDepends_0.6.5             uwot_0.1.8                   
- [49] dbplyr_1.4.4                  locfit_1.5-9.4               
- [51] tidyselect_1.1.0              labeling_0.3                 
- [53] rlang_0.4.6                   later_1.0.0                  
- [55] munsell_0.5.0                 BiocVersion_3.12.0           
- [57] tools_4.0.0                   generics_0.0.2               
- [59] RSQLite_2.2.0                 ExperimentHub_1.15.0         
- [61] evaluate_0.14                 stringr_1.4.0                
- [63] fastmap_1.0.1                 yaml_2.2.1                   
- [65] processx_3.4.2                knitr_1.28                   
- [67] bit64_0.9-7                   purrr_0.3.4                  
- [69] pbapply_1.4-2                 nlme_3.1-148                 
- [71] mime_0.9                      biomaRt_2.45.0               
- [73] compiler_4.0.0                beeswarm_0.2.3               
- [75] curl_4.3                      interactiveDisplayBase_1.27.5
- [77] tibble_3.0.1                  statmod_1.4.34               
- [79] stringi_1.4.6                 highr_0.8                    
- [81] basilisk.utils_1.1.7          ps_1.3.3                     
- [83] RSpectra_0.16-0               lattice_0.20-41              
- [85] ProtGenerics_1.21.0           Matrix_1.2-18                
- [87] vctrs_0.3.0                   pillar_1.4.4                 
- [89] lifecycle_0.2.0               BiocManager_1.30.10          
- [91] BiocNeighbors_1.7.0           cowplot_1.0.0                
- [93] bitops_1.0-6                  irlba_2.3.3                  
- [95] rtracklayer_1.49.2            httpuv_1.5.3.1               
- [97] R6_2.4.1                      bookdown_0.19                
- [99] promises_1.1.0                gridExtra_2.3                
-[101] vipor_0.4.5                   codetools_0.2-16             
-[103] assertthat_0.2.1              openssl_1.4.1                
-[105] withr_2.2.0                   GenomicAlignments_1.25.1     
-[107] Rsamtools_2.5.1               GenomeInfoDbData_1.2.3       
-[109] mgcv_1.8-31                   hms_0.5.3                    
-[111] grid_4.0.0                    rmarkdown_2.2                
-[113] DelayedMatrixStats_1.11.0     shiny_1.4.0.2                
-[115] ggbeeswarm_0.6.0             
+  [9] viridis_0.5.1                 magrittr_1.5                 
+ [11] memoise_1.1.0                 limma_3.45.7                 
+ [13] Biostrings_2.57.2             askpass_1.1                  
+ [15] prettyunits_1.1.1             colorspace_1.4-1             
+ [17] blob_1.2.1                    rappdirs_0.3.1               
+ [19] xfun_0.14                     dplyr_1.0.0                  
+ [21] callr_3.4.3                   crayon_1.3.4                 
+ [23] RCurl_1.98-1.2                jsonlite_1.6.1               
+ [25] graph_1.67.1                  ape_5.4                      
+ [27] glue_1.4.1                    gtable_0.3.0                 
+ [29] zlibbioc_1.35.0               XVector_0.29.2               
+ [31] BiocSingular_1.5.0            scales_1.1.1                 
+ [33] DBI_1.1.0                     edgeR_3.31.4                 
+ [35] Rcpp_1.0.4.6                  viridisLite_0.3.0            
+ [37] xtable_1.8-4                  progress_1.2.2               
+ [39] reticulate_1.16               dqrng_0.2.1                  
+ [41] bit_1.1-15.2                  rsvd_1.0.3                   
+ [43] httr_1.4.1                    FNN_1.1.3                    
+ [45] RColorBrewer_1.1-2            ellipsis_0.3.1               
+ [47] pkgconfig_2.0.3               XML_3.99-0.3                 
+ [49] farver_2.0.3                  CodeDepends_0.6.5            
+ [51] uwot_0.1.8                    dbplyr_1.4.4                 
+ [53] locfit_1.5-9.4                tidyselect_1.1.0             
+ [55] labeling_0.3                  rlang_0.4.6                  
+ [57] later_1.1.0.1                 munsell_0.5.0                
+ [59] BiocVersion_3.12.0            tools_4.0.0                  
+ [61] generics_0.0.2                RSQLite_2.2.0                
+ [63] ExperimentHub_1.15.0          evaluate_0.14                
+ [65] stringr_1.4.0                 fastmap_1.0.1                
+ [67] yaml_2.2.1                    processx_3.4.2               
+ [69] knitr_1.28                    bit64_0.9-7                  
+ [71] purrr_0.3.4                   pbapply_1.4-2                
+ [73] nlme_3.1-148                  mime_0.9                     
+ [75] biomaRt_2.45.0                compiler_4.0.0               
+ [77] beeswarm_0.2.3                curl_4.3                     
+ [79] interactiveDisplayBase_1.27.5 tibble_3.0.1                 
+ [81] statmod_1.4.34                stringi_1.4.6                
+ [83] highr_0.8                     basilisk.utils_1.1.7         
+ [85] ps_1.3.3                      RSpectra_0.16-0              
+ [87] lattice_0.20-41               ProtGenerics_1.21.0          
+ [89] vctrs_0.3.1                   pillar_1.4.4                 
+ [91] lifecycle_0.2.0               BiocManager_1.30.10          
+ [93] BiocNeighbors_1.7.0           cowplot_1.0.0                
+ [95] bitops_1.0-6                  irlba_2.3.3                  
+ [97] rtracklayer_1.49.3            httpuv_1.5.4                 
+ [99] R6_2.4.1                      bookdown_0.19                
+[101] promises_1.1.1                gridExtra_2.3                
+[103] vipor_0.4.5                   codetools_0.2-16             
+[105] assertthat_0.2.1              openssl_1.4.1                
+[107] withr_2.2.0                   GenomicAlignments_1.25.3     
+[109] Rsamtools_2.5.1               GenomeInfoDbData_1.2.3       
+[111] mgcv_1.8-31                   hms_0.5.3                    
+[113] grid_4.0.0                    rmarkdown_2.2                
+[115] DelayedMatrixStats_1.11.0     shiny_1.4.0.2                
+[117] ggbeeswarm_0.6.0             
 ```
 </div>

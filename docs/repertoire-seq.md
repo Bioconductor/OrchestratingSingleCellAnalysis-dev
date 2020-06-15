@@ -774,32 +774,32 @@ attached base packages:
 
 other attached packages:
  [1] BiocFileCache_1.13.0        dbplyr_1.4.4               
- [3] SingleCellExperiment_1.11.2 SummarizedExperiment_1.19.4
- [5] DelayedArray_0.15.1         matrixStats_0.56.0         
- [7] Biobase_2.49.0              GenomicRanges_1.41.1       
- [9] GenomeInfoDb_1.25.0         IRanges_2.23.6             
-[11] S4Vectors_0.27.10           BiocGenerics_0.35.2        
-[13] rebook_0.99.0               BiocStyle_2.17.0           
+ [3] SingleCellExperiment_1.11.4 SummarizedExperiment_1.19.5
+ [5] DelayedArray_0.15.4         matrixStats_0.56.0         
+ [7] Matrix_1.2-18               Biobase_2.49.0             
+ [9] GenomicRanges_1.41.5        GenomeInfoDb_1.25.2        
+[11] IRanges_2.23.10             S4Vectors_0.27.12          
+[13] BiocGenerics_0.35.4         BiocStyle_2.17.0           
+[15] rebook_0.99.0              
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.4.6           lattice_0.20-41        ps_1.3.3              
- [4] assertthat_0.2.1       digest_0.6.25          R6_2.4.1              
- [7] RSQLite_2.2.0          evaluate_0.14          httr_1.4.1            
-[10] highr_0.8              pillar_1.4.4           zlibbioc_1.35.0       
-[13] rlang_0.4.6            curl_4.3               callr_3.4.3           
-[16] blob_1.2.1             Matrix_1.2-18          rmarkdown_2.2         
-[19] stringr_1.4.0          RCurl_1.98-1.2         bit_1.1-15.2          
-[22] compiler_4.0.0         xfun_0.14              pkgconfig_2.0.3       
-[25] CodeDepends_0.6.5      htmltools_0.4.0        tidyselect_1.1.0      
-[28] tibble_3.0.1           GenomeInfoDbData_1.2.3 bookdown_0.19         
-[31] codetools_0.2-16       XML_3.99-0.3           crayon_1.3.4          
-[34] dplyr_1.0.0            bitops_1.0-6           rappdirs_0.3.1        
-[37] grid_4.0.0             lifecycle_0.2.0        DBI_1.1.0             
-[40] magrittr_1.5           graph_1.67.1           stringi_1.4.6         
-[43] XVector_0.29.1         ellipsis_0.3.1         vctrs_0.3.0           
-[46] generics_0.0.2         tools_4.0.0            bit64_0.9-7           
-[49] glue_1.4.1             purrr_0.3.4            processx_3.4.2        
-[52] yaml_2.2.1             BiocManager_1.30.10    memoise_1.1.0         
-[55] knitr_1.28            
+ [1] tidyselect_1.1.0       xfun_0.14              purrr_0.3.4           
+ [4] lattice_0.20-41        vctrs_0.3.1            generics_0.0.2        
+ [7] htmltools_0.4.0        yaml_2.2.1             blob_1.2.1            
+[10] XML_3.99-0.3           rlang_0.4.6            pillar_1.4.4          
+[13] glue_1.4.1             DBI_1.1.0              rappdirs_0.3.1        
+[16] CodeDepends_0.6.5      bit64_0.9-7            GenomeInfoDbData_1.2.3
+[19] lifecycle_0.2.0        stringr_1.4.0          zlibbioc_1.35.0       
+[22] memoise_1.1.0          codetools_0.2-16       evaluate_0.14         
+[25] knitr_1.28             callr_3.4.3            ps_1.3.3              
+[28] curl_4.3               highr_0.8              Rcpp_1.0.4.6          
+[31] BiocManager_1.30.10    graph_1.67.1           XVector_0.29.2        
+[34] bit_1.1-15.2           digest_0.6.25          stringi_1.4.6         
+[37] bookdown_0.19          processx_3.4.2         dplyr_1.0.0           
+[40] grid_4.0.0             tools_4.0.0            bitops_1.0-6          
+[43] magrittr_1.5           RSQLite_2.2.0          RCurl_1.98-1.2        
+[46] tibble_3.0.1           crayon_1.3.4           pkgconfig_2.0.3       
+[49] ellipsis_0.3.1         httr_1.4.1             assertthat_0.2.1      
+[52] rmarkdown_2.2          R6_2.4.1               compiler_4.0.0        
 ```
 </div>

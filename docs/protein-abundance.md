@@ -237,8 +237,8 @@ While composition biases are unlikely to compromise exploratory analyses like cl
     ```
     
     ```
-    ##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-    ##  0.02668  0.52418  0.90485  1.00000  1.26625 22.81740
+    ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    ##   0.027   0.524   0.905   1.000   1.266  22.817
     ```
 
     If we interpret the total count as the arithmetic mean of counts in each cell, we might instead consider the related approach of taking the geometric mean of all counts as the size factor for each cell [@stoeckius2017simultaneous].
@@ -247,13 +247,14 @@ While composition biases are unlikely to compromise exploratory analyses like cl
 
     
     ```r
+    library(scuttle)
     sf.geo <- geometricSizeFactors(altExp(sce))
     summary(sf.geo)
     ```
     
     ```
-    ##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-    ##  0.06928  0.65857  0.84750  1.00000  1.07244 45.48399
+    ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    ##    0.07    0.66    0.85    1.00    1.07   45.48
     ```
 
 2. Ideally, we would like to compute size factors that adjust for the composition biases.
@@ -277,7 +278,7 @@ This is loosely based on a similar approach for normalization of ChIP-seq data b
     
     ```
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##  0.0030  0.5927  0.8282  1.0000  1.1439 41.7972
+    ##    0.00    0.59    0.83    1.00    1.14   41.80
     ```
 
     In one subpopulation, the DESeq-like size factors are consistently larger than the ADT library size factors, whereas the opposite is true for most of the other subpopulations (Figure \@ref(fig:comp-bias-norm)).
@@ -320,7 +321,7 @@ We demonstrate this approach below by computing size factors from the immunoglob
     
     ```
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##  0.0000  0.6854  0.8757  1.0000  1.1423 44.0155
+    ##    0.00    0.69    0.88    1.00    1.14   44.02
     ```
     
     ```r
@@ -684,45 +685,45 @@ attached base packages:
 
 other attached packages:
  [1] DelayedMatrixStats_1.11.0   pheatmap_1.0.12            
- [3] scran_1.17.1                scater_1.17.1              
- [5] ggplot2_3.3.1               scuttle_0.99.8             
- [7] DropletUtils_1.9.0          SingleCellExperiment_1.11.2
- [9] SummarizedExperiment_1.19.4 DelayedArray_0.15.1        
-[11] matrixStats_0.56.0          Biobase_2.49.0             
-[13] GenomicRanges_1.41.1        GenomeInfoDb_1.25.0        
-[15] IRanges_2.23.6              S4Vectors_0.27.10          
-[17] BiocGenerics_0.35.2         BiocFileCache_1.13.0       
-[19] dbplyr_1.4.4                rebook_0.99.0              
-[21] BiocStyle_2.17.0           
+ [3] scran_1.17.2                scuttle_0.99.9             
+ [5] scater_1.17.3               ggplot2_3.3.1              
+ [7] DropletUtils_1.9.0          SingleCellExperiment_1.11.4
+ [9] SummarizedExperiment_1.19.5 DelayedArray_0.15.4        
+[11] matrixStats_0.56.0          Matrix_1.2-18              
+[13] Biobase_2.49.0              GenomicRanges_1.41.5       
+[15] GenomeInfoDb_1.25.2         IRanges_2.23.10            
+[17] S4Vectors_0.27.12           BiocGenerics_0.35.4        
+[19] BiocFileCache_1.13.0        dbplyr_1.4.4               
+[21] BiocStyle_2.17.0            rebook_0.99.0              
 
 loaded via a namespace (and not attached):
  [1] bitops_1.0-6           bit64_0.9-7            RcppAnnoy_0.0.16      
  [4] RColorBrewer_1.1-2     httr_1.4.1             tools_4.0.0           
- [7] R6_2.4.1               irlba_2.3.3            HDF5Array_1.17.0      
-[10] vipor_0.4.5            uwot_0.1.8             DBI_1.1.0             
-[13] colorspace_1.4-1       withr_2.2.0            gridExtra_2.3         
-[16] tidyselect_1.1.0       processx_3.4.2         bit_1.1-15.2          
-[19] curl_4.3               compiler_4.0.0         graph_1.67.1          
-[22] BiocNeighbors_1.7.0    labeling_0.3           bookdown_0.19         
-[25] scales_1.1.1           callr_3.4.3            rappdirs_0.3.1        
-[28] stringr_1.4.0          digest_0.6.25          rmarkdown_2.2         
-[31] R.utils_2.9.2          XVector_0.29.1         pkgconfig_2.0.3       
-[34] htmltools_0.4.0        highr_0.8              limma_3.45.0          
-[37] rlang_0.4.6            RSQLite_2.2.0          farver_2.0.3          
-[40] generics_0.0.2         BiocParallel_1.23.0    dplyr_1.0.0           
-[43] R.oo_1.23.0            RCurl_1.98-1.2         magrittr_1.5          
-[46] BiocSingular_1.5.0     GenomeInfoDbData_1.2.3 Matrix_1.2-18         
+ [7] R6_2.4.1               irlba_2.3.3            vipor_0.4.5           
+[10] HDF5Array_1.17.1       uwot_0.1.8             DBI_1.1.0             
+[13] colorspace_1.4-1       rhdf5filters_1.1.0     withr_2.2.0           
+[16] gridExtra_2.3          tidyselect_1.1.0       processx_3.4.2        
+[19] bit_1.1-15.2           curl_4.3               compiler_4.0.0        
+[22] graph_1.67.1           BiocNeighbors_1.7.0    labeling_0.3          
+[25] bookdown_0.19          scales_1.1.1           callr_3.4.3           
+[28] rappdirs_0.3.1         stringr_1.4.0          digest_0.6.25         
+[31] rmarkdown_2.2          R.utils_2.9.2          XVector_0.29.2        
+[34] pkgconfig_2.0.3        htmltools_0.4.0        highr_0.8             
+[37] limma_3.45.7           rlang_0.4.6            RSQLite_2.2.0         
+[40] farver_2.0.3           generics_0.0.2         BiocParallel_1.23.0   
+[43] dplyr_1.0.0            R.oo_1.23.0            RCurl_1.98-1.2        
+[46] magrittr_1.5           BiocSingular_1.5.0     GenomeInfoDbData_1.2.3
 [49] Rcpp_1.0.4.6           ggbeeswarm_0.6.0       munsell_0.5.0         
-[52] Rhdf5lib_1.11.0        viridis_0.5.1          lifecycle_0.2.0       
+[52] Rhdf5lib_1.11.2        viridis_0.5.1          lifecycle_0.2.0       
 [55] R.methodsS3_1.8.0      stringi_1.4.6          yaml_2.2.1            
-[58] edgeR_3.31.1           zlibbioc_1.35.0        Rtsne_0.15            
-[61] rhdf5_2.33.0           grid_4.0.0             blob_1.2.1            
+[58] edgeR_3.31.4           zlibbioc_1.35.0        Rtsne_0.15            
+[61] rhdf5_2.33.3           grid_4.0.0             blob_1.2.1            
 [64] dqrng_0.2.1            crayon_1.3.4           lattice_0.20-41       
 [67] cowplot_1.0.0          locfit_1.5-9.4         CodeDepends_0.6.5     
 [70] knitr_1.28             ps_1.3.3               pillar_1.4.4          
 [73] igraph_1.2.5           codetools_0.2-16       XML_3.99-0.3          
 [76] glue_1.4.1             evaluate_0.14          BiocManager_1.30.10   
-[79] vctrs_0.3.0            gtable_0.3.0           purrr_0.3.4           
+[79] vctrs_0.3.1            gtable_0.3.0           purrr_0.3.4           
 [82] assertthat_0.2.1       xfun_0.14              rsvd_1.0.3            
 [85] RSpectra_0.16-0        viridisLite_0.3.0      tibble_3.0.1          
 [88] beeswarm_0.2.3         memoise_1.1.0          statmod_1.4.34        

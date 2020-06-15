@@ -476,45 +476,45 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] scran_1.17.1                scater_1.17.1              
- [3] ggplot2_3.3.1               scuttle_0.99.8             
- [5] iSEE_2.1.4                  SingleCellExperiment_1.11.2
- [7] SummarizedExperiment_1.19.4 DelayedArray_0.15.1        
- [9] matrixStats_0.56.0          Biobase_2.49.0             
-[11] GenomicRanges_1.41.1        GenomeInfoDb_1.25.0        
-[13] IRanges_2.23.6              S4Vectors_0.27.10          
-[15] BiocGenerics_0.35.2         rebook_0.99.0              
-[17] BiocStyle_2.17.0           
+ [1] scran_1.17.2                scater_1.17.3              
+ [3] ggplot2_3.3.1               iSEE_2.1.6                 
+ [5] SingleCellExperiment_1.11.4 SummarizedExperiment_1.19.5
+ [7] DelayedArray_0.15.4         matrixStats_0.56.0         
+ [9] Matrix_1.2-18               Biobase_2.49.0             
+[11] GenomicRanges_1.41.5        GenomeInfoDb_1.25.2        
+[13] IRanges_2.23.10             S4Vectors_0.27.12          
+[15] BiocGenerics_0.35.4         BiocStyle_2.17.0           
+[17] rebook_0.99.0              
 
 loaded via a namespace (and not attached):
  [1] ggbeeswarm_0.6.0          colorspace_1.4-1         
  [3] rjson_0.2.20              ellipsis_0.3.1           
- [5] circlize_0.4.9            XVector_0.29.1           
- [7] GlobalOptions_0.1.1       BiocNeighbors_1.7.0      
- [9] clue_0.3-57               DT_0.13                  
-[11] codetools_0.2-16          splines_4.0.0            
-[13] knitr_1.28                jsonlite_1.6.1           
-[15] cluster_2.1.0             png_0.1-7                
-[17] shinydashboard_0.7.1      graph_1.67.1             
-[19] shiny_1.4.0.2             BiocManager_1.30.10      
-[21] compiler_4.0.0            dqrng_0.2.1              
-[23] Matrix_1.2-18             fastmap_1.0.1            
-[25] limma_3.45.0              later_1.0.0              
+ [5] circlize_0.4.10           scuttle_0.99.9           
+ [7] XVector_0.29.2            GlobalOptions_0.1.2      
+ [9] BiocNeighbors_1.7.0       clue_0.3-57              
+[11] DT_0.13                   codetools_0.2-16         
+[13] splines_4.0.0             knitr_1.28               
+[15] jsonlite_1.6.1            cluster_2.1.0            
+[17] png_0.1-7                 shinydashboard_0.7.1     
+[19] graph_1.67.1              shiny_1.4.0.2            
+[21] BiocManager_1.30.10       compiler_4.0.0           
+[23] dqrng_0.2.1               fastmap_1.0.1            
+[25] limma_3.45.7              later_1.1.0.1            
 [27] BiocSingular_1.5.0        htmltools_0.4.0          
 [29] tools_4.0.0               rsvd_1.0.3               
 [31] igraph_1.2.5              gtable_0.3.0             
 [33] glue_1.4.1                GenomeInfoDbData_1.2.3   
 [35] dplyr_1.0.0               Rcpp_1.0.4.6             
-[37] vctrs_0.3.0               nlme_3.1-148             
+[37] vctrs_0.3.1               nlme_3.1-148             
 [39] rintrojs_0.2.2            DelayedMatrixStats_1.11.0
 [41] xfun_0.14                 stringr_1.4.0            
 [43] ps_1.3.3                  mime_0.9                 
 [45] miniUI_0.1.1.1            lifecycle_0.2.0          
 [47] irlba_2.3.3               statmod_1.4.34           
 [49] XML_3.99-0.3              shinyAce_0.4.1           
-[51] edgeR_3.31.1              zlibbioc_1.35.0          
+[51] edgeR_3.31.4              zlibbioc_1.35.0          
 [53] scales_1.1.1              colourpicker_1.0         
-[55] promises_1.1.0            RColorBrewer_1.1-2       
+[55] promises_1.1.1            RColorBrewer_1.1-2       
 [57] ComplexHeatmap_2.5.3      yaml_2.2.1               
 [59] gridExtra_2.3             stringi_1.4.6            
 [61] highr_0.8                 BiocParallel_1.23.0      
@@ -530,10 +530,10 @@ loaded via a namespace (and not attached):
 [81] RCurl_1.98-1.2            tibble_3.0.1             
 [83] crayon_1.3.4              shinyWidgets_0.5.3       
 [85] rmarkdown_2.2             viridis_0.5.1            
-[87] GetoptLong_0.1.8          locfit_1.5-9.4           
+[87] GetoptLong_1.0.0          locfit_1.5-9.4           
 [89] grid_4.0.0                callr_3.4.3              
 [91] digest_0.6.25             xtable_1.8-4             
-[93] httpuv_1.5.3.1            munsell_0.5.0            
+[93] httpuv_1.5.4              munsell_0.5.0            
 [95] beeswarm_0.2.3            viridisLite_0.3.0        
 [97] vipor_0.4.5               shinyjs_1.1              
 ```

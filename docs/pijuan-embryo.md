@@ -119,13 +119,13 @@ for (i in colnames(blocked.stats)) {
 
 <div class="figure">
 <img src="pijuan-embryo_files/figure-html/unref-pijuan-var-1.png" alt="Per-gene variance as a function of the mean for the log-expression values in the Pijuan-Sala chimeric mouse embryo dataset. Each point represents a gene (black) with the mean-variance trend (blue) fitted to the variances." width="672" />
-<p class="caption">Per-gene variance as a function of the mean for the log-expression values in the Pijuan-Sala chimeric mouse embryo dataset. Each point represents a gene (black) with the mean-variance trend (blue) fitted to the variances.</p>
+<p class="caption">(\#fig:unref-pijuan-var1)Per-gene variance as a function of the mean for the log-expression values in the Pijuan-Sala chimeric mouse embryo dataset. Each point represents a gene (black) with the mean-variance trend (blue) fitted to the variances.</p>
 </div><div class="figure">
 <img src="pijuan-embryo_files/figure-html/unref-pijuan-var-2.png" alt="Per-gene variance as a function of the mean for the log-expression values in the Pijuan-Sala chimeric mouse embryo dataset. Each point represents a gene (black) with the mean-variance trend (blue) fitted to the variances." width="672" />
-<p class="caption">Per-gene variance as a function of the mean for the log-expression values in the Pijuan-Sala chimeric mouse embryo dataset. Each point represents a gene (black) with the mean-variance trend (blue) fitted to the variances.</p>
+<p class="caption">(\#fig:unref-pijuan-var2)Per-gene variance as a function of the mean for the log-expression values in the Pijuan-Sala chimeric mouse embryo dataset. Each point represents a gene (black) with the mean-variance trend (blue) fitted to the variances.</p>
 </div><div class="figure">
 <img src="pijuan-embryo_files/figure-html/unref-pijuan-var-3.png" alt="Per-gene variance as a function of the mean for the log-expression values in the Pijuan-Sala chimeric mouse embryo dataset. Each point represents a gene (black) with the mean-variance trend (blue) fitted to the variances." width="672" />
-<p class="caption">Per-gene variance as a function of the mean for the log-expression values in the Pijuan-Sala chimeric mouse embryo dataset. Each point represents a gene (black) with the mean-variance trend (blue) fitted to the variances.</p>
+<p class="caption">(\#fig:unref-pijuan-var3)Per-gene variance as a function of the mean for the log-expression values in the Pijuan-Sala chimeric mouse embryo dataset. Each point represents a gene (black) with the mean-variance trend (blue) fitted to the variances.</p>
 </div>
 
 ## Merging
@@ -232,7 +232,7 @@ gridExtra::grid.arrange(
 
 <div class="figure">
 <img src="pijuan-embryo_files/figure-html/unref-pijuan-tsne-1.png" alt="Obligatory $t$-SNE plots of the Pijuan-Sala chimeric mouse embryo dataset, where each point represents a cell and is colored according to the assigned cluster (top) or sample of origin (bottom)." width="672" />
-<p class="caption">Obligatory $t$-SNE plots of the Pijuan-Sala chimeric mouse embryo dataset, where each point represents a cell and is colored according to the assigned cluster (top) or sample of origin (bottom).</p>
+<p class="caption">(\#fig:unref-pijuan-tsne)Obligatory $t$-SNE plots of the Pijuan-Sala chimeric mouse embryo dataset, where each point represents a cell and is colored according to the assigned cluster (top) or sample of origin (bottom).</p>
 </div>
 
 ## Session Info {-}
@@ -240,13 +240,13 @@ gridExtra::grid.arrange(
 <button class="aaron-collapse">View session info</button>
 <div class="aaron-content">
 ```
-R Under development (unstable) (2020-03-23 r78035)
+R version 4.0.0 Patched (2020-05-01 r78341)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: Ubuntu 18.04.4 LTS
 
 Matrix products: default
-BLAS:   /home/luna/Software/R/trunk/lib/libRblas.so
-LAPACK: /home/luna/Software/R/trunk/lib/libRlapack.so
+BLAS:   /home/luna/Software/R/R-4-0-branch-dev/lib/libRblas.so
+LAPACK: /home/luna/Software/R/R-4-0-branch-dev/lib/libRlapack.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -261,15 +261,15 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] batchelor_1.3.14            scran_1.15.24              
- [3] scater_1.15.29              ggplot2_3.3.0              
- [5] MouseGastrulationData_1.1.0 SingleCellExperiment_1.9.3 
- [7] SummarizedExperiment_1.17.5 DelayedArray_0.13.8        
- [9] matrixStats_0.56.0          Biobase_2.47.3             
-[11] GenomicRanges_1.39.3        GenomeInfoDb_1.23.16       
-[13] IRanges_2.21.8              S4Vectors_0.25.14          
-[15] BiocGenerics_0.33.3         BiocStyle_2.15.6           
-[17] OSCAUtils_0.0.2            
+ [1] batchelor_1.5.1             scran_1.17.2               
+ [3] scater_1.17.3               ggplot2_3.3.1              
+ [5] MouseGastrulationData_1.3.0 SingleCellExperiment_1.11.4
+ [7] SummarizedExperiment_1.19.5 DelayedArray_0.15.3        
+ [9] matrixStats_0.56.0          Matrix_1.2-18              
+[11] Biobase_2.49.0              GenomicRanges_1.41.5       
+[13] GenomeInfoDb_1.25.1         IRanges_2.23.9             
+[15] S4Vectors_0.27.12           BiocGenerics_0.35.4        
+[17] BiocStyle_2.17.0            rebook_0.99.0              
 
 loaded via a namespace (and not attached):
  [1] bitops_1.0-6                  bit64_0.9-7                  
@@ -277,47 +277,49 @@ loaded via a namespace (and not attached):
  [5] R6_2.4.1                      irlba_2.3.3                  
  [7] vipor_0.4.5                   uwot_0.1.8                   
  [9] DBI_1.1.0                     colorspace_1.4-1             
-[11] withr_2.1.2                   gridExtra_2.3                
-[13] tidyselect_1.0.0              processx_3.4.2               
+[11] withr_2.2.0                   gridExtra_2.3                
+[13] tidyselect_1.1.0              processx_3.4.2               
 [15] bit_1.1-15.2                  curl_4.3                     
-[17] compiler_4.0.0                cli_2.0.2                    
-[19] BiocNeighbors_1.5.2           labeling_0.3                 
-[21] scales_1.1.0                  callr_3.4.3                  
-[23] rappdirs_0.3.1                stringr_1.4.0                
-[25] digest_0.6.25                 rmarkdown_2.1                
-[27] XVector_0.27.2                pkgconfig_2.0.3              
-[29] htmltools_0.4.0               highr_0.8                    
-[31] limma_3.43.5                  dbplyr_1.4.2                 
-[33] fastmap_1.0.1                 rlang_0.4.5                  
-[35] RSQLite_2.2.0                 shiny_1.4.0.2                
-[37] DelayedMatrixStats_1.9.1      farver_2.0.3                 
-[39] BiocParallel_1.21.2           dplyr_0.8.5                  
-[41] RCurl_1.98-1.1                magrittr_1.5                 
-[43] BiocSingular_1.3.2            GenomeInfoDbData_1.2.2       
-[45] Matrix_1.2-18                 Rcpp_1.0.4                   
-[47] ggbeeswarm_0.6.0              munsell_0.5.0                
-[49] fansi_0.4.1                   viridis_0.5.1                
-[51] lifecycle_0.2.0               edgeR_3.29.1                 
-[53] stringi_1.4.6                 yaml_2.2.1                   
-[55] zlibbioc_1.33.1               Rtsne_0.15                   
-[57] BiocFileCache_1.11.4          AnnotationHub_2.19.8         
-[59] grid_4.0.0                    blob_1.2.1                   
-[61] dqrng_0.2.1                   promises_1.1.0               
-[63] ExperimentHub_1.13.5          crayon_1.3.4                 
-[65] lattice_0.20-40               cowplot_1.0.0                
-[67] locfit_1.5-9.4                knitr_1.28                   
-[69] ps_1.3.2                      pillar_1.4.3                 
-[71] igraph_1.2.5                  codetools_0.2-16             
-[73] glue_1.3.2                    BiocVersion_3.11.1           
-[75] evaluate_0.14                 BiocManager_1.30.10          
-[77] vctrs_0.2.4                   httpuv_1.5.2                 
-[79] gtable_0.3.0                  purrr_0.3.3                  
-[81] assertthat_0.2.1              xfun_0.12                    
-[83] rsvd_1.0.3                    mime_0.9                     
-[85] xtable_1.8-4                  later_1.0.0                  
-[87] viridisLite_0.3.0             tibble_3.0.0                 
-[89] AnnotationDbi_1.49.1          beeswarm_0.2.3               
-[91] memoise_1.1.0                 statmod_1.4.34               
-[93] ellipsis_0.3.0                interactiveDisplayBase_1.25.0
+[17] compiler_4.0.0                graph_1.67.1                 
+[19] BiocNeighbors_1.7.0           labeling_0.3                 
+[21] bookdown_0.19                 scales_1.1.1                 
+[23] callr_3.4.3                   rappdirs_0.3.1               
+[25] stringr_1.4.0                 digest_0.6.25                
+[27] rmarkdown_2.2                 XVector_0.29.2               
+[29] pkgconfig_2.0.3               htmltools_0.4.0              
+[31] highr_0.8                     limma_3.45.6                 
+[33] dbplyr_1.4.4                  fastmap_1.0.1                
+[35] rlang_0.4.6                   RSQLite_2.2.0                
+[37] shiny_1.4.0.2                 DelayedMatrixStats_1.11.0    
+[39] farver_2.0.3                  generics_0.0.2               
+[41] BiocParallel_1.23.0           dplyr_1.0.0                  
+[43] RCurl_1.98-1.2                magrittr_1.5                 
+[45] BiocSingular_1.5.0            GenomeInfoDbData_1.2.3       
+[47] scuttle_0.99.9                Rcpp_1.0.4.6                 
+[49] ggbeeswarm_0.6.0              munsell_0.5.0                
+[51] viridis_0.5.1                 lifecycle_0.2.0              
+[53] edgeR_3.31.4                  stringi_1.4.6                
+[55] yaml_2.2.1                    zlibbioc_1.35.0              
+[57] Rtsne_0.15                    BiocFileCache_1.13.0         
+[59] AnnotationHub_2.21.0          grid_4.0.0                   
+[61] blob_1.2.1                    dqrng_0.2.1                  
+[63] promises_1.1.1                ExperimentHub_1.15.0         
+[65] crayon_1.3.4                  lattice_0.20-41              
+[67] cowplot_1.0.0                 locfit_1.5-9.4               
+[69] CodeDepends_0.6.5             knitr_1.28                   
+[71] ps_1.3.3                      pillar_1.4.4                 
+[73] igraph_1.2.5                  codetools_0.2-16             
+[75] XML_3.99-0.3                  glue_1.4.1                   
+[77] BiocVersion_3.12.0            evaluate_0.14                
+[79] BiocManager_1.30.10           vctrs_0.3.1                  
+[81] httpuv_1.5.4                  gtable_0.3.0                 
+[83] purrr_0.3.4                   assertthat_0.2.1             
+[85] xfun_0.14                     rsvd_1.0.3                   
+[87] mime_0.9                      xtable_1.8-4                 
+[89] later_1.1.0.1                 viridisLite_0.3.0            
+[91] tibble_3.0.1                  AnnotationDbi_1.51.0         
+[93] beeswarm_0.2.3                memoise_1.1.0                
+[95] statmod_1.4.34                ellipsis_0.3.1               
+[97] interactiveDisplayBase_1.27.5
 ```
 </div>

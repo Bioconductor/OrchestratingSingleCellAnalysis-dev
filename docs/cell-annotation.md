@@ -44,7 +44,7 @@ document.addEventListener("click", function (event) {
 
 The most challenging task in scRNA-seq data analysis is arguably the interpretation of the results.
 Obtaining clusters of cells is fairly straightforward, but it is more difficult to determine what biological state is represented by each of those clusters. 
-Doing so requires us to bridge the gap between the current dataset and prior biological knowledge, and the latter is not always available in a consistent and quantitative manner^[For example, it may be somewhere in your bench collaborator's head. Try `ssh`ing into _that_.].
+Doing so requires us to bridge the gap between the current dataset and prior biological knowledge, and the latter is not always available in a consistent and quantitative manner.
 Indeed, even the concept of a "cell type" is [not clearly defined](https://doi.org/10.1016/j.cels.2017.03.006), with most practitioners possessing a "I'll know it when I see it" intuition that is not amenable to computational analysis.
 As such, interpretation of scRNA-seq data is often manual and a common bottleneck in the analysis workflow.
 
@@ -63,16 +63,17 @@ This is a standard classification challenge that can be tackled by standard mach
 Any published and labelled RNA-seq dataset (bulk or single-cell) can be used as a reference, though its reliability depends greatly on the expertise of the original authors who assigned the labels in the first place. 
 
 In this section, we will demonstrate the use of the *[SingleR](https://bioconductor.org/packages/3.12/SingleR)* method [@aran2019reference] for cell type annotation.
-This method assigns labels to cells based on the reference samples with the highest Spearman rank correlations, and thus can be considered a rank-based variant of $k$-nearest-neighbor classification.
-To reduce noise, *[SingleR](https://bioconductor.org/packages/3.12/SingleR)* identifies marker genes between pairs of labels and computes the correlation using only those markers.
-It also performs a fine-tuning step for each cell where calculation of the correlations is repeated with just the marker genes for the top-scoring labels.
+This method assigns labels to cells based on the reference samples with the highest Spearman rank correlations, using only the marker genes between pairs of labels to focus on the relevant differences between cell types.
+It also performs a fine-tuning step for each cell where the correlations are recomputed with just the marker genes for the top-scoring labels.
 This aims to resolve any ambiguity between those labels by removing noise from irrelevant markers for other labels.
+Further details can be found in the [_SingleR_ book](https://ltla.github.io/SingleRBook) from which most of the examples here are derived.
 
-### Using the in-built references
+### Using existing references
 
-*[SingleR](https://bioconductor.org/packages/3.12/SingleR)* contains a number of built-in reference datasets, mostly assembled from bulk RNA-seq or microarray data of sorted cell types.
-These built-in references are often good enough for most applications, provided that they contain the cell types that are expected in the test population.
-We will demonstrate on the 10X PBMC dataset using a reference constructed from Blueprint and ENCODE data [@martens2013blueprint;@encode2012integrated].
+For demonstration purposes, we will use one of the 10X PBMC datasets as our test.
+While we have already applied quality control, normalization and clustering for this dataset, this is not strictly necessary.
+It is entirely possible to run `SingleR()` on the raw counts without any _a priori_ quality control
+and filter on the annotation results at one's leisure - see the book for an explanation.
 
 <button class="aaron-collapse">View history</button>
 <div class="aaron-content">
@@ -157,14 +158,39 @@ sce.pbmc
 ## altExpNames(0):
 ```
 
-We label our PBMCs using the `SingleR()` function with the main cell type labels in the reference.
+The *[celldex](https://bioconductor.org/packages/3.12/celldex)* contains a number of curated reference datasets, mostly assembled from bulk RNA-seq or microarray data of sorted cell types.
+These references are often good enough for most applications provided that they contain the cell types that are expected in the test population.
+Here, we will use a reference constructed from Blueprint and ENCODE data [@martens2013blueprint;@encode2012integrated];
+this is obtained by calling the `BlueprintEncode()` function to construct a `SummarizedExperiment` containing log-expression values with curated labels for each sample.
+
+
+```r
+library(celldex)
+ref <- BlueprintEncodeData()
+ref
+```
+
+```
+## class: SummarizedExperiment 
+## dim: 19859 259 
+## metadata(0):
+## assays(1): logcounts
+## rownames(19859): TSPAN6 TNMD ... LINC00550 GIMAP1-GIMAP5
+## rowData names(0):
+## colnames(259): mature.neutrophil
+##   CD14.positive..CD16.negative.classical.monocyte ...
+##   epithelial.cell.of.umbilical.artery.1
+##   dermis.lymphatic.vessel.endothelial.cell.1
+## colData names(3): label.main label.fine label.ont
+```
+
+We call the `SingleR()` function to annotate each of our PBMCs with the main cell type labels from the Blueprint/ENCODE reference.
 This returns a `DataFrame` where each row corresponds to a cell in the test dataset and contains its label assignments.
 Alternatively, we could use the labels in `ref$label.fine`, which provide more resolution at the cost of speed and increased ambiguity in the assignments.
 
 
 ```r
 library(SingleR)
-ref <- BlueprintEncodeData()
 pred <- SingleR(test=sce.pbmc, ref=ref, labels=ref$label.main)
 table(pred$labels)
 ```
@@ -191,35 +217,10 @@ plotScoreHeatmap(pred)
 <p class="caption">(\#fig:singler-heat-pbmc)Heatmap of the assignment score for each cell (column) and label (row). Scores are shown before any fine-tuning and are normalized to [0, 1] within each cell.</p>
 </div>
 
-`SingleR()` will attempt to prune out low-quality assignments by marking them as `NA`.
-This is done based on the difference $\Delta_{med}$ of the assigned label's score from the median score within each cell.
-Small $\Delta_{med}$ values indicate that the cell assignment was so uncertain that the reported label is not much better than the bulk of other labels in the reference.
-We set a minimum threshold on the acceptable $\Delta_{med}$ using an outlier-based approach for each label, where labels with $\Delta_{med}$ that are substantially lower than the majority of values for a given label are marked as `NA` (Figure \@ref(fig:singler-dist-pbmc)).
-If necessary, more control over the pruning can be achieved by supplying custom parameters to the `pruneScores()` function.
-
-
-```r
-sum(is.na(pred$pruned.labels))
-```
-
-```
-## [1] 76
-```
-
-```r
-plotScoreDistribution(pred)
-```
-
-<div class="figure">
-<img src="cell-annotation_files/figure-html/singler-dist-pbmc-1.png" alt="Distribution of the per-cell $\Delta_{med}$ for each label. Each panel corresponds to one label and stratifies the population into cells that were assigned to that label and not pruned; cells that were assigned to that label and pruned out; and cells that were not assigned to that label." width="672" />
-<p class="caption">(\#fig:singler-dist-pbmc)Distribution of the per-cell $\Delta_{med}$ for each label. Each panel corresponds to one label and stratifies the population into cells that were assigned to that label and not pruned; cells that were assigned to that label and pruned out; and cells that were not assigned to that label.</p>
-</div>
-
 We compare the assignments with the clustering results to determine the identity of each cluster.
-Ideally, clusters and labels would have a 1:1 relationship, though some nesting is likely depending on the resolution of the clustering algorithm.
-For example, several clusters are nested within the monocyte and B cell labels (Figure \@ref(fig:singler-cluster)), suggesting the the former represent finer subdivisions within the latter.
+Here, several clusters are nested within the monocyte and B cell labels (Figure \@ref(fig:singler-cluster)), indicating that the clustering represents finer subdivisions within the cell types.
 Interestingly, our clustering does not effectively distinguish between CD4^+^ and CD8^+^ T cell labels.
-We attribute this to the presence of other factors of heterogeneity within the T cell subpopulation that have a stronger influence on unsupervised methods than the _a priori_ expected CD4/CD8 distinction.
+This is probably due to the presence of other factors of heterogeneity within the T cell subpopulation (e.g., activation) that have a stronger influence on unsupervised methods than the _a priori_ expected CD4^+^/CD8^+^ distinction.
 
 
 ```r
@@ -239,13 +240,15 @@ pheatmap(log2(tab+10), color=colorRampPalette(c("white", "blue"))(101))
 
 This episode highlights some of the differences between reference-based annotation and unsupervised clustering.
 The former explicitly focuses on aspects of the data that are known to be interesting, simplifying the process of biological interpretation.
-However, the cost is that the downstream analysis is restricted by the diversity and resolution of the available labels.
-We suggest applying both strategies and, if major disagreements are present between reference label and cluster assignments, using those discrepancies as the basis for further investigation to discover novel effects.
+However, the cost is that the downstream analysis is restricted by the diversity and resolution of the available labels, a problem that is largely avoided by _de novo_ identification of clusters.
+We suggest applying both strategies to examine the agreement (or lack thereof) between reference label and cluster assignments.
+Any inconsistencies are not necessarily problematic due to the conceptual differences between the two approaches;
+indeed, one could use those discrepancies as the basis for further investigation to discover novel factors of variation in the data.
 
 ### Using custom references
 
-It is also straightforward to apply *[SingleR](https://bioconductor.org/packages/3.12/SingleR)* to user-supplied reference datasets.
-This is most obviously useful when we have an existing dataset that was previously (manually) annotated,
+We can also apply *[SingleR](https://bioconductor.org/packages/3.12/SingleR)* to single-cell reference datasets that are curated and supplied by the user.
+This is most obviously useful when we have an existing dataset that was previously (manually) annotated
 and we want to use that knowledge to annotate a new dataset in an automated manner.
 To illustrate, we will use the @muraro2016singlecell human pancreas dataset as our reference.
 
@@ -306,6 +309,7 @@ sce.muraro
 ```
 
 ```r
+# Pruning out unknown or unclear labels.
 sce.muraro <- sce.muraro[,!is.na(sce.muraro$label) & 
     sce.muraro$label!="unclear"]
 table(sce.muraro$label)
@@ -320,8 +324,8 @@ table(sce.muraro$label)
 ```
 
 Our aim is to assign labels to our test dataset from @segerstolpe2016singlecell.
-We use the same call to `SingleR()` but with `de.method="wilcox"` to identify markers via pairwise Wilcoxon ranked sum tests between labels in the reference dataset.
-This re-uses the same machinery from Chapter \@ref(marker-detection), and indeed, further options to fine-tune the test procedure can be passed via the `de.args` argument.
+We use the same call to `SingleR()` but with `de.method="wilcox"` to identify markers via pairwise Wilcoxon ranked sum tests between labels in the reference Muraro dataset.
+This re-uses the same machinery from Chapter \@ref(marker-detection); further options to fine-tune the test procedure can be passed via the `de.args` argument.
 
 <button class="aaron-collapse">View history</button>
 <div class="aaron-content">
@@ -376,7 +380,18 @@ sce.seger <- logNormCounts(sce.seger)
 
 
 ```r
-pred.seger <- SingleR(test=sce.seger, ref=sce.muraro, 
+# Converting to FPKM for a more like-for-like comparison to UMI counts.
+# However, results are often still good even when this step is skipped.
+library(AnnotationHub)
+hs.db <- AnnotationHub()[["AH73881"]]
+hs.exons <- exonsBy(hs.db, by="gene")
+hs.exons <- reduce(hs.exons)
+hs.len <- sum(width(hs.exons))
+
+library(scuttle)
+fpkm.seger <- calculateFPKM(sce.seger, hs.len)
+
+pred.seger <- SingleR(test=fpkm.seger, ref=sce.muraro, 
     labels=sce.muraro$label, de.method="wilcox")
 table(pred.seger$labels)
 ```
@@ -384,9 +399,9 @@ table(pred.seger$labels)
 ```
 ## 
 ##      acinar       alpha        beta       delta        duct endothelial 
-##         188         889         279         105         385          17 
+##         188         886         281         105         385          18 
 ##     epsilon mesenchymal          pp 
-##           5          53         169
+##           5          52         170
 ```
 
 As it so happens, we are in the fortunate position where our test dataset also contains independently defined labels.
@@ -409,7 +424,7 @@ pheatmap(log2(tab+10), color=colorRampPalette(c("white", "blue"))(101))
 An interesting question is - given a single-cell reference dataset, is it better to use it directly or convert it to pseudo-bulk values?
 A single-cell reference preserves the "shape" of the subpopulation in high-dimensional expression space, potentially yielding more accurate predictions when the differences between labels are subtle (or at least capturing ambiguity more accurately to avoid grossly incorrect predictions).
 However, it also requires more computational work to assign each cell in the test dataset.
-We tend to prefer using a single-cell reference directly when one is available, though it is unlikely to make much difference when the labels are well-separated.
+We refer to the [other book](https://ltla.github.io/SingleRBook/using-single-cell-references.html#pseudo-bulk-aggregation) for more details on how to achieve a compromise between these two concerns. 
 
 ## Assigning cell labels from gene sets
 
@@ -518,28 +533,28 @@ head(results)
 ```
 ##                           gene sets
 ## cells                      astrocytes_ependymal endothelial-mural interneurons
-##   Calb2_tdTpositive_cell_1            0.1386528        0.04264310    0.5306093
-##   Calb2_tdTpositive_cell_2            0.1366283        0.04884635    0.4538357
-##   Calb2_tdTpositive_cell_3            0.1087323        0.07269892    0.3458998
-##   Calb2_tdTpositive_cell_4            0.1321658        0.04993108    0.5112665
-##   Calb2_tdTpositive_cell_5            0.1512892        0.07161420    0.4929771
-##   Calb2_tdTpositive_cell_6            0.1342012        0.09161375    0.3378310
+##   Calb2_tdTpositive_cell_1               0.1387           0.04264       0.5306
+##   Calb2_tdTpositive_cell_2               0.1366           0.04885       0.4538
+##   Calb2_tdTpositive_cell_3               0.1087           0.07270       0.3459
+##   Calb2_tdTpositive_cell_4               0.1322           0.04993       0.5113
+##   Calb2_tdTpositive_cell_5               0.1513           0.07161       0.4930
+##   Calb2_tdTpositive_cell_6               0.1342           0.09161       0.3378
 ##                           gene sets
-## cells                       microglia oligodendrocytes pyramidal CA1
-##   Calb2_tdTpositive_cell_1 0.04845394        0.1317958     0.2317668
-##   Calb2_tdTpositive_cell_2 0.02682648        0.1211293     0.2062570
-##   Calb2_tdTpositive_cell_3 0.03583482        0.1567204     0.3218726
-##   Calb2_tdTpositive_cell_4 0.05387632        0.1480893     0.2546714
-##   Calb2_tdTpositive_cell_5 0.06655747        0.1385766     0.2088478
-##   Calb2_tdTpositive_cell_6 0.03201310        0.1552946     0.4010508
+## cells                      microglia oligodendrocytes pyramidal CA1
+##   Calb2_tdTpositive_cell_1   0.04845           0.1318        0.2318
+##   Calb2_tdTpositive_cell_2   0.02683           0.1211        0.2063
+##   Calb2_tdTpositive_cell_3   0.03583           0.1567        0.3219
+##   Calb2_tdTpositive_cell_4   0.05388           0.1481        0.2547
+##   Calb2_tdTpositive_cell_5   0.06656           0.1386        0.2088
+##   Calb2_tdTpositive_cell_6   0.03201           0.1553        0.4011
 ##                           gene sets
 ## cells                      pyramidal SS
-##   Calb2_tdTpositive_cell_1    0.3476778
-##   Calb2_tdTpositive_cell_2    0.2762466
-##   Calb2_tdTpositive_cell_3    0.5244492
-##   Calb2_tdTpositive_cell_4    0.3505890
-##   Calb2_tdTpositive_cell_5    0.3009582
-##   Calb2_tdTpositive_cell_6    0.5392798
+##   Calb2_tdTpositive_cell_1       0.3477
+##   Calb2_tdTpositive_cell_2       0.2762
+##   Calb2_tdTpositive_cell_3       0.5244
+##   Calb2_tdTpositive_cell_4       0.3506
+##   Calb2_tdTpositive_cell_5       0.3010
+##   Calb2_tdTpositive_cell_6       0.5393
 ```
 
 We assign cell type identity to each cell in the test dataset by taking the marker set with the top AUC as the label for that cell.
@@ -792,27 +807,27 @@ head(go.useful, 20)
 ## GO:0071404 cellular response to low-density lipoprotein particle stimulus  BP
 ## GO:0019432                              triglyceride biosynthetic process  BP
 ## GO:0046460                             neutral lipid biosynthetic process  BP
-##              N DE         P.DE
-## GO:0006641  96 10 1.954065e-09
-## GO:0006119  86  9 1.233049e-08
-## GO:0006639 119 10 1.598370e-08
-## GO:0006638 121 10 1.877364e-08
-## GO:0042775  51  7 8.011490e-08
-## GO:0042773  52  7 9.201752e-08
-## GO:0022408 183 11 9.806336e-08
-## GO:0046390 146 10 1.124743e-07
-## GO:0009152 130  9 4.501351e-07
-## GO:0035148 173 10 5.459943e-07
-## GO:0050729 134  9 5.819025e-07
-## GO:0009260 139  9 7.925927e-07
-## GO:0022904  71  7 8.152195e-07
-## GO:0022900  75  7 1.187579e-06
-## GO:0006164 147  9 1.266955e-06
-## GO:0045333 152  9 1.674058e-06
-## GO:0072522 152  9 1.674058e-06
-## GO:0071404  15  4 3.364151e-06
-## GO:0019432  34  5 4.344000e-06
-## GO:0046460  37  5 6.686910e-06
+##              N DE      P.DE
+## GO:0006641  96 10 1.954e-09
+## GO:0006119  86  9 1.233e-08
+## GO:0006639 119 10 1.598e-08
+## GO:0006638 121 10 1.877e-08
+## GO:0042775  51  7 8.011e-08
+## GO:0042773  52  7 9.202e-08
+## GO:0022408 183 11 9.806e-08
+## GO:0046390 146 10 1.125e-07
+## GO:0009152 130  9 4.501e-07
+## GO:0035148 173 10 5.460e-07
+## GO:0050729 134  9 5.819e-07
+## GO:0009260 139  9 7.926e-07
+## GO:0022904  71  7 8.152e-07
+## GO:0022900  75  7 1.188e-06
+## GO:0006164 147  9 1.267e-06
+## GO:0045333 152  9 1.674e-06
+## GO:0072522 152  9 1.674e-06
+## GO:0071404  15  4 3.364e-06
+## GO:0019432  34  5 4.344e-06
+## GO:0046460  37  5 6.687e-06
 ```
 
 We see an enrichment for genes involved in lipid synthesis, cell adhesion and tube formation.
@@ -892,17 +907,17 @@ aggregated[1:10,1:5]
 ```
 
 ```
-##                  [,1]      [,2]       [,3]      [,4]      [,5]
-## GO:0000002 0.34610560 0.3442323 0.08629710 0.2811235 0.2545652
-## GO:0000003 0.25682137 0.2629406 0.20720573 0.1821940 0.2100560
-## GO:0000009 0.00000000 0.0000000 0.00000000 0.0000000 0.0000000
-## GO:0000010 0.00000000 0.0000000 0.00000000 0.0000000 0.0000000
-## GO:0000012 0.36291414 0.4777945 0.18489379 0.0000000 0.3582459
-## GO:0000014 0.07068301 0.3256203 0.11093628 0.3549672 0.3539329
-## GO:0000015 0.53680346 0.3006211 0.33280883 0.3549672 0.5629899
-## GO:0000016 0.00000000 0.0000000 0.00000000 0.0000000 0.0000000
-## GO:0000018 0.26146000 0.2755616 0.06163126 0.1352633 0.1520237
-## GO:0000019 0.00000000 0.2220139 0.00000000 0.1613487 0.2413179
+##               [,1]   [,2]    [,3]   [,4]   [,5]
+## GO:0000002 0.34611 0.3442 0.08630 0.2811 0.2546
+## GO:0000003 0.25682 0.2629 0.20721 0.1822 0.2101
+## GO:0000009 0.00000 0.0000 0.00000 0.0000 0.0000
+## GO:0000010 0.00000 0.0000 0.00000 0.0000 0.0000
+## GO:0000012 0.36291 0.4778 0.18489 0.0000 0.3582
+## GO:0000014 0.07068 0.3256 0.11094 0.3550 0.3539
+## GO:0000015 0.53680 0.3006 0.33281 0.3550 0.5630
+## GO:0000016 0.00000 0.0000 0.00000 0.0000 0.0000
+## GO:0000018 0.26146 0.2756 0.06163 0.1353 0.1520
+## GO:0000019 0.00000 0.2220 0.00000 0.1613 0.2413
 ```
 
 We can then identify "differential gene set activity" between clusters by looking for significant differences in the per-set averages of the relevant cells.
@@ -965,78 +980,81 @@ locale:
 [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
-[1] stats4    parallel  stats     graphics  grDevices utils     datasets 
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
 [8] methods   base     
 
 other attached packages:
- [1] rebook_0.99.0               limma_3.45.0               
- [3] org.Mm.eg.db_3.11.4         BiocFileCache_1.13.0       
- [5] dbplyr_1.4.4                DelayedMatrixStats_1.11.0  
- [7] AUCell_1.11.0               GSEABase_1.51.1            
- [9] graph_1.67.1                annotate_1.67.0            
-[11] XML_3.99-0.3                AnnotationDbi_1.51.0       
-[13] scRNAseq_2.3.2              pheatmap_1.0.12            
-[15] SingleR_1.3.4               TENxBrainData_1.9.0        
-[17] HDF5Array_1.17.0            rhdf5_2.33.0               
-[19] BiocSingular_1.5.0          scater_1.17.1              
-[21] scuttle_0.99.8              ggplot2_3.3.1              
-[23] fossil_0.4.0                shapefiles_0.7             
-[25] foreign_0.8-80              maps_3.3.0                 
-[27] sp_1.4-2                    BiocNeighbors_1.7.0        
-[29] scran_1.17.1                SingleCellExperiment_1.11.2
-[31] SummarizedExperiment_1.19.4 DelayedArray_0.15.1        
-[33] BiocParallel_1.23.0         matrixStats_0.56.0         
-[35] Biobase_2.49.0              GenomicRanges_1.41.1       
-[37] GenomeInfoDb_1.25.0         IRanges_2.23.6             
-[39] S4Vectors_0.27.10           BiocGenerics_0.35.2        
-[41] OSCAUtils_0.0.2             BiocStyle_2.17.0           
+ [1] limma_3.45.7                org.Mm.eg.db_3.11.4        
+ [3] DelayedMatrixStats_1.11.0   scater_1.17.3              
+ [5] ggplot2_3.3.1               AUCell_1.11.0              
+ [7] GSEABase_1.51.1             graph_1.67.1               
+ [9] annotate_1.67.0             XML_3.99-0.3               
+[11] scRNAseq_2.3.6              scran_1.17.2               
+[13] scuttle_0.99.9              ensembldb_2.13.1           
+[15] AnnotationFilter_1.13.0     GenomicFeatures_1.41.0     
+[17] AnnotationDbi_1.51.0        AnnotationHub_2.21.0       
+[19] BiocFileCache_1.13.0        dbplyr_1.4.4               
+[21] pheatmap_1.0.12             SingleR_1.3.6              
+[23] celldex_0.99.0              SingleCellExperiment_1.11.4
+[25] SummarizedExperiment_1.19.5 DelayedArray_0.15.4        
+[27] matrixStats_0.56.0          Matrix_1.2-18              
+[29] Biobase_2.49.0              GenomicRanges_1.41.5       
+[31] GenomeInfoDb_1.25.2         IRanges_2.23.10            
+[33] S4Vectors_0.27.12           BiocGenerics_0.35.4        
+[35] BiocStyle_2.17.0            rebook_0.99.0              
 
 loaded via a namespace (and not attached):
- [1] ggbeeswarm_0.6.0              colorspace_1.4-1             
- [3] ellipsis_0.3.1                XVector_0.29.1               
- [5] farver_2.0.3                  bit64_0.9-7                  
- [7] interactiveDisplayBase_1.27.5 codetools_0.2-16             
- [9] R.methodsS3_1.8.0             knitr_1.28                   
-[11] GO.db_3.11.4                  R.oo_1.23.0                  
-[13] shiny_1.4.0.2                 BiocManager_1.30.10          
-[15] compiler_4.0.0                httr_1.4.1                   
-[17] dqrng_0.2.1                   assertthat_0.2.1             
-[19] Matrix_1.2-18                 fastmap_1.0.1                
-[21] later_1.0.0                   htmltools_0.4.0              
-[23] tools_4.0.0                   rsvd_1.0.3                   
-[25] igraph_1.2.5                  gtable_0.3.0                 
-[27] glue_1.4.1                    GenomeInfoDbData_1.2.3       
-[29] dplyr_1.0.0                   rappdirs_0.3.1               
-[31] Rcpp_1.0.4.6                  vctrs_0.3.0                  
-[33] ExperimentHub_1.15.0          xfun_0.14                    
-[35] stringr_1.4.0                 ps_1.3.3                     
-[37] mime_0.9                      lifecycle_0.2.0              
-[39] irlba_2.3.3                   statmod_1.4.34               
-[41] AnnotationHub_2.21.0          edgeR_3.31.1                 
-[43] zlibbioc_1.35.0               scales_1.1.1                 
-[45] promises_1.1.0                RColorBrewer_1.1-2           
-[47] yaml_2.2.1                    curl_4.3                     
-[49] memoise_1.1.0                 gridExtra_2.3                
-[51] stringi_1.4.6                 RSQLite_2.2.0                
-[53] highr_0.8                     BiocVersion_3.12.0           
-[55] rlang_0.4.6                   pkgconfig_2.0.3              
-[57] bitops_1.0-6                  evaluate_0.14                
-[59] lattice_0.20-41               purrr_0.3.4                  
-[61] Rhdf5lib_1.11.0               labeling_0.3                 
-[63] CodeDepends_0.6.5             cowplot_1.0.0                
-[65] bit_1.1-15.2                  processx_3.4.2               
-[67] tidyselect_1.1.0              magrittr_1.5                 
-[69] bookdown_0.19                 R6_2.4.1                     
-[71] generics_0.0.2                DBI_1.1.0                    
-[73] pillar_1.4.4                  withr_2.2.0                  
-[75] RCurl_1.98-1.2                tibble_3.0.1                 
-[77] crayon_1.3.4                  rmarkdown_2.2                
-[79] viridis_0.5.1                 locfit_1.5-9.4               
-[81] grid_4.0.0                    data.table_1.12.8            
-[83] blob_1.2.1                    callr_3.4.3                  
-[85] digest_0.6.25                 xtable_1.8-4                 
-[87] httpuv_1.5.3.1                R.utils_2.9.2                
-[89] munsell_0.5.0                 beeswarm_0.2.3               
-[91] viridisLite_0.3.0             vipor_0.4.5                  
+  [1] igraph_1.2.5                  lazyeval_0.2.2               
+  [3] BiocParallel_1.23.0           digest_0.6.25                
+  [5] htmltools_0.4.0               viridis_0.5.1                
+  [7] GO.db_3.11.4                  magrittr_1.5                 
+  [9] memoise_1.1.0                 Biostrings_2.57.2            
+ [11] R.utils_2.9.2                 askpass_1.1                  
+ [13] prettyunits_1.1.1             colorspace_1.4-1             
+ [15] blob_1.2.1                    rappdirs_0.3.1               
+ [17] xfun_0.14                     dplyr_1.0.0                  
+ [19] callr_3.4.3                   crayon_1.3.4                 
+ [21] RCurl_1.98-1.2                glue_1.4.1                   
+ [23] gtable_0.3.0                  zlibbioc_1.35.0              
+ [25] XVector_0.29.2                BiocSingular_1.5.0           
+ [27] scales_1.1.1                  DBI_1.1.0                    
+ [29] edgeR_3.31.4                  Rcpp_1.0.4.6                 
+ [31] viridisLite_0.3.0             xtable_1.8-4                 
+ [33] progress_1.2.2                dqrng_0.2.1                  
+ [35] bit_1.1-15.2                  rsvd_1.0.3                   
+ [37] httr_1.4.1                    RColorBrewer_1.1-2           
+ [39] ellipsis_0.3.1                pkgconfig_2.0.3              
+ [41] R.methodsS3_1.8.0             farver_2.0.3                 
+ [43] CodeDepends_0.6.5             locfit_1.5-9.4               
+ [45] labeling_0.3                  tidyselect_1.1.0             
+ [47] rlang_0.4.6                   later_1.1.0.1                
+ [49] munsell_0.5.0                 BiocVersion_3.12.0           
+ [51] tools_4.0.0                   generics_0.0.2               
+ [53] RSQLite_2.2.0                 ExperimentHub_1.15.0         
+ [55] evaluate_0.14                 stringr_1.4.0                
+ [57] fastmap_1.0.1                 yaml_2.2.1                   
+ [59] processx_3.4.2                knitr_1.28                   
+ [61] bit64_0.9-7                   purrr_0.3.4                  
+ [63] mime_0.9                      R.oo_1.23.0                  
+ [65] biomaRt_2.45.0                compiler_4.0.0               
+ [67] beeswarm_0.2.3                curl_4.3                     
+ [69] interactiveDisplayBase_1.27.5 tibble_3.0.1                 
+ [71] statmod_1.4.34                stringi_1.4.6                
+ [73] highr_0.8                     ps_1.3.3                     
+ [75] lattice_0.20-41               ProtGenerics_1.21.0          
+ [77] vctrs_0.3.1                   pillar_1.4.4                 
+ [79] lifecycle_0.2.0               BiocManager_1.30.10          
+ [81] BiocNeighbors_1.7.0           cowplot_1.0.0                
+ [83] data.table_1.12.8             bitops_1.0-6                 
+ [85] irlba_2.3.3                   httpuv_1.5.4                 
+ [87] rtracklayer_1.49.3            R6_2.4.1                     
+ [89] bookdown_0.19                 promises_1.1.1               
+ [91] gridExtra_2.3                 vipor_0.4.5                  
+ [93] codetools_0.2-16              assertthat_0.2.1             
+ [95] openssl_1.4.1                 withr_2.2.0                  
+ [97] GenomicAlignments_1.25.3      Rsamtools_2.5.1              
+ [99] GenomeInfoDbData_1.2.3        hms_0.5.3                    
+[101] grid_4.0.0                    rmarkdown_2.2                
+[103] shiny_1.4.0.2                 ggbeeswarm_0.6.0             
 ```
 </div>

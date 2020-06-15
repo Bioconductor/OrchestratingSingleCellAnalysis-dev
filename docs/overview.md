@@ -195,15 +195,15 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] scran_1.17.1                scater_1.17.1              
- [3] ggplot2_3.3.1               scuttle_0.99.8             
- [5] scRNAseq_2.3.2              SingleCellExperiment_1.11.2
- [7] SummarizedExperiment_1.19.4 DelayedArray_0.15.1        
- [9] matrixStats_0.56.0          Biobase_2.49.0             
-[11] GenomicRanges_1.41.1        GenomeInfoDb_1.25.0        
-[13] IRanges_2.23.6              S4Vectors_0.27.10          
-[15] BiocGenerics_0.35.2         rebook_0.99.0              
-[17] OSCAUtils_0.0.2             BiocStyle_2.17.0           
+ [1] scran_1.17.2                scater_1.17.3              
+ [3] ggplot2_3.3.1               scRNAseq_2.3.6             
+ [5] SingleCellExperiment_1.11.4 SummarizedExperiment_1.19.5
+ [7] DelayedArray_0.15.4         matrixStats_0.56.0         
+ [9] Matrix_1.2-18               Biobase_2.49.0             
+[11] GenomicRanges_1.41.5        GenomeInfoDb_1.25.2        
+[13] IRanges_2.23.10             S4Vectors_0.27.12          
+[15] BiocGenerics_0.35.4         BiocStyle_2.17.0           
+[17] rebook_0.99.0              
 
 loaded via a namespace (and not attached):
  [1] bitops_1.0-6                  bit64_0.9-7                  
@@ -219,9 +219,9 @@ loaded via a namespace (and not attached):
 [21] bookdown_0.19                 scales_1.1.1                 
 [23] callr_3.4.3                   rappdirs_0.3.1               
 [25] stringr_1.4.0                 digest_0.6.25                
-[27] rmarkdown_2.2                 XVector_0.29.1               
+[27] rmarkdown_2.2                 XVector_0.29.2               
 [29] pkgconfig_2.0.3               htmltools_0.4.0              
-[31] limma_3.45.0                  dbplyr_1.4.4                 
+[31] limma_3.45.7                  dbplyr_1.4.4                 
 [33] fastmap_1.0.1                 highr_0.8                    
 [35] rlang_0.4.6                   RSQLite_2.2.0                
 [37] shiny_1.4.0.2                 DelayedMatrixStats_1.11.0    
@@ -229,14 +229,14 @@ loaded via a namespace (and not attached):
 [41] BiocParallel_1.23.0           dplyr_1.0.0                  
 [43] RCurl_1.98-1.2                magrittr_1.5                 
 [45] BiocSingular_1.5.0            GenomeInfoDbData_1.2.3       
-[47] Matrix_1.2-18                 ggbeeswarm_0.6.0             
-[49] Rcpp_1.0.4.6                  munsell_0.5.0                
+[47] scuttle_0.99.9                Rcpp_1.0.4.6                 
+[49] ggbeeswarm_0.6.0              munsell_0.5.0                
 [51] viridis_0.5.1                 lifecycle_0.2.0              
-[53] edgeR_3.31.1                  stringi_1.4.6                
+[53] edgeR_3.31.4                  stringi_1.4.6                
 [55] yaml_2.2.1                    zlibbioc_1.35.0              
 [57] BiocFileCache_1.13.0          AnnotationHub_2.21.0         
 [59] grid_4.0.0                    blob_1.2.1                   
-[61] dqrng_0.2.1                   promises_1.1.0               
+[61] dqrng_0.2.1                   promises_1.1.1               
 [63] ExperimentHub_1.15.0          crayon_1.3.4                 
 [65] lattice_0.20-41               cowplot_1.0.0                
 [67] locfit_1.5-9.4                CodeDepends_0.6.5            
@@ -245,12 +245,12 @@ loaded via a namespace (and not attached):
 [73] codetools_0.2-16              XML_3.99-0.3                 
 [75] glue_1.4.1                    BiocVersion_3.12.0           
 [77] evaluate_0.14                 BiocManager_1.30.10          
-[79] vctrs_0.3.0                   httpuv_1.5.3.1               
+[79] vctrs_0.3.1                   httpuv_1.5.4                 
 [81] gtable_0.3.0                  purrr_0.3.4                  
 [83] assertthat_0.2.1              xfun_0.14                    
 [85] rsvd_1.0.3                    mime_0.9                     
 [87] xtable_1.8-4                  RSpectra_0.16-0              
-[89] later_1.0.0                   viridisLite_0.3.0            
+[89] later_1.1.0.1                 viridisLite_0.3.0            
 [91] tibble_3.0.1                  beeswarm_0.2.3               
 [93] AnnotationDbi_1.51.0          memoise_1.1.0                
 [95] statmod_1.4.34                ellipsis_0.3.1               

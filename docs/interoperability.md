@@ -103,14 +103,14 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] rebook_0.99.0    BiocStyle_2.17.0
+[1] BiocStyle_2.17.0 rebook_0.99.0   
 
 loaded via a namespace (and not attached):
  [1] graph_1.67.1        Rcpp_1.0.4.6        knitr_1.28         
- [4] magrittr_1.5        BiocGenerics_0.35.2 rlang_0.4.6        
+ [4] magrittr_1.5        BiocGenerics_0.35.4 rlang_0.4.6        
  [7] stringr_1.4.0       highr_0.8           tools_4.0.0        
-[10] parallel_4.0.0      xfun_0.14           htmltools_0.4.0    
-[13] CodeDepends_0.6.5   yaml_2.2.1          digest_0.6.25      
+[10] parallel_4.0.0      xfun_0.14           CodeDepends_0.6.5  
+[13] htmltools_0.4.0     yaml_2.2.1          digest_0.6.25      
 [16] bookdown_0.19       processx_3.4.2      BiocManager_1.30.10
 [19] callr_3.4.3         ps_1.3.3            codetools_0.2-16   
 [22] evaluate_0.14       rmarkdown_2.2       stringi_1.4.6      
