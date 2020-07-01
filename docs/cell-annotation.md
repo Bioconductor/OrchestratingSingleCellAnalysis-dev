@@ -598,37 +598,21 @@ tab
 
 
 
-Another simple diagnostic metric is the difference $\Delta_{AUC}$ between the maximum and median AUCs for each cell.
-An umambiguous assignment should manifest as a large $\Delta_{AUC}$ for that cell (Figure \@ref(fig:aucell-boxplots)), while small differences indicate that the assignment is uncertain.
-If necessary, we can remove uncertain assignments by applying a minimum threshold on the $\Delta_{AUC}$, e.g., to achieve greater agreement with the clustering results or prior annotation.
-The example below identifies small outlier $\Delta_{AUC}$ values under the assumption that most cells are correctly assigned and that there is only modest heterogeneity within each label.
+As a diagnostic measure, we examine the distribution of AUCs across cells for each label (Figure \@ref(fig:auc-dist)).
+In heterogeneous populations, the distribution for each label should be bimodal with one high-scoring peak containing cells of that cell type and a low-scoring peak containing cells of other types.
+The gap between these two peaks can be used to derive a threshold for whether a label is "active" for a particular cell.
+(In this case, we simply take the single highest-scoring label per cell as the labels should be mutually exclusive.)
+In populations where a particular cell type is expected, lack of clear bimodality for the corresponding label may indicate that its gene set is not sufficiently informative.
 
 
 ```r
-library(scater)
-library(DelayedMatrixStats)
-deltas <- rowMaxs(results) - rowMedians(results)
-discard <- isOutlier(deltas, type="lower", batch=new.labels)
-table(new.labels[discard])
-```
-
-```
-## 
-## astrocytes_ependymal    endothelial-mural         interneurons 
-##                   24                    1                    7 
-##     oligodendrocytes         pyramidal SS 
-##                   10                   16
-```
-
-```r
-par(mar=c(10,4,1,1))
-boxplot(split(deltas, new.labels), las=2)
-points(attr(discard, "thresholds")[1,], col="red", pch=4, cex=2)
+par(mfrow=c(3,3))
+AUCell_exploreThresholds(cell.aucs, plotHist=TRUE, assign=TRUE) 
 ```
 
 <div class="figure">
-<img src="cell-annotation_files/figure-html/aucell-boxplots-1.png" alt="Distribution of differences between the maximum and median AUCs for each cell, stratified by the assigned label. The red cross indicates the threshold below which outliers are pruned." width="672" />
-<p class="caption">(\#fig:aucell-boxplots)Distribution of differences between the maximum and median AUCs for each cell, stratified by the assigned label. The red cross indicates the threshold below which outliers are pruned.</p>
+<img src="cell-annotation_files/figure-html/auc-dist-1.png" alt="Distribution of AUCs in the Tasic brain dataset for each label in the Zeisel dataset. The blue curve represents the density estimate, the red curve represents a fitted two-component mixture of normals, the pink curve represents a fitted three-component mixture, and the grey curve represents a fitted normal distribution. Vertical lines represent threshold estimates corresponding to each estimate of the distribution." width="768" />
+<p class="caption">(\#fig:auc-dist)Distribution of AUCs in the Tasic brain dataset for each label in the Zeisel dataset. The blue curve represents the density estimate, the red curve represents a fitted two-component mixture of normals, the pink curve represents a fitted three-component mixture, and the grey curve represents a fitted normal distribution. Vertical lines represent threshold estimates corresponding to each estimate of the distribution.</p>
 </div>
 
 Interpretation of the *[AUCell](https://bioconductor.org/packages/3.12/AUCell)* results is most straightforward when the marker sets are mutually exclusive, as shown above for the cell type markers.
@@ -838,6 +822,7 @@ Indeed, a closer examination of the marker list indicates that this cluster upre
 
 
 ```r
+library(scater)
 plotExpression(sce.mam, features=c("Csn2", "Csn3"), 
     x="label", colour_by="label")
 ```
@@ -963,17 +948,17 @@ For these reasons, we generally reserve the use of this gene set summary statist
 <button class="aaron-collapse">View session info</button>
 <div class="aaron-content">
 ```
-R version 4.0.0 Patched (2020-05-01 r78341)
+R version 4.0.2 (2020-06-22)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: Ubuntu 18.04.4 LTS
 
 Matrix products: default
-BLAS:   /home/luna/Software/R/R-4-0-branch-dev/lib/libRblas.so
-LAPACK: /home/luna/Software/R/R-4-0-branch-dev/lib/libRlapack.so
+BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
+LAPACK: /home/biocbuild/bbs-3.12-bioc/R/lib/libRlapack.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=C              
  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
@@ -984,77 +969,81 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] limma_3.45.7                org.Mm.eg.db_3.11.4        
- [3] DelayedMatrixStats_1.11.0   scater_1.17.3              
- [5] ggplot2_3.3.1               AUCell_1.11.0              
- [7] GSEABase_1.51.1             graph_1.67.1               
- [9] annotate_1.67.0             XML_3.99-0.3               
-[11] scRNAseq_2.3.6              scran_1.17.2               
-[13] scuttle_0.99.9              ensembldb_2.13.1           
-[15] AnnotationFilter_1.13.0     GenomicFeatures_1.41.0     
-[17] AnnotationDbi_1.51.0        AnnotationHub_2.21.0       
-[19] BiocFileCache_1.13.0        dbplyr_1.4.4               
-[21] pheatmap_1.0.12             SingleR_1.3.6              
-[23] celldex_0.99.0              SingleCellExperiment_1.11.4
-[25] SummarizedExperiment_1.19.5 DelayedArray_0.15.4        
-[27] matrixStats_0.56.0          Matrix_1.2-18              
-[29] Biobase_2.49.0              GenomicRanges_1.41.5       
-[31] GenomeInfoDb_1.25.2         IRanges_2.23.10            
-[33] S4Vectors_0.27.12           BiocGenerics_0.35.4        
-[35] BiocStyle_2.17.0            rebook_0.99.0              
+ [1] scater_1.17.2               ggplot2_3.3.2              
+ [3] limma_3.45.7                org.Mm.eg.db_3.11.4        
+ [5] AUCell_1.11.0               GSEABase_1.51.1            
+ [7] graph_1.67.1                annotate_1.67.0            
+ [9] XML_3.99-0.3                scRNAseq_2.3.8             
+[11] scran_1.17.3                scuttle_0.99.10            
+[13] ensembldb_2.13.1            AnnotationFilter_1.13.0    
+[15] GenomicFeatures_1.41.0      AnnotationDbi_1.51.1       
+[17] AnnotationHub_2.21.1        BiocFileCache_1.13.0       
+[19] dbplyr_1.4.4                pheatmap_1.0.12            
+[21] SingleR_1.3.6               celldex_0.99.1             
+[23] SingleCellExperiment_1.11.6 SummarizedExperiment_1.19.5
+[25] DelayedArray_0.15.6         matrixStats_0.56.0         
+[27] Matrix_1.2-18               Biobase_2.49.0             
+[29] GenomicRanges_1.41.5        GenomeInfoDb_1.25.5        
+[31] IRanges_2.23.10             S4Vectors_0.27.12          
+[33] BiocGenerics_0.35.4         BiocStyle_2.17.0           
+[35] simpleSingleCell_1.13.5    
 
 loaded via a namespace (and not attached):
   [1] igraph_1.2.5                  lazyeval_0.2.2               
-  [3] BiocParallel_1.23.0           digest_0.6.25                
-  [5] htmltools_0.4.0               viridis_0.5.1                
-  [7] GO.db_3.11.4                  magrittr_1.5                 
-  [9] memoise_1.1.0                 Biostrings_2.57.2            
- [11] R.utils_2.9.2                 askpass_1.1                  
- [13] prettyunits_1.1.1             colorspace_1.4-1             
- [15] blob_1.2.1                    rappdirs_0.3.1               
- [17] xfun_0.14                     dplyr_1.0.0                  
- [19] callr_3.4.3                   crayon_1.3.4                 
- [21] RCurl_1.98-1.2                glue_1.4.1                   
- [23] gtable_0.3.0                  zlibbioc_1.35.0              
- [25] XVector_0.29.2                BiocSingular_1.5.0           
- [27] scales_1.1.1                  DBI_1.1.0                    
- [29] edgeR_3.31.4                  Rcpp_1.0.4.6                 
- [31] viridisLite_0.3.0             xtable_1.8-4                 
- [33] progress_1.2.2                dqrng_0.2.1                  
- [35] bit_1.1-15.2                  rsvd_1.0.3                   
- [37] httr_1.4.1                    RColorBrewer_1.1-2           
- [39] ellipsis_0.3.1                pkgconfig_2.0.3              
- [41] R.methodsS3_1.8.0             farver_2.0.3                 
- [43] CodeDepends_0.6.5             locfit_1.5-9.4               
- [45] labeling_0.3                  tidyselect_1.1.0             
- [47] rlang_0.4.6                   later_1.1.0.1                
- [49] munsell_0.5.0                 BiocVersion_3.12.0           
- [51] tools_4.0.0                   generics_0.0.2               
- [53] RSQLite_2.2.0                 ExperimentHub_1.15.0         
- [55] evaluate_0.14                 stringr_1.4.0                
- [57] fastmap_1.0.1                 yaml_2.2.1                   
- [59] processx_3.4.2                knitr_1.28                   
- [61] bit64_0.9-7                   purrr_0.3.4                  
- [63] mime_0.9                      R.oo_1.23.0                  
- [65] biomaRt_2.45.0                compiler_4.0.0               
- [67] beeswarm_0.2.3                curl_4.3                     
- [69] interactiveDisplayBase_1.27.5 tibble_3.0.1                 
- [71] statmod_1.4.34                stringi_1.4.6                
- [73] highr_0.8                     ps_1.3.3                     
- [75] lattice_0.20-41               ProtGenerics_1.21.0          
- [77] vctrs_0.3.1                   pillar_1.4.4                 
- [79] lifecycle_0.2.0               BiocManager_1.30.10          
- [81] BiocNeighbors_1.7.0           cowplot_1.0.0                
- [83] data.table_1.12.8             bitops_1.0-6                 
- [85] irlba_2.3.3                   httpuv_1.5.4                 
- [87] rtracklayer_1.49.3            R6_2.4.1                     
- [89] bookdown_0.19                 promises_1.1.1               
- [91] gridExtra_2.3                 vipor_0.4.5                  
- [93] codetools_0.2-16              assertthat_0.2.1             
- [95] openssl_1.4.1                 withr_2.2.0                  
- [97] GenomicAlignments_1.25.3      Rsamtools_2.5.1              
- [99] GenomeInfoDbData_1.2.3        hms_0.5.3                    
-[101] grid_4.0.0                    rmarkdown_2.2                
-[103] shiny_1.4.0.2                 ggbeeswarm_0.6.0             
+  [3] splines_4.0.2                 BiocParallel_1.23.0          
+  [5] digest_0.6.25                 htmltools_0.5.0              
+  [7] GO.db_3.11.4                  viridis_0.5.1                
+  [9] magrittr_1.5                  memoise_1.1.0                
+ [11] mixtools_1.2.0                Biostrings_2.57.2            
+ [13] R.utils_2.9.2                 askpass_1.1                  
+ [15] prettyunits_1.1.1             colorspace_1.4-1             
+ [17] blob_1.2.1                    rappdirs_0.3.1               
+ [19] xfun_0.15                     dplyr_1.0.0                  
+ [21] callr_3.4.3                   crayon_1.3.4                 
+ [23] RCurl_1.98-1.2                survival_3.2-3               
+ [25] glue_1.4.1                    gtable_0.3.0                 
+ [27] zlibbioc_1.35.0               XVector_0.29.3               
+ [29] BiocSingular_1.5.0            kernlab_0.9-29               
+ [31] scales_1.1.1                  DBI_1.1.0                    
+ [33] edgeR_3.31.4                  Rcpp_1.0.4.6                 
+ [35] viridisLite_0.3.0             xtable_1.8-4                 
+ [37] progress_1.2.2                dqrng_0.2.1                  
+ [39] bit_1.1-15.2                  rsvd_1.0.3                   
+ [41] httr_1.4.1                    RColorBrewer_1.1-2           
+ [43] ellipsis_0.3.1                pkgconfig_2.0.3              
+ [45] R.methodsS3_1.8.0             farver_2.0.3                 
+ [47] CodeDepends_0.6.5             locfit_1.5-9.4               
+ [49] labeling_0.3                  tidyselect_1.1.0             
+ [51] rlang_0.4.6                   later_1.1.0.1                
+ [53] munsell_0.5.0                 BiocVersion_3.12.0           
+ [55] tools_4.0.2                   generics_0.0.2               
+ [57] RSQLite_2.2.0                 ExperimentHub_1.15.0         
+ [59] evaluate_0.14                 stringr_1.4.0                
+ [61] fastmap_1.0.1                 yaml_2.2.1                   
+ [63] processx_3.4.2                knitr_1.29                   
+ [65] bit64_0.9-7                   purrr_0.3.4                  
+ [67] mime_0.9                      R.oo_1.23.0                  
+ [69] biomaRt_2.45.1                compiler_4.0.2               
+ [71] beeswarm_0.2.3                curl_4.3                     
+ [73] interactiveDisplayBase_1.27.5 tibble_3.0.1                 
+ [75] statmod_1.4.34                stringi_1.4.6                
+ [77] highr_0.8                     ps_1.3.3                     
+ [79] lattice_0.20-41               ProtGenerics_1.21.0          
+ [81] vctrs_0.3.1                   pillar_1.4.4                 
+ [83] lifecycle_0.2.0               BiocManager_1.30.10          
+ [85] BiocNeighbors_1.7.0           cowplot_1.0.0                
+ [87] data.table_1.12.8             bitops_1.0-6                 
+ [89] irlba_2.3.3                   httpuv_1.5.4                 
+ [91] rtracklayer_1.49.3            R6_2.4.1                     
+ [93] bookdown_0.20                 promises_1.1.1               
+ [95] gridExtra_2.3                 vipor_0.4.5                  
+ [97] codetools_0.2-16              MASS_7.3-51.6                
+ [99] assertthat_0.2.1              openssl_1.4.2                
+[101] withr_2.2.0                   GenomicAlignments_1.25.3     
+[103] Rsamtools_2.5.3               GenomeInfoDbData_1.2.3       
+[105] hms_0.5.3                     grid_4.0.2                   
+[107] rmarkdown_2.3                 DelayedMatrixStats_1.11.1    
+[109] segmented_1.2-0               shiny_1.5.0                  
+[111] ggbeeswarm_0.6.0             
 ```
 </div>

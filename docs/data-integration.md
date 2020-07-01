@@ -829,17 +829,17 @@ Use of the corrected values in any quantitative procedure should be treated with
 <button class="aaron-collapse">View session info</button>
 <div class="aaron-content">
 ```
-R version 4.0.0 Patched (2020-05-01 r78341)
+R version 4.0.2 (2020-06-22)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: Ubuntu 18.04.4 LTS
 
 Matrix products: default
-BLAS:   /home/luna/Software/R/R-4-0-branch-dev/lib/libRblas.so
-LAPACK: /home/luna/Software/R/R-4-0-branch-dev/lib/libRlapack.so
+BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
+LAPACK: /home/biocbuild/bbs-3.12-bioc/R/lib/libRlapack.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=C              
  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
@@ -850,53 +850,53 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] pheatmap_1.0.12             scater_1.17.3              
- [3] ggplot2_3.3.1               scran_1.17.2               
- [5] batchelor_1.5.1             SingleCellExperiment_1.11.4
+ [1] pheatmap_1.0.12             scater_1.17.2              
+ [3] ggplot2_3.3.2               scran_1.17.3               
+ [5] batchelor_1.5.1             SingleCellExperiment_1.11.6
  [7] SummarizedExperiment_1.19.5 Biobase_2.49.0             
- [9] GenomicRanges_1.41.5        GenomeInfoDb_1.25.2        
-[11] HDF5Array_1.17.1            rhdf5_2.33.3               
-[13] DelayedArray_0.15.4         IRanges_2.23.10            
+ [9] GenomicRanges_1.41.5        GenomeInfoDb_1.25.5        
+[11] HDF5Array_1.17.3            rhdf5_2.33.4               
+[13] DelayedArray_0.15.6         IRanges_2.23.10            
 [15] S4Vectors_0.27.12           BiocGenerics_0.35.4        
 [17] matrixStats_0.56.0          Matrix_1.2-18              
-[19] BiocStyle_2.17.0            rebook_0.99.0              
+[19] BiocStyle_2.17.0            simpleSingleCell_1.13.5    
 
 loaded via a namespace (and not attached):
  [1] bitops_1.0-6              RColorBrewer_1.1-2       
- [3] tools_4.0.0               R6_2.4.1                 
+ [3] tools_4.0.2               R6_2.4.1                 
  [5] irlba_2.3.3               vipor_0.4.5              
- [7] colorspace_1.4-1          rhdf5filters_1.1.0       
+ [7] colorspace_1.4-1          rhdf5filters_1.1.1       
  [9] withr_2.2.0               tidyselect_1.1.0         
 [11] gridExtra_2.3             processx_3.4.2           
-[13] compiler_4.0.0            graph_1.67.1             
+[13] compiler_4.0.2            graph_1.67.1             
 [15] BiocNeighbors_1.7.0       labeling_0.3             
-[17] bookdown_0.19             scales_1.1.1             
+[17] bookdown_0.20             scales_1.1.1             
 [19] callr_3.4.3               stringr_1.4.0            
-[21] digest_0.6.25             rmarkdown_2.2            
-[23] XVector_0.29.2            pkgconfig_2.0.3          
-[25] htmltools_0.4.0           highr_0.8                
-[27] limma_3.45.7              rlang_0.4.6              
-[29] DelayedMatrixStats_1.11.0 farver_2.0.3             
-[31] generics_0.0.2            BiocParallel_1.23.0      
+[21] digest_0.6.25             rmarkdown_2.3            
+[23] XVector_0.29.3            pkgconfig_2.0.3          
+[25] htmltools_0.5.0           limma_3.45.7             
+[27] highr_0.8                 rlang_0.4.6              
+[29] DelayedMatrixStats_1.11.1 generics_0.0.2           
+[31] farver_2.0.3              BiocParallel_1.23.0      
 [33] dplyr_1.0.0               RCurl_1.98-1.2           
 [35] magrittr_1.5              BiocSingular_1.5.0       
-[37] GenomeInfoDbData_1.2.3    scuttle_0.99.9           
+[37] GenomeInfoDbData_1.2.3    scuttle_0.99.10          
 [39] Rcpp_1.0.4.6              ggbeeswarm_0.6.0         
 [41] munsell_0.5.0             Rhdf5lib_1.11.2          
 [43] viridis_0.5.1             lifecycle_0.2.0          
 [45] stringi_1.4.6             yaml_2.2.1               
 [47] edgeR_3.31.4              zlibbioc_1.35.0          
-[49] Rtsne_0.15                grid_4.0.0               
+[49] Rtsne_0.15                grid_4.0.2               
 [51] dqrng_0.2.1               crayon_1.3.4             
 [53] lattice_0.20-41           beachmat_2.5.0           
 [55] cowplot_1.0.0             locfit_1.5-9.4           
-[57] CodeDepends_0.6.5         knitr_1.28               
+[57] CodeDepends_0.6.5         knitr_1.29               
 [59] ps_1.3.3                  pillar_1.4.4             
 [61] igraph_1.2.5              codetools_0.2-16         
 [63] XML_3.99-0.3              glue_1.4.1               
 [65] evaluate_0.14             BiocManager_1.30.10      
 [67] vctrs_0.3.1               gtable_0.3.0             
-[69] purrr_0.3.4               xfun_0.14                
+[69] purrr_0.3.4               xfun_0.15                
 [71] rsvd_1.0.3                viridisLite_0.3.0        
 [73] tibble_3.0.1              beeswarm_0.2.3           
 [75] statmod_1.4.34            ellipsis_0.3.1           

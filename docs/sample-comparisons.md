@@ -614,8 +614,8 @@ summarizeTestsPerLabel(is.de)
 ## Allantois                      69 5048 66  9516
 ## Blood progenitors 2             1 2472  2 12224
 ## Cardiomyocytes                  6 4361  5 10327
-## Caudal epiblast                 0    0  0 14699
 ## Caudal Mesoderm                 0    0  0 14699
+## Caudal epiblast                 0    0  0 14699
 ## Def. endoderm                   0    0  0 14699
 ## Endothelium                     3 3222  6 11468
 ## Erythroid1                     12 3035 25 11627
@@ -628,8 +628,8 @@ summarizeTestsPerLabel(is.de)
 ## Haematoendothelial progenitors  7 4347 17 10328
 ## Intermediate mesoderm           6 3256  8 11429
 ## Mesenchyme                      8 5672  8  9011
-## Neural crest                    6 3311  8 11374
 ## NMP                             6 4107 10 10576
+## Neural crest                    6 3311  8 11374
 ## Paraxial mesoderm               4 4756  5  9934
 ## Parietal endoderm               0    0  0 14699
 ## Pharyngeal mesoderm             2 5082  9  9606
@@ -735,7 +735,7 @@ metadata(de.results)$failed
 ```
 
 ```
-## [1] "Caudal epiblast"      "Caudal Mesoderm"      "Def. endoderm"       
+## [1] "Caudal Mesoderm"      "Caudal epiblast"      "Def. endoderm"       
 ## [4] "ExE ectoderm"         "Parietal endoderm"    "Rostral neurectoderm"
 ```
 
@@ -765,8 +765,8 @@ head(abundances)
 ##   Blood progenitors 1  6  3  16   6   8  17
 ##   Blood progenitors 2 31  8  28  21  43 114
 ##   Cardiomyocytes      85 21  79  31 174 211
-##   Caudal epiblast      2  2   0   0  22  45
 ##   Caudal Mesoderm     10 10   9   3  10  29
+##   Caudal epiblast      2  2   0   0  22  45
 ```
 
 ### Performing the DA analysis
@@ -793,7 +793,7 @@ y.ab
 ##   Blood progenitors 1  6  3  16   6   8  17
 ##   Blood progenitors 2 31  8  28  21  43 114
 ##   Cardiomyocytes      85 21  79  31 174 211
-##   Caudal epiblast      2  2   0   0  22  45
+##   Caudal Mesoderm     10 10   9   3  10  29
 ## 29 more rows ...
 ## 
 ## $samples
@@ -1592,17 +1592,17 @@ head(final, 10)
 <button class="aaron-collapse">View session info</button>
 <div class="aaron-content">
 ```
-R version 4.0.0 Patched (2020-05-01 r78341)
+R version 4.0.2 (2020-06-22)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: Ubuntu 18.04.4 LTS
 
 Matrix products: default
-BLAS:   /home/luna/Software/R/R-4-0-branch-dev/lib/libRblas.so
-LAPACK: /home/luna/Software/R/R-4-0-branch-dev/lib/libRlapack.so
+BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
+LAPACK: /home/biocbuild/bbs-3.12-bioc/R/lib/libRlapack.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=C              
  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
@@ -1613,46 +1613,46 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] DropletUtils_1.9.0          scuttle_0.99.9             
- [3] MouseGastrulationData_1.3.0 scran_1.17.2               
+ [1] DropletUtils_1.9.2          scuttle_0.99.10            
+ [3] MouseGastrulationData_1.3.0 scran_1.17.3               
  [5] edgeR_3.31.4                limma_3.45.7               
- [7] scater_1.17.3               ggplot2_3.3.1              
- [9] BiocSingular_1.5.0          SingleCellExperiment_1.11.4
-[11] SummarizedExperiment_1.19.5 DelayedArray_0.15.4        
+ [7] scater_1.17.2               ggplot2_3.3.2              
+ [9] BiocSingular_1.5.0          SingleCellExperiment_1.11.6
+[11] SummarizedExperiment_1.19.5 DelayedArray_0.15.6        
 [13] matrixStats_0.56.0          Matrix_1.2-18              
 [15] Biobase_2.49.0              GenomicRanges_1.41.5       
-[17] GenomeInfoDb_1.25.2         IRanges_2.23.10            
+[17] GenomeInfoDb_1.25.5         IRanges_2.23.10            
 [19] S4Vectors_0.27.12           BiocGenerics_0.35.4        
-[21] BiocStyle_2.17.0            rebook_0.99.0              
+[21] BiocStyle_2.17.0            simpleSingleCell_1.13.5    
 
 loaded via a namespace (and not attached):
   [1] ggbeeswarm_0.6.0              colorspace_1.4-1             
-  [3] ellipsis_0.3.1                XVector_0.29.2               
+  [3] ellipsis_0.3.1                XVector_0.29.3               
   [5] BiocNeighbors_1.7.0           farver_2.0.3                 
   [7] bit64_0.9-7                   interactiveDisplayBase_1.27.5
-  [9] AnnotationDbi_1.51.0          R.methodsS3_1.8.0            
- [11] codetools_0.2-16              splines_4.0.0                
- [13] knitr_1.28                    dbplyr_1.4.4                 
+  [9] AnnotationDbi_1.51.1          R.methodsS3_1.8.0            
+ [11] codetools_0.2-16              splines_4.0.2                
+ [13] knitr_1.29                    dbplyr_1.4.4                 
  [15] R.oo_1.23.0                   pheatmap_1.0.12              
- [17] graph_1.67.1                  HDF5Array_1.17.1             
- [19] shiny_1.4.0.2                 BiocManager_1.30.10          
- [21] compiler_4.0.0                httr_1.4.1                   
+ [17] graph_1.67.1                  HDF5Array_1.17.3             
+ [19] shiny_1.5.0                   BiocManager_1.30.10          
+ [21] compiler_4.0.2                httr_1.4.1                   
  [23] dqrng_0.2.1                   assertthat_0.2.1             
  [25] fastmap_1.0.1                 later_1.1.0.1                
- [27] htmltools_0.4.0               tools_4.0.0                  
+ [27] htmltools_0.5.0               tools_4.0.2                  
  [29] rsvd_1.0.3                    igraph_1.2.5                 
  [31] gtable_0.3.0                  glue_1.4.1                   
  [33] GenomeInfoDbData_1.2.3        dplyr_1.0.0                  
  [35] rappdirs_0.3.1                Rcpp_1.0.4.6                 
- [37] rhdf5filters_1.1.0            vctrs_0.3.1                  
- [39] ExperimentHub_1.15.0          DelayedMatrixStats_1.11.0    
- [41] xfun_0.14                     stringr_1.4.0                
+ [37] rhdf5filters_1.1.1            vctrs_0.3.1                  
+ [39] ExperimentHub_1.15.0          DelayedMatrixStats_1.11.1    
+ [41] xfun_0.15                     stringr_1.4.0                
  [43] ps_1.3.3                      mime_0.9                     
  [45] lifecycle_0.2.0               irlba_2.3.3                  
  [47] statmod_1.4.34                XML_3.99-0.3                 
- [49] AnnotationHub_2.21.0          zlibbioc_1.35.0              
+ [49] AnnotationHub_2.21.1          zlibbioc_1.35.0              
  [51] scales_1.1.1                  promises_1.1.1               
- [53] rhdf5_2.33.3                  RColorBrewer_1.1-2           
+ [53] rhdf5_2.33.4                  RColorBrewer_1.1-2           
  [55] yaml_2.2.1                    curl_4.3                     
  [57] memoise_1.1.0                 gridExtra_2.3                
  [59] stringi_1.4.6                 RSQLite_2.2.0                
@@ -1664,14 +1664,14 @@ loaded via a namespace (and not attached):
  [71] CodeDepends_0.6.5             labeling_0.3                 
  [73] cowplot_1.0.0                 bit_1.1-15.2                 
  [75] processx_3.4.2                tidyselect_1.1.0             
- [77] magrittr_1.5                  bookdown_0.19                
+ [77] magrittr_1.5                  bookdown_0.20                
  [79] R6_2.4.1                      generics_0.0.2               
  [81] DBI_1.1.0                     pillar_1.4.4                 
  [83] withr_2.2.0                   RCurl_1.98-1.2               
  [85] tibble_3.0.1                  crayon_1.3.4                 
- [87] BiocFileCache_1.13.0          rmarkdown_2.2                
+ [87] BiocFileCache_1.13.0          rmarkdown_2.3                
  [89] viridis_0.5.1                 locfit_1.5-9.4               
- [91] grid_4.0.0                    blob_1.2.1                   
+ [91] grid_4.0.2                    blob_1.2.1                   
  [93] callr_3.4.3                   digest_0.6.25                
  [95] xtable_1.8-4                  httpuv_1.5.4                 
  [97] R.utils_2.9.2                 munsell_0.5.0                

@@ -157,17 +157,15 @@ plotHeatmap(sce.416b, order_columns_by="label",
 ```
 
 <div class="figure">
-<img src="cell-cycle_files/figure-html/heat-cyclin-1.png" alt="Heatmap of the log-normalized expression values of the cyclin genes in the 416B dataset." width="672" />
-<p class="caption">(\#fig:heat-cyclin)Heatmap of the log-normalized expression values of the cyclin genes in the 416B dataset.</p>
+<img src="cell-cycle_files/figure-html/heat-cyclin-1.png" alt="Heatmap of the log-normalized expression values of the cyclin genes in the 416B dataset. Each column represents a cell that is sorted by the cluster of origin." width="672" />
+<p class="caption">(\#fig:heat-cyclin)Heatmap of the log-normalized expression values of the cyclin genes in the 416B dataset. Each column represents a cell that is sorted by the cluster of origin.</p>
 </div>
 
 
 
-The 416B dataset is somewhat unusual as each cluster maps cleanly onto a distinct phase of the cell cycle.
-This separation is not typically seen in more heterogeneous datasets where the cell cycle is only a secondary factor of variation.
-Fortunately, it is not strictly necessary to know the exact phase of each cell or cluster to answer most cycle-related questions.
-For example, we can use standard DE methods (Chapter \@ref(marker-detection)) to look for upregulation of each cyclin, which would imply that a subpopulation contains more cells in the corresponding cell cycle phase.
-The same logic applies to comparisons between treatment conditions, as described in Chapter \@ref(multi-sample-comparisons).
+We can use this approach to make statements about the relative cell cycle activity across clusters.
+In this case, we apply standard DE methods (Chapter \@ref(marker-detection)) to look for upregulation of each cyclin between clusters, which would imply that a subpopulation contains more cells in the corresponding cell cycle phase.
+The same logic applies to comparisons between treatment conditions as described in Chapter \@ref(multi-sample-comparisons).
 
 
 ```r
@@ -210,20 +208,97 @@ markers[[4]]
 
 
 
-Direct examination of cyclin expression is easily to understand, interpret and experimentally validate.
-However, it is best suited for statements about relative cell cycle activity; for example, we would find it difficult to assign cell cycle phase in Figure \@ref(fig:heat-cyclin) without the presence of clusters spanning all phases to provide benchmarks for "high" and "low" expression of each cyclin.
-We also assume that cyclin expression is not affected by biological processes other than the cell cycle, which may be a strong assumption in some cases, e.g., malignant cells.
-This strategy is strongly dependent on having good sequencing coverage of the cyclins, which is less of an issue for the whole-of-transcriptome methods described below that use information from more genes.
+This approach assumes that cyclin expression is not affected by biological processes other than the cell cycle.
+This is a strong assumption in highly heterogeneous populations where cyclins may perform cell-type-specific roles.
+For example, using the Grun HSC dataset [@grun2016denovo], we see an upregulation of cyclin D2 in sorted HSCs (Figure \@ref(fig:heat-cyclin-grun)) that is consistent with a particular reliance on D-type cyclins in these cells [@steinman2002cell;@kozar2004mouse].
+
+
+```r
+extractCached("grun-hsc.Rmd", "clustering", "sce.grun.hsc")
+```
+
+<button class="aaron-collapse">View history</button>
+<div class="aaron-content">
+   
+```r
+#--- data-loading ---#
+library(scRNAseq)
+sce.grun.hsc <- GrunHSCData(ensembl=TRUE)
+
+#--- gene-annotation ---#
+library(AnnotationHub)
+ens.mm.v97 <- AnnotationHub()[["AH73905"]]
+anno <- select(ens.mm.v97, keys=rownames(sce.grun.hsc), 
+    keytype="GENEID", columns=c("SYMBOL", "SEQNAME"))
+rowData(sce.grun.hsc) <- anno[match(rownames(sce.grun.hsc), anno$GENEID),]
+
+#--- quality-control ---#
+library(scuttle)
+stats <- perCellQCMetrics(sce.grun.hsc)
+qc <- quickPerCellQC(stats, batch=sce.grun.hsc$protocol,
+    subset=grepl("sorted", sce.grun.hsc$protocol))
+sce.grun.hsc <- sce.grun.hsc[,!qc$discard]
+
+#--- normalization ---#
+library(scran)
+set.seed(101000110)
+clusters <- quickCluster(sce.grun.hsc)
+sce.grun.hsc <- computeSumFactors(sce.grun.hsc, clusters=clusters)
+sce.grun.hsc <- logNormCounts(sce.grun.hsc)
+
+#--- variance-modelling ---#
+set.seed(00010101)
+dec.grun.hsc <- modelGeneVarByPoisson(sce.grun.hsc) 
+top.grun.hsc <- getTopHVGs(dec.grun.hsc, prop=0.1)
+
+#--- dimensionality-reduction ---#
+set.seed(101010011)
+sce.grun.hsc <- denoisePCA(sce.grun.hsc, technical=dec.grun.hsc, subset.row=top.grun.hsc)
+sce.grun.hsc <- runTSNE(sce.grun.hsc, dimred="PCA")
+
+#--- clustering ---#
+snn.gr <- buildSNNGraph(sce.grun.hsc, use.dimred="PCA")
+colLabels(sce.grun.hsc) <- factor(igraph::cluster_walktrap(snn.gr)$membership)
+```
+
+</div>
+
+
+```r
+# Switching the row names for a nicer plot.
+rownames(sce.grun.hsc) <- uniquifyFeatureNames(rownames(sce.grun.hsc),
+    rowData(sce.grun.hsc)$SYMBOL)
+
+cyclin.genes <- grep("^Ccn[abde][0-9]$", rowData(sce.grun.hsc)$SYMBOL)
+cyclin.genes <- rownames(sce.grun.hsc)[cyclin.genes]
+
+plotHeatmap(sce.grun.hsc, order_columns_by="label",
+    cluster_rows=FALSE, features=sort(cyclin.genes),
+    colour_columns_by="protocol")
+```
+
+<div class="figure">
+<img src="cell-cycle_files/figure-html/heat-cyclin-grun-1.png" alt="Heatmap of the log-normalized expression values of the cyclin genes in the Grun HSC dataset. Each column represents a cell that is sorted by the cluster of origin and extraction protocol." width="672" />
+<p class="caption">(\#fig:heat-cyclin-grun)Heatmap of the log-normalized expression values of the cyclin genes in the Grun HSC dataset. Each column represents a cell that is sorted by the cluster of origin and extraction protocol.</p>
+</div>
+
+
+
+Admittedly, this is merely a symptom of a more fundamental issue -
+that the cell cycle is not independent of the other processes that are occurring in a cell.
+This will be a recurring theme throughout the chapter, which suggests that cell cycle inferences are best used in comparisons between closely related cell types where there are fewer changes elsewhere that might interfere with interpretation.
 
 ## Using reference profiles
 
-Cell cycle assignment can be considered a specialized case of cell annotation, which suggests that the strategies described in Chapter \@ref(cell-type-annotation) can be applied here.
-For example, given a reference dataset containing mouse ESCs with known cell cycle phases [@buettner2015computational], we could use *[SingleR](https://bioconductor.org/packages/3.12/SingleR)* to determine the phase of each cell in a test dataset.
+Cell cycle assignment can be considered a specialized case of cell annotation, which suggests that the strategies described in Chapter \@ref(cell-type-annotation) can also be applied here.
+Given a reference dataset containing cells of known cell cycle phase, we could use methods like *[SingleR](https://bioconductor.org/packages/3.12/SingleR)* to determine the phase of each cell in a test dataset.
+We demonstrate on a reference of mouse ESCs from @buettner2015computational that were sorted by cell cycle phase prior to scRNA-seq.
 
 
 ```r
 library(scRNAseq)
 sce.ref <- BuettnerESCData()
+sce.ref <- logNormCounts(sce.ref)
 sce.ref
 ```
 
@@ -231,44 +306,38 @@ sce.ref
 ## class: SingleCellExperiment 
 ## dim: 38293 288 
 ## metadata(0):
-## assays(1): counts
+## assays(2): counts logcounts
 ## rownames(38293): ENSMUSG00000000001 ENSMUSG00000000003 ...
 ##   ENSMUSG00000097934 ENSMUSG00000097935
 ## rowData names(3): EnsemblTranscriptID AssociatedGeneName GeneLength
 ## colnames(288): G1_cell1_count G1_cell2_count ... G2M_cell95_count
 ##   G2M_cell96_count
-## colData names(1): phase
+## colData names(2): phase sizeFactor
 ## reducedDimNames(0):
 ## altExpNames(1): ERCC
 ```
 
-We use the reference dataset to identify phase-specific markers from genes with annotated roles in cell cycle.
-The use of prior annotation aims to avoid detecting markers for other biological processes that happen to be correlated with the cell cycle in the reference dataset, which would reduce classification performance if those processes are absent or uncorrelated in the test dataset.
+We will restrict the annotation process to a subset of genes with _a priori_ known roles in cell cycle.
+This aims to avoid detecting markers for other biological processes that happen to be correlated with the cell cycle in the reference dataset, which would reduce classification performance if those processes are absent or uncorrelated in the test dataset.
 
 
 ```r
-# Find genes that are present in both datasets and are cell cycle-related.
+# Find genes that are cell cycle-related.
 library(org.Mm.eg.db)
 cycle.anno <- select(org.Mm.eg.db, keytype="GOALL", keys="GO:0007049", 
     columns="ENSEMBL")[,"ENSEMBL"]
-candidates <- Reduce(intersect, 
-    list(rownames(sce.ref), rowData(sce.416b)$ENSEMBL, cycle.anno))
+
+# Find the genes that are present in both datasets as well.
+candidates <- intersect(cycle.anno, rownames(sce.ref))
+candidates <- intersect(candidates, rowData(sce.416b)$ENSEMBL)
 str(candidates)
 ```
 
 ```
-##  chr [1:1606] "ENSMUSG00000000001" "ENSMUSG00000000028" ...
+##  chr [1:1606] "ENSMUSG00000026842" "ENSMUSG00000029580" ...
 ```
 
-```r
-# Identifying markers between cell cycle phases.
-sce.ref <- logNormCounts(sce.ref)
-phase.stats <- pairwiseWilcox(logcounts(sce.ref), sce.ref$phase, 
-    direction="up", subset.row=candidates)
-cycle.markers <- getTopMarkers(phase.stats[[1]], phase.stats[[2]])
-```
-
-We use the identified markers to assign labels to the 416B data with the `SingleR()` function.
+We use the `SingleR()` function to assign labels to the 416B data based on the cell cycle phases in the ESC reference.
 Cluster 1 mostly consists of G1 cells while the other clusters have more cells in the other phases, which is broadly consistent with our conclusions from the cyclin-based analysis.
 Unlike the cyclin-based analysis, this approach yields "absolute" assignments of cell cycle phase that do not need to be interpreted relative to other cells in the same dataset.
 
@@ -279,8 +348,9 @@ test.data <- logcounts(sce.416b)
 rownames(test.data) <- rowData(sce.416b)$ENSEMBL
 
 library(SingleR)
-assignments <- SingleR(test.data, ref=sce.ref,
-    label=sce.ref$phase, genes=cycle.markers)
+assignments <- SingleR(test.data[candidates,], ref=sce.ref[candidates,],
+    de.method="wilcox", label=sce.ref$phase)
+
 tab <- table(assignments$labels, colLabels(sce.416b))
 tab
 ```
@@ -334,7 +404,7 @@ chisq.test(tab[,1:2])
 
 ## Using the `cyclone()` classifier
 
-The prediction method described by @scialdone2015computational is another approach for classifying cells into cell cycle phases.
+The method described by @scialdone2015computational is yet another approach for classifying cells into cell cycle phases.
 Using a reference dataset, we first compute the sign of the difference in expression between each pair of genes.
 Pairs with changes in the sign across cell cycle phases are chosen as markers.
 Cells in a test dataset can then be classified into the appropriate phase, based on whether the observed sign for each marker pair is consistent with one phase or another.
@@ -401,32 +471,104 @@ The most common approach is to use a linear model to simply regress out the phas
 library(batchelor)
 sce.nocycle <- regressBatches(sce.416b, batch=assignments$phases)
 
+# The corrected matrix can then be used for downstream analyses:
+sce.nocycle <- runPCA(sce.nocycle, exprs_values="corrected")
+```
+
+Similarly, for functions that support blocking, we can use the phase assignments as a blocking factor.
+
+
+```r
 # Similar use in related functions that support blocking:
 dec.nocycle <- modelGeneVarWithSpikes(sce.416b, "ERCC", 
     block=assignments$phases)
 marker.nocycle <- findMarkers(sce.416b, block=assignments$phases)
 ```
 
-That said, we do not consider adjusting for cell cycle to be a necessary step in routine scRNA-seq analyses.
-In most applications, the cell cycle is a minor factor of variation, secondary to differences between cell types.
-Any attempt at removal would also need to assume that the cell cycle effect is orthogonal to other biological processes.
-For example, regression would potentially remove interesting signal if cell cycle activity varied across clusters or conditions, with a prime example being the increased proliferation of activated T cells [@richard2018tcell]. 
-We suggest only performing cell cycle adjustment on an as-needed basis in populations with clear cell cycle effects.
+That said, we do not consider cell cycle adjustment to be necessary for routine scRNA-seq analyses.
 
-Alternatively, users may consider just excluding cell cycle-related genes from downstream analysis.
-This should remove most of the cell cycle effect without making strong assumptions about orthogonality.
-Of course, this will not remove the effect of the cell cycle in genes with no annotated role in the cell cycle, but in such cases, there is ambiguity over whether that effect is truly due to the cell cycle or from some other (interesting) biological process that happens to be correlated with the cell cycle.
+- In most applications, the cell cycle is a minor factor of variation, secondary to differences between cell types.
+It will often have no effect on many analyses that focus on broader aspects of heterogeneity.
+More subtle heterogeneity may be masked by cell cycle variation but this should be demonstrated rather than assumed by default.
+- Any attempt at removal assumes that the cell cycle effect is orthogonal to other biological processes.
+Regression will remove interesting signal if cell cycle activity varies across clusters or conditions. 
+This is not an uncommon occurence with, e.g., increased proliferation of T cells upon activation [@richard2018tcell] and changes in cell cycle phase progression across developmental stages [@roccio2013predicting].
+Violations of this assumption may also introduce spurious signal within clusters, interfering with any interpretation of subtle variation.
+- If adjustment is truly necessary, it should be applied separately to the subset of cells in each cluster.
+This avoids the worst violations of the orthogonality assumption due to differences in cell cycle behavior across clusters.
+Similarly, gene-based analyses should use the uncorrected data with blocking where possible (Section \@ref(using-corrected-values)), which provides a sanity check that protects against distortions introduced by the adjustment.
+
+It can also be an informative exercise to repeat the analysis after removing all known cell cycle-related genes.
+This allows us to explore other factors of variation that are correlated with but distinct from the cell cycle, such as cell fate decisions [@soufi2016cycling] that would otherwise have been eliminated by regression.
+We demonstrate below with the @leng2015oscope dataset containing phase-sorted ESCs, where removal of a variety of cell cycle-related genes does not eliminate the separation between G1 and S populations (Figure \@ref(fig:leng-nocycle)).
+The persistence of this separation is driven by differential expression in genes without any direct role in cell cyle progression, possibly indicative of a correlated biological process (or a sorting artifact).
 
 
 ```r
-library(org.Mm.eg.db)
-cc.genes <- select(org.Mm.eg.db, keys="GO:0007049", keytype="GOALL", column="ENSEMBL")
-sce.416b.uncycle <- sce.416b[!rowData(sce.416b)$ENSEMBL %in% cc.genes$ENSEMBL,]
+library(org.Hs.eg.db)
+go.genes <- select(org.Hs.eg.db, keys="GO:0007049", # cell cycle
+    keytype="GOALL", column="ENSEMBL")[,"ENSEMBL"]
 
-# Proceed with the rest of the analysis. Note that in this case, oncogene
-# induction is quite strongly associated with the cell cycle but is considered
-# to be a separate effect, so removal of the cell cycle-related genes does not
-# change the clustering much.
+library(reactome.db)
+rct.genes <- select(reactome.db, keys="R-HSA-1640170", # cell cycle
+    keytype="PATHID", column="ENTREZID")[,"ENTREZID"]
+rct.genes <- select(org.Hs.eg.db, keys=as.character(rct.genes), 
+    keytype="ENTREZID", column="ENSEMBL")[,"ENSEMBL"]
+
+combined <- union(rct.genes, go.genes)
+length(combined)
+```
+
+```
+## [1] 2244
+```
+
+```r
+# Performing an analysis without the cell cycle-related genes.
+library(scRNAseq)
+sce.leng <- LengESCData(ensembl=TRUE)
+leftovers <- setdiff(rownames(sce.leng), combined)
+sce.nocycle <- sce.leng[leftovers,]
+
+sce.nocycle <- logNormCounts(sce.nocycle, assay.type="normcounts")
+dec.nocycle <- modelGeneVar(sce.nocycle)
+sce.nocycle <- runPCA(sce.nocycle, subset_row=getTopHVGs(dec.nocycle, n=1000))
+plotPCA(sce.nocycle, colour_by="Phase")
+```
+
+<div class="figure">
+<img src="cell-cycle_files/figure-html/leng-nocycle-1.png" alt="PCA plot of the Leng ESC dataset, generated after comprehensive removal of cell cycle-related genes. Each point corresponds to a cell that is colored by the sorted cell cycle phase." width="672" />
+<p class="caption">(\#fig:leng-nocycle)PCA plot of the Leng ESC dataset, generated after comprehensive removal of cell cycle-related genes. Each point corresponds to a cell that is colored by the sorted cell cycle phase.</p>
+</div>
+
+```r
+diff <- findMarkers(sce.nocycle, sce.nocycle$Phase, direction="up", 
+    row.data=rowData(sce.nocycle)[,"originalName",drop=FALSE]) 
+as.data.frame(diff$S[1:20,])
+```
+
+```
+##                 originalName Top   p.value       FDR summary.logFC logFC.G1
+## ENSG00000168298     HIST1H1E   1 1.151e-40 1.808e-36        3.9911   3.9911
+## ENSG00000184357     HIST1H1B   2 6.582e-38 5.168e-34        4.1561   4.1561
+## ENSG00000172006       ZNF554   3 1.083e-28 5.670e-25        1.3533   1.3533
+## ENSG00000105426        PTPRS   4 3.425e-27 1.345e-23        1.3334   1.3334
+## ENSG00000124575     HIST1H1D   5 6.914e-24 2.172e-20        2.9226   2.9226
+## ENSG00000124610     HIST1H1A   6 4.335e-22 1.135e-18        3.8796   3.8796
+## ENSG00000122787       AKR1D1   7 1.944e-20 4.362e-17        1.7696   1.7696
+## ENSG00000187837     HIST1H1C   8 2.367e-20 4.645e-17        2.6925   2.6925
+## ENSG00000112599       GUCA1B   9 5.005e-20 8.733e-17        1.6067   1.6067
+## ENSG00000196912     ANKRD36B  10 9.344e-20 1.467e-16        1.9969   1.9969
+## ENSG00000140505       CYP1A2  11 5.226e-18 7.460e-15        1.0224   1.0224
+## ENSG00000244694       PTCHD4  12 6.086e-18 7.964e-15        2.2297   2.2297
+## ENSG00000135976      ANKRD36  13 1.822e-17 2.175e-14        3.3136   3.3136
+## ENSG00000105392          CRX  14 1.939e-17 2.175e-14        1.1622   1.1622
+## ENSG00000134757         DSG3  15 2.701e-17 2.655e-14        1.4882   1.4882
+## ENSG00000113946       CLDN16  16 2.705e-17 2.655e-14        1.3234   1.3234
+## ENSG00000147697        GSDMC  17 3.850e-17 3.455e-14        1.2055   1.2055
+## ENSG00000142408       CACNG8  18 3.961e-17 3.455e-14        1.2537   1.2537
+## ENSG00000180616        SSTR2  19 5.355e-17 4.425e-14        1.6697   1.6697
+## ENSG00000175544        CABP4  20 1.297e-16 1.019e-13        0.9409   0.9409
 ```
 
 ## Session Info {-}
@@ -434,17 +576,17 @@ sce.416b.uncycle <- sce.416b[!rowData(sce.416b)$ENSEMBL %in% cc.genes$ENSEMBL,]
 <button class="aaron-collapse">View session info</button>
 <div class="aaron-content">
 ```
-R version 4.0.0 Patched (2020-05-01 r78341)
+R version 4.0.2 (2020-06-22)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: Ubuntu 18.04.4 LTS
 
 Matrix products: default
-BLAS:   /home/luna/Software/R/R-4-0-branch-dev/lib/libRblas.so
-LAPACK: /home/luna/Software/R/R-4-0-branch-dev/lib/libRlapack.so
+BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
+LAPACK: /home/biocbuild/bbs-3.12-bioc/R/lib/libRlapack.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=C              
  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
@@ -455,52 +597,53 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] batchelor_1.5.1             SingleR_1.3.6              
- [3] org.Mm.eg.db_3.11.4         ensembldb_2.13.1           
- [5] AnnotationFilter_1.13.0     GenomicFeatures_1.41.0     
- [7] AnnotationDbi_1.51.0        scRNAseq_2.3.6             
- [9] scran_1.17.2                scater_1.17.3              
-[11] ggplot2_3.3.1               SingleCellExperiment_1.11.4
-[13] SummarizedExperiment_1.19.5 DelayedArray_0.15.4        
-[15] matrixStats_0.56.0          Matrix_1.2-18              
-[17] Biobase_2.49.0              GenomicRanges_1.41.5       
-[19] GenomeInfoDb_1.25.2         IRanges_2.23.10            
-[21] S4Vectors_0.27.12           BiocGenerics_0.35.4        
-[23] BiocStyle_2.17.0            rebook_0.99.0              
+ [1] reactome.db_1.70.0          org.Hs.eg.db_3.11.4        
+ [3] batchelor_1.5.1             SingleR_1.3.6              
+ [5] org.Mm.eg.db_3.11.4         ensembldb_2.13.1           
+ [7] AnnotationFilter_1.13.0     GenomicFeatures_1.41.0     
+ [9] AnnotationDbi_1.51.1        scRNAseq_2.3.8             
+[11] scran_1.17.3                scater_1.17.2              
+[13] ggplot2_3.3.2               SingleCellExperiment_1.11.6
+[15] SummarizedExperiment_1.19.5 DelayedArray_0.15.6        
+[17] matrixStats_0.56.0          Matrix_1.2-18              
+[19] Biobase_2.49.0              GenomicRanges_1.41.5       
+[21] GenomeInfoDb_1.25.5         IRanges_2.23.10            
+[23] S4Vectors_0.27.12           BiocGenerics_0.35.4        
+[25] BiocStyle_2.17.0            simpleSingleCell_1.13.5    
 
 loaded via a namespace (and not attached):
   [1] ggbeeswarm_0.6.0              colorspace_1.4-1             
-  [3] ellipsis_0.3.1                scuttle_0.99.9               
-  [5] XVector_0.29.2                BiocNeighbors_1.7.0          
+  [3] ellipsis_0.3.1                scuttle_0.99.10              
+  [5] XVector_0.29.3                BiocNeighbors_1.7.0          
   [7] farver_2.0.3                  bit64_0.9-7                  
   [9] interactiveDisplayBase_1.27.5 codetools_0.2-16             
- [11] knitr_1.28                    Rsamtools_2.5.1              
+ [11] knitr_1.29                    Rsamtools_2.5.3              
  [13] dbplyr_1.4.4                  pheatmap_1.0.12              
- [15] graph_1.67.1                  shiny_1.4.0.2                
- [17] BiocManager_1.30.10           compiler_4.0.0               
+ [15] graph_1.67.1                  shiny_1.5.0                  
+ [17] BiocManager_1.30.10           compiler_4.0.2               
  [19] httr_1.4.1                    dqrng_0.2.1                  
  [21] lazyeval_0.2.2                assertthat_0.2.1             
  [23] fastmap_1.0.1                 limma_3.45.7                 
  [25] later_1.1.0.1                 BiocSingular_1.5.0           
- [27] prettyunits_1.1.1             htmltools_0.4.0              
- [29] tools_4.0.0                   rsvd_1.0.3                   
+ [27] prettyunits_1.1.1             htmltools_0.5.0              
+ [29] tools_4.0.2                   rsvd_1.0.3                   
  [31] igraph_1.2.5                  gtable_0.3.0                 
  [33] glue_1.4.1                    GenomeInfoDbData_1.2.3       
  [35] dplyr_1.0.0                   rappdirs_0.3.1               
- [37] Rcpp_1.0.4.6                  Biostrings_2.57.2            
- [39] vctrs_0.3.1                   rtracklayer_1.49.3           
- [41] ExperimentHub_1.15.0          DelayedMatrixStats_1.11.0    
- [43] xfun_0.14                     stringr_1.4.0                
+ [37] Rcpp_1.0.4.6                  vctrs_0.3.1                  
+ [39] Biostrings_2.57.2             rtracklayer_1.49.3           
+ [41] ExperimentHub_1.15.0          DelayedMatrixStats_1.11.1    
+ [43] xfun_0.15                     stringr_1.4.0                
  [45] ps_1.3.3                      mime_0.9                     
  [47] lifecycle_0.2.0               irlba_2.3.3                  
  [49] statmod_1.4.34                XML_3.99-0.3                 
- [51] AnnotationHub_2.21.0          edgeR_3.31.4                 
+ [51] AnnotationHub_2.21.1          edgeR_3.31.4                 
  [53] zlibbioc_1.35.0               scales_1.1.1                 
  [55] ProtGenerics_1.21.0           hms_0.5.3                    
  [57] promises_1.1.1                RColorBrewer_1.1-2           
  [59] yaml_2.2.1                    curl_4.3                     
  [61] memoise_1.1.0                 gridExtra_2.3                
- [63] biomaRt_2.45.0                stringi_1.4.6                
+ [63] biomaRt_2.45.1                stringi_1.4.6                
  [65] RSQLite_2.2.0                 BiocVersion_3.12.0           
  [67] highr_0.8                     BiocParallel_1.23.0          
  [69] rlang_0.4.6                   pkgconfig_2.0.3              
@@ -510,17 +653,17 @@ loaded via a namespace (and not attached):
  [77] CodeDepends_0.6.5             cowplot_1.0.0                
  [79] bit_1.1-15.2                  processx_3.4.2               
  [81] tidyselect_1.1.0              magrittr_1.5                 
- [83] bookdown_0.19                 R6_2.4.1                     
+ [83] bookdown_0.20                 R6_2.4.1                     
  [85] generics_0.0.2                DBI_1.1.0                    
  [87] pillar_1.4.4                  withr_2.2.0                  
  [89] RCurl_1.98-1.2                tibble_3.0.1                 
  [91] crayon_1.3.4                  BiocFileCache_1.13.0         
- [93] rmarkdown_2.2                 progress_1.2.2               
+ [93] rmarkdown_2.3                 progress_1.2.2               
  [95] viridis_0.5.1                 locfit_1.5-9.4               
- [97] grid_4.0.0                    blob_1.2.1                   
+ [97] grid_4.0.2                    blob_1.2.1                   
  [99] callr_3.4.3                   digest_0.6.25                
 [101] xtable_1.8-4                  httpuv_1.5.4                 
-[103] openssl_1.4.1                 munsell_0.5.0                
+[103] openssl_1.4.2                 munsell_0.5.0                
 [105] beeswarm_0.2.3                viridisLite_0.3.0            
 [107] vipor_0.4.5                   askpass_1.1                  
 ```

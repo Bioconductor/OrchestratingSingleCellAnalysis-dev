@@ -455,17 +455,17 @@ For demonstration and inspiration, we refer readers to the following examples of
 <button class="aaron-collapse">View session info</button>
 <div class="aaron-content">
 ```
-R version 4.0.0 Patched (2020-05-01 r78341)
+R version 4.0.2 (2020-06-22)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: Ubuntu 18.04.4 LTS
 
 Matrix products: default
-BLAS:   /home/luna/Software/R/R-4-0-branch-dev/lib/libRblas.so
-LAPACK: /home/luna/Software/R/R-4-0-branch-dev/lib/libRlapack.so
+BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
+LAPACK: /home/biocbuild/bbs-3.12-bioc/R/lib/libRlapack.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=C              
  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
@@ -476,38 +476,38 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] scran_1.17.2                scater_1.17.3              
- [3] ggplot2_3.3.1               iSEE_2.1.6                 
- [5] SingleCellExperiment_1.11.4 SummarizedExperiment_1.19.5
- [7] DelayedArray_0.15.4         matrixStats_0.56.0         
+ [1] scran_1.17.3                scater_1.17.2              
+ [3] ggplot2_3.3.2               iSEE_2.1.8                 
+ [5] SingleCellExperiment_1.11.6 SummarizedExperiment_1.19.5
+ [7] DelayedArray_0.15.6         matrixStats_0.56.0         
  [9] Matrix_1.2-18               Biobase_2.49.0             
-[11] GenomicRanges_1.41.5        GenomeInfoDb_1.25.2        
+[11] GenomicRanges_1.41.5        GenomeInfoDb_1.25.5        
 [13] IRanges_2.23.10             S4Vectors_0.27.12          
 [15] BiocGenerics_0.35.4         BiocStyle_2.17.0           
-[17] rebook_0.99.0              
+[17] simpleSingleCell_1.13.5    
 
 loaded via a namespace (and not attached):
  [1] ggbeeswarm_0.6.0          colorspace_1.4-1         
  [3] rjson_0.2.20              ellipsis_0.3.1           
- [5] circlize_0.4.10           scuttle_0.99.9           
- [7] XVector_0.29.2            GlobalOptions_0.1.2      
+ [5] circlize_0.4.10           scuttle_0.99.10          
+ [7] XVector_0.29.3            GlobalOptions_0.1.2      
  [9] BiocNeighbors_1.7.0       clue_0.3-57              
-[11] DT_0.13                   codetools_0.2-16         
-[13] splines_4.0.0             knitr_1.28               
-[15] jsonlite_1.6.1            cluster_2.1.0            
+[11] DT_0.14                   codetools_0.2-16         
+[13] splines_4.0.2             knitr_1.29               
+[15] jsonlite_1.7.0            cluster_2.1.0            
 [17] png_0.1-7                 shinydashboard_0.7.1     
-[19] graph_1.67.1              shiny_1.4.0.2            
-[21] BiocManager_1.30.10       compiler_4.0.0           
+[19] graph_1.67.1              shiny_1.5.0              
+[21] BiocManager_1.30.10       compiler_4.0.2           
 [23] dqrng_0.2.1               fastmap_1.0.1            
 [25] limma_3.45.7              later_1.1.0.1            
-[27] BiocSingular_1.5.0        htmltools_0.4.0          
-[29] tools_4.0.0               rsvd_1.0.3               
+[27] BiocSingular_1.5.0        htmltools_0.5.0          
+[29] tools_4.0.2               rsvd_1.0.3               
 [31] igraph_1.2.5              gtable_0.3.0             
 [33] glue_1.4.1                GenomeInfoDbData_1.2.3   
 [35] dplyr_1.0.0               Rcpp_1.0.4.6             
 [37] vctrs_0.3.1               nlme_3.1-148             
-[39] rintrojs_0.2.2            DelayedMatrixStats_1.11.0
-[41] xfun_0.14                 stringr_1.4.0            
+[39] rintrojs_0.2.2            DelayedMatrixStats_1.11.1
+[41] xfun_0.15                 stringr_1.4.0            
 [43] ps_1.3.3                  mime_0.9                 
 [45] miniUI_0.1.1.1            lifecycle_0.2.0          
 [47] irlba_2.3.3               statmod_1.4.34           
@@ -524,14 +524,14 @@ loaded via a namespace (and not attached):
 [69] purrr_0.3.4               CodeDepends_0.6.5        
 [71] htmlwidgets_1.5.1         processx_3.4.2           
 [73] tidyselect_1.1.0          magrittr_1.5             
-[75] bookdown_0.19             R6_2.4.1                 
+[75] bookdown_0.20             R6_2.4.1                 
 [77] generics_0.0.2            pillar_1.4.4             
 [79] withr_2.2.0               mgcv_1.8-31              
 [81] RCurl_1.98-1.2            tibble_3.0.1             
 [83] crayon_1.3.4              shinyWidgets_0.5.3       
-[85] rmarkdown_2.2             viridis_0.5.1            
+[85] rmarkdown_2.3             viridis_0.5.1            
 [87] GetoptLong_1.0.0          locfit_1.5-9.4           
-[89] grid_4.0.0                callr_3.4.3              
+[89] grid_4.0.2                callr_3.4.3              
 [91] digest_0.6.25             xtable_1.8-4             
 [93] httpuv_1.5.4              munsell_0.5.0            
 [95] beeswarm_0.2.3            viridisLite_0.3.0        

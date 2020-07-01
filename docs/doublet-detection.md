@@ -626,17 +626,17 @@ This should be a consideration when designing scRNA-seq experiments, where the d
 <button class="aaron-collapse">View session info</button>
 <div class="aaron-content">
 ```
-R version 4.0.0 Patched (2020-05-01 r78341)
+R version 4.0.2 (2020-06-22)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: Ubuntu 18.04.4 LTS
 
 Matrix products: default
-BLAS:   /home/luna/Software/R/R-4-0-branch-dev/lib/libRblas.so
-LAPACK: /home/luna/Software/R/R-4-0-branch-dev/lib/libRlapack.so
+BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
+LAPACK: /home/biocbuild/bbs-3.12-bioc/R/lib/libRlapack.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=C              
  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
@@ -647,59 +647,59 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] DropletUtils_1.9.0          BiocFileCache_1.13.0       
+ [1] DropletUtils_1.9.2          BiocFileCache_1.13.0       
  [3] dbplyr_1.4.4                BiocSingular_1.5.0         
- [5] scater_1.17.3               ggplot2_3.3.1              
- [7] scran_1.17.2                SingleCellExperiment_1.11.4
- [9] SummarizedExperiment_1.19.5 DelayedArray_0.15.4        
+ [5] scater_1.17.2               ggplot2_3.3.2              
+ [7] scran_1.17.3                SingleCellExperiment_1.11.6
+ [9] SummarizedExperiment_1.19.5 DelayedArray_0.15.6        
 [11] matrixStats_0.56.0          Matrix_1.2-18              
 [13] Biobase_2.49.0              GenomicRanges_1.41.5       
-[15] GenomeInfoDb_1.25.2         IRanges_2.23.10            
+[15] GenomeInfoDb_1.25.5         IRanges_2.23.10            
 [17] S4Vectors_0.27.12           BiocGenerics_0.35.4        
-[19] BiocStyle_2.17.0            rebook_0.99.0              
+[19] BiocStyle_2.17.0            simpleSingleCell_1.13.5    
 
 loaded via a namespace (and not attached):
  [1] bitops_1.0-6              bit64_0.9-7              
  [3] httr_1.4.1                RColorBrewer_1.1-2       
- [5] tools_4.0.0               R6_2.4.1                 
- [7] irlba_2.3.3               HDF5Array_1.17.1         
+ [5] tools_4.0.2               R6_2.4.1                 
+ [7] irlba_2.3.3               HDF5Array_1.17.3         
  [9] vipor_0.4.5               DBI_1.1.0                
-[11] colorspace_1.4-1          rhdf5filters_1.1.0       
+[11] colorspace_1.4-1          rhdf5filters_1.1.1       
 [13] withr_2.2.0               tidyselect_1.1.0         
 [15] gridExtra_2.3             processx_3.4.2           
 [17] curl_4.3                  bit_1.1-15.2             
-[19] compiler_4.0.0            graph_1.67.1             
+[19] compiler_4.0.2            graph_1.67.1             
 [21] BiocNeighbors_1.7.0       labeling_0.3             
-[23] bookdown_0.19             scales_1.1.1             
+[23] bookdown_0.20             scales_1.1.1             
 [25] callr_3.4.3               rappdirs_0.3.1           
 [27] stringr_1.4.0             digest_0.6.25            
-[29] R.utils_2.9.2             rmarkdown_2.2            
-[31] XVector_0.29.2            pkgconfig_2.0.3          
-[33] htmltools_0.4.0           limma_3.45.7             
+[29] R.utils_2.9.2             rmarkdown_2.3            
+[31] XVector_0.29.3            pkgconfig_2.0.3          
+[33] htmltools_0.5.0           limma_3.45.7             
 [35] highr_0.8                 rlang_0.4.6              
-[37] RSQLite_2.2.0             DelayedMatrixStats_1.11.0
+[37] RSQLite_2.2.0             DelayedMatrixStats_1.11.1
 [39] generics_0.0.2            farver_2.0.3             
 [41] BiocParallel_1.23.0       R.oo_1.23.0              
 [43] dplyr_1.0.0               RCurl_1.98-1.2           
 [45] magrittr_1.5              GenomeInfoDbData_1.2.3   
-[47] scuttle_0.99.9            Rhdf5lib_1.11.2          
+[47] scuttle_0.99.10           Rhdf5lib_1.11.2          
 [49] Rcpp_1.0.4.6              ggbeeswarm_0.6.0         
 [51] munsell_0.5.0             viridis_0.5.1            
 [53] R.methodsS3_1.8.0         lifecycle_0.2.0          
 [55] stringi_1.4.6             yaml_2.2.1               
 [57] edgeR_3.31.4              zlibbioc_1.35.0          
-[59] Rtsne_0.15                rhdf5_2.33.3             
-[61] grid_4.0.0                blob_1.2.1               
+[59] Rtsne_0.15                rhdf5_2.33.4             
+[61] grid_4.0.2                blob_1.2.1               
 [63] dqrng_0.2.1               crayon_1.3.4             
 [65] lattice_0.20-41           cowplot_1.0.0            
 [67] locfit_1.5-9.4            CodeDepends_0.6.5        
-[69] knitr_1.28                ps_1.3.3                 
+[69] knitr_1.29                ps_1.3.3                 
 [71] pillar_1.4.4              igraph_1.2.5             
 [73] codetools_0.2-16          XML_3.99-0.3             
 [75] glue_1.4.1                evaluate_0.14            
 [77] BiocManager_1.30.10       vctrs_0.3.1              
 [79] gtable_0.3.0              purrr_0.3.4              
-[81] assertthat_0.2.1          xfun_0.14                
+[81] assertthat_0.2.1          xfun_0.15                
 [83] rsvd_1.0.3                viridisLite_0.3.0        
 [85] tibble_3.0.1              pheatmap_1.0.12          
 [87] memoise_1.1.0             beeswarm_0.2.3           

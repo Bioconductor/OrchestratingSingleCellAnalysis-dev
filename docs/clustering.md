@@ -1169,17 +1169,17 @@ If cell types or states span cluster boundaries, conditioning on the putative ce
 <button class="aaron-collapse">View session info</button>
 <div class="aaron-content">
 ```
-R version 4.0.0 Patched (2020-05-01 r78341)
+R version 4.0.2 (2020-06-22)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: Ubuntu 18.04.4 LTS
 
 Matrix products: default
-BLAS:   /home/luna/Software/R/R-4-0-branch-dev/lib/libRblas.so
-LAPACK: /home/luna/Software/R/R-4-0-branch-dev/lib/libRlapack.so
+BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
+LAPACK: /home/biocbuild/bbs-3.12-bioc/R/lib/libRlapack.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=C              
  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
@@ -1193,54 +1193,54 @@ other attached packages:
  [1] clustree_0.4.3              ggraph_2.0.3               
  [3] dynamicTreeCut_1.63-1       dendextend_1.13.4          
  [5] cluster_2.1.0               pheatmap_1.0.12            
- [7] scater_1.17.3               ggplot2_3.3.1              
- [9] scran_1.17.2                SingleCellExperiment_1.11.4
-[11] SummarizedExperiment_1.19.5 DelayedArray_0.15.4        
+ [7] scater_1.17.2               ggplot2_3.3.2              
+ [9] scran_1.17.3                SingleCellExperiment_1.11.6
+[11] SummarizedExperiment_1.19.5 DelayedArray_0.15.6        
 [13] matrixStats_0.56.0          Matrix_1.2-18              
 [15] Biobase_2.49.0              GenomicRanges_1.41.5       
-[17] GenomeInfoDb_1.25.2         IRanges_2.23.10            
+[17] GenomeInfoDb_1.25.5         IRanges_2.23.10            
 [19] S4Vectors_0.27.12           BiocGenerics_0.35.4        
-[21] BiocStyle_2.17.0            rebook_0.99.0              
+[21] BiocStyle_2.17.0            simpleSingleCell_1.13.5    
 
 loaded via a namespace (and not attached):
  [1] bitops_1.0-6              RColorBrewer_1.1-2       
- [3] backports_1.1.7           tools_4.0.0              
+ [3] backports_1.1.8           tools_4.0.2              
  [5] R6_2.4.1                  irlba_2.3.3              
  [7] vipor_0.4.5               colorspace_1.4-1         
  [9] withr_2.2.0               tidyselect_1.1.0         
 [11] gridExtra_2.3             processx_3.4.2           
-[13] compiler_4.0.0            graph_1.67.1             
+[13] compiler_4.0.2            graph_1.67.1             
 [15] BiocNeighbors_1.7.0       labeling_0.3             
-[17] bookdown_0.19             checkmate_2.0.0          
+[17] bookdown_0.20             checkmate_2.0.0          
 [19] scales_1.1.1              callr_3.4.3              
 [21] stringr_1.4.0             digest_0.6.25            
-[23] rmarkdown_2.2             XVector_0.29.2           
-[25] pkgconfig_2.0.3           htmltools_0.4.0          
+[23] rmarkdown_2.3             XVector_0.29.3           
+[25] pkgconfig_2.0.3           htmltools_0.5.0          
 [27] limma_3.45.7              highr_0.8                
-[29] rlang_0.4.6               DelayedMatrixStats_1.11.0
+[29] rlang_0.4.6               DelayedMatrixStats_1.11.1
 [31] generics_0.0.2            farver_2.0.3             
 [33] BiocParallel_1.23.0       dplyr_1.0.0              
 [35] RCurl_1.98-1.2            magrittr_1.5             
 [37] BiocSingular_1.5.0        GenomeInfoDbData_1.2.3   
-[39] scuttle_0.99.9            Rcpp_1.0.4.6             
+[39] scuttle_0.99.10           Rcpp_1.0.4.6             
 [41] ggbeeswarm_0.6.0          munsell_0.5.0            
 [43] viridis_0.5.1             lifecycle_0.2.0          
 [45] stringi_1.4.6             yaml_2.2.1               
 [47] edgeR_3.31.4              MASS_7.3-51.6            
-[49] zlibbioc_1.35.0           grid_4.0.0               
+[49] zlibbioc_1.35.0           grid_4.0.2               
 [51] ggrepel_0.8.2             dqrng_0.2.1              
 [53] crayon_1.3.4              lattice_0.20-41          
 [55] graphlayouts_0.7.0        cowplot_1.0.0            
 [57] locfit_1.5-9.4            CodeDepends_0.6.5        
-[59] knitr_1.28                ps_1.3.3                 
+[59] knitr_1.29                ps_1.3.3                 
 [61] pillar_1.4.4              igraph_1.2.5             
 [63] codetools_0.2-16          XML_3.99-0.3             
 [65] glue_1.4.1                evaluate_0.14            
 [67] BiocManager_1.30.10       tweenr_1.0.1             
 [69] vctrs_0.3.1               polyclip_1.10-0          
-[71] tidyr_1.1.0               gtable_0.3.0             
-[73] purrr_0.3.4               ggforce_0.3.1            
-[75] xfun_0.14                 rsvd_1.0.3               
+[71] gtable_0.3.0              purrr_0.3.4              
+[73] tidyr_1.1.0               ggforce_0.3.2            
+[75] xfun_0.15                 rsvd_1.0.3               
 [77] tidygraph_1.2.0           viridisLite_0.3.0        
 [79] tibble_3.0.1              beeswarm_0.2.3           
 [81] statmod_1.4.34            ellipsis_0.3.1           

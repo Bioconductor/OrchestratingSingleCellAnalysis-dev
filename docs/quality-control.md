@@ -146,58 +146,97 @@ df
 
 ```
 ## DataFrame with 192 rows and 12 columns
-##           sum  detected subsets_Mito_sum subsets_Mito_detected
-##     <integer> <integer>        <integer>             <integer>
-## 1      865936      7618            78790                    20
-## 2     1076277      7521            98613                    20
-## 3     1180138      8306           100341                    19
-## 4     1342593      8143           104882                    20
-## 5     1668311      7154           129559                    22
-## ...       ...       ...              ...                   ...
-## 188    776622      8174            48126                    20
-## 189   1299950      8956           112225                    25
-## 190   1800696      9530           135693                    23
-## 191     46731      6649             3505                    16
-## 192   1866692     10964           150375                    29
-##     subsets_Mito_percent altexps_ERCC_sum altexps_ERCC_detected
-##                <numeric>        <integer>             <integer>
-## 1                9.09882            65278                    39
-## 2                9.16242            74748                    40
-## 3                8.50248            60878                    42
-## 4                7.81190            60073                    42
-## 5                7.76588           136810                    44
-## ...                  ...              ...                   ...
-## 188              6.19684            61575                    39
-## 189              8.63302            94982                    41
-## 190              7.53559           113707                    40
-## 191              7.50037             7580                    44
-## 192              8.05569            48664                    39
-##     altexps_ERCC_percent altexps_SIRV_sum altexps_SIRV_detected
-##                <numeric>        <integer>             <integer>
-## 1                6.80658            27828                     7
-## 2                6.28030            39173                     7
-## 3                4.78949            30058                     7
-## 4                4.18567            32542                     7
-## 5                7.28887            71850                     7
-## ...                  ...              ...                   ...
-## 188              7.17620            19848                     7
-## 189              6.65764            31729                     7
-## 190              5.81467            41116                     7
-## 191             13.48898             1883                     7
-## 192              2.51930            16289                     7
-##     altexps_SIRV_percent     total
-##                <numeric> <integer>
-## 1                2.90165    959042
-## 2                3.29130   1190198
-## 3                2.36477   1271074
-## 4                2.26741   1435208
-## 5                3.82798   1876971
-## ...                  ...       ...
-## 188             2.313165    858045
-## 189             2.224004   1426661
-## 190             2.102562   1955519
-## 191             3.350892     56194
-## 192             0.843271   1931645
+##                                             sum  detected subsets_Mito_sum
+##                                       <integer> <integer>        <integer>
+## SLX-9555.N701_S502.C89V9ANXX.s_1.r_1     865936      7618            78790
+## SLX-9555.N701_S503.C89V9ANXX.s_1.r_1    1076277      7521            98613
+## SLX-9555.N701_S504.C89V9ANXX.s_1.r_1    1180138      8306           100341
+## SLX-9555.N701_S505.C89V9ANXX.s_1.r_1    1342593      8143           104882
+## SLX-9555.N701_S506.C89V9ANXX.s_1.r_1    1668311      7154           129559
+## ...                                         ...       ...              ...
+## SLX-11312.N712_S505.H5H5YBBXX.s_8.r_1    776622      8174            48126
+## SLX-11312.N712_S506.H5H5YBBXX.s_8.r_1   1299950      8956           112225
+## SLX-11312.N712_S507.H5H5YBBXX.s_8.r_1   1800696      9530           135693
+## SLX-11312.N712_S508.H5H5YBBXX.s_8.r_1     46731      6649             3505
+## SLX-11312.N712_S517.H5H5YBBXX.s_8.r_1   1866692     10964           150375
+##                                       subsets_Mito_detected
+##                                                   <integer>
+## SLX-9555.N701_S502.C89V9ANXX.s_1.r_1                     20
+## SLX-9555.N701_S503.C89V9ANXX.s_1.r_1                     20
+## SLX-9555.N701_S504.C89V9ANXX.s_1.r_1                     19
+## SLX-9555.N701_S505.C89V9ANXX.s_1.r_1                     20
+## SLX-9555.N701_S506.C89V9ANXX.s_1.r_1                     22
+## ...                                                     ...
+## SLX-11312.N712_S505.H5H5YBBXX.s_8.r_1                    20
+## SLX-11312.N712_S506.H5H5YBBXX.s_8.r_1                    25
+## SLX-11312.N712_S507.H5H5YBBXX.s_8.r_1                    23
+## SLX-11312.N712_S508.H5H5YBBXX.s_8.r_1                    16
+## SLX-11312.N712_S517.H5H5YBBXX.s_8.r_1                    29
+##                                       subsets_Mito_percent altexps_ERCC_sum
+##                                                  <numeric>        <integer>
+## SLX-9555.N701_S502.C89V9ANXX.s_1.r_1               9.09882            65278
+## SLX-9555.N701_S503.C89V9ANXX.s_1.r_1               9.16242            74748
+## SLX-9555.N701_S504.C89V9ANXX.s_1.r_1               8.50248            60878
+## SLX-9555.N701_S505.C89V9ANXX.s_1.r_1               7.81190            60073
+## SLX-9555.N701_S506.C89V9ANXX.s_1.r_1               7.76588           136810
+## ...                                                    ...              ...
+## SLX-11312.N712_S505.H5H5YBBXX.s_8.r_1              6.19684            61575
+## SLX-11312.N712_S506.H5H5YBBXX.s_8.r_1              8.63302            94982
+## SLX-11312.N712_S507.H5H5YBBXX.s_8.r_1              7.53559           113707
+## SLX-11312.N712_S508.H5H5YBBXX.s_8.r_1              7.50037             7580
+## SLX-11312.N712_S517.H5H5YBBXX.s_8.r_1              8.05569            48664
+##                                       altexps_ERCC_detected
+##                                                   <integer>
+## SLX-9555.N701_S502.C89V9ANXX.s_1.r_1                     39
+## SLX-9555.N701_S503.C89V9ANXX.s_1.r_1                     40
+## SLX-9555.N701_S504.C89V9ANXX.s_1.r_1                     42
+## SLX-9555.N701_S505.C89V9ANXX.s_1.r_1                     42
+## SLX-9555.N701_S506.C89V9ANXX.s_1.r_1                     44
+## ...                                                     ...
+## SLX-11312.N712_S505.H5H5YBBXX.s_8.r_1                    39
+## SLX-11312.N712_S506.H5H5YBBXX.s_8.r_1                    41
+## SLX-11312.N712_S507.H5H5YBBXX.s_8.r_1                    40
+## SLX-11312.N712_S508.H5H5YBBXX.s_8.r_1                    44
+## SLX-11312.N712_S517.H5H5YBBXX.s_8.r_1                    39
+##                                       altexps_ERCC_percent altexps_SIRV_sum
+##                                                  <numeric>        <integer>
+## SLX-9555.N701_S502.C89V9ANXX.s_1.r_1               6.80658            27828
+## SLX-9555.N701_S503.C89V9ANXX.s_1.r_1               6.28030            39173
+## SLX-9555.N701_S504.C89V9ANXX.s_1.r_1               4.78949            30058
+## SLX-9555.N701_S505.C89V9ANXX.s_1.r_1               4.18567            32542
+## SLX-9555.N701_S506.C89V9ANXX.s_1.r_1               7.28887            71850
+## ...                                                    ...              ...
+## SLX-11312.N712_S505.H5H5YBBXX.s_8.r_1              7.17620            19848
+## SLX-11312.N712_S506.H5H5YBBXX.s_8.r_1              6.65764            31729
+## SLX-11312.N712_S507.H5H5YBBXX.s_8.r_1              5.81467            41116
+## SLX-11312.N712_S508.H5H5YBBXX.s_8.r_1             13.48898             1883
+## SLX-11312.N712_S517.H5H5YBBXX.s_8.r_1              2.51930            16289
+##                                       altexps_SIRV_detected
+##                                                   <integer>
+## SLX-9555.N701_S502.C89V9ANXX.s_1.r_1                      7
+## SLX-9555.N701_S503.C89V9ANXX.s_1.r_1                      7
+## SLX-9555.N701_S504.C89V9ANXX.s_1.r_1                      7
+## SLX-9555.N701_S505.C89V9ANXX.s_1.r_1                      7
+## SLX-9555.N701_S506.C89V9ANXX.s_1.r_1                      7
+## ...                                                     ...
+## SLX-11312.N712_S505.H5H5YBBXX.s_8.r_1                     7
+## SLX-11312.N712_S506.H5H5YBBXX.s_8.r_1                     7
+## SLX-11312.N712_S507.H5H5YBBXX.s_8.r_1                     7
+## SLX-11312.N712_S508.H5H5YBBXX.s_8.r_1                     7
+## SLX-11312.N712_S517.H5H5YBBXX.s_8.r_1                     7
+##                                       altexps_SIRV_percent     total
+##                                                  <numeric> <integer>
+## SLX-9555.N701_S502.C89V9ANXX.s_1.r_1               2.90165    959042
+## SLX-9555.N701_S503.C89V9ANXX.s_1.r_1               3.29130   1190198
+## SLX-9555.N701_S504.C89V9ANXX.s_1.r_1               2.36477   1271074
+## SLX-9555.N701_S505.C89V9ANXX.s_1.r_1               2.26741   1435208
+## SLX-9555.N701_S506.C89V9ANXX.s_1.r_1               3.82798   1876971
+## ...                                                    ...       ...
+## SLX-11312.N712_S505.H5H5YBBXX.s_8.r_1             2.313165    858045
+## SLX-11312.N712_S506.H5H5YBBXX.s_8.r_1             2.224004   1426661
+## SLX-11312.N712_S507.H5H5YBBXX.s_8.r_1             2.102562   1955519
+## SLX-11312.N712_S508.H5H5YBBXX.s_8.r_1             3.350892     56194
+## SLX-11312.N712_S517.H5H5YBBXX.s_8.r_1             0.843271   1931645
 ```
 
 
@@ -510,7 +549,7 @@ summary(multi.outlier)
 
 ```
 ##    Mode   FALSE    TRUE 
-## logical     181      11
+## logical     180      12
 ```
 
 This and related approaches like PCA-based outlier detection and support vector machines can provide more power to distinguish low-quality cells from high-quality counterparts [@ilicic2016classification] as they can exploit patterns across many QC metrics. 
@@ -915,17 +954,17 @@ This recovers cell types with low RNA content, high mitochondrial proportions, e
 <button class="aaron-collapse">View session info</button>
 <div class="aaron-content">
 ```
-R version 4.0.0 Patched (2020-05-01 r78341)
+R version 4.0.2 (2020-06-22)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: Ubuntu 18.04.4 LTS
 
 Matrix products: default
-BLAS:   /home/luna/Software/R/R-4-0-branch-dev/lib/libRblas.so
-LAPACK: /home/luna/Software/R/R-4-0-branch-dev/lib/libRlapack.so
+BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
+LAPACK: /home/biocbuild/bbs-3.12-bioc/R/lib/libRlapack.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=C              
  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
@@ -937,52 +976,52 @@ attached base packages:
 
 other attached packages:
  [1] org.Hs.eg.db_3.11.4         edgeR_3.31.4               
- [3] limma_3.45.7                DropletUtils_1.9.0         
- [5] robustbase_0.93-6           scRNAseq_2.3.6             
- [7] scater_1.17.3               ggplot2_3.3.1              
+ [3] limma_3.45.7                DropletUtils_1.9.2         
+ [5] robustbase_0.93-6           scRNAseq_2.3.8             
+ [7] scater_1.17.2               ggplot2_3.3.2              
  [9] ensembldb_2.13.1            AnnotationFilter_1.13.0    
-[11] GenomicFeatures_1.41.0      AnnotationDbi_1.51.0       
-[13] AnnotationHub_2.21.0        BiocFileCache_1.13.0       
-[15] dbplyr_1.4.4                SingleCellExperiment_1.11.4
-[17] SummarizedExperiment_1.19.5 DelayedArray_0.15.4        
+[11] GenomicFeatures_1.41.0      AnnotationDbi_1.51.1       
+[13] AnnotationHub_2.21.1        BiocFileCache_1.13.0       
+[15] dbplyr_1.4.4                SingleCellExperiment_1.11.6
+[17] SummarizedExperiment_1.19.5 DelayedArray_0.15.6        
 [19] matrixStats_0.56.0          Matrix_1.2-18              
 [21] Biobase_2.49.0              GenomicRanges_1.41.5       
-[23] GenomeInfoDb_1.25.2         IRanges_2.23.10            
+[23] GenomeInfoDb_1.25.5         IRanges_2.23.10            
 [25] S4Vectors_0.27.12           BiocGenerics_0.35.4        
-[27] BiocStyle_2.17.0            rebook_0.99.0              
+[27] BiocStyle_2.17.0            simpleSingleCell_1.13.5    
 
 loaded via a namespace (and not attached):
   [1] ggbeeswarm_0.6.0              colorspace_1.4-1             
-  [3] ellipsis_0.3.1                scuttle_0.99.9               
-  [5] XVector_0.29.2                BiocNeighbors_1.7.0          
+  [3] ellipsis_0.3.1                scuttle_0.99.10              
+  [5] XVector_0.29.3                BiocNeighbors_1.7.0          
   [7] farver_2.0.3                  bit64_0.9-7                  
   [9] interactiveDisplayBase_1.27.5 R.methodsS3_1.8.0            
- [11] codetools_0.2-16              knitr_1.28                   
- [13] Rsamtools_2.5.1               R.oo_1.23.0                  
- [15] graph_1.67.1                  HDF5Array_1.17.1             
- [17] shiny_1.4.0.2                 BiocManager_1.30.10          
- [19] compiler_4.0.0                httr_1.4.1                   
+ [11] codetools_0.2-16              knitr_1.29                   
+ [13] Rsamtools_2.5.3               R.oo_1.23.0                  
+ [15] graph_1.67.1                  HDF5Array_1.17.3             
+ [17] shiny_1.5.0                   BiocManager_1.30.10          
+ [19] compiler_4.0.2                httr_1.4.1                   
  [21] dqrng_0.2.1                   assertthat_0.2.1             
  [23] fastmap_1.0.1                 lazyeval_0.2.2               
  [25] later_1.1.0.1                 BiocSingular_1.5.0           
- [27] htmltools_0.4.0               prettyunits_1.1.1            
- [29] tools_4.0.0                   rsvd_1.0.3                   
+ [27] htmltools_0.5.0               prettyunits_1.1.1            
+ [29] tools_4.0.2                   rsvd_1.0.3                   
  [31] gtable_0.3.0                  glue_1.4.1                   
  [33] GenomeInfoDbData_1.2.3        dplyr_1.0.0                  
  [35] rappdirs_0.3.1                Rcpp_1.0.4.6                 
- [37] rhdf5filters_1.1.0            vctrs_0.3.1                  
+ [37] rhdf5filters_1.1.1            vctrs_0.3.1                  
  [39] Biostrings_2.57.2             ExperimentHub_1.15.0         
- [41] rtracklayer_1.49.3            DelayedMatrixStats_1.11.0    
- [43] xfun_0.14                     stringr_1.4.0                
+ [41] rtracklayer_1.49.3            DelayedMatrixStats_1.11.1    
+ [43] xfun_0.15                     stringr_1.4.0                
  [45] ps_1.3.3                      mime_0.9                     
  [47] lifecycle_0.2.0               irlba_2.3.3                  
  [49] XML_3.99-0.3                  DEoptimR_1.0-8               
  [51] zlibbioc_1.35.0               scales_1.1.1                 
  [53] hms_0.5.3                     promises_1.1.1               
- [55] ProtGenerics_1.21.0           rhdf5_2.33.3                 
+ [55] ProtGenerics_1.21.0           rhdf5_2.33.4                 
  [57] yaml_2.2.1                    curl_4.3                     
  [59] memoise_1.1.0                 gridExtra_2.3                
- [61] biomaRt_2.45.0                stringi_1.4.6                
+ [61] biomaRt_2.45.1                stringi_1.4.6                
  [63] RSQLite_2.2.0                 highr_0.8                    
  [65] BiocVersion_3.12.0            BiocParallel_1.23.0          
  [67] rlang_0.4.6                   pkgconfig_2.0.3              
@@ -992,17 +1031,17 @@ loaded via a namespace (and not attached):
  [75] CodeDepends_0.6.5             labeling_0.3                 
  [77] cowplot_1.0.0                 bit_1.1-15.2                 
  [79] processx_3.4.2                tidyselect_1.1.0             
- [81] magrittr_1.5                  bookdown_0.19                
+ [81] magrittr_1.5                  bookdown_0.20                
  [83] R6_2.4.1                      generics_0.0.2               
  [85] DBI_1.1.0                     pillar_1.4.4                 
  [87] withr_2.2.0                   RCurl_1.98-1.2               
  [89] tibble_3.0.1                  crayon_1.3.4                 
- [91] rmarkdown_2.2                 viridis_0.5.1                
+ [91] rmarkdown_2.3                 viridis_0.5.1                
  [93] progress_1.2.2                locfit_1.5-9.4               
- [95] grid_4.0.0                    blob_1.2.1                   
+ [95] grid_4.0.2                    blob_1.2.1                   
  [97] callr_3.4.3                   digest_0.6.25                
  [99] xtable_1.8-4                  httpuv_1.5.4                 
-[101] R.utils_2.9.2                 openssl_1.4.1                
+[101] R.utils_2.9.2                 openssl_1.4.2                
 [103] munsell_0.5.0                 beeswarm_0.2.3               
 [105] viridisLite_0.3.0             vipor_0.4.5                  
 [107] askpass_1.1                  
