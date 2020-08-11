@@ -19,6 +19,7 @@ jobs:
           tar -xvf tmp.tar.gz  
           rm -rf docs
           mv simpleSingleCell/vignettes/OSCA/docs .
+          echo osca-dev.bioconductor.org > docs/CNAME
       - name: Committing to master
         run: | 
           git config --local user.email "action@github.com"
