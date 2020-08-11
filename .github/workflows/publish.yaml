@@ -1,0 +1,28 @@
+on:
+  push:
+  schedule:
+    - cron: '0 20 * * *'
+
+name: publish
+
+jobs:
+  publish:
+    name: "Publishing the book"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v2
+      - name: Obtain compiled book 
+        run: |
+          stuff=$(curl -s https://bioconductor.org/packages/devel/workflows/html/simpleSingleCell.html | grep ".tar.gz" | sed "s/.*[^a-zA-Z]\\([a-zA-Z0-9\\.]*_[0-9\\.]*\\.tar\\.gz\\).*/\\1/" | uniq)
+          curl -o tmp.tar.gz https://bioconductor.org/packages/devel/workflows/src/contrib/${stuff}
+          tar -xvf tmp.tar.gz  
+          rm -rf docs
+          mv simpleSingleCell/vignettes/OSCA/docs .
+      - name: Committing to master
+        run: | 
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add docs
+          git commit -m "Publish the rebuilt book." || true
+          git push
