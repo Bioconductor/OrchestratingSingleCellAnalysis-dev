@@ -1,14 +1,14 @@
 ---
 output:
   html_document
-bibliography: ../ref.bib
+bibliography: ref.bib
 ---
 
 # Interoperability
 
 <script>
 document.addEventListener("click", function (event) {
-    if (event.target.classList.contains("aaron-collapse")) {
+    if (event.target.classList.contains("rebook-collapse")) {
         event.target.classList.toggle("active");
         var content = event.target.nextElementSibling;
         if (content.style.display === "block") {
@@ -21,7 +21,7 @@ document.addEventListener("click", function (event) {
 </script>
 
 <style>
-.aaron-collapse {
+.rebook-collapse {
   background-color: #eee;
   color: #444;
   cursor: pointer;
@@ -33,7 +33,7 @@ document.addEventListener("click", function (event) {
   font-size: 15px;
 }
 
-.aaron-content {
+.rebook-content {
   padding: 0 18px;
   display: none;
   overflow: hidden;
@@ -80,20 +80,20 @@ However, the principles of interoperability are generally applicable and are wor
 
 ## Session Info {-}
 
-<button class="aaron-collapse">View session info</button>
-<div class="aaron-content">
+<button class="rebook-collapse">View session info</button>
+<div class="rebook-content">
 ```
-R version 4.0.2 (2020-06-22)
+R version 4.0.0 Patched (2020-05-01 r78341)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.4 LTS
+Running under: Ubuntu 18.04.5 LTS
 
 Matrix products: default
-BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
-LAPACK: /home/biocbuild/bbs-3.12-bioc/R/lib/libRlapack.so
+BLAS:   /home/luna/Software/R/R-4-0-branch-dev/lib/libRblas.so
+LAPACK: /home/luna/Software/R/R-4-0-branch-dev/lib/libRlapack.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
@@ -103,16 +103,16 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] BiocStyle_2.17.0        simpleSingleCell_1.13.5
+[1] BiocStyle_2.17.0 rebook_0.99.4   
 
 loaded via a namespace (and not attached):
- [1] bookdown_0.20       codetools_0.2-16    XML_3.99-0.3       
- [4] ps_1.3.3            digest_0.6.25       stats4_4.0.2       
+ [1] bookdown_0.20       codetools_0.2-16    XML_3.99-0.5       
+ [4] ps_1.3.4            digest_0.6.25       stats4_4.0.0       
  [7] magrittr_1.5        evaluate_0.14       highr_0.8          
-[10] graph_1.67.1        rlang_0.4.6         stringi_1.4.6      
-[13] callr_3.4.3         rmarkdown_2.3       tools_4.0.2        
-[16] stringr_1.4.0       processx_3.4.2      parallel_4.0.2     
-[19] xfun_0.15           yaml_2.2.1          compiler_4.0.2     
+[10] graph_1.67.1        rlang_0.4.7         stringi_1.4.6      
+[13] callr_3.4.3         rmarkdown_2.3       tools_4.0.0        
+[16] stringr_1.4.0       processx_3.4.3      parallel_4.0.0     
+[19] xfun_0.16           yaml_2.2.1          compiler_4.0.0     
 [22] BiocGenerics_0.35.4 BiocManager_1.30.10 htmltools_0.5.0    
 [25] CodeDepends_0.6.5   knitr_1.29         
 ```

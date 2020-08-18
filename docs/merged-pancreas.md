@@ -2,7 +2,7 @@
 
 <script>
 document.addEventListener("click", function (event) {
-    if (event.target.classList.contains("aaron-collapse")) {
+    if (event.target.classList.contains("rebook-collapse")) {
         event.target.classList.toggle("active");
         var content = event.target.nextElementSibling;
         if (content.style.display === "block") {
@@ -15,7 +15,7 @@ document.addEventListener("click", function (event) {
 </script>
 
 <style>
-.aaron-collapse {
+.rebook-collapse {
   background-color: #eee;
   color: #444;
   cursor: pointer;
@@ -27,7 +27,7 @@ document.addEventListener("click", function (event) {
   font-size: 15px;
 }
 
-.aaron-content {
+.rebook-content {
   padding: 0 18px;
   display: none;
   overflow: hidden;
@@ -48,8 +48,8 @@ This represents a more challenging application than the PBMC dataset in Chapter 
 We start by considering only two datasets from @muraro2016singlecell and @grun2016denovo.
 This is a relatively simple scenario involving very similar protocols (CEL-seq and CEL-seq2) and a similar set of authors.
 
-<button class="aaron-collapse">View history</button>
-<div class="aaron-content">
+<button class="rebook-collapse">View history</button>
+<div class="rebook-content">
    
 ```r
 #--- loading ---#
@@ -109,8 +109,8 @@ sce.grun
 ## altExpNames(1): ERCC
 ```
 
-<button class="aaron-collapse">View history</button>
-<div class="aaron-content">
+<button class="rebook-collapse">View history</button>
+<div class="rebook-content">
    
 ```r
 #--- loading ---#
@@ -261,8 +261,8 @@ plotTSNE(mnn.pancreas, colour_by="batch")
 Flushed with our previous success, we now attempt to merge the other datasets from @lawlor2017singlecell and @segerstolpe2016singlecell.
 This is a more challenging task as it involves different technologies, mixtures of UMI and read count data and a more diverse set of authors (presumably with greater differences in the patient population).
 
-<button class="aaron-collapse">View history</button>
-<div class="aaron-content">
+<button class="rebook-collapse">View history</button>
+<div class="rebook-content">
    
 ```r
 #--- loading ---#
@@ -317,8 +317,8 @@ sce.lawlor
 ## altExpNames(0):
 ```
 
-<button class="aaron-collapse">View history</button>
-<div class="aaron-content">
+<button class="rebook-collapse">View history</button>
+<div class="rebook-content">
    
 ```r
 #--- loading ---#
@@ -338,9 +338,9 @@ sce.seger <- sce.seger[keep,]
 rownames(sce.seger) <- ens.id[keep]
 
 #--- sample-annotation ---#
-emtab.meta <- colData(sce.seger)[,c("cell type", 
+emtab.meta <- colData(sce.seger)[,c("cell type", "disease",
     "individual", "single cell well quality")]
-colnames(emtab.meta) <- c("CellType", "Donor", "Quality")
+colnames(emtab.meta) <- c("CellType", "Disease", "Donor", "Quality")
 colData(sce.seger) <- emtab.meta
 
 sce.seger$CellType <- gsub(" cell", "", sce.seger$CellType)
@@ -366,8 +366,7 @@ sce.seger <- computeSumFactors(sce.seger, clusters=clusters)
 sce.seger <- logNormCounts(sce.seger) 
 
 #--- variance-modelling ---#
-for.hvg <- sce.seger[,librarySizeFactors(altExp(sce.seger)) > 0
-    & sce.seger$Donor!="AZ"]
+for.hvg <- sce.seger[,librarySizeFactors(altExp(sce.seger)) > 0 & sce.seger$Donor!="AZ"]
 dec.seger <- modelGeneVarWithSpikes(for.hvg, "ERCC", block=for.hvg$Donor)
 chosen.hvgs <- getTopHVGs(dec.seger, n=2000)
 ```
@@ -389,7 +388,7 @@ sce.seger
 ## rowData names(2): symbol refseq
 ## colnames(2090): HP1502401_H13 HP1502401_J14 ... HP1526901T2D_N8
 ##   HP1526901T2D_A8
-## colData names(4): CellType Donor Quality sizeFactor
+## colData names(5): CellType Disease Donor Quality sizeFactor
 ## reducedDimNames(0):
 ## altExpNames(1): ERCC
 ```
@@ -633,20 +632,20 @@ table(proposed, clusters)
 
 ## Session Info {-}
 
-<button class="aaron-collapse">View session info</button>
-<div class="aaron-content">
+<button class="rebook-collapse">View session info</button>
+<div class="rebook-content">
 ```
-R version 4.0.2 (2020-06-22)
+R version 4.0.0 Patched (2020-05-01 r78341)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.4 LTS
+Running under: Ubuntu 18.04.5 LTS
 
 Matrix products: default
-BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
-LAPACK: /home/biocbuild/bbs-3.12-bioc/R/lib/libRlapack.so
+BLAS:   /home/luna/Software/R/R-4-0-branch-dev/lib/libRblas.so
+LAPACK: /home/luna/Software/R/R-4-0-branch-dev/lib/libRlapack.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
@@ -657,52 +656,52 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] scater_1.17.2               ggplot2_3.3.2              
- [3] scran_1.17.3                batchelor_1.5.1            
- [5] SingleCellExperiment_1.11.6 SummarizedExperiment_1.19.5
- [7] DelayedArray_0.15.6         matrixStats_0.56.0         
- [9] Matrix_1.2-18               Biobase_2.49.0             
-[11] GenomicRanges_1.41.5        GenomeInfoDb_1.25.5        
-[13] IRanges_2.23.10             S4Vectors_0.27.12          
-[15] BiocGenerics_0.35.4         BiocStyle_2.17.0           
-[17] simpleSingleCell_1.13.5    
+ [1] bluster_0.99.1              scater_1.17.4              
+ [3] ggplot2_3.3.2               scran_1.17.15              
+ [5] batchelor_1.5.2             SingleCellExperiment_1.11.6
+ [7] SummarizedExperiment_1.19.6 DelayedArray_0.15.7        
+ [9] matrixStats_0.56.0          Matrix_1.2-18              
+[11] Biobase_2.49.0              GenomicRanges_1.41.6       
+[13] GenomeInfoDb_1.25.10        IRanges_2.23.10            
+[15] S4Vectors_0.27.12           BiocGenerics_0.35.4        
+[17] BiocStyle_2.17.0            rebook_0.99.4              
 
 loaded via a namespace (and not attached):
- [1] viridis_0.5.1             edgeR_3.31.4             
- [3] BiocSingular_1.5.0        viridisLite_0.3.0        
- [5] DelayedMatrixStats_1.11.1 scuttle_0.99.10          
- [7] statmod_1.4.34            highr_0.8                
- [9] BiocManager_1.30.10       dqrng_0.2.1              
-[11] vipor_0.4.5               GenomeInfoDbData_1.2.3   
-[13] yaml_2.2.1                pillar_1.4.4             
-[15] lattice_0.20-41           glue_1.4.1               
-[17] limma_3.45.7              digest_0.6.25            
-[19] XVector_0.29.3            colorspace_1.4-1         
-[21] cowplot_1.0.0             htmltools_0.5.0          
-[23] XML_3.99-0.3              pkgconfig_2.0.3          
-[25] bookdown_0.20             zlibbioc_1.35.0          
-[27] purrr_0.3.4               scales_1.1.1             
-[29] processx_3.4.2            Rtsne_0.15               
-[31] BiocParallel_1.23.0       tibble_3.0.1             
-[33] farver_2.0.3              generics_0.0.2           
-[35] ellipsis_0.3.1            withr_2.2.0              
-[37] magrittr_1.5              crayon_1.3.4             
-[39] CodeDepends_0.6.5         evaluate_0.14            
-[41] ps_1.3.3                  beeswarm_0.2.3           
-[43] graph_1.67.1              tools_4.0.2              
-[45] lifecycle_0.2.0           stringr_1.4.0            
-[47] munsell_0.5.0             locfit_1.5-9.4           
-[49] irlba_2.3.3               callr_3.4.3              
-[51] compiler_4.0.2            rsvd_1.0.3               
-[53] rlang_0.4.6               grid_4.0.2               
-[55] RCurl_1.98-1.2            BiocNeighbors_1.7.0      
-[57] igraph_1.2.5              labeling_0.3             
-[59] bitops_1.0-6              rmarkdown_2.3            
-[61] gtable_0.3.0              codetools_0.2-16         
-[63] R6_2.4.1                  gridExtra_2.3            
-[65] knitr_1.29                dplyr_1.0.0              
-[67] ggbeeswarm_0.6.0          stringi_1.4.6            
-[69] Rcpp_1.0.4.6              vctrs_0.3.1              
-[71] tidyselect_1.1.0          xfun_0.15                
+ [1] bitops_1.0-6              tools_4.0.0              
+ [3] R6_2.4.1                  irlba_2.3.3              
+ [5] vipor_0.4.5               colorspace_1.4-1         
+ [7] withr_2.2.0               tidyselect_1.1.0         
+ [9] gridExtra_2.3             processx_3.4.3           
+[11] compiler_4.0.0            graph_1.67.1             
+[13] BiocNeighbors_1.7.0       labeling_0.3             
+[15] bookdown_0.20             scales_1.1.1             
+[17] callr_3.4.3               stringr_1.4.0            
+[19] digest_0.6.25             rmarkdown_2.3            
+[21] XVector_0.29.3            pkgconfig_2.0.3          
+[23] htmltools_0.5.0           limma_3.45.10            
+[25] highr_0.8                 rlang_0.4.7              
+[27] DelayedMatrixStats_1.11.1 generics_0.0.2           
+[29] farver_2.0.3              BiocParallel_1.23.2      
+[31] dplyr_1.0.1               RCurl_1.98-1.2           
+[33] magrittr_1.5              BiocSingular_1.5.0       
+[35] GenomeInfoDbData_1.2.3    scuttle_0.99.13          
+[37] Rcpp_1.0.5                ggbeeswarm_0.6.0         
+[39] munsell_0.5.0             viridis_0.5.1            
+[41] lifecycle_0.2.0           stringi_1.4.6            
+[43] yaml_2.2.1                edgeR_3.31.4             
+[45] zlibbioc_1.35.0           Rtsne_0.15               
+[47] grid_4.0.0                dqrng_0.2.1              
+[49] crayon_1.3.4              lattice_0.20-41          
+[51] cowplot_1.0.0             locfit_1.5-9.4           
+[53] CodeDepends_0.6.5         knitr_1.29               
+[55] ps_1.3.4                  pillar_1.4.6             
+[57] igraph_1.2.5              codetools_0.2-16         
+[59] XML_3.99-0.5              glue_1.4.1               
+[61] evaluate_0.14             BiocManager_1.30.10      
+[63] vctrs_0.3.2               gtable_0.3.0             
+[65] purrr_0.3.4               xfun_0.16                
+[67] rsvd_1.0.3                viridisLite_0.3.0        
+[69] tibble_3.0.3              beeswarm_0.2.3           
+[71] statmod_1.4.34            ellipsis_0.3.1           
 ```
 </div>

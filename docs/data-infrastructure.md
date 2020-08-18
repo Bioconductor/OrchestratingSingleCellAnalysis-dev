@@ -101,16 +101,16 @@ counts(sce)
 
 ```
 ##         cell_1 cell_2 cell_3
-## gene_1      15      9     30
-## gene_2       6     10     26
-## gene_3      15      7     31
-## gene_4       6      9     34
-## gene_5      13      7     40
-## gene_6      12      9     23
-## gene_7      10      6     23
-## gene_8      13      8     35
-## gene_9      12     11     30
-## gene_10     12      8     30
+## gene_1       8     16     16
+## gene_2       4      4     32
+## gene_3       9      9     23
+## gene_4      14      7     26
+## gene_5      12      8     31
+## gene_6      13      9     37
+## gene_7      14     10     38
+## gene_8       8     14     43
+## gene_9      10     10     26
+## gene_10      9     11     23
 ```
 
 ### Adding more `assays`
@@ -157,16 +157,16 @@ logcounts(sce)
 
 ```
 ##           cell_1   cell_2   cell_3
-## gene_1  4.519153 4.237039 4.133916
-## gene_2  3.288644 4.381371 3.940053
-## gene_3  4.519153 3.896164 4.178569
-## gene_4  3.288644 4.237039 4.304788
-## gene_5  4.322350 3.896164 4.528262
-## gene_6  4.212870 4.237039 3.775383
-## gene_7  3.965312 3.689832 3.775383
-## gene_8  4.322350 4.076646 4.344521
-## gene_9  4.212870 4.512568 4.133916
-## gene_10 4.212870 4.076646 4.133916
+## gene_1  3.811769 4.801384 3.311950
+## gene_2  2.911011 2.948804 4.237422
+## gene_3  3.970234 4.010999 3.790607
+## gene_4  4.574409 3.673772 3.955405
+## gene_5  4.362074 3.852216 4.194083
+## gene_6  4.472145 4.010999 4.436502
+## gene_7  4.574409 4.154026 4.473222
+## gene_8  3.811769 4.616111 4.643987
+## gene_9  4.113003 4.154026 3.955405
+## gene_10 3.970234 4.284143 3.790607
 ```
 
 To look at all the available assays within `sce`, we can use the `assays()` accessor.
@@ -282,9 +282,9 @@ colData(sce)
 ## DataFrame with 3 rows and 4 columns
 ##            batch       sum  detected     total
 ##        <numeric> <integer> <integer> <integer>
-## cell_1         1       114        10       114
-## cell_2         1        84        10        84
-## cell_3         2       302        10       302
+## cell_1         1       101        10       101
+## cell_2         1        98        10        98
+## cell_3         2       295        10       295
 ```
 
 Alternatively, we might want to manually add more fields to the column metadata:
@@ -375,16 +375,16 @@ rowData(sce)
 ## DataFrame with 10 rows and 2 columns
 ##              mean  detected
 ##         <numeric> <numeric>
-## gene_1    18.0000       100
-## gene_2    14.0000       100
-## gene_3    17.6667       100
-## gene_4    16.3333       100
-## gene_5    20.0000       100
-## gene_6    14.6667       100
-## gene_7    13.0000       100
-## gene_8    18.6667       100
-## gene_9    17.6667       100
-## gene_10   16.6667       100
+## gene_1    13.3333       100
+## gene_2    13.3333       100
+## gene_3    13.6667       100
+## gene_4    15.6667       100
+## gene_5    17.0000       100
+## gene_6    19.6667       100
+## gene_7    20.6667       100
+## gene_8    21.6667       100
+## gene_9    15.3333       100
+## gene_10   14.3333       100
 ```
 
 In a similar fashion to the `colData` slot, such feature metadata could be provided at the onset when creating the `SingleCellExperiment` object.
@@ -516,24 +516,26 @@ reducedDim(sce, "PCA")
 ```
 
 ```
-##               PC1        PC2
-## cell_1 -0.9796363 -0.1560029
-## cell_2  0.7324475 -0.3944047
-## cell_3  0.2471888  0.5504076
+##                 PC1        PC2
+## cell_1 -0.008708364  0.9496854
+## cell_2 -1.078503886 -0.4805707
+## cell_3  1.087212250 -0.4691146
+## attr(,"varExplained")
+## [1] 1.1726385 0.6764595
 ## attr(,"percentVar")
-## [1] 76.33262 23.66738
+## [1] 63.41678 36.58322
 ## attr(,"rotation")
-##                 PC1          PC2
-## gene_4   0.60736434  0.383650723
-## gene_2   0.61735435 -0.150021383
-## gene_5  -0.16776770  0.582853646
-## gene_3  -0.34707918  0.120639074
-## gene_6  -0.05807527 -0.518449636
-## gene_9   0.12842800 -0.334808331
-## gene_1  -0.19383945 -0.208703133
-## gene_8  -0.11204532  0.225975419
-## gene_7  -0.15971740  0.008517338
-## gene_10 -0.07660405  0.021271393
+##                 PC1         PC2
+## gene_1  -0.68679021 -0.17821242
+## gene_2   0.59751157 -0.47334755
+## gene_8   0.01590898 -0.57427557
+## gene_4   0.12721411  0.53455074
+## gene_5   0.15658797  0.23935615
+## gene_6   0.19554042  0.17616237
+## gene_10 -0.22762560 -0.04921952
+## gene_7   0.14641042  0.18441049
+## gene_3  -0.10201684  0.04780418
+## gene_9  -0.09192325  0.04007399
 ```
 
 We can also calculate a tSNE representation using the `scater` package function `runTSNE()`:
@@ -552,10 +554,10 @@ reducedDim(sce, "TSNE")
 ```
 
 ```
-##             [,1]       [,2]
-## cell_1  5683.283  -196.9283
-## cell_2 -3021.118 -4830.3876
-## cell_3 -2662.165  5027.3159
+##             [,1]      [,2]
+## cell_1 -4801.941 -3065.966
+## cell_2  5051.757 -2624.485
+## cell_3  -249.816  5690.451
 ```
 
 We can view the names of all our entries in the `reducedDims` slot via the accessor, `reducedDims()`.
@@ -592,12 +594,12 @@ reducedDim(sce, "UMAP_uwot")
 ```
 
 ```
-##              [,1]       [,2]
-## cell_1  0.3983787  0.5109398
-## cell_2 -0.5938183 -0.2098269
-## cell_3  0.1954397 -0.3011129
+##               [,1]       [,2]
+## cell_1 -0.36516825 -0.1248576
+## cell_2  0.01597246  0.6538596
+## cell_3  0.34919580 -0.5290021
 ## attr(,"scaled:center")
-## [1] 14.668358  2.604686
+## [1] -15.6796449   0.6811934
 ```
 
 ### Alternative Experiments
@@ -680,7 +682,7 @@ sizeFactors(sce)
 ```
 
 ```
-## [1] 0.684 0.504 1.812
+## [1] 0.6133603 0.5951417 1.7914980
 ```
 
 Alternatively, we can manually add the size factors, as shown below for library size-derived factors:
@@ -692,8 +694,8 @@ sizeFactors(sce)
 ```
 
 ```
-## cell_1 cell_2 cell_3 
-##  0.684  0.504  1.812
+##    cell_1    cell_2    cell_3 
+## 0.6133603 0.5951417 1.7914980
 ```
 
 Technically speaking, the `sizeFactors` concept is not unique to single-cell analyses.

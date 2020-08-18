@@ -1,14 +1,13 @@
 ---
-output:
-  html_document
-bibliography: ../ref.bib
+output: html_document
+bibliography: ref.bib
 ---
 
 # Feature selection 
 
 <script>
 document.addEventListener("click", function (event) {
-    if (event.target.classList.contains("aaron-collapse")) {
+    if (event.target.classList.contains("rebook-collapse")) {
         event.target.classList.toggle("active");
         var content = event.target.nextElementSibling;
         if (content.style.display === "block") {
@@ -21,7 +20,7 @@ document.addEventListener("click", function (event) {
 </script>
 
 <style>
-.aaron-collapse {
+.rebook-collapse {
   background-color: #eee;
   color: #444;
   cursor: pointer;
@@ -33,7 +32,7 @@ document.addEventListener("click", function (event) {
   font-size: 15px;
 }
 
-.aaron-content {
+.rebook-content {
   padding: 0 18px;
   display: none;
   overflow: hidden;
@@ -54,8 +53,8 @@ This assumes that genuine biological differences will manifest as increased vari
 Several methods are available to quantify the variation per gene and to select an appropriate set of highly variable genes (HVGs).
 We will discuss these below using the 10X PBMC dataset for demonstration:
 
-<button class="aaron-collapse">View history</button>
-<div class="aaron-content">
+<button class="rebook-collapse">View history</button>
+<div class="rebook-content">
    
 ```r
 #--- loading ---#
@@ -105,13 +104,13 @@ sce.pbmc
 
 ```
 ## class: SingleCellExperiment 
-## dim: 33694 3922 
+## dim: 33694 3985 
 ## metadata(1): Samples
 ## assays(2): counts logcounts
 ## rownames(33694): RP11-34P13.3 FAM138A ... AC213203.1 FAM231B
 ## rowData names(2): ID Symbol
-## colnames(3922): AAACCTGAGAAGGCCT-1 AAACCTGAGACAGACC-1 ...
-##   TTTGTCACAGGTCCAC-1 TTTGTCATCCCAAGAT-1
+## colnames(3985): AAACCTGAGAAGGCCT-1 AAACCTGAGACAGACC-1 ...
+##   TTTGTCAGTTAAGACA-1 TTTGTCATCCCAAGAT-1
 ## colData names(3): Sample Barcode sizeFactor
 ## reducedDimNames(0):
 ## altExpNames(0):
@@ -119,8 +118,8 @@ sce.pbmc
 
 As well as the 416B dataset:
 
-<button class="aaron-collapse">View history</button>
-<div class="aaron-content">
+<button class="rebook-collapse">View history</button>
+<div class="rebook-content">
    
 ```r
 #--- loading ---#
@@ -224,17 +223,17 @@ dec.pbmc[order(dec.pbmc$bio, decreasing=TRUE),]
 ## DataFrame with 33694 rows and 6 columns
 ##              mean     total      tech       bio      p.value          FDR
 ##         <numeric> <numeric> <numeric> <numeric>    <numeric>    <numeric>
-## LYZ       1.97770   5.11595  0.827277   4.28867 7.03213e-271 6.90907e-267
-## S100A9    1.94951   4.58859  0.827542   3.76105 9.35449e-209 6.12719e-205
-## S100A8    1.71828   4.45723  0.819402   3.63783 2.60467e-199 1.27954e-195
-## HLA-DRA   2.09694   3.72690  0.823663   2.90324 1.69875e-126 2.38432e-123
-## CD74      2.89840   3.30912  0.793203   2.51592 7.30210e-103 6.83267e-100
+## LYZ       1.95605   5.05854  0.835343   4.22320 1.10535e-270 2.17410e-266
+## S100A9    1.93416   4.53551  0.835439   3.70007 2.71037e-208 7.61575e-205
+## S100A8    1.69961   4.41084  0.824342   3.58650 4.31572e-201 9.43177e-198
+## HLA-DRA   2.09785   3.75174  0.831239   2.92050 5.93941e-132 4.86760e-129
+## CD74      2.90176   3.36879  0.793188   2.57560 4.83930e-113 2.50485e-110
 ## ...           ...       ...       ...       ...          ...          ...
-## PTMA      3.83013  0.471105  0.740525 -0.269420     0.993177            1
-## HLA-B     4.50161  0.475348  0.755807 -0.280459     0.994059            1
-## EIF1      3.24261  0.478352  0.771316 -0.292963     0.994987            1
-## TMSB4X    6.08483  0.408394  0.742840 -0.334446     0.998864            1
-## B2M       5.95481  0.304437  0.714661 -0.410224     0.999950            1
+## TMSB4X    6.08142  0.441718  0.679215 -0.237497     0.992447            1
+## PTMA      3.82978  0.486454  0.731275 -0.244821     0.990002            1
+## HLA-B     4.50032  0.486130  0.739577 -0.253447     0.991376            1
+## EIF1      3.23488  0.482869  0.768946 -0.286078     0.995135            1
+## B2M       5.95196  0.314948  0.654228 -0.339280     0.999843            1
 ```
 
 (Careful readers will notice that some genes have negative biological components, which have no obvious interpretation and can be ignored in most applications.
@@ -279,11 +278,11 @@ dec.cv2.pbmc[order(dec.cv2.pbmc$ratio, decreasing=TRUE),]
 ## DataFrame with 33694 rows and 6 columns
 ##                 mean     total     trend     ratio   p.value       FDR
 ##            <numeric> <numeric> <numeric> <numeric> <numeric> <numeric>
-## HIST1H2AC  0.9045169   267.718   1.55979  171.6372         0         0
-## GNG11      0.6905688   219.323   1.98064  110.7334         0         0
-## PRTFDC1    0.0412511  3034.952  29.98682  101.2096         0         0
-## TNNC2      0.1021577  1210.585  12.22872   98.9952         0         0
-## PF4        1.1083758   128.809   1.30995   98.3316         0         0
+## PPBP       2.2437397   132.364  0.803689   164.696         0         0
+## PRTFDC1    0.0658743  3197.564 20.266829   157.773         0         0
+## HIST1H2AC  1.3731487   175.035  1.176934   148.721         0         0
+## FAM81B     0.0477082  3654.419 27.902078   130.973         0         0
+## PF4        1.8333127   109.451  0.935484   116.999         0         0
 ## ...              ...       ...       ...       ...       ...       ...
 ## AC023491.2         0       NaN       Inf       NaN       NaN       NaN
 ## AC233755.2         0       NaN       Inf       NaN       NaN       NaN
@@ -364,12 +363,12 @@ head(dec.pois.pbmc)
 ## DataFrame with 6 rows and 6 columns
 ##              mean     total      tech       bio   p.value       FDR
 ##         <numeric> <numeric> <numeric> <numeric> <numeric> <numeric>
-## LYZ       1.97770   5.11595  0.621547   4.49440         0         0
-## S100A9    1.94951   4.58859  0.627306   3.96128         0         0
-## S100A8    1.71828   4.45723  0.669428   3.78781         0         0
-## HLA-DRA   2.09694   3.72690  0.596372   3.13053         0         0
-## CD74      2.89840   3.30912  0.422624   2.88650         0         0
-## CST3      1.49285   2.97369  0.695367   2.27833         0         0
+## LYZ       1.95605   5.05854  0.631190   4.42735         0         0
+## S100A9    1.93416   4.53551  0.635102   3.90040         0         0
+## S100A8    1.69961   4.41084  0.671491   3.73935         0         0
+## HLA-DRA   2.09785   3.75174  0.604448   3.14730         0         0
+## CD74      2.90176   3.36879  0.444928   2.92386         0         0
+## CST3      1.47546   2.95646  0.691386   2.26507         0         0
 ```
 
 ```r
@@ -519,7 +518,7 @@ str(hvg.pbmc.cv2)
 ```
 
 ```
-##  chr [1:1000] "HIST1H2AC" "GNG11" "PRTFDC1" "TNNC2" "PF4" "HGD" "PPBP" ...
+##  chr [1:1000] "PPBP" "PRTFDC1" "HIST1H2AC" "FAM81B" "PF4" "GNG11" ...
 ```
 
 The choice of $X$ also has a fairly straightforward biological interpretation.
@@ -558,7 +557,7 @@ length(hvg.pbmc.var.2)
 ```
 
 ```
-## [1] 651
+## [1] 813
 ```
 
 This approach is simple to implement and - if the test holds its size - it controls the false discovery rate (FDR).
@@ -593,7 +592,7 @@ length(hvg.pbmc.var.3)
 ```
 
 ```
-## [1] 12791
+## [1] 12745
 ```
 
 For `modelGeneCV2()`, this involves keeping all ratios above 1:
@@ -605,7 +604,7 @@ length(hvg.pbmc.cv2.3)
 ```
 
 ```
-## [1] 9295
+## [1] 6643
 ```
 
 By retaining all potential biological signal, we give secondary population structure the chance to manifest.
@@ -756,7 +755,7 @@ str(chosen)
 ```
 
 ```
-##  chr [1:1279] "LYZ" "S100A9" "S100A8" "HLA-DRA" "CD74" "CST3" "TYROBP" ...
+##  chr [1:1274] "LYZ" "S100A9" "S100A8" "HLA-DRA" "CD74" "CST3" "TYROBP" ...
 ```
 
 We then have several options to enforce our HVG selection on the rest of the analysis.
@@ -772,7 +771,7 @@ The downside is that the non-HVGs are discarded from the new `SingleCellExperime
     ```
     
     ```
-    ## [1] 1279 3922
+    ## [1] 1274 3985
     ```
 
 2. We can keep the original `SingleCellExperiment` object and specify the genes to use for downstream functions via an extra argument like `subset.row=`.
@@ -836,20 +835,20 @@ This avoids book-keeping problems in long analyses when the original dataset is 
 
 ## Session Info {-}
 
-<button class="aaron-collapse">View session info</button>
-<div class="aaron-content">
+<button class="rebook-collapse">View session info</button>
+<div class="rebook-content">
 ```
-R version 4.0.2 (2020-06-22)
+R version 4.0.0 Patched (2020-05-01 r78341)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.4 LTS
+Running under: Ubuntu 18.04.5 LTS
 
 Matrix products: default
-BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
-LAPACK: /home/biocbuild/bbs-3.12-bioc/R/lib/libRlapack.so
+BLAS:   /home/luna/Software/R/R-4-0-branch-dev/lib/libRblas.so
+LAPACK: /home/luna/Software/R/R-4-0-branch-dev/lib/libRlapack.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
@@ -860,69 +859,69 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] scater_1.17.2               ggplot2_3.3.2              
+ [1] scater_1.17.4               ggplot2_3.3.2              
  [3] ensembldb_2.13.1            AnnotationFilter_1.13.0    
- [5] GenomicFeatures_1.41.0      AnnotationDbi_1.51.1       
- [7] AnnotationHub_2.21.1        BiocFileCache_1.13.0       
+ [5] GenomicFeatures_1.41.2      AnnotationDbi_1.51.3       
+ [7] AnnotationHub_2.21.2        BiocFileCache_1.13.1       
  [9] dbplyr_1.4.4                msigdbr_7.1.1              
-[11] scran_1.17.3                SingleCellExperiment_1.11.6
-[13] SummarizedExperiment_1.19.5 DelayedArray_0.15.6        
+[11] scran_1.17.15               SingleCellExperiment_1.11.6
+[13] SummarizedExperiment_1.19.6 DelayedArray_0.15.7        
 [15] matrixStats_0.56.0          Matrix_1.2-18              
-[17] Biobase_2.49.0              GenomicRanges_1.41.5       
-[19] GenomeInfoDb_1.25.5         IRanges_2.23.10            
+[17] Biobase_2.49.0              GenomicRanges_1.41.6       
+[19] GenomeInfoDb_1.25.10        IRanges_2.23.10            
 [21] S4Vectors_0.27.12           BiocGenerics_0.35.4        
-[23] BiocStyle_2.17.0            simpleSingleCell_1.13.5    
+[23] BiocStyle_2.17.0            rebook_0.99.4              
 
 loaded via a namespace (and not attached):
- [1] ggbeeswarm_0.6.0              colorspace_1.4-1             
- [3] ellipsis_0.3.1                scuttle_0.99.10              
- [5] XVector_0.29.3                BiocNeighbors_1.7.0          
- [7] bit64_0.9-7                   interactiveDisplayBase_1.27.5
- [9] codetools_0.2-16              knitr_1.29                   
-[11] Rsamtools_2.5.3               graph_1.67.1                 
-[13] shiny_1.5.0                   BiocManager_1.30.10          
-[15] compiler_4.0.2                httr_1.4.1                   
-[17] dqrng_0.2.1                   assertthat_0.2.1             
-[19] fastmap_1.0.1                 lazyeval_0.2.2               
-[21] limma_3.45.7                  later_1.1.0.1                
-[23] BiocSingular_1.5.0            htmltools_0.5.0              
-[25] prettyunits_1.1.1             tools_4.0.2                  
-[27] rsvd_1.0.3                    igraph_1.2.5                 
-[29] gtable_0.3.0                  glue_1.4.1                   
-[31] GenomeInfoDbData_1.2.3        dplyr_1.0.0                  
-[33] rappdirs_0.3.1                Rcpp_1.0.4.6                 
-[35] vctrs_0.3.1                   Biostrings_2.57.2            
-[37] rtracklayer_1.49.3            DelayedMatrixStats_1.11.1    
-[39] xfun_0.15                     stringr_1.4.0                
-[41] ps_1.3.3                      mime_0.9                     
-[43] lifecycle_0.2.0               irlba_2.3.3                  
-[45] statmod_1.4.34                XML_3.99-0.3                 
-[47] edgeR_3.31.4                  zlibbioc_1.35.0              
-[49] scales_1.1.1                  hms_0.5.3                    
-[51] promises_1.1.1                ProtGenerics_1.21.0          
-[53] yaml_2.2.1                    curl_4.3                     
-[55] gridExtra_2.3                 memoise_1.1.0                
-[57] biomaRt_2.45.1                stringi_1.4.6                
-[59] RSQLite_2.2.0                 BiocVersion_3.12.0           
-[61] highr_0.8                     BiocParallel_1.23.0          
-[63] rlang_0.4.6                   pkgconfig_2.0.3              
-[65] bitops_1.0-6                  evaluate_0.14                
-[67] lattice_0.20-41               purrr_0.3.4                  
-[69] GenomicAlignments_1.25.3      CodeDepends_0.6.5            
-[71] bit_1.1-15.2                  processx_3.4.2               
-[73] tidyselect_1.1.0              magrittr_1.5                 
-[75] bookdown_0.20                 R6_2.4.1                     
-[77] generics_0.0.2                DBI_1.1.0                    
-[79] withr_2.2.0                   pillar_1.4.4                 
-[81] RCurl_1.98-1.2                tibble_3.0.1                 
-[83] crayon_1.3.4                  rmarkdown_2.3                
-[85] viridis_0.5.1                 progress_1.2.2               
-[87] locfit_1.5-9.4                grid_4.0.2                   
-[89] blob_1.2.1                    callr_3.4.3                  
-[91] digest_0.6.25                 xtable_1.8-4                 
-[93] httpuv_1.5.4                  openssl_1.4.2                
-[95] munsell_0.5.0                 viridisLite_0.3.0            
-[97] beeswarm_0.2.3                vipor_0.4.5                  
-[99] askpass_1.1                  
+  [1] ggbeeswarm_0.6.0              colorspace_1.4-1             
+  [3] ellipsis_0.3.1                scuttle_0.99.13              
+  [5] bluster_0.99.1                XVector_0.29.3               
+  [7] BiocNeighbors_1.7.0           bit64_4.0.2                  
+  [9] interactiveDisplayBase_1.27.5 codetools_0.2-16             
+ [11] knitr_1.29                    Rsamtools_2.5.3              
+ [13] graph_1.67.1                  shiny_1.5.0                  
+ [15] BiocManager_1.30.10           compiler_4.0.0               
+ [17] httr_1.4.2                    dqrng_0.2.1                  
+ [19] assertthat_0.2.1              fastmap_1.0.1                
+ [21] lazyeval_0.2.2                limma_3.45.10                
+ [23] later_1.1.0.1                 BiocSingular_1.5.0           
+ [25] htmltools_0.5.0               prettyunits_1.1.1            
+ [27] tools_4.0.0                   rsvd_1.0.3                   
+ [29] igraph_1.2.5                  gtable_0.3.0                 
+ [31] glue_1.4.1                    GenomeInfoDbData_1.2.3       
+ [33] dplyr_1.0.1                   rappdirs_0.3.1               
+ [35] Rcpp_1.0.5                    vctrs_0.3.2                  
+ [37] Biostrings_2.57.2             rtracklayer_1.49.5           
+ [39] DelayedMatrixStats_1.11.1     xfun_0.16                    
+ [41] stringr_1.4.0                 ps_1.3.4                     
+ [43] mime_0.9                      lifecycle_0.2.0              
+ [45] irlba_2.3.3                   statmod_1.4.34               
+ [47] XML_3.99-0.5                  edgeR_3.31.4                 
+ [49] zlibbioc_1.35.0               scales_1.1.1                 
+ [51] hms_0.5.3                     promises_1.1.1               
+ [53] ProtGenerics_1.21.0           yaml_2.2.1                   
+ [55] curl_4.3                      gridExtra_2.3                
+ [57] memoise_1.1.0                 biomaRt_2.45.2               
+ [59] stringi_1.4.6                 RSQLite_2.2.0                
+ [61] BiocVersion_3.12.0            highr_0.8                    
+ [63] BiocParallel_1.23.2           rlang_0.4.7                  
+ [65] pkgconfig_2.0.3               bitops_1.0-6                 
+ [67] evaluate_0.14                 lattice_0.20-41              
+ [69] purrr_0.3.4                   GenomicAlignments_1.25.3     
+ [71] CodeDepends_0.6.5             bit_4.0.4                    
+ [73] processx_3.4.3                tidyselect_1.1.0             
+ [75] magrittr_1.5                  bookdown_0.20                
+ [77] R6_2.4.1                      generics_0.0.2               
+ [79] DBI_1.1.0                     withr_2.2.0                  
+ [81] pillar_1.4.6                  RCurl_1.98-1.2               
+ [83] tibble_3.0.3                  crayon_1.3.4                 
+ [85] rmarkdown_2.3                 viridis_0.5.1                
+ [87] progress_1.2.2                locfit_1.5-9.4               
+ [89] grid_4.0.0                    blob_1.2.1                   
+ [91] callr_3.4.3                   digest_0.6.25                
+ [93] xtable_1.8-4                  httpuv_1.5.4                 
+ [95] openssl_1.4.2                 munsell_0.5.0                
+ [97] viridisLite_0.3.0             beeswarm_0.2.3               
+ [99] vipor_0.4.5                   askpass_1.1                  
 ```
 </div>

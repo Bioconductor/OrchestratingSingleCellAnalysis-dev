@@ -1,14 +1,14 @@
 ---
 output:
   html_document
-bibliography: ../ref.bib
+bibliography: ref.bib
 ---
 
 # Integrating Datasets
 
 <script>
 document.addEventListener("click", function (event) {
-    if (event.target.classList.contains("aaron-collapse")) {
+    if (event.target.classList.contains("rebook-collapse")) {
         event.target.classList.toggle("active");
         var content = event.target.nextElementSibling;
         if (content.style.display === "block") {
@@ -21,7 +21,7 @@ document.addEventListener("click", function (event) {
 </script>
 
 <style>
-.aaron-collapse {
+.rebook-collapse {
   background-color: #eee;
   color: #444;
   cursor: pointer;
@@ -33,7 +33,7 @@ document.addEventListener("click", function (event) {
   font-size: 15px;
 }
 
-.aaron-content {
+.rebook-content {
   padding: 0 18px;
   display: none;
   overflow: hidden;
@@ -61,8 +61,8 @@ Separate processing prior to the batch correction step is more convenient, scala
 For example, outlier-based QC on the cells is more effective when performed within a batch (Section \@ref(qc-batch)).
 The same can also be said for trend fitting when modelling the mean-variance relationship (Section \@ref(variance-batch)).
 
-<button class="aaron-collapse">View history</button>
-<div class="aaron-content">
+<button class="rebook-collapse">View history</button>
+<div class="rebook-content">
    
 ```r
 #--- loading ---#
@@ -540,6 +540,63 @@ tab.mnn
 
 
 
+It is possible to quantify the degree of mixing across batches by testing each cluster for imbalances in the contribution from each batch [@buttner2019test].
+This is done by applying Pearson's chi-squared test to each row of `tab.mnn` where the expected proportions under the null hypothesis proportional to the total number of cells per batch.
+Low $p$-values indicate that there are significant imbalances
+In practice, this strategy is most suited to technical replicates with identical population composition; it is usually too stringent for batches with more biological variation, where proportions can genuinely vary even in the absence of any batch effect. 
+
+
+```r
+chi.prop <- colSums(tab.mnn)/sum(tab.mnn)
+chi.results <- apply(tab.mnn, 1, FUN=chisq.test, p=chi.prop)
+p.values <- vapply(chi.results, "[[", i="p.value", 0)
+p.values
+```
+
+```
+##         1         2         3         4         5         6         7         8 
+## 9.047e-02 3.093e-02 6.700e-03 2.627e-03 8.424e-20 2.775e-01 5.546e-05 2.274e-11 
+##         9        10        11        12        13        14        15        16 
+## 2.136e-04 5.480e-05 4.019e-03 2.972e-03 1.538e-12 3.936e-05 2.197e-04 7.172e-01
+```
+
+
+
+
+
+We favor a more qualitative approach whereby we compute the variation in the log-abundances to rank the clusters with the greatest variability in their proportional abundances across clusters.
+We can then focus on batch-specific clusters that may be indicative of incomplete batch correction.
+Obviously, though, such clusters are only potentially problematic as the same outcome can be caused by batch-specific populations;
+some prior knowledge about the biological context is necessary to distinguish between these two possibilities.
+
+
+```r
+# Using a large pseudo.count to avoid unnecessarily
+# large variances when the counts are low.
+norm <- normalizeCounts(tab.mnn, pseudo.count=10)
+
+# Ranking clusters by the largest variances.
+rv <- rowVars(norm)
+DataFrame(Batch=unclass(tab.mnn), var=rv)[order(rv, decreasing=TRUE),]
+```
+
+```
+## DataFrame with 16 rows and 3 columns
+##       Batch.1   Batch.2        var
+##     <integer> <integer>  <numeric>
+## 15          4        36   0.934778
+## 13        144        93   0.728465
+## 9          11        56   0.707757
+## 8         162       118   0.563419
+## 4          12         4   0.452565
+## ...       ...       ...        ...
+## 6          17        19 0.05689945
+## 10        547      1083 0.04527468
+## 2         289       542 0.02443988
+## 1         337       606 0.01318296
+## 16          4         8 0.00689661
+```
+
 We can also visualize the corrected coordinates using a $t$-SNE plot (Figure \@ref(fig:tsne-pbmc-corrected)).
 The presence of visual clusters containing cells from both batches provides a comforting illusion that the correction was successful.
 
@@ -615,19 +672,46 @@ gridExtra::grid.arrange(heat3k[[4]], heat4k[[4]])
 <p class="caption">(\#fig:heat-after-mnn)Comparison between the within-batch clusters and the across-batch clusters obtained after MNN correction. One heatmap is generated for each of the PBMC 3K and 4K datasets, where each entry is colored according to the number of cells with each pair of labels (before and after correction).</p>
 </div>
 
-Another evaluation approach is to compute the coassignment probabilities (Section \@ref(cluster-bootstrapping)), i.e., the probability that cells from two within-batch clusters are clustered together in the across-batch clustering. 
-High probabilities off the diagonal in Figure \@ref(fig:coassign-after-mnn) indicate that within-batch clusters are merged in the across-batch analysis.
-We would generally expect low off-diagonal probabilities for most pairs of clusters, though this may not be reasonably possible if the within-batch clusters were poorly separated in the first place.
+We use the adjusted Rand index (Section \@ref(comparing-different-clusterings))
+to quantify the agreement between the clusterings before and after batch correction. 
+Recall that larger indices are more desirable as this indicates that within-batch heterogeneity is preserved,
+though this must be balanced against the ability of each method to actually perform batch correction.
+
+
+```r
+library(bluster)
+ri3k <- pairwiseRand(clusters.mnn[rescaled$batch==1], colLabels(pbmc3k), mode="index")
+ri3k
+```
+
+```
+## [1] 0.7361
+```
+
+```r
+ri4k <- pairwiseRand(clusters.mnn[rescaled$batch==2], colLabels(pbmc4k), mode="index")
+ri4k
+```
+
+```
+## [1] 0.8301
+```
+
+
+
+We can also break down the ARI into per-cluster ratios for more detailed diagnostics (Figure \@ref(fig:rand-after-mnn)).
+For example, we could see low ratios off the diagonal if distinct clusters in the within-batch clustering were incorrectly aggregated in the merged clustering.
+Conversely, we might see low ratios on the diagonal if the correction inflated or introduced spurious heterogeneity inside a within-batch cluster.
 
 
 ```r
 # For the first batch.
-tab <- coassignProb(colLabels(pbmc3k), clusters.mnn[rescaled$batch==1])
+tab <- pairwiseRand(colLabels(pbmc3k), clusters.mnn[rescaled$batch==1])
 heat3k <- pheatmap(tab, cluster_row=FALSE, cluster_col=FALSE,
     col=rev(viridis::magma(100)), main="PBMC 3K probabilities", silent=TRUE)
 
 # For the second batch.
-tab <- coassignProb(colLabels(pbmc4k), clusters.mnn[rescaled$batch==2])
+tab <- pairwiseRand(colLabels(pbmc4k), clusters.mnn[rescaled$batch==2])
 heat4k <- pheatmap(tab, cluster_row=FALSE, cluster_col=FALSE,
     col=rev(viridis::magma(100)), main="PBMC 4K probabilities", silent=TRUE)
 
@@ -635,37 +719,9 @@ gridExtra::grid.arrange(heat3k[[4]], heat4k[[4]])
 ```
 
 <div class="figure">
-<img src="data-integration_files/figure-html/coassign-after-mnn-1.png" alt="Coassignment probabilities for the within-batch clusters, based on coassignment of cells in the across-batch clusters obtained after MNN correction. One heatmap is generated for each of the PBMC 3K and 4K datasets, where each entry is colored according to the coassignment probability between each pair of within-batch clusters." width="672" />
-<p class="caption">(\#fig:coassign-after-mnn)Coassignment probabilities for the within-batch clusters, based on coassignment of cells in the across-batch clusters obtained after MNN correction. One heatmap is generated for each of the PBMC 3K and 4K datasets, where each entry is colored according to the coassignment probability between each pair of within-batch clusters.</p>
+<img src="data-integration_files/figure-html/rand-after-mnn-1.png" alt="ARI-derived ratios for the within-batch clusters after comparison to the merged clusters obtained after MNN correction. One heatmap is generated for each of the PBMC 3K and 4K datasets." width="672" />
+<p class="caption">(\#fig:rand-after-mnn)ARI-derived ratios for the within-batch clusters after comparison to the merged clusters obtained after MNN correction. One heatmap is generated for each of the PBMC 3K and 4K datasets.</p>
 </div>
-
-Finally, we can compute the Rand index (Section \@ref(comparing-different-clusterings))
-to quantify the agreement between the clusterings before and after batch correction. 
-Larger indices are more desirable as this indicates that within-batch heterogeneity is preserved,
-though this must be balanced against the ability of each method to actually perform batch correction.
-
-
-```r
-ri3k <- clusterRand(clusters.mnn[rescaled$batch==1],
-    colLabels(pbmc3k), mode="index")
-ri3k
-```
-
-```
-## [1] 0.9335
-```
-
-```r
-ri4k <- clusterRand(clusters.mnn[rescaled$batch==2],
-    colLabels(pbmc4k), mode="index")
-ri4k
-```
-
-```
-## [1] 0.9576
-```
-
-
 
 ### Encouraging consistency with marker genes {#integration-with-markers}
 
@@ -826,20 +882,20 @@ Use of the corrected values in any quantitative procedure should be treated with
 
 ## Session Info {-}
 
-<button class="aaron-collapse">View session info</button>
-<div class="aaron-content">
+<button class="rebook-collapse">View session info</button>
+<div class="rebook-content">
 ```
-R version 4.0.2 (2020-06-22)
+R version 4.0.0 Patched (2020-05-01 r78341)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.4 LTS
+Running under: Ubuntu 18.04.5 LTS
 
 Matrix products: default
-BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
-LAPACK: /home/biocbuild/bbs-3.12-bioc/R/lib/libRlapack.so
+BLAS:   /home/luna/Software/R/R-4-0-branch-dev/lib/libRblas.so
+LAPACK: /home/luna/Software/R/R-4-0-branch-dev/lib/libRlapack.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
@@ -850,55 +906,56 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] pheatmap_1.0.12             scater_1.17.2              
- [3] ggplot2_3.3.2               scran_1.17.3               
- [5] batchelor_1.5.1             SingleCellExperiment_1.11.6
- [7] SummarizedExperiment_1.19.5 Biobase_2.49.0             
- [9] GenomicRanges_1.41.5        GenomeInfoDb_1.25.5        
-[11] HDF5Array_1.17.3            rhdf5_2.33.4               
-[13] DelayedArray_0.15.6         IRanges_2.23.10            
-[15] S4Vectors_0.27.12           BiocGenerics_0.35.4        
-[17] matrixStats_0.56.0          Matrix_1.2-18              
-[19] BiocStyle_2.17.0            simpleSingleCell_1.13.5    
+ [1] bluster_0.99.1              pheatmap_1.0.12            
+ [3] scater_1.17.4               ggplot2_3.3.2              
+ [5] scran_1.17.15               batchelor_1.5.2            
+ [7] SingleCellExperiment_1.11.6 SummarizedExperiment_1.19.6
+ [9] Biobase_2.49.0              GenomicRanges_1.41.6       
+[11] GenomeInfoDb_1.25.10        HDF5Array_1.17.3           
+[13] rhdf5_2.33.7                DelayedArray_0.15.7        
+[15] IRanges_2.23.10             S4Vectors_0.27.12          
+[17] BiocGenerics_0.35.4         matrixStats_0.56.0         
+[19] Matrix_1.2-18               BiocStyle_2.17.0           
+[21] rebook_0.99.4              
 
 loaded via a namespace (and not attached):
  [1] bitops_1.0-6              RColorBrewer_1.1-2       
- [3] tools_4.0.2               R6_2.4.1                 
+ [3] tools_4.0.0               R6_2.4.1                 
  [5] irlba_2.3.3               vipor_0.4.5              
- [7] colorspace_1.4-1          rhdf5filters_1.1.1       
+ [7] colorspace_1.4-1          rhdf5filters_1.1.2       
  [9] withr_2.2.0               tidyselect_1.1.0         
-[11] gridExtra_2.3             processx_3.4.2           
-[13] compiler_4.0.2            graph_1.67.1             
+[11] gridExtra_2.3             processx_3.4.3           
+[13] compiler_4.0.0            graph_1.67.1             
 [15] BiocNeighbors_1.7.0       labeling_0.3             
 [17] bookdown_0.20             scales_1.1.1             
 [19] callr_3.4.3               stringr_1.4.0            
 [21] digest_0.6.25             rmarkdown_2.3            
 [23] XVector_0.29.3            pkgconfig_2.0.3          
-[25] htmltools_0.5.0           limma_3.45.7             
-[27] highr_0.8                 rlang_0.4.6              
-[29] DelayedMatrixStats_1.11.1 generics_0.0.2           
-[31] farver_2.0.3              BiocParallel_1.23.0      
-[33] dplyr_1.0.0               RCurl_1.98-1.2           
+[25] htmltools_0.5.0           highr_0.8                
+[27] limma_3.45.10             rlang_0.4.7              
+[29] DelayedMatrixStats_1.11.1 farver_2.0.3             
+[31] generics_0.0.2            BiocParallel_1.23.2      
+[33] dplyr_1.0.1               RCurl_1.98-1.2           
 [35] magrittr_1.5              BiocSingular_1.5.0       
-[37] GenomeInfoDbData_1.2.3    scuttle_0.99.10          
-[39] Rcpp_1.0.4.6              ggbeeswarm_0.6.0         
-[41] munsell_0.5.0             Rhdf5lib_1.11.2          
+[37] GenomeInfoDbData_1.2.3    scuttle_0.99.13          
+[39] Rcpp_1.0.5                ggbeeswarm_0.6.0         
+[41] munsell_0.5.0             Rhdf5lib_1.11.3          
 [43] viridis_0.5.1             lifecycle_0.2.0          
 [45] stringi_1.4.6             yaml_2.2.1               
 [47] edgeR_3.31.4              zlibbioc_1.35.0          
-[49] Rtsne_0.15                grid_4.0.2               
+[49] Rtsne_0.15                grid_4.0.0               
 [51] dqrng_0.2.1               crayon_1.3.4             
-[53] lattice_0.20-41           beachmat_2.5.0           
+[53] lattice_0.20-41           beachmat_2.5.1           
 [55] cowplot_1.0.0             locfit_1.5-9.4           
 [57] CodeDepends_0.6.5         knitr_1.29               
-[59] ps_1.3.3                  pillar_1.4.4             
+[59] ps_1.3.4                  pillar_1.4.6             
 [61] igraph_1.2.5              codetools_0.2-16         
-[63] XML_3.99-0.3              glue_1.4.1               
+[63] XML_3.99-0.5              glue_1.4.1               
 [65] evaluate_0.14             BiocManager_1.30.10      
-[67] vctrs_0.3.1               gtable_0.3.0             
-[69] purrr_0.3.4               xfun_0.15                
+[67] vctrs_0.3.2               gtable_0.3.0             
+[69] purrr_0.3.4               xfun_0.16                
 [71] rsvd_1.0.3                viridisLite_0.3.0        
-[73] tibble_3.0.1              beeswarm_0.2.3           
+[73] tibble_3.0.3              beeswarm_0.2.3           
 [75] statmod_1.4.34            ellipsis_0.3.1           
 ```
 </div>

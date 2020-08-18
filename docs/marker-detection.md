@@ -1,14 +1,14 @@
 ---
 output:
   html_document
-bibliography: ../ref.bib
+bibliography: ref.bib
 ---
 
 # Marker gene detection {#marker-detection}
 
 <script>
 document.addEventListener("click", function (event) {
-    if (event.target.classList.contains("aaron-collapse")) {
+    if (event.target.classList.contains("rebook-collapse")) {
         event.target.classList.toggle("active");
         var content = event.target.nextElementSibling;
         if (content.style.display === "block") {
@@ -21,7 +21,7 @@ document.addEventListener("click", function (event) {
 </script>
 
 <style>
-.aaron-collapse {
+.rebook-collapse {
   background-color: #eee;
   color: #444;
   cursor: pointer;
@@ -33,7 +33,7 @@ document.addEventListener("click", function (event) {
   font-size: 15px;
 }
 
-.aaron-content {
+.rebook-content {
   padding: 0 18px;
   display: none;
   overflow: hidden;
@@ -54,8 +54,8 @@ Several different statistical tests are available to quantify the differences in
 These choices parametrize the theoretical differences between the various marker detection strategies presented in this chapter.
 We will demonstrate using the 10X PBMC dataset:
 
-<button class="aaron-collapse">View history</button>
-<div class="aaron-content">
+<button class="rebook-collapse">View history</button>
+<div class="rebook-content">
    
 ```r
 #--- loading ---#
@@ -125,25 +125,37 @@ sce.pbmc
 
 ```
 ## class: SingleCellExperiment 
-## dim: 33694 3922 
+## dim: 33694 3985 
 ## metadata(1): Samples
 ## assays(2): counts logcounts
 ## rownames(33694): RP11-34P13.3 FAM138A ... AC213203.1 FAM231B
 ## rowData names(2): ID Symbol
-## colnames(3922): AAACCTGAGAAGGCCT-1 AAACCTGAGACAGACC-1 ...
-##   TTTGTCACAGGTCCAC-1 TTTGTCATCCCAAGAT-1
+## colnames(3985): AAACCTGAGAAGGCCT-1 AAACCTGAGACAGACC-1 ...
+##   TTTGTCAGTTAAGACA-1 TTTGTCATCCCAAGAT-1
 ## colData names(4): Sample Barcode sizeFactor label
 ## reducedDimNames(3): PCA TSNE UMAP
 ## altExpNames(0):
 ```
 
-## Using pairwise $t$-tests
+## Pairwise tests between clusters
 
-### Standard application
+### Motivation 
 
-The Welch $t$-test is an obvious choice of statistical method to test for differences in expression between clusters.
-It is quickly computed and has good statistical properties for large numbers of cells [@soneson2018bias].
-We use the `findMarkers()` function to perform pairwise comparisons between clusters for each gene, which returns a list of `DataFrame`s containing ranked candidate markers for each cluster.
+Our general strategy is to perform DE tests between pairs of clusters and then combine results into a single ranking of marker genes for each cluster.
+We deliberately use pairwise comparisons rather than comparing each cluster to the average of all other cells; the latter approach is sensitive to the population composition, which introduces an element of unpredictability to the marker sets due to variation in cell type abundances.
+(In the worst case, the presence of one subpopulation containing a majority of the cells will drive the selection of top markers for every other cluster, pushing out useful genes that can distinguish between the smaller subpopulations.)
+Moreover, pairwise comparisons naturally provide more information to interpret of the utility of a marker, e.g., by providing log-fold changes to indicate which clusters are distinguished by each gene.
+
+For this section, we will use the Welch $t$-test to perform our DE testing between clusters.
+This is an easy choice as it is quickly computed and has good statistical properties for large numbers of cells [@soneson2018bias].
+However, the same approach can also be applied with any pairwise statistical test, as discussed in Section \@ref(marker-tests).
+
+### Combining pairwise statistics per cluster
+
+#### Looking for any differences
+
+We perform pairwise $t$-tests between clusters for each gene using the `findMarkers()` function, which returns a list of `DataFrame`s containing ranked candidate markers for each cluster.
+The function will automatically retrieve the cluster identities from `sce.pbmc` using the `colLabels()` function, though we can easily specify other clustering schemes by explicitly supplying them via the `groups=` argument.
 
 
 ```r
@@ -153,28 +165,19 @@ markers.pbmc
 ```
 
 ```
-## List of length 18
-## names(18): 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18
-```
-
-The function will automatically retrieve the cluster identities from `sce.pbmc` using the `colLabels()` function.
-We apply other clustering schemes by explicitly supplying them via the `groups=` argument, as shown below.
-This is useful for annotating clusters from different algorithms or parametrizations without requiring modification to `sce.pbmc`.
-
-
-```r
-# Exactly the same as 'markers.pbmc'.
-same.markers <- findMarkers(sce.pbmc, groups=colLabels(sce.pbmc))
+## List of length 16
+## names(16): 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
 ```
 
 
 
-To demonstrate how to interpret the results, we will use cluster 9 as our cluster of interest.
-The relevant `DataFrame` contains log~2~-fold changes of expression in cluster 9 over each other cluster, along with several statistics obtained by combining $p$-values [@simes1986improved] across the pairwise comparisons involving 9.
+The default philosophy of `findMarkers()` is to identify a combination of marker genes that - together - uniquely define one cluster against the rest.
+To this end, we collect the top DE genes from each pairwise comparison involving a particular cluster to assemble a set of candidate markers for that cluster.
+We will demonstrate on cluster 7; the relevant `DataFrame` contains log~2~-fold changes of expression in cluster 7 over each other cluster, along with several statistics obtained by combining $p$-values [@simes1986improved] across the pairwise comparisons involving 7.
 
 
 ```r
-chosen <- "9"
+chosen <- "7"
 interesting <- markers.pbmc[[chosen]]
 colnames(interesting)
 ```
@@ -182,14 +185,13 @@ colnames(interesting)
 ```
 ##  [1] "Top"           "p.value"       "FDR"           "summary.logFC"
 ##  [5] "logFC.1"       "logFC.2"       "logFC.3"       "logFC.4"      
-##  [9] "logFC.5"       "logFC.6"       "logFC.7"       "logFC.8"      
+##  [9] "logFC.5"       "logFC.6"       "logFC.8"       "logFC.9"      
 ## [13] "logFC.10"      "logFC.11"      "logFC.12"      "logFC.13"     
-## [17] "logFC.14"      "logFC.15"      "logFC.16"      "logFC.17"     
-## [21] "logFC.18"
+## [17] "logFC.14"      "logFC.15"      "logFC.16"
 ```
 
 Of particular interest is the `Top` field.
-The set of genes with `Top` $\le X$ is the union of the top $X$ genes (ranked by $p$-value) from each pairwise comparison involving cluster 9.
+The set of genes with `Top` $\le X$ is the union of the top $X$ genes (ranked by $p$-value) from each pairwise comparison involving cluster 7.
 For example, the set of all genes with `Top` values of 1 contains the gene with the lowest $p$-value from each comparison.
 Similarly, the set of genes with `Top` values less than or equal to 10 contains the top 10 genes from each comparison.
 The `Top` field represents `findMarkers()`'s approach to consolidating multiple pairwise comparisons into a single ranking for each cluster; each `DataFrame` produced by `findMarkers()` will order genes based on the `Top` value by default.
@@ -203,21 +205,21 @@ interesting[1:10,1:4]
 ## DataFrame with 10 rows and 4 columns
 ##                Top      p.value          FDR summary.logFC
 ##          <integer>    <numeric>    <numeric>     <numeric>
-## S100A4           1  3.29706e-57  3.05195e-55      -4.52198
-## TAGLN2           1  1.65522e-24  3.58425e-23       4.83531
-## PF4              1  2.54870e-35  9.99719e-34       5.91366
-## GZMA             1 1.41952e-120 7.71441e-118      -1.95444
-## HLA-DQA1         1  1.79189e-88  4.75402e-86      -3.64622
-## FCN1             1 1.13468e-246 4.77901e-243      -2.81179
-## SERPINA1         1  1.12795e-68  1.72751e-66      -2.43278
-## RPL23A           1  2.42151e-37  1.04737e-35      -4.07367
-## RPL17            1  0.00000e+00  0.00000e+00      -2.82856
-## RPS21            1  1.08454e-56  9.90316e-55      -3.99499
+## S100A4           1  2.59737e-38  1.27018e-36      -4.27560
+## TAGLN2           1  8.65033e-28  2.44722e-26       5.07327
+## FCGR3A           1  8.84356e-63  1.15048e-60      -3.07121
+## GZMA             1 1.15392e-120 7.20000e-118      -1.92877
+## HLA-DQA1         1  3.43640e-83  8.90663e-81      -3.54890
+## TMSB4X           1  9.83227e-36  4.25820e-34       4.28970
+## FCN1             1 1.74313e-239 9.78883e-236      -2.77594
+## TRAC             1  0.00000e+00  0.00000e+00      -2.44793
+## RPL17            1  2.95529e-71  5.18622e-69      -2.86310
+## CD79A            1  0.00000e+00  0.00000e+00      -2.98030
 ```
 
 
 
-We use the `Top` field to identify a set of genes that is guaranteed to distinguish cluster 9 from any other cluster.
+We use the `Top` field to identify a set of genes that is guaranteed to distinguish cluster 7 from any other cluster.
 Here, we examine the top 6 genes from each pairwise comparison (Figure \@ref(fig:heat-basic-pbmc)).
 Some inspection of the most upregulated genes suggest that cluster 9 contains platelets or their precursors, based on the expression of platelet factor 4 (_PF4_) and pro-platelet basic protein (_PPBP_).
 
@@ -231,103 +233,18 @@ pheatmap(logFCs, breaks=seq(-5, 5, length.out=101))
 ```
 
 <div class="figure">
-<img src="marker-detection_files/figure-html/heat-basic-pbmc-1.png" alt="Heatmap of log-fold changes for cluster 9 over all other clusters. Colours are capped at -5 and 5 to preserve dynamic range." width="672" />
-<p class="caption">(\#fig:heat-basic-pbmc)Heatmap of log-fold changes for cluster 9 over all other clusters. Colours are capped at -5 and 5 to preserve dynamic range.</p>
+<img src="marker-detection_files/figure-html/heat-basic-pbmc-1.png" alt="Heatmap of log-fold changes for cluster 7 over all other clusters. Colours are capped at -5 and 5 to preserve dynamic range." width="672" />
+<p class="caption">(\#fig:heat-basic-pbmc)Heatmap of log-fold changes for cluster 7 over all other clusters. Colours are capped at -5 and 5 to preserve dynamic range.</p>
 </div>
 
 
 
 Each `DataFrame` also contains several other statistics that may be of interest.
 The `summary.logFC` field provides a convenient summary of the direction and effect size for each gene, and is defined here as the log-fold change from the comparison with the lowest $p$-value.
-The `p.value` field contains the combined $p$-value that is obtained by applying Simes' method to the pairwise $p$-values for each gene and represents the evidence against the joint null hypothesis, i.e., that the gene is not DE between cluster 9 and any other cluster.
+The `p.value` field contains the combined $p$-value that is obtained by applying Simes' method to the pairwise $p$-values for each gene and represents the evidence against the joint null hypothesis, i.e., that the gene is not DE between cluster 7 and any other cluster.
 Examination of these statistics permits a quick evaluation of the suitability of a candidate marker; if both of these metrics are poor (small log-fold change, large $p$-value), the gene can most likely be dismissed.
 
-We intentionally use pairwise comparisons between clusters rather than comparing each cluster to the average of all other cells.
-The latter approach is sensitive to the population composition, potentially resulting in substantially different sets of markers when cell type abundances change in different contexts.
-In the worst case, the presence of a single dominant subpopulation will drive the selection of top markers for every other cluster, pushing out useful genes that can resolve the various minor subpopulations.
-Moreover, pairwise comparisons naturally provide more information to interpret of the utility of a marker, e.g., by providing log-fold changes to indicate which clusters are distinguished by each gene.
-
-### Using the log-fold change 
-
-Our previous `findMarkers()` call considers both up- and downregulated genes to be potential markers.
-However, downregulated genes are less appealing as markers as it is more difficult to interpret and experimentally validate an absence of expression.
-To focus on up-regulated markers, we can instead perform a one-sided $t$-test to identify genes that are upregulated in each cluster compared to the others.
-This is achieved by setting `direction="up"` in the `findMarkers()` call.
-
-
-```r
-markers.pbmc.up <- findMarkers(sce.pbmc, direction="up")
-interesting.up <- markers.pbmc.up[[chosen]]
-interesting.up[1:10,1:4]
-```
-
-```
-## DataFrame with 10 rows and 4 columns
-##                 Top     p.value         FDR summary.logFC
-##           <integer>   <numeric>   <numeric>     <numeric>
-## TAGLN2            1 8.27609e-25 9.29516e-21       4.83531
-## PF4               1 1.27435e-35 4.29379e-31       5.91366
-## SDPR              2 2.26416e-21 1.90722e-17       4.72820
-## GPX1              2 1.79269e-20 1.00671e-16       4.83143
-## TMSB4X            2 1.61389e-31 2.71891e-27       3.71343
-## PPBP              3 2.67043e-20 1.28539e-16       5.54885
-## NRGN              3 1.41986e-20 9.56813e-17       4.18416
-## CCL5              5 2.55331e-18 9.55903e-15       4.62327
-## GNG11             6 2.06623e-18 8.70243e-15       4.73606
-## HIST1H2AC         7 1.05437e-17 3.55260e-14       4.76160
-```
-
-The $t$-test also allows us to specify a non-zero log-fold change as the null hypothesis.
-This allows us to consider the magnitude of the log-fold change in our $p$-value calculations, in a manner that is more rigorous than simply filtering directly on the log-fold changes [@mccarthy2009treat].
-(Specifically, a simple threshold does not consider the variance and can enrich for genes that have both large log-fold changes and large variances.) 
-We perform this by setting `lfc=` in our `findMarkers()` call - when combined with `direction=`, this tests for genes with log-fold changes that are significantly greater than 1:
-
-
-```r
-markers.pbmc.up2 <- findMarkers(sce.pbmc, direction="up", lfc=1)
-interesting.up2 <- markers.pbmc.up2[[chosen]]
-interesting.up2[1:10,1:4]
-```
-
-```
-## DataFrame with 10 rows and 4 columns
-##                 Top     p.value         FDR summary.logFC
-##           <integer>   <numeric>   <numeric>     <numeric>
-## TAGLN2            1 4.96068e-20 5.57151e-16       4.83531
-## PF4               1 7.32681e-31 2.46869e-26       5.91366
-## SDPR              2 1.27379e-17 1.07297e-13       4.72820
-## TMSB4X            2 6.87689e-23 1.15855e-18       3.71343
-## PPBP              3 3.12848e-17 2.10822e-13       5.66420
-## NRGN              4 2.87887e-16 1.61668e-12       4.31853
-## GPX1              5 4.19071e-16 2.01717e-12       4.83143
-## GNG11             5 9.80841e-15 4.13106e-11       4.73606
-## CCL5              6 1.71914e-14 6.43609e-11       4.62327
-## HIST1H2AC         7 3.79677e-14 1.27928e-10       4.81161
-```
-
-These two settings yield a more focused set of candidate marker genes that are upregulated in cluster 9 (Figure \@ref(fig:heat-focused-pbmc)).
-
-
-```r
-best.set <- interesting.up2[interesting.up2$Top <= 5,]
-logFCs <- getMarkerEffects(best.set)
-
-library(pheatmap)
-pheatmap(logFCs, breaks=seq(-5, 5, length.out=101))
-```
-
-<div class="figure">
-<img src="marker-detection_files/figure-html/heat-focused-pbmc-1.png" alt="Heatmap of log-fold changes for cluster 9 over all other clusters. Colours are capped at -5 and 5 to preserve dynamic range." width="672" />
-<p class="caption">(\#fig:heat-focused-pbmc)Heatmap of log-fold changes for cluster 9 over all other clusters. Colours are capped at -5 and 5 to preserve dynamic range.</p>
-</div>
-
-Of course, this increased stringency is not without cost.
-If only upregulated genes are requested from `findMarkers()`, any cluster defined by downregulation of a marker gene will not contain that gene among the top set of features in its `DataFrame`.
-This is occasionally relevant for subtypes or other states that are distinguished by high versus low expression of particular genes^[Standard operating procedure is to (i) experience a brief but crushing bout of disappointment due to the poor quality of upregulated candidate markers, (ii) rage-quit, and (iii) remember to check the genes that are changing in the other direction.].
-Similarly, setting an excessively high log-fold change threshold may discard otherwise useful genes.
-For example, a gene upregulated in a small proportion of cells of a cluster will have a small log-fold change but can still be an effective marker if the focus is on specificity rather than sensitivity.
-
-### Finding cluster-specific markers 
+#### Finding cluster-specific markers 
 
 By default, `findMarkers()` will give a high ranking to genes that are differentially expressed in any pairwise comparison.
 This is because a gene only needs a very low $p$-value in a single pairwise comparison to achieve a low `Top` value.
@@ -337,7 +254,7 @@ A gene will only achieve a low combined $p$-value if it is strongly DE in all co
 
 
 ```r
-# We can combine this with 'direction='.
+# Set direction='up' to only consider upregulated genes as potential markers.
 markers.pbmc.up3 <- findMarkers(sce.pbmc, pval.type="all", direction="up")
 interesting.up3 <- markers.pbmc.up3[[chosen]]
 interesting.up3[1:10,1:3]
@@ -347,16 +264,16 @@ interesting.up3[1:10,1:3]
 ## DataFrame with 10 rows and 3 columns
 ##               p.value         FDR summary.logFC
 ##             <numeric>   <numeric>     <numeric>
-## SDPR      2.89394e-21 9.75083e-17       4.77839
-## PF4       5.79594e-21 9.76443e-17       5.83594
-## PPBP      3.51586e-20 3.94878e-16       5.62861
-## NRGN      9.29995e-20 7.83382e-16       4.01347
-## GNG11     2.82509e-18 1.90377e-14       4.62265
-## HIST1H2AC 1.34167e-17 7.53437e-14       4.69263
-## TUBB1     2.36417e-17 1.13797e-13       4.20414
-## TAGLN2    6.10000e-17 2.56917e-13       3.00063
-## CLU       7.25940e-12 2.71776e-08       3.30158
-## RGS18     1.22730e-10 4.13526e-07       2.97197
+## SDPR      2.86451e-23 9.65166e-19       5.49695
+## NRGN      5.91075e-23 9.95784e-19       4.71034
+## TAGLN2    4.41617e-21 4.95995e-17       3.61864
+## PPBP      1.36171e-20 1.14703e-16       6.34717
+## GNG11     1.23155e-19 8.29918e-16       5.35904
+## HIST1H2AC 3.94013e-19 2.21265e-15       5.46400
+## TUBB1     9.64049e-19 4.64038e-15       4.92204
+## PF4       1.87045e-14 7.87785e-11       6.49672
+## CLU       8.75900e-13 3.27918e-09       3.90273
+## RGS18     8.88042e-12 2.99217e-08       3.63236
 ```
 
 This strategy will only report genes that are highly specific to the cluster of interest.
@@ -366,6 +283,8 @@ This is likely to discard many interesting genes, especially if the clusters are
 To give a concrete example, consider a mixed population of CD4^+^-only, CD8^+^-only, double-positive and double-negative T cells.
 With `pval.type="all"`, neither _Cd4_ or _Cd8_ would be detected as subpopulation-specific markers because each gene is expressed in two subpopulations.
 In comparison, `pval.type="any"` will detect both of these genes as they will be DE between at least one pair of subpopulations.
+
+#### Balancing stringency and generality
 
 If `pval.type="all"` is too stringent yet `pval.type="any"` is too generous, a compromise is to set `pval.type="some"`.
 For each gene, we apply the Holm-Bonferroni correction across its $p$-values and take the middle-most value as the combined $p$-value.
@@ -385,23 +304,103 @@ interesting.up4[1:10,1:3]
 ## DataFrame with 10 rows and 3 columns
 ##               p.value         FDR summary.logFC
 ##             <numeric>   <numeric>     <numeric>
-## PF4       1.79357e-30 6.04325e-26       6.10842
-## TAGLN2    8.54344e-21 1.43931e-16       4.02798
-## SDPR      2.58318e-20 2.90126e-16       4.88092
-## NRGN      1.20651e-19 1.01630e-15       4.30117
-## PPBP      2.90774e-19 1.95947e-15       5.74738
-## TMSB4X    6.03867e-18 3.39111e-14       2.16428
-## CCL5      1.49262e-17 7.18461e-14       4.55128
-## GNG11     2.31950e-17 9.76915e-14       4.72482
-## GPX1      4.41862e-17 1.65423e-13       4.11078
-## HIST1H2AC 9.60766e-17 3.23720e-13       4.76584
+## PF4       5.23414e-32 1.76359e-27       6.86288
+## TMSB4X    4.52854e-25 7.62923e-21       2.90202
+## TAGLN2    2.31252e-24 2.59727e-20       4.88268
+## NRGN      1.08964e-22 9.17861e-19       5.00827
+## SDPR      2.47896e-22 1.67052e-18       5.60445
+## PPBP      8.57360e-20 4.81465e-16       6.50103
+## CCL5      5.66181e-19 2.72527e-15       5.30774
+## GNG11     8.98381e-19 3.59373e-15       5.47403
+## GPX1      9.59922e-19 3.59373e-15       4.86299
+## HIST1H2AC 2.85071e-18 9.60519e-15       5.53275
 ```
 
 In both cases, a different method is used to compute the summary effect size compared to `pval.type="any"`.
 For `pval.type="all"`, the summary log-fold change is defined as that corresponding to the pairwise comparison with the largest $p$-value, while for `pval.type="some"`, it is defined as the log-fold change for the comparison with the middle-most $p$-value.
 This reflects the calculation of the combined $p$-value and avoids focusing on genes with strong changes in only one comparison.
 
-## Alternative testing regimes
+### Using the log-fold change 
+
+The default `findMarkers()` call considers both up- and downregulated genes to be potential markers.
+However, downregulated genes are less appealing as markers as it is more difficult to interpret and experimentally validate an absence of expression.
+To focus on up-regulated markers, we can instead perform a one-sided $t$-test to identify genes that are upregulated in each cluster compared to the others.
+This is achieved by setting `direction="up"` in the `findMarkers()` call.
+
+
+```r
+markers.pbmc.up <- findMarkers(sce.pbmc, direction="up")
+interesting.up <- markers.pbmc.up[[chosen]]
+interesting.up[1:10,1:4]
+```
+
+```
+## DataFrame with 10 rows and 4 columns
+##              Top     p.value         FDR summary.logFC
+##        <integer>   <numeric>   <numeric>     <numeric>
+## TAGLN2         1 4.32517e-28 4.85774e-24       5.07327
+## PF4            1 4.78929e-35 8.06851e-31       6.71811
+## TMSB4X         1 4.91613e-36 1.65644e-31       4.28970
+## NRGN           2 1.35810e-23 9.15195e-20       4.86347
+## B2M            2 8.10863e-25 6.83030e-21       2.40365
+## SDPR           3 2.32759e-23 1.30710e-19       5.54225
+## GPX1           4 4.74597e-21 2.28444e-17       5.71604
+## PPBP           5 8.85410e-21 3.31478e-17       6.41411
+## ACTB           6 6.22981e-21 2.62384e-17       3.79868
+## GNG11          6 9.05522e-20 3.05107e-16       5.48735
+```
+
+The $t$-test also allows us to specify a non-zero log-fold change as the null hypothesis.
+This allows us to consider the magnitude of the log-fold change in our $p$-value calculations, in a manner that is more rigorous than simply filtering directly on the log-fold changes [@mccarthy2009treat].
+(Specifically, a simple threshold does not consider the variance and can enrich for genes that have both large log-fold changes and large variances.) 
+We perform this by setting `lfc=` in our `findMarkers()` call - when combined with `direction=`, this tests for genes with log-fold changes that are significantly greater than 1:
+
+
+```r
+markers.pbmc.up2 <- findMarkers(sce.pbmc, direction="up", lfc=1)
+interesting.up2 <- markers.pbmc.up2[[chosen]]
+interesting.up2[1:10,1:4]
+```
+
+```
+## DataFrame with 10 rows and 4 columns
+##                 Top     p.value         FDR summary.logFC
+##           <integer>   <numeric>   <numeric>     <numeric>
+## TAGLN2            1 9.48392e-23 1.06517e-18       5.07327
+## PF4               1 2.19317e-31 7.38966e-27       6.71811
+## SDPR              2 5.42215e-20 4.56735e-16       5.54225
+## TMSB4X            2 9.90003e-28 1.66786e-23       4.28970
+## NRGN              3 9.24786e-20 6.23195e-16       4.95866
+## GPX1              4 7.73653e-18 3.72392e-14       5.71604
+## PPBP              4 5.53317e-18 3.10725e-14       6.51025
+## GNG11             6 1.56486e-16 6.59079e-13       5.48735
+## CCL5              6 2.72759e-16 1.02115e-12       5.39815
+## HIST1H2AC         7 5.56042e-16 1.87353e-12       5.57765
+```
+
+These two settings yield a more focused set of candidate marker genes that are upregulated in cluster 7 (Figure \@ref(fig:heat-focused-pbmc)).
+
+
+```r
+best.set <- interesting.up2[interesting.up2$Top <= 5,]
+logFCs <- getMarkerEffects(best.set)
+
+library(pheatmap)
+pheatmap(logFCs, breaks=seq(-5, 5, length.out=101))
+```
+
+<div class="figure">
+<img src="marker-detection_files/figure-html/heat-focused-pbmc-1.png" alt="Heatmap of log-fold changes for cluster 7 over all other clusters. Colours are capped at -5 and 5 to preserve dynamic range." width="672" />
+<p class="caption">(\#fig:heat-focused-pbmc)Heatmap of log-fold changes for cluster 7 over all other clusters. Colours are capped at -5 and 5 to preserve dynamic range.</p>
+</div>
+
+Of course, this increased stringency is not without cost.
+If only upregulated genes are requested from `findMarkers()`, any cluster defined by downregulation of a marker gene will not contain that gene among the top set of features in its `DataFrame`.
+This is occasionally relevant for subtypes or other states that are defined by low expression of particular genes^[Standard operating procedure is to (i) experience a brief but crushing bout of disappointment due to the poor quality of upregulated candidate markers, (ii) rage-quit, and (iii) remember to check the genes that are changing in the other direction.].
+Similarly, setting an excessively high log-fold change threshold may discard otherwise useful genes.
+For example, a gene upregulated in a small proportion of cells of a cluster will have a small log-fold change but can still be an effective marker if the focus is on specificity rather than sensitivity.
+
+## Alternative testing regimes {#marker-tests}
 
 ### Using the Wilcoxon rank sum test
 
@@ -424,10 +423,10 @@ names(markers.pbmc.wmw)
 
 ```
 ##  [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" "11" "12" "13" "14" "15"
-## [16] "16" "17" "18"
+## [16] "16"
 ```
 
-To explore the results in more detail, we focus on the `DataFrame` for cluster 9.
+To explore the results in more detail, we focus on the `DataFrame` for cluster 7.
 The interpretation of `Top` is the same as described for $t$-tests, and Simes' method is again used to combine $p$-values across pairwise comparisons.
 If we want more focused sets, we can also change `pval.type=` as previously described.
 
@@ -441,19 +440,19 @@ interesting.wmw[1:10,1:4]
 ## DataFrame with 10 rows and 4 columns
 ##                 Top      p.value          FDR summary.AUC
 ##           <integer>    <numeric>    <numeric>   <numeric>
-## PF4               1 3.13749e-164 1.05715e-159    0.988833
-## TMSB4X            1  5.07215e-27  2.05905e-24    0.992149
-## SDPR              2 2.12114e-145 3.57349e-141    0.955218
-## NRGN              2 1.18240e-131 7.96793e-128    0.966119
-## TAGLN2            3  1.55560e-28  6.98860e-26    0.967186
-## PPBP              3 3.57148e-134 4.01125e-130    0.932743
-## GNG11             3 2.46077e-126 1.38189e-122    0.932491
-## TUBB1             3 7.55573e-133 6.36457e-129    0.921632
-## HIST1H2AC         4  4.69094e-94  1.43688e-90    0.930973
-## ACTB              5  1.53723e-23  5.28523e-21    0.949431
+## PF4               1 1.02312e-179 3.44731e-175    0.989080
+## TMSB4X            1  3.14604e-29  1.20457e-26    0.998195
+## SDPR              2 1.36598e-159 2.30126e-155    0.956221
+## NRGN              2 2.77288e-142 1.86859e-138    0.966865
+## TAGLN2            3  1.58373e-29  6.20491e-27    0.967680
+## PPBP              3 1.35961e-147 1.52702e-143    0.934256
+## GNG11             3 4.00798e-139 2.25075e-135    0.934030
+## TUBB1             3 3.23282e-146 2.72317e-142    0.923386
+## HIST1H2AC         5  2.49447e-97  5.60325e-94    0.932300
+## B2M               5  3.15826e-25  9.85320e-23    0.968938
 ```
 
-The `DataFrame` contains the AUCs from comparing cluster 9 to every other cluster (Figure \@ref(fig:heat-wmw-pbmc)).
+The `DataFrame` contains the AUCs from comparing cluster 7 to every other cluster (Figure \@ref(fig:heat-wmw-pbmc)).
 A value greater than 0.5 indicates that the gene is upregulated in the current cluster compared to the other cluster,
 while values less than 0.5 correspond to downregulation.
 We would typically expect AUCs of 0.7-0.8 for a strongly upregulated candidate marker.
@@ -469,8 +468,8 @@ pheatmap(AUCs, breaks=seq(0, 1, length.out=21),
 ```
 
 <div class="figure">
-<img src="marker-detection_files/figure-html/heat-wmw-pbmc-1.png" alt="Heatmap of AUCs for cluster 9 compared to all other clusters." width="672" />
-<p class="caption">(\#fig:heat-wmw-pbmc)Heatmap of AUCs for cluster 9 compared to all other clusters.</p>
+<img src="marker-detection_files/figure-html/heat-wmw-pbmc-1.png" alt="Heatmap of AUCs for cluster 7 compared to all other clusters." width="672" />
+<p class="caption">(\#fig:heat-wmw-pbmc)Heatmap of AUCs for cluster 7 compared to all other clusters.</p>
 </div>
 
 One practical advantage of the WMW test over the Welch $t$-test is that it is symmetric with respect to differences in the size of the groups being compared.
@@ -482,8 +481,8 @@ We observe both of these effects in a comparison between alpha and gamma cells i
 
 
 
-<button class="aaron-collapse">View history</button>
-<div class="aaron-content">
+<button class="rebook-collapse">View history</button>
+<div class="rebook-content">
    
 ```r
 #--- loading ---#
@@ -587,7 +586,7 @@ names(markers.pbmc.binom)
 
 ```
 ##  [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" "11" "12" "13" "14" "15"
-## [16] "16" "17" "18"
+## [16] "16"
 ```
 
 ```r
@@ -598,13 +597,12 @@ colnames(interesting.binom)
 ```
 ##  [1] "Top"           "p.value"       "FDR"           "summary.logFC"
 ##  [5] "logFC.1"       "logFC.2"       "logFC.3"       "logFC.4"      
-##  [9] "logFC.5"       "logFC.6"       "logFC.7"       "logFC.8"      
+##  [9] "logFC.5"       "logFC.6"       "logFC.8"       "logFC.9"      
 ## [13] "logFC.10"      "logFC.11"      "logFC.12"      "logFC.13"     
-## [17] "logFC.14"      "logFC.15"      "logFC.16"      "logFC.17"     
-## [21] "logFC.18"
+## [17] "logFC.14"      "logFC.15"      "logFC.16"
 ```
 
-Figure \@ref(fig:viol-de-binom) confirms that the top genes exhibit strong differences in the proportion of expressing cells in cluster 9 compared to the others. 
+Figure \@ref(fig:viol-de-binom) confirms that the top genes exhibit strong differences in the proportion of expressing cells in cluster 7 compared to the others. 
 
 
 ```r
@@ -614,8 +612,8 @@ plotExpression(sce.pbmc, x="label", features=top.genes)
 ```
 
 <div class="figure">
-<img src="marker-detection_files/figure-html/viol-de-binom-1.png" alt="Distribution of log-normalized expression values for the top 10 DE genes involving cluster 9 with the binomial test, stratified by cluster assignment and coloured by the plate of origin for each cell." width="672" />
-<p class="caption">(\#fig:viol-de-binom)Distribution of log-normalized expression values for the top 10 DE genes involving cluster 9 with the binomial test, stratified by cluster assignment and coloured by the plate of origin for each cell.</p>
+<img src="marker-detection_files/figure-html/viol-de-binom-1.png" alt="Distribution of log-normalized expression values for the top 10 DE genes involving cluster 7 with the binomial test, stratified by cluster assignment and coloured by the plate of origin for each cell." width="672" />
+<p class="caption">(\#fig:viol-de-binom)Distribution of log-normalized expression values for the top 10 DE genes involving cluster 7 with the binomial test, stratified by cluster assignment and coloured by the plate of origin for each cell.</p>
 </div>
 
 The disadvantage of the binomial test is that its increased stringency can lead to the loss of good candidate markers.
@@ -652,7 +650,7 @@ colnames(design)
 ```
 ##  [1] "label1"  "label2"  "label3"  "label4"  "label5"  "label6"  "label7" 
 ##  [8] "label8"  "label9"  "label10" "label11" "label12" "label13" "label14"
-## [15] "label15" "label16" "label17" "label18"
+## [15] "label15" "label16"
 ```
 
 ```r
@@ -663,7 +661,7 @@ summary(keep)
 
 ```
 ##    Mode   FALSE    TRUE 
-## logical   29482    4212
+## logical   29465    4229
 ```
 
 ```r
@@ -777,9 +775,7 @@ colnames(combined[["1"]])
 ## [49] "t.logFC.13"          "wilcox.AUC.13"       "binom.logFC.13"     
 ## [52] "t.logFC.14"          "wilcox.AUC.14"       "binom.logFC.14"     
 ## [55] "t.logFC.15"          "wilcox.AUC.15"       "binom.logFC.15"     
-## [58] "t.logFC.16"          "wilcox.AUC.16"       "binom.logFC.16"     
-## [61] "t.logFC.17"          "wilcox.AUC.17"       "binom.logFC.17"     
-## [64] "t.logFC.18"          "wilcox.AUC.18"       "binom.logFC.18"
+## [58] "t.logFC.16"          "wilcox.AUC.16"       "binom.logFC.16"
 ```
 
 ```r
@@ -788,22 +784,22 @@ head(combined[["1"]][,1:9])
 
 ```
 ## DataFrame with 6 rows and 9 columns
-##             Top     p.value         FDR     t.Top wilcox.Top binom.Top
-##       <integer>   <numeric>   <numeric> <integer>  <integer> <integer>
-## TRAC          1 1.53395e-73 5.38747e-70         1          1         1
-## CD3D          2 1.59894e-73 5.38747e-70         2          2         1
-## CD3E          4 2.06967e-82 9.96220e-79         2          4         2
-## ITGB1         4 4.98826e-47 3.90871e-44         4          4         2
-## ANXA1         5 2.96038e-56 4.33683e-53         2          3         5
-## IL7R          6 3.66173e-84 2.46757e-80         1          6         1
-##          t.p.value wilcox.p.value binom.p.value
-##          <numeric>      <numeric>     <numeric>
-## TRAC  2.61642e-307   8.40991e-167   1.53395e-73
-## CD3D  7.26682e-268   1.11253e-156   1.59894e-73
-## CD3E  6.58564e-206   4.10254e-139   2.06967e-82
-## ITGB1  6.91022e-82    1.45852e-68   4.98826e-47
-## ANXA1  8.69304e-99    1.32177e-87   2.96038e-56
-## IL7R  1.44971e-151   4.30298e-119   3.66173e-84
+##              Top     p.value         FDR     t.Top wilcox.Top binom.Top
+##        <integer>   <numeric>   <numeric> <integer>  <integer> <integer>
+## TYROBP         1 1.36219e-37 1.31136e-34         1          1         1
+## FCER1G         2 5.54939e-48 8.90386e-45         1          1         2
+## GZMA           2 7.10783e-83 2.39491e-78         1          2         1
+## HOPX           2 1.25041e-79 2.10656e-75         2          1         1
+## CTSW           3 2.51098e-71 1.20864e-67         1          1         3
+## KLRF1          3 5.69193e-66 2.39730e-62         3          1         1
+##           t.p.value wilcox.p.value binom.p.value
+##           <numeric>      <numeric>     <numeric>
+## TYROBP 3.93768e-112   2.99215e-124   1.36219e-37
+## FCER1G  4.67496e-82   1.73332e-116   5.54939e-48
+## GZMA    1.06381e-88   1.00829e-165   7.10783e-83
+## HOPX    1.25041e-79   3.23816e-190  2.40034e-111
+## CTSW   1.13373e-107   7.90522e-131   2.51098e-71
+## KLRF1   5.69193e-66   2.73030e-184  2.77818e-113
 ```
 
 In addition, `multiMarkerStats()` will compute a number of new statistics by combining the per-regime statistics.
@@ -819,8 +815,8 @@ Large studies may contain factors of variation that are known and not interestin
 If these are not modelled, they can interfere with marker gene detection - most obviously by inflating the variance within each cluster, but also by distorting the log-fold changes if the cluster composition varies across levels of the blocking factor.
 To avoid these issues, we set the `block=` argument in the `findMarkers()` call, as demonstrated below for the 416B data set.
 
-<button class="aaron-collapse">View history</button>
-<div class="aaron-content">
+<button class="rebook-collapse">View history</button>
+<div class="rebook-content">
    
 ```r
 #--- loading ---#
@@ -1028,20 +1024,20 @@ Even more complex strategies use machine learning methods to determine which fea
 
 ## Session Info {-}
 
-<button class="aaron-collapse">View session info</button>
-<div class="aaron-content">
+<button class="rebook-collapse">View session info</button>
+<div class="rebook-content">
 ```
-R version 4.0.2 (2020-06-22)
+R version 4.0.0 Patched (2020-05-01 r78341)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.4 LTS
+Running under: Ubuntu 18.04.5 LTS
 
 Matrix products: default
-BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
-LAPACK: /home/biocbuild/bbs-3.12-bioc/R/lib/libRlapack.so
+BLAS:   /home/luna/Software/R/R-4-0-branch-dev/lib/libRblas.so
+LAPACK: /home/luna/Software/R/R-4-0-branch-dev/lib/libRlapack.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
@@ -1052,52 +1048,52 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] limma_3.45.7                scater_1.17.2              
+ [1] limma_3.45.10               scater_1.17.4              
  [3] ggplot2_3.3.2               pheatmap_1.0.12            
- [5] scran_1.17.3                SingleCellExperiment_1.11.6
- [7] SummarizedExperiment_1.19.5 DelayedArray_0.15.6        
+ [5] scran_1.17.15               SingleCellExperiment_1.11.6
+ [7] SummarizedExperiment_1.19.6 DelayedArray_0.15.7        
  [9] matrixStats_0.56.0          Matrix_1.2-18              
-[11] Biobase_2.49.0              GenomicRanges_1.41.5       
-[13] GenomeInfoDb_1.25.5         IRanges_2.23.10            
+[11] Biobase_2.49.0              GenomicRanges_1.41.6       
+[13] GenomeInfoDb_1.25.10        IRanges_2.23.10            
 [15] S4Vectors_0.27.12           BiocGenerics_0.35.4        
-[17] BiocStyle_2.17.0            simpleSingleCell_1.13.5    
+[17] BiocStyle_2.17.0            rebook_0.99.4              
 
 loaded via a namespace (and not attached):
  [1] viridis_0.5.1             edgeR_3.31.4             
  [3] BiocSingular_1.5.0        viridisLite_0.3.0        
- [5] DelayedMatrixStats_1.11.1 scuttle_0.99.10          
+ [5] DelayedMatrixStats_1.11.1 scuttle_0.99.13          
  [7] statmod_1.4.34            BiocManager_1.30.10      
  [9] highr_0.8                 dqrng_0.2.1              
 [11] vipor_0.4.5               GenomeInfoDbData_1.2.3   
-[13] yaml_2.2.1                pillar_1.4.4             
+[13] yaml_2.2.1                pillar_1.4.6             
 [15] lattice_0.20-41           glue_1.4.1               
 [17] digest_0.6.25             RColorBrewer_1.1-2       
 [19] XVector_0.29.3            colorspace_1.4-1         
 [21] cowplot_1.0.0             htmltools_0.5.0          
-[23] XML_3.99-0.3              pkgconfig_2.0.3          
+[23] XML_3.99-0.5              pkgconfig_2.0.3          
 [25] bookdown_0.20             zlibbioc_1.35.0          
 [27] purrr_0.3.4               scales_1.1.1             
-[29] processx_3.4.2            BiocParallel_1.23.0      
-[31] tibble_3.0.1              farver_2.0.3             
+[29] processx_3.4.3            BiocParallel_1.23.2      
+[31] tibble_3.0.3              farver_2.0.3             
 [33] generics_0.0.2            ellipsis_0.3.1           
 [35] withr_2.2.0               magrittr_1.5             
 [37] crayon_1.3.4              CodeDepends_0.6.5        
-[39] evaluate_0.14             ps_1.3.3                 
-[41] beeswarm_0.2.3            graph_1.67.1             
-[43] tools_4.0.2               lifecycle_0.2.0          
-[45] stringr_1.4.0             munsell_0.5.0            
-[47] locfit_1.5-9.4            irlba_2.3.3              
-[49] callr_3.4.3               compiler_4.0.2           
-[51] rsvd_1.0.3                rlang_0.4.6              
-[53] grid_4.0.2                RCurl_1.98-1.2           
-[55] BiocNeighbors_1.7.0       igraph_1.2.5             
-[57] labeling_0.3              bitops_1.0-6             
-[59] rmarkdown_2.3             gtable_0.3.0             
-[61] codetools_0.2-16          R6_2.4.1                 
-[63] gridExtra_2.3             knitr_1.29               
-[65] dplyr_1.0.0               ggbeeswarm_0.6.0         
-[67] stringi_1.4.6             Rcpp_1.0.4.6             
-[69] vctrs_0.3.1               tidyselect_1.1.0         
-[71] xfun_0.15                
+[39] evaluate_0.14             ps_1.3.4                 
+[41] bluster_0.99.1            beeswarm_0.2.3           
+[43] graph_1.67.1              tools_4.0.0              
+[45] lifecycle_0.2.0           stringr_1.4.0            
+[47] munsell_0.5.0             locfit_1.5-9.4           
+[49] irlba_2.3.3               callr_3.4.3              
+[51] compiler_4.0.0            rsvd_1.0.3               
+[53] rlang_0.4.7               grid_4.0.0               
+[55] RCurl_1.98-1.2            BiocNeighbors_1.7.0      
+[57] igraph_1.2.5              labeling_0.3             
+[59] bitops_1.0-6              rmarkdown_2.3            
+[61] gtable_0.3.0              codetools_0.2-16         
+[63] R6_2.4.1                  gridExtra_2.3            
+[65] knitr_1.29                dplyr_1.0.1              
+[67] ggbeeswarm_0.6.0          stringi_1.4.6            
+[69] Rcpp_1.0.5                vctrs_0.3.2              
+[71] tidyselect_1.1.0          xfun_0.16                
 ```
 </div>

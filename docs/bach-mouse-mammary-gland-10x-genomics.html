@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 36 Bach mouse mammary gland (10X Genomics) | Orchestrating Single-Cell Analysis with Bioconductor</title>
-  <meta name="description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
+  <title>Chapter 38 Bach mouse mammary gland (10X Genomics) | Orchestrating Single-Cell Analysis with Bioconductor</title>
+  <meta name="description" content="Or: how I learned to stop worrying and love the t-SNEs." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 36 Bach mouse mammary gland (10X Genomics) | Orchestrating Single-Cell Analysis with Bioconductor" />
+  <meta property="og:title" content="Chapter 38 Bach mouse mammary gland (10X Genomics) | Orchestrating Single-Cell Analysis with Bioconductor" />
   <meta property="og:type" content="book" />
   
-  
-  <meta property="og:description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
+  <meta property="og:image" content="https://www.bioconductor.org/images/logo_bioconductor.gif" />
+  <meta property="og:description" content="Or: how I learned to stop worrying and love the t-SNEs." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 36 Bach mouse mammary gland (10X Genomics) | Orchestrating Single-Cell Analysis with Bioconductor" />
+  <meta name="twitter:title" content="Chapter 38 Bach mouse mammary gland (10X Genomics) | Orchestrating Single-Cell Analysis with Bioconductor" />
   
-  <meta name="twitter:description" content="Online companion to ‘Orchestrating Single-Cell Analysis with Bioconductor’ manuscript by the Bioconductor team." />
-  
+  <meta name="twitter:description" content="Or: how I learned to stop worrying and love the t-SNEs." />
+  <meta name="twitter:image" content="https://www.bioconductor.org/images/logo_bioconductor.gif" />
 
 
 
-<meta name="date" content="2020-06-30" />
+<meta name="date" content="2020-08-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,8 @@
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 <link rel="prev" href="pijuan-sala-chimeric-mouse-embryo-10x-genomics.html"/>
-<link rel="next" href="hca-human-bone-marrow-10x-genomics.html"/>
+<link rel="next" href="contributors.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,27 +53,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -81,38 +81,39 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { background-color: #f8f8f8; }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ef2929; } /* Alert */
-code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #c4a000; } /* Attribute */
-code span.bn { color: #0000cf; } /* BaseN */
-code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4e9a06; } /* Char */
-code span.cn { color: #000000; } /* Constant */
-code span.co { color: #8f5902; font-style: italic; } /* Comment */
-code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code span.dt { color: #204a87; } /* DataType */
-code span.dv { color: #0000cf; } /* DecVal */
-code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
-code span.fl { color: #0000cf; } /* Float */
-code span.fu { color: #000000; } /* Function */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
 code span.im { } /* Import */
-code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code span.ot { color: #8f5902; } /* Other */
-code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code span.sc { color: #000000; } /* SpecialChar */
-code span.ss { color: #4e9a06; } /* SpecialString */
-code span.st { color: #4e9a06; } /* String */
-code span.va { color: #000000; } /* Variable */
-code span.vs { color: #4e9a06; } /* VerbatimString */
-code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -133,8 +134,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
 <li class="part"><span><b>I Preamble</b></span></li>
-<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#what-you-will-learn"><i class="fa fa-check"></i><b>1.1</b> What you will learn</a><ul>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#what-you-will-learn"><i class="fa fa-check"></i><b>1.1</b> What you will learn</a>
+<ul>
 <li class="chapter" data-level="1.1.1" data-path="introduction.html"><a href="introduction.html#preliminaries"><i class="fa fa-check"></i><b>1.1.1</b> Preliminaries</a></li>
 <li class="chapter" data-level="1.1.2" data-path="introduction.html"><a href="introduction.html#workflows"><i class="fa fa-check"></i><b>1.1.2</b> Workflows</a></li>
 </ul></li>
@@ -143,41 +146,50 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#why-we-wrote-this"><i class="fa fa-check"></i><b>1.4</b> Why we wrote this</a></li>
 <li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#acknowledgements"><i class="fa fa-check"></i><b>1.5</b> Acknowledgements</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="learning-r-and-more.html"><a href="learning-r-and-more.html"><i class="fa fa-check"></i><b>2</b> Learning R and Bioconductor</a><ul>
+<li class="chapter" data-level="2" data-path="learning-r-and-more.html"><a href="learning-r-and-more.html"><i class="fa fa-check"></i><b>2</b> Learning R and Bioconductor</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="learning-r-and-more.html"><a href="learning-r-and-more.html#the-benefits-of-r-and-bioconductor"><i class="fa fa-check"></i><b>2.1</b> The Benefits of R and Bioconductor</a></li>
 <li class="chapter" data-level="2.2" data-path="learning-r-and-more.html"><a href="learning-r-and-more.html#getting-started-with-r"><i class="fa fa-check"></i><b>2.2</b> Learning R Online</a></li>
-<li class="chapter" data-level="2.3" data-path="learning-r-and-more.html"><a href="learning-r-and-more.html#running-r-locally"><i class="fa fa-check"></i><b>2.3</b> Running R Locally</a><ul>
+<li class="chapter" data-level="2.3" data-path="learning-r-and-more.html"><a href="learning-r-and-more.html#running-r-locally"><i class="fa fa-check"></i><b>2.3</b> Running R Locally</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="learning-r-and-more.html"><a href="learning-r-and-more.html#installing-r"><i class="fa fa-check"></i><b>2.3.1</b> Installing R</a></li>
 <li class="chapter" data-level="2.3.2" data-path="learning-r-and-more.html"><a href="learning-r-and-more.html#installing-r-bioconductor-packages"><i class="fa fa-check"></i><b>2.3.2</b> Installing R &amp; Bioconductor Packages</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="learning-r-and-more.html"><a href="learning-r-and-more.html#getting-help-in-and-out-of-r"><i class="fa fa-check"></i><b>2.4</b> Getting Help In (and Out) of R</a></li>
-<li class="chapter" data-level="2.5" data-path="learning-r-and-more.html"><a href="learning-r-and-more.html#bioconductor-documentation"><i class="fa fa-check"></i><b>2.5</b> Bioconductor Help</a><ul>
+<li class="chapter" data-level="2.5" data-path="learning-r-and-more.html"><a href="learning-r-and-more.html#bioconductor-documentation"><i class="fa fa-check"></i><b>2.5</b> Bioconductor Help</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="learning-r-and-more.html"><a href="learning-r-and-more.html#bioconductor-packages"><i class="fa fa-check"></i><b>2.5.1</b> Bioconductor Packages</a></li>
 <li class="chapter" data-level="2.5.2" data-path="learning-r-and-more.html"><a href="learning-r-and-more.html#biocviews"><i class="fa fa-check"></i><b>2.5.2</b> biocViews</a></li>
 <li class="chapter" data-level="2.5.3" data-path="learning-r-and-more.html"><a href="learning-r-and-more.html#bioconductor-forums"><i class="fa fa-check"></i><b>2.5.3</b> Bioconductor Forums</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="beyond-r-basics.html"><a href="beyond-r-basics.html"><i class="fa fa-check"></i><b>3</b> Beyond R Basics</a><ul>
+<li class="chapter" data-level="3" data-path="beyond-r-basics.html"><a href="beyond-r-basics.html"><i class="fa fa-check"></i><b>3</b> Beyond R Basics</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="beyond-r-basics.html"><a href="beyond-r-basics.html#becoming-an-r-expert"><i class="fa fa-check"></i><b>3.1</b> Becoming an R Expert</a></li>
 <li class="chapter" data-level="3.2" data-path="beyond-r-basics.html"><a href="beyond-r-basics.html#becoming-a-bioconductor-developer"><i class="fa fa-check"></i><b>3.2</b> Becoming an R/Bioconductor Developer</a></li>
-<li class="chapter" data-level="3.3" data-path="beyond-r-basics.html"><a href="beyond-r-basics.html#nice-companions-for-r"><i class="fa fa-check"></i><b>3.3</b> Nice Companions for R</a><ul>
+<li class="chapter" data-level="3.3" data-path="beyond-r-basics.html"><a href="beyond-r-basics.html#nice-companions-for-r"><i class="fa fa-check"></i><b>3.3</b> Nice Companions for R</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="beyond-r-basics.html"><a href="beyond-r-basics.html#shellbash"><i class="fa fa-check"></i><b>3.3.1</b> Shell/Bash</a></li>
 <li class="chapter" data-level="3.3.2" data-path="beyond-r-basics.html"><a href="beyond-r-basics.html#git"><i class="fa fa-check"></i><b>3.3.2</b> Git</a></li>
 <li class="chapter" data-level="3.3.3" data-path="beyond-r-basics.html"><a href="beyond-r-basics.html#other-languages"><i class="fa fa-check"></i><b>3.3.3</b> Other Languages</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="data-infrastructure.html"><a href="data-infrastructure.html"><i class="fa fa-check"></i><b>4</b> Data Infrastructure</a><ul>
+<li class="chapter" data-level="4" data-path="data-infrastructure.html"><a href="data-infrastructure.html"><i class="fa fa-check"></i><b>4</b> Data Infrastructure</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="data-infrastructure.html"><a href="data-infrastructure.html#background"><i class="fa fa-check"></i><b>4.1</b> Background</a></li>
-<li class="chapter" data-level="4.2" data-path="data-infrastructure.html"><a href="data-infrastructure.html#storing-primary-experimental-data"><i class="fa fa-check"></i><b>4.2</b> Storing primary experimental data</a><ul>
+<li class="chapter" data-level="4.2" data-path="data-infrastructure.html"><a href="data-infrastructure.html#storing-primary-experimental-data"><i class="fa fa-check"></i><b>4.2</b> Storing primary experimental data</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="data-infrastructure.html"><a href="data-infrastructure.html#filling-the-assays-slot"><i class="fa fa-check"></i><b>4.2.1</b> Filling the <code>assays</code> slot</a></li>
 <li class="chapter" data-level="4.2.2" data-path="data-infrastructure.html"><a href="data-infrastructure.html#adding-more-assays"><i class="fa fa-check"></i><b>4.2.2</b> Adding more <code>assays</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="data-infrastructure.html"><a href="data-infrastructure.html#handling-metadata"><i class="fa fa-check"></i><b>4.3</b> Handling metadata</a><ul>
+<li class="chapter" data-level="4.3" data-path="data-infrastructure.html"><a href="data-infrastructure.html#handling-metadata"><i class="fa fa-check"></i><b>4.3</b> Handling metadata</a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="data-infrastructure.html"><a href="data-infrastructure.html#on-the-columns"><i class="fa fa-check"></i><b>4.3.1</b> On the columns</a></li>
 <li class="chapter" data-level="4.3.2" data-path="data-infrastructure.html"><a href="data-infrastructure.html#on-the-rows"><i class="fa fa-check"></i><b>4.3.2</b> On the rows</a></li>
 <li class="chapter" data-level="4.3.3" data-path="data-infrastructure.html"><a href="data-infrastructure.html#other-metadata"><i class="fa fa-check"></i><b>4.3.3</b> Other metadata</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="data-infrastructure.html"><a href="data-infrastructure.html#single-cell-specific-fields"><i class="fa fa-check"></i><b>4.4</b> Single-cell-specific fields</a><ul>
+<li class="chapter" data-level="4.4" data-path="data-infrastructure.html"><a href="data-infrastructure.html#single-cell-specific-fields"><i class="fa fa-check"></i><b>4.4</b> Single-cell-specific fields</a>
+<ul>
 <li class="chapter" data-level="4.4.1" data-path="data-infrastructure.html"><a href="data-infrastructure.html#background-1"><i class="fa fa-check"></i><b>4.4.1</b> Background</a></li>
 <li class="chapter" data-level="4.4.2" data-path="data-infrastructure.html"><a href="data-infrastructure.html#dimensionality-reduction-results"><i class="fa fa-check"></i><b>4.4.2</b> Dimensionality reduction results</a></li>
 <li class="chapter" data-level="4.4.3" data-path="data-infrastructure.html"><a href="data-infrastructure.html#alternative-experiments"><i class="fa fa-check"></i><b>4.4.3</b> Alternative Experiments</a></li>
@@ -187,7 +199,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="data-infrastructure.html"><a href="data-infrastructure.html#conclusion"><i class="fa fa-check"></i><b>4.5</b> Conclusion</a></li>
 </ul></li>
 <li class="part"><span><b>II Focus Topics</b></span></li>
-<li class="chapter" data-level="5" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>5</b> Overview</a><ul>
+<li class="chapter" data-level="5" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>5</b> Overview</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
 <li class="chapter" data-level="5.2" data-path="overview.html"><a href="overview.html#experimental-design"><i class="fa fa-check"></i><b>5.2</b> Experimental Design</a></li>
 <li class="chapter" data-level="5.3" data-path="overview.html"><a href="overview.html#obtaining-a-count-matrix"><i class="fa fa-check"></i><b>5.3</b> Obtaining a count matrix</a></li>
@@ -195,45 +208,47 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="overview.html"><a href="overview.html#quick-start"><i class="fa fa-check"></i><b>5.5</b> Quick start</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="quality-control.html"><a href="quality-control.html"><i class="fa fa-check"></i><b>6</b> Quality Control</a><ul>
+<li class="chapter" data-level="6" data-path="quality-control.html"><a href="quality-control.html"><i class="fa fa-check"></i><b>6</b> Quality Control</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="quality-control.html"><a href="quality-control.html#quality-control-motivation"><i class="fa fa-check"></i><b>6.1</b> Motivation</a></li>
 <li class="chapter" data-level="6.2" data-path="quality-control.html"><a href="quality-control.html#choice-of-qc-metrics"><i class="fa fa-check"></i><b>6.2</b> Choice of QC metrics</a></li>
-<li class="chapter" data-level="6.3" data-path="quality-control.html"><a href="quality-control.html#identifying-low-quality-cells"><i class="fa fa-check"></i><b>6.3</b> Identifying low-quality cells</a><ul>
+<li class="chapter" data-level="6.3" data-path="quality-control.html"><a href="quality-control.html#identifying-low-quality-cells"><i class="fa fa-check"></i><b>6.3</b> Identifying low-quality cells</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="quality-control.html"><a href="quality-control.html#fixed-qc"><i class="fa fa-check"></i><b>6.3.1</b> With fixed thresholds</a></li>
 <li class="chapter" data-level="6.3.2" data-path="quality-control.html"><a href="quality-control.html#quality-control-outlier"><i class="fa fa-check"></i><b>6.3.2</b> With adaptive thresholds</a></li>
 <li class="chapter" data-level="6.3.3" data-path="quality-control.html"><a href="quality-control.html#other-approaches"><i class="fa fa-check"></i><b>6.3.3</b> Other approaches</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="quality-control.html"><a href="quality-control.html#quality-control-plots"><i class="fa fa-check"></i><b>6.4</b> Checking diagnostic plots</a></li>
-<li class="chapter" data-level="6.5" data-path="quality-control.html"><a href="quality-control.html#qc-droplets"><i class="fa fa-check"></i><b>6.5</b> Cell calling for droplet data</a><ul>
-<li class="chapter" data-level="6.5.1" data-path="data-infrastructure.html"><a href="data-infrastructure.html#background"><i class="fa fa-check"></i><b>6.5.1</b> Background</a></li>
-<li class="chapter" data-level="6.5.2" data-path="quality-control.html"><a href="quality-control.html#testing-for-empty-droplets"><i class="fa fa-check"></i><b>6.5.2</b> Testing for empty droplets</a></li>
-<li class="chapter" data-level="6.5.3" data-path="quality-control.html"><a href="quality-control.html#relationship-with-other-qc-metrics"><i class="fa fa-check"></i><b>6.5.3</b> Relationship with other QC metrics</a></li>
-</ul></li>
-<li class="chapter" data-level="6.6" data-path="quality-control.html"><a href="quality-control.html#quality-control-discarded"><i class="fa fa-check"></i><b>6.6</b> Removing low-quality cells</a></li>
-<li class="chapter" data-level="6.7" data-path="quality-control.html"><a href="quality-control.html#marking-qc"><i class="fa fa-check"></i><b>6.7</b> Marking low-quality cells</a></li>
+<li class="chapter" data-level="6.5" data-path="quality-control.html"><a href="quality-control.html#quality-control-discarded"><i class="fa fa-check"></i><b>6.5</b> Removing low-quality cells</a></li>
+<li class="chapter" data-level="6.6" data-path="quality-control.html"><a href="quality-control.html#marking-qc"><i class="fa fa-check"></i><b>6.6</b> Marking low-quality cells</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="normalization.html"><a href="normalization.html"><i class="fa fa-check"></i><b>7</b> Normalization</a><ul>
+<li class="chapter" data-level="7" data-path="normalization.html"><a href="normalization.html"><i class="fa fa-check"></i><b>7</b> Normalization</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="normalization.html"><a href="normalization.html#motivation"><i class="fa fa-check"></i><b>7.1</b> Motivation</a></li>
 <li class="chapter" data-level="7.2" data-path="normalization.html"><a href="normalization.html#library-size-normalization"><i class="fa fa-check"></i><b>7.2</b> Library size normalization</a></li>
 <li class="chapter" data-level="7.3" data-path="normalization.html"><a href="normalization.html#normalization-by-deconvolution"><i class="fa fa-check"></i><b>7.3</b> Normalization by deconvolution</a></li>
 <li class="chapter" data-level="7.4" data-path="normalization.html"><a href="normalization.html#spike-norm"><i class="fa fa-check"></i><b>7.4</b> Normalization by spike-ins</a></li>
-<li class="chapter" data-level="7.5" data-path="normalization.html"><a href="normalization.html#applying-the-size-factors"><i class="fa fa-check"></i><b>7.5</b> Applying the size factors</a><ul>
+<li class="chapter" data-level="7.5" data-path="normalization.html"><a href="normalization.html#applying-the-size-factors"><i class="fa fa-check"></i><b>7.5</b> Applying the size factors</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="normalization.html"><a href="normalization.html#normalization-transformation"><i class="fa fa-check"></i><b>7.5.1</b> Scaling and log-transforming</a></li>
 <li class="chapter" data-level="7.5.2" data-path="normalization.html"><a href="normalization.html#downsampling-and-log-transforming"><i class="fa fa-check"></i><b>7.5.2</b> Downsampling and log-transforming</a></li>
 <li class="chapter" data-level="7.5.3" data-path="normalization.html"><a href="normalization.html#other-options"><i class="fa fa-check"></i><b>7.5.3</b> Other options</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="feature-selection.html"><a href="feature-selection.html"><i class="fa fa-check"></i><b>8</b> Feature selection</a><ul>
+<li class="chapter" data-level="8" data-path="feature-selection.html"><a href="feature-selection.html"><i class="fa fa-check"></i><b>8</b> Feature selection</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="normalization.html"><a href="normalization.html#motivation"><i class="fa fa-check"></i><b>8.1</b> Motivation</a></li>
-<li class="chapter" data-level="8.2" data-path="feature-selection.html"><a href="feature-selection.html#quantifying-per-gene-variation"><i class="fa fa-check"></i><b>8.2</b> Quantifying per-gene variation</a><ul>
+<li class="chapter" data-level="8.2" data-path="feature-selection.html"><a href="feature-selection.html#quantifying-per-gene-variation"><i class="fa fa-check"></i><b>8.2</b> Quantifying per-gene variation</a>
+<ul>
 <li class="chapter" data-level="8.2.1" data-path="feature-selection.html"><a href="feature-selection.html#variance-of-the-log-counts"><i class="fa fa-check"></i><b>8.2.1</b> Variance of the log-counts</a></li>
 <li class="chapter" data-level="8.2.2" data-path="feature-selection.html"><a href="feature-selection.html#coefficient-of-variation"><i class="fa fa-check"></i><b>8.2.2</b> Coefficient of variation</a></li>
 <li class="chapter" data-level="8.2.3" data-path="feature-selection.html"><a href="feature-selection.html#sec:spikeins"><i class="fa fa-check"></i><b>8.2.3</b> Quantifying technical noise</a></li>
 <li class="chapter" data-level="8.2.4" data-path="feature-selection.html"><a href="feature-selection.html#accounting-for-blocking-factors"><i class="fa fa-check"></i><b>8.2.4</b> Accounting for blocking factors</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="feature-selection.html"><a href="feature-selection.html#hvg-selection"><i class="fa fa-check"></i><b>8.3</b> Selecting highly variable genes</a><ul>
+<li class="chapter" data-level="8.3" data-path="feature-selection.html"><a href="feature-selection.html#hvg-selection"><i class="fa fa-check"></i><b>8.3</b> Selecting highly variable genes</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="overview.html"><a href="overview.html#overview"><i class="fa fa-check"></i><b>8.3.1</b> Overview</a></li>
 <li class="chapter" data-level="8.3.2" data-path="feature-selection.html"><a href="feature-selection.html#based-on-the-largest-metrics"><i class="fa fa-check"></i><b>8.3.2</b> Based on the largest metrics</a></li>
 <li class="chapter" data-level="8.3.3" data-path="feature-selection.html"><a href="feature-selection.html#based-on-significance"><i class="fa fa-check"></i><b>8.3.3</b> Based on significance</a></li>
@@ -243,17 +258,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.5" data-path="feature-selection.html"><a href="feature-selection.html#feature-selection-subsetting"><i class="fa fa-check"></i><b>8.5</b> Putting it all together</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>9</b> Dimensionality reduction</a><ul>
+<li class="chapter" data-level="9" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>9</b> Dimensionality reduction</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="overview.html"><a href="overview.html#overview"><i class="fa fa-check"></i><b>9.1</b> Overview</a></li>
 <li class="chapter" data-level="9.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#principal-components-analysis"><i class="fa fa-check"></i><b>9.2</b> Principal components analysis</a></li>
-<li class="chapter" data-level="9.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#choosing-the-number-of-pcs"><i class="fa fa-check"></i><b>9.3</b> Choosing the number of PCs</a><ul>
+<li class="chapter" data-level="9.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#choosing-the-number-of-pcs"><i class="fa fa-check"></i><b>9.3</b> Choosing the number of PCs</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="normalization.html"><a href="normalization.html#motivation"><i class="fa fa-check"></i><b>9.3.1</b> Motivation</a></li>
 <li class="chapter" data-level="9.3.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#using-the-elbow-point"><i class="fa fa-check"></i><b>9.3.2</b> Using the elbow point</a></li>
 <li class="chapter" data-level="9.3.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#using-the-technical-noise"><i class="fa fa-check"></i><b>9.3.3</b> Using the technical noise</a></li>
 <li class="chapter" data-level="9.3.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#based-on-population-structure"><i class="fa fa-check"></i><b>9.3.4</b> Based on population structure</a></li>
 <li class="chapter" data-level="9.3.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#using-random-matrix-theory"><i class="fa fa-check"></i><b>9.3.5</b> Using random matrix theory</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction-for-visualization"><i class="fa fa-check"></i><b>9.4</b> Dimensionality reduction for visualization</a><ul>
+<li class="chapter" data-level="9.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction-for-visualization"><i class="fa fa-check"></i><b>9.4</b> Dimensionality reduction for visualization</a>
+<ul>
 <li class="chapter" data-level="9.4.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#motivation-1"><i class="fa fa-check"></i><b>9.4.1</b> Motivation</a></li>
 <li class="chapter" data-level="9.4.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#visualizing-with-pca"><i class="fa fa-check"></i><b>9.4.2</b> Visualizing with PCA</a></li>
 <li class="chapter" data-level="9.4.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#t-stochastic-neighbor-embedding"><i class="fa fa-check"></i><b>9.4.3</b> <span class="math inline">\(t\)</span>-stochastic neighbor embedding</a></li>
@@ -262,27 +280,32 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>10</b> Clustering</a><ul>
+<li class="chapter" data-level="10" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>10</b> Clustering</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="normalization.html"><a href="normalization.html#motivation"><i class="fa fa-check"></i><b>10.1</b> Motivation</a></li>
 <li class="chapter" data-level="10.2" data-path="clustering.html"><a href="clustering.html#what-is-the-true-clustering"><i class="fa fa-check"></i><b>10.2</b> What is the “true clustering”?</a></li>
-<li class="chapter" data-level="10.3" data-path="clustering.html"><a href="clustering.html#clustering-graph"><i class="fa fa-check"></i><b>10.3</b> Graph-based clustering</a><ul>
+<li class="chapter" data-level="10.3" data-path="clustering.html"><a href="clustering.html#clustering-graph"><i class="fa fa-check"></i><b>10.3</b> Graph-based clustering</a>
+<ul>
 <li class="chapter" data-level="10.3.1" data-path="data-infrastructure.html"><a href="data-infrastructure.html#background"><i class="fa fa-check"></i><b>10.3.1</b> Background</a></li>
 <li class="chapter" data-level="10.3.2" data-path="clustering.html"><a href="clustering.html#implementation"><i class="fa fa-check"></i><b>10.3.2</b> Implementation</a></li>
 <li class="chapter" data-level="10.3.3" data-path="clustering.html"><a href="clustering.html#other-parameters"><i class="fa fa-check"></i><b>10.3.3</b> Other parameters</a></li>
 <li class="chapter" data-level="10.3.4" data-path="clustering.html"><a href="clustering.html#assessing-cluster-separation"><i class="fa fa-check"></i><b>10.3.4</b> Assessing cluster separation</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="clustering.html"><a href="clustering.html#k-means-clustering"><i class="fa fa-check"></i><b>10.4</b> <span class="math inline">\(k\)</span>-means clustering</a><ul>
+<li class="chapter" data-level="10.4" data-path="clustering.html"><a href="clustering.html#k-means-clustering"><i class="fa fa-check"></i><b>10.4</b> <span class="math inline">\(k\)</span>-means clustering</a>
+<ul>
 <li class="chapter" data-level="10.4.1" data-path="data-infrastructure.html"><a href="data-infrastructure.html#background-1"><i class="fa fa-check"></i><b>10.4.1</b> Background</a></li>
 <li class="chapter" data-level="10.4.2" data-path="clustering.html"><a href="clustering.html#base-implementation"><i class="fa fa-check"></i><b>10.4.2</b> Base implementation</a></li>
 <li class="chapter" data-level="10.4.3" data-path="clustering.html"><a href="clustering.html#assessing-cluster-separation-1"><i class="fa fa-check"></i><b>10.4.3</b> Assessing cluster separation</a></li>
 <li class="chapter" data-level="10.4.4" data-path="clustering.html"><a href="clustering.html#in-two-step-procedures"><i class="fa fa-check"></i><b>10.4.4</b> In two-step procedures</a></li>
 </ul></li>
-<li class="chapter" data-level="10.5" data-path="clustering.html"><a href="clustering.html#hierarchical-clustering"><i class="fa fa-check"></i><b>10.5</b> Hierarchical clustering</a><ul>
+<li class="chapter" data-level="10.5" data-path="clustering.html"><a href="clustering.html#hierarchical-clustering"><i class="fa fa-check"></i><b>10.5</b> Hierarchical clustering</a>
+<ul>
 <li class="chapter" data-level="10.5.1" data-path="clustering.html"><a href="clustering.html#background-2"><i class="fa fa-check"></i><b>10.5.1</b> Background</a></li>
 <li class="chapter" data-level="10.5.2" data-path="clustering.html"><a href="clustering.html#implementation-1"><i class="fa fa-check"></i><b>10.5.2</b> Implementation</a></li>
 <li class="chapter" data-level="10.5.3" data-path="clustering.html"><a href="clustering.html#silhouette-width"><i class="fa fa-check"></i><b>10.5.3</b> Assessing cluster separation</a></li>
 </ul></li>
-<li class="chapter" data-level="10.6" data-path="clustering.html"><a href="clustering.html#general-purpose-cluster-diagnostics"><i class="fa fa-check"></i><b>10.6</b> General-purpose cluster diagnostics</a><ul>
+<li class="chapter" data-level="10.6" data-path="clustering.html"><a href="clustering.html#general-purpose-cluster-diagnostics"><i class="fa fa-check"></i><b>10.6</b> General-purpose cluster diagnostics</a>
+<ul>
 <li class="chapter" data-level="10.6.1" data-path="clustering.html"><a href="clustering.html#cluster-separation-redux"><i class="fa fa-check"></i><b>10.6.1</b> Cluster separation, redux</a></li>
 <li class="chapter" data-level="10.6.2" data-path="clustering.html"><a href="clustering.html#comparing-different-clusterings"><i class="fa fa-check"></i><b>10.6.2</b> Comparing different clusterings</a></li>
 <li class="chapter" data-level="10.6.3" data-path="clustering.html"><a href="clustering.html#cluster-bootstrapping"><i class="fa fa-check"></i><b>10.6.3</b> Evaluating cluster stability</a></li>
@@ -290,33 +313,40 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.7" data-path="clustering.html"><a href="clustering.html#subclustering"><i class="fa fa-check"></i><b>10.7</b> Subclustering</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="marker-detection.html"><a href="marker-detection.html"><i class="fa fa-check"></i><b>11</b> Marker gene detection</a><ul>
+<li class="chapter" data-level="11" data-path="marker-detection.html"><a href="marker-detection.html"><i class="fa fa-check"></i><b>11</b> Marker gene detection</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="normalization.html"><a href="normalization.html#motivation"><i class="fa fa-check"></i><b>11.1</b> Motivation</a></li>
-<li class="chapter" data-level="11.2" data-path="marker-detection.html"><a href="marker-detection.html#using-pairwise-t-tests"><i class="fa fa-check"></i><b>11.2</b> Using pairwise <span class="math inline">\(t\)</span>-tests</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="marker-detection.html"><a href="marker-detection.html#standard-application"><i class="fa fa-check"></i><b>11.2.1</b> Standard application</a></li>
-<li class="chapter" data-level="11.2.2" data-path="marker-detection.html"><a href="marker-detection.html#using-the-log-fold-change"><i class="fa fa-check"></i><b>11.2.2</b> Using the log-fold change</a></li>
-<li class="chapter" data-level="11.2.3" data-path="marker-detection.html"><a href="marker-detection.html#finding-cluster-specific-markers"><i class="fa fa-check"></i><b>11.2.3</b> Finding cluster-specific markers</a></li>
+<li class="chapter" data-level="11.2" data-path="marker-detection.html"><a href="marker-detection.html#pairwise-tests-between-clusters"><i class="fa fa-check"></i><b>11.2</b> Pairwise tests between clusters</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#motivation-1"><i class="fa fa-check"></i><b>11.2.1</b> Motivation</a></li>
+<li class="chapter" data-level="11.2.2" data-path="marker-detection.html"><a href="marker-detection.html#combining-pairwise-statistics-per-cluster"><i class="fa fa-check"></i><b>11.2.2</b> Combining pairwise statistics per cluster</a></li>
+<li class="chapter" data-level="11.2.3" data-path="marker-detection.html"><a href="marker-detection.html#using-the-log-fold-change"><i class="fa fa-check"></i><b>11.2.3</b> Using the log-fold change</a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="marker-detection.html"><a href="marker-detection.html#alternative-testing-regimes"><i class="fa fa-check"></i><b>11.3</b> Alternative testing regimes</a><ul>
+<li class="chapter" data-level="11.3" data-path="marker-detection.html"><a href="marker-detection.html#marker-tests"><i class="fa fa-check"></i><b>11.3</b> Alternative testing regimes</a>
+<ul>
 <li class="chapter" data-level="11.3.1" data-path="marker-detection.html"><a href="marker-detection.html#using-the-wilcoxon-rank-sum-test"><i class="fa fa-check"></i><b>11.3.1</b> Using the Wilcoxon rank sum test</a></li>
 <li class="chapter" data-level="11.3.2" data-path="marker-detection.html"><a href="marker-detection.html#using-a-binomial-test"><i class="fa fa-check"></i><b>11.3.2</b> Using a binomial test</a></li>
 <li class="chapter" data-level="11.3.3" data-path="marker-detection.html"><a href="marker-detection.html#using-custom-de-methods"><i class="fa fa-check"></i><b>11.3.3</b> Using custom DE methods</a></li>
 <li class="chapter" data-level="11.3.4" data-path="marker-detection.html"><a href="marker-detection.html#combining-multiple-marker-statistics"><i class="fa fa-check"></i><b>11.3.4</b> Combining multiple marker statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="marker-detection.html"><a href="marker-detection.html#marker-batch"><i class="fa fa-check"></i><b>11.4</b> Handling blocking factors</a><ul>
+<li class="chapter" data-level="11.4" data-path="marker-detection.html"><a href="marker-detection.html#marker-batch"><i class="fa fa-check"></i><b>11.4</b> Handling blocking factors</a>
+<ul>
 <li class="chapter" data-level="11.4.1" data-path="marker-detection.html"><a href="marker-detection.html#using-the-block-argument"><i class="fa fa-check"></i><b>11.4.1</b> Using the <code>block=</code> argument</a></li>
 <li class="chapter" data-level="11.4.2" data-path="marker-detection.html"><a href="marker-detection.html#using-the-design-argument"><i class="fa fa-check"></i><b>11.4.2</b> Using the <code>design=</code> argument</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="marker-detection.html"><a href="marker-detection.html#p-value-invalidity"><i class="fa fa-check"></i><b>11.5</b> Invalidity of <span class="math inline">\(p\)</span>-values</a><ul>
+<li class="chapter" data-level="11.5" data-path="marker-detection.html"><a href="marker-detection.html#p-value-invalidity"><i class="fa fa-check"></i><b>11.5</b> Invalidity of <span class="math inline">\(p\)</span>-values</a>
+<ul>
 <li class="chapter" data-level="11.5.1" data-path="marker-detection.html"><a href="marker-detection.html#from-data-snooping"><i class="fa fa-check"></i><b>11.5.1</b> From data snooping</a></li>
 <li class="chapter" data-level="11.5.2" data-path="marker-detection.html"><a href="marker-detection.html#false-replicates"><i class="fa fa-check"></i><b>11.5.2</b> Nature of replication</a></li>
 </ul></li>
 <li class="chapter" data-level="11.6" data-path="marker-detection.html"><a href="marker-detection.html#further-comments"><i class="fa fa-check"></i><b>11.6</b> Further comments</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="cell-type-annotation.html"><a href="cell-type-annotation.html"><i class="fa fa-check"></i><b>12</b> Cell type annotation</a><ul>
+<li class="chapter" data-level="12" data-path="cell-type-annotation.html"><a href="cell-type-annotation.html"><i class="fa fa-check"></i><b>12</b> Cell type annotation</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="normalization.html"><a href="normalization.html#motivation"><i class="fa fa-check"></i><b>12.1</b> Motivation</a></li>
-<li class="chapter" data-level="12.2" data-path="cell-type-annotation.html"><a href="cell-type-annotation.html#assigning-cell-labels-from-reference-data"><i class="fa fa-check"></i><b>12.2</b> Assigning cell labels from reference data</a><ul>
+<li class="chapter" data-level="12.2" data-path="cell-type-annotation.html"><a href="cell-type-annotation.html#assigning-cell-labels-from-reference-data"><i class="fa fa-check"></i><b>12.2</b> Assigning cell labels from reference data</a>
+<ul>
 <li class="chapter" data-level="12.2.1" data-path="overview.html"><a href="overview.html#overview"><i class="fa fa-check"></i><b>12.2.1</b> Overview</a></li>
 <li class="chapter" data-level="12.2.2" data-path="cell-type-annotation.html"><a href="cell-type-annotation.html#using-existing-references"><i class="fa fa-check"></i><b>12.2.2</b> Using existing references</a></li>
 <li class="chapter" data-level="12.2.3" data-path="cell-type-annotation.html"><a href="cell-type-annotation.html#using-custom-references"><i class="fa fa-check"></i><b>12.2.3</b> Using custom references</a></li>
@@ -326,177 +356,206 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.5" data-path="cell-type-annotation.html"><a href="cell-type-annotation.html#computing-gene-set-activities"><i class="fa fa-check"></i><b>12.5</b> Computing gene set activities</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="integrating-datasets.html"><a href="integrating-datasets.html"><i class="fa fa-check"></i><b>13</b> Integrating Datasets</a><ul>
+<li class="chapter" data-level="13" data-path="integrating-datasets.html"><a href="integrating-datasets.html"><i class="fa fa-check"></i><b>13</b> Integrating Datasets</a>
+<ul>
 <li class="chapter" data-level="13.1" data-path="normalization.html"><a href="normalization.html#motivation"><i class="fa fa-check"></i><b>13.1</b> Motivation</a></li>
 <li class="chapter" data-level="13.2" data-path="integrating-datasets.html"><a href="integrating-datasets.html#setting-up-the-data"><i class="fa fa-check"></i><b>13.2</b> Setting up the data</a></li>
 <li class="chapter" data-level="13.3" data-path="integrating-datasets.html"><a href="integrating-datasets.html#batch-diagnosis"><i class="fa fa-check"></i><b>13.3</b> Diagnosing batch effects</a></li>
 <li class="chapter" data-level="13.4" data-path="integrating-datasets.html"><a href="integrating-datasets.html#linear-regression"><i class="fa fa-check"></i><b>13.4</b> Linear regression</a></li>
-<li class="chapter" data-level="13.5" data-path="integrating-datasets.html"><a href="integrating-datasets.html#performing-mnn-correction"><i class="fa fa-check"></i><b>13.5</b> Performing MNN correction</a><ul>
+<li class="chapter" data-level="13.5" data-path="integrating-datasets.html"><a href="integrating-datasets.html#performing-mnn-correction"><i class="fa fa-check"></i><b>13.5</b> Performing MNN correction</a>
+<ul>
 <li class="chapter" data-level="13.5.1" data-path="integrating-datasets.html"><a href="integrating-datasets.html#algorithm-overview"><i class="fa fa-check"></i><b>13.5.1</b> Algorithm overview</a></li>
 <li class="chapter" data-level="13.5.2" data-path="integrating-datasets.html"><a href="integrating-datasets.html#application-to-the-pbmc-data"><i class="fa fa-check"></i><b>13.5.2</b> Application to the PBMC data</a></li>
 <li class="chapter" data-level="13.5.3" data-path="integrating-datasets.html"><a href="integrating-datasets.html#correction-diagnostics"><i class="fa fa-check"></i><b>13.5.3</b> Correction diagnostics</a></li>
 </ul></li>
-<li class="chapter" data-level="13.6" data-path="integrating-datasets.html"><a href="integrating-datasets.html#preserving-biological-heterogeneity"><i class="fa fa-check"></i><b>13.6</b> Preserving biological heterogeneity</a><ul>
+<li class="chapter" data-level="13.6" data-path="integrating-datasets.html"><a href="integrating-datasets.html#preserving-biological-heterogeneity"><i class="fa fa-check"></i><b>13.6</b> Preserving biological heterogeneity</a>
+<ul>
 <li class="chapter" data-level="13.6.1" data-path="integrating-datasets.html"><a href="integrating-datasets.html#comparison-to-within-batch-clusters"><i class="fa fa-check"></i><b>13.6.1</b> Comparison to within-batch clusters</a></li>
 <li class="chapter" data-level="13.6.2" data-path="integrating-datasets.html"><a href="integrating-datasets.html#integration-with-markers"><i class="fa fa-check"></i><b>13.6.2</b> Encouraging consistency with marker genes</a></li>
 </ul></li>
 <li class="chapter" data-level="13.7" data-path="integrating-datasets.html"><a href="integrating-datasets.html#using-corrected-values"><i class="fa fa-check"></i><b>13.7</b> Using the corrected values</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html"><i class="fa fa-check"></i><b>14</b> Multi-sample comparisons</a><ul>
+<li class="chapter" data-level="14" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html"><i class="fa fa-check"></i><b>14</b> Multi-sample comparisons</a>
+<ul>
 <li class="chapter" data-level="14.1" data-path="normalization.html"><a href="normalization.html#motivation"><i class="fa fa-check"></i><b>14.1</b> Motivation</a></li>
 <li class="chapter" data-level="14.2" data-path="integrating-datasets.html"><a href="integrating-datasets.html#setting-up-the-data"><i class="fa fa-check"></i><b>14.2</b> Setting up the data</a></li>
-<li class="chapter" data-level="14.3" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html#differential-expression-between-conditions"><i class="fa fa-check"></i><b>14.3</b> Differential expression between conditions</a><ul>
+<li class="chapter" data-level="14.3" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html#differential-expression-between-conditions"><i class="fa fa-check"></i><b>14.3</b> Differential expression between conditions</a>
+<ul>
 <li class="chapter" data-level="14.3.1" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html#creating-pseudo-bulk-samples"><i class="fa fa-check"></i><b>14.3.1</b> Creating pseudo-bulk samples</a></li>
 <li class="chapter" data-level="14.3.2" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html#performing-the-de-analysis"><i class="fa fa-check"></i><b>14.3.2</b> Performing the DE analysis</a></li>
 <li class="chapter" data-level="14.3.3" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html#putting-it-all-together"><i class="fa fa-check"></i><b>14.3.3</b> Putting it all together</a></li>
 </ul></li>
-<li class="chapter" data-level="14.4" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html#differential-abundance"><i class="fa fa-check"></i><b>14.4</b> Differential abundance between conditions</a><ul>
-<li class="chapter" data-level="14.4.1" data-path="overview.html"><a href="overview.html#overview"><i class="fa fa-check"></i><b>14.4.1</b> Overview</a></li>
-<li class="chapter" data-level="14.4.2" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html#performing-the-da-analysis"><i class="fa fa-check"></i><b>14.4.2</b> Performing the DA analysis</a></li>
-<li class="chapter" data-level="14.4.3" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html#composition-effects"><i class="fa fa-check"></i><b>14.4.3</b> Handling composition effects</a></li>
+<li class="chapter" data-level="14.4" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html#ambient-problems"><i class="fa fa-check"></i><b>14.4</b> Avoiding problems with ambient RNA</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#motivation-1"><i class="fa fa-check"></i><b>14.4.1</b> Motivation</a></li>
+<li class="chapter" data-level="14.4.2" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html#finding-affected-degs"><i class="fa fa-check"></i><b>14.4.2</b> Finding affected DEGs</a></li>
+<li class="chapter" data-level="14.4.3" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html#subtracting-ambient-counts"><i class="fa fa-check"></i><b>14.4.3</b> Subtracting ambient counts</a></li>
 </ul></li>
-<li class="chapter" data-level="14.5" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html#comments-on-interpretation"><i class="fa fa-check"></i><b>14.5</b> Comments on interpretation</a><ul>
-<li class="chapter" data-level="14.5.1" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html#de-da-duality"><i class="fa fa-check"></i><b>14.5.1</b> DE or DA? Two sides of the same coin</a></li>
-<li class="chapter" data-level="14.5.2" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html#sacrificing-differences"><i class="fa fa-check"></i><b>14.5.2</b> Sacrificing biology by integration</a></li>
+<li class="chapter" data-level="14.5" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html#differential-abundance"><i class="fa fa-check"></i><b>14.5</b> Differential abundance between conditions</a>
+<ul>
+<li class="chapter" data-level="14.5.1" data-path="overview.html"><a href="overview.html#overview"><i class="fa fa-check"></i><b>14.5.1</b> Overview</a></li>
+<li class="chapter" data-level="14.5.2" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html#performing-the-da-analysis"><i class="fa fa-check"></i><b>14.5.2</b> Performing the DA analysis</a></li>
+<li class="chapter" data-level="14.5.3" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html#composition-effects"><i class="fa fa-check"></i><b>14.5.3</b> Handling composition effects</a></li>
 </ul></li>
-<li class="chapter" data-level="14.6" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html#ambient-problems"><i class="fa fa-check"></i><b>14.6</b> Avoiding problems with ambient RNA</a><ul>
-<li class="chapter" data-level="14.6.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#motivation-1"><i class="fa fa-check"></i><b>14.6.1</b> Motivation</a></li>
-<li class="chapter" data-level="14.6.2" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html#discarding-ambient-degs"><i class="fa fa-check"></i><b>14.6.2</b> Discarding ambient DEGs</a></li>
-<li class="chapter" data-level="14.6.3" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html#subtracting-ambient-counts"><i class="fa fa-check"></i><b>14.6.3</b> Subtracting ambient counts</a></li>
+<li class="chapter" data-level="14.6" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html#comments-on-interpretation"><i class="fa fa-check"></i><b>14.6</b> Comments on interpretation</a>
+<ul>
+<li class="chapter" data-level="14.6.1" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html#de-da-duality"><i class="fa fa-check"></i><b>14.6.1</b> DE or DA? Two sides of the same coin</a></li>
+<li class="chapter" data-level="14.6.2" data-path="multi-sample-comparisons.html"><a href="multi-sample-comparisons.html#sacrificing-differences"><i class="fa fa-check"></i><b>14.6.2</b> Sacrificing biology by integration</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="doublet-detection.html"><a href="doublet-detection.html"><i class="fa fa-check"></i><b>15</b> Doublet detection</a><ul>
-<li class="chapter" data-level="15.1" data-path="overview.html"><a href="overview.html#overview"><i class="fa fa-check"></i><b>15.1</b> Overview</a></li>
-<li class="chapter" data-level="15.2" data-path="doublet-detection.html"><a href="doublet-detection.html#doublet-detection-with-clusters"><i class="fa fa-check"></i><b>15.2</b> Doublet detection with clusters</a></li>
-<li class="chapter" data-level="15.3" data-path="doublet-detection.html"><a href="doublet-detection.html#doublet-simulation"><i class="fa fa-check"></i><b>15.3</b> Doublet detection by simulation</a></li>
-<li class="chapter" data-level="15.4" data-path="doublet-detection.html"><a href="doublet-detection.html#doublet-detection-in-multiplexed-experiments"><i class="fa fa-check"></i><b>15.4</b> Doublet detection in multiplexed experiments</a><ul>
-<li class="chapter" data-level="15.4.1" data-path="data-infrastructure.html"><a href="data-infrastructure.html#background"><i class="fa fa-check"></i><b>15.4.1</b> Background</a></li>
-<li class="chapter" data-level="15.4.2" data-path="doublet-detection.html"><a href="doublet-detection.html#identifying-inter-sample-doublets"><i class="fa fa-check"></i><b>15.4.2</b> Identifying inter-sample doublets</a></li>
-<li class="chapter" data-level="15.4.3" data-path="doublet-detection.html"><a href="doublet-detection.html#guilt-by-association-for-unmarked-doublets"><i class="fa fa-check"></i><b>15.4.3</b> Guilt by association for unmarked doublets</a></li>
+<li class="chapter" data-level="15" data-path="droplet-processing.html"><a href="droplet-processing.html"><i class="fa fa-check"></i><b>15</b> Droplet processing</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="normalization.html"><a href="normalization.html#motivation"><i class="fa fa-check"></i><b>15.1</b> Motivation</a></li>
+<li class="chapter" data-level="15.2" data-path="droplet-processing.html"><a href="droplet-processing.html#qc-droplets"><i class="fa fa-check"></i><b>15.2</b> Calling cells from empty droplets</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="data-infrastructure.html"><a href="data-infrastructure.html#background"><i class="fa fa-check"></i><b>15.2.1</b> Background</a></li>
+<li class="chapter" data-level="15.2.2" data-path="droplet-processing.html"><a href="droplet-processing.html#testing-for-empty-droplets"><i class="fa fa-check"></i><b>15.2.2</b> Testing for empty droplets</a></li>
+<li class="chapter" data-level="15.2.3" data-path="droplet-processing.html"><a href="droplet-processing.html#relationship-with-other-qc-metrics"><i class="fa fa-check"></i><b>15.2.3</b> Relationship with other QC metrics</a></li>
 </ul></li>
-<li class="chapter" data-level="15.5" data-path="marker-detection.html"><a href="marker-detection.html#further-comments"><i class="fa fa-check"></i><b>15.5</b> Further comments</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="cell-cycle-assignment.html"><a href="cell-cycle-assignment.html"><i class="fa fa-check"></i><b>16</b> Cell cycle assignment</a><ul>
-<li class="chapter" data-level="16.1" data-path="normalization.html"><a href="normalization.html#motivation"><i class="fa fa-check"></i><b>16.1</b> Motivation</a></li>
-<li class="chapter" data-level="16.2" data-path="cell-cycle-assignment.html"><a href="cell-cycle-assignment.html#using-the-cyclins"><i class="fa fa-check"></i><b>16.2</b> Using the cyclins</a></li>
-<li class="chapter" data-level="16.3" data-path="cell-cycle-assignment.html"><a href="cell-cycle-assignment.html#using-reference-profiles"><i class="fa fa-check"></i><b>16.3</b> Using reference profiles</a></li>
-<li class="chapter" data-level="16.4" data-path="cell-cycle-assignment.html"><a href="cell-cycle-assignment.html#using-the-cyclone-classifier"><i class="fa fa-check"></i><b>16.4</b> Using the <code>cyclone()</code> classifier</a></li>
-<li class="chapter" data-level="16.5" data-path="cell-cycle-assignment.html"><a href="cell-cycle-assignment.html#regressing-out-cell-cycle-phase"><i class="fa fa-check"></i><b>16.5</b> Regressing out cell cycle phase</a></li>
+<li class="chapter" data-level="16" data-path="doublet-detection.html"><a href="doublet-detection.html"><i class="fa fa-check"></i><b>16</b> Doublet detection</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="overview.html"><a href="overview.html#overview"><i class="fa fa-check"></i><b>16.1</b> Overview</a></li>
+<li class="chapter" data-level="16.2" data-path="doublet-detection.html"><a href="doublet-detection.html#doublet-detection-with-clusters"><i class="fa fa-check"></i><b>16.2</b> Doublet detection with clusters</a></li>
+<li class="chapter" data-level="16.3" data-path="doublet-detection.html"><a href="doublet-detection.html#doublet-simulation"><i class="fa fa-check"></i><b>16.3</b> Doublet detection by simulation</a></li>
+<li class="chapter" data-level="16.4" data-path="doublet-detection.html"><a href="doublet-detection.html#doublet-detection-in-multiplexed-experiments"><i class="fa fa-check"></i><b>16.4</b> Doublet detection in multiplexed experiments</a>
+<ul>
+<li class="chapter" data-level="16.4.1" data-path="data-infrastructure.html"><a href="data-infrastructure.html#background"><i class="fa fa-check"></i><b>16.4.1</b> Background</a></li>
+<li class="chapter" data-level="16.4.2" data-path="doublet-detection.html"><a href="doublet-detection.html#identifying-inter-sample-doublets"><i class="fa fa-check"></i><b>16.4.2</b> Identifying inter-sample doublets</a></li>
+<li class="chapter" data-level="16.4.3" data-path="doublet-detection.html"><a href="doublet-detection.html#guilt-by-association-for-unmarked-doublets"><i class="fa fa-check"></i><b>16.4.3</b> Guilt by association for unmarked doublets</a></li>
+</ul></li>
+<li class="chapter" data-level="16.5" data-path="marker-detection.html"><a href="marker-detection.html#further-comments"><i class="fa fa-check"></i><b>16.5</b> Further comments</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html"><i class="fa fa-check"></i><b>17</b> Trajectory Analysis</a><ul>
-<li class="chapter" data-level="17.1" data-path="overview.html"><a href="overview.html#overview"><i class="fa fa-check"></i><b>17.1</b> Overview</a></li>
-<li class="chapter" data-level="17.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#obtaining-pseudotime-orderings"><i class="fa fa-check"></i><b>17.2</b> Obtaining pseudotime orderings</a><ul>
-<li class="chapter" data-level="17.2.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-1"><i class="fa fa-check"></i><b>17.2.1</b> Overview</a></li>
-<li class="chapter" data-level="17.2.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#cluster-based-minimum-spanning-tree"><i class="fa fa-check"></i><b>17.2.2</b> Cluster-based minimum spanning tree</a></li>
-<li class="chapter" data-level="17.2.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#principal-curves"><i class="fa fa-check"></i><b>17.2.3</b> Principal curves</a></li>
+<li class="chapter" data-level="17" data-path="cell-cycle-assignment.html"><a href="cell-cycle-assignment.html"><i class="fa fa-check"></i><b>17</b> Cell cycle assignment</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="normalization.html"><a href="normalization.html#motivation"><i class="fa fa-check"></i><b>17.1</b> Motivation</a></li>
+<li class="chapter" data-level="17.2" data-path="cell-cycle-assignment.html"><a href="cell-cycle-assignment.html#using-the-cyclins"><i class="fa fa-check"></i><b>17.2</b> Using the cyclins</a></li>
+<li class="chapter" data-level="17.3" data-path="cell-cycle-assignment.html"><a href="cell-cycle-assignment.html#using-reference-profiles"><i class="fa fa-check"></i><b>17.3</b> Using reference profiles</a></li>
+<li class="chapter" data-level="17.4" data-path="cell-cycle-assignment.html"><a href="cell-cycle-assignment.html#using-the-cyclone-classifier"><i class="fa fa-check"></i><b>17.4</b> Using the <code>cyclone()</code> classifier</a></li>
+<li class="chapter" data-level="17.5" data-path="cell-cycle-assignment.html"><a href="cell-cycle-assignment.html#removing-cell-cycle-effects"><i class="fa fa-check"></i><b>17.5</b> Removing cell cycle effects</a>
+<ul>
+<li class="chapter" data-level="17.5.1" data-path="cell-cycle-assignment.html"><a href="cell-cycle-assignment.html#comments"><i class="fa fa-check"></i><b>17.5.1</b> Comments</a></li>
+<li class="chapter" data-level="17.5.2" data-path="cell-cycle-assignment.html"><a href="cell-cycle-assignment.html#with-linear-regression-and-friends"><i class="fa fa-check"></i><b>17.5.2</b> With linear regression and friends</a></li>
+<li class="chapter" data-level="17.5.3" data-path="cell-cycle-assignment.html"><a href="cell-cycle-assignment.html#removing-cell-cycle-related-genes"><i class="fa fa-check"></i><b>17.5.3</b> Removing cell cycle-related genes</a></li>
+<li class="chapter" data-level="17.5.4" data-path="cell-cycle-assignment.html"><a href="cell-cycle-assignment.html#using-contrastive-pca"><i class="fa fa-check"></i><b>17.5.4</b> Using contrastive PCA</a></li>
 </ul></li>
-<li class="chapter" data-level="17.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#characterizing-trajectories"><i class="fa fa-check"></i><b>17.3</b> Characterizing trajectories</a><ul>
-<li class="chapter" data-level="17.3.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-2"><i class="fa fa-check"></i><b>17.3.1</b> Overview</a></li>
-<li class="chapter" data-level="17.3.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-along-a-trajectory"><i class="fa fa-check"></i><b>17.3.2</b> Changes along a trajectory</a></li>
-<li class="chapter" data-level="17.3.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-between-paths"><i class="fa fa-check"></i><b>17.3.3</b> Changes between paths</a></li>
-<li class="chapter" data-level="17.3.4" data-path="marker-detection.html"><a href="marker-detection.html#further-comments"><i class="fa fa-check"></i><b>17.3.4</b> Further comments</a></li>
+<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="17.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#finding-the-root"><i class="fa fa-check"></i><b>17.4</b> Finding the root</a><ul>
-<li class="chapter" data-level="17.4.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-3"><i class="fa fa-check"></i><b>17.4.1</b> Overview</a></li>
-<li class="chapter" data-level="17.4.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#entropy-based-methods"><i class="fa fa-check"></i><b>17.4.2</b> Entropy-based methods</a></li>
-<li class="chapter" data-level="17.4.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#rna-velocity"><i class="fa fa-check"></i><b>17.4.3</b> RNA velocity</a></li>
-<li class="chapter" data-level="17.4.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#real-timepoints"><i class="fa fa-check"></i><b>17.4.4</b> Real timepoints</a></li>
+<li class="chapter" data-level="18" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html"><i class="fa fa-check"></i><b>18</b> Trajectory Analysis</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="overview.html"><a href="overview.html#overview"><i class="fa fa-check"></i><b>18.1</b> Overview</a></li>
+<li class="chapter" data-level="18.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#obtaining-pseudotime-orderings"><i class="fa fa-check"></i><b>18.2</b> Obtaining pseudotime orderings</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-1"><i class="fa fa-check"></i><b>18.2.1</b> Overview</a></li>
+<li class="chapter" data-level="18.2.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#cluster-based-minimum-spanning-tree"><i class="fa fa-check"></i><b>18.2.2</b> Cluster-based minimum spanning tree</a></li>
+<li class="chapter" data-level="18.2.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#principal-curves"><i class="fa fa-check"></i><b>18.2.3</b> Principal curves</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#characterizing-trajectories"><i class="fa fa-check"></i><b>18.3</b> Characterizing trajectories</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-2"><i class="fa fa-check"></i><b>18.3.1</b> Overview</a></li>
+<li class="chapter" data-level="18.3.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-along-a-trajectory"><i class="fa fa-check"></i><b>18.3.2</b> Changes along a trajectory</a></li>
+<li class="chapter" data-level="18.3.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#changes-between-paths"><i class="fa fa-check"></i><b>18.3.3</b> Changes between paths</a></li>
+<li class="chapter" data-level="18.3.4" data-path="marker-detection.html"><a href="marker-detection.html#further-comments"><i class="fa fa-check"></i><b>18.3.4</b> Further comments</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#finding-the-root"><i class="fa fa-check"></i><b>18.4</b> Finding the root</a>
+<ul>
+<li class="chapter" data-level="18.4.1" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#overview-3"><i class="fa fa-check"></i><b>18.4.1</b> Overview</a></li>
+<li class="chapter" data-level="18.4.2" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#entropy-based-methods"><i class="fa fa-check"></i><b>18.4.2</b> Entropy-based methods</a></li>
+<li class="chapter" data-level="18.4.3" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#rna-velocity"><i class="fa fa-check"></i><b>18.4.3</b> RNA velocity</a></li>
+<li class="chapter" data-level="18.4.4" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#real-timepoints"><i class="fa fa-check"></i><b>18.4.4</b> Real timepoints</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="trajectory-analysis.html"><a href="trajectory-analysis.html#session-information"><i class="fa fa-check"></i>Session information</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="integrating-with-protein-abundance.html"><a href="integrating-with-protein-abundance.html"><i class="fa fa-check"></i><b>18</b> Integrating with protein abundance</a><ul>
-<li class="chapter" data-level="18.1" data-path="normalization.html"><a href="normalization.html#motivation"><i class="fa fa-check"></i><b>18.1</b> Motivation</a></li>
-<li class="chapter" data-level="18.2" data-path="integrating-with-protein-abundance.html"><a href="integrating-with-protein-abundance.html#preprocessing"><i class="fa fa-check"></i><b>18.2</b> Preprocessing</a><ul>
-<li class="chapter" data-level="18.2.1" data-path="integrating-datasets.html"><a href="integrating-datasets.html#setting-up-the-data"><i class="fa fa-check"></i><b>18.2.1</b> Setting up the data</a></li>
-<li class="chapter" data-level="18.2.2" data-path="quality-control.html"><a href="quality-control.html#quality-control"><i class="fa fa-check"></i><b>18.2.2</b> Quality control</a></li>
-<li class="chapter" data-level="18.2.3" data-path="normalization.html"><a href="normalization.html#normalization"><i class="fa fa-check"></i><b>18.2.3</b> Normalization</a></li>
-</ul></li>
-<li class="chapter" data-level="18.3" data-path="integrating-with-protein-abundance.html"><a href="integrating-with-protein-abundance.html#clustering-and-interpretation"><i class="fa fa-check"></i><b>18.3</b> Clustering and interpretation</a></li>
-<li class="chapter" data-level="18.4" data-path="integrating-with-protein-abundance.html"><a href="integrating-with-protein-abundance.html#integration-with-gene-expression-data"><i class="fa fa-check"></i><b>18.4</b> Integration with gene expression data</a><ul>
-<li class="chapter" data-level="18.4.1" data-path="integrating-with-protein-abundance.html"><a href="integrating-with-protein-abundance.html#by-subclustering"><i class="fa fa-check"></i><b>18.4.1</b> By subclustering</a></li>
-<li class="chapter" data-level="18.4.2" data-path="integrating-with-protein-abundance.html"><a href="integrating-with-protein-abundance.html#by-combined-clustering"><i class="fa fa-check"></i><b>18.4.2</b> By combined clustering</a></li>
-<li class="chapter" data-level="18.4.3" data-path="integrating-with-protein-abundance.html"><a href="integrating-with-protein-abundance.html#by-differential-testing"><i class="fa fa-check"></i><b>18.4.3</b> By differential testing</a></li>
-</ul></li>
+<li class="chapter" data-level="19" data-path="single-nuclei-rna-seq-processing.html"><a href="single-nuclei-rna-seq-processing.html"><i class="fa fa-check"></i><b>19</b> Single-nuclei RNA-seq processing</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>19.1</b> Introduction</a></li>
+<li class="chapter" data-level="19.2" data-path="single-nuclei-rna-seq-processing.html"><a href="single-nuclei-rna-seq-processing.html#quality-control-for-stripped-nuclei"><i class="fa fa-check"></i><b>19.2</b> Quality control for stripped nuclei</a></li>
+<li class="chapter" data-level="19.3" data-path="single-nuclei-rna-seq-processing.html"><a href="single-nuclei-rna-seq-processing.html#comments-on-downstream-analyses"><i class="fa fa-check"></i><b>19.3</b> Comments on downstream analyses</a></li>
+<li class="chapter" data-level="19.4" data-path="single-nuclei-rna-seq-processing.html"><a href="single-nuclei-rna-seq-processing.html#tricks-with-ambient-contamination"><i class="fa fa-check"></i><b>19.4</b> Tricks with ambient contamination</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="repertoire-seq.html"><a href="repertoire-seq.html"><i class="fa fa-check"></i><b>19</b> Analyzing repertoire sequencing data</a><ul>
-<li class="chapter" data-level="19.1" data-path="normalization.html"><a href="normalization.html#motivation"><i class="fa fa-check"></i><b>19.1</b> Motivation</a></li>
-<li class="chapter" data-level="19.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#loading-the-tcr-repertoire"><i class="fa fa-check"></i><b>19.2</b> Loading the TCR repertoire</a></li>
-<li class="chapter" data-level="19.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#leveraging-list-semantics"><i class="fa fa-check"></i><b>19.3</b> Leveraging <code>List</code> semantics</a></li>
-<li class="chapter" data-level="19.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#converting-back-to-dataframes"><i class="fa fa-check"></i><b>19.4</b> Converting back to <code>DataFrame</code>s</a></li>
-<li class="chapter" data-level="19.5" data-path="repertoire-seq.html"><a href="repertoire-seq.html#case-study-for-clonotype-analyses"><i class="fa fa-check"></i><b>19.5</b> Case study for clonotype analyses</a></li>
-<li class="chapter" data-level="19.6" data-path="repertoire-seq.html"><a href="repertoire-seq.html#repeating-for-immunoglobulins"><i class="fa fa-check"></i><b>19.6</b> Repeating for immunoglobulins</a></li>
-<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
-</ul></li>
-<li class="chapter" data-level="20" data-path="interactive-sharing.html"><a href="interactive-sharing.html"><i class="fa fa-check"></i><b>20</b> Interactive data exploration</a><ul>
+<li class="chapter" data-level="20" data-path="integrating-with-protein-abundance.html"><a href="integrating-with-protein-abundance.html"><i class="fa fa-check"></i><b>20</b> Integrating with protein abundance</a>
+<ul>
 <li class="chapter" data-level="20.1" data-path="normalization.html"><a href="normalization.html#motivation"><i class="fa fa-check"></i><b>20.1</b> Motivation</a></li>
-<li class="chapter" data-level="20.2" data-path="interactive-sharing.html"><a href="interactive-sharing.html#interactive-quickstart"><i class="fa fa-check"></i><b>20.2</b> Quick start</a></li>
-<li class="chapter" data-level="20.3" data-path="interactive-sharing.html"><a href="interactive-sharing.html#isee-examples"><i class="fa fa-check"></i><b>20.3</b> Usage examples</a><ul>
-<li class="chapter" data-level="20.3.1" data-path="quality-control.html"><a href="quality-control.html#quality-control"><i class="fa fa-check"></i><b>20.3.1</b> Quality control</a></li>
-<li class="chapter" data-level="20.3.2" data-path="interactive-sharing.html"><a href="interactive-sharing.html#annotation-of-cell-populations"><i class="fa fa-check"></i><b>20.3.2</b> Annotation of cell populations</a></li>
-<li class="chapter" data-level="20.3.3" data-path="interactive-sharing.html"><a href="interactive-sharing.html#querying-features-of-interest"><i class="fa fa-check"></i><b>20.3.3</b> Querying features of interest</a></li>
+<li class="chapter" data-level="20.2" data-path="integrating-with-protein-abundance.html"><a href="integrating-with-protein-abundance.html#preprocessing"><i class="fa fa-check"></i><b>20.2</b> Preprocessing</a>
+<ul>
+<li class="chapter" data-level="20.2.1" data-path="integrating-datasets.html"><a href="integrating-datasets.html#setting-up-the-data"><i class="fa fa-check"></i><b>20.2.1</b> Setting up the data</a></li>
+<li class="chapter" data-level="20.2.2" data-path="quality-control.html"><a href="quality-control.html#quality-control"><i class="fa fa-check"></i><b>20.2.2</b> Quality control</a></li>
+<li class="chapter" data-level="20.2.3" data-path="normalization.html"><a href="normalization.html#normalization"><i class="fa fa-check"></i><b>20.2.3</b> Normalization</a></li>
 </ul></li>
-<li class="chapter" data-level="20.4" data-path="interactive-sharing.html"><a href="interactive-sharing.html#reproducible-visualizations"><i class="fa fa-check"></i><b>20.4</b> Reproducible visualizations</a></li>
-<li class="chapter" data-level="20.5" data-path="interactive-sharing.html"><a href="interactive-sharing.html#dissemination"><i class="fa fa-check"></i><b>20.5</b> Dissemination of analysis results</a></li>
-<li class="chapter" data-level="20.6" data-path="interactive-sharing.html"><a href="interactive-sharing.html#additional-resources"><i class="fa fa-check"></i><b>20.6</b> Additional resources</a></li>
+<li class="chapter" data-level="20.3" data-path="integrating-with-protein-abundance.html"><a href="integrating-with-protein-abundance.html#clustering-and-interpretation"><i class="fa fa-check"></i><b>20.3</b> Clustering and interpretation</a></li>
+<li class="chapter" data-level="20.4" data-path="integrating-with-protein-abundance.html"><a href="integrating-with-protein-abundance.html#integration-with-gene-expression-data"><i class="fa fa-check"></i><b>20.4</b> Integration with gene expression data</a>
+<ul>
+<li class="chapter" data-level="20.4.1" data-path="integrating-with-protein-abundance.html"><a href="integrating-with-protein-abundance.html#by-subclustering"><i class="fa fa-check"></i><b>20.4.1</b> By subclustering</a></li>
+<li class="chapter" data-level="20.4.2" data-path="integrating-with-protein-abundance.html"><a href="integrating-with-protein-abundance.html#by-combined-clustering"><i class="fa fa-check"></i><b>20.4.2</b> By combined clustering</a></li>
+<li class="chapter" data-level="20.4.3" data-path="integrating-with-protein-abundance.html"><a href="integrating-with-protein-abundance.html#by-differential-testing"><i class="fa fa-check"></i><b>20.4.3</b> By differential testing</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="21" data-path="dealing-with-big-data.html"><a href="dealing-with-big-data.html"><i class="fa fa-check"></i><b>21</b> Dealing with big data</a><ul>
+<li class="chapter" data-level="21" data-path="repertoire-seq.html"><a href="repertoire-seq.html"><i class="fa fa-check"></i><b>21</b> Analyzing repertoire sequencing data</a>
+<ul>
 <li class="chapter" data-level="21.1" data-path="normalization.html"><a href="normalization.html#motivation"><i class="fa fa-check"></i><b>21.1</b> Motivation</a></li>
-<li class="chapter" data-level="21.2" data-path="dealing-with-big-data.html"><a href="dealing-with-big-data.html#fast-approximations"><i class="fa fa-check"></i><b>21.2</b> Fast approximations</a><ul>
-<li class="chapter" data-level="21.2.1" data-path="dealing-with-big-data.html"><a href="dealing-with-big-data.html#nearest-neighbor-searching"><i class="fa fa-check"></i><b>21.2.1</b> Nearest neighbor searching</a></li>
-<li class="chapter" data-level="21.2.2" data-path="dealing-with-big-data.html"><a href="dealing-with-big-data.html#big-data-svd"><i class="fa fa-check"></i><b>21.2.2</b> Singular value decomposition</a></li>
-</ul></li>
-<li class="chapter" data-level="21.3" data-path="dealing-with-big-data.html"><a href="dealing-with-big-data.html#parallelization"><i class="fa fa-check"></i><b>21.3</b> Parallelization</a></li>
-<li class="chapter" data-level="21.4" data-path="dealing-with-big-data.html"><a href="dealing-with-big-data.html#out-of-memory-representations"><i class="fa fa-check"></i><b>21.4</b> Out of memory representations</a></li>
+<li class="chapter" data-level="21.2" data-path="repertoire-seq.html"><a href="repertoire-seq.html#loading-the-tcr-repertoire"><i class="fa fa-check"></i><b>21.2</b> Loading the TCR repertoire</a></li>
+<li class="chapter" data-level="21.3" data-path="repertoire-seq.html"><a href="repertoire-seq.html#leveraging-list-semantics"><i class="fa fa-check"></i><b>21.3</b> Leveraging <code>List</code> semantics</a></li>
+<li class="chapter" data-level="21.4" data-path="repertoire-seq.html"><a href="repertoire-seq.html#converting-back-to-dataframes"><i class="fa fa-check"></i><b>21.4</b> Converting back to <code>DataFrame</code>s</a></li>
+<li class="chapter" data-level="21.5" data-path="repertoire-seq.html"><a href="repertoire-seq.html#case-study-for-clonotype-analyses"><i class="fa fa-check"></i><b>21.5</b> Case study for clonotype analyses</a></li>
+<li class="chapter" data-level="21.6" data-path="repertoire-seq.html"><a href="repertoire-seq.html#repeating-for-immunoglobulins"><i class="fa fa-check"></i><b>21.6</b> Repeating for immunoglobulins</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="interoperability.html"><a href="interoperability.html"><i class="fa fa-check"></i><b>22</b> Interoperability</a><ul>
+<li class="chapter" data-level="22" data-path="interactive-sharing.html"><a href="interactive-sharing.html"><i class="fa fa-check"></i><b>22</b> Interactive data exploration</a>
+<ul>
 <li class="chapter" data-level="22.1" data-path="normalization.html"><a href="normalization.html#motivation"><i class="fa fa-check"></i><b>22.1</b> Motivation</a></li>
-<li class="chapter" data-level="22.2" data-path="interoperability.html"><a href="interoperability.html#interchanging-with-seurat"><i class="fa fa-check"></i><b>22.2</b> Interchanging with <em>Seurat</em></a></li>
-<li class="chapter" data-level="22.3" data-path="interoperability.html"><a href="interoperability.html#interchanging-with-scanpy"><i class="fa fa-check"></i><b>22.3</b> Interchanging with <em>scanpy</em></a></li>
+<li class="chapter" data-level="22.2" data-path="interactive-sharing.html"><a href="interactive-sharing.html#interactive-quickstart"><i class="fa fa-check"></i><b>22.2</b> Quick start</a></li>
+<li class="chapter" data-level="22.3" data-path="interactive-sharing.html"><a href="interactive-sharing.html#isee-examples"><i class="fa fa-check"></i><b>22.3</b> Usage examples</a>
+<ul>
+<li class="chapter" data-level="22.3.1" data-path="quality-control.html"><a href="quality-control.html#quality-control"><i class="fa fa-check"></i><b>22.3.1</b> Quality control</a></li>
+<li class="chapter" data-level="22.3.2" data-path="interactive-sharing.html"><a href="interactive-sharing.html#annotation-of-cell-populations"><i class="fa fa-check"></i><b>22.3.2</b> Annotation of cell populations</a></li>
+<li class="chapter" data-level="22.3.3" data-path="interactive-sharing.html"><a href="interactive-sharing.html#querying-features-of-interest"><i class="fa fa-check"></i><b>22.3.3</b> Querying features of interest</a></li>
+</ul></li>
+<li class="chapter" data-level="22.4" data-path="interactive-sharing.html"><a href="interactive-sharing.html#reproducible-visualizations"><i class="fa fa-check"></i><b>22.4</b> Reproducible visualizations</a></li>
+<li class="chapter" data-level="22.5" data-path="interactive-sharing.html"><a href="interactive-sharing.html#dissemination"><i class="fa fa-check"></i><b>22.5</b> Dissemination of analysis results</a></li>
+<li class="chapter" data-level="22.6" data-path="interactive-sharing.html"><a href="interactive-sharing.html#additional-resources"><i class="fa fa-check"></i><b>22.6</b> Additional resources</a></li>
+<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="dealing-with-big-data.html"><a href="dealing-with-big-data.html"><i class="fa fa-check"></i><b>23</b> Dealing with big data</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="normalization.html"><a href="normalization.html#motivation"><i class="fa fa-check"></i><b>23.1</b> Motivation</a></li>
+<li class="chapter" data-level="23.2" data-path="dealing-with-big-data.html"><a href="dealing-with-big-data.html#fast-approximations"><i class="fa fa-check"></i><b>23.2</b> Fast approximations</a>
+<ul>
+<li class="chapter" data-level="23.2.1" data-path="dealing-with-big-data.html"><a href="dealing-with-big-data.html#nearest-neighbor-searching"><i class="fa fa-check"></i><b>23.2.1</b> Nearest neighbor searching</a></li>
+<li class="chapter" data-level="23.2.2" data-path="dealing-with-big-data.html"><a href="dealing-with-big-data.html#big-data-svd"><i class="fa fa-check"></i><b>23.2.2</b> Singular value decomposition</a></li>
+</ul></li>
+<li class="chapter" data-level="23.3" data-path="dealing-with-big-data.html"><a href="dealing-with-big-data.html#parallelization"><i class="fa fa-check"></i><b>23.3</b> Parallelization</a></li>
+<li class="chapter" data-level="23.4" data-path="dealing-with-big-data.html"><a href="dealing-with-big-data.html#out-of-memory-representations"><i class="fa fa-check"></i><b>23.4</b> Out of memory representations</a></li>
+<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="interoperability.html"><a href="interoperability.html"><i class="fa fa-check"></i><b>24</b> Interoperability</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="normalization.html"><a href="normalization.html#motivation"><i class="fa fa-check"></i><b>24.1</b> Motivation</a></li>
+<li class="chapter" data-level="24.2" data-path="interoperability.html"><a href="interoperability.html#interchanging-with-seurat"><i class="fa fa-check"></i><b>24.2</b> Interchanging with <em>Seurat</em></a></li>
+<li class="chapter" data-level="24.3" data-path="interoperability.html"><a href="interoperability.html#interchanging-with-scanpy"><i class="fa fa-check"></i><b>24.3</b> Interchanging with <em>scanpy</em></a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="part"><span><b>III Workflows</b></span></li>
-<li class="chapter" data-level="23" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html"><i class="fa fa-check"></i><b>23</b> Lun 416B cell line (Smart-seq2)</a><ul>
-<li class="chapter" data-level="23.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>23.1</b> Introduction</a></li>
-<li class="chapter" data-level="23.2" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#data-loading"><i class="fa fa-check"></i><b>23.2</b> Data loading</a></li>
-<li class="chapter" data-level="23.3" data-path="quality-control.html"><a href="quality-control.html#quality-control"><i class="fa fa-check"></i><b>23.3</b> Quality control</a></li>
-<li class="chapter" data-level="23.4" data-path="normalization.html"><a href="normalization.html#normalization"><i class="fa fa-check"></i><b>23.4</b> Normalization</a></li>
-<li class="chapter" data-level="23.5" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#variance-modelling"><i class="fa fa-check"></i><b>23.5</b> Variance modelling</a></li>
-<li class="chapter" data-level="23.6" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#batch-correction"><i class="fa fa-check"></i><b>23.6</b> Batch correction</a></li>
-<li class="chapter" data-level="23.7" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>23.7</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="23.8" data-path="clustering.html"><a href="clustering.html#clustering"><i class="fa fa-check"></i><b>23.8</b> Clustering</a></li>
-<li class="chapter" data-level="23.9" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#interpretation"><i class="fa fa-check"></i><b>23.9</b> Interpretation</a></li>
-<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
-</ul></li>
-<li class="chapter" data-level="24" data-path="zeisel-mouse-brain-strt-seq.html"><a href="zeisel-mouse-brain-strt-seq.html"><i class="fa fa-check"></i><b>24</b> Zeisel mouse brain (STRT-Seq)</a><ul>
-<li class="chapter" data-level="24.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>24.1</b> Introduction</a></li>
-<li class="chapter" data-level="24.2" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#data-loading"><i class="fa fa-check"></i><b>24.2</b> Data loading</a></li>
-<li class="chapter" data-level="24.3" data-path="quality-control.html"><a href="quality-control.html#quality-control"><i class="fa fa-check"></i><b>24.3</b> Quality control</a></li>
-<li class="chapter" data-level="24.4" data-path="normalization.html"><a href="normalization.html#normalization"><i class="fa fa-check"></i><b>24.4</b> Normalization</a></li>
-<li class="chapter" data-level="24.5" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#variance-modelling"><i class="fa fa-check"></i><b>24.5</b> Variance modelling</a></li>
-<li class="chapter" data-level="24.6" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>24.6</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="24.7" data-path="clustering.html"><a href="clustering.html#clustering"><i class="fa fa-check"></i><b>24.7</b> Clustering</a></li>
-<li class="chapter" data-level="24.8" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#interpretation"><i class="fa fa-check"></i><b>24.8</b> Interpretation</a></li>
-<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
-</ul></li>
-<li class="chapter" data-level="25" data-path="unfiltered-human-pbmcs-10x-genomics.html"><a href="unfiltered-human-pbmcs-10x-genomics.html"><i class="fa fa-check"></i><b>25</b> Unfiltered human PBMCs (10X Genomics)</a><ul>
+<li class="chapter" data-level="25" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html"><i class="fa fa-check"></i><b>25</b> Lun 416B cell line (Smart-seq2)</a>
+<ul>
 <li class="chapter" data-level="25.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>25.1</b> Introduction</a></li>
 <li class="chapter" data-level="25.2" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#data-loading"><i class="fa fa-check"></i><b>25.2</b> Data loading</a></li>
 <li class="chapter" data-level="25.3" data-path="quality-control.html"><a href="quality-control.html#quality-control"><i class="fa fa-check"></i><b>25.3</b> Quality control</a></li>
 <li class="chapter" data-level="25.4" data-path="normalization.html"><a href="normalization.html#normalization"><i class="fa fa-check"></i><b>25.4</b> Normalization</a></li>
 <li class="chapter" data-level="25.5" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#variance-modelling"><i class="fa fa-check"></i><b>25.5</b> Variance modelling</a></li>
-<li class="chapter" data-level="25.6" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>25.6</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="25.7" data-path="clustering.html"><a href="clustering.html#clustering"><i class="fa fa-check"></i><b>25.7</b> Clustering</a></li>
-<li class="chapter" data-level="25.8" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#interpretation"><i class="fa fa-check"></i><b>25.8</b> Interpretation</a></li>
+<li class="chapter" data-level="25.6" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#batch-correction"><i class="fa fa-check"></i><b>25.6</b> Batch correction</a></li>
+<li class="chapter" data-level="25.7" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>25.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="25.8" data-path="clustering.html"><a href="clustering.html#clustering"><i class="fa fa-check"></i><b>25.8</b> Clustering</a></li>
+<li class="chapter" data-level="25.9" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#interpretation"><i class="fa fa-check"></i><b>25.9</b> Interpretation</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="26" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html"><i class="fa fa-check"></i><b>26</b> Filtered human PBMCs (10X Genomics)</a><ul>
+<li class="chapter" data-level="26" data-path="zeisel-mouse-brain-strt-seq.html"><a href="zeisel-mouse-brain-strt-seq.html"><i class="fa fa-check"></i><b>26</b> Zeisel mouse brain (STRT-Seq)</a>
+<ul>
 <li class="chapter" data-level="26.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>26.1</b> Introduction</a></li>
 <li class="chapter" data-level="26.2" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#data-loading"><i class="fa fa-check"></i><b>26.2</b> Data loading</a></li>
 <li class="chapter" data-level="26.3" data-path="quality-control.html"><a href="quality-control.html#quality-control"><i class="fa fa-check"></i><b>26.3</b> Quality control</a></li>
@@ -504,68 +563,80 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="26.5" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#variance-modelling"><i class="fa fa-check"></i><b>26.5</b> Variance modelling</a></li>
 <li class="chapter" data-level="26.6" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>26.6</b> Dimensionality reduction</a></li>
 <li class="chapter" data-level="26.7" data-path="clustering.html"><a href="clustering.html#clustering"><i class="fa fa-check"></i><b>26.7</b> Clustering</a></li>
-<li class="chapter" data-level="26.8" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#data-integration"><i class="fa fa-check"></i><b>26.8</b> Data integration</a></li>
+<li class="chapter" data-level="26.8" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#interpretation"><i class="fa fa-check"></i><b>26.8</b> Interpretation</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="27" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html"><i class="fa fa-check"></i><b>27</b> Human PBMC with surface proteins (10X Genomics)</a><ul>
+<li class="chapter" data-level="27" data-path="unfiltered-human-pbmcs-10x-genomics.html"><a href="unfiltered-human-pbmcs-10x-genomics.html"><i class="fa fa-check"></i><b>27</b> Unfiltered human PBMCs (10X Genomics)</a>
+<ul>
 <li class="chapter" data-level="27.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>27.1</b> Introduction</a></li>
 <li class="chapter" data-level="27.2" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#data-loading"><i class="fa fa-check"></i><b>27.2</b> Data loading</a></li>
 <li class="chapter" data-level="27.3" data-path="quality-control.html"><a href="quality-control.html#quality-control"><i class="fa fa-check"></i><b>27.3</b> Quality control</a></li>
 <li class="chapter" data-level="27.4" data-path="normalization.html"><a href="normalization.html#normalization"><i class="fa fa-check"></i><b>27.4</b> Normalization</a></li>
-<li class="chapter" data-level="27.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>27.5</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="27.6" data-path="clustering.html"><a href="clustering.html#clustering"><i class="fa fa-check"></i><b>27.6</b> Clustering</a></li>
+<li class="chapter" data-level="27.5" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#variance-modelling"><i class="fa fa-check"></i><b>27.5</b> Variance modelling</a></li>
+<li class="chapter" data-level="27.6" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>27.6</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="27.7" data-path="clustering.html"><a href="clustering.html#clustering"><i class="fa fa-check"></i><b>27.7</b> Clustering</a></li>
+<li class="chapter" data-level="27.8" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#interpretation"><i class="fa fa-check"></i><b>27.8</b> Interpretation</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="28" data-path="grun-human-pancreas-cel-seq2.html"><a href="grun-human-pancreas-cel-seq2.html"><i class="fa fa-check"></i><b>28</b> Grun human pancreas (CEL-seq2)</a><ul>
+<li class="chapter" data-level="28" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html"><i class="fa fa-check"></i><b>28</b> Filtered human PBMCs (10X Genomics)</a>
+<ul>
 <li class="chapter" data-level="28.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>28.1</b> Introduction</a></li>
 <li class="chapter" data-level="28.2" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#data-loading"><i class="fa fa-check"></i><b>28.2</b> Data loading</a></li>
 <li class="chapter" data-level="28.3" data-path="quality-control.html"><a href="quality-control.html#quality-control"><i class="fa fa-check"></i><b>28.3</b> Quality control</a></li>
 <li class="chapter" data-level="28.4" data-path="normalization.html"><a href="normalization.html#normalization"><i class="fa fa-check"></i><b>28.4</b> Normalization</a></li>
 <li class="chapter" data-level="28.5" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#variance-modelling"><i class="fa fa-check"></i><b>28.5</b> Variance modelling</a></li>
-<li class="chapter" data-level="28.6" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#data-integration"><i class="fa fa-check"></i><b>28.6</b> Data integration</a></li>
-<li class="chapter" data-level="28.7" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>28.7</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="28.8" data-path="clustering.html"><a href="clustering.html#clustering"><i class="fa fa-check"></i><b>28.8</b> Clustering</a></li>
+<li class="chapter" data-level="28.6" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>28.6</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="28.7" data-path="clustering.html"><a href="clustering.html#clustering"><i class="fa fa-check"></i><b>28.7</b> Clustering</a></li>
+<li class="chapter" data-level="28.8" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#data-integration"><i class="fa fa-check"></i><b>28.8</b> Data integration</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="29" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html"><i class="fa fa-check"></i><b>29</b> Muraro human pancreas (CEL-seq)</a><ul>
+<li class="chapter" data-level="29" data-path="human-pbmc-with-surface-proteins-10x-genomics.html"><a href="human-pbmc-with-surface-proteins-10x-genomics.html"><i class="fa fa-check"></i><b>29</b> Human PBMC with surface proteins (10X Genomics)</a>
+<ul>
 <li class="chapter" data-level="29.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>29.1</b> Introduction</a></li>
 <li class="chapter" data-level="29.2" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#data-loading"><i class="fa fa-check"></i><b>29.2</b> Data loading</a></li>
 <li class="chapter" data-level="29.3" data-path="quality-control.html"><a href="quality-control.html#quality-control"><i class="fa fa-check"></i><b>29.3</b> Quality control</a></li>
 <li class="chapter" data-level="29.4" data-path="normalization.html"><a href="normalization.html#normalization"><i class="fa fa-check"></i><b>29.4</b> Normalization</a></li>
-<li class="chapter" data-level="29.5" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#variance-modelling"><i class="fa fa-check"></i><b>29.5</b> Variance modelling</a></li>
-<li class="chapter" data-level="29.6" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#data-integration"><i class="fa fa-check"></i><b>29.6</b> Data integration</a></li>
-<li class="chapter" data-level="29.7" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>29.7</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="29.8" data-path="clustering.html"><a href="clustering.html#clustering"><i class="fa fa-check"></i><b>29.8</b> Clustering</a></li>
+<li class="chapter" data-level="29.5" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>29.5</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="29.6" data-path="clustering.html"><a href="clustering.html#clustering"><i class="fa fa-check"></i><b>29.6</b> Clustering</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="30" data-path="lawlor-human-pancreas-smarter.html"><a href="lawlor-human-pancreas-smarter.html"><i class="fa fa-check"></i><b>30</b> Lawlor human pancreas (SMARTer)</a><ul>
+<li class="chapter" data-level="30" data-path="grun-human-pancreas-cel-seq2.html"><a href="grun-human-pancreas-cel-seq2.html"><i class="fa fa-check"></i><b>30</b> Grun human pancreas (CEL-seq2)</a>
+<ul>
 <li class="chapter" data-level="30.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>30.1</b> Introduction</a></li>
 <li class="chapter" data-level="30.2" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#data-loading"><i class="fa fa-check"></i><b>30.2</b> Data loading</a></li>
 <li class="chapter" data-level="30.3" data-path="quality-control.html"><a href="quality-control.html#quality-control"><i class="fa fa-check"></i><b>30.3</b> Quality control</a></li>
 <li class="chapter" data-level="30.4" data-path="normalization.html"><a href="normalization.html#normalization"><i class="fa fa-check"></i><b>30.4</b> Normalization</a></li>
 <li class="chapter" data-level="30.5" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#variance-modelling"><i class="fa fa-check"></i><b>30.5</b> Variance modelling</a></li>
-<li class="chapter" data-level="30.6" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>30.6</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="30.7" data-path="clustering.html"><a href="clustering.html#clustering"><i class="fa fa-check"></i><b>30.7</b> Clustering</a></li>
+<li class="chapter" data-level="30.6" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#data-integration"><i class="fa fa-check"></i><b>30.6</b> Data integration</a></li>
+<li class="chapter" data-level="30.7" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>30.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="30.8" data-path="clustering.html"><a href="clustering.html#clustering"><i class="fa fa-check"></i><b>30.8</b> Clustering</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="31" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html"><i class="fa fa-check"></i><b>31</b> Segerstolpe human pancreas (Smart-seq2)</a><ul>
+<li class="chapter" data-level="31" data-path="muraro-human-pancreas-cel-seq.html"><a href="muraro-human-pancreas-cel-seq.html"><i class="fa fa-check"></i><b>31</b> Muraro human pancreas (CEL-seq)</a>
+<ul>
 <li class="chapter" data-level="31.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>31.1</b> Introduction</a></li>
 <li class="chapter" data-level="31.2" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#data-loading"><i class="fa fa-check"></i><b>31.2</b> Data loading</a></li>
 <li class="chapter" data-level="31.3" data-path="quality-control.html"><a href="quality-control.html#quality-control"><i class="fa fa-check"></i><b>31.3</b> Quality control</a></li>
 <li class="chapter" data-level="31.4" data-path="normalization.html"><a href="normalization.html#normalization"><i class="fa fa-check"></i><b>31.4</b> Normalization</a></li>
 <li class="chapter" data-level="31.5" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#variance-modelling"><i class="fa fa-check"></i><b>31.5</b> Variance modelling</a></li>
-<li class="chapter" data-level="31.6" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>31.6</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="31.7" data-path="clustering.html"><a href="clustering.html#clustering"><i class="fa fa-check"></i><b>31.7</b> Clustering</a></li>
+<li class="chapter" data-level="31.6" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#data-integration"><i class="fa fa-check"></i><b>31.6</b> Data integration</a></li>
+<li class="chapter" data-level="31.7" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>31.7</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="31.8" data-path="clustering.html"><a href="clustering.html#clustering"><i class="fa fa-check"></i><b>31.8</b> Clustering</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="32" data-path="merged-pancreas.html"><a href="merged-pancreas.html"><i class="fa fa-check"></i><b>32</b> Merged human pancreas datasets</a><ul>
+<li class="chapter" data-level="32" data-path="lawlor-human-pancreas-smarter.html"><a href="lawlor-human-pancreas-smarter.html"><i class="fa fa-check"></i><b>32</b> Lawlor human pancreas (SMARTer)</a>
+<ul>
 <li class="chapter" data-level="32.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>32.1</b> Introduction</a></li>
-<li class="chapter" data-level="32.2" data-path="merged-pancreas.html"><a href="merged-pancreas.html#the-good"><i class="fa fa-check"></i><b>32.2</b> The good</a></li>
-<li class="chapter" data-level="32.3" data-path="merged-pancreas.html"><a href="merged-pancreas.html#the-bad"><i class="fa fa-check"></i><b>32.3</b> The bad</a></li>
-<li class="chapter" data-level="32.4" data-path="merged-pancreas.html"><a href="merged-pancreas.html#the-ugly"><i class="fa fa-check"></i><b>32.4</b> The ugly</a></li>
+<li class="chapter" data-level="32.2" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#data-loading"><i class="fa fa-check"></i><b>32.2</b> Data loading</a></li>
+<li class="chapter" data-level="32.3" data-path="quality-control.html"><a href="quality-control.html#quality-control"><i class="fa fa-check"></i><b>32.3</b> Quality control</a></li>
+<li class="chapter" data-level="32.4" data-path="normalization.html"><a href="normalization.html#normalization"><i class="fa fa-check"></i><b>32.4</b> Normalization</a></li>
+<li class="chapter" data-level="32.5" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#variance-modelling"><i class="fa fa-check"></i><b>32.5</b> Variance modelling</a></li>
+<li class="chapter" data-level="32.6" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>32.6</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="32.7" data-path="clustering.html"><a href="clustering.html#clustering"><i class="fa fa-check"></i><b>32.7</b> Clustering</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="33" data-path="merged-hcsc.html"><a href="merged-hcsc.html"><i class="fa fa-check"></i><b>33</b> Grun mouse HSC (CEL-seq)</a><ul>
+<li class="chapter" data-level="33" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html"><i class="fa fa-check"></i><b>33</b> Segerstolpe human pancreas (Smart-seq2)</a>
+<ul>
 <li class="chapter" data-level="33.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>33.1</b> Introduction</a></li>
 <li class="chapter" data-level="33.2" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#data-loading"><i class="fa fa-check"></i><b>33.2</b> Data loading</a></li>
 <li class="chapter" data-level="33.3" data-path="quality-control.html"><a href="quality-control.html#quality-control"><i class="fa fa-check"></i><b>33.3</b> Quality control</a></li>
@@ -573,34 +644,32 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="33.5" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#variance-modelling"><i class="fa fa-check"></i><b>33.5</b> Variance modelling</a></li>
 <li class="chapter" data-level="33.6" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>33.6</b> Dimensionality reduction</a></li>
 <li class="chapter" data-level="33.7" data-path="clustering.html"><a href="clustering.html#clustering"><i class="fa fa-check"></i><b>33.7</b> Clustering</a></li>
-<li class="chapter" data-level="33.8" data-path="merged-hcsc.html"><a href="merged-hcsc.html#marker-gene-detection"><i class="fa fa-check"></i><b>33.8</b> Marker gene detection</a></li>
+<li class="chapter" data-level="33.8" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#data-integration"><i class="fa fa-check"></i><b>33.8</b> Data integration</a></li>
+<li class="chapter" data-level="33.9" data-path="segerstolpe-human-pancreas-smart-seq2.html"><a href="segerstolpe-human-pancreas-smart-seq2.html#segerstolpe-comparison"><i class="fa fa-check"></i><b>33.9</b> Multi-sample comparisons</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="34" data-path="nestorowa-mouse-hsc-smart-seq2.html"><a href="nestorowa-mouse-hsc-smart-seq2.html"><i class="fa fa-check"></i><b>34</b> Nestorowa mouse HSC (Smart-seq2)</a><ul>
+<li class="chapter" data-level="34" data-path="merged-pancreas.html"><a href="merged-pancreas.html"><i class="fa fa-check"></i><b>34</b> Merged human pancreas datasets</a>
+<ul>
 <li class="chapter" data-level="34.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>34.1</b> Introduction</a></li>
-<li class="chapter" data-level="34.2" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#data-loading"><i class="fa fa-check"></i><b>34.2</b> Data loading</a></li>
-<li class="chapter" data-level="34.3" data-path="quality-control.html"><a href="quality-control.html#quality-control"><i class="fa fa-check"></i><b>34.3</b> Quality control</a></li>
-<li class="chapter" data-level="34.4" data-path="normalization.html"><a href="normalization.html#normalization"><i class="fa fa-check"></i><b>34.4</b> Normalization</a></li>
-<li class="chapter" data-level="34.5" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#variance-modelling"><i class="fa fa-check"></i><b>34.5</b> Variance modelling</a></li>
-<li class="chapter" data-level="34.6" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>34.6</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="34.7" data-path="clustering.html"><a href="clustering.html#clustering"><i class="fa fa-check"></i><b>34.7</b> Clustering</a></li>
-<li class="chapter" data-level="34.8" data-path="merged-hcsc.html"><a href="merged-hcsc.html#marker-gene-detection"><i class="fa fa-check"></i><b>34.8</b> Marker gene detection</a></li>
-<li class="chapter" data-level="34.9" data-path="cell-type-annotation.html"><a href="cell-type-annotation.html#cell-type-annotation"><i class="fa fa-check"></i><b>34.9</b> Cell type annotation</a></li>
-<li class="chapter" data-level="34.10" data-path="nestorowa-mouse-hsc-smart-seq2.html"><a href="nestorowa-mouse-hsc-smart-seq2.html#miscellaneous-analyses"><i class="fa fa-check"></i><b>34.10</b> Miscellaneous analyses</a></li>
+<li class="chapter" data-level="34.2" data-path="merged-pancreas.html"><a href="merged-pancreas.html#the-good"><i class="fa fa-check"></i><b>34.2</b> The good</a></li>
+<li class="chapter" data-level="34.3" data-path="merged-pancreas.html"><a href="merged-pancreas.html#the-bad"><i class="fa fa-check"></i><b>34.3</b> The bad</a></li>
+<li class="chapter" data-level="34.4" data-path="merged-pancreas.html"><a href="merged-pancreas.html#the-ugly"><i class="fa fa-check"></i><b>34.4</b> The ugly</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="35" data-path="pijuan-sala-chimeric-mouse-embryo-10x-genomics.html"><a href="pijuan-sala-chimeric-mouse-embryo-10x-genomics.html"><i class="fa fa-check"></i><b>35</b> Pijuan-Sala chimeric mouse embryo (10X Genomics)</a><ul>
+<li class="chapter" data-level="35" data-path="merged-hcsc.html"><a href="merged-hcsc.html"><i class="fa fa-check"></i><b>35</b> Grun mouse HSC (CEL-seq)</a>
+<ul>
 <li class="chapter" data-level="35.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>35.1</b> Introduction</a></li>
 <li class="chapter" data-level="35.2" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#data-loading"><i class="fa fa-check"></i><b>35.2</b> Data loading</a></li>
 <li class="chapter" data-level="35.3" data-path="quality-control.html"><a href="quality-control.html#quality-control"><i class="fa fa-check"></i><b>35.3</b> Quality control</a></li>
 <li class="chapter" data-level="35.4" data-path="normalization.html"><a href="normalization.html#normalization"><i class="fa fa-check"></i><b>35.4</b> Normalization</a></li>
 <li class="chapter" data-level="35.5" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#variance-modelling"><i class="fa fa-check"></i><b>35.5</b> Variance modelling</a></li>
-<li class="chapter" data-level="35.6" data-path="pijuan-sala-chimeric-mouse-embryo-10x-genomics.html"><a href="pijuan-sala-chimeric-mouse-embryo-10x-genomics.html#merging"><i class="fa fa-check"></i><b>35.6</b> Merging</a></li>
+<li class="chapter" data-level="35.6" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>35.6</b> Dimensionality reduction</a></li>
 <li class="chapter" data-level="35.7" data-path="clustering.html"><a href="clustering.html#clustering"><i class="fa fa-check"></i><b>35.7</b> Clustering</a></li>
-<li class="chapter" data-level="35.8" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>35.8</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="35.8" data-path="merged-hcsc.html"><a href="merged-hcsc.html#marker-gene-detection"><i class="fa fa-check"></i><b>35.8</b> Marker gene detection</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="36" data-path="bach-mouse-mammary-gland-10x-genomics.html"><a href="bach-mouse-mammary-gland-10x-genomics.html"><i class="fa fa-check"></i><b>36</b> Bach mouse mammary gland (10X Genomics)</a><ul>
+<li class="chapter" data-level="36" data-path="nestorowa-mouse-hsc-smart-seq2.html"><a href="nestorowa-mouse-hsc-smart-seq2.html"><i class="fa fa-check"></i><b>36</b> Nestorowa mouse HSC (Smart-seq2)</a>
+<ul>
 <li class="chapter" data-level="36.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>36.1</b> Introduction</a></li>
 <li class="chapter" data-level="36.2" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#data-loading"><i class="fa fa-check"></i><b>36.2</b> Data loading</a></li>
 <li class="chapter" data-level="36.3" data-path="quality-control.html"><a href="quality-control.html#quality-control"><i class="fa fa-check"></i><b>36.3</b> Quality control</a></li>
@@ -608,30 +677,44 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="36.5" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#variance-modelling"><i class="fa fa-check"></i><b>36.5</b> Variance modelling</a></li>
 <li class="chapter" data-level="36.6" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>36.6</b> Dimensionality reduction</a></li>
 <li class="chapter" data-level="36.7" data-path="clustering.html"><a href="clustering.html#clustering"><i class="fa fa-check"></i><b>36.7</b> Clustering</a></li>
+<li class="chapter" data-level="36.8" data-path="merged-hcsc.html"><a href="merged-hcsc.html#marker-gene-detection"><i class="fa fa-check"></i><b>36.8</b> Marker gene detection</a></li>
+<li class="chapter" data-level="36.9" data-path="cell-type-annotation.html"><a href="cell-type-annotation.html#cell-type-annotation"><i class="fa fa-check"></i><b>36.9</b> Cell type annotation</a></li>
+<li class="chapter" data-level="36.10" data-path="nestorowa-mouse-hsc-smart-seq2.html"><a href="nestorowa-mouse-hsc-smart-seq2.html#miscellaneous-analyses"><i class="fa fa-check"></i><b>36.10</b> Miscellaneous analyses</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="37" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html"><i class="fa fa-check"></i><b>37</b> HCA human bone marrow (10X Genomics)</a><ul>
+<li class="chapter" data-level="37" data-path="pijuan-sala-chimeric-mouse-embryo-10x-genomics.html"><a href="pijuan-sala-chimeric-mouse-embryo-10x-genomics.html"><i class="fa fa-check"></i><b>37</b> Pijuan-Sala chimeric mouse embryo (10X Genomics)</a>
+<ul>
 <li class="chapter" data-level="37.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>37.1</b> Introduction</a></li>
 <li class="chapter" data-level="37.2" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#data-loading"><i class="fa fa-check"></i><b>37.2</b> Data loading</a></li>
 <li class="chapter" data-level="37.3" data-path="quality-control.html"><a href="quality-control.html#quality-control"><i class="fa fa-check"></i><b>37.3</b> Quality control</a></li>
 <li class="chapter" data-level="37.4" data-path="normalization.html"><a href="normalization.html#normalization"><i class="fa fa-check"></i><b>37.4</b> Normalization</a></li>
-<li class="chapter" data-level="37.5" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#variance-modeling"><i class="fa fa-check"></i><b>37.5</b> Variance modeling</a></li>
-<li class="chapter" data-level="37.6" data-path="filtered-human-pbmcs-10x-genomics.html"><a href="filtered-human-pbmcs-10x-genomics.html#data-integration"><i class="fa fa-check"></i><b>37.6</b> Data integration</a></li>
-<li class="chapter" data-level="37.7" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>37.7</b> Dimensionality reduction</a></li>
-<li class="chapter" data-level="37.8" data-path="clustering.html"><a href="clustering.html#clustering"><i class="fa fa-check"></i><b>37.8</b> Clustering</a></li>
-<li class="chapter" data-level="37.9" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#differential-expression"><i class="fa fa-check"></i><b>37.9</b> Differential expression</a></li>
-<li class="chapter" data-level="37.10" data-path="hca-human-bone-marrow-10x-genomics.html"><a href="hca-human-bone-marrow-10x-genomics.html#cell-type-classification"><i class="fa fa-check"></i><b>37.10</b> Cell type classification</a></li>
+<li class="chapter" data-level="37.5" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#variance-modelling"><i class="fa fa-check"></i><b>37.5</b> Variance modelling</a></li>
+<li class="chapter" data-level="37.6" data-path="pijuan-sala-chimeric-mouse-embryo-10x-genomics.html"><a href="pijuan-sala-chimeric-mouse-embryo-10x-genomics.html#merging"><i class="fa fa-check"></i><b>37.6</b> Merging</a></li>
+<li class="chapter" data-level="37.7" data-path="clustering.html"><a href="clustering.html#clustering"><i class="fa fa-check"></i><b>37.7</b> Clustering</a></li>
+<li class="chapter" data-level="37.8" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>37.8</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
+</ul></li>
+<li class="chapter" data-level="38" data-path="bach-mouse-mammary-gland-10x-genomics.html"><a href="bach-mouse-mammary-gland-10x-genomics.html"><i class="fa fa-check"></i><b>38</b> Bach mouse mammary gland (10X Genomics)</a>
+<ul>
+<li class="chapter" data-level="38.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>38.1</b> Introduction</a></li>
+<li class="chapter" data-level="38.2" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#data-loading"><i class="fa fa-check"></i><b>38.2</b> Data loading</a></li>
+<li class="chapter" data-level="38.3" data-path="quality-control.html"><a href="quality-control.html#quality-control"><i class="fa fa-check"></i><b>38.3</b> Quality control</a></li>
+<li class="chapter" data-level="38.4" data-path="normalization.html"><a href="normalization.html#normalization"><i class="fa fa-check"></i><b>38.4</b> Normalization</a></li>
+<li class="chapter" data-level="38.5" data-path="lun-416b-cell-line-smart-seq2.html"><a href="lun-416b-cell-line-smart-seq2.html#variance-modelling"><i class="fa fa-check"></i><b>38.5</b> Variance modelling</a></li>
+<li class="chapter" data-level="38.6" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#dimensionality-reduction"><i class="fa fa-check"></i><b>38.6</b> Dimensionality reduction</a></li>
+<li class="chapter" data-level="38.7" data-path="clustering.html"><a href="clustering.html#clustering"><i class="fa fa-check"></i><b>38.7</b> Clustering</a></li>
 <li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
-<li class="chapter" data-level="38" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>38</b> Contributors</a><ul>
+<li class="chapter" data-level="39" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>39</b> Contributors</a>
+<ul>
 <li><a href="contributors.html#aaron-lun-phd"><em>Aaron Lun, PhD</em></a></li>
 <li><a href="contributors.html#robert-amezquita-phd"><em>Robert Amezquita, PhD</em></a></li>
 <li><a href="contributors.html#stephanie-hicks-phd"><em>Stephanie Hicks, PhD</em></a></li>
 <li><a href="contributors.html#raphael-gottardo-phd"><em>Raphael Gottardo, PhD</em></a></li>
 <li class="chapter" data-level="" data-path="contributors.html"><a href="contributors.html#other-notable-entities"><i class="fa fa-check"></i>Other notable entities</a></li>
 </ul></li>
-<li class="chapter" data-level="39" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i><b>39</b> Bibliography</a></li>
+<li class="chapter" data-level="40" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i><b>40</b> Bibliography</a></li>
 <li class="divider"></li>
 <li><a href="https://bioconductor.org" target="blank">Published by Bioconductor</a></li>
 
@@ -652,11 +735,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="bach-mouse-mammary-gland-10x-genomics" class="section level1">
-<h1><span class="header-section-number">Chapter 36</span> Bach mouse mammary gland (10X Genomics)</h1>
+<div id="bach-mouse-mammary-gland-10x-genomics" class="section level1" number="38">
+<h1><span class="header-section-number">Chapter 38</span> Bach mouse mammary gland (10X Genomics)</h1>
 <script>
 document.addEventListener("click", function (event) {
-    if (event.target.classList.contains("aaron-collapse")) {
+    if (event.target.classList.contains("rebook-collapse")) {
         event.target.classList.toggle("active");
         var content = event.target.nextElementSibling;
         if (content.style.display === "block") {
@@ -668,7 +751,7 @@ document.addEventListener("click", function (event) {
 })
 </script>
 <style>
-.aaron-collapse {
+.rebook-collapse {
   background-color: #eee;
   color: #444;
   cursor: pointer;
@@ -680,149 +763,149 @@ document.addEventListener("click", function (event) {
   font-size: 15px;
 }
 
-.aaron-content {
+.rebook-content {
   padding: 0 18px;
   display: none;
   overflow: hidden;
   background-color: #f1f1f1;
 }
 </style>
-<div id="introduction" class="section level2">
-<h2><span class="header-section-number">36.1</span> Introduction</h2>
-<p>This performs an analysis of the <span class="citation">Bach et al. (<a href="#ref-bach2017differentiation">2017</a>)</span> 10X Genomics dataset,
+<div id="introduction" class="section level2" number="38.1">
+<h2><span class="header-section-number">38.1</span> Introduction</h2>
+<p>This performs an analysis of the <span class="citation">Bach et al. (<a href="#ref-bach2017differentiation" role="doc-biblioref">2017</a>)</span> 10X Genomics dataset,
 from which we will consider a single sample of epithelial cells from the mouse mammary gland during gestation.</p>
 </div>
-<div id="data-loading" class="section level2">
-<h2><span class="header-section-number">36.2</span> Data loading</h2>
-<div class="sourceCode" id="cb1157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1157-1" data-line-number="1"><span class="kw">library</span>(scRNAseq)</a>
-<a class="sourceLine" id="cb1157-2" data-line-number="2">sce.mam &lt;-<span class="st"> </span><span class="kw">BachMammaryData</span>(<span class="dt">samples=</span><span class="st">&quot;G_1&quot;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb1158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1158-1" data-line-number="1"><span class="kw">library</span>(scater)</a>
-<a class="sourceLine" id="cb1158-2" data-line-number="2"><span class="kw">rownames</span>(sce.mam) &lt;-<span class="st"> </span><span class="kw">uniquifyFeatureNames</span>(</a>
-<a class="sourceLine" id="cb1158-3" data-line-number="3">    <span class="kw">rowData</span>(sce.mam)<span class="op">$</span>Ensembl, <span class="kw">rowData</span>(sce.mam)<span class="op">$</span>Symbol)</a>
-<a class="sourceLine" id="cb1158-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb1158-5" data-line-number="5"><span class="kw">library</span>(AnnotationHub)</a>
-<a class="sourceLine" id="cb1158-6" data-line-number="6">ens.mm.v97 &lt;-<span class="st"> </span><span class="kw">AnnotationHub</span>()[[<span class="st">&quot;AH73905&quot;</span>]]</a>
-<a class="sourceLine" id="cb1158-7" data-line-number="7"><span class="kw">rowData</span>(sce.mam)<span class="op">$</span>SEQNAME &lt;-<span class="st"> </span><span class="kw">mapIds</span>(ens.mm.v97, <span class="dt">keys=</span><span class="kw">rowData</span>(sce.mam)<span class="op">$</span>Ensembl,</a>
-<a class="sourceLine" id="cb1158-8" data-line-number="8">    <span class="dt">keytype=</span><span class="st">&quot;GENEID&quot;</span>, <span class="dt">column=</span><span class="st">&quot;SEQNAME&quot;</span>)</a></code></pre></div>
+<div id="data-loading" class="section level2" number="38.2">
+<h2><span class="header-section-number">38.2</span> Data loading</h2>
+<div class="sourceCode" id="cb1214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1214-1"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1214-1" aria-hidden="true"></a><span class="kw">library</span>(scRNAseq)</span>
+<span id="cb1214-2"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1214-2" aria-hidden="true"></a>sce.mam &lt;-<span class="st"> </span><span class="kw">BachMammaryData</span>(<span class="dt">samples=</span><span class="st">&quot;G_1&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1215-1"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1215-1" aria-hidden="true"></a><span class="kw">library</span>(scater)</span>
+<span id="cb1215-2"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1215-2" aria-hidden="true"></a><span class="kw">rownames</span>(sce.mam) &lt;-<span class="st"> </span><span class="kw">uniquifyFeatureNames</span>(</span>
+<span id="cb1215-3"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1215-3" aria-hidden="true"></a>    <span class="kw">rowData</span>(sce.mam)<span class="op">$</span>Ensembl, <span class="kw">rowData</span>(sce.mam)<span class="op">$</span>Symbol)</span>
+<span id="cb1215-4"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1215-4" aria-hidden="true"></a></span>
+<span id="cb1215-5"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1215-5" aria-hidden="true"></a><span class="kw">library</span>(AnnotationHub)</span>
+<span id="cb1215-6"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1215-6" aria-hidden="true"></a>ens.mm.v97 &lt;-<span class="st"> </span><span class="kw">AnnotationHub</span>()[[<span class="st">&quot;AH73905&quot;</span>]]</span>
+<span id="cb1215-7"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1215-7" aria-hidden="true"></a><span class="kw">rowData</span>(sce.mam)<span class="op">$</span>SEQNAME &lt;-<span class="st"> </span><span class="kw">mapIds</span>(ens.mm.v97, <span class="dt">keys=</span><span class="kw">rowData</span>(sce.mam)<span class="op">$</span>Ensembl,</span>
+<span id="cb1215-8"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1215-8" aria-hidden="true"></a>    <span class="dt">keytype=</span><span class="st">&quot;GENEID&quot;</span>, <span class="dt">column=</span><span class="st">&quot;SEQNAME&quot;</span>)</span></code></pre></div>
 </div>
-<div id="quality-control" class="section level2">
-<h2><span class="header-section-number">36.3</span> Quality control</h2>
-<div class="sourceCode" id="cb1159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1159-1" data-line-number="1">unfiltered &lt;-<span class="st"> </span>sce.mam</a></code></pre></div>
-<div class="sourceCode" id="cb1160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1160-1" data-line-number="1">is.mito &lt;-<span class="st"> </span><span class="kw">rowData</span>(sce.mam)<span class="op">$</span>SEQNAME <span class="op">==</span><span class="st"> &quot;MT&quot;</span></a>
-<a class="sourceLine" id="cb1160-2" data-line-number="2">stats &lt;-<span class="st"> </span><span class="kw">perCellQCMetrics</span>(sce.mam, <span class="dt">subsets=</span><span class="kw">list</span>(<span class="dt">Mito=</span><span class="kw">which</span>(is.mito)))</a>
-<a class="sourceLine" id="cb1160-3" data-line-number="3">qc &lt;-<span class="st"> </span><span class="kw">quickPerCellQC</span>(stats, <span class="dt">percent_subsets=</span><span class="st">&quot;subsets_Mito_percent&quot;</span>)</a>
-<a class="sourceLine" id="cb1160-4" data-line-number="4">sce.mam &lt;-<span class="st"> </span>sce.mam[,<span class="op">!</span>qc<span class="op">$</span>discard]</a></code></pre></div>
-<div class="sourceCode" id="cb1161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1161-1" data-line-number="1"><span class="kw">colData</span>(unfiltered) &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">colData</span>(unfiltered), stats)</a>
-<a class="sourceLine" id="cb1161-2" data-line-number="2">unfiltered<span class="op">$</span>discard &lt;-<span class="st"> </span>qc<span class="op">$</span>discard</a>
-<a class="sourceLine" id="cb1161-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb1161-4" data-line-number="4">gridExtra<span class="op">::</span><span class="kw">grid.arrange</span>(</a>
-<a class="sourceLine" id="cb1161-5" data-line-number="5">    <span class="kw">plotColData</span>(unfiltered, <span class="dt">y=</span><span class="st">&quot;sum&quot;</span>, <span class="dt">colour_by=</span><span class="st">&quot;discard&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb1161-6" data-line-number="6"><span class="st">        </span><span class="kw">scale_y_log10</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Total count&quot;</span>),</a>
-<a class="sourceLine" id="cb1161-7" data-line-number="7">    <span class="kw">plotColData</span>(unfiltered, <span class="dt">y=</span><span class="st">&quot;detected&quot;</span>, <span class="dt">colour_by=</span><span class="st">&quot;discard&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb1161-8" data-line-number="8"><span class="st">        </span><span class="kw">scale_y_log10</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Detected features&quot;</span>),</a>
-<a class="sourceLine" id="cb1161-9" data-line-number="9">    <span class="kw">plotColData</span>(unfiltered, <span class="dt">y=</span><span class="st">&quot;subsets_Mito_percent&quot;</span>, </a>
-<a class="sourceLine" id="cb1161-10" data-line-number="10">        <span class="dt">colour_by=</span><span class="st">&quot;discard&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Mito percent&quot;</span>),</a>
-<a class="sourceLine" id="cb1161-11" data-line-number="11">    <span class="dt">ncol=</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb1161-12" data-line-number="12">)</a></code></pre></div>
+<div id="quality-control" class="section level2" number="38.3">
+<h2><span class="header-section-number">38.3</span> Quality control</h2>
+<div class="sourceCode" id="cb1216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1216-1"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1216-1" aria-hidden="true"></a>unfiltered &lt;-<span class="st"> </span>sce.mam</span></code></pre></div>
+<div class="sourceCode" id="cb1217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1217-1"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1217-1" aria-hidden="true"></a>is.mito &lt;-<span class="st"> </span><span class="kw">rowData</span>(sce.mam)<span class="op">$</span>SEQNAME <span class="op">==</span><span class="st"> &quot;MT&quot;</span></span>
+<span id="cb1217-2"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1217-2" aria-hidden="true"></a>stats &lt;-<span class="st"> </span><span class="kw">perCellQCMetrics</span>(sce.mam, <span class="dt">subsets=</span><span class="kw">list</span>(<span class="dt">Mito=</span><span class="kw">which</span>(is.mito)))</span>
+<span id="cb1217-3"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1217-3" aria-hidden="true"></a>qc &lt;-<span class="st"> </span><span class="kw">quickPerCellQC</span>(stats, <span class="dt">percent_subsets=</span><span class="st">&quot;subsets_Mito_percent&quot;</span>)</span>
+<span id="cb1217-4"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1217-4" aria-hidden="true"></a>sce.mam &lt;-<span class="st"> </span>sce.mam[,<span class="op">!</span>qc<span class="op">$</span>discard]</span></code></pre></div>
+<div class="sourceCode" id="cb1218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1218-1"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1218-1" aria-hidden="true"></a><span class="kw">colData</span>(unfiltered) &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">colData</span>(unfiltered), stats)</span>
+<span id="cb1218-2"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1218-2" aria-hidden="true"></a>unfiltered<span class="op">$</span>discard &lt;-<span class="st"> </span>qc<span class="op">$</span>discard</span>
+<span id="cb1218-3"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1218-3" aria-hidden="true"></a></span>
+<span id="cb1218-4"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1218-4" aria-hidden="true"></a>gridExtra<span class="op">::</span><span class="kw">grid.arrange</span>(</span>
+<span id="cb1218-5"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1218-5" aria-hidden="true"></a>    <span class="kw">plotColData</span>(unfiltered, <span class="dt">y=</span><span class="st">&quot;sum&quot;</span>, <span class="dt">colour_by=</span><span class="st">&quot;discard&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb1218-6"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1218-6" aria-hidden="true"></a><span class="st">        </span><span class="kw">scale_y_log10</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Total count&quot;</span>),</span>
+<span id="cb1218-7"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1218-7" aria-hidden="true"></a>    <span class="kw">plotColData</span>(unfiltered, <span class="dt">y=</span><span class="st">&quot;detected&quot;</span>, <span class="dt">colour_by=</span><span class="st">&quot;discard&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb1218-8"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1218-8" aria-hidden="true"></a><span class="st">        </span><span class="kw">scale_y_log10</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Detected features&quot;</span>),</span>
+<span id="cb1218-9"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1218-9" aria-hidden="true"></a>    <span class="kw">plotColData</span>(unfiltered, <span class="dt">y=</span><span class="st">&quot;subsets_Mito_percent&quot;</span>, </span>
+<span id="cb1218-10"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1218-10" aria-hidden="true"></a>        <span class="dt">colour_by=</span><span class="st">&quot;discard&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Mito percent&quot;</span>),</span>
+<span id="cb1218-11"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1218-11" aria-hidden="true"></a>    <span class="dt">ncol=</span><span class="dv">2</span></span>
+<span id="cb1218-12"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1218-12" aria-hidden="true"></a>)</span></code></pre></div>
 <div class="figure"><span id="fig:unref-bach-qc-dist"></span>
 <img src="bach-mammary_files/figure-html/unref-bach-qc-dist-1.png" alt="Distribution of each QC metric across cells in the Bach mammary gland dataset. Each point represents a cell and is colored according to whether that cell was discarded." width="672" />
 <p class="caption">
-Figure 36.1: Distribution of each QC metric across cells in the Bach mammary gland dataset. Each point represents a cell and is colored according to whether that cell was discarded.
+Figure 38.1: Distribution of each QC metric across cells in the Bach mammary gland dataset. Each point represents a cell and is colored according to whether that cell was discarded.
 </p>
 </div>
-<div class="sourceCode" id="cb1162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1162-1" data-line-number="1"><span class="kw">plotColData</span>(unfiltered, <span class="dt">x=</span><span class="st">&quot;sum&quot;</span>, <span class="dt">y=</span><span class="st">&quot;subsets_Mito_percent&quot;</span>, </a>
-<a class="sourceLine" id="cb1162-2" data-line-number="2">    <span class="dt">colour_by=</span><span class="st">&quot;discard&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_log10</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb1219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1219-1"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1219-1" aria-hidden="true"></a><span class="kw">plotColData</span>(unfiltered, <span class="dt">x=</span><span class="st">&quot;sum&quot;</span>, <span class="dt">y=</span><span class="st">&quot;subsets_Mito_percent&quot;</span>, </span>
+<span id="cb1219-2"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1219-2" aria-hidden="true"></a>    <span class="dt">colour_by=</span><span class="st">&quot;discard&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_log10</span>()</span></code></pre></div>
 <div class="figure"><span id="fig:unref-bach-qc-comp"></span>
 <img src="bach-mammary_files/figure-html/unref-bach-qc-comp-1.png" alt="Percentage of mitochondrial reads in each cell in the Bach mammary gland dataset compared to its total count. Each point represents a cell and is colored according to whether that cell was discarded." width="672" />
 <p class="caption">
-Figure 36.2: Percentage of mitochondrial reads in each cell in the Bach mammary gland dataset compared to its total count. Each point represents a cell and is colored according to whether that cell was discarded.
+Figure 38.2: Percentage of mitochondrial reads in each cell in the Bach mammary gland dataset compared to its total count. Each point represents a cell and is colored according to whether that cell was discarded.
 </p>
 </div>
-<div class="sourceCode" id="cb1163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1163-1" data-line-number="1"><span class="kw">colSums</span>(<span class="kw">as.matrix</span>(qc))</a></code></pre></div>
+<div class="sourceCode" id="cb1220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1220-1"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1220-1" aria-hidden="true"></a><span class="kw">colSums</span>(<span class="kw">as.matrix</span>(qc))</span></code></pre></div>
 <pre><code>##              low_lib_size            low_n_features high_subsets_Mito_percent 
 ##                         0                         0                       143 
 ##                   discard 
 ##                       143</code></pre>
 </div>
-<div id="normalization" class="section level2">
-<h2><span class="header-section-number">36.4</span> Normalization</h2>
-<div class="sourceCode" id="cb1165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1165-1" data-line-number="1"><span class="kw">library</span>(scran)</a>
-<a class="sourceLine" id="cb1165-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">101000110</span>)</a>
-<a class="sourceLine" id="cb1165-3" data-line-number="3">clusters &lt;-<span class="st"> </span><span class="kw">quickCluster</span>(sce.mam)</a>
-<a class="sourceLine" id="cb1165-4" data-line-number="4">sce.mam &lt;-<span class="st"> </span><span class="kw">computeSumFactors</span>(sce.mam, <span class="dt">clusters=</span>clusters)</a>
-<a class="sourceLine" id="cb1165-5" data-line-number="5">sce.mam &lt;-<span class="st"> </span><span class="kw">logNormCounts</span>(sce.mam)</a></code></pre></div>
-<div class="sourceCode" id="cb1166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1166-1" data-line-number="1"><span class="kw">summary</span>(<span class="kw">sizeFactors</span>(sce.mam))</a></code></pre></div>
+<div id="normalization" class="section level2" number="38.4">
+<h2><span class="header-section-number">38.4</span> Normalization</h2>
+<div class="sourceCode" id="cb1222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1222-1"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1222-1" aria-hidden="true"></a><span class="kw">library</span>(scran)</span>
+<span id="cb1222-2"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1222-2" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">101000110</span>)</span>
+<span id="cb1222-3"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1222-3" aria-hidden="true"></a>clusters &lt;-<span class="st"> </span><span class="kw">quickCluster</span>(sce.mam)</span>
+<span id="cb1222-4"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1222-4" aria-hidden="true"></a>sce.mam &lt;-<span class="st"> </span><span class="kw">computeSumFactors</span>(sce.mam, <span class="dt">clusters=</span>clusters)</span>
+<span id="cb1222-5"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1222-5" aria-hidden="true"></a>sce.mam &lt;-<span class="st"> </span><span class="kw">logNormCounts</span>(sce.mam)</span></code></pre></div>
+<div class="sourceCode" id="cb1223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1223-1"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1223-1" aria-hidden="true"></a><span class="kw">summary</span>(<span class="kw">sizeFactors</span>(sce.mam))</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   0.271   0.522   0.758   1.000   1.204  10.958</code></pre>
-<div class="sourceCode" id="cb1168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1168-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">librarySizeFactors</span>(sce.mam), <span class="kw">sizeFactors</span>(sce.mam), <span class="dt">pch=</span><span class="dv">16</span>,</a>
-<a class="sourceLine" id="cb1168-2" data-line-number="2">    <span class="dt">xlab=</span><span class="st">&quot;Library size factors&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Deconvolution factors&quot;</span>, <span class="dt">log=</span><span class="st">&quot;xy&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1225-1"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1225-1" aria-hidden="true"></a><span class="kw">plot</span>(<span class="kw">librarySizeFactors</span>(sce.mam), <span class="kw">sizeFactors</span>(sce.mam), <span class="dt">pch=</span><span class="dv">16</span>,</span>
+<span id="cb1225-2"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1225-2" aria-hidden="true"></a>    <span class="dt">xlab=</span><span class="st">&quot;Library size factors&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Deconvolution factors&quot;</span>, <span class="dt">log=</span><span class="st">&quot;xy&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:unref-bach-norm"></span>
 <img src="bach-mammary_files/figure-html/unref-bach-norm-1.png" alt="Relationship between the library size factors and the deconvolution size factors in the Bach mammary gland dataset." width="672" />
 <p class="caption">
-Figure 36.3: Relationship between the library size factors and the deconvolution size factors in the Bach mammary gland dataset.
+Figure 38.3: Relationship between the library size factors and the deconvolution size factors in the Bach mammary gland dataset.
 </p>
 </div>
 </div>
-<div id="variance-modelling" class="section level2">
-<h2><span class="header-section-number">36.5</span> Variance modelling</h2>
+<div id="variance-modelling" class="section level2" number="38.5">
+<h2><span class="header-section-number">38.5</span> Variance modelling</h2>
 <p>We use a Poisson-based technical trend to capture more genuine biological variation in the biological component.</p>
-<div class="sourceCode" id="cb1169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1169-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">00010101</span>)</a>
-<a class="sourceLine" id="cb1169-2" data-line-number="2">dec.mam &lt;-<span class="st"> </span><span class="kw">modelGeneVarByPoisson</span>(sce.mam)</a>
-<a class="sourceLine" id="cb1169-3" data-line-number="3">top.mam &lt;-<span class="st"> </span><span class="kw">getTopHVGs</span>(dec.mam, <span class="dt">prop=</span><span class="fl">0.1</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb1170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1170-1" data-line-number="1"><span class="kw">plot</span>(dec.mam<span class="op">$</span>mean, dec.mam<span class="op">$</span>total, <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">cex=</span><span class="fl">0.5</span>,</a>
-<a class="sourceLine" id="cb1170-2" data-line-number="2">    <span class="dt">xlab=</span><span class="st">&quot;Mean of log-expression&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Variance of log-expression&quot;</span>)</a>
-<a class="sourceLine" id="cb1170-3" data-line-number="3">curfit &lt;-<span class="st"> </span><span class="kw">metadata</span>(dec.mam)</a>
-<a class="sourceLine" id="cb1170-4" data-line-number="4"><span class="kw">curve</span>(curfit<span class="op">$</span><span class="kw">trend</span>(x), <span class="dt">col=</span><span class="st">&#39;dodgerblue&#39;</span>, <span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1226-1"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1226-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">00010101</span>)</span>
+<span id="cb1226-2"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1226-2" aria-hidden="true"></a>dec.mam &lt;-<span class="st"> </span><span class="kw">modelGeneVarByPoisson</span>(sce.mam)</span>
+<span id="cb1226-3"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1226-3" aria-hidden="true"></a>top.mam &lt;-<span class="st"> </span><span class="kw">getTopHVGs</span>(dec.mam, <span class="dt">prop=</span><span class="fl">0.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1227-1"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1227-1" aria-hidden="true"></a><span class="kw">plot</span>(dec.mam<span class="op">$</span>mean, dec.mam<span class="op">$</span>total, <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">cex=</span><span class="fl">0.5</span>,</span>
+<span id="cb1227-2"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1227-2" aria-hidden="true"></a>    <span class="dt">xlab=</span><span class="st">&quot;Mean of log-expression&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Variance of log-expression&quot;</span>)</span>
+<span id="cb1227-3"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1227-3" aria-hidden="true"></a>curfit &lt;-<span class="st"> </span><span class="kw">metadata</span>(dec.mam)</span>
+<span id="cb1227-4"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1227-4" aria-hidden="true"></a><span class="kw">curve</span>(curfit<span class="op">$</span><span class="kw">trend</span>(x), <span class="dt">col=</span><span class="st">&#39;dodgerblue&#39;</span>, <span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:unref-bach-var"></span>
 <img src="bach-mammary_files/figure-html/unref-bach-var-1.png" alt="Per-gene variance as a function of the mean for the log-expression values in the Bach mammary gland dataset. Each point represents a gene (black) with the mean-variance trend (blue) fitted to simulated Poisson counts." width="672" />
 <p class="caption">
-Figure 36.4: Per-gene variance as a function of the mean for the log-expression values in the Bach mammary gland dataset. Each point represents a gene (black) with the mean-variance trend (blue) fitted to simulated Poisson counts.
+Figure 38.4: Per-gene variance as a function of the mean for the log-expression values in the Bach mammary gland dataset. Each point represents a gene (black) with the mean-variance trend (blue) fitted to simulated Poisson counts.
 </p>
 </div>
 </div>
-<div id="dimensionality-reduction" class="section level2">
-<h2><span class="header-section-number">36.6</span> Dimensionality reduction</h2>
-<div class="sourceCode" id="cb1171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1171-1" data-line-number="1"><span class="kw">library</span>(BiocSingular)</a>
-<a class="sourceLine" id="cb1171-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">101010011</span>)</a>
-<a class="sourceLine" id="cb1171-3" data-line-number="3">sce.mam &lt;-<span class="st"> </span><span class="kw">denoisePCA</span>(sce.mam, <span class="dt">technical=</span>dec.mam, <span class="dt">subset.row=</span>top.mam)</a>
-<a class="sourceLine" id="cb1171-4" data-line-number="4">sce.mam &lt;-<span class="st"> </span><span class="kw">runTSNE</span>(sce.mam, <span class="dt">dimred=</span><span class="st">&quot;PCA&quot;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb1172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1172-1" data-line-number="1"><span class="kw">ncol</span>(<span class="kw">reducedDim</span>(sce.mam, <span class="st">&quot;PCA&quot;</span>))</a></code></pre></div>
+<div id="dimensionality-reduction" class="section level2" number="38.6">
+<h2><span class="header-section-number">38.6</span> Dimensionality reduction</h2>
+<div class="sourceCode" id="cb1228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1228-1"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1228-1" aria-hidden="true"></a><span class="kw">library</span>(BiocSingular)</span>
+<span id="cb1228-2"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1228-2" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">101010011</span>)</span>
+<span id="cb1228-3"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1228-3" aria-hidden="true"></a>sce.mam &lt;-<span class="st"> </span><span class="kw">denoisePCA</span>(sce.mam, <span class="dt">technical=</span>dec.mam, <span class="dt">subset.row=</span>top.mam)</span>
+<span id="cb1228-4"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1228-4" aria-hidden="true"></a>sce.mam &lt;-<span class="st"> </span><span class="kw">runTSNE</span>(sce.mam, <span class="dt">dimred=</span><span class="st">&quot;PCA&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1229-1"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1229-1" aria-hidden="true"></a><span class="kw">ncol</span>(<span class="kw">reducedDim</span>(sce.mam, <span class="st">&quot;PCA&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] 15</code></pre>
 </div>
-<div id="clustering" class="section level2">
-<h2><span class="header-section-number">36.7</span> Clustering</h2>
+<div id="clustering" class="section level2" number="38.7">
+<h2><span class="header-section-number">38.7</span> Clustering</h2>
 <p>We use a higher <code>k</code> to obtain coarser clusters (for use in <code>doubletCluster()</code> later).</p>
-<div class="sourceCode" id="cb1174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1174-1" data-line-number="1">snn.gr &lt;-<span class="st"> </span><span class="kw">buildSNNGraph</span>(sce.mam, <span class="dt">use.dimred=</span><span class="st">&quot;PCA&quot;</span>, <span class="dt">k=</span><span class="dv">25</span>)</a>
-<a class="sourceLine" id="cb1174-2" data-line-number="2"><span class="kw">colLabels</span>(sce.mam) &lt;-<span class="st"> </span><span class="kw">factor</span>(igraph<span class="op">::</span><span class="kw">cluster_walktrap</span>(snn.gr)<span class="op">$</span>membership)</a></code></pre></div>
-<div class="sourceCode" id="cb1175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1175-1" data-line-number="1"><span class="kw">table</span>(<span class="kw">colLabels</span>(sce.mam))</a></code></pre></div>
+<div class="sourceCode" id="cb1231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1231-1"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1231-1" aria-hidden="true"></a>snn.gr &lt;-<span class="st"> </span><span class="kw">buildSNNGraph</span>(sce.mam, <span class="dt">use.dimred=</span><span class="st">&quot;PCA&quot;</span>, <span class="dt">k=</span><span class="dv">25</span>)</span>
+<span id="cb1231-2"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1231-2" aria-hidden="true"></a><span class="kw">colLabels</span>(sce.mam) &lt;-<span class="st"> </span><span class="kw">factor</span>(igraph<span class="op">::</span><span class="kw">cluster_walktrap</span>(snn.gr)<span class="op">$</span>membership)</span></code></pre></div>
+<div class="sourceCode" id="cb1232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1232-1"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1232-1" aria-hidden="true"></a><span class="kw">table</span>(<span class="kw">colLabels</span>(sce.mam))</span></code></pre></div>
 <pre><code>## 
 ##   1   2   3   4   5   6   7   8   9  10 
 ## 550 799 716 452  24  84  52  39  32  24</code></pre>
-<div class="sourceCode" id="cb1177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1177-1" data-line-number="1"><span class="kw">plotTSNE</span>(sce.mam, <span class="dt">colour_by=</span><span class="st">&quot;label&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1234-1"><a href="bach-mouse-mammary-gland-10x-genomics.html#cb1234-1" aria-hidden="true"></a><span class="kw">plotTSNE</span>(sce.mam, <span class="dt">colour_by=</span><span class="st">&quot;label&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:unref-bach-tsne"></span>
 <img src="bach-mammary_files/figure-html/unref-bach-tsne-1.png" alt="Obligatory $t$-SNE plot of the Bach mammary gland dataset, where each point represents a cell and is colored according to the assigned cluster." width="672" />
 <p class="caption">
-Figure 36.5: Obligatory <span class="math inline">\(t\)</span>-SNE plot of the Bach mammary gland dataset, where each point represents a cell and is colored according to the assigned cluster.
+Figure 38.5: Obligatory <span class="math inline">\(t\)</span>-SNE plot of the Bach mammary gland dataset, where each point represents a cell and is colored according to the assigned cluster.
 </p>
 </div>
 </div>
 <div id="session-info" class="section level2 unnumbered">
 <h2>Session Info</h2>
-<button class="aaron-collapse">
+<button class="rebook-collapse">
 View session info
 </button>
-<div class="aaron-content">
-<pre><code>R version 4.0.2 (2020-06-22)
+<div class="rebook-content">
+<pre><code>R version 4.0.0 Patched (2020-05-01 r78341)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.4 LTS
+Running under: Ubuntu 18.04.5 LTS
 
 Matrix products: default
-BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
-LAPACK: /home/biocbuild/bbs-3.12-bioc/R/lib/libRlapack.so
+BLAS:   /home/luna/Software/R/R-4-0-branch-dev/lib/libRblas.so
+LAPACK: /home/luna/Software/R/R-4-0-branch-dev/lib/libRlapack.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
@@ -833,81 +916,117 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] BiocSingular_1.5.0          scran_1.17.3               
- [3] AnnotationHub_2.21.1        BiocFileCache_1.13.0       
- [5] dbplyr_1.4.4                scater_1.17.2              
+ [1] BiocSingular_1.5.0          scran_1.17.15              
+ [3] AnnotationHub_2.21.2        BiocFileCache_1.13.1       
+ [5] dbplyr_1.4.4                scater_1.17.4              
  [7] ggplot2_3.3.2               ensembldb_2.13.1           
- [9] AnnotationFilter_1.13.0     GenomicFeatures_1.41.0     
-[11] AnnotationDbi_1.51.1        scRNAseq_2.3.8             
-[13] SingleCellExperiment_1.11.6 SummarizedExperiment_1.19.5
-[15] DelayedArray_0.15.6         matrixStats_0.56.0         
+ [9] AnnotationFilter_1.13.0     GenomicFeatures_1.41.2     
+[11] AnnotationDbi_1.51.3        scRNAseq_2.3.12            
+[13] SingleCellExperiment_1.11.6 SummarizedExperiment_1.19.6
+[15] DelayedArray_0.15.7         matrixStats_0.56.0         
 [17] Matrix_1.2-18               Biobase_2.49.0             
-[19] GenomicRanges_1.41.5        GenomeInfoDb_1.25.5        
+[19] GenomicRanges_1.41.6        GenomeInfoDb_1.25.10       
 [21] IRanges_2.23.10             S4Vectors_0.27.12          
 [23] BiocGenerics_0.35.4         BiocStyle_2.17.0           
-[25] simpleSingleCell_1.13.5    
+[25] rebook_0.99.4              
 
 loaded via a namespace (and not attached):
   [1] Rtsne_0.15                    ggbeeswarm_0.6.0             
   [3] colorspace_1.4-1              ellipsis_0.3.1               
-  [5] scuttle_0.99.10               XVector_0.29.3               
-  [7] BiocNeighbors_1.7.0           farver_2.0.3                 
-  [9] bit64_0.9-7                   interactiveDisplayBase_1.27.5
- [11] codetools_0.2-16              knitr_1.29                   
- [13] Rsamtools_2.5.3               graph_1.67.1                 
- [15] shiny_1.5.0                   BiocManager_1.30.10          
- [17] compiler_4.0.2                httr_1.4.1                   
- [19] dqrng_0.2.1                   assertthat_0.2.1             
- [21] fastmap_1.0.1                 lazyeval_0.2.2               
- [23] limma_3.45.7                  later_1.1.0.1                
- [25] htmltools_0.5.0               prettyunits_1.1.1            
- [27] tools_4.0.2                   igraph_1.2.5                 
- [29] rsvd_1.0.3                    gtable_0.3.0                 
- [31] glue_1.4.1                    GenomeInfoDbData_1.2.3       
- [33] dplyr_1.0.0                   rappdirs_0.3.1               
- [35] Rcpp_1.0.4.6                  vctrs_0.3.1                  
- [37] Biostrings_2.57.2             ExperimentHub_1.15.0         
- [39] rtracklayer_1.49.3            DelayedMatrixStats_1.11.1    
- [41] xfun_0.15                     stringr_1.4.0                
- [43] ps_1.3.3                      mime_0.9                     
- [45] lifecycle_0.2.0               irlba_2.3.3                  
- [47] statmod_1.4.34                XML_3.99-0.3                 
- [49] edgeR_3.31.4                  zlibbioc_1.35.0              
- [51] scales_1.1.1                  hms_0.5.3                    
- [53] promises_1.1.1                ProtGenerics_1.21.0          
- [55] yaml_2.2.1                    curl_4.3                     
- [57] memoise_1.1.0                 gridExtra_2.3                
- [59] biomaRt_2.45.1                stringi_1.4.6                
- [61] RSQLite_2.2.0                 highr_0.8                    
- [63] BiocVersion_3.12.0            BiocParallel_1.23.0          
- [65] rlang_0.4.6                   pkgconfig_2.0.3              
- [67] bitops_1.0-6                  evaluate_0.14                
- [69] lattice_0.20-41               purrr_0.3.4                  
- [71] labeling_0.3                  GenomicAlignments_1.25.3     
- [73] CodeDepends_0.6.5             cowplot_1.0.0                
- [75] bit_1.1-15.2                  processx_3.4.2               
- [77] tidyselect_1.1.0              magrittr_1.5                 
- [79] bookdown_0.20                 R6_2.4.1                     
- [81] generics_0.0.2                DBI_1.1.0                    
- [83] pillar_1.4.4                  withr_2.2.0                  
- [85] RCurl_1.98-1.2                tibble_3.0.1                 
- [87] crayon_1.3.4                  rmarkdown_2.3                
- [89] viridis_0.5.1                 progress_1.2.2               
- [91] locfit_1.5-9.4                grid_4.0.2                   
- [93] blob_1.2.1                    callr_3.4.3                  
- [95] digest_0.6.25                 xtable_1.8-4                 
- [97] httpuv_1.5.4                  openssl_1.4.2                
- [99] munsell_0.5.0                 beeswarm_0.2.3               
-[101] viridisLite_0.3.0             vipor_0.4.5                  
-[103] askpass_1.1                  </code></pre>
+  [5] scuttle_0.99.13               bluster_0.99.1               
+  [7] XVector_0.29.3                BiocNeighbors_1.7.0          
+  [9] farver_2.0.3                  bit64_4.0.2                  
+ [11] interactiveDisplayBase_1.27.5 codetools_0.2-16             
+ [13] knitr_1.29                    Rsamtools_2.5.3              
+ [15] graph_1.67.1                  shiny_1.5.0                  
+ [17] BiocManager_1.30.10           compiler_4.0.0               
+ [19] httr_1.4.2                    dqrng_0.2.1                  
+ [21] assertthat_0.2.1              fastmap_1.0.1                
+ [23] lazyeval_0.2.2                limma_3.45.10                
+ [25] later_1.1.0.1                 htmltools_0.5.0              
+ [27] prettyunits_1.1.1             tools_4.0.0                  
+ [29] igraph_1.2.5                  rsvd_1.0.3                   
+ [31] gtable_0.3.0                  glue_1.4.1                   
+ [33] GenomeInfoDbData_1.2.3        dplyr_1.0.1                  
+ [35] rappdirs_0.3.1                Rcpp_1.0.5                   
+ [37] vctrs_0.3.2                   Biostrings_2.57.2            
+ [39] ExperimentHub_1.15.1          rtracklayer_1.49.5           
+ [41] DelayedMatrixStats_1.11.1     xfun_0.16                    
+ [43] stringr_1.4.0                 ps_1.3.4                     
+ [45] mime_0.9                      lifecycle_0.2.0              
+ [47] irlba_2.3.3                   statmod_1.4.34               
+ [49] XML_3.99-0.5                  edgeR_3.31.4                 
+ [51] zlibbioc_1.35.0               scales_1.1.1                 
+ [53] hms_0.5.3                     promises_1.1.1               
+ [55] ProtGenerics_1.21.0           yaml_2.2.1                   
+ [57] curl_4.3                      memoise_1.1.0                
+ [59] gridExtra_2.3                 biomaRt_2.45.2               
+ [61] stringi_1.4.6                 RSQLite_2.2.0                
+ [63] highr_0.8                     BiocVersion_3.12.0           
+ [65] BiocParallel_1.23.2           rlang_0.4.7                  
+ [67] pkgconfig_2.0.3               bitops_1.0-6                 
+ [69] evaluate_0.14                 lattice_0.20-41              
+ [71] purrr_0.3.4                   labeling_0.3                 
+ [73] GenomicAlignments_1.25.3      CodeDepends_0.6.5            
+ [75] cowplot_1.0.0                 bit_4.0.4                    
+ [77] processx_3.4.3                tidyselect_1.1.0             
+ [79] magrittr_1.5                  bookdown_0.20                
+ [81] R6_2.4.1                      generics_0.0.2               
+ [83] DBI_1.1.0                     pillar_1.4.6                 
+ [85] withr_2.2.0                   RCurl_1.98-1.2               
+ [87] tibble_3.0.3                  crayon_1.3.4                 
+ [89] rmarkdown_2.3                 viridis_0.5.1                
+ [91] progress_1.2.2                locfit_1.5-9.4               
+ [93] grid_4.0.0                    blob_1.2.1                   
+ [95] callr_3.4.3                   digest_0.6.25                
+ [97] xtable_1.8-4                  httpuv_1.5.4                 
+ [99] openssl_1.4.2                 munsell_0.5.0                
+[101] beeswarm_0.2.3                viridisLite_0.3.0            
+[103] vipor_0.4.5                   askpass_1.1                  </code></pre>
 </div>
 
 </div>
 </div>
+
+
+
+document.addEventListener("click", function (event) {
+    if (event.target.classList.contains("rebook-collapse")) {
+        event.target.classList.toggle("active");
+        var content = event.target.nextElementSibling;
+        if (content.style.display === "block") {
+            content.style.display = "none";
+        } else {
+            content.style.display = "block";
+        }
+    }
+})
+</script>
+<style>
+.rebook-collapse {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.rebook-content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+</style>
+</div>
 <h3> Bibliography</h3>
 <div id="refs" class="references">
 <div id="ref-bach2017differentiation">
-<p>Bach, K., S. Pensa, M. Grzelak, J. Hadfield, D. J. Adams, J. C. Marioni, and W. T. Khaled. 2017. “Differentiation dynamics of mammary epithelial cells revealed by single-cell RNA sequencing.” <em>Nat Commun</em> 8 (1):2128.</p>
+<p>Bach, K., S. Pensa, M. Grzelak, J. Hadfield, D. J. Adams, J. C. Marioni, and W. T. Khaled. 2017. “Differentiation dynamics of mammary epithelial cells revealed by single-cell RNA sequencing.” <em>Nat Commun</em> 8 (1): 2128.</p>
 </div>
 </div>
             </section>
@@ -916,7 +1035,7 @@ loaded via a namespace (and not attached):
         </div>
       </div>
 <a href="pijuan-sala-chimeric-mouse-embryo-10x-genomics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="hca-human-bone-marrow-10x-genomics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="contributors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -947,23 +1066,21 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": null,
-"text": null
+"link": "https://github.com/Bioconductor/OrchestratingSingleCellAnalysis-base/edit/master/bach-mammary.Rmd",
+"text": "Edit"
 },
 "history": {
-"link": null,
+"link": "https://github.com/Bioconductor/OrchestratingSingleCellAnalysis-base/commits/master/bach-mammary.Rmd",
 "text": null
 },
 "view": {
-"link": null,
+"link": "https://github.com/Bioconductor/OrchestratingSingleCellAnalysis-base/blob/master/bach-mammary.Rmd",
 "text": null
 },
 "download": null,
 "toc": {
 "collapse": "subsection"
-},
-"bookdown::epub_book": "default",
-"cover": "images/cover.png"
+}
 });
 });
 </script>

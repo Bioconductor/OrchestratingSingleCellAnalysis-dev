@@ -1,14 +1,14 @@
 ---
 output:
   html_document
-bibliography: ../ref.bib
+bibliography: ref.bib
 ---
 
 # Doublet detection 
 
 <script>
 document.addEventListener("click", function (event) {
-    if (event.target.classList.contains("aaron-collapse")) {
+    if (event.target.classList.contains("rebook-collapse")) {
         event.target.classList.toggle("active");
         var content = event.target.nextElementSibling;
         if (content.style.display === "block") {
@@ -21,7 +21,7 @@ document.addEventListener("click", function (event) {
 </script>
 
 <style>
-.aaron-collapse {
+.rebook-collapse {
   background-color: #eee;
   color: #444;
   cursor: pointer;
@@ -33,7 +33,7 @@ document.addEventListener("click", function (event) {
   font-size: 15px;
 }
 
-.aaron-content {
+.rebook-content {
   padding: 0 18px;
   display: none;
   overflow: hidden;
@@ -61,8 +61,8 @@ In this workflow, we will describe two purely computational approaches for detec
 The main difference between these two methods is whether or not they need cluster information beforehand.
 We will demonstrate the use of these methods on 10X Genomics data from a droplet-based scRNA-seq study of the mouse mammary gland [@bach2017differentiation].
 
-<button class="aaron-collapse">View history</button>
-<div class="aaron-content">
+<button class="rebook-collapse">View history</button>
+<div class="rebook-content">
    
 ```r
 #--- loading ---#
@@ -335,61 +335,38 @@ Cell libraries containing two labels are thus likely to be doublets of cells fro
 To demonstrate, we will use some data from the original cell hashing study [@stoekius2018hashing].
 Each sample's cells were stained with an antibody against a ubiquitous surface protein, where the antibody was conjugated to a sample-specific HTO.
 Sequencing of the HTO-derived cDNA library ultimately yields a count matrix where each row corresponds to a HTO and each column corresponds to a cell barcode.
-(We use *[BiocFileCache](https://bioconductor.org/packages/3.12/BiocFileCache)* to avoid repeated downloads of the same file.)
 
 
 ```r
-library(BiocFileCache)
-bfc <- BiocFileCache(ask=FALSE)
-hash.tar <- bfcrpath(bfc, "https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE108313&format=file")
-
-fname <- "GSM2895283_Hashtag-HTO-count.csv.gz"
-untar(hash.tar, files=fname, exdir=tempdir())
-hto.counts <- read.csv(file.path(tempdir(), fname), row.names=1)
-hto.counts <- as.matrix(hto.counts[1:8,])
-
-dim(hto.counts)
+library(scRNAseq)
+hto.sce <- StoeckiusHashingData(mode="hto")
+dim(hto.sce)
 ```
 
 ```
 ## [1]     8 65000
 ```
 
-```r
-hto.counts[,1:3]
-```
-
-```
-##                     GGCGACTAGAGGACGG CATCAAGGTCTTGTCC AAACCTGAGTGATCGG
-## BatchA-AGGACCATCCAA               30                4               12
-## BatchB-ACATGTTACCGT               16               39               15
-## BatchC-AGCTTACTATCC               26                0               19
-## BatchD-TCGATAATGCGA             2698               22                2
-## BatchE-GAGGCTGAGCTA                8               24               32
-## BatchF-GTGTGACGTATT               15               47               12
-## BatchG-ACTGTCTAACGG               55               21               76
-## BatchH-TATCACATCGGT               32               17                3
-```
-
 ### Identifying inter-sample doublets
 
 Before we proceed to doublet detection, we simplify the problem by first identifying the barcodes that contain cells.
 This is most conventionally done using the gene expression matrix for the same set of barcodes, as shown in Section \@ref(qc-droplets).
-While we could extract the gene expression matrix from `hash.tar`, we will instead demonstrate an alternative approach that uses the HTO count matrix directly in the `emptyDrops()` function.
-This requires some adjustment of the `lower=` argument to obtain an appropriate value depending on the sequencing depth of the HTOs; otherwise, the barcode-rank plots are quite similar to what one might expect from gene expression data (Figure \@ref(fig:hash-barcode-rank)).
+Here, though, we will keep things simple and apply `emptyDrops()` directly on the HTO count matrix.
+The considerations are largely the same as that for gene expression matrices; the main difference is that the default `lower=` is often too low for deeply sequenced HTOs, so we instead estimate the ambient profile by excluding the top `by.rank=` barcodes with the largest totals (under the assumption that no more than `by.rank=` cells were loaded).
+The barcode-rank plots are quite similar to what one might expect from gene expression data (Figure \@ref(fig:hash-barcode-rank)).
 
 
 ```r
 library(DropletUtils)
 
 set.seed(101)
-hash.calls <- emptyDrops(hto.counts, lower=200)
+hash.calls <- emptyDrops(counts(hto.sce), by.rank=40000)
 is.cell <- which(hash.calls$FDR <= 0.001)
 length(is.cell)
 ```
 
 ```
-## [1] 21655
+## [1] 21782
 ```
 
 ```r
@@ -413,7 +390,7 @@ Confidently assigned singlets are marked using the `Confident` field in the outp
 
 
 ```r
-hash.stats <- hashedDrops(hto.counts[,is.cell],
+hash.stats <- hashedDrops(counts(hto.sce)[,is.cell],
     ambient=metadata(hash.calls)$ambient)
 
 hist(hash.stats$LogFC, xlab="Log fold-change from best to second HTO", main="")
@@ -432,7 +409,7 @@ table(hash.stats$Best)
 ```
 ## 
 ##    1    2    3    4    5    6    7    8 
-## 2694 3272 2733 2782 2489 2377 2508 2800
+## 2703 3276 2753 2782 2494 2381 2586 2807
 ```
 
 ```r
@@ -444,7 +421,7 @@ table(hash.stats$Best[hash.stats$Confident])
 ```
 ## 
 ##    1    2    3    4    5    6    7    8 
-## 2344 2775 2440 2274 2089 1988 2101 2457
+## 2349 2779 2458 2275 2091 1994 2176 2458
 ```
 
 Of greater interest here is how we can use the hashing information to detect doublets.
@@ -460,7 +437,7 @@ summary(hash.stats$Doublet)
 
 ```
 ##    Mode   FALSE    TRUE 
-## logical   18620    3035
+## logical   18744    3038
 ```
 
 ```r
@@ -490,16 +467,10 @@ We illustrate by loading the gene expression data for this study:
 
 
 ```r
-gname <- "GSM2895282_Hashtag-RNA.umi.txt.gz"
-untar(hash.tar, files=gname, exdir=tempdir())
-
-# Reading it in as a sparse matrix in a SingleCellExperiment.
-library(scater)
-gene.counts <- readSparseCounts(file.path(tempdir(), gname))
-sce.hash <- SingleCellExperiment(list(counts=gene.counts))
+sce.hash <- StoeckiusHashingData(mode="human")
 
 # Subsetting to all barcodes detected as cells. Requires an intersection,
-# because `hto.counts` and `gene.counts` are not the same dimensions! 
+# because `hto.sce` and `sce.hash` are not the same dimensions! 
 common <- intersect(colnames(sce.hash), rownames(hash.stats))
 sce.hash <- sce.hash[,common]
 colData(sce.hash) <- hash.stats[common,]
@@ -509,12 +480,12 @@ sce.hash
 
 ```
 ## class: SingleCellExperiment 
-## dim: 40899 20718 
+## dim: 27679 20830 
 ## metadata(0):
 ## assays(1): counts
-## rownames(40899): 0610007N19Rik 0610007P14Rik ... snoU2-30 snoU83B
+## rownames(27679): A1BG A1BG-AS1 ... hsa-mir-8072 snoU2-30
 ## rowData names(0):
-## colnames(20718): ACTGCTCAGGTGTTAA ATGAGGGAGATGTTAG ... AACTGGTTCTTGGGTA
+## colnames(20830): ACTGCTCAGGTGTTAA ATGAGGGAGATGTTAG ... CACCAGGCACACAGAG
 ##   CTCGGAGTCTAACTCT
 ## colData names(7): Total Best ... Doublet Confident
 ## reducedDimNames(0):
@@ -543,20 +514,20 @@ hashed.doublets
 ```
 
 ```
-## DataFrame with 20718 rows and 3 columns
+## DataFrame with 20830 rows and 3 columns
 ##       proportion     known predicted
 ##        <numeric> <logical> <logical>
-## 1           0.12      TRUE     FALSE
+## 1           0.10      TRUE     FALSE
 ## 2           0.02     FALSE     FALSE
 ## 3           0.14     FALSE     FALSE
 ## 4           0.08     FALSE     FALSE
 ## 5           0.18     FALSE     FALSE
 ## ...          ...       ...       ...
-## 20714       0.10     FALSE     FALSE
-## 20715       0.02     FALSE     FALSE
-## 20716       0.02     FALSE     FALSE
-## 20717       0.00     FALSE     FALSE
-## 20718       0.10     FALSE     FALSE
+## 20826       0.04     FALSE     FALSE
+## 20827       0.04     FALSE     FALSE
+## 20828       0.02     FALSE     FALSE
+## 20829       0.04     FALSE     FALSE
+## 20830       0.10     FALSE     FALSE
 ```
 
 The `doubletRecovery()` function also returns explicit intra-sample doublet predictions based on the doublet neighbor proportions.
@@ -623,20 +594,20 @@ This should be a consideration when designing scRNA-seq experiments, where the d
 
 ## Session Info {-}
 
-<button class="aaron-collapse">View session info</button>
-<div class="aaron-content">
+<button class="rebook-collapse">View session info</button>
+<div class="rebook-content">
 ```
-R version 4.0.2 (2020-06-22)
+R version 4.0.0 Patched (2020-05-01 r78341)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.4 LTS
+Running under: Ubuntu 18.04.5 LTS
 
 Matrix products: default
-BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
-LAPACK: /home/biocbuild/bbs-3.12-bioc/R/lib/libRlapack.so
+BLAS:   /home/luna/Software/R/R-4-0-branch-dev/lib/libRblas.so
+LAPACK: /home/luna/Software/R/R-4-0-branch-dev/lib/libRlapack.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
@@ -647,62 +618,70 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] DropletUtils_1.9.2          BiocFileCache_1.13.0       
- [3] dbplyr_1.4.4                BiocSingular_1.5.0         
- [5] scater_1.17.2               ggplot2_3.3.2              
- [7] scran_1.17.3                SingleCellExperiment_1.11.6
- [9] SummarizedExperiment_1.19.5 DelayedArray_0.15.6        
-[11] matrixStats_0.56.0          Matrix_1.2-18              
-[13] Biobase_2.49.0              GenomicRanges_1.41.5       
-[15] GenomeInfoDb_1.25.5         IRanges_2.23.10            
-[17] S4Vectors_0.27.12           BiocGenerics_0.35.4        
-[19] BiocStyle_2.17.0            simpleSingleCell_1.13.5    
+ [1] DropletUtils_1.9.10         scRNAseq_2.3.12            
+ [3] BiocSingular_1.5.0          scater_1.17.4              
+ [5] ggplot2_3.3.2               scran_1.17.15              
+ [7] SingleCellExperiment_1.11.6 SummarizedExperiment_1.19.6
+ [9] DelayedArray_0.15.7         matrixStats_0.56.0         
+[11] Matrix_1.2-18               Biobase_2.49.0             
+[13] GenomicRanges_1.41.6        GenomeInfoDb_1.25.10       
+[15] IRanges_2.23.10             S4Vectors_0.27.12          
+[17] BiocGenerics_0.35.4         BiocStyle_2.17.0           
+[19] rebook_0.99.4              
 
 loaded via a namespace (and not attached):
- [1] bitops_1.0-6              bit64_0.9-7              
- [3] httr_1.4.1                RColorBrewer_1.1-2       
- [5] tools_4.0.2               R6_2.4.1                 
- [7] irlba_2.3.3               HDF5Array_1.17.3         
- [9] vipor_0.4.5               DBI_1.1.0                
-[11] colorspace_1.4-1          rhdf5filters_1.1.1       
-[13] withr_2.2.0               tidyselect_1.1.0         
-[15] gridExtra_2.3             processx_3.4.2           
-[17] curl_4.3                  bit_1.1-15.2             
-[19] compiler_4.0.2            graph_1.67.1             
-[21] BiocNeighbors_1.7.0       labeling_0.3             
-[23] bookdown_0.20             scales_1.1.1             
-[25] callr_3.4.3               rappdirs_0.3.1           
-[27] stringr_1.4.0             digest_0.6.25            
-[29] R.utils_2.9.2             rmarkdown_2.3            
-[31] XVector_0.29.3            pkgconfig_2.0.3          
-[33] htmltools_0.5.0           limma_3.45.7             
-[35] highr_0.8                 rlang_0.4.6              
-[37] RSQLite_2.2.0             DelayedMatrixStats_1.11.1
-[39] generics_0.0.2            farver_2.0.3             
-[41] BiocParallel_1.23.0       R.oo_1.23.0              
-[43] dplyr_1.0.0               RCurl_1.98-1.2           
-[45] magrittr_1.5              GenomeInfoDbData_1.2.3   
-[47] scuttle_0.99.10           Rhdf5lib_1.11.2          
-[49] Rcpp_1.0.4.6              ggbeeswarm_0.6.0         
-[51] munsell_0.5.0             viridis_0.5.1            
-[53] R.methodsS3_1.8.0         lifecycle_0.2.0          
-[55] stringi_1.4.6             yaml_2.2.1               
-[57] edgeR_3.31.4              zlibbioc_1.35.0          
-[59] Rtsne_0.15                rhdf5_2.33.4             
-[61] grid_4.0.2                blob_1.2.1               
-[63] dqrng_0.2.1               crayon_1.3.4             
-[65] lattice_0.20-41           cowplot_1.0.0            
-[67] locfit_1.5-9.4            CodeDepends_0.6.5        
-[69] knitr_1.29                ps_1.3.3                 
-[71] pillar_1.4.4              igraph_1.2.5             
-[73] codetools_0.2-16          XML_3.99-0.3             
-[75] glue_1.4.1                evaluate_0.14            
-[77] BiocManager_1.30.10       vctrs_0.3.1              
-[79] gtable_0.3.0              purrr_0.3.4              
-[81] assertthat_0.2.1          xfun_0.15                
-[83] rsvd_1.0.3                viridisLite_0.3.0        
-[85] tibble_3.0.1              pheatmap_1.0.12          
-[87] memoise_1.1.0             beeswarm_0.2.3           
-[89] statmod_1.4.34            ellipsis_0.3.1           
+  [1] Rtsne_0.15                    ggbeeswarm_0.6.0             
+  [3] colorspace_1.4-1              ellipsis_0.3.1               
+  [5] scuttle_0.99.13               bluster_0.99.1               
+  [7] XVector_0.29.3                BiocNeighbors_1.7.0          
+  [9] farver_2.0.3                  bit64_4.0.2                  
+ [11] AnnotationDbi_1.51.3          interactiveDisplayBase_1.27.5
+ [13] R.methodsS3_1.8.0             codetools_0.2-16             
+ [15] knitr_1.29                    dbplyr_1.4.4                 
+ [17] R.oo_1.23.0                   pheatmap_1.0.12              
+ [19] graph_1.67.1                  HDF5Array_1.17.3             
+ [21] shiny_1.5.0                   BiocManager_1.30.10          
+ [23] compiler_4.0.0                httr_1.4.2                   
+ [25] dqrng_0.2.1                   assertthat_0.2.1             
+ [27] fastmap_1.0.1                 limma_3.45.10                
+ [29] later_1.1.0.1                 htmltools_0.5.0              
+ [31] tools_4.0.0                   rsvd_1.0.3                   
+ [33] igraph_1.2.5                  gtable_0.3.0                 
+ [35] glue_1.4.1                    GenomeInfoDbData_1.2.3       
+ [37] dplyr_1.0.1                   rappdirs_0.3.1               
+ [39] Rcpp_1.0.5                    rhdf5filters_1.1.2           
+ [41] vctrs_0.3.2                   ExperimentHub_1.15.1         
+ [43] DelayedMatrixStats_1.11.1     xfun_0.16                    
+ [45] stringr_1.4.0                 ps_1.3.4                     
+ [47] mime_0.9                      lifecycle_0.2.0              
+ [49] irlba_2.3.3                   statmod_1.4.34               
+ [51] XML_3.99-0.5                  AnnotationHub_2.21.2         
+ [53] edgeR_3.31.4                  zlibbioc_1.35.0              
+ [55] scales_1.1.1                  promises_1.1.1               
+ [57] rhdf5_2.33.7                  RColorBrewer_1.1-2           
+ [59] yaml_2.2.1                    curl_4.3                     
+ [61] memoise_1.1.0                 gridExtra_2.3                
+ [63] stringi_1.4.6                 RSQLite_2.2.0                
+ [65] BiocVersion_3.12.0            highr_0.8                    
+ [67] BiocParallel_1.23.2           rlang_0.4.7                  
+ [69] pkgconfig_2.0.3               bitops_1.0-6                 
+ [71] evaluate_0.14                 lattice_0.20-41              
+ [73] Rhdf5lib_1.11.3               purrr_0.3.4                  
+ [75] CodeDepends_0.6.5             labeling_0.3                 
+ [77] cowplot_1.0.0                 bit_4.0.4                    
+ [79] processx_3.4.3                tidyselect_1.1.0             
+ [81] magrittr_1.5                  bookdown_0.20                
+ [83] R6_2.4.1                      generics_0.0.2               
+ [85] DBI_1.1.0                     pillar_1.4.6                 
+ [87] withr_2.2.0                   RCurl_1.98-1.2               
+ [89] tibble_3.0.3                  crayon_1.3.4                 
+ [91] BiocFileCache_1.13.1          rmarkdown_2.3                
+ [93] viridis_0.5.1                 locfit_1.5-9.4               
+ [95] grid_4.0.0                    blob_1.2.1                   
+ [97] callr_3.4.3                   digest_0.6.25                
+ [99] xtable_1.8-4                  httpuv_1.5.4                 
+[101] R.utils_2.9.2                 munsell_0.5.0                
+[103] beeswarm_0.2.3                viridisLite_0.3.0            
+[105] vipor_0.4.5                  
 ```
 </div>
