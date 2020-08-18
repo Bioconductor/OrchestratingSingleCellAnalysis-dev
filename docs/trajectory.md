@@ -8,7 +8,7 @@ bibliography: ref.bib
 
 <script>
 document.addEventListener("click", function (event) {
-    if (event.target.classList.contains("rebook-collapse")) {
+    if (event.target.classList.contains("aaron-collapse")) {
         event.target.classList.toggle("active");
         var content = event.target.nextElementSibling;
         if (content.style.display === "block") {
@@ -21,7 +21,7 @@ document.addEventListener("click", function (event) {
 </script>
 
 <style>
-.rebook-collapse {
+.aaron-collapse {
   background-color: #eee;
   color: #444;
   cursor: pointer;
@@ -33,7 +33,7 @@ document.addEventListener("click", function (event) {
   font-size: 15px;
 }
 
-.rebook-content {
+.aaron-content {
   padding: 0 18px;
   display: none;
   overflow: hidden;
@@ -56,8 +56,8 @@ The most common application is to fit models to gene expression against the pseu
 
 In this section, we will demonstrate several different approaches to trajectory analysis using the haematopoietic stem cell (HSC) dataset from @nestorowa2016singlecell.
 
-<button class="rebook-collapse">View history</button>
-<div class="rebook-content">
+<button class="aaron-collapse">View history</button>
+<div class="aaron-content">
    
 ```r
 #--- data-loading ---#
@@ -159,9 +159,9 @@ mst
 ```
 
 ```
-## IGRAPH 1545408 UNW- 9 8 -- 
-## + attr: name (v/c), weight (e/n), gain (e/n)
-## + edges from 1545408 (vertex names):
+## IGRAPH 1207fb6 UNW- 9 8 -- 
+## + attr: name (v/c), weight (e/n)
+## + edges from 1207fb6 (vertex names):
 ## [1] 1--3 1--9 2--3 2--6 3--4 5--8 5--9 6--7
 ```
 
@@ -226,52 +226,10 @@ plotTSNE(sce.nest, colour_by=I(common.pseudo),
 
 
 
-Alternatively, this entire series of calculations can be conveniently performed with the `quickPseudotime()` wrapper.
-This executes all steps from `aggregateAcrossCells()` to `orderClusterMST()` and returns a list with the output from each step.
-
-
-```r
-pseudo.all <- quickPseudotime(sce.nest, use="PCA")
-head(pseudo.all$ordering)
-```
-
-```
-##          7  8
-## [1,] 33.90 NA
-## [2,] 53.34 NA
-## [3,] 47.95 NA
-## [4,] 59.92 NA
-## [5,] 54.36 NA
-## [6,] 70.73 NA
-```
-
-The MST can also be constructed with an "outgroup" to avoid connecting unrelated populations in the dataset.
-Based on the OMEGA cluster concept from @street2018slingshot,
-the outgroup is an artificial cluster that is equidistant from all real clusters at some threshold value.
-If the original MST _sans_ the outgroup contains an edge that is longer than twice the threshold,
-the MST computed with the edge will instead be routed through the outgroup.
-We can subsequently break up the MST into subcomponents (i.e., a minimum spanning forest) by removing the outgroup.
-We set `outgroup=TRUE` to introduce an outgroup with an automatically determined threwshold distance,
-which breaks off up our previous MST into two components (Figure \@ref(fig:tscan-nest-omega)).
-
-
-```r
-pseudo.og <- quickPseudotime(sce.nest, use="PCA", outgroup=TRUE)
-set.seed(10101)
-plot(pseudo.og$mst)
-```
-
-<div class="figure">
-<img src="trajectory_files/figure-html/tscan-nest-omega-1.png" alt="Minimum spanning tree of the Nestorowa clusters after introducing an outgroup." width="672" />
-<p class="caption">(\#fig:tscan-nest-omega)Minimum spanning tree of the Nestorowa clusters after introducing an outgroup.</p>
-</div>
-
-
-
-The *[TSCAN](https://bioconductor.org/packages/3.12/TSCAN)* approach derives several advantages from using clusters to form the MST.
+In the *[TSCAN](https://bioconductor.org/packages/3.12/TSCAN)* approach, there are several advantages from using clusters to form the MST.
 The most obvious is that of computational speed as calculations are performed over clusters rather than cells.
 The relative coarseness of clusters protects against the per-cell noise that would otherwise reduce the stability of the MST.
-The interpretation of the MST is also straightforward as it uses the same clusters as the rest of the analysis,
+The interpretation of the MST is also relatively straightforward as it uses the same clusters as the rest of the analysis,
 allowing us to recycle previous knowledge about the biological annotations assigned to each cluster.
 
 However, the reliance on clustering is a double-edged sword.
@@ -345,11 +303,14 @@ head(pseudo.paths)
 
 By using the MST as a scaffold for the global structure, `slingshot()` can accommodate branching events based on divergence in the principal curves (Figure \@ref(fig:traj-princurve-clustered-nest)).
 However, unlike *[TSCAN](https://bioconductor.org/packages/3.12/TSCAN)*, the MST here is only used as a rough guide and does not define the final pseudotime.
+As a result, `slingshot()` is more robust to inadequacies in the clustering: 
+the principal curve has the opportunity to model variation within clusters that would otherwise be overlooked, 
+while ignoring small differences between fine clusters that are unlikely to be relevant to the overall trajectory.
+(The corresponding drawback is that `slingshot()` is no longer obliged to separate clusters in pseudotime, which may complicate intepretation of the trajectory with respect to existing cluster annotations.)
 
 
 ```r
-sce.nest <- runUMAP(sce.nest, dimred="PCA")
-reducedDim(sce.sling2, "UMAP") <- reducedDim(sce.nest, "UMAP")
+sce.sling2 <- runUMAP(sce.sling2, dimred="PCA")
 shared.pseudo <- rowMeans(pseudo.paths, na.rm=TRUE)
 
 # Need to loop over the paths and add each one separately.
@@ -410,61 +371,6 @@ head(pseudo.paths3)
 
 
 
-The MST can also be constructed with an OMEGA cluster to avoid connecting unrelated trajectories.
-This operates in the same manner as (and was the inspiration for) the outgroup for *[scran](https://bioconductor.org/packages/3.12/scran)*'s MST,
-Principal curves are fitted through each component individually, 
-manifesting in the pseudotime matrix as paths that do not share any cells.
-
-
-```r
-sce.sling4 <- slingshot(sce.nest, cluster=colLabels(sce.nest), 
-    reducedDim='PCA', approx_points=100, omega=TRUE)
-pseudo.paths4 <- slingPseudotime(sce.sling4)
-head(pseudo.paths4)
-```
-
-```
-##          curve1 curve2 curve3
-## HSPC_025 111.83     NA     NA
-## HSPC_031  96.16  99.78     NA
-## HSPC_037 105.49 105.08     NA
-## HSPC_008 102.00 117.28     NA
-## HSPC_014 105.49 112.70     NA
-## HSPC_020     NA 126.08     NA
-```
-
-```r
-shared.pseudo <- rowMeans(pseudo.paths, na.rm=TRUE)
-gg <- plotUMAP(sce.sling4, colour_by=I(shared.pseudo))
-embedded <- embedCurves(sce.sling4, "UMAP")
-embedded <- slingCurves(embedded)
-for (path in embedded) {
-    embedded <- data.frame(path$s[path$ord,])
-    gg <- gg + geom_path(data=embedded, aes(x=Dim.1, y=Dim.2), size=1.2)
-}
-gg
-```
-
-<div class="figure">
-<img src="trajectory_files/figure-html/traj-princurve-omag-nest-1.png" alt="UMAP plot of the Nestorowa HSC dataset where each point is a cell and is colored by the average _slingshot_ pseudotime across paths. The principal curves (black lines) were constructed with an OMEGA cluster." width="672" />
-<p class="caption">(\#fig:traj-princurve-omag-nest)UMAP plot of the Nestorowa HSC dataset where each point is a cell and is colored by the average _slingshot_ pseudotime across paths. The principal curves (black lines) were constructed with an OMEGA cluster.</p>
-</div>
-
-
-
-The use of principal curves adds an extra layer of sophistication that complements the deficiencies of the cluster-based MST.
-The principal curve has the opportunity to model variation within clusters that would otherwise be overlooked;
-for example, *[slingshot](https://bioconductor.org/packages/3.12/slingshot)* could build a trajectory out of one cluster while a _TSCAN_-like algorithm cannot.
-Conversely, the principal curves can "smooth out" circuitous paths in the MST for overclustered data,
-ignoring small differences between fine clusters that are unlikely to be relevant to the overall trajectory.
-
-That said, the structure of the initial MST is still fundamentally dependent on the resolution of the clusters.
-One can arbitrarily change the number of branches from *[slingshot](https://bioconductor.org/packages/3.12/slingshot)* by tuning the cluster granularity,
-making it difficult to use the output as evidence for the presence/absence of subtle branch events.
-If the variation within clusters is uninteresting, the greater sensitivity of the curve fitting to such variation may yield irrelevant trajectories where the differences between clusters are masked.
-Moreover, *[slingshot](https://bioconductor.org/packages/3.12/slingshot)* is no longer obliged to separate clusters in pseudotime,
-which may complicate intepretation of the trajectory with respect to existing cluster annotations.
-
 ## Characterizing trajectories
 
 ### Overview
@@ -521,7 +427,6 @@ complementing the more poweful spline-based model used to populate the `p.value`
 To simplify the results, we will repeat our DE analysis after filtering out cluster 7.
 This cluster seems to contain a set of B cell precursors that are located at one end of the trajectory,
 causing immunoglobulins to dominate the set of DE genes and mask other interesting effects.
-(Incidentally, this is the same cluster that was split into a separate component in the outgroup-based MST.)
 
 
 ```r
@@ -829,16 +734,16 @@ head(res, 10)
 
 ```
 ##                    waldStat df pvalue fcMedian Symbol
-## ENSMUSG00000000028   273.19  6      0   1.5128  Cdc45
-## ENSMUSG00000000058   137.21  6      0   1.4706   Cav2
-## ENSMUSG00000000078   189.79  6      0   0.9596   Klf6
-## ENSMUSG00000000088   123.48  6      0   0.5417  Cox5a
-## ENSMUSG00000000120    88.91  6      0   0.6077   Ngfr
-## ENSMUSG00000000184   214.84  6      0   0.2120  Ccnd2
-## ENSMUSG00000000247   111.97  6      0   0.2798   Lhx2
-## ENSMUSG00000000248   121.37  6      0   1.0634 Clec2g
-## ENSMUSG00000000278   202.90  6      0   2.0066 Scpep1
-## ENSMUSG00000000303   113.22  6      0   1.1142   Cdh1
+## ENSMUSG00000000028   272.79  6      0   1.5227  Cdc45
+## ENSMUSG00000000058   142.88  6      0   1.6829   Cav2
+## ENSMUSG00000000078   190.52  6      0   0.9729   Klf6
+## ENSMUSG00000000088   123.87  6      0   0.5435  Cox5a
+## ENSMUSG00000000184   214.92  6      0   0.2202  Ccnd2
+## ENSMUSG00000000247   110.19  6      0   0.2691   Lhx2
+## ENSMUSG00000000248   122.74  6      0   1.1147 Clec2g
+## ENSMUSG00000000278   202.48  6      0   1.9993 Scpep1
+## ENSMUSG00000000290    89.78  6      0   0.6293  Itgb2
+## ENSMUSG00000000303   123.03  6      0   1.1250   Cdh1
 ```
 
 From a statistical perspective, the GAM is superior to linear models as the former uses the raw counts.
@@ -994,9 +899,9 @@ str(output)
 
 ```
 ## List of 3
-##  $ pseudotime: num [1:2000] 0.646 0.899 0.935 0.562 0.251 ...
+##  $ pseudotime: num [1:2000] 0.974 0.959 0.238 0.101 0.966 ...
 ##  $ roots     : num [1:2000] 0 0 0 0 0 0 0 0 0 0 ...
-##  $ endpoints : num [1:2000] 4.49e-08 6.73e-01 6.85e-01 1.51e-07 8.46e-07 ...
+##  $ endpoints : num [1:2000] 9.54e-01 5.96e-01 1.72e-06 3.78e-06 8.61e-01 ...
 ```
 
 Needless to say, this lunch is not entirely free.
@@ -1100,20 +1005,20 @@ This is often more complex to set up than a strictly observational study, though
 
 ## Session information {-}
 
-<button class="rebook-collapse">View session info</button>
-<div class="rebook-content">
+<button class="aaron-collapse">View session info</button>
+<div class="aaron-content">
 ```
-R version 4.0.0 Patched (2020-05-01 r78341)
+R version 4.0.2 (2020-06-22)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.5 LTS
+Running under: Ubuntu 18.04.4 LTS
 
 Matrix products: default
-BLAS:   /home/luna/Software/R/R-4-0-branch-dev/lib/libRblas.so
-LAPACK: /home/luna/Software/R/R-4-0-branch-dev/lib/libRlapack.so
+BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
+LAPACK: /home/biocbuild/bbs-3.12-bioc/R/lib/libRlapack.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=C              
  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
@@ -1125,87 +1030,87 @@ attached base packages:
 
 other attached packages:
  [1] ensembldb_2.13.1            AnnotationFilter_1.13.0    
- [3] GenomicFeatures_1.41.2      AnnotationDbi_1.51.3       
- [5] scRNAseq_2.3.12             basilisk_1.1.9             
- [7] scuttle_0.99.13             tradeSeq_1.3.13            
- [9] slingshot_1.7.3             princurve_2.1.4            
-[11] scran_1.17.15               scater_1.17.4              
+ [3] GenomicFeatures_1.41.0      AnnotationDbi_1.51.1       
+ [5] scRNAseq_2.3.8              basilisk_1.1.8             
+ [7] scuttle_0.99.10             tradeSeq_1.3.13            
+ [9] slingshot_1.7.0             princurve_2.1.4            
+[11] scran_1.17.3                scater_1.17.2              
 [13] ggplot2_3.3.2               SingleCellExperiment_1.11.6
-[15] SummarizedExperiment_1.19.6 DelayedArray_0.15.7        
+[15] SummarizedExperiment_1.19.5 DelayedArray_0.15.6        
 [17] matrixStats_0.56.0          Matrix_1.2-18              
-[19] Biobase_2.49.0              GenomicRanges_1.41.6       
-[21] GenomeInfoDb_1.25.10        IRanges_2.23.10            
+[19] Biobase_2.49.0              GenomicRanges_1.41.5       
+[21] GenomeInfoDb_1.25.5         IRanges_2.23.10            
 [23] S4Vectors_0.27.12           BiocGenerics_0.35.4        
-[25] BiocStyle_2.17.0            rebook_0.99.4              
+[25] BiocStyle_2.17.0            simpleSingleCell_1.13.5    
 
 loaded via a namespace (and not attached):
-  [1] AnnotationHub_2.21.2          VGAM_1.1-3                   
-  [3] BiocFileCache_1.13.1          plyr_1.8.6                   
+  [1] AnnotationHub_2.21.1          VGAM_1.1-3                   
+  [3] BiocFileCache_1.13.0          plyr_1.8.6                   
   [5] igraph_1.2.5                  lazyeval_0.2.2               
-  [7] splines_4.0.0                 BiocParallel_1.23.2          
+  [7] splines_4.0.2                 BiocParallel_1.23.0          
   [9] densityClust_0.3              fastICA_1.2-2                
  [11] digest_0.6.25                 htmltools_0.5.0              
  [13] viridis_0.5.1                 magrittr_1.5                 
  [15] memoise_1.1.0                 cluster_2.1.0                
- [17] limma_3.45.10                 Biostrings_2.57.2            
+ [17] limma_3.45.7                  Biostrings_2.57.2            
  [19] docopt_0.7.1                  askpass_1.1                  
  [21] prettyunits_1.1.1             colorspace_1.4-1             
  [23] blob_1.2.1                    rappdirs_0.3.1               
- [25] ggrepel_0.8.2                 xfun_0.16                    
- [27] dplyr_1.0.1                   sparsesvd_0.2                
+ [25] ggrepel_0.8.2                 xfun_0.15                    
+ [27] dplyr_1.0.0                   sparsesvd_0.2                
  [29] callr_3.4.3                   crayon_1.3.4                 
  [31] RCurl_1.98-1.2                jsonlite_1.7.0               
- [33] graph_1.67.1                  ape_5.4-1                    
+ [33] graph_1.67.1                  ape_5.4                      
  [35] glue_1.4.1                    gtable_0.3.0                 
  [37] zlibbioc_1.35.0               XVector_0.29.3               
  [39] BiocSingular_1.5.0            scales_1.1.1                 
  [41] pheatmap_1.0.12               DBI_1.1.0                    
- [43] edgeR_3.31.4                  Rcpp_1.0.5                   
+ [43] edgeR_3.31.4                  Rcpp_1.0.4.6                 
  [45] progress_1.2.2                xtable_1.8-4                 
  [47] viridisLite_0.3.0             reticulate_1.16              
- [49] dqrng_0.2.1                   bit_4.0.4                    
- [51] rsvd_1.0.3                    httr_1.4.2                   
+ [49] dqrng_0.2.1                   bit_1.1-15.2                 
+ [51] rsvd_1.0.3                    httr_1.4.1                   
  [53] FNN_1.1.3                     RColorBrewer_1.1-2           
  [55] ellipsis_0.3.1                pkgconfig_2.0.3              
- [57] XML_3.99-0.5                  farver_2.0.3                 
- [59] dbplyr_1.4.4                  CodeDepends_0.6.5            
- [61] uwot_0.1.8                    locfit_1.5-9.4               
+ [57] XML_3.99-0.3                  farver_2.0.3                 
+ [59] CodeDepends_0.6.5             uwot_0.1.8                   
+ [61] dbplyr_1.4.4                  locfit_1.5-9.4               
  [63] later_1.1.0.1                 tidyselect_1.1.0             
- [65] labeling_0.3                  rlang_0.4.7                  
+ [65] labeling_0.3                  rlang_0.4.6                  
  [67] reshape2_1.4.4                munsell_0.5.0                
- [69] BiocVersion_3.12.0            tools_4.0.0                  
+ [69] BiocVersion_3.12.0            tools_4.0.2                  
  [71] generics_0.0.2                RSQLite_2.2.0                
- [73] ExperimentHub_1.15.1          fastmap_1.0.1                
+ [73] ExperimentHub_1.15.0          fastmap_1.0.1                
  [75] evaluate_0.14                 stringr_1.4.0                
- [77] yaml_2.2.1                    processx_3.4.3               
- [79] knitr_1.29                    bit64_4.0.2                  
+ [77] yaml_2.2.1                    processx_3.4.2               
+ [79] knitr_1.29                    bit64_0.9-7                  
  [81] DDRTree_0.1.5                 purrr_0.3.4                  
  [83] RANN_2.6.1                    pbapply_1.4-2                
  [85] nlme_3.1-148                  mime_0.9                     
  [87] monocle_2.17.0                slam_0.1-47                  
- [89] biomaRt_2.45.2                compiler_4.0.0               
+ [89] biomaRt_2.45.1                compiler_4.0.2               
  [91] interactiveDisplayBase_1.27.5 curl_4.3                     
- [93] beeswarm_0.2.3                tibble_3.0.3                 
+ [93] beeswarm_0.2.3                tibble_3.0.1                 
  [95] statmod_1.4.34                stringi_1.4.6                
  [97] highr_0.8                     basilisk.utils_1.1.7         
- [99] ps_1.3.4                      RSpectra_0.16-0              
-[101] lattice_0.20-41               bluster_0.99.1               
-[103] ProtGenerics_1.21.0           HSMMSingleCell_1.9.0         
-[105] vctrs_0.3.2                   pillar_1.4.6                 
-[107] lifecycle_0.2.0               BiocManager_1.30.10          
-[109] combinat_0.0-8                BiocNeighbors_1.7.0          
-[111] cowplot_1.0.0                 bitops_1.0-6                 
-[113] irlba_2.3.3                   rtracklayer_1.49.5           
-[115] httpuv_1.5.4                  R6_2.4.1                     
-[117] promises_1.1.1                bookdown_0.20                
-[119] gridExtra_2.3                 vipor_0.4.5                  
-[121] codetools_0.2-16              assertthat_0.2.1             
-[123] openssl_1.4.2                 withr_2.2.0                  
-[125] GenomicAlignments_1.25.3      Rsamtools_2.5.3              
-[127] qlcMatrix_0.9.7               GenomeInfoDbData_1.2.3       
-[129] hms_0.5.3                     mgcv_1.8-31                  
-[131] grid_4.0.0                    rmarkdown_2.3                
-[133] DelayedMatrixStats_1.11.1     Rtsne_0.15                   
-[135] shiny_1.5.0                   ggbeeswarm_0.6.0             
+ [99] ps_1.3.3                      RSpectra_0.16-0              
+[101] lattice_0.20-41               ProtGenerics_1.21.0          
+[103] HSMMSingleCell_1.9.0          vctrs_0.3.1                  
+[105] pillar_1.4.4                  lifecycle_0.2.0              
+[107] BiocManager_1.30.10           combinat_0.0-8               
+[109] BiocNeighbors_1.7.0           cowplot_1.0.0                
+[111] bitops_1.0-6                  irlba_2.3.3                  
+[113] rtracklayer_1.49.3            httpuv_1.5.4                 
+[115] R6_2.4.1                      promises_1.1.1               
+[117] bookdown_0.20                 gridExtra_2.3                
+[119] vipor_0.4.5                   codetools_0.2-16             
+[121] assertthat_0.2.1              openssl_1.4.2                
+[123] withr_2.2.0                   GenomicAlignments_1.25.3     
+[125] Rsamtools_2.5.3               qlcMatrix_0.9.7              
+[127] GenomeInfoDbData_1.2.3        hms_0.5.3                    
+[129] mgcv_1.8-31                   grid_4.0.2                   
+[131] rmarkdown_2.3                 DelayedMatrixStats_1.11.1    
+[133] Rtsne_0.15                    shiny_1.5.0                  
+[135] ggbeeswarm_0.6.0             
 ```
 </div>

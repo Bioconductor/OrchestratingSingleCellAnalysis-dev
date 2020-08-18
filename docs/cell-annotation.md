@@ -7,7 +7,7 @@ bibliography: ref.bib
 
 <script>
 document.addEventListener("click", function (event) {
-    if (event.target.classList.contains("rebook-collapse")) {
+    if (event.target.classList.contains("aaron-collapse")) {
         event.target.classList.toggle("active");
         var content = event.target.nextElementSibling;
         if (content.style.display === "block") {
@@ -20,7 +20,7 @@ document.addEventListener("click", function (event) {
 </script>
 
 <style>
-.rebook-collapse {
+.aaron-collapse {
   background-color: #eee;
   color: #444;
   cursor: pointer;
@@ -32,7 +32,7 @@ document.addEventListener("click", function (event) {
   font-size: 15px;
 }
 
-.rebook-content {
+.aaron-content {
   padding: 0 18px;
   display: none;
   overflow: hidden;
@@ -75,8 +75,8 @@ While we have already applied quality control, normalization and clustering for 
 It is entirely possible to run `SingleR()` on the raw counts without any _a priori_ quality control
 and filter on the annotation results at one's leisure - see the book for an explanation.
 
-<button class="rebook-collapse">View history</button>
-<div class="rebook-content">
+<button class="aaron-collapse">View history</button>
+<div class="aaron-content">
    
 ```r
 #--- loading ---#
@@ -146,13 +146,13 @@ sce.pbmc
 
 ```
 ## class: SingleCellExperiment 
-## dim: 33694 3985 
+## dim: 33694 3922 
 ## metadata(1): Samples
 ## assays(2): counts logcounts
 ## rownames(33694): RP11-34P13.3 FAM138A ... AC213203.1 FAM231B
 ## rowData names(2): ID Symbol
-## colnames(3985): AAACCTGAGAAGGCCT-1 AAACCTGAGACAGACC-1 ...
-##   TTTGTCAGTTAAGACA-1 TTTGTCATCCCAAGAT-1
+## colnames(3922): AAACCTGAGAAGGCCT-1 AAACCTGAGACAGACC-1 ...
+##   TTTGTCACAGGTCCAC-1 TTTGTCATCCCAAGAT-1
 ## colData names(4): Sample Barcode sizeFactor label
 ## reducedDimNames(3): PCA TSNE UMAP
 ## altExpNames(0):
@@ -198,9 +198,9 @@ table(pred$labels)
 ```
 ## 
 ##      B-cells CD4+ T-cells CD8+ T-cells           DC  Eosinophils Erythrocytes 
-##          549          773         1274            1            1            5 
+##          525          755         1254            1            1            5 
 ##          HSC    Monocytes     NK cells 
-##           14         1117          251
+##           14         1116          251
 ```
 
 We inspect the results using a heatmap of the per-cell and label scores (Figure \@ref(fig:singler-heat-pbmc)).
@@ -252,8 +252,8 @@ This is most obviously useful when we have an existing dataset that was previous
 and we want to use that knowledge to annotate a new dataset in an automated manner.
 To illustrate, we will use the @muraro2016singlecell human pancreas dataset as our reference.
 
-<button class="rebook-collapse">View history</button>
-<div class="rebook-content">
+<button class="aaron-collapse">View history</button>
+<div class="aaron-content">
    
 ```r
 #--- loading ---#
@@ -327,8 +327,8 @@ Our aim is to assign labels to our test dataset from @segerstolpe2016singlecell.
 We use the same call to `SingleR()` but with `de.method="wilcox"` to identify markers via pairwise Wilcoxon ranked sum tests between labels in the reference Muraro dataset.
 This re-uses the same machinery from Chapter \@ref(marker-detection); further options to fine-tune the test procedure can be passed via the `de.args` argument.
 
-<button class="rebook-collapse">View history</button>
-<div class="rebook-content">
+<button class="aaron-collapse">View history</button>
+<div class="aaron-content">
    
 ```r
 #--- loading ---#
@@ -348,9 +348,9 @@ sce.seger <- sce.seger[keep,]
 rownames(sce.seger) <- ens.id[keep]
 
 #--- sample-annotation ---#
-emtab.meta <- colData(sce.seger)[,c("cell type", "disease",
+emtab.meta <- colData(sce.seger)[,c("cell type", 
     "individual", "single cell well quality")]
-colnames(emtab.meta) <- c("CellType", "Disease", "Donor", "Quality")
+colnames(emtab.meta) <- c("CellType", "Donor", "Quality")
 colData(sce.seger) <- emtab.meta
 
 sce.seger$CellType <- gsub(" cell", "", sce.seger$CellType)
@@ -389,8 +389,7 @@ hs.exons <- reduce(hs.exons)
 hs.len <- sum(width(hs.exons))
 
 library(scuttle)
-available <- intersect(rownames(sce.seger), names(hs.len))
-fpkm.seger <- calculateFPKM(sce.seger[available,], hs.len[available])
+fpkm.seger <- calculateFPKM(sce.seger, hs.len)
 
 pred.seger <- SingleR(test=fpkm.seger, ref=sce.muraro, 
     labels=sce.muraro$label, de.method="wilcox")
@@ -400,9 +399,9 @@ table(pred.seger$labels)
 ```
 ## 
 ##      acinar       alpha        beta       delta        duct endothelial 
-##         192         892         273         106         381          18 
+##         188         886         281         105         385          18 
 ##     epsilon mesenchymal          pp 
-##           5          52         171
+##           5          52         170
 ```
 
 As it so happens, we are in the fortunate position where our test dataset also contains independently defined labels.
@@ -433,8 +432,8 @@ A related strategy is to explicitly identify sets of marker genes that are highl
 This does not require matching of individual cells to the expression values of the reference dataset, which is faster and more convenient when only the identities of the markers are available.
 We demonstrate this approach using neuronal cell type markers derived from the @zeisel2015brain study.
 
-<button class="rebook-collapse">View history</button>
-<div class="rebook-content">
+<button class="aaron-collapse">View history</button>
+<div class="aaron-content">
    
 ```r
 #--- loading ---#
@@ -678,8 +677,8 @@ Yet another strategy for annotation is to perform a gene set enrichment analysis
 This identifies the pathways and processes that are (relatively) active in each cluster based on upregulation of the associated genes compared to other clusters.
 We demonstrate on the mouse mammary dataset from @bach2017differentiation, using markers that are identified by `findMarkers()` as being upregulated at a log-fold change threshold of 1.
 
-<button class="rebook-collapse">View history</button>
-<div class="rebook-content">
+<button class="aaron-collapse">View history</button>
+<div class="aaron-content">
    
 ```r
 #--- loading ---#
@@ -946,20 +945,20 @@ For these reasons, we generally reserve the use of this gene set summary statist
 
 ## Session Info {-}
 
-<button class="rebook-collapse">View session info</button>
-<div class="rebook-content">
+<button class="aaron-collapse">View session info</button>
+<div class="aaron-content">
 ```
-R version 4.0.0 Patched (2020-05-01 r78341)
+R version 4.0.2 (2020-06-22)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.5 LTS
+Running under: Ubuntu 18.04.4 LTS
 
 Matrix products: default
-BLAS:   /home/luna/Software/R/R-4-0-branch-dev/lib/libRblas.so
-LAPACK: /home/luna/Software/R/R-4-0-branch-dev/lib/libRlapack.so
+BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
+LAPACK: /home/biocbuild/bbs-3.12-bioc/R/lib/libRlapack.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=C              
  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
@@ -970,28 +969,28 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] scater_1.17.4               ggplot2_3.3.2              
- [3] limma_3.45.10               org.Mm.eg.db_3.11.4        
+ [1] scater_1.17.2               ggplot2_3.3.2              
+ [3] limma_3.45.7                org.Mm.eg.db_3.11.4        
  [5] AUCell_1.11.0               GSEABase_1.51.1            
  [7] graph_1.67.1                annotate_1.67.0            
- [9] XML_3.99-0.5                scRNAseq_2.3.12            
-[11] scran_1.17.15               bluster_0.99.1             
-[13] scuttle_0.99.13             ensembldb_2.13.1           
-[15] AnnotationFilter_1.13.0     GenomicFeatures_1.41.2     
-[17] AnnotationDbi_1.51.3        AnnotationHub_2.21.2       
-[19] BiocFileCache_1.13.1        dbplyr_1.4.4               
-[21] pheatmap_1.0.12             SingleR_1.3.7              
-[23] celldex_0.99.1              SingleCellExperiment_1.11.6
-[25] SummarizedExperiment_1.19.6 DelayedArray_0.15.7        
-[27] matrixStats_0.56.0          Matrix_1.2-18              
-[29] Biobase_2.49.0              GenomicRanges_1.41.6       
-[31] GenomeInfoDb_1.25.10        IRanges_2.23.10            
-[33] S4Vectors_0.27.12           BiocGenerics_0.35.4        
-[35] BiocStyle_2.17.0            rebook_0.99.4              
+ [9] XML_3.99-0.3                scRNAseq_2.3.8             
+[11] scran_1.17.3                scuttle_0.99.10            
+[13] ensembldb_2.13.1            AnnotationFilter_1.13.0    
+[15] GenomicFeatures_1.41.0      AnnotationDbi_1.51.1       
+[17] AnnotationHub_2.21.1        BiocFileCache_1.13.0       
+[19] dbplyr_1.4.4                pheatmap_1.0.12            
+[21] SingleR_1.3.6               celldex_0.99.1             
+[23] SingleCellExperiment_1.11.6 SummarizedExperiment_1.19.5
+[25] DelayedArray_0.15.6         matrixStats_0.56.0         
+[27] Matrix_1.2-18               Biobase_2.49.0             
+[29] GenomicRanges_1.41.5        GenomeInfoDb_1.25.5        
+[31] IRanges_2.23.10             S4Vectors_0.27.12          
+[33] BiocGenerics_0.35.4         BiocStyle_2.17.0           
+[35] simpleSingleCell_1.13.5    
 
 loaded via a namespace (and not attached):
   [1] igraph_1.2.5                  lazyeval_0.2.2               
-  [3] splines_4.0.0                 BiocParallel_1.23.2          
+  [3] splines_4.0.2                 BiocParallel_1.23.0          
   [5] digest_0.6.25                 htmltools_0.5.0              
   [7] GO.db_3.11.4                  viridis_0.5.1                
   [9] magrittr_1.5                  memoise_1.1.0                
@@ -999,50 +998,50 @@ loaded via a namespace (and not attached):
  [13] R.utils_2.9.2                 askpass_1.1                  
  [15] prettyunits_1.1.1             colorspace_1.4-1             
  [17] blob_1.2.1                    rappdirs_0.3.1               
- [19] xfun_0.16                     dplyr_1.0.1                  
+ [19] xfun_0.15                     dplyr_1.0.0                  
  [21] callr_3.4.3                   crayon_1.3.4                 
  [23] RCurl_1.98-1.2                survival_3.2-3               
  [25] glue_1.4.1                    gtable_0.3.0                 
  [27] zlibbioc_1.35.0               XVector_0.29.3               
  [29] BiocSingular_1.5.0            kernlab_0.9-29               
  [31] scales_1.1.1                  DBI_1.1.0                    
- [33] edgeR_3.31.4                  Rcpp_1.0.5                   
+ [33] edgeR_3.31.4                  Rcpp_1.0.4.6                 
  [35] viridisLite_0.3.0             xtable_1.8-4                 
  [37] progress_1.2.2                dqrng_0.2.1                  
- [39] bit_4.0.4                     rsvd_1.0.3                   
- [41] httr_1.4.2                    RColorBrewer_1.1-2           
+ [39] bit_1.1-15.2                  rsvd_1.0.3                   
+ [41] httr_1.4.1                    RColorBrewer_1.1-2           
  [43] ellipsis_0.3.1                pkgconfig_2.0.3              
  [45] R.methodsS3_1.8.0             farver_2.0.3                 
  [47] CodeDepends_0.6.5             locfit_1.5-9.4               
  [49] labeling_0.3                  tidyselect_1.1.0             
- [51] rlang_0.4.7                   later_1.1.0.1                
+ [51] rlang_0.4.6                   later_1.1.0.1                
  [53] munsell_0.5.0                 BiocVersion_3.12.0           
- [55] tools_4.0.0                   generics_0.0.2               
- [57] RSQLite_2.2.0                 ExperimentHub_1.15.1         
+ [55] tools_4.0.2                   generics_0.0.2               
+ [57] RSQLite_2.2.0                 ExperimentHub_1.15.0         
  [59] evaluate_0.14                 stringr_1.4.0                
  [61] fastmap_1.0.1                 yaml_2.2.1                   
- [63] processx_3.4.3                knitr_1.29                   
- [65] bit64_4.0.2                   purrr_0.3.4                  
+ [63] processx_3.4.2                knitr_1.29                   
+ [65] bit64_0.9-7                   purrr_0.3.4                  
  [67] mime_0.9                      R.oo_1.23.0                  
- [69] biomaRt_2.45.2                compiler_4.0.0               
+ [69] biomaRt_2.45.1                compiler_4.0.2               
  [71] beeswarm_0.2.3                curl_4.3                     
- [73] interactiveDisplayBase_1.27.5 tibble_3.0.3                 
+ [73] interactiveDisplayBase_1.27.5 tibble_3.0.1                 
  [75] statmod_1.4.34                stringi_1.4.6                
- [77] highr_0.8                     ps_1.3.4                     
+ [77] highr_0.8                     ps_1.3.3                     
  [79] lattice_0.20-41               ProtGenerics_1.21.0          
- [81] vctrs_0.3.2                   pillar_1.4.6                 
+ [81] vctrs_0.3.1                   pillar_1.4.4                 
  [83] lifecycle_0.2.0               BiocManager_1.30.10          
  [85] BiocNeighbors_1.7.0           cowplot_1.0.0                
- [87] data.table_1.13.0             bitops_1.0-6                 
+ [87] data.table_1.12.8             bitops_1.0-6                 
  [89] irlba_2.3.3                   httpuv_1.5.4                 
- [91] rtracklayer_1.49.5            R6_2.4.1                     
+ [91] rtracklayer_1.49.3            R6_2.4.1                     
  [93] bookdown_0.20                 promises_1.1.1               
  [95] gridExtra_2.3                 vipor_0.4.5                  
  [97] codetools_0.2-16              MASS_7.3-51.6                
  [99] assertthat_0.2.1              openssl_1.4.2                
 [101] withr_2.2.0                   GenomicAlignments_1.25.3     
 [103] Rsamtools_2.5.3               GenomeInfoDbData_1.2.3       
-[105] hms_0.5.3                     grid_4.0.0                   
+[105] hms_0.5.3                     grid_4.0.2                   
 [107] rmarkdown_2.3                 DelayedMatrixStats_1.11.1    
 [109] segmented_1.2-0               shiny_1.5.0                  
 [111] ggbeeswarm_0.6.0             

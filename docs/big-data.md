@@ -7,7 +7,7 @@ bibliography: ref.bib
 
 <script>
 document.addEventListener("click", function (event) {
-    if (event.target.classList.contains("rebook-collapse")) {
+    if (event.target.classList.contains("aaron-collapse")) {
         event.target.classList.toggle("active");
         var content = event.target.nextElementSibling;
         if (content.style.display === "block") {
@@ -20,7 +20,7 @@ document.addEventListener("click", function (event) {
 </script>
 
 <style>
-.rebook-collapse {
+.aaron-collapse {
   background-color: #eee;
   color: #444;
   cursor: pointer;
@@ -32,7 +32,7 @@ document.addEventListener("click", function (event) {
   font-size: 15px;
 }
 
-.rebook-content {
+.aaron-content {
   padding: 0 18px;
   display: none;
   overflow: hidden;
@@ -57,8 +57,8 @@ However, for large data sets, it may be preferable to use a faster approximate a
 The *[BiocNeighbors](https://bioconductor.org/packages/3.12/BiocNeighbors)* framework makes it easy to switch between search options by simply changing the `BNPARAM=` argument in compatible functions.
 To demonstrate, we will use the 10X PBMC data:
 
-<button class="rebook-collapse">View history</button>
-<div class="rebook-content">
+<button class="aaron-collapse">View history</button>
+<div class="aaron-content">
    
 ```r
 #--- loading ---#
@@ -128,13 +128,13 @@ sce.pbmc
 
 ```
 ## class: SingleCellExperiment 
-## dim: 33694 3985 
+## dim: 33694 3922 
 ## metadata(1): Samples
 ## assays(2): counts logcounts
 ## rownames(33694): RP11-34P13.3 FAM138A ... AC213203.1 FAM231B
 ## rowData names(2): ID Symbol
-## colnames(3985): AAACCTGAGAAGGCCT-1 AAACCTGAGACAGACC-1 ...
-##   TTTGTCAGTTAAGACA-1 TTTGTCATCCCAAGAT-1
+## colnames(3922): AAACCTGAGAAGGCCT-1 AAACCTGAGACAGACC-1 ...
+##   TTTGTCACAGGTCCAC-1 TTTGTCATCCCAAGAT-1
 ## colData names(4): Sample Barcode sizeFactor label
 ## reducedDimNames(3): PCA TSNE UMAP
 ## altExpNames(0):
@@ -157,23 +157,25 @@ table(Exact=colLabels(sce.pbmc), Approx=clusters$membership)
 
 ```
 ##      Approx
-## Exact   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16
-##    1  205   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
-##    2    0 479   0   0   2   0   0   0   0  27   0   0   0   0   0   0
-##    3    0   0 540   0   1   0   0   0   0   0   0   0   0   0   0   0
-##    4    0   0   0  55   0   0   0   0   0   1   0   0   0   0   0   0
-##    5    0  25   0   0 349   0   0   0   0   0   0   0   0   0   0   0
-##    6    0   0   0   0   0 125   0   0   0   0   0   0   0   0   0   0
-##    7    0   0   0   0   0   0  46   0   0   0   0   0   0   0   0   0
-##    8    0   0   0   0   0   0   0 432   0   0   0   0   0   0   0   0
-##    9    0   0   0   1   0   0   0  10 291   0   0   0   0   0   0   0
-##    10   0  28   0   0   0   0   0   0   0 839   0   0   0   0   0   0
-##    11   0   0   0   0   0   0   0   0   0   0  47   0   0   0   0   0
-##    12   0   0   0   0   0   0   0   0   0   0   0 155   0   0   0   0
-##    13   0   0   0   0   0   0   0   0   0   0   0   0 166   0   0   0
-##    14   0   0   0   0   0   0   0   0   0   0   0   0   0  61   0   0
-##    15   0   0   0   0   0   0   0   0   0   0   0   0   0   0  84   0
-##    16   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0  16
+## Exact   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18
+##    1  585   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##    2    0 518   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##    3    0   0 364   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##    4    0   0   0 446   0  10   0   0   0   0   0   0   0   2   0   0   0   0
+##    5    0   0   0   0 170   0   0   0   0   0   0   0   0   0   0   0   0   0
+##    6   15   0   0   0   0   0 776   0   0   0   0   0   0   0   0   0   0   0
+##    7    0   0   0   9   0 286   0   0   0   0   0   0   0   0   0   0   0   0
+##    8    0   0   0   0   0  30   0   0   0   0   0   0   0   0  77   0   0   0
+##    9    0   0   0   0   0   0   0  45   0   0   0   0   0   0   0   0   0   0
+##    10   0   0   0   0   0   0   0   0  46   0   0   0   0   0   0   0   0   0
+##    11   0   0   0   0   0   0   0   0   0 152   0   0   0   0   0   0   0   0
+##    12   0   0   0   0   0   0   0   0   0   0  84   0   0   0   0   0   0   0
+##    13   0   0   0   1   0   0   0   0   0   0   0   0   0  39   0   0   0   0
+##    14   0   0   0   0   0   0   0   0   0   0   0  60   0   0   0   0   0   0
+##    15   0   0   0   0   0   0   5   0   0   0   0   0 137   0   0   0   0   0
+##    16   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0  16   0   0
+##    17   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0  28   0
+##    18   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0  21
 ```
 
 
@@ -217,13 +219,12 @@ str(reducedDim(r.out))
 ```
 
 ```
-##  num [1:3985, 1:20] 15.05 13.43 -8.67 -7.74 6.45 ...
+##  num [1:3922, 1:20] 15.3 13.41 -8.46 -7.86 6.38 ...
 ##  - attr(*, "dimnames")=List of 2
-##   ..$ : chr [1:3985] "AAACCTGAGAAGGCCT-1" "AAACCTGAGACAGACC-1" "AAACCTGAGGCATGGT-1" "AAACCTGCAAGGTTCT-1" ...
+##   ..$ : chr [1:3922] "AAACCTGAGAAGGCCT-1" "AAACCTGAGACAGACC-1" "AAACCTGAGGCATGGT-1" "AAACCTGCAAGGTTCT-1" ...
 ##   ..$ : chr [1:20] "PC1" "PC2" "PC3" "PC4" ...
-##  - attr(*, "varExplained")= num [1:20] 85.36 40.43 23.22 8.99 6.66 ...
-##  - attr(*, "percentVar")= num [1:20] 19.85 9.4 5.4 2.09 1.55 ...
-##  - attr(*, "rotation")= num [1:500, 1:20] 0.203 0.1834 0.1779 0.1063 0.0647 ...
+##  - attr(*, "percentVar")= num [1:20] 20.26 10.02 5.36 2.19 1.41 ...
+##  - attr(*, "rotation")= num [1:500, 1:20] 0.2015 0.182 0.1764 0.1067 0.0649 ...
 ##   ..- attr(*, "dimnames")=List of 2
 ##   .. ..$ : chr [1:500] "LYZ" "S100A9" "S100A8" "HLA-DRA" ...
 ##   .. ..$ : chr [1:20] "PC1" "PC2" "PC3" "PC4" ...
@@ -236,13 +237,12 @@ str(reducedDim(i.out))
 ```
 
 ```
-##  num [1:3985, 1:20] 15.05 13.43 -8.67 -7.74 6.45 ...
+##  num [1:3922, 1:20] 15.3 13.41 -8.46 -7.86 6.38 ...
 ##  - attr(*, "dimnames")=List of 2
-##   ..$ : chr [1:3985] "AAACCTGAGAAGGCCT-1" "AAACCTGAGACAGACC-1" "AAACCTGAGGCATGGT-1" "AAACCTGCAAGGTTCT-1" ...
+##   ..$ : chr [1:3922] "AAACCTGAGAAGGCCT-1" "AAACCTGAGACAGACC-1" "AAACCTGAGGCATGGT-1" "AAACCTGCAAGGTTCT-1" ...
 ##   ..$ : chr [1:20] "PC1" "PC2" "PC3" "PC4" ...
-##  - attr(*, "varExplained")= num [1:20] 85.36 40.43 23.22 8.99 6.66 ...
-##  - attr(*, "percentVar")= num [1:20] 19.85 9.4 5.4 2.09 1.55 ...
-##  - attr(*, "rotation")= num [1:500, 1:20] 0.203 0.1834 0.1779 0.1063 0.0647 ...
+##  - attr(*, "percentVar")= num [1:20] 20.26 10.02 5.36 2.19 1.41 ...
+##  - attr(*, "rotation")= num [1:500, 1:20] 0.2015 0.182 0.1764 0.1067 0.0649 ...
 ##   ..- attr(*, "dimnames")=List of 2
 ##   .. ..$ : chr [1:500] "LYZ" "S100A9" "S100A8" "HLA-DRA" ...
 ##   .. ..$ : chr [1:20] "PC1" "PC2" "PC3" "PC4" ...
@@ -269,30 +269,30 @@ dec.pbmc.mc
 
 ```
 ## DataFrame with 33694 rows and 6 columns
-##                     mean       total        tech          bio   p.value
-##                <numeric>   <numeric>   <numeric>    <numeric> <numeric>
-## RP11-34P13.3 0.000000000 0.000000000 0.000000000  0.00000e+00       NaN
-## FAM138A      0.000000000 0.000000000 0.000000000  0.00000e+00       NaN
-## OR4F5        0.000000000 0.000000000 0.000000000  0.00000e+00       NaN
-## RP11-34P13.7 0.002166050 0.002227438 0.002227466 -2.81875e-08  0.500035
-## RP11-34P13.8 0.000522431 0.000549601 0.000537244  1.23571e-05  0.436506
-## ...                  ...         ...         ...          ...       ...
-## AC233755.2     0.0000000   0.0000000   0.0000000   0.00000000       NaN
-## AC233755.1     0.0000000   0.0000000   0.0000000   0.00000000       NaN
-## AC240274.1     0.0102893   0.0121099   0.0105809   0.00152898  0.157651
-## AC213203.1     0.0000000   0.0000000   0.0000000   0.00000000       NaN
-## FAM231B        0.0000000   0.0000000   0.0000000   0.00000000       NaN
+##                     mean       total        tech         bio   p.value
+##                <numeric>   <numeric>   <numeric>   <numeric> <numeric>
+## RP11-34P13.3 0.000000000 0.000000000 0.000000000 0.00000e+00       NaN
+## FAM138A      0.000000000 0.000000000 0.000000000 0.00000e+00       NaN
+## OR4F5        0.000000000 0.000000000 0.000000000 0.00000e+00       NaN
+## RP11-34P13.7 0.002196632 0.002262180 0.002255590 6.59069e-06  0.492098
+## RP11-34P13.8 0.000549026 0.000599631 0.000563762 3.58694e-05  0.333112
+## ...                  ...         ...         ...         ...       ...
+## AC233755.2     0.0000000   0.0000000   0.0000000  0.00000000       NaN
+## AC233755.1     0.0000000   0.0000000   0.0000000  0.00000000       NaN
+## AC240274.1     0.0101976   0.0120565   0.0104711  0.00158536  0.152349
+## AC213203.1     0.0000000   0.0000000   0.0000000  0.00000000       NaN
+## FAM231B        0.0000000   0.0000000   0.0000000  0.00000000       NaN
 ##                    FDR
 ##              <numeric>
 ## RP11-34P13.3       NaN
 ## FAM138A            NaN
 ## OR4F5              NaN
-## RP11-34P13.7  0.756451
-## RP11-34P13.8  0.756451
+## RP11-34P13.7  0.745136
+## RP11-34P13.8  0.745136
 ## ...                ...
 ## AC233755.2         NaN
 ## AC233755.1         NaN
-## AC240274.1    0.756451
+## AC240274.1    0.745136
 ## AC213203.1         NaN
 ## FAM231B            NaN
 ```
@@ -307,30 +307,30 @@ dec.pbmc.snow
 
 ```
 ## DataFrame with 33694 rows and 6 columns
-##                     mean       total        tech          bio   p.value
-##                <numeric>   <numeric>   <numeric>    <numeric> <numeric>
-## RP11-34P13.3 0.000000000 0.000000000 0.000000000  0.00000e+00       NaN
-## FAM138A      0.000000000 0.000000000 0.000000000  0.00000e+00       NaN
-## OR4F5        0.000000000 0.000000000 0.000000000  0.00000e+00       NaN
-## RP11-34P13.7 0.002166050 0.002227438 0.002227466 -2.81875e-08  0.500035
-## RP11-34P13.8 0.000522431 0.000549601 0.000537244  1.23571e-05  0.436506
-## ...                  ...         ...         ...          ...       ...
-## AC233755.2     0.0000000   0.0000000   0.0000000   0.00000000       NaN
-## AC233755.1     0.0000000   0.0000000   0.0000000   0.00000000       NaN
-## AC240274.1     0.0102893   0.0121099   0.0105809   0.00152898  0.157651
-## AC213203.1     0.0000000   0.0000000   0.0000000   0.00000000       NaN
-## FAM231B        0.0000000   0.0000000   0.0000000   0.00000000       NaN
+##                     mean       total        tech         bio   p.value
+##                <numeric>   <numeric>   <numeric>   <numeric> <numeric>
+## RP11-34P13.3 0.000000000 0.000000000 0.000000000 0.00000e+00       NaN
+## FAM138A      0.000000000 0.000000000 0.000000000 0.00000e+00       NaN
+## OR4F5        0.000000000 0.000000000 0.000000000 0.00000e+00       NaN
+## RP11-34P13.7 0.002196632 0.002262180 0.002255590 6.59069e-06  0.492098
+## RP11-34P13.8 0.000549026 0.000599631 0.000563762 3.58694e-05  0.333112
+## ...                  ...         ...         ...         ...       ...
+## AC233755.2     0.0000000   0.0000000   0.0000000  0.00000000       NaN
+## AC233755.1     0.0000000   0.0000000   0.0000000  0.00000000       NaN
+## AC240274.1     0.0101976   0.0120565   0.0104711  0.00158536  0.152349
+## AC213203.1     0.0000000   0.0000000   0.0000000  0.00000000       NaN
+## FAM231B        0.0000000   0.0000000   0.0000000  0.00000000       NaN
 ##                    FDR
 ##              <numeric>
 ## RP11-34P13.3       NaN
 ## FAM138A            NaN
 ## OR4F5              NaN
-## RP11-34P13.7  0.756451
-## RP11-34P13.8  0.756451
+## RP11-34P13.7  0.745136
+## RP11-34P13.8  0.745136
 ## ...                ...
 ## AC233755.2         NaN
 ## AC233755.1         NaN
-## AC240274.1    0.756451
+## AC240274.1    0.745136
 ## AC213203.1         NaN
 ## FAM231B            NaN
 ```
@@ -514,20 +514,20 @@ One example usage pattern involves performing the heavy computing quickly with i
 
 ## Session Info {-}
 
-<button class="rebook-collapse">View session info</button>
-<div class="rebook-content">
+<button class="aaron-collapse">View session info</button>
+<div class="aaron-content">
 ```
-R version 4.0.0 Patched (2020-05-01 r78341)
+R version 4.0.2 (2020-06-22)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.5 LTS
+Running under: Ubuntu 18.04.4 LTS
 
 Matrix products: default
-BLAS:   /home/luna/Software/R/R-4-0-branch-dev/lib/libRblas.so
-LAPACK: /home/luna/Software/R/R-4-0-branch-dev/lib/libRlapack.so
+BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
+LAPACK: /home/biocbuild/bbs-3.12-bioc/R/lib/libRlapack.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=C              
  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
@@ -539,64 +539,63 @@ attached base packages:
 
 other attached packages:
  [1] TENxBrainData_1.9.0         HDF5Array_1.17.3           
- [3] rhdf5_2.33.7                BiocParallel_1.23.2        
- [5] BiocSingular_1.5.0          scater_1.17.4              
- [7] ggplot2_3.3.2               bluster_0.99.1             
- [9] BiocNeighbors_1.7.0         scran_1.17.15              
-[11] SingleCellExperiment_1.11.6 SummarizedExperiment_1.19.6
-[13] DelayedArray_0.15.7         matrixStats_0.56.0         
-[15] Matrix_1.2-18               Biobase_2.49.0             
-[17] GenomicRanges_1.41.6        GenomeInfoDb_1.25.10       
-[19] IRanges_2.23.10             S4Vectors_0.27.12          
-[21] BiocGenerics_0.35.4         BiocStyle_2.17.0           
-[23] rebook_0.99.4              
+ [3] rhdf5_2.33.4                BiocParallel_1.23.0        
+ [5] BiocSingular_1.5.0          scater_1.17.2              
+ [7] ggplot2_3.3.2               BiocNeighbors_1.7.0        
+ [9] scran_1.17.3                SingleCellExperiment_1.11.6
+[11] SummarizedExperiment_1.19.5 DelayedArray_0.15.6        
+[13] matrixStats_0.56.0          Matrix_1.2-18              
+[15] Biobase_2.49.0              GenomicRanges_1.41.5       
+[17] GenomeInfoDb_1.25.5         IRanges_2.23.10            
+[19] S4Vectors_0.27.12           BiocGenerics_0.35.4        
+[21] BiocStyle_2.17.0            simpleSingleCell_1.13.5    
 
 loaded via a namespace (and not attached):
- [1] ggbeeswarm_0.6.0              colorspace_1.4-1             
- [3] ellipsis_0.3.1                scuttle_0.99.13              
- [5] XVector_0.29.3                bit64_4.0.2                  
- [7] interactiveDisplayBase_1.27.5 AnnotationDbi_1.51.3         
- [9] codetools_0.2-16              knitr_1.29                   
-[11] dbplyr_1.4.4                  graph_1.67.1                 
-[13] shiny_1.5.0                   BiocManager_1.30.10          
-[15] compiler_4.0.0                httr_1.4.2                   
-[17] dqrng_0.2.1                   assertthat_0.2.1             
-[19] fastmap_1.0.1                 limma_3.45.10                
-[21] later_1.1.0.1                 htmltools_0.5.0              
-[23] tools_4.0.0                   rsvd_1.0.3                   
-[25] igraph_1.2.5                  gtable_0.3.0                 
-[27] glue_1.4.1                    GenomeInfoDbData_1.2.3       
-[29] dplyr_1.0.1                   rappdirs_0.3.1               
-[31] Rcpp_1.0.5                    vctrs_0.3.2                  
-[33] rhdf5filters_1.1.2            ExperimentHub_1.15.1         
-[35] DelayedMatrixStats_1.11.1     xfun_0.16                    
-[37] stringr_1.4.0                 ps_1.3.4                     
-[39] beachmat_2.5.1                mime_0.9                     
-[41] lifecycle_0.2.0               irlba_2.3.3                  
-[43] statmod_1.4.34                XML_3.99-0.5                 
-[45] AnnotationHub_2.21.2          edgeR_3.31.4                 
-[47] zlibbioc_1.35.0               scales_1.1.1                 
-[49] promises_1.1.1                yaml_2.2.1                   
-[51] curl_4.3                      memoise_1.1.0                
-[53] gridExtra_2.3                 stringi_1.4.6                
-[55] RSQLite_2.2.0                 BiocVersion_3.12.0           
-[57] rlang_0.4.7                   pkgconfig_2.0.3              
-[59] bitops_1.0-6                  evaluate_0.14                
-[61] lattice_0.20-41               purrr_0.3.4                  
-[63] Rhdf5lib_1.11.3               CodeDepends_0.6.5            
-[65] bit_4.0.4                     processx_3.4.3               
-[67] tidyselect_1.1.0              magrittr_1.5                 
-[69] bookdown_0.20                 R6_2.4.1                     
-[71] snow_0.4-3                    generics_0.0.2               
-[73] DBI_1.1.0                     pillar_1.4.6                 
-[75] withr_2.2.0                   RCurl_1.98-1.2               
-[77] tibble_3.0.3                  crayon_1.3.4                 
-[79] BiocFileCache_1.13.1          rmarkdown_2.3                
-[81] viridis_0.5.1                 locfit_1.5-9.4               
-[83] grid_4.0.0                    blob_1.2.1                   
-[85] callr_3.4.3                   digest_0.6.25                
-[87] xtable_1.8-4                  httpuv_1.5.4                 
-[89] munsell_0.5.0                 beeswarm_0.2.3               
-[91] viridisLite_0.3.0             vipor_0.4.5                  
+ [1] bitops_1.0-6                  bit64_0.9-7                  
+ [3] httr_1.4.1                    tools_4.0.2                  
+ [5] R6_2.4.1                      irlba_2.3.3                  
+ [7] vipor_0.4.5                   DBI_1.1.0                    
+ [9] colorspace_1.4-1              rhdf5filters_1.1.1           
+[11] withr_2.2.0                   tidyselect_1.1.0             
+[13] gridExtra_2.3                 processx_3.4.2               
+[15] curl_4.3                      bit_1.1-15.2                 
+[17] compiler_4.0.2                graph_1.67.1                 
+[19] bookdown_0.20                 scales_1.1.1                 
+[21] callr_3.4.3                   rappdirs_0.3.1               
+[23] stringr_1.4.0                 digest_0.6.25                
+[25] rmarkdown_2.3                 XVector_0.29.3               
+[27] pkgconfig_2.0.3               htmltools_0.5.0              
+[29] fastmap_1.0.1                 dbplyr_1.4.4                 
+[31] limma_3.45.7                  rlang_0.4.6                  
+[33] RSQLite_2.2.0                 shiny_1.5.0                  
+[35] DelayedMatrixStats_1.11.1     generics_0.0.2               
+[37] dplyr_1.0.0                   RCurl_1.98-1.2               
+[39] magrittr_1.5                  GenomeInfoDbData_1.2.3       
+[41] scuttle_0.99.10               Rcpp_1.0.4.6                 
+[43] ggbeeswarm_0.6.0              munsell_0.5.0                
+[45] Rhdf5lib_1.11.2               viridis_0.5.1                
+[47] lifecycle_0.2.0               stringi_1.4.6                
+[49] yaml_2.2.1                    edgeR_3.31.4                 
+[51] zlibbioc_1.35.0               BiocFileCache_1.13.0         
+[53] AnnotationHub_2.21.1          grid_4.0.2                   
+[55] blob_1.2.1                    promises_1.1.1               
+[57] dqrng_0.2.1                   ExperimentHub_1.15.0         
+[59] crayon_1.3.4                  lattice_0.20-41              
+[61] beachmat_2.5.0                locfit_1.5-9.4               
+[63] CodeDepends_0.6.5             knitr_1.29                   
+[65] ps_1.3.3                      pillar_1.4.4                 
+[67] igraph_1.2.5                  codetools_0.2-16             
+[69] BiocVersion_3.12.0            XML_3.99-0.3                 
+[71] glue_1.4.1                    evaluate_0.14                
+[73] BiocManager_1.30.10           httpuv_1.5.4                 
+[75] vctrs_0.3.1                   gtable_0.3.0                 
+[77] purrr_0.3.4                   assertthat_0.2.1             
+[79] xfun_0.15                     mime_0.9                     
+[81] rsvd_1.0.3                    xtable_1.8-4                 
+[83] later_1.1.0.1                 viridisLite_0.3.0            
+[85] tibble_3.0.1                  snow_0.4-3                   
+[87] AnnotationDbi_1.51.1          memoise_1.1.0                
+[89] beeswarm_0.2.3                statmod_1.4.34               
+[91] interactiveDisplayBase_1.27.5 ellipsis_0.3.1               
 ```
 </div>
