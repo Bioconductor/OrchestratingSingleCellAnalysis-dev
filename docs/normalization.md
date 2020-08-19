@@ -452,7 +452,7 @@ In practice, though, the log-transformation is a good default choice due to its 
 ```
 R version 4.0.2 (2020-06-22)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.4 LTS
+Running under: Ubuntu 18.04.5 LTS
 
 Matrix products: default
 BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
@@ -471,71 +471,72 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] BiocFileCache_1.13.0        dbplyr_1.4.4               
+ [1] BiocFileCache_1.13.1        dbplyr_1.4.4               
  [3] ensembldb_2.13.1            AnnotationFilter_1.13.0    
- [5] GenomicFeatures_1.41.0      AnnotationDbi_1.51.1       
- [7] scRNAseq_2.3.8              scran_1.17.3               
- [9] scater_1.17.2               ggplot2_3.3.2              
-[11] SingleCellExperiment_1.11.6 SummarizedExperiment_1.19.5
-[13] DelayedArray_0.15.6         matrixStats_0.56.0         
+ [5] GenomicFeatures_1.41.2      AnnotationDbi_1.51.3       
+ [7] scRNAseq_2.3.12             scran_1.17.15              
+ [9] scater_1.17.4               ggplot2_3.3.2              
+[11] SingleCellExperiment_1.11.6 SummarizedExperiment_1.19.6
+[13] DelayedArray_0.15.7         matrixStats_0.56.0         
 [15] Matrix_1.2-18               Biobase_2.49.0             
-[17] GenomicRanges_1.41.5        GenomeInfoDb_1.25.5        
+[17] GenomicRanges_1.41.6        GenomeInfoDb_1.25.10       
 [19] IRanges_2.23.10             S4Vectors_0.27.12          
 [21] BiocGenerics_0.35.4         BiocStyle_2.17.0           
-[23] simpleSingleCell_1.13.5    
+[23] simpleSingleCell_1.13.16   
 
 loaded via a namespace (and not attached):
   [1] ggbeeswarm_0.6.0              colorspace_1.4-1             
-  [3] ellipsis_0.3.1                scuttle_0.99.10              
-  [5] XVector_0.29.3                BiocNeighbors_1.7.0          
-  [7] farver_2.0.3                  bit64_0.9-7                  
-  [9] interactiveDisplayBase_1.27.5 codetools_0.2-16             
- [11] knitr_1.29                    Rsamtools_2.5.3              
- [13] graph_1.67.1                  shiny_1.5.0                  
- [15] BiocManager_1.30.10           compiler_4.0.2               
- [17] httr_1.4.1                    dqrng_0.2.1                  
- [19] lazyeval_0.2.2                assertthat_0.2.1             
- [21] fastmap_1.0.1                 limma_3.45.7                 
- [23] later_1.1.0.1                 BiocSingular_1.5.0           
- [25] htmltools_0.5.0               prettyunits_1.1.1            
- [27] tools_4.0.2                   rsvd_1.0.3                   
- [29] igraph_1.2.5                  gtable_0.3.0                 
- [31] glue_1.4.1                    GenomeInfoDbData_1.2.3       
- [33] dplyr_1.0.0                   rappdirs_0.3.1               
- [35] Rcpp_1.0.4.6                  vctrs_0.3.1                  
- [37] Biostrings_2.57.2             rtracklayer_1.49.3           
- [39] ExperimentHub_1.15.0          DelayedMatrixStats_1.11.1    
- [41] xfun_0.15                     stringr_1.4.0                
- [43] ps_1.3.3                      mime_0.9                     
- [45] lifecycle_0.2.0               irlba_2.3.3                  
- [47] statmod_1.4.34                XML_3.99-0.3                 
- [49] AnnotationHub_2.21.1          edgeR_3.31.4                 
- [51] zlibbioc_1.35.0               scales_1.1.1                 
- [53] ProtGenerics_1.21.0           hms_0.5.3                    
- [55] promises_1.1.1                yaml_2.2.1                   
- [57] curl_4.3                      memoise_1.1.0                
- [59] gridExtra_2.3                 biomaRt_2.45.1               
- [61] stringi_1.4.6                 RSQLite_2.2.0                
- [63] BiocVersion_3.12.0            highr_0.8                    
- [65] BiocParallel_1.23.0           rlang_0.4.6                  
- [67] pkgconfig_2.0.3               bitops_1.0-6                 
- [69] evaluate_0.14                 lattice_0.20-41              
- [71] purrr_0.3.4                   labeling_0.3                 
- [73] GenomicAlignments_1.25.3      CodeDepends_0.6.5            
- [75] cowplot_1.0.0                 bit_1.1-15.2                 
- [77] processx_3.4.2                tidyselect_1.1.0             
- [79] magrittr_1.5                  bookdown_0.20                
- [81] R6_2.4.1                      generics_0.0.2               
- [83] DBI_1.1.0                     pillar_1.4.4                 
- [85] withr_2.2.0                   RCurl_1.98-1.2               
- [87] tibble_3.0.1                  crayon_1.3.4                 
- [89] rmarkdown_2.3                 viridis_0.5.1                
- [91] progress_1.2.2                locfit_1.5-9.4               
- [93] grid_4.0.2                    blob_1.2.1                   
- [95] callr_3.4.3                   digest_0.6.25                
- [97] xtable_1.8-4                  httpuv_1.5.4                 
- [99] openssl_1.4.2                 munsell_0.5.0                
-[101] beeswarm_0.2.3                viridisLite_0.3.0            
-[103] vipor_0.4.5                   askpass_1.1                  
+  [3] ellipsis_0.3.1                scuttle_0.99.12              
+  [5] bluster_0.99.1                XVector_0.29.3               
+  [7] BiocNeighbors_1.7.0           farver_2.0.3                 
+  [9] bit64_4.0.2                   interactiveDisplayBase_1.27.5
+ [11] codetools_0.2-16              knitr_1.29                   
+ [13] Rsamtools_2.5.3               graph_1.67.1                 
+ [15] shiny_1.5.0                   BiocManager_1.30.10          
+ [17] compiler_4.0.2                httr_1.4.2                   
+ [19] dqrng_0.2.1                   lazyeval_0.2.2               
+ [21] assertthat_0.2.1              fastmap_1.0.1                
+ [23] limma_3.45.10                 later_1.1.0.1                
+ [25] BiocSingular_1.5.0            prettyunits_1.1.1            
+ [27] htmltools_0.5.0               tools_4.0.2                  
+ [29] rsvd_1.0.3                    igraph_1.2.5                 
+ [31] gtable_0.3.0                  glue_1.4.1                   
+ [33] GenomeInfoDbData_1.2.3        dplyr_1.0.1                  
+ [35] rappdirs_0.3.1                Rcpp_1.0.5                   
+ [37] vctrs_0.3.2                   Biostrings_2.57.2            
+ [39] rtracklayer_1.49.5            ExperimentHub_1.15.1         
+ [41] DelayedMatrixStats_1.11.1     xfun_0.16                    
+ [43] stringr_1.4.0                 ps_1.3.4                     
+ [45] mime_0.9                      lifecycle_0.2.0              
+ [47] irlba_2.3.3                   statmod_1.4.34               
+ [49] XML_3.99-0.5                  AnnotationHub_2.21.2         
+ [51] edgeR_3.31.4                  zlibbioc_1.35.0              
+ [53] scales_1.1.1                  ProtGenerics_1.21.0          
+ [55] hms_0.5.3                     promises_1.1.1               
+ [57] yaml_2.2.1                    curl_4.3                     
+ [59] memoise_1.1.0                 gridExtra_2.3                
+ [61] biomaRt_2.45.2                stringi_1.4.6                
+ [63] RSQLite_2.2.0                 BiocVersion_3.12.0           
+ [65] highr_0.8                     BiocParallel_1.23.2          
+ [67] rlang_0.4.7                   pkgconfig_2.0.3              
+ [69] bitops_1.0-6                  evaluate_0.14                
+ [71] lattice_0.20-41               purrr_0.3.4                  
+ [73] labeling_0.3                  GenomicAlignments_1.25.3     
+ [75] CodeDepends_0.6.5             cowplot_1.0.0                
+ [77] bit_4.0.4                     processx_3.4.3               
+ [79] tidyselect_1.1.0              magrittr_1.5                 
+ [81] bookdown_0.20                 R6_2.4.1                     
+ [83] generics_0.0.2                DBI_1.1.0                    
+ [85] pillar_1.4.6                  withr_2.2.0                  
+ [87] RCurl_1.98-1.2                tibble_3.0.3                 
+ [89] crayon_1.3.4                  rmarkdown_2.3                
+ [91] viridis_0.5.1                 progress_1.2.2               
+ [93] locfit_1.5-9.4                grid_4.0.2                   
+ [95] blob_1.2.1                    callr_3.4.3                  
+ [97] digest_0.6.25                 xtable_1.8-4                 
+ [99] httpuv_1.5.4                  openssl_1.4.2                
+[101] munsell_0.5.0                 beeswarm_0.2.3               
+[103] viridisLite_0.3.0             vipor_0.4.5                  
+[105] askpass_1.1                  
 ```
 </div>

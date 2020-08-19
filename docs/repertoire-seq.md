@@ -754,7 +754,7 @@ In practice, this is difficult to achieve in single-cell data as it requires eno
 ```
 R version 4.0.2 (2020-06-22)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.4 LTS
+Running under: Ubuntu 18.04.5 LTS
 
 Matrix products: default
 BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
@@ -773,33 +773,33 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] BiocFileCache_1.13.0        dbplyr_1.4.4               
- [3] SingleCellExperiment_1.11.6 SummarizedExperiment_1.19.5
- [5] DelayedArray_0.15.6         matrixStats_0.56.0         
+ [1] BiocFileCache_1.13.1        dbplyr_1.4.4               
+ [3] SingleCellExperiment_1.11.6 SummarizedExperiment_1.19.6
+ [5] DelayedArray_0.15.7         matrixStats_0.56.0         
  [7] Matrix_1.2-18               Biobase_2.49.0             
- [9] GenomicRanges_1.41.5        GenomeInfoDb_1.25.5        
+ [9] GenomicRanges_1.41.6        GenomeInfoDb_1.25.10       
 [11] IRanges_2.23.10             S4Vectors_0.27.12          
 [13] BiocGenerics_0.35.4         BiocStyle_2.17.0           
-[15] simpleSingleCell_1.13.5    
+[15] simpleSingleCell_1.13.16   
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.4.6           lattice_0.20-41        ps_1.3.3              
+ [1] Rcpp_1.0.5             lattice_0.20-41        ps_1.3.4              
  [4] assertthat_0.2.1       digest_0.6.25          R6_2.4.1              
- [7] RSQLite_2.2.0          evaluate_0.14          httr_1.4.1            
-[10] highr_0.8              pillar_1.4.4           zlibbioc_1.35.0       
-[13] rlang_0.4.6            curl_4.3               callr_3.4.3           
+ [7] RSQLite_2.2.0          evaluate_0.14          httr_1.4.2            
+[10] highr_0.8              pillar_1.4.6           zlibbioc_1.35.0       
+[13] rlang_0.4.7            curl_4.3               callr_3.4.3           
 [16] blob_1.2.1             rmarkdown_2.3          stringr_1.4.0         
-[19] RCurl_1.98-1.2         bit_1.1-15.2           compiler_4.0.2        
-[22] xfun_0.15              pkgconfig_2.0.3        CodeDepends_0.6.5     
-[25] htmltools_0.5.0        tidyselect_1.1.0       tibble_3.0.1          
+[19] RCurl_1.98-1.2         bit_4.0.4              compiler_4.0.2        
+[22] xfun_0.16              pkgconfig_2.0.3        CodeDepends_0.6.5     
+[25] htmltools_0.5.0        tidyselect_1.1.0       tibble_3.0.3          
 [28] GenomeInfoDbData_1.2.3 bookdown_0.20          codetools_0.2-16      
-[31] XML_3.99-0.3           crayon_1.3.4           dplyr_1.0.0           
+[31] XML_3.99-0.5           crayon_1.3.4           dplyr_1.0.1           
 [34] bitops_1.0-6           rappdirs_0.3.1         grid_4.0.2            
 [37] lifecycle_0.2.0        DBI_1.1.0              magrittr_1.5          
 [40] graph_1.67.1           stringi_1.4.6          XVector_0.29.3        
-[43] ellipsis_0.3.1         generics_0.0.2         vctrs_0.3.1           
-[46] tools_4.0.2            bit64_0.9-7            glue_1.4.1            
-[49] purrr_0.3.4            processx_3.4.2         yaml_2.2.1            
+[43] ellipsis_0.3.1         generics_0.0.2         vctrs_0.3.2           
+[46] tools_4.0.2            bit64_4.0.2            glue_1.4.1            
+[49] purrr_0.3.4            processx_3.4.3         yaml_2.2.1            
 [52] BiocManager_1.30.10    memoise_1.1.0          knitr_1.29            
 ```
 </div>

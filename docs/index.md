@@ -1,13 +1,14 @@
 --- 
 title: "Orchestrating Single-Cell Analysis with Bioconductor"
-date: "2020-06-30"
+date: "2020-08-18"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [ref.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 favicon: "favicon.ico"
-description: "Online companion to 'Orchestrating Single-Cell Analysis with Bioconductor' manuscript by the Bioconductor team."
+description: "Or: how I learned to stop worrying and love the t-SNEs."
+cover-image: "https://www.bioconductor.org/images/logo_bioconductor.gif"
 ---
 
 # Welcome {-}
@@ -38,4 +39,4 @@ This website is __free to use__, and is licensed under the [Creative Commons Att
 
 
 _Version 0.0.1.9999_
-_Built on 2020-06-30_
+_Built on 2020-08-18_

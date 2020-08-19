@@ -338,9 +338,9 @@ sce.seger <- sce.seger[keep,]
 rownames(sce.seger) <- ens.id[keep]
 
 #--- sample-annotation ---#
-emtab.meta <- colData(sce.seger)[,c("cell type", 
+emtab.meta <- colData(sce.seger)[,c("cell type", "disease",
     "individual", "single cell well quality")]
-colnames(emtab.meta) <- c("CellType", "Donor", "Quality")
+colnames(emtab.meta) <- c("CellType", "Disease", "Donor", "Quality")
 colData(sce.seger) <- emtab.meta
 
 sce.seger$CellType <- gsub(" cell", "", sce.seger$CellType)
@@ -366,8 +366,7 @@ sce.seger <- computeSumFactors(sce.seger, clusters=clusters)
 sce.seger <- logNormCounts(sce.seger) 
 
 #--- variance-modelling ---#
-for.hvg <- sce.seger[,librarySizeFactors(altExp(sce.seger)) > 0
-    & sce.seger$Donor!="AZ"]
+for.hvg <- sce.seger[,librarySizeFactors(altExp(sce.seger)) > 0 & sce.seger$Donor!="AZ"]
 dec.seger <- modelGeneVarWithSpikes(for.hvg, "ERCC", block=for.hvg$Donor)
 chosen.hvgs <- getTopHVGs(dec.seger, n=2000)
 ```
@@ -389,7 +388,7 @@ sce.seger
 ## rowData names(2): symbol refseq
 ## colnames(2090): HP1502401_H13 HP1502401_J14 ... HP1526901T2D_N8
 ##   HP1526901T2D_A8
-## colData names(4): CellType Donor Quality sizeFactor
+## colData names(5): CellType Disease Donor Quality sizeFactor
 ## reducedDimNames(0):
 ## altExpNames(1): ERCC
 ```
@@ -638,7 +637,7 @@ table(proposed, clusters)
 ```
 R version 4.0.2 (2020-06-22)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.4 LTS
+Running under: Ubuntu 18.04.5 LTS
 
 Matrix products: default
 BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
@@ -657,52 +656,52 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] scater_1.17.2               ggplot2_3.3.2              
- [3] scran_1.17.3                batchelor_1.5.1            
- [5] SingleCellExperiment_1.11.6 SummarizedExperiment_1.19.5
- [7] DelayedArray_0.15.6         matrixStats_0.56.0         
- [9] Matrix_1.2-18               Biobase_2.49.0             
-[11] GenomicRanges_1.41.5        GenomeInfoDb_1.25.5        
-[13] IRanges_2.23.10             S4Vectors_0.27.12          
-[15] BiocGenerics_0.35.4         BiocStyle_2.17.0           
-[17] simpleSingleCell_1.13.5    
+ [1] bluster_0.99.1              scater_1.17.4              
+ [3] ggplot2_3.3.2               scran_1.17.15              
+ [5] batchelor_1.5.2             SingleCellExperiment_1.11.6
+ [7] SummarizedExperiment_1.19.6 DelayedArray_0.15.7        
+ [9] matrixStats_0.56.0          Matrix_1.2-18              
+[11] Biobase_2.49.0              GenomicRanges_1.41.6       
+[13] GenomeInfoDb_1.25.10        IRanges_2.23.10            
+[15] S4Vectors_0.27.12           BiocGenerics_0.35.4        
+[17] BiocStyle_2.17.0            simpleSingleCell_1.13.16   
 
 loaded via a namespace (and not attached):
  [1] viridis_0.5.1             edgeR_3.31.4             
  [3] BiocSingular_1.5.0        viridisLite_0.3.0        
- [5] DelayedMatrixStats_1.11.1 scuttle_0.99.10          
+ [5] DelayedMatrixStats_1.11.1 scuttle_0.99.12          
  [7] statmod_1.4.34            highr_0.8                
  [9] BiocManager_1.30.10       dqrng_0.2.1              
 [11] vipor_0.4.5               GenomeInfoDbData_1.2.3   
-[13] yaml_2.2.1                pillar_1.4.4             
+[13] yaml_2.2.1                pillar_1.4.6             
 [15] lattice_0.20-41           glue_1.4.1               
-[17] limma_3.45.7              digest_0.6.25            
+[17] limma_3.45.10             digest_0.6.25            
 [19] XVector_0.29.3            colorspace_1.4-1         
 [21] cowplot_1.0.0             htmltools_0.5.0          
-[23] XML_3.99-0.3              pkgconfig_2.0.3          
+[23] XML_3.99-0.5              pkgconfig_2.0.3          
 [25] bookdown_0.20             zlibbioc_1.35.0          
 [27] purrr_0.3.4               scales_1.1.1             
-[29] processx_3.4.2            Rtsne_0.15               
-[31] BiocParallel_1.23.0       tibble_3.0.1             
+[29] processx_3.4.3            Rtsne_0.15               
+[31] BiocParallel_1.23.2       tibble_3.0.3             
 [33] farver_2.0.3              generics_0.0.2           
 [35] ellipsis_0.3.1            withr_2.2.0              
 [37] magrittr_1.5              crayon_1.3.4             
 [39] CodeDepends_0.6.5         evaluate_0.14            
-[41] ps_1.3.3                  beeswarm_0.2.3           
+[41] ps_1.3.4                  beeswarm_0.2.3           
 [43] graph_1.67.1              tools_4.0.2              
 [45] lifecycle_0.2.0           stringr_1.4.0            
 [47] munsell_0.5.0             locfit_1.5-9.4           
 [49] irlba_2.3.3               callr_3.4.3              
 [51] compiler_4.0.2            rsvd_1.0.3               
-[53] rlang_0.4.6               grid_4.0.2               
+[53] rlang_0.4.7               grid_4.0.2               
 [55] RCurl_1.98-1.2            BiocNeighbors_1.7.0      
 [57] igraph_1.2.5              labeling_0.3             
 [59] bitops_1.0-6              rmarkdown_2.3            
 [61] gtable_0.3.0              codetools_0.2-16         
 [63] R6_2.4.1                  gridExtra_2.3            
-[65] knitr_1.29                dplyr_1.0.0              
+[65] knitr_1.29                dplyr_1.0.1              
 [67] ggbeeswarm_0.6.0          stringi_1.4.6            
-[69] Rcpp_1.0.4.6              vctrs_0.3.1              
-[71] tidyselect_1.1.0          xfun_0.15                
+[69] Rcpp_1.0.5                vctrs_0.3.2              
+[71] tidyselect_1.1.0          xfun_0.16                
 ```
 </div>

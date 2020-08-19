@@ -1,7 +1,7 @@
 ---
 output:
   html_document
-bibliography: ../ref.bib
+bibliography: ref.bib
 ---
 
 # Multi-sample comparisons
@@ -355,12 +355,13 @@ y
 A typical step in bulk RNA-seq data analyses is to remove samples with very low library sizes due to failed library preparation or sequencing.
 The very low counts in these samples can be troublesome in downstream steps such as normalization (Chapter \@ref(normalization)) or for some statistical approximations used in the DE analysis.
 In our situation, this is equivalent to removing label-sample combinations that have very few or lowly-sequenced cells.
-The exact definition of "very low" will vary, but in this case, we remove combinations containing fewer than 20 cells [@crowell2019discovery].
+The exact definition of "very low" will vary, but in this case, we remove combinations containing fewer than 10 cells [@crowell2019discovery].
 Alternatively, we could apply the outlier-based strategy described in Chapter \@ref(quality-control), but this makes the strong assumption that all label-sample combinations have similar numbers of cells that are sequenced to similar depth.
+We defer to the usual diagnostics for bulk DE analyses to decide whether a particular pseudo-bulk profile should be removed.
 
 
 ```r
-discarded <- current$ncells < 20
+discarded <- current$ncells < 10
 y <- y[,!discarded]
 summary(discarded)
 ```
@@ -372,7 +373,7 @@ summary(discarded)
 
 Another typical step in bulk RNA-seq analyses is to remove genes that are lowly expressed.
 This reduces computational work, improves the accuracy of mean-variance trend modelling and decreases the severity of the multiple testing correction.
-Genes are discarded if they are not expressed above a log-CPM threshold in a minimum number of samples (determined from the size of the smallest treatment group in the experimental design). 
+Here, we use the `filterByExpr()` function from *[edgeR](https://bioconductor.org/packages/3.12/edgeR)* to remove genes that are not expressed above a log-CPM threshold in a minimum number of samples (determined from the size of the smallest treatment group in the experimental design). 
 
 
 ```r
@@ -388,7 +389,8 @@ summary(keep)
 
 Finally, we correct for composition biases by computing normalization factors with the trimmed mean of M-values method [@robinson2010scaling].
 We do not need the bespoke single-cell methods described in Chapter \@ref(normalization), as the counts for our pseudo-bulk samples are large enough to apply bulk normalization methods.
-(Readers should be aware that *[edgeR](https://bioconductor.org/packages/3.12/edgeR)* normalization factors are closely related but _not the same_ as the size factors described elsewhere in this book.)
+(Note that *[edgeR](https://bioconductor.org/packages/3.12/edgeR)* normalization factors are closely related but _not the same_ as the size factors described elsewhere in this book.
+Size factors are proportional to the _product_ of the normalization factors and the library sizes.)
 
 
 ```r
@@ -419,6 +421,39 @@ y$samples
 ## Sample5        Mesenchyme        9    478
 ## Sample6        Mesenchyme       10    299
 ```
+
+As part of the usual diagnostics for a bulk RNA-seq DE analysis, we generate a mean-difference (MD) plot for each normalized pseudo-bulk profile (Figure \@ref(fig:md-embryo)).
+This should exhibit a trumpet shape centered at zero indicating that the normalization successfully removed systematic bias between profiles.
+Lack of zero-centering or dominant discrete patterns at low abundances may be symptomatic of deeper problems with normalization, possibly due to insufficient cells/reads/UMIs composing a particular pseudo-bulk profile.
+
+
+```r
+par(mfrow=c(2,3))
+for (i in seq_len(ncol(y))) {
+    plotMD(y, column=i)
+}
+```
+
+<div class="figure">
+<img src="sample-comparisons_files/figure-html/md-embryo-1.png" alt="Mean-difference plots of the normalized expression values for each pseudo-bulk sample against the average of all other samples." width="960" />
+<p class="caption">(\#fig:md-embryo)Mean-difference plots of the normalized expression values for each pseudo-bulk sample against the average of all other samples.</p>
+</div>
+
+We also generate a multi-dimensional scaling (MDS) plot for the pseudo-bulk profiles (Figure \@ref(fig:mds-embryo)).
+This is closely related to PCA and allows us to visualize the structure of the data in a manner similar to that described in Chapter \@ref(dimensionality-reduction) (though we rarely have enough pseudo-bulk profiles to make use of techniques like $t$-SNE).
+Here, the aim is to check whether samples separate by our known factors of interest - in this case, injection status. 
+Strong separation foreshadows a large number of DEGs in the subsequent analysis.
+
+
+```r
+plotMDS(cpm(y, log=TRUE), 
+    col=ifelse(y$samples$tomato, "red", "blue"))
+```
+
+<div class="figure">
+<img src="sample-comparisons_files/figure-html/mds-embryo-1.png" alt="MDS plot of the pseudo-bulk log-normalized CPMs, where each point represents a sample and is colored by the tomato status." width="672" />
+<p class="caption">(\#fig:mds-embryo)MDS plot of the pseudo-bulk log-normalized CPMs, where each point represents a sample and is colored by the tomato status.</p>
+</div>
 
 #### Statistical modelling
 
@@ -552,50 +587,82 @@ topTags(res)
 
 ### Putting it all together
 
+#### Looping across labels
+
 Now that we have laid out the theory underlying the DE analysis,
 we repeat this process for each of the labels to identify injection-induced DE in each cell type.
 This is conveniently done using the `pseudoBulkDGE()` function from *[scran](https://bioconductor.org/packages/3.12/scran)*,
 which will loop over all labels and apply the exact analysis described above to each label.
-To prepare for this, we filter out all sample-label combinations with insufficient cells.
+(Users can also set `method="voom"` to perform an equivalent analysis using the `voom()` pipeline from *[limma](https://bioconductor.org/packages/3.12/limma)* -
+see Chapter \@ref(segerstolpe-comparison) for the full set of function calls.)
 
 
 ```r
-summed.filt <- summed[,summed$ncells >= 20]
-```
+# Removing all pseudo-bulk samples with 'insufficient' cells.
+summed.filt <- summed[,summed$ncells >= 10]
 
-We construct a common design matrix that will be used in the analysis for each label.
-Here, we will re-use our previous additive design involving the batch (`pool`) and injection effects (`tomato`).
-Recall that this matrix should have one row per unique sample (and named as such), 
-reflecting the fact that we are modelling counts on the sample level instead of the cell level.
-
-
-```r
-# Pulling out a sample-level 'targets' data.frame:
-targets <- colData(merged)[!duplicated(merged$sample),]
-
-# Constructing the design matrix:
-design <-  model.matrix(~factor(pool) + factor(tomato), data=targets)
-rownames(design) <- targets$sample
-```
-
-We then apply the `pseudoBulkDGE()` function to obtain a list of injection-induced DE genes for each label.
-This function puts some additional effort into automatically dealing with labels that are not represented in both injected and background cells, for which a DE analysis between conditions is meaningless;
-or are not represented in a sufficient number of replicate samples to enable modelling of biological variability.
-
-
-```r
 library(scran)
 de.results <- pseudoBulkDGE(summed.filt, 
-    sample=summed.filt$sample,
     label=summed.filt$celltype.mapped,
-    design=design,
-    coef=ncol(design),
-
-    # 'condition' sets the group size for filterByExpr(),
-    # to perfectly mimic our previous manual analysis.
-    condition=targets$tomato 
+    design=~factor(pool) + tomato,
+    coef="tomatoTRUE",
+    condition=summed.filt$tomato 
 )
 ```
+
+The function returns a list of `DataFrame`s containing the DE results for each label.
+Each `DataFrame` also contains the intermediate *[edgeR](https://bioconductor.org/packages/3.12/edgeR)* objects used in the DE analyses,
+which can be used to generate any of previously described diagnostic plots (Figure \@ref(fig:allantois-dispersion)).
+It is often wise to generate these plots to ensure that any interesting results are not compromised by technical issues.
+
+
+```r
+cur.results <- de.results[["Allantois"]]
+cur.results[order(cur.results$PValue),]
+```
+
+```
+## DataFrame with 14699 rows and 5 columns
+##                               logFC    logCPM         F      PValue         FDR
+##                           <numeric> <numeric> <numeric>   <numeric>   <numeric>
+## Phlda2                    -2.489508  12.58150  1207.016 3.33486e-21 1.60507e-17
+## Xist                      -7.978532   8.00166  1092.831 1.27783e-17 3.07510e-14
+## Erdr1                      1.947170   9.07321   296.937 1.58009e-14 2.53500e-11
+## Slc22a18                  -4.347153   4.04380   117.389 1.92517e-10 2.31647e-07
+## Slc38a4                    0.891849  10.24094   113.899 2.52208e-10 2.42776e-07
+## ...                             ...       ...       ...         ...         ...
+## Ccl27a_ENSMUSG00000095247        NA        NA        NA          NA          NA
+## CR974586.5                       NA        NA        NA          NA          NA
+## AC132444.6                       NA        NA        NA          NA          NA
+## Vmn2r122                         NA        NA        NA          NA          NA
+## CAAA01147332.1                   NA        NA        NA          NA          NA
+```
+
+```r
+y.allantois <- metadata(cur.results)$y
+plotBCV(y.allantois)
+```
+
+<div class="figure">
+<img src="sample-comparisons_files/figure-html/allantois-dispersion-1.png" alt="Biological coefficient of variation (BCV) for each gene as a function of the average abundance for the allantois pseudo-bulk analysis. Trended and common BCV estimates are shown in blue and red, respectively." width="672" />
+<p class="caption">(\#fig:allantois-dispersion)Biological coefficient of variation (BCV) for each gene as a function of the average abundance for the allantois pseudo-bulk analysis. Trended and common BCV estimates are shown in blue and red, respectively.</p>
+</div>
+
+We list the labels that were skipped due to the absence of replicates or contrasts.
+If it is necessary to extract statistics in the absence of replicates, several strategies can be applied such as reducing the complexity of the model or using a predefined value for the NB dispersion.
+We refer readers to the *[edgeR](https://bioconductor.org/packages/3.12/edgeR)* user's guide for more details.
+
+
+```r
+metadata(de.results)$failed
+```
+
+```
+## [1] "Blood progenitors 1" "Caudal epiblast"     "Caudal neurectoderm"
+## [4] "ExE ectoderm"        "Parietal endoderm"   "Stripped"
+```
+
+#### Cross-label meta-analyses
 
 We examine the numbers of DEGs at a FDR of 5% for each label using the `decideTestsPerLabel()` function.
 In general, there seems to be very little differential expression that is introduced by injection.
@@ -611,29 +678,26 @@ summarizeTestsPerLabel(is.de)
 
 ```
 ##                                -1    0  1    NA
-## Allantois                      69 5048 66  9516
+## Allantois                      23 4766 24  9886
 ## Blood progenitors 2             1 2472  2 12224
 ## Cardiomyocytes                  6 4361  5 10327
-## Caudal Mesoderm                 0    0  0 14699
-## Caudal epiblast                 0    0  0 14699
-## Def. endoderm                   0    0  0 14699
+## Caudal Mesoderm                 2 1742  0 12955
+## Def. endoderm                   7 1392  2 13298
 ## Endothelium                     3 3222  6 11468
-## Erythroid1                     12 3035 25 11627
+## Erythroid1                     12 2777 15 11895
 ## Erythroid2                      5 3389  8 11297
 ## Erythroid3                     13 5048 16  9622
-## ExE ectoderm                    0    0  0 14699
 ## ExE mesoderm                    2 5097 10  9590
 ## Forebrain/Midbrain/Hindbrain    8 6226 11  8454
 ## Gut                             5 4482  6 10206
-## Haematoendothelial progenitors  7 4347 17 10328
-## Intermediate mesoderm           6 3256  8 11429
+## Haematoendothelial progenitors  4 4103 10 10582
+## Intermediate mesoderm           4 3072  4 11619
 ## Mesenchyme                      8 5672  8  9011
 ## NMP                             6 4107 10 10576
 ## Neural crest                    6 3311  8 11374
 ## Paraxial mesoderm               4 4756  5  9934
-## Parietal endoderm               0    0  0 14699
 ## Pharyngeal mesoderm             2 5082  9  9606
-## Rostral neurectoderm            0    0  0 14699
+## Rostral neurectoderm            5 3334  4 11356
 ## Somitic mesoderm                7 2948 13 11731
 ## Spinal cord                     7 4591  7 10094
 ## Surface ectoderm                9 5556  8  9126
@@ -644,8 +708,9 @@ summarizeTestsPerLabel(is.de)
 For each gene, we compute the percentage of cell types in which that gene is upregulated or downregulated upon injection.
 (Here, we consider a gene to be non-DE if it is not retained after filtering.)
 We see that _Xist_ is consistently downregulated in the injected cells; 
-this is consistent with the fact that the injected cells are male while the background cells are derived from pools of male and female embryos (due to experimental difficulties with resolving sex at this stage).
+this is consistent with the fact that the injected cells are male while the background cells are derived from pools of male and female embryos, due to experimental difficulties with resolving sex at this stage.
 The consistent downregulation of _Phlda2_ and _Cdkn1c_ in the injected cells is also interesting given that both are imprinted genes. 
+However, some of these commonalities may be driven by shared contamination from ambient RNA - we discuss this further in Section \@ref(ambient-problems).
 
 
 ```r
@@ -655,10 +720,10 @@ head(sort(rowMeans(up.de), decreasing=TRUE), 10)
 ```
 
 ```
-##     Mid1    Erdr1   Impact    Mcts2     Nnat Kcnq1ot1  Slc38a4    Zdbf2 
-##   0.7692   0.6538   0.5385   0.5000   0.5000   0.5000   0.3846   0.3462 
+##     Mid1    Erdr1   Impact    Mcts2 Kcnq1ot1     Nnat  Slc38a4    Zdbf2 
+##   0.9130   0.7391   0.6087   0.5652   0.5652   0.5217   0.4348   0.3913 
 ##     Hopx     Peg3 
-##   0.3462   0.2308
+##   0.3913   0.2609
 ```
 
 ```r
@@ -668,76 +733,733 @@ head(sort(rowMeans(down.de), decreasing=TRUE), 10)
 ```
 
 ```
-##        Akr1e1          Xist        Cdkn1c        Phlda2           H13 
-##       0.61538       0.57692       0.57692       0.57692       0.46154 
-##         Wfdc2         Hbb-y         Grb10 B930036N10Rik         Pink1 
-##       0.19231       0.11538       0.11538       0.07692       0.07692
+##          Xist        Phlda2        Akr1e1        Cdkn1c           H13 
+##       0.73913       0.73913       0.73913       0.69565       0.52174 
+##         Wfdc2 B930036N10Rik B230312C02Rik         Pink1         Mfap2 
+##       0.21739       0.08696       0.08696       0.08696       0.08696
 ```
 
 
 
-We further identify label-specific DE genes that are significant in our label of interest yet not DE in any other label.
-As hypothesis tests are not typically geared towards identifying genes that are not DE,
-we use an _ad hoc_ approach where we consider a gene to be consistent with the null hypothesis for a label 
-if it fails to be detected even at a generous FDR threshold of 50%.
-We demonstrate this approach below by identifying injection-induced DE genes that are unique to the allantois,
-though differences in power between labels suggest that this should be interpreted with some caution;
-for example, Figure \@ref(fig:exprs-unique-de-allantois) shows that the top-ranked allantois-specific gene exhibits some evidence of DE in other labels but was not detected for various reasons like low abundance or insufficient replicates.
+<!--
+Here we have a look at the effects of contamination, for curiosity's sake.
+
+
+-->
+
+To identify label-specific DE, we use the `pseudoBulkSpecific()` function to test for significant differences from the average log-fold change over all other labels.
+More specifically, the null hypothesis for each label and gene is that the log-fold change lies between zero and the average log-fold change of the other labels.
+If a gene rejects this null for our label of interest, we can conclude that it exhibits DE that is more extreme or of the opposite sign compared to that in the majority of other labels (Figure \@ref(fig:exprs-unique-de-allantois)).
+This approach is effectively a poor man's interaction model that sacrifices the uncertainty of the average for an easier compute.
+We note that, while the difference from the average is a good heuristic, there is no guarantee that the top genes are truly label-specific; comparable DE in a subset of the other labels may be offset by weaker effects when computing the average.
 
 
 ```r
+de.specific <- pseudoBulkSpecific(summed.filt,
+    label=summed.filt$celltype.mapped,
+    design=~factor(pool) + tomato,
+    coef="tomatoTRUE",
+    condition=summed.filt$tomato
+)
+
+cur.specific <- de.specific[["Allantois"]]
+cur.specific <- cur.specific[order(cur.specific$PValue),]
+cur.specific
+```
+
+```
+## DataFrame with 14699 rows and 6 columns
+##                               logFC    logCPM         F      PValue         FDR
+##                           <numeric> <numeric> <numeric>   <numeric>   <numeric>
+## Slc22a18                  -4.347153   4.04380  117.3889 1.92517e-10 9.26587e-07
+## Acta2                     -0.829713   9.12472   55.6350 4.67332e-07 1.12463e-03
+## Mxd4                      -1.421473   5.64606   50.2112 2.03567e-06 3.26589e-03
+## Rbp4                       1.874290   4.35449   29.8731 1.53998e-05 1.85298e-02
+## Myl9                      -0.985541   6.24833   30.6689 5.54072e-05 4.62274e-02
+## ...                             ...       ...       ...         ...         ...
+## Ccl27a_ENSMUSG00000095247        NA        NA        NA          NA          NA
+## CR974586.5                       NA        NA        NA          NA          NA
+## AC132444.6                       NA        NA        NA          NA          NA
+## Vmn2r122                         NA        NA        NA          NA          NA
+## CAAA01147332.1                   NA        NA        NA          NA          NA
+##                           OtherAverage
+##                              <numeric>
+## Slc22a18                            NA
+## Acta2                       -0.0267428
+## Mxd4                        -0.1565876
+## Rbp4                        -0.1052237
+## Myl9                        -0.1068453
+## ...                                ...
+## Ccl27a_ENSMUSG00000095247           NA
+## CR974586.5                          NA
+## AC132444.6                          NA
+## Vmn2r122                            NA
+## CAAA01147332.1                      NA
+```
+
+```r
+sizeFactors(summed.filt) <- NULL
+plotExpression(logNormCounts(summed.filt),
+    features="Rbp4",
+    x="tomato", colour_by="tomato",
+    other_fields="celltype.mapped") +
+    facet_wrap(~celltype.mapped)
+```
+
+<div class="figure">
+<img src="sample-comparisons_files/figure-html/exprs-unique-de-allantois-1.png" alt="Distribution of summed log-expression values for _Rbp4_ in each label of the chimeric embryo dataset. Each facet represents a label with distributions stratified by injection status." width="960" />
+<p class="caption">(\#fig:exprs-unique-de-allantois)Distribution of summed log-expression values for _Rbp4_ in each label of the chimeric embryo dataset. Each facet represents a label with distributions stratified by injection status.</p>
+</div>
+
+
+
+For greater control over the identification of label-specific DE, we can use the output of `decideTestsPerLabel()` to identify genes that are significant in our label of interest yet not DE in any other label.
+As hypothesis tests are not typically geared towards identifying genes that are not DE, we use an _ad hoc_ approach where we consider a gene to be consistent with the null hypothesis for a label if it fails to be detected at a generous FDR threshold of 50%.
+We demonstrate this approach below by identifying injection-induced DE genes that are unique to the allantois.
+It is straightforward to tune the selection, e.g., to genes that are DE in no more than 90% of other labels by simply relaxing the threshold used to construct `not.de.other`, or to genes that are DE across multiple labels of interest but not in the rest, and so on.
+
+
+```r
+# Finding all genes that are not remotely DE in all other labels.
 remotely.de <- decideTestsPerLabel(de.results, threshold=0.5)
 not.de <- remotely.de==0 | is.na(remotely.de)
+not.de.other <- rowMeans(not.de[,colnames(not.de)!="Allantois"])==1
 
-other.labels <- setdiff(colnames(not.de), "Allantois")
-unique.degs <- is.de[,"Allantois"]!=0 & rowMeans(not.de[,other.labels])==1
+# Intersecting with genes that are DE inthe allantois.
+unique.degs <- is.de[,"Allantois"]!=0 & not.de.other
 unique.degs <- names(which(unique.degs))
-unique.degs
+
+# Inspecting the results.
+de.allantois <- de.results$Allantois
+de.allantois <- de.allantois[unique.degs,]
+de.allantois <- de.allantois[order(de.allantois$PValue),]
+de.allantois
 ```
 
 ```
-##  [1] "Cfc1"      "Ddb2"      "Ddx27"     "Gm21887"   "Postn"     "S100a6"   
-##  [7] "BC028528"  "Gar1"      "Cyr61"     "Fbxl4"     "Gja4"      "Zfp593"   
-## [13] "Smarcd3"   "Plac8"     "Tbx3"      "Pdgfa"     "Tril"      "H2afj"    
-## [19] "Aamdc"     "Slc22a18"  "Zfpm1"     "Dbndd1"    "Egln1"     "Cryab"    
-## [25] "Hcn4"      "C1qbp"     "H3f3b"     "Hist1h1b"  "Hist1h2ap" "Dlk1"     
-## [31] "Kif26a"    "Ly6e"      "Prr5"      "Pus7l"     "Hoxc10"    "Popdc2"   
-## [37] "Alcam"     "Sh3bgr"    "Ezr"       "Eif2s3y"   "Etf1"      "Txnl4a"   
-## [43] "Bad"       "Rbp4"
+## DataFrame with 5 rows and 5 columns
+##              logFC    logCPM         F      PValue         FDR
+##          <numeric> <numeric> <numeric>   <numeric>   <numeric>
+## Slc22a18 -4.347153   4.04380  117.3889 1.92517e-10 2.31647e-07
+## Rbp4      1.874290   4.35449   29.8731 1.53998e-05 3.36906e-03
+## Cfc1     -0.950562   5.74762   23.1430 7.68376e-05 1.23215e-02
+## H3f3b     0.321634  12.04012   21.2710 1.25666e-04 1.63468e-02
+## Cryab    -0.995629   5.28422   19.5921 1.99204e-04 2.45838e-02
 ```
+
+The main caveat is that differences in power between labels require some caution when interpreting label specificity.
+For example, Figure \@ref(fig:exprs-unique-de-allantois-more) shows that the top-ranked allantois-specific gene exhibits some evidence of DE in other labels but was not detected for various reasons like low abundance or insufficient replicates.
+A more correct but complex approach would be to fit a interaction model to the pseudo-bulk profiles for each pair of labels, where the interaction is between the coefficient of interest and the label identity; this is left as an exercise for the reader. 
+
 
 ```r
-# Choosing the top-ranked gene for inspection:
-de.allantois <- de.results$Allantois
-de.allantois <- de.allantois[order(de.allantois$PValue),]
-de.allantois <- de.allantois[rownames(de.allantois) %in% unique.degs,]
-
-sizeFactors(summed.filt) <- NULL
 plotExpression(logNormCounts(summed.filt), 
-    features=rownames(de.allantois)[1],
+    features="Slc22a18",
     x="tomato", colour_by="tomato", 
     other_fields="celltype.mapped") + 
     facet_wrap(~celltype.mapped)
 ```
 
 <div class="figure">
-<img src="sample-comparisons_files/figure-html/exprs-unique-de-allantois-1.png" alt="Distribution of summed log-expression values for each label in the chimeric embryo dataset. Each facet represents a label with distributions stratified by injection status." width="960" />
-<p class="caption">(\#fig:exprs-unique-de-allantois)Distribution of summed log-expression values for each label in the chimeric embryo dataset. Each facet represents a label with distributions stratified by injection status.</p>
+<img src="sample-comparisons_files/figure-html/exprs-unique-de-allantois-more-1.png" alt="Distribution of summed log-expression values for each label in the chimeric embryo dataset. Each facet represents a label with distributions stratified by injection status." width="960" />
+<p class="caption">(\#fig:exprs-unique-de-allantois-more)Distribution of summed log-expression values for each label in the chimeric embryo dataset. Each facet represents a label with distributions stratified by injection status.</p>
 </div>
 
-We also list the labels that were skipped due to the absence of replicates or contrasts.
-If it is necessary to extract statistics in the absence of replicates, several strategies can be applied such as reducing the complexity of the model or using a predefined value for the NB dispersion.
-We refer readers to the *[edgeR](https://bioconductor.org/packages/3.12/edgeR)* user's guide for more details.
+
+
+## Avoiding problems with ambient RNA {#ambient-problems}
+
+### Motivation
+
+Ambient contamination is a phenomenon that is generally most pronounced in massively multiplexed scRNA-seq protocols.
+Briefly, extracellular RNA (most commonly released upon cell lysis) is captured along with each cell in its reaction chamber, contributing counts to genes that are not otherwise expressed in that cell (see Section \@ref(qc-droplets)).
+Differences in the ambient profile across samples are not uncommon when dealing with strong experimental perturbations where strong expression of a gene in a condition-specific cell type can "bleed over" into all other cell types in the same sample.
+This is problematic for DE analyses between conditions, as DEGs detected for a particular cell type may be driven by differences in the ambient profiles rather than any intrinsic change in gene regulation. 
+
+To illustrate, we consider the _Tal1_-knockout (KO) chimera data from @pijuansala2019single.
+This is very similar to the WT chimera dataset we previously examined, only differing in that the _Tal1_ gene was knocked out in the injected cells.
+_Tal1_ is a transcription factor that has known roles in erythroid differentiation; the aim of the experiment was to determine if blocking of the erythroid lineage diverted cells to other developmental fates.
+(To cut a long story short: yes, it did.)
 
 
 ```r
-metadata(de.results)$failed
+library(MouseGastrulationData)
+sce.tal1 <- Tal1ChimeraData()
+
+library(scuttle)
+rownames(sce.tal1) <- uniquifyFeatureNames(
+    rowData(sce.tal1)$ENSEMBL, 
+    rowData(sce.tal1)$SYMBOL
+)
+sce.tal1
 ```
 
 ```
-## [1] "Caudal Mesoderm"      "Caudal epiblast"      "Def. endoderm"       
-## [4] "ExE ectoderm"         "Parietal endoderm"    "Rostral neurectoderm"
+## class: SingleCellExperiment 
+## dim: 29453 56122 
+## metadata(0):
+## assays(1): counts
+## rownames(29453): Xkr4 Gm1992 ... CAAA01147332.1 tomato-td
+## rowData names(2): ENSEMBL SYMBOL
+## colnames(56122): cell_1 cell_2 ... cell_56121 cell_56122
+## colData names(9): cell barcode ... pool sizeFactor
+## reducedDimNames(1): pca.corrected
+## altExpNames(0):
 ```
+
+We will perform a DE analysis between WT and KO cells labelled as "neural crest".
+We observe that the strongest DEGs are the hemoglobins, which are downregulated in the injected cells.
+This is rather surprising as these cells are distinct from the erythroid lineage and should not express hemoglobins at all. 
+The most sober explanation is that the background samples contain more hemoglobin transcripts in the ambient solution due to leakage from erythrocytes (or their precursors) during sorting and dissociation.
+
+
+```r
+summed.tal1 <- aggregateAcrossCells(sce.tal1, 
+    ids=DataFrame(sample=sce.tal1$sample,
+        label=sce.tal1$celltype.mapped)
+)
+summed.tal1$block <- summed.tal1$sample %% 2 == 0 # Add blocking factor.
+
+# Subset to our neural crest cells.
+summed.neural <- summed.tal1[,summed.tal1$label=="Neural crest"]
+summed.neural
+```
+
+```
+## class: SingleCellExperiment 
+## dim: 29453 4 
+## metadata(0):
+## assays(1): counts
+## rownames(29453): Xkr4 Gm1992 ... CAAA01147332.1 tomato-td
+## rowData names(2): ENSEMBL SYMBOL
+## colnames: NULL
+## colData names(13): cell barcode ... ncells block
+## reducedDimNames(1): pca.corrected
+## altExpNames(0):
+```
+
+```r
+# Standard edgeR analysis, as described above.
+res.neural <- pseudoBulkDGE(summed.neural, 
+    label=summed.neural$label,
+    design=~factor(block) + tomato,
+    coef="tomatoTRUE",
+    condition=summed.neural$tomato)
+summarizeTestsPerLabel(decideTestsPerLabel(res.neural))
+```
+
+```
+##               -1    0   1    NA
+## Neural crest 351 9818 481 18803
+```
+
+```r
+# Summary of the direction of log-fold changes.
+tab.neural <- res.neural[[1]]
+tab.neural <- tab.neural[order(tab.neural$PValue),]
+head(tab.neural, 10)
+```
+
+```
+## DataFrame with 10 rows and 5 columns
+##             logFC    logCPM         F       PValue          FDR
+##         <numeric> <numeric> <numeric>    <numeric>    <numeric>
+## Xist    -7.555686   8.21232  6657.298  0.00000e+00  0.00000e+00
+## Hbb-bh1 -8.091042   9.15972 10758.256  0.00000e+00  0.00000e+00
+## Hbb-y   -8.415622   8.35705  7364.290  0.00000e+00  0.00000e+00
+## Hba-x   -7.724803   8.53284  7896.457  0.00000e+00  0.00000e+00
+## Hba-a1  -8.596706   6.74429  2756.573  0.00000e+00  0.00000e+00
+## Hba-a2  -8.866232   5.81300  1517.726 1.72378e-310 3.05972e-307
+## Erdr1    1.889536   7.61593  1407.112 2.34678e-289 3.57046e-286
+## Cdkn1c  -8.864528   4.96097   814.936 8.79980e-173 1.17147e-169
+## Uba52   -0.879668   8.38618   424.191  1.86584e-92  2.20792e-89
+## Grb10   -1.403427   6.58314   401.353  1.13898e-87  1.21302e-84
+```
+
+
+
+As an aside, it is worth mentioning that the "replicates" in this study are more technical than biological,
+so some exaggeration of the significance of the effects is to be expected.
+Nonetheless, it is a useful dataset to demonstrate some strategies for mitigating issues caused by ambient contamination.
+
+### Finding affected DEGs 
+
+#### By estimating ambient contamination
+
+As shown above, the presence of ambient contamination makes it difficult to interpret multi-condition DE analyses.
+To mitigate its effects, we need to obtain an estimate of the ambient "expression" profile from the raw count matrix for each sample.
+We follow the approach used in `emptyDrops()` [@lun2018distinguishing] and consider all barcodes with total counts below 100 to represent empty droplets.
+We then sum the counts for each gene across these barcodes to obtain an expression vector representing the ambient profile for each sample.
+
+
+```r
+library(DropletUtils)
+ambient <- vector("list", ncol(summed.neural))
+
+# Looping over all raw (unfiltered) count matrices and
+# computing the ambient profile based on its low-count barcodes.
+# Turning off rounding, as we know this is count data.
+for (s in seq_along(ambient)) {
+    raw.tal1 <- Tal1ChimeraData(type="raw", samples=s)[[1]]
+    ambient[[s]] <- estimateAmbience(counts(raw.tal1), 
+        good.turing=FALSE, round=FALSE)
+}
+
+# Cleaning up the output for pretty printing.
+ambient <- do.call(cbind, ambient)
+colnames(ambient) <- seq_len(ncol(ambient))
+rownames(ambient) <- uniquifyFeatureNames(
+    rowData(raw.tal1)$ENSEMBL, 
+    rowData(raw.tal1)$SYMBOL
+)
+head(ambient)
+```
+
+```
+##          1  2  3  4
+## Xkr4     1  0  0  0
+## Gm1992   0  0  0  0
+## Gm37381  1  0  1  0
+## Rp1      0  1  0  1
+## Sox17   76 76 31 53
+## Gm37323  0  0  0  0
+```
+
+
+
+For each sample, we determine the maximum proportion of the count for each gene that could be attributed to ambient contamination.
+This is done by scaling the ambient profile in `ambient` to obtain a per-gene expected count from ambient contamination, with which we compute the $p$-value for observing a count equal to or lower than that in `summed.neural`. 
+We perform this for a range of scaling factors and identify the largest factor that yields a $p$-value above a given threshold.
+The scaled ambient profile represents the upper bound of the contribution to each sample from ambient contamination.
+We deliberately use an upper bound so that our next step will aggressively remove any gene that is potentially problematic.
+
+
+```r
+max.ambient <- maximumAmbience(counts(summed.neural), 
+    ambient, mode="proportion")
+head(max.ambient)
+```
+
+```
+##           [,1]   [,2]  [,3] [,4]
+## Xkr4       NaN    NaN   NaN  NaN
+## Gm1992     NaN    NaN   NaN  NaN
+## Gm37381    NaN    NaN   NaN  NaN
+## Rp1        NaN    NaN   NaN  NaN
+## Sox17   0.1775 0.1833 0.468    1
+## Gm37323    NaN    NaN   NaN  NaN
+```
+
+Genes in which over 10% of the counts are ambient-derived (averaged across samples) are subsequently discarded from our analysis.
+For balanced designs, this threshold prevents ambient contribution from biasing the true fold-change by more than 10%, which is a tolerable margin of error for most applications.
+(Unbalanced designs may warrant the use of a weighted average to account for sample size differences between groups.)
+This approach yields a slightly smaller list of DEGs without the hemoglobins, which is encouraging as it suggests that any other (less obvious) effects of ambient contamination have also been removed.
+
+
+```r
+contamination <- rowMeans(max.ambient, na.rm=TRUE)
+non.ambient <- contamination <= 0.1
+summary(non.ambient)
+```
+
+```
+##    Mode   FALSE    TRUE    NA's 
+## logical    1475   15306   12672
+```
+
+```r
+okay.genes <- names(non.ambient)[which(non.ambient)]
+tab.neural2 <- tab.neural[rownames(tab.neural) %in% okay.genes,]
+
+table(Direction=tab.neural2$logFC > 0, Significant=tab.neural2$FDR <= 0.05)
+```
+
+```
+##          Significant
+## Direction FALSE TRUE
+##     FALSE  4820  317
+##     TRUE   4781  452
+```
+
+```r
+head(tab.neural2, 10)
+```
+
+```
+## DataFrame with 10 rows and 5 columns
+##                   logFC    logCPM         F       PValue          FDR
+##               <numeric> <numeric> <numeric>    <numeric>    <numeric>
+## Xist          -7.555686   8.21232  6657.298  0.00000e+00  0.00000e+00
+## Erdr1          1.889536   7.61593  1407.112 2.34678e-289 3.57046e-286
+## Uba52         -0.879668   8.38618   424.191  1.86584e-92  2.20792e-89
+## Grb10         -1.403427   6.58314   401.353  1.13898e-87  1.21302e-84
+## Gt(ROSA)26Sor  1.481294   5.71617   351.940  2.80072e-77  2.71161e-74
+## Fdps           0.981388   7.21805   337.159  3.67655e-74  3.26294e-71
+## Mest           0.549349  10.98269   319.697  1.79832e-70  1.47324e-67
+## Impact         1.396666   5.71801   314.700  2.05057e-69  1.55990e-66
+## H13           -1.481658   5.90902   301.675  1.17372e-66  8.33343e-64
+## Msmo1          1.493771   5.43923   301.066  1.57983e-66  1.05158e-63
+```
+
+
+
+A softer approach is to simply report the average contaminating percentage for each gene in the table of DE statistics.
+This allows readers to make up their own minds as to whether a particular DEG's effect is driven by ambient contamination, in much the same way as described for low-quality cells in Section \@ref(marking-qc).
+Indeed, it is worth remembering that `maximumAmbience()` will report the maximum possible contamination rather than attempting to estimate the actual level of contamination, and filtering on the former may be overly conservative.
+This is especially true for cell populations that are contributing to the differences in the ambient pool; in the most extreme case, the reported maximum contamination would be 100% for cell types with an expression profile that is identical to the ambient pool.
+
+
+```r
+tab.neural3 <- tab.neural
+tab.neural3$contamination <- contamination[rownames(tab.neural3)]
+head(tab.neural3)
+```
+
+```
+## DataFrame with 6 rows and 6 columns
+##             logFC    logCPM         F       PValue          FDR contamination
+##         <numeric> <numeric> <numeric>    <numeric>    <numeric>     <numeric>
+## Xist     -7.55569   8.21232   6657.30  0.00000e+00  0.00000e+00     0.0605735
+## Hbb-bh1  -8.09104   9.15972  10758.26  0.00000e+00  0.00000e+00     0.9900717
+## Hbb-y    -8.41562   8.35705   7364.29  0.00000e+00  0.00000e+00     0.9674483
+## Hba-x    -7.72480   8.53284   7896.46  0.00000e+00  0.00000e+00     0.9945348
+## Hba-a1   -8.59671   6.74429   2756.57  0.00000e+00  0.00000e+00     0.8626846
+## Hba-a2   -8.86623   5.81300   1517.73 1.72378e-310 3.05972e-307     0.7351403
+```
+
+#### With prior knowledge 
+
+Another strategy to estimating the ambient proportions involves the use of prior knowledge of mutually exclusive gene expression profiles [@young2018soupx].
+In this case, we assume (reasonably) that hemoglobins should not be expressed in neural crest cells and use this to estimate the contamination in each sample.
+This is achieved with the `controlAmbience()` function, which scales the ambient profile so that the hemoglobin coverage is the same as the corresponding sample of `summed.neural`.
+From these profiles, we compute proportions of ambient contamination that are used to mark or filter out affected genes in the same manner as described above.
+
+
+```r
+is.hbb <- grep("^Hb[ab]-", rownames(summed.neural))
+alt.prop <- controlAmbience(counts(summed.neural), ambient,
+    features=is.hbb,  mode="proportion")
+head(alt.prop)
+```
+
+```
+##               1       2      3   4
+## Xkr4        NaN     NaN    NaN NaN
+## Gm1992      NaN     NaN    NaN NaN
+## Gm37381     NaN     NaN    NaN NaN
+## Rp1         NaN     NaN    NaN NaN
+## Sox17   0.06774 0.08798 0.4796   1
+## Gm37323     NaN     NaN    NaN NaN
+```
+
+```r
+alt.non.ambient <- rowMeans(alt.prop, na.rm=TRUE) <= 0.1
+summary(alt.non.ambient)
+```
+
+```
+##    Mode   FALSE    TRUE    NA's 
+## logical    1388   15393   12672
+```
+
+```r
+okay.genes <- names(alt.non.ambient)[which(alt.non.ambient)]
+tab.neural4 <- tab.neural[rownames(tab.neural) %in% okay.genes,]
+head(tab.neural4)
+```
+
+```
+## DataFrame with 6 rows and 5 columns
+##                   logFC    logCPM         F       PValue          FDR
+##               <numeric> <numeric> <numeric>    <numeric>    <numeric>
+## Xist          -7.555686   8.21232  6657.298  0.00000e+00  0.00000e+00
+## Erdr1          1.889536   7.61593  1407.112 2.34678e-289 3.57046e-286
+## Uba52         -0.879668   8.38618   424.191  1.86584e-92  2.20792e-89
+## Grb10         -1.403427   6.58314   401.353  1.13898e-87  1.21302e-84
+## Gt(ROSA)26Sor  1.481294   5.71617   351.940  2.80072e-77  2.71161e-74
+## Fdps           0.981388   7.21805   337.159  3.67655e-74  3.26294e-71
+```
+
+
+
+Any highly expressed cell type-specific gene is a candidate for this procedure,
+most typically in cell types that are highly specialized towards manufacturing a protein product.
+Aside from hemoglobin, we could use immunoglobulins in populations containing B cells,
+or insulin and glucagon in pancreas datasets (Figure \@ref(fig:viol-gcg-lawlor)).
+The experimental setting may also provide some genes that must only be present in the ambient solution;
+for example, the mitochondrial transcripts can be used to estimate ambient contamination in single-nucleus RNA-seq,
+while _Xist_ can be used for datasets involving mixtures of male and female cells
+(where the contaminating percentages are estimated from the profiles of male cells only).
+
+If appropriate control features are available, this approach allows us to obtain a more accurate estimate of the contamination in each pseudo-bulk sample compared to the upper bound provided by `maximumAmbience()`.
+This avoids the removal of genuine DEGs due to overestimation fo the ambient contamination from the latter. 
+However, the performance of this approach is fully dependent on the suitability of the control features - if a "control" feature is actually genuinely expressed in a cell type, the ambient contribution will be overestimated.
+A simple mitigating strategy is to simply take the lower of the proportions from `controlAmbience()` and `maximumAmbience()`, with the idea being that the latter will avoid egregious overestimation when the control set is misspecified.
+
+#### Without an ambient profile
+
+An estimate of the ambient profile is rarely available for public datasets where only the per-cell count matrices are provided.
+In such cases, we must instead use the rest of the dataset to infer something about the effects of ambient contamination.
+The most obvious approach is construct a proxy ambient profile by summing the counts for all cells from each sample, which can be used in place of the actual profile in the previous calculations.
+This assumes equal contributions from all labels to the ambient pool, which is not entirely unrealistic (Figure \@ref(fig:proxy-ambience)) though some discrepancies can be expected due to the presence of particularly fragile cell types or extracellular RNA.
+
+
+```r
+proxy.ambient <- aggregateAcrossCells(summed.tal1,
+    ids=summed.tal1$sample)
+
+par(mfrow=c(2,2))
+for (i in seq_len(ncol(proxy.ambient))) {
+    true <- ambient[,i]
+    proxy <- assay(proxy.ambient)[,i]
+    logged <- edgeR::cpm(cbind(proxy, true), log=TRUE, prior.count=2)
+    logFC <- logged[,1] - logged[,2]
+    abundance <- rowMeans(logged)
+    plot(abundance, logFC, main=paste("Sample", i))
+}
+```
+
+<div class="figure">
+<img src="sample-comparisons_files/figure-html/proxy-ambience-1.png" alt="MA plots of the log-fold change of the proxy ambient profile over the real profile for each sample in the _Tal1_ chimera dataset." width="672" />
+<p class="caption">(\#fig:proxy-ambience)MA plots of the log-fold change of the proxy ambient profile over the real profile for each sample in the _Tal1_ chimera dataset.</p>
+</div>
+
+We can also mitigate the effect of ambient contamination by focusing on label-specific DEGs.
+Contamination-driven DEGs should be systematically present in comparisons for all labels, and thus can be eliminated by simply ignoring all genes that are significant in a majority of these comparisons (Section \@ref(cross-label-meta-analyses)).
+The obvious drawback of this approach is that it discounts genuine DEGs that have a consistent effect in most/all labels, though one could perhaps argue that such "global" DEGs are not the main features of interest in label-specific analyses. 
+It is also complicated by fluctuations in detection power across comparisons involving different numbers of cells - or replicates, after filtering pseudo-bulk profiles by the number of cells.
+
+
+```r
+res.tal1 <- pseudoBulkDGE(summed.tal1, 
+    label=summed.tal1$label,
+    design=~factor(block) + tomato,
+    coef="tomatoTRUE",
+    condition=summed.tal1$tomato)
+
+# DE in the same direction across most labels.
+tal1.de <- decideTestsPerLabel(res.tal1)
+up.de <- rowMeans(tal1.de > 0 & !is.na(tal1.de))
+down.de <- rowMeans(tal1.de < 0 & !is.na(tal1.de))
+
+# Inspecting our neural crest results again.
+tab.neural.again <- res.tal1[["Neural crest"]]
+tab.neural.again$OtherUp <- up.de
+tab.neural.again$OtherDown <- down.de
+head(tab.neural.again[order(tab.neural.again$PValue),], 10)
+```
+
+```
+## DataFrame with 10 rows and 7 columns
+##             logFC    logCPM         F       PValue          FDR   OtherUp
+##         <numeric> <numeric> <numeric>    <numeric>    <numeric> <numeric>
+## Xist    -7.555686   8.21232  6657.298  0.00000e+00  0.00000e+00  0.000000
+## Hbb-bh1 -8.091042   9.15972 10758.256  0.00000e+00  0.00000e+00  0.000000
+## Hbb-y   -8.415622   8.35705  7364.290  0.00000e+00  0.00000e+00  0.000000
+## Hba-x   -7.724803   8.53284  7896.457  0.00000e+00  0.00000e+00  0.000000
+## Hba-a1  -8.596706   6.74429  2756.573  0.00000e+00  0.00000e+00  0.000000
+## Hba-a2  -8.866232   5.81300  1517.726 1.72378e-310 3.05972e-307  0.000000
+## Erdr1    1.889536   7.61593  1407.112 2.34678e-289 3.57046e-286  0.444444
+## Cdkn1c  -8.864528   4.96097   814.936 8.79980e-173 1.17147e-169  0.000000
+## Uba52   -0.879668   8.38618   424.191  1.86584e-92  2.20792e-89  0.000000
+## Grb10   -1.403427   6.58314   401.353  1.13898e-87  1.21302e-84  0.000000
+##         OtherDown
+##         <numeric>
+## Xist     0.851852
+## Hbb-bh1  0.925926
+## Hbb-y    0.851852
+## Hba-x    0.814815
+## Hba-a1   0.777778
+## Hba-a2   0.777778
+## Erdr1    0.000000
+## Cdkn1c   0.814815
+## Uba52    0.814815
+## Grb10    0.777778
+```
+
+```r
+# Actually removing those with a DE majority across labels.
+ignore <- up.de > 0.5 | down.de > 0.5
+tab.neural.again <- tab.neural.again[!ignore,]
+head(tab.neural.again[order(tab.neural.again$PValue),], 10)
+```
+
+```
+## DataFrame with 10 rows and 7 columns
+##            logFC    logCPM         F       PValue          FDR   OtherUp
+##        <numeric> <numeric> <numeric>    <numeric>    <numeric> <numeric>
+## Erdr1   1.889536   7.61593 1407.1122 2.34678e-289 3.57046e-286  0.444444
+## Fdps    0.981388   7.21805  337.1586  3.67655e-74  3.26294e-71  0.222222
+## Msmo1   1.493771   5.43923  301.0658  1.57983e-66  1.05158e-63  0.222222
+## Hmgcs1  1.250024   5.70837  252.1105  3.95670e-56  2.21783e-53  0.222222
+## Idi1    1.173709   5.37688  180.8890  6.68049e-41  2.73643e-38  0.148148
+## Ddit4   0.844702   5.59699  109.5505  1.63456e-25  3.95637e-23  0.444444
+## Scd2    0.798049   5.70852  103.7377  2.98274e-24  7.05915e-22  0.259259
+## Sox9    0.537460   7.17373   99.3336  2.69822e-23  5.74720e-21  0.148148
+## Nkd1    0.719043   5.92690   93.9636  3.96635e-22  8.28267e-20  0.185185
+## Fdft1   0.841061   5.32293   89.8826  3.06448e-21  5.93394e-19  0.185185
+##        OtherDown
+##        <numeric>
+## Erdr1  0.0000000
+## Fdps   0.1851852
+## Msmo1  0.1851852
+## Hmgcs1 0.1111111
+## Idi1   0.1111111
+## Ddit4  0.0000000
+## Scd2   0.0740741
+## Sox9   0.0740741
+## Nkd1   0.0740741
+## Fdft1  0.1111111
+```
+
+The common theme here is that, in the absence of an ambient profile, we are using all labels as a proxy for the ambient effect.
+This can have unpredictable consequences as the results for each label are now dependent on the behavior of the entire dataset.
+For example, the metrics are susceptible to the idiosyncrasies of clustering where one cell type may be represented in multple related clusters that distort the percentages in `up.de` and `down.de` or the average log-fold change.
+The metrics may also be invalidated in analyses of a subset of the data - for example, a subclustering analysis focusing on a particular cell type may mark all relevant DEGs as problematic because they are consistently DE in all subtypes.
+
+### Subtracting ambient counts
+
+It is worth commenting on the seductive idea of subtracting the ambient counts from the pseudo-bulk samples.
+This may seem like the most obvious approach for removing ambient contamination, but unfortunately, subtracted counts have unpredictable statistical properties due the distortion of the mean-variance relationship.
+Minor relative fluctuations at very large counts become large fold-changes after subtraction, manifesting as spurious DE in genes where a substantial proportion of counts is derived from the ambient solution.
+For example, several hemoglobin genes retain strong DE even after subtraction of the scaled ambient profile.
+
+
+```r
+scaled.ambient <- controlAmbience(counts(summed.neural), ambient,
+    features=is.hbb,  mode="profile")
+subtracted <- counts(summed.neural) - scaled.ambient
+subtracted <- round(subtracted)
+subtracted[subtracted < 0] <- 0
+subtracted[is.hbb,]
+```
+
+```
+##         [,1] [,2] [,3] [,4]
+## Hbb-bt     0    0    7   18
+## Hbb-bs     1    2   31   42
+## Hbb-bh2    0    0    0    0
+## Hbb-bh1    2    0    0    0
+## Hbb-y      0    0   39  107
+## Hba-x      1    1    0    0
+## Hba-a1     0    0  365  452
+## Hba-a2     0    0  314  329
+```
+
+
+
+Another tempting approach is to use interaction models to implicitly subtract the ambient effect during GLM fitting.
+The assumption is that, for a genuine DEG, the log-fold change within cells is larger in magnitude than that in the ambient solution.
+This is based on the expectation that any DE in the latter is "diluted" by contributions from cell types where that gene is not DE.
+Unfortunately, this is not always the case; a DE analysis of the ambient counts indicates that the hemoglobin log-fold change is actually stronger in the neural crest cells compared to the ambient solution, which leads to the rather awkward conclusion that the WT neural crest cells are expressing hemoglobin beyond that explained by ambient contamination.
+
+
+```r
+y.ambient <- DGEList(ambient, samples=colData(summed.neural))
+y.ambient <- y.ambient[filterByExpr(y.ambient, group=y.ambient$samples$tomato),]
+y.ambient <- calcNormFactors(y.ambient)
+
+design <- model.matrix(~factor(block) + tomato, y.ambient$samples)
+y.ambient <- estimateDisp(y.ambient, design)
+fit.ambient <- glmQLFit(y.ambient, design, robust=TRUE)
+res.ambient <- glmQLFTest(fit.ambient, coef=ncol(design))
+
+summary(decideTests(res.ambient))
+```
+
+```
+##        tomatoTRUE
+## Down         1910
+## NotSig       7683
+## Up           1645
+```
+
+```r
+topTags(res.ambient, n=10)
+```
+
+```
+## Coefficient:  tomatoTRUE 
+##          logFC logCPM     F    PValue       FDR
+## Hbb-y   -5.267 12.803 15115 3.523e-81 3.959e-77
+## Hbb-bh1 -5.075 13.725 14002 8.892e-80 4.996e-76
+## Hba-x   -4.827 13.122 13317 3.135e-79 1.175e-75
+## Hba-a1  -4.662 10.734 11095 1.146e-76 3.220e-73
+## Hba-a2  -4.521  9.480  8411 1.246e-72 2.800e-69
+## Blvrb   -4.319  7.649  4129 3.066e-62 5.742e-59
+## Xist    -4.376  7.484  3891 1.864e-61 2.993e-58
+## Gypa    -5.138  7.213  3808 3.833e-61 5.384e-58
+## Hbb-bs  -4.941  7.209  3604 3.728e-60 4.655e-57
+## Car2    -3.499  8.534  4448 5.589e-60 6.281e-57
+```
+
+
+
+(One possible explanation is that erythrocyte fragments are present in the cell-containing libraries but are not used to estimate the ambient profile, presumably because the UMI counts are too high for fragment-containing libraries to be treated as empty.
+Technically speaking, this is not incorrect as, after all, those libraries are not actually empty (Section \@ref(qc-droplets)).
+In effect, every cell in the WT sample is a fractional multiplet with partial erythrocyte identity from the included fragments, which results in stronger log-fold changes between genotypes for hemoglobin compared to those for the ambient solution.)
+
+That aside, there are other issues with implicit subtraction in the fitted GLM that warrant caution with its use.
+This strategy precludes detection of DEGs that are common to all cell types as there is no longer a dilution effect being applied to the log-fold change in the ambient solution.
+It requires inclusion of the ambient profiles in the model, which is cause for at least some concern as they are unlikely to have the same degree of variability as the cell-derived pseudo-bulk profiles.
+Interpretation is also complicated by the fact that we are only interested in log-fold changes that are more extreme in the cells compared to the ambient solution; a non-zero interaction term is not sufficient for removing spurious DE.
+
+<!--
+Full interaction code, in case anyone's unconvinced.
+
+
+```r
+s <- factor(rep(1:4, 2))
+new.geno <- rep(rep(c("KO", "WT"), each=2), 2)
+is.ambient <- rep(c("N", "Y"), each=4)
+design.amb <- model.matrix(~0 + s + new.geno:is.ambient)
+
+# Get to full rank:
+design.amb <- design.amb[,!grepl("is.ambientY", colnames(design.amb))] 
+
+# Syntactically valid colnames:
+colnames(design.amb) <- make.names(colnames(design.amb)) 
+design.amb
+```
+
+
+```r
+y.amb <- DGEList(cbind(counts(summed.neural), ambient)
+y.amb <- y.amb[filterByExpr(y.amb, group=s),]
+y.amb <- calcNormFactors(y.amb)
+y.amb <- estimateDisp(y.amb, design.amb)
+fit.amb <- glmQLFit(y.amb, design.amb, robust=TRUE)    
+
+res.ko <- glmTreat(fit.amb, coef="new.genoKO.is.ambientN")
+summary(decideTests(res.ko))
+topTags(res.ko, n=10)
+
+res.wt <- glmTreat(fit.amb, coef="new.genoWT.is.ambientN")
+summary(decideTests(res.wt))
+topTags(res.wt, n=10)
+
+con <- makeContrasts(new.genoKO.is.ambientN - new.genoWT.is.ambientN, levels=design.amb)
+res.amb <- glmTreat(fit.amb, contrast=con)
+summary(decideTests(res.amb))
+topTags(res.amb, n=10)
+```
+
+
+```r
+tab.exp <- res.exp$table
+tab.amb <- res.amb$table
+okay <- sign(tab.exp$logFC)==sign(tab.amb$logFC)
+summary(okay)
+iut.p <- pmax(tab.exp$PValue, tab.amb$PValue)
+iut.p[!okay] <- 1
+final <- data.frame(row.names=rownames(tab.exp),
+    logFC=tab.exp$logFC, interaction=tab.amb$logFC,
+    PValue=iut.p, FDR=p.adjust(iut.p, method="BH"))
+final <- final[order(final$PValue),]
+sum(final$FDR <= 0.05)
+head(final, 10)
+```
+-->
 
 ## Differential abundance between conditions {#differential-abundance}
 
@@ -748,7 +1470,7 @@ This will reveal which cell types are depleted or enriched upon treatment, which
 The DA analysis has a long history in flow cytometry [@finak2014opencyto;@lun2017testing] where it is routinely used to examine the effects of different conditions on the composition of complex cell populations.
 By performing it here, we effectively treat scRNA-seq as a "super-FACS" technology for defining relevant subpopulations using the entire transcriptome.
 
-We prepare for the DA analysis by quantifying the number of cells assigned to each label (or cluster).
+We prepare for the DA analysis by quantifying the number of cells assigned to each label (or cluster) in our WT chimeric experiment.
 In this case, we are aiming to identify labels that change in abundance among the compartment of injected cells compared to the background.
 
 
@@ -1164,428 +1886,6 @@ For example, MNN correction assumes that the differences between samples are ort
 Arguably, this assumption is becomes more questionable if the between-sample differences are biological in nature, e.g., a treatment effect that makes one cell type seem more transcriptionally similar to another may cause the wrong clusters to be aligned across conditions.
 As usual, users will benefit from the diagnostics described in Chapter \@ref(integrating-datasets) and a healthy dose of skepticism.
 
-## Avoiding problems with ambient RNA {#ambient-problems}
-
-### Motivation
-
-Ambient contamination is a phenomenon that is generally most pronounced in massively multiplexed scRNA-seq protocols.
-Briefly, extracellular RNA (most commonly released upon cell lysis) is captured along with each cell in its reaction chamber, contributing counts to genes that are not otherwise expressed in that cell (see Section \@ref(qc-droplets)).
-Differences in the ambient profile across samples are not uncommon when dealing with strong experimental perturbations where strong expression of a gene in a condition-specific cell type can "bleed over" into all other cell types in the same sample.
-This is problematic for DE analyses between conditions, as DEGs detected for a particular cell type may be driven by differences in the ambient profiles rather than any intrinsic change in gene regulation. 
-
-To illustrate, we consider the _Tal1_-knockout (KO) chimera data from @pijuansala2019single.
-This is very similar to the WT chimera dataset we previously examined, only differing in that the _Tal1_ gene was knocked out in the injected cells.
-_Tal1_ is a transcription factor that has known roles in erythroid differentiation; the aim of the experiment was to determine if blocking of the erythroid lineage diverted cells to other developmental fates.
-(To cut a long story short: yes, it did.)
-
-
-```r
-library(MouseGastrulationData)
-sce.tal1 <- Tal1ChimeraData()
-
-library(scuttle)
-rownames(sce.tal1) <- uniquifyFeatureNames(
-    rowData(sce.tal1)$ENSEMBL, 
-    rowData(sce.tal1)$SYMBOL
-)
-sce.tal1
-```
-
-```
-## class: SingleCellExperiment 
-## dim: 29453 56122 
-## metadata(0):
-## assays(1): counts
-## rownames(29453): Xkr4 Gm1992 ... CAAA01147332.1 tomato-td
-## rowData names(2): ENSEMBL SYMBOL
-## colnames(56122): cell_1 cell_2 ... cell_56121 cell_56122
-## colData names(9): cell barcode ... pool sizeFactor
-## reducedDimNames(1): pca.corrected
-## altExpNames(0):
-```
-
-We will perform a DE analysis between WT and KO cells labelled as "neural crest".
-We observe that the strongest DEGs are the hemoglobins, which are downregulated in the injected cells.
-This is rather surprising as these cells are distinct from the erythroid lineage and should not express hemoglobins at all. 
-The most sober explanation is that the background samples contain more hemoglobin transcripts in the ambient solution due to leakage from erythrocytes (or their precursors) during sorting and dissociation.
-
-
-```r
-summed.tal1 <- aggregateAcrossCells(sce.tal1, 
-    ids=DataFrame(sample=sce.tal1$sample,
-        label=sce.tal1$celltype.mapped)
-)
-summed.neural <- summed.tal1[,summed.tal1$label=="Neural crest"]
-summed.neural
-```
-
-```
-## class: SingleCellExperiment 
-## dim: 29453 4 
-## metadata(0):
-## assays(1): counts
-## rownames(29453): Xkr4 Gm1992 ... CAAA01147332.1 tomato-td
-## rowData names(2): ENSEMBL SYMBOL
-## colnames: NULL
-## colData names(12): cell barcode ... label ncells
-## reducedDimNames(1): pca.corrected
-## altExpNames(0):
-```
-
-```r
-# Standard edgeR analysis, as described above.
-y.neural <- DGEList(counts(summed.neural), samples=colData(summed.neural))
-keep.neural <- filterByExpr(y.neural, group=y.neural$samples$tomato)
-y.neural <- y.neural[keep.neural,]
-y.neural <- calcNormFactors(y.neural)
-
-block <- y.neural$samples$sample %% 2 == 0
-design <- model.matrix(~factor(block) + factor(tomato), y.neural$samples)
-y.neural <- estimateDisp(y.neural, design)
-fit.neural <- glmQLFit(y.neural, design, robust=TRUE)
-res.neural <- glmQLFTest(fit.neural, coef=ncol(design))
-summary(decideTests(res.neural))
-```
-
-```
-##        factor(tomato)TRUE
-## Down                  351
-## NotSig               9818
-## Up                    481
-```
-
-```r
-topTags(res.neural, n=10)
-```
-
-```
-## Coefficient:  factor(tomato)TRUE 
-##           logFC logCPM       F     PValue        FDR
-## Hba-a1  -8.5967  6.744  2756.6  0.000e+00  0.000e+00
-## Hbb-y   -8.4156  8.357  7364.3  0.000e+00  0.000e+00
-## Hbb-bh1 -8.0910  9.160 10758.3  0.000e+00  0.000e+00
-## Hba-x   -7.7248  8.533  7896.5  0.000e+00  0.000e+00
-## Xist    -7.5557  8.212  6657.3  0.000e+00  0.000e+00
-## Hba-a2  -8.8662  5.813  1517.7 1.724e-310 3.060e-307
-## Erdr1    1.8895  7.616  1407.1 2.347e-289 3.570e-286
-## Cdkn1c  -8.8645  4.961   814.9 8.800e-173 1.171e-169
-## Uba52   -0.8797  8.386   424.2  1.866e-92  2.208e-89
-## Grb10   -1.4034  6.583   401.4  1.139e-87  1.213e-84
-```
-
-
-
-As an aside, it is worth mentioning that the "replicates" in this study are more technical than biological,
-so some exaggeration of the significance of the effects is to be expected.
-Nonetheless, it is a useful dataset to demonstrate some strategies for mitigating issues caused by ambient contamination.
-
-### Discarding ambient DEGs
-
-As shown above, the presence of ambient contamination makes it difficult to interpret multi-condition DE analyses.
-To mitigate its effects, we need to obtain an estimate of the ambient "expression" profile from the raw count matrix for each sample.
-We follow the approach used in `emptyDrops()` [@lun2018distinguishing] and consider all barcodes with total counts below 100 to represent empty droplets.
-We then sum the counts for each gene across these barcodes to obtain an expression vector representing the ambient profile for each sample.
-
-
-```r
-library(DropletUtils)
-ambient <- vector("list", ncol(summed.neural))
-
-# Looping over all raw (unfiltered) count matrices and
-# computing the ambient profile based on its low-count barcodes.
-# Turning off rounding, as we know this is count data.
-for (s in seq_along(ambient)) {
-    raw.tal1 <- Tal1ChimeraData(type="raw", samples=s)[[1]]
-    ambient[[s]] <- estimateAmbience(counts(raw.tal1), 
-        good.turing=FALSE, round=FALSE)
-}
-
-# Cleaning up the output for pretty printing.
-ambient <- do.call(cbind, ambient)
-colnames(ambient) <- seq_len(ncol(ambient))
-rownames(ambient) <- uniquifyFeatureNames(
-    rowData(raw.tal1)$ENSEMBL, 
-    rowData(raw.tal1)$SYMBOL
-)
-head(ambient)
-```
-
-```
-##          1  2  3  4
-## Xkr4     1  0  0  0
-## Gm1992   0  0  0  0
-## Gm37381  1  0  1  0
-## Rp1      0  1  0  1
-## Sox17   76 76 31 53
-## Gm37323  0  0  0  0
-```
-
-
-
-For each sample, we determine the maximum proportion of the count for each gene that could be attributed to ambient contamination.
-This is done by scaling the ambient profile in `ambient` to obtain a per-gene expected count from ambient contamination, with which we compute the $p$-value for observing a count equal to or lower than that in `summed.neural`. 
-We perform this for a range of scaling factors and identify the largest factor that yields a $p$-value above a given threshold.
-The scaled ambient profile represents the upper bound of the contribution to each sample from ambient contamination.
-We deliberately use an upper bound so that our next step will aggressively remove any gene that is potentially problematic.
-
-
-```r
-# Looping over all samples and computing the maximum proportion of 
-# counts explained by ambient contamination in each sample.
-max.ambient <- list()
-for (i in seq_len(ncol(ambient))) {
-    max.ambient[[i]] <- maximumAmbience(counts(summed.neural)[,i], 
-        ambient[,i], mode="proportion")
-}
-
-max.ambient <- do.call(cbind, max.ambient)
-dimnames(max.ambient) <- dimnames(ambient)
-head(max.ambient)
-```
-
-```
-##              1      2     3   4
-## Xkr4       NaN    NaN   NaN NaN
-## Gm1992     NaN    NaN   NaN NaN
-## Gm37381    NaN    NaN   NaN NaN
-## Rp1        NaN    NaN   NaN NaN
-## Sox17   0.1775 0.1833 0.468   1
-## Gm37323    NaN    NaN   NaN NaN
-```
-
-Genes in which over 10% of the counts are ambient-derived (averaged across samples) are subsequently discarded from our analysis.
-For balanced designs, this threshold prevents ambient contribution from biasing the true fold-change by more than 10%, which is a tolerable margin of error for most applications.
-(Unbalanced designs may warrant the use of a weighted average to account for sample size differences between groups.)
-This approach yields a slightly smaller list of DEGs without the hemoglobins, which is  encouraging as it suggests that any other (less obvious) effects of ambient contamination have also been removed.
-
-
-```r
-non.ambient <- rowMeans(max.ambient, na.rm=TRUE) <= 0.1
-summary(non.ambient)
-```
-
-```
-##    Mode   FALSE    TRUE    NA's 
-## logical    1475   15306   12672
-```
-
-```r
-okay.genes <- names(non.ambient)[which(non.ambient)]
-res.neural2 <- res.neural[rownames(res.neural) %in% okay.genes,]
-summary(decideTests(res.neural2))
-```
-
-```
-##        factor(tomato)TRUE
-## Down                  315
-## NotSig               9606
-## Up                    449
-```
-
-```r
-topTags(res.neural2)
-```
-
-```
-## Coefficient:  factor(tomato)TRUE 
-##                 logFC logCPM      F     PValue        FDR
-## Xist          -7.5557  8.212 6657.3  0.000e+00  0.000e+00
-## Erdr1          1.8895  7.616 1407.1 2.347e-289 1.217e-285
-## Uba52         -0.8797  8.386  424.2  1.866e-92  6.450e-89
-## Grb10         -1.4034  6.583  401.4  1.139e-87  2.953e-84
-## Gt(ROSA)26Sor  1.4813  5.716  351.9  2.801e-77  5.809e-74
-## Fdps           0.9814  7.218  337.2  3.677e-74  6.354e-71
-## Mest           0.5493 10.983  319.7  1.798e-70  2.664e-67
-## Impact         1.3967  5.718  314.7  2.051e-69  2.658e-66
-## H13           -1.4817  5.909  301.7  1.174e-66  1.352e-63
-## Msmo1          1.4938  5.439  301.1  1.580e-66  1.638e-63
-```
-
-
-
-An alternative approach to estimating the ambient proportions involves the use of prior knowledge of mutually exclusive gene expression profiles [@young2018soupx].
-In this case, we assume (reasonably) that hemoglobins should not be expressed in neural crest cells and use this to estimate the contamination in each sample.
-Specifically, we scale `ambient.hb` so that the hemoglobin coverage is the same as the corresponding sample of `neural.hb`; 
-this represents an direct estimate of the contaminating counts in each pseudo-bulk sample, unlike the upper bound provided by `maximumAmbience()`.
-It is then straightforward to use this to filter out genes in the same manner as described above.
-
-
-```r
-is.hbb <- grep("^Hb[ab]-", rownames(summed.neural))
-neural.hb <- colSums(counts(summed.neural)[is.hbb,])
-ambient.hb <- colSums(ambient[is.hbb,])
-scaled.ambient <- t(t(ambient) * neural.hb/ambient.hb)
-head(scaled.ambient)
-```
-
-```
-##                1       2       3       4
-## Xkr4    0.003565 0.00000 0.00000 0.00000
-## Gm1992  0.000000 0.00000 0.00000 0.00000
-## Gm37381 0.003565 0.00000 0.07736 0.00000
-## Rp1     0.000000 0.00463 0.00000 0.07029
-## Sox17   0.270955 0.35191 2.39810 3.72511
-## Gm37323 0.000000 0.00000 0.00000 0.00000
-```
-
-```r
-alt.prop <- scaled.ambient/counts(summed.neural)
-alt.prop[!is.finite(alt.prop)] <- NA
-alt.non.ambient <- rowMeans(alt.prop, na.rm=TRUE) <= 0.1
-summary(alt.non.ambient)
-```
-
-```
-##    Mode   FALSE    TRUE    NA's 
-## logical    1388   15393   12672
-```
-
-Any highly expressed cell type-specific gene is a good candidate for this procedure,
-most typically in cell types that are highly specialized towards manufacturing a protein product.
-Aside from hemoglobin, we have immunoglobulins in populations containing B cells,
-or insulin and glucagon in pancreas datasets (Figure \@ref(fig:viol-gcg-lawlor)).
-The experimental setting may also provide some genes that must only be present in the ambient solution;
-for example, the mitochondrial transcripts can be used to estimate ambient contamination in single-nucleus RNA-seq,
-while _Xist_ can be used for datasets involving mixtures of male and female cells
-(assuming that the rate of contamination does not differ by sex).
-
-### Subtracting ambient counts
-
-It is worth commenting on the seductive idea of subtracting the ambient counts from the pseudo-bulk samples.
-This may seem like the most obvious approach for removing ambient contamination, but unfortunately, subtracted counts have unpredictable statistical properties due the distortion of the mean-variance relationship.
-Minor relative fluctuations at very large counts become large fold-changes after subtraction, manifesting as spurious DE in genes where a substantial proportion of counts is derived from the ambient solution.
-For example, several hemoglobin genes retain strong DE even after subtraction of the scaled ambient profile.
-
-
-```r
-subtracted <- counts(summed.neural) - scaled.ambient
-subtracted <- round(subtracted)
-subtracted[subtracted < 0] <- 0
-subtracted[is.hbb,]
-```
-
-```
-##         [,1] [,2] [,3] [,4]
-## Hbb-bt     0    0    7   18
-## Hbb-bs     1    2   31   42
-## Hbb-bh2    0    0    0    0
-## Hbb-bh1    2    0    0    0
-## Hbb-y      0    0   39  107
-## Hba-x      1    1    0    0
-## Hba-a1     0    0  365  452
-## Hba-a2     0    0  314  329
-```
-
-Another tempting approach is to use interaction models to implicitly subtract the ambient effect during GLM fitting.
-The assumption is that, for a genuine DEG, the log-fold change within cells is larger in magnitude than that in the ambient solution.
-This is based on the expectation that any DE in the latter is "diluted" by contributions from cell types where that gene is not DE.
-Unfortunately, this is not always the case; a DE analysis of the ambient counts indicates that the hemoglobin log-fold change is actually stronger in the neural crest cells compared to the ambient solution, which leads to the rather awkward conclusion that the WT neural crest cells are expressing hemoglobin beyond that explained by ambient contamination.
-
-
-```r
-# Re-using keep.neural to simplify comparison.
-y.ambient <- DGEList(ambient)
-y.ambient <- y.ambient[keep.neural,]
-y.ambient <- calcNormFactors(y.ambient)
-y.ambient <- estimateDisp(y.ambient, design)
-fit.ambient <- glmQLFit(y.ambient, design, robust=TRUE)
-res.ambient <- glmQLFTest(fit.ambient, coef=ncol(design))
-summary(decideTests(res.ambient))
-```
-
-```
-##        factor(tomato)TRUE
-## Down                 1744
-## NotSig               7388
-## Up                   1518
-```
-
-```r
-topTags(res.ambient, n=10)
-```
-
-```
-## Coefficient:  factor(tomato)TRUE 
-##          logFC logCPM     F PValue FDR
-## Hbb-y   -5.265 12.802 13989      0   0
-## Gypa    -5.135  7.213  3372      0   0
-## Hbb-bh1 -5.072 13.723 13972      0   0
-## Hbb-bs  -4.939  7.208  3271      0   0
-## Snca    -4.932  5.927  1711      0   0
-## Hba-x   -4.825 13.121 12652      0   0
-## Cited4  -4.670  7.181  3086      0   0
-## Hba-a1  -4.659 10.733  9903      0   0
-## Alas2   -4.556  6.227  1842      0   0
-## Hba-a2  -4.519  9.479  7410      0   0
-```
-
-
-
-One possible explanation is that erythrocyte fragments are present in the cell-containing libraries but are not used to estimate the ambient profile, presumably because the UMI counts are too high for fragment-containing libraries to be treated as empty.
-Technically speaking, this is not incorrect as, after all, those libraries are not actually empty (Section \@ref(qc-droplets)).
-In effect, every cell in the WT sample is a fractional multiplet with partial erythrocyte identity from the included fragments, which results in stronger log-fold changes between genotypes for hemoglobin compared to those for the ambient solution.
-
-That aside, there are other issues with implicit subtraction in the fitted GLM that warrant caution with its use.
-This strategy precludes detection of DEGs that are common to all cell types as there is no longer a dilution effect being applied to the log-fold change in the ambient solution.
-It requires inclusion of the ambient profiles in the model, which is cause for at least some concern as they are unlikely to have the same degree of variability as the cell-derived pseudo-bulk profiles.
-Interpretation is also complicated by the fact that we are only interested in log-fold changes that are more extreme in the cells compared to the ambient solution; a non-zero interaction term is not sufficient for removing spurious DE.
-
-<!--
-Full interaction code, in case anyone's unconvinced.
-
-
-```r
-s <- factor(rep(1:4, 2))
-new.geno <- rep(rep(c("KO", "WT"), each=2), 2)
-is.ambient <- rep(c("N", "Y"), each=4)
-design.amb <- model.matrix(~0 + s + new.geno:is.ambient)
-
-# Get to full rank:
-design.amb <- design.amb[,!grepl("is.ambientY", colnames(design.amb))] 
-
-# Syntactically valid colnames:
-colnames(design.amb) <- make.names(colnames(design.amb)) 
-design.amb
-```
-
-
-```r
-y.amb <- DGEList(cbind(counts(summed.neural), ambient)
-y.amb <- y.amb[filterByExpr(y.amb, group=s),]
-y.amb <- calcNormFactors(y.amb)
-y.amb <- estimateDisp(y.amb, design.amb)
-fit.amb <- glmQLFit(y.amb, design.amb, robust=TRUE)    
-
-res.ko <- glmTreat(fit.amb, coef="new.genoKO.is.ambientN")
-summary(decideTests(res.ko))
-topTags(res.ko, n=10)
-
-res.wt <- glmTreat(fit.amb, coef="new.genoWT.is.ambientN")
-summary(decideTests(res.wt))
-topTags(res.wt, n=10)
-
-con <- makeContrasts(new.genoKO.is.ambientN - new.genoWT.is.ambientN, levels=design.amb)
-res.amb <- glmTreat(fit.amb, contrast=con)
-summary(decideTests(res.amb))
-topTags(res.amb, n=10)
-```
-
-
-```r
-tab.exp <- res.exp$table
-tab.amb <- res.amb$table
-okay <- sign(tab.exp$logFC)==sign(tab.amb$logFC)
-summary(okay)
-iut.p <- pmax(tab.exp$PValue, tab.amb$PValue)
-iut.p[!okay] <- 1
-final <- data.frame(row.names=rownames(tab.exp),
-    logFC=tab.exp$logFC, interaction=tab.amb$logFC,
-    PValue=iut.p, FDR=p.adjust(iut.p, method="BH"))
-final <- final[order(final$PValue),]
-sum(final$FDR <= 0.05)
-head(final, 10)
-```
--->
 
 ## Session Info {-}
 
@@ -1594,7 +1894,7 @@ head(final, 10)
 ```
 R version 4.0.2 (2020-06-22)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.4 LTS
+Running under: Ubuntu 18.04.5 LTS
 
 Matrix products: default
 BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
@@ -1613,69 +1913,69 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] DropletUtils_1.9.2          scuttle_0.99.10            
- [3] MouseGastrulationData_1.3.0 scran_1.17.3               
- [5] edgeR_3.31.4                limma_3.45.7               
- [7] scater_1.17.2               ggplot2_3.3.2              
+ [1] DropletUtils_1.9.10         scuttle_0.99.12            
+ [3] MouseGastrulationData_1.3.0 scran_1.17.15              
+ [5] edgeR_3.31.4                limma_3.45.10              
+ [7] scater_1.17.4               ggplot2_3.3.2              
  [9] BiocSingular_1.5.0          SingleCellExperiment_1.11.6
-[11] SummarizedExperiment_1.19.5 DelayedArray_0.15.6        
+[11] SummarizedExperiment_1.19.6 DelayedArray_0.15.7        
 [13] matrixStats_0.56.0          Matrix_1.2-18              
-[15] Biobase_2.49.0              GenomicRanges_1.41.5       
-[17] GenomeInfoDb_1.25.5         IRanges_2.23.10            
+[15] Biobase_2.49.0              GenomicRanges_1.41.6       
+[17] GenomeInfoDb_1.25.10        IRanges_2.23.10            
 [19] S4Vectors_0.27.12           BiocGenerics_0.35.4        
-[21] BiocStyle_2.17.0            simpleSingleCell_1.13.5    
+[21] BiocStyle_2.17.0            simpleSingleCell_1.13.16   
 
 loaded via a namespace (and not attached):
   [1] ggbeeswarm_0.6.0              colorspace_1.4-1             
-  [3] ellipsis_0.3.1                XVector_0.29.3               
-  [5] BiocNeighbors_1.7.0           farver_2.0.3                 
-  [7] bit64_0.9-7                   interactiveDisplayBase_1.27.5
-  [9] AnnotationDbi_1.51.1          R.methodsS3_1.8.0            
- [11] codetools_0.2-16              splines_4.0.2                
- [13] knitr_1.29                    dbplyr_1.4.4                 
- [15] R.oo_1.23.0                   pheatmap_1.0.12              
- [17] graph_1.67.1                  HDF5Array_1.17.3             
- [19] shiny_1.5.0                   BiocManager_1.30.10          
- [21] compiler_4.0.2                httr_1.4.1                   
- [23] dqrng_0.2.1                   assertthat_0.2.1             
- [25] fastmap_1.0.1                 later_1.1.0.1                
- [27] htmltools_0.5.0               tools_4.0.2                  
- [29] rsvd_1.0.3                    igraph_1.2.5                 
- [31] gtable_0.3.0                  glue_1.4.1                   
- [33] GenomeInfoDbData_1.2.3        dplyr_1.0.0                  
- [35] rappdirs_0.3.1                Rcpp_1.0.4.6                 
- [37] rhdf5filters_1.1.1            vctrs_0.3.1                  
- [39] ExperimentHub_1.15.0          DelayedMatrixStats_1.11.1    
- [41] xfun_0.15                     stringr_1.4.0                
- [43] ps_1.3.3                      mime_0.9                     
- [45] lifecycle_0.2.0               irlba_2.3.3                  
- [47] statmod_1.4.34                XML_3.99-0.3                 
- [49] AnnotationHub_2.21.1          zlibbioc_1.35.0              
- [51] scales_1.1.1                  promises_1.1.1               
- [53] rhdf5_2.33.4                  RColorBrewer_1.1-2           
- [55] yaml_2.2.1                    curl_4.3                     
- [57] memoise_1.1.0                 gridExtra_2.3                
- [59] stringi_1.4.6                 RSQLite_2.2.0                
- [61] BiocVersion_3.12.0            highr_0.8                    
- [63] BiocParallel_1.23.0           rlang_0.4.6                  
- [65] pkgconfig_2.0.3               bitops_1.0-6                 
- [67] evaluate_0.14                 lattice_0.20-41              
- [69] Rhdf5lib_1.11.2               purrr_0.3.4                  
- [71] CodeDepends_0.6.5             labeling_0.3                 
- [73] cowplot_1.0.0                 bit_1.1-15.2                 
- [75] processx_3.4.2                tidyselect_1.1.0             
- [77] magrittr_1.5                  bookdown_0.20                
- [79] R6_2.4.1                      generics_0.0.2               
- [81] DBI_1.1.0                     pillar_1.4.4                 
- [83] withr_2.2.0                   RCurl_1.98-1.2               
- [85] tibble_3.0.1                  crayon_1.3.4                 
- [87] BiocFileCache_1.13.0          rmarkdown_2.3                
- [89] viridis_0.5.1                 locfit_1.5-9.4               
- [91] grid_4.0.2                    blob_1.2.1                   
- [93] callr_3.4.3                   digest_0.6.25                
- [95] xtable_1.8-4                  httpuv_1.5.4                 
- [97] R.utils_2.9.2                 munsell_0.5.0                
- [99] beeswarm_0.2.3                viridisLite_0.3.0            
-[101] vipor_0.4.5                  
+  [3] ellipsis_0.3.1                bluster_0.99.1               
+  [5] XVector_0.29.3                BiocNeighbors_1.7.0          
+  [7] farver_2.0.3                  bit64_4.0.2                  
+  [9] interactiveDisplayBase_1.27.5 AnnotationDbi_1.51.3         
+ [11] R.methodsS3_1.8.0             codetools_0.2-16             
+ [13] splines_4.0.2                 knitr_1.29                   
+ [15] dbplyr_1.4.4                  R.oo_1.23.0                  
+ [17] pheatmap_1.0.12               graph_1.67.1                 
+ [19] HDF5Array_1.17.3              shiny_1.5.0                  
+ [21] BiocManager_1.30.10           compiler_4.0.2               
+ [23] httr_1.4.2                    dqrng_0.2.1                  
+ [25] assertthat_0.2.1              fastmap_1.0.1                
+ [27] later_1.1.0.1                 htmltools_0.5.0              
+ [29] tools_4.0.2                   rsvd_1.0.3                   
+ [31] igraph_1.2.5                  gtable_0.3.0                 
+ [33] glue_1.4.1                    GenomeInfoDbData_1.2.3       
+ [35] dplyr_1.0.1                   rappdirs_0.3.1               
+ [37] Rcpp_1.0.5                    rhdf5filters_1.1.2           
+ [39] vctrs_0.3.2                   ExperimentHub_1.15.1         
+ [41] DelayedMatrixStats_1.11.1     xfun_0.16                    
+ [43] stringr_1.4.0                 ps_1.3.4                     
+ [45] mime_0.9                      lifecycle_0.2.0              
+ [47] irlba_2.3.3                   statmod_1.4.34               
+ [49] XML_3.99-0.5                  AnnotationHub_2.21.2         
+ [51] zlibbioc_1.35.0               scales_1.1.1                 
+ [53] promises_1.1.1                rhdf5_2.33.7                 
+ [55] RColorBrewer_1.1-2            yaml_2.2.1                   
+ [57] curl_4.3                      memoise_1.1.0                
+ [59] gridExtra_2.3                 stringi_1.4.6                
+ [61] RSQLite_2.2.0                 BiocVersion_3.12.0           
+ [63] highr_0.8                     BiocParallel_1.23.2          
+ [65] rlang_0.4.7                   pkgconfig_2.0.3              
+ [67] bitops_1.0-6                  evaluate_0.14                
+ [69] lattice_0.20-41               Rhdf5lib_1.11.3              
+ [71] purrr_0.3.4                   CodeDepends_0.6.5            
+ [73] labeling_0.3                  cowplot_1.0.0                
+ [75] bit_4.0.4                     processx_3.4.3               
+ [77] tidyselect_1.1.0              magrittr_1.5                 
+ [79] bookdown_0.20                 R6_2.4.1                     
+ [81] generics_0.0.2                DBI_1.1.0                    
+ [83] pillar_1.4.6                  withr_2.2.0                  
+ [85] RCurl_1.98-1.2                tibble_3.0.3                 
+ [87] crayon_1.3.4                  BiocFileCache_1.13.1         
+ [89] rmarkdown_2.3                 viridis_0.5.1                
+ [91] locfit_1.5-9.4                grid_4.0.2                   
+ [93] blob_1.2.1                    callr_3.4.3                  
+ [95] digest_0.6.25                 xtable_1.8-4                 
+ [97] httpuv_1.5.4                  R.utils_2.9.2                
+ [99] munsell_0.5.0                 beeswarm_0.2.3               
+[101] viridisLite_0.3.0             vipor_0.4.5                  
 ```
 </div>

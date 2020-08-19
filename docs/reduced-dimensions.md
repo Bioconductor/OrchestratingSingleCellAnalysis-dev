@@ -1,7 +1,7 @@
 ---
 output:
   html_document
-bibliography: ../ref.bib
+bibliography: ref.bib
 ---
 
 # Dimensionality reduction
@@ -344,7 +344,7 @@ ncol(reducedDim(denoised.pbmc))
 ```
 
 ```
-## [1] 8
+## [1] 9
 ```
 
 
@@ -462,8 +462,7 @@ However, this would weaken the theoretical foundation of i.i.d.'ness for the MP 
 ```r
 # Generating more PCs for demonstration purposes:
 set.seed(10100101)
-sce.zeisel2 <- runPCA(sce.zeisel, subset_row=top.hvgs, 
-    ncomponents=200)
+sce.zeisel2 <- runPCA(sce.zeisel, subset_row=top.hvgs, ncomponents=200)
 
 mp.choice <- PCAtools::chooseMarchenkoPastur(
     .dim=c(length(top.hvgs), ncol(sce.zeisel2)),
@@ -474,7 +473,7 @@ mp.choice
 ```
 
 ```
-## [1] 1
+## [1] 142
 ## attr(,"limit")
 ## [1] 2.236
 ```
@@ -547,7 +546,7 @@ gv.choice
 ```
 
 ```
-## [1] 1
+## [1] 59
 ## attr(,"limit")
 ## [1] 2.992
 ```
@@ -780,17 +779,23 @@ However, UMAP is unarguably much faster, and for that reason alone, it is increa
 
 Dimensionality reduction for visualization necessarily involves discarding information and distorting the distances between cells in order to fit high-dimensional data into a 2-dimensional space.
 One might wonder whether the results of such extreme data compression can be trusted.
-Some of our more quantitative colleagues consider such visualizations to be more artistic than scientific, fit for little but impressing collaborators and reviewers.
-Perhaps this perspective is not entirely invalid, but we suggest that there is some value to be extracted from them provided that they are accompanied by an analysis of a higher-rank representation. 
+Indeed, some of our more quantitative colleagues consider such visualizations to be more artistic than scientific, fit for little but impressing collaborators and reviewers!
+Perhaps this perspective is not entirely invalid, but we suggest that there is some value to be extracted from them provided that they are accompanied by an analysis of a higher-rank representation.
 
+As a general rule, focusing on local neighborhoods provides the safest interpretation of $t$-SNE and UMAP plots.
+These methods spend considerable effort to ensure that each cell's nearest neighbors in high-dimensional space are still its neighbors in the two-dimensional embedding.
+Thus, if we see multiple cell types or clusters in a single unbroken "island" in the embedding, we could infer that those populations were also close neighbors in higher-dimensional space.
+However, less can be said about the distances between non-neighboring cells; there is no guarantee that large distances are faithfully recapitulated in the embedding, given the distortions necessary for this type of dimensionality reduction.
+It would be courageous to use the distances between islands (measured, on occasion, with a ruler!) to make statements about the relative similarity of distinct cell types.
+
+On a related note, we prefer to restrict the $t$-SNE/UMAP coordinates for visualization and use the higher-rank representation for any quantitative analyses.
 To illustrate, consider the interaction between clustering and $t$-SNE.
-As a general rule, we would not perform clustering on the $t$-SNE coordinates.
-Rather, we would cluster on the first 10-50 PCs (Chapter \ref(clustering)) and then visualize the cluster identities on the $t$-SNE plot.
+We do not perform clustering on the $t$-SNE coordinates, but rather, we cluster on the first 10-50 PCs (Chapter \ref(clustering)) and then visualize the cluster identities on $t$-SNE plots like that in Figure \@ref(fig:tsne-brain). 
 This ensures that clustering makes use of the information that was lost during compression into two dimensions for visualization.
-The plot can then be used for a diagnostic inspection of the clustering output, e.g., to check which clusters are close neighbors or whether a cluster can be split into further subclusters; such interpretations of $t$-SNE coordinates are generally safe.
+The plot can then be used for a diagnostic inspection of the clustering output, e.g., to check which clusters are close neighbors or whether a cluster can be split into further subclusters; this follows the aforementioned theme of focusing on local structure.
 
 From a naive perspective, using the $t$-SNE coordinates directly for clustering is tempting as it ensures that any results are immediately consistent with the visualization.
-Given that clustering is rather arbitrary anyway, there is nothing inherently wrong with this strategy - it can be treated as a rather circuitous implementation of graph-based clustering (Section \@ref(clustering-graph)).
+Given that clustering is rather arbitrary anyway, there is nothing inherently wrong with this strategy - in fact, it can be treated as a rather circuitous implementation of graph-based clustering (Section \@ref(clustering-graph)).
 However, the enforced consistency can actually be considered a disservice as it masks the ambiguity of the conclusions, either due to the loss of information from dimensionality reduction or the uncertainty of the clustering.
 Rather than being errors, major discrepancies can instead be useful for motivating further investigation into the less obvious aspects of the dataset; conversely, the lack of discrepancies increases trust in the conclusions.
 
@@ -803,7 +808,7 @@ Or perhaps more bluntly: do not let the tail (of visualization) wag the dog (of 
 ```
 R version 4.0.2 (2020-06-22)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.4 LTS
+Running under: Ubuntu 18.04.5 LTS
 
 Matrix products: default
 BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
@@ -822,61 +827,56 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] BiocSingular_1.5.0          scater_1.17.2              
- [3] ggplot2_3.3.2               scran_1.17.3               
- [5] SingleCellExperiment_1.11.6 SummarizedExperiment_1.19.5
- [7] DelayedArray_0.15.6         matrixStats_0.56.0         
+ [1] BiocSingular_1.5.0          scater_1.17.4              
+ [3] ggplot2_3.3.2               scran_1.17.15              
+ [5] SingleCellExperiment_1.11.6 SummarizedExperiment_1.19.6
+ [7] DelayedArray_0.15.7         matrixStats_0.56.0         
  [9] Matrix_1.2-18               Biobase_2.49.0             
-[11] GenomicRanges_1.41.5        GenomeInfoDb_1.25.5        
+[11] GenomicRanges_1.41.6        GenomeInfoDb_1.25.10       
 [13] IRanges_2.23.10             S4Vectors_0.27.12          
 [15] BiocGenerics_0.35.4         BiocStyle_2.17.0           
-[17] simpleSingleCell_1.13.5    
+[17] simpleSingleCell_1.13.16   
 
 loaded via a namespace (and not attached):
- [1] bitops_1.0-6              RColorBrewer_1.1-2       
- [3] ash_1.0-15                tools_4.0.2              
- [5] R6_2.4.1                  irlba_2.3.3              
- [7] KernSmooth_2.23-17        vipor_0.4.5              
- [9] uwot_0.1.8                colorspace_1.4-1         
-[11] withr_2.2.0               tidyselect_1.1.0         
-[13] gridExtra_2.3             processx_3.4.2           
-[15] ggalt_0.4.0               extrafontdb_1.0          
-[17] compiler_4.0.2            graph_1.67.1             
-[19] BiocNeighbors_1.7.0       labeling_0.3             
-[21] bookdown_0.20             scales_1.1.1             
-[23] proj4_1.0-10              callr_3.4.3              
-[25] stringr_1.4.0             digest_0.6.25            
-[27] rmarkdown_2.3             XVector_0.29.3           
-[29] pkgconfig_2.0.3           htmltools_0.5.0          
-[31] extrafont_0.17            limma_3.45.7             
-[33] highr_0.8                 maps_3.3.0               
-[35] rlang_0.4.6               FNN_1.1.3                
-[37] DelayedMatrixStats_1.11.1 farver_2.0.3             
-[39] generics_0.0.2            BiocParallel_1.23.0      
-[41] dplyr_1.0.0               RCurl_1.98-1.2           
-[43] magrittr_1.5              GenomeInfoDbData_1.2.3   
-[45] scuttle_0.99.10           Rcpp_1.0.4.6             
-[47] ggbeeswarm_0.6.0          munsell_0.5.0            
-[49] viridis_0.5.1             PCAtools_2.1.12          
-[51] lifecycle_0.2.0           stringi_1.4.6            
-[53] yaml_2.2.1                edgeR_3.31.4             
-[55] MASS_7.3-51.6             zlibbioc_1.35.0          
-[57] Rtsne_0.15                plyr_1.8.6               
-[59] grid_4.0.2                ggrepel_0.8.2            
-[61] dqrng_0.2.1               crayon_1.3.4             
-[63] lattice_0.20-41           cowplot_1.0.0            
-[65] locfit_1.5-9.4            CodeDepends_0.6.5        
-[67] knitr_1.29                ps_1.3.3                 
-[69] pillar_1.4.4              igraph_1.2.5             
-[71] reshape2_1.4.4            codetools_0.2-16         
-[73] XML_3.99-0.3              glue_1.4.1               
-[75] evaluate_0.14             BiocManager_1.30.10      
-[77] vctrs_0.3.1               Rttf2pt1_1.3.8           
-[79] RMTstat_0.3               gtable_0.3.0             
-[81] purrr_0.3.4               xfun_0.15                
-[83] rsvd_1.0.3                RSpectra_0.16-0          
-[85] viridisLite_0.3.0         tibble_3.0.1             
-[87] beeswarm_0.2.3            statmod_1.4.34           
-[89] ellipsis_0.3.1           
+ [1] bitops_1.0-6              tools_4.0.2              
+ [3] R6_2.4.1                  irlba_2.3.3              
+ [5] vipor_0.4.5               uwot_0.1.8               
+ [7] colorspace_1.4-1          withr_2.2.0              
+ [9] tidyselect_1.1.0          gridExtra_2.3            
+[11] processx_3.4.3            compiler_4.0.2           
+[13] graph_1.67.1              BiocNeighbors_1.7.0      
+[15] labeling_0.3              bookdown_0.20            
+[17] scales_1.1.1              callr_3.4.3              
+[19] stringr_1.4.0             digest_0.6.25            
+[21] rmarkdown_2.3             XVector_0.29.3           
+[23] pkgconfig_2.0.3           htmltools_0.5.0          
+[25] limma_3.45.10             highr_0.8                
+[27] rlang_0.4.7               FNN_1.1.3                
+[29] DelayedMatrixStats_1.11.1 generics_0.0.2           
+[31] farver_2.0.3              BiocParallel_1.23.2      
+[33] dplyr_1.0.1               RCurl_1.98-1.2           
+[35] magrittr_1.5              GenomeInfoDbData_1.2.3   
+[37] scuttle_0.99.12           Rcpp_1.0.5               
+[39] ggbeeswarm_0.6.0          munsell_0.5.0            
+[41] viridis_0.5.1             PCAtools_2.1.22          
+[43] lifecycle_0.2.0           stringi_1.4.6            
+[45] yaml_2.2.1                edgeR_3.31.4             
+[47] zlibbioc_1.35.0           Rtsne_0.15               
+[49] plyr_1.8.6                grid_4.0.2               
+[51] ggrepel_0.8.2             dqrng_0.2.1              
+[53] crayon_1.3.4              lattice_0.20-41          
+[55] cowplot_1.0.0             locfit_1.5-9.4           
+[57] CodeDepends_0.6.5         knitr_1.29               
+[59] ps_1.3.4                  pillar_1.4.6             
+[61] igraph_1.2.5              reshape2_1.4.4           
+[63] codetools_0.2-16          XML_3.99-0.5             
+[65] glue_1.4.1                evaluate_0.14            
+[67] BiocManager_1.30.10       vctrs_0.3.2              
+[69] gtable_0.3.0              RMTstat_0.3              
+[71] purrr_0.3.4               xfun_0.16                
+[73] rsvd_1.0.3                RSpectra_0.16-0          
+[75] viridisLite_0.3.0         tibble_3.0.3             
+[77] beeswarm_0.2.3            bluster_0.99.1           
+[79] statmod_1.4.34            ellipsis_0.3.1           
 ```
 </div>

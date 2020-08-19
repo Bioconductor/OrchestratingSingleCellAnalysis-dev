@@ -1,7 +1,6 @@
 ---
-output:
-  html_document
-bibliography: ../ref.bib
+output: html_document
+bibliography: ref.bib
 ---
 
 # Interactive data exploration {#interactive-sharing}
@@ -457,7 +456,7 @@ For demonstration and inspiration, we refer readers to the following examples of
 ```
 R version 4.0.2 (2020-06-22)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.4 LTS
+Running under: Ubuntu 18.04.5 LTS
 
 Matrix products: default
 BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
@@ -476,65 +475,66 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] scran_1.17.3                scater_1.17.2              
- [3] ggplot2_3.3.2               iSEE_2.1.8                 
- [5] SingleCellExperiment_1.11.6 SummarizedExperiment_1.19.5
- [7] DelayedArray_0.15.6         matrixStats_0.56.0         
+ [1] scran_1.17.15               scater_1.17.4              
+ [3] ggplot2_3.3.2               iSEE_2.1.12                
+ [5] SingleCellExperiment_1.11.6 SummarizedExperiment_1.19.6
+ [7] DelayedArray_0.15.7         matrixStats_0.56.0         
  [9] Matrix_1.2-18               Biobase_2.49.0             
-[11] GenomicRanges_1.41.5        GenomeInfoDb_1.25.5        
+[11] GenomicRanges_1.41.6        GenomeInfoDb_1.25.10       
 [13] IRanges_2.23.10             S4Vectors_0.27.12          
 [15] BiocGenerics_0.35.4         BiocStyle_2.17.0           
-[17] simpleSingleCell_1.13.5    
+[17] simpleSingleCell_1.13.16   
 
 loaded via a namespace (and not attached):
  [1] ggbeeswarm_0.6.0          colorspace_1.4-1         
  [3] rjson_0.2.20              ellipsis_0.3.1           
- [5] circlize_0.4.10           scuttle_0.99.10          
- [7] XVector_0.29.3            GlobalOptions_0.1.2      
- [9] BiocNeighbors_1.7.0       clue_0.3-57              
-[11] DT_0.14                   codetools_0.2-16         
-[13] splines_4.0.2             knitr_1.29               
-[15] jsonlite_1.7.0            cluster_2.1.0            
-[17] png_0.1-7                 shinydashboard_0.7.1     
-[19] graph_1.67.1              shiny_1.5.0              
-[21] BiocManager_1.30.10       compiler_4.0.2           
-[23] dqrng_0.2.1               fastmap_1.0.1            
-[25] limma_3.45.7              later_1.1.0.1            
-[27] BiocSingular_1.5.0        htmltools_0.5.0          
-[29] tools_4.0.2               rsvd_1.0.3               
-[31] igraph_1.2.5              gtable_0.3.0             
-[33] glue_1.4.1                GenomeInfoDbData_1.2.3   
-[35] dplyr_1.0.0               Rcpp_1.0.4.6             
-[37] vctrs_0.3.1               nlme_3.1-148             
-[39] rintrojs_0.2.2            DelayedMatrixStats_1.11.1
-[41] xfun_0.15                 stringr_1.4.0            
-[43] ps_1.3.3                  mime_0.9                 
-[45] miniUI_0.1.1.1            lifecycle_0.2.0          
-[47] irlba_2.3.3               statmod_1.4.34           
-[49] XML_3.99-0.3              shinyAce_0.4.1           
-[51] edgeR_3.31.4              zlibbioc_1.35.0          
-[53] scales_1.1.1              colourpicker_1.0         
-[55] promises_1.1.1            RColorBrewer_1.1-2       
-[57] ComplexHeatmap_2.5.3      yaml_2.2.1               
-[59] gridExtra_2.3             stringi_1.4.6            
-[61] highr_0.8                 BiocParallel_1.23.0      
-[63] shape_1.4.4               rlang_0.4.6              
-[65] pkgconfig_2.0.3           bitops_1.0-6             
-[67] evaluate_0.14             lattice_0.20-41          
-[69] purrr_0.3.4               CodeDepends_0.6.5        
-[71] htmlwidgets_1.5.1         processx_3.4.2           
-[73] tidyselect_1.1.0          magrittr_1.5             
-[75] bookdown_0.20             R6_2.4.1                 
-[77] generics_0.0.2            pillar_1.4.4             
-[79] withr_2.2.0               mgcv_1.8-31              
-[81] RCurl_1.98-1.2            tibble_3.0.1             
-[83] crayon_1.3.4              shinyWidgets_0.5.3       
-[85] rmarkdown_2.3             viridis_0.5.1            
-[87] GetoptLong_1.0.0          locfit_1.5-9.4           
-[89] grid_4.0.2                callr_3.4.3              
-[91] digest_0.6.25             xtable_1.8-4             
-[93] httpuv_1.5.4              munsell_0.5.0            
-[95] beeswarm_0.2.3            viridisLite_0.3.0        
-[97] vipor_0.4.5               shinyjs_1.1              
+ [5] circlize_0.4.10           scuttle_0.99.12          
+ [7] bluster_0.99.1            XVector_0.29.3           
+ [9] GlobalOptions_0.1.2       BiocNeighbors_1.7.0      
+[11] clue_0.3-57               DT_0.15                  
+[13] codetools_0.2-16          splines_4.0.2            
+[15] knitr_1.29                jsonlite_1.7.0           
+[17] cluster_2.1.0             png_0.1-7                
+[19] shinydashboard_0.7.1      graph_1.67.1             
+[21] shiny_1.5.0               BiocManager_1.30.10      
+[23] compiler_4.0.2            dqrng_0.2.1              
+[25] fastmap_1.0.1             limma_3.45.10            
+[27] later_1.1.0.1             BiocSingular_1.5.0       
+[29] htmltools_0.5.0           tools_4.0.2              
+[31] rsvd_1.0.3                igraph_1.2.5             
+[33] gtable_0.3.0              glue_1.4.1               
+[35] GenomeInfoDbData_1.2.3    dplyr_1.0.1              
+[37] Rcpp_1.0.5                vctrs_0.3.2              
+[39] nlme_3.1-148              rintrojs_0.2.2           
+[41] DelayedMatrixStats_1.11.1 xfun_0.16                
+[43] stringr_1.4.0             ps_1.3.4                 
+[45] mime_0.9                  miniUI_0.1.1.1           
+[47] lifecycle_0.2.0           irlba_2.3.3              
+[49] statmod_1.4.34            XML_3.99-0.5             
+[51] shinyAce_0.4.1            edgeR_3.31.4             
+[53] zlibbioc_1.35.0           scales_1.1.1             
+[55] colourpicker_1.0          promises_1.1.1           
+[57] RColorBrewer_1.1-2        ComplexHeatmap_2.5.5     
+[59] yaml_2.2.1                gridExtra_2.3            
+[61] stringi_1.4.6             highr_0.8                
+[63] BiocParallel_1.23.2       shape_1.4.4              
+[65] rlang_0.4.7               pkgconfig_2.0.3          
+[67] bitops_1.0-6              evaluate_0.14            
+[69] lattice_0.20-41           purrr_0.3.4              
+[71] CodeDepends_0.6.5         htmlwidgets_1.5.1        
+[73] processx_3.4.3            tidyselect_1.1.0         
+[75] magrittr_1.5              bookdown_0.20            
+[77] R6_2.4.1                  generics_0.0.2           
+[79] pillar_1.4.6              withr_2.2.0              
+[81] mgcv_1.8-31               RCurl_1.98-1.2           
+[83] tibble_3.0.3              crayon_1.3.4             
+[85] shinyWidgets_0.5.3        rmarkdown_2.3            
+[87] viridis_0.5.1             GetoptLong_1.0.2         
+[89] locfit_1.5-9.4            grid_4.0.2               
+[91] callr_3.4.3               digest_0.6.25            
+[93] xtable_1.8-4              httpuv_1.5.4             
+[95] munsell_0.5.0             beeswarm_0.2.3           
+[97] viridisLite_0.3.0         vipor_0.4.5              
+[99] shinyjs_1.1              
 ```
 </div>

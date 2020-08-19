@@ -226,13 +226,16 @@ sce.bone <- runUMAP(sce.bone, dimred="MNN",
 
 Graph-based clustering generates an excessively large intermediate graph so we will instead use a two-step approach with $k$-means.
 We generate 1000 small clusters that are subsequently aggregated into more interpretable groups with a graph-based method.
+If more resolution is required, we can increase `centers` in addition to using a lower `k` during graph construction.
 
 
 ```r
+library(bluster)
+
 set.seed(1000)
-clust.bone <- clusterSNNGraph(sce.bone, use.dimred="MNN", 
-    use.kmeans=TRUE, kmeans.centers=1000, k=5)
-colLabels(sce.bone) <- factor(clust.bone)
+colLabels(sce.bone) <- clusterRows(reducedDim(sce.bone, "MNN"),
+    TwoStepParam(KmeansParam(centers=1000), NNGraphParam(k=5)))
+
 table(colLabels(sce.bone))
 ```
 
@@ -488,7 +491,7 @@ lines(SlingshotDataSet(slc), lwd = 2, col = 'black')
 ```
 R version 4.0.2 (2020-06-22)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.4 LTS
+Running under: Ubuntu 18.04.5 LTS
 
 Matrix products: default
 BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
@@ -507,69 +510,69 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] SingleR_1.3.6               celldex_0.99.1             
- [3] pheatmap_1.0.12             BiocNeighbors_1.7.0        
- [5] batchelor_1.5.1             scran_1.17.3               
- [7] BiocParallel_1.23.0         scater_1.17.2              
- [9] ggplot2_3.3.2               EnsDb.Hsapiens.v86_2.99.0  
-[11] ensembldb_2.13.1            AnnotationFilter_1.13.0    
-[13] GenomicFeatures_1.41.0      AnnotationDbi_1.51.1       
-[15] rhdf5_2.33.4                HCAData_1.5.1              
-[17] SingleCellExperiment_1.11.6 SummarizedExperiment_1.19.5
-[19] DelayedArray_0.15.6         matrixStats_0.56.0         
-[21] Matrix_1.2-18               Biobase_2.49.0             
-[23] GenomicRanges_1.41.5        GenomeInfoDb_1.25.5        
-[25] IRanges_2.23.10             S4Vectors_0.27.12          
-[27] BiocGenerics_0.35.4         BiocStyle_2.17.0           
-[29] simpleSingleCell_1.13.5    
+ [1] SingleR_1.3.7               celldex_0.99.1             
+ [3] pheatmap_1.0.12             bluster_0.99.1             
+ [5] BiocNeighbors_1.7.0         batchelor_1.5.2            
+ [7] scran_1.17.15               BiocParallel_1.23.2        
+ [9] scater_1.17.4               ggplot2_3.3.2              
+[11] EnsDb.Hsapiens.v86_2.99.0   ensembldb_2.13.1           
+[13] AnnotationFilter_1.13.0     GenomicFeatures_1.41.2     
+[15] AnnotationDbi_1.51.3        rhdf5_2.33.7               
+[17] HCAData_1.5.1               SingleCellExperiment_1.11.6
+[19] SummarizedExperiment_1.19.6 DelayedArray_0.15.7        
+[21] matrixStats_0.56.0          Matrix_1.2-18              
+[23] Biobase_2.49.0              GenomicRanges_1.41.6       
+[25] GenomeInfoDb_1.25.10        IRanges_2.23.10            
+[27] S4Vectors_0.27.12           BiocGenerics_0.35.4        
+[29] BiocStyle_2.17.0            simpleSingleCell_1.13.16   
 
 loaded via a namespace (and not attached):
-  [1] AnnotationHub_2.21.1          BiocFileCache_1.13.0         
+  [1] AnnotationHub_2.21.2          BiocFileCache_1.13.1         
   [3] igraph_1.2.5                  lazyeval_0.2.2               
   [5] digest_0.6.25                 htmltools_0.5.0              
   [7] viridis_0.5.1                 magrittr_1.5                 
-  [9] memoise_1.1.0                 limma_3.45.7                 
+  [9] memoise_1.1.0                 limma_3.45.10                
  [11] Biostrings_2.57.2             askpass_1.1                  
  [13] prettyunits_1.1.1             colorspace_1.4-1             
  [15] blob_1.2.1                    rappdirs_0.3.1               
- [17] xfun_0.15                     dplyr_1.0.0                  
+ [17] xfun_0.16                     dplyr_1.0.1                  
  [19] callr_3.4.3                   crayon_1.3.4                 
  [21] RCurl_1.98-1.2                graph_1.67.1                 
  [23] glue_1.4.1                    gtable_0.3.0                 
  [25] zlibbioc_1.35.0               XVector_0.29.3               
- [27] BiocSingular_1.5.0            Rhdf5lib_1.11.2              
+ [27] BiocSingular_1.5.0            Rhdf5lib_1.11.3              
  [29] HDF5Array_1.17.3              scales_1.1.1                 
  [31] DBI_1.1.0                     edgeR_3.31.4                 
- [33] Rcpp_1.0.4.6                  viridisLite_0.3.0            
+ [33] Rcpp_1.0.5                    viridisLite_0.3.0            
  [35] xtable_1.8-4                  progress_1.2.2               
- [37] dqrng_0.2.1                   bit_1.1-15.2                 
- [39] rsvd_1.0.3                    httr_1.4.1                   
+ [37] dqrng_0.2.1                   bit_4.0.4                    
+ [39] rsvd_1.0.3                    httr_1.4.2                   
  [41] RColorBrewer_1.1-2            ellipsis_0.3.1               
- [43] pkgconfig_2.0.3               XML_3.99-0.3                 
- [45] farver_2.0.3                  scuttle_0.99.10              
+ [43] pkgconfig_2.0.3               XML_3.99-0.5                 
+ [45] farver_2.0.3                  scuttle_0.99.12              
  [47] CodeDepends_0.6.5             uwot_0.1.8                   
  [49] dbplyr_1.4.4                  locfit_1.5-9.4               
  [51] tidyselect_1.1.0              labeling_0.3                 
- [53] rlang_0.4.6                   later_1.1.0.1                
+ [53] rlang_0.4.7                   later_1.1.0.1                
  [55] munsell_0.5.0                 BiocVersion_3.12.0           
  [57] tools_4.0.2                   generics_0.0.2               
- [59] RSQLite_2.2.0                 ExperimentHub_1.15.0         
+ [59] RSQLite_2.2.0                 ExperimentHub_1.15.1         
  [61] evaluate_0.14                 stringr_1.4.0                
  [63] fastmap_1.0.1                 yaml_2.2.1                   
- [65] processx_3.4.2                knitr_1.29                   
- [67] bit64_0.9-7                   purrr_0.3.4                  
- [69] mime_0.9                      biomaRt_2.45.1               
+ [65] processx_3.4.3                knitr_1.29                   
+ [67] bit64_4.0.2                   purrr_0.3.4                  
+ [69] mime_0.9                      biomaRt_2.45.2               
  [71] compiler_4.0.2                beeswarm_0.2.3               
  [73] curl_4.3                      interactiveDisplayBase_1.27.5
- [75] tibble_3.0.1                  statmod_1.4.34               
+ [75] tibble_3.0.3                  statmod_1.4.34               
  [77] stringi_1.4.6                 highr_0.8                    
- [79] ps_1.3.3                      RSpectra_0.16-0              
+ [79] ps_1.3.4                      RSpectra_0.16-0              
  [81] lattice_0.20-41               ProtGenerics_1.21.0          
- [83] vctrs_0.3.1                   pillar_1.4.4                 
- [85] lifecycle_0.2.0               rhdf5filters_1.1.1           
+ [83] vctrs_0.3.2                   pillar_1.4.6                 
+ [85] lifecycle_0.2.0               rhdf5filters_1.1.2           
  [87] BiocManager_1.30.10           cowplot_1.0.0                
  [89] bitops_1.0-6                  irlba_2.3.3                  
- [91] httpuv_1.5.4                  rtracklayer_1.49.3           
+ [91] httpuv_1.5.4                  rtracklayer_1.49.5           
  [93] R6_2.4.1                      bookdown_0.20                
  [95] promises_1.1.1                gridExtra_2.3                
  [97] vipor_0.4.5                   codetools_0.2-16             

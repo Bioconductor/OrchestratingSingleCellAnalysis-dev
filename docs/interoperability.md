@@ -85,7 +85,7 @@ However, the principles of interoperability are generally applicable and are wor
 ```
 R version 4.0.2 (2020-06-22)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.4 LTS
+Running under: Ubuntu 18.04.5 LTS
 
 Matrix products: default
 BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
@@ -103,16 +103,16 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] BiocStyle_2.17.0        simpleSingleCell_1.13.5
+[1] BiocStyle_2.17.0         simpleSingleCell_1.13.16
 
 loaded via a namespace (and not attached):
- [1] bookdown_0.20       codetools_0.2-16    XML_3.99-0.3       
- [4] ps_1.3.3            digest_0.6.25       stats4_4.0.2       
+ [1] bookdown_0.20       codetools_0.2-16    XML_3.99-0.5       
+ [4] ps_1.3.4            digest_0.6.25       stats4_4.0.2       
  [7] magrittr_1.5        evaluate_0.14       highr_0.8          
-[10] graph_1.67.1        rlang_0.4.6         stringi_1.4.6      
+[10] graph_1.67.1        rlang_0.4.7         stringi_1.4.6      
 [13] callr_3.4.3         rmarkdown_2.3       tools_4.0.2        
-[16] stringr_1.4.0       processx_3.4.2      parallel_4.0.2     
-[19] xfun_0.15           yaml_2.2.1          compiler_4.0.2     
+[16] stringr_1.4.0       processx_3.4.3      parallel_4.0.2     
+[19] xfun_0.16           yaml_2.2.1          compiler_4.0.2     
 [22] BiocGenerics_0.35.4 BiocManager_1.30.10 htmltools_0.5.0    
 [25] CodeDepends_0.6.5   knitr_1.29         
 ```

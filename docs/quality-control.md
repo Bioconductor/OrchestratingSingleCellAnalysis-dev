@@ -1,7 +1,7 @@
 ---
 output:
   html_document
-bibliography: ../ref.bib
+bibliography: ref.bib
 ---
 
 # Quality Control
@@ -549,7 +549,7 @@ summary(multi.outlier)
 
 ```
 ##    Mode   FALSE    TRUE 
-## logical     180      12
+## logical     183       9
 ```
 
 This and related approaches like PCA-based outlier detection and support vector machines can provide more power to distinguish low-quality cells from high-quality counterparts [@ilicic2016classification] as they can exploit patterns across many QC metrics. 
@@ -661,186 +661,6 @@ The weakness of the correlations motivates the use of several metrics to capture
 Of course, the flipside is that these metrics may also represent different aspects of biology,
 increasing the risk of discarding entire cell types as discussed in Section \@ref(outlier-assumptions).
 
-## Cell calling for droplet data {#qc-droplets}
-
-### Background
-
-An unique aspect of droplet-based data is that we have no prior knowledge about whether a particular library (i.e., cell barcode) corresponds to cell-containing or empty droplets.
-Thus, we need to call cells from empty droplets based on the observed expression profiles.
-This is not entirely straightforward as empty droplets can contain ambient (i.e., extracellular) RNA that can be captured and sequenced, resulting in non-zero counts for libraries that do not contain any cell.
-To demonstrate, we obtain the **unfiltered** count matrix for the PBMC dataset from 10X Genomics.
-
-
-```r
-library(BiocFileCache)
-bfc <- BiocFileCache("raw_data", ask = FALSE)
-raw.path <- bfcrpath(bfc, file.path("http://cf.10xgenomics.com/samples",
-    "cell-exp/2.1.0/pbmc4k/pbmc4k_raw_gene_bc_matrices.tar.gz"))
-untar(raw.path, exdir=file.path(tempdir(), "pbmc4k"))
-
-library(DropletUtils)
-library(Matrix)
-fname <- file.path(tempdir(), "pbmc4k/raw_gene_bc_matrices/GRCh38")
-sce.pbmc <- read10xCounts(fname, col.names=TRUE)
-sce.pbmc
-```
-
-```
-## class: SingleCellExperiment 
-## dim: 33694 737280 
-## metadata(1): Samples
-## assays(1): counts
-## rownames(33694): ENSG00000243485 ENSG00000237613 ... ENSG00000277475
-##   ENSG00000268674
-## rowData names(2): ID Symbol
-## colnames(737280): AAACCTGAGAAACCAT-1 AAACCTGAGAAACCGC-1 ...
-##   TTTGTCATCTTTAGTC-1 TTTGTCATCTTTCCTC-1
-## colData names(2): Sample Barcode
-## reducedDimNames(0):
-## altExpNames(0):
-```
-
-The distribution of total counts exhibits a sharp transition between barcodes with large and small total counts (Figure \@ref(fig:rankplot)), probably corresponding to cell-containing and empty droplets respectively.
-A simple approach would be to apply a threshold on the total count to only retain those barcodes with large totals.
-However, this unnecessarily discards libraries derived from cell types with low RNA content.
-
-
-```r
-bcrank <- barcodeRanks(counts(sce.pbmc))
-
-# Only showing unique points for plotting speed.
-uniq <- !duplicated(bcrank$rank)
-plot(bcrank$rank[uniq], bcrank$total[uniq], log="xy",
-    xlab="Rank", ylab="Total UMI count", cex.lab=1.2)
-
-abline(h=metadata(bcrank)$inflection, col="darkgreen", lty=2)
-abline(h=metadata(bcrank)$knee, col="dodgerblue", lty=2)
-
-legend("bottomleft", legend=c("Inflection", "Knee"), 
-        col=c("darkgreen", "dodgerblue"), lty=2, cex=1.2)
-```
-
-<div class="figure">
-<img src="quality-control_files/figure-html/rankplot-1.png" alt="Total UMI count for each barcode in the PBMC dataset, plotted against its rank (in decreasing order of total counts). The inferred locations of the inflection and knee points are also shown." width="672" />
-<p class="caption">(\#fig:rankplot)Total UMI count for each barcode in the PBMC dataset, plotted against its rank (in decreasing order of total counts). The inferred locations of the inflection and knee points are also shown.</p>
-</div>
-
-### Testing for empty droplets
-
-We use the `emptyDrops()` function to test whether the expression profile for each cell barcode is significantly different from the ambient RNA pool [@lun2018distinguishing].
-Any significant deviation indicates that the barcode corresponds to a cell-containing droplet.
-This allows us to discriminate between well-sequenced empty droplets and droplets derived from cells with little RNA, both of which would have similar total counts in Figure \@ref(fig:rankplot).
-We call cells at a false discovery rate (FDR) of 0.1%, meaning that no more than 0.1% of our called barcodes should be empty droplets on average.
-
-
-```r
-# emptyDrops performs Monte Carlo simulations to compute p-values,
-# so we need to set the seed to obtain reproducible results.
-set.seed(100)
-e.out <- emptyDrops(counts(sce.pbmc))
-
-# See ?emptyDrops for an explanation of why there are NA values.
-summary(e.out$FDR <= 0.001)
-```
-
-```
-##    Mode   FALSE    TRUE    NA's 
-## logical    1056    4233  731991
-```
-
-`emptyDrops()` uses Monte Carlo simulations to compute $p$-values for the multinomial sampling transcripts from the ambient pool.
-The number of Monte Carlo iterations determines the lower bound for the $p$-values [@phipson2010permutation].
-The `Limited` field in the output indicates whether or not the computed $p$-value for a particular barcode is bounded by the number of iterations.
-If any non-significant barcodes are `TRUE` for `Limited`, we may need to increase the number of iterations.
-A larger number of iterations will result in a lower $p$-value for these barcodes, which may allow them to be detected after correcting for multiple testing.
-
-
-```r
-table(Sig=e.out$FDR <= 0.001, Limited=e.out$Limited)
-```
-
-```
-##        Limited
-## Sig     FALSE TRUE
-##   FALSE  1056    0
-##   TRUE   1661 2572
-```
-
-As mentioned above, `emptyDrops()` assumes that barcodes with low total UMI counts are empty droplets.
-Thus, the null hypothesis should be true for all of these barcodes. 
-We can check whether the hypothesis testing procedure holds its size by examining the distribution of $p$-values for low-total barcodes with `test.ambient=TRUE`.
-Ideally, the distribution should be close to uniform (Figure \@ref(fig:ambientpvalhist)).
-Large peaks near zero indicate that barcodes with total counts below `lower` are not all ambient in origin.
-This can be resolved by decreasing `lower` further to ensure that barcodes corresponding to droplets with very small cells are not used to estimate the ambient profile.
-
-
-```r
-set.seed(100)
-limit <- 100   
-all.out <- emptyDrops(counts(sce.pbmc), lower=limit, test.ambient=TRUE)
-hist(all.out$PValue[all.out$Total <= limit & all.out$Total > 0],
-    xlab="P-value", main="", col="grey80") 
-```
-
-<div class="figure">
-<img src="quality-control_files/figure-html/ambientpvalhist-1.png" alt="Distribution of $p$-values for the assumed empty droplets." width="672" />
-<p class="caption">(\#fig:ambientpvalhist)Distribution of $p$-values for the assumed empty droplets.</p>
-</div>
-
-Once we are satisfied with the performance of `emptyDrops()`, we subset our `SingleCellExperiment` object to retain only the detected cells.
-Discerning readers will notice the use of `which()`, which conveniently removes the `NA`s prior to the subsetting.
- 
-
-```r
-sce.pbmc <- sce.pbmc[,which(e.out$FDR <= 0.001)]
-```
-
-It is worth pointing out that, at this point, we do not attempt to remove the ambient contamination from each library.
-Accurate quantification of the contamination rate in each cell is difficult as it generally requires some prior biological knowledge about genes that are expected to have mutually exclusive expression profiles _and_ are highly abundant in the ambient solution [@young2018soupx].
-Fortunately, ambient contamination usually has little effect on the downstream conclusions for routine analyses; cell type identities are usually easy enough to determine from the affected genes, notwithstanding a (mostly harmless) low background level of expression for marker genes that should be unique to a cell type.
-However, more susceptible analyses may require specific remedies like those discussed in Section \@ref(ambient-problems).
-
-### Relationship with other QC metrics
-
-While `emptyDrops()` will distinguish cells from empty droplets, it makes no statement about the quality of the cells.
-It is entirely possible for droplets to contain damaged or dying cells, which need to be removed prior to downstream analysis.
-This is achieved using the same outlier-based strategy described in Section \@ref(quality-control-outlier).
-Filtering on the mitochondrial proportion provides the most additional benefit in this situation, provided that we check that we are not removing a subpopulation of metabolically active cells (Figure \@ref(fig:qc-mito-pbmc)). 
-
-
-```r
-is.mito <- grep("^MT-", rowData(sce.pbmc)$Symbol)
-pbmc.qc <- perCellQCMetrics(sce.pbmc, subsets=list(MT=is.mito))
-discard.mito <- isOutlier(pbmc.qc$subsets_MT_percent, type="higher")
-summary(discard.mito)
-```
-
-```
-##    Mode   FALSE    TRUE 
-## logical    3922     311
-```
-
-```r
-plot(pbmc.qc$sum, pbmc.qc$subsets_MT_percent, log="x",
-    xlab="Total count", ylab='Mitochondrial %')
-abline(h=attr(discard.mito, "thresholds")["higher"], col="red")
-```
-
-<div class="figure">
-<img src="quality-control_files/figure-html/qc-mito-pbmc-1.png" alt="Percentage of reads assigned to mitochondrial transcripts, plotted against the library size. The red line represents the upper threshold used for QC filtering." width="672" />
-<p class="caption">(\#fig:qc-mito-pbmc)Percentage of reads assigned to mitochondrial transcripts, plotted against the library size. The red line represents the upper threshold used for QC filtering.</p>
-</div>
-
-`emptyDrops()` already removes cells with very low library sizes or (by association) low numbers of expressed genes.
-Thus, further filtering on these metrics is not strictly necessary.
-It may still be desirable to filter on both of these metrics to remove non-empty droplets containing cell fragments or stripped nuclei that were not caught by the mitochondrial filter.
-However, this should be weighed against the risk of losing genuine cell types as discussed in Section \@ref(outlier-assumptions).
-
-Note that _CellRanger_ version 3 automatically performs cell calling using an algorithm similar to `emptyDrops()`.
-If we had started our analysis with the **filtered** count matrix, we could go straight to computing other QC metrics.
-We would not need to run `emptyDrops()` manually as shown here, and indeed, attempting to do so would lead to nonsensical results if not outright software errors.
-Nonetheless, it may still be desirable to load the **unfiltered** matrix and apply `emptyDrops()` ourselves, on occasions where more detailed inspection or control of the cell-calling statistics is desired.
-
 ## Removing low-quality cells {#quality-control-discarded}
 
 Once low-quality cells have been identified, we can choose to either remove them or mark them.
@@ -860,7 +680,7 @@ To demonstrate, we compute the average count across the discarded and retained p
 
 
 ```r
-# Using the 'discard' vector for demonstration, 
+# Using the 'discard' vector for demonstration purposes, 
 # as it has more cells for stable calculation of 'lost'.
 lost <- calculateAverage(counts(sce.416b)[,!discard])
 kept <- calculateAverage(counts(sce.416b)[,discard])
@@ -885,14 +705,47 @@ points(abundance[is.mito], logFC[is.mito], col="dodgerblue", pch=16)
 <p class="caption">(\#fig:discardplot416b)Log-fold change in expression in the discarded cells compared to the retained cells in the 416B dataset. Each point represents a gene with mitochondrial transcripts in blue.</p>
 </div>
 
-For comparison, let's pretend that we applied a fixed threshold on the library size to filter cells in the PBMC data set.
+For comparison, let us consider the QC step for the PBMC dataset from 10X Genomics [@zheng2017massively].
+We'll apply an arbitrary fixed threshold on the library size to filter cells rather than using any outlier-based method. 
 Specifically, we remove all libraries with a library size below 500.
+
+<button class="aaron-collapse">View history</button>
+<div class="aaron-content">
+   
+```r
+#--- loading ---#
+library(BiocFileCache)
+bfc <- BiocFileCache("raw_data", ask = FALSE)
+raw.path <- bfcrpath(bfc, file.path("http://cf.10xgenomics.com/samples",
+    "cell-exp/2.1.0/pbmc4k/pbmc4k_raw_gene_bc_matrices.tar.gz"))
+untar(raw.path, exdir=file.path(tempdir(), "pbmc4k"))
+
+library(DropletUtils)
+fname <- file.path(tempdir(), "pbmc4k/raw_gene_bc_matrices/GRCh38")
+sce.pbmc <- read10xCounts(fname, col.names=TRUE)
+
+#--- gene-annotation ---#
+library(scater)
+rownames(sce.pbmc) <- uniquifyFeatureNames(
+    rowData(sce.pbmc)$ID, rowData(sce.pbmc)$Symbol)
+
+library(EnsDb.Hsapiens.v86)
+location <- mapIds(EnsDb.Hsapiens.v86, keys=rowData(sce.pbmc)$ID, 
+    column="SEQNAME", keytype="GENEID")
+
+#--- cell-detection ---#
+set.seed(100)
+e.out <- emptyDrops(counts(sce.pbmc))
+sce.pbmc <- sce.pbmc[,which(e.out$FDR <= 0.001)]
+```
+
+</div>
 
 
 ```r
-alt.discard <- colSums(counts(sce.pbmc)) < 500
-lost <- calculateAverage(counts(sce.pbmc)[,alt.discard])
-kept <- calculateAverage(counts(sce.pbmc)[,!alt.discard])
+discard <- colSums(counts(sce.pbmc)) < 500
+lost <- calculateAverage(counts(sce.pbmc)[,discard])
+kept <- calculateAverage(counts(sce.pbmc)[,!discard])
 
 logged <- edgeR::cpm(cbind(lost, kept), log=TRUE, prior.count=2)
 logFC <- logged[,1] - logged[,2]
@@ -900,16 +753,13 @@ abundance <- rowMeans(logged)
 ```
 
 The presence of a distinct population in the discarded pool manifests in Figure \@ref(fig:discardplotpbmc) as a set of genes that are strongly upregulated in `lost`.
-This includes _PF4_, _PPBP_ and _CAVIN2_, which (spoiler alert!) indicates that there is a platelet population that has been discarded by `alt.discard`.
+This includes _PF4_, _PPBP_ and _SDPR_, which (spoiler alert!) indicates that there is a platelet population that has been discarded by `alt.discard`.
 
 
 ```r
 plot(abundance, logFC, xlab="Average count", ylab="Log-FC (lost/kept)", pch=16)
-platelet <- c("PF4", "PPBP", "CAVIN2")
-
-library(org.Hs.eg.db)
-ids <- mapIds(org.Hs.eg.db, keys=platelet, column="ENSEMBL", keytype="SYMBOL")
-points(abundance[ids], logFC[ids], col="orange", pch=16)
+platelet <- c("PF4", "PPBP", "SDPR")
+points(abundance[platelet], logFC[platelet], col="orange", pch=16)
 ```
 
 <div class="figure">
@@ -956,7 +806,7 @@ This recovers cell types with low RNA content, high mitochondrial proportions, e
 ```
 R version 4.0.2 (2020-06-22)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.4 LTS
+Running under: Ubuntu 18.04.5 LTS
 
 Matrix products: default
 BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
@@ -975,75 +825,70 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] org.Hs.eg.db_3.11.4         edgeR_3.31.4               
- [3] limma_3.45.7                DropletUtils_1.9.2         
- [5] robustbase_0.93-6           scRNAseq_2.3.8             
- [7] scater_1.17.2               ggplot2_3.3.2              
- [9] ensembldb_2.13.1            AnnotationFilter_1.13.0    
-[11] GenomicFeatures_1.41.0      AnnotationDbi_1.51.1       
-[13] AnnotationHub_2.21.1        BiocFileCache_1.13.0       
-[15] dbplyr_1.4.4                SingleCellExperiment_1.11.6
-[17] SummarizedExperiment_1.19.5 DelayedArray_0.15.6        
-[19] matrixStats_0.56.0          Matrix_1.2-18              
-[21] Biobase_2.49.0              GenomicRanges_1.41.5       
-[23] GenomeInfoDb_1.25.5         IRanges_2.23.10            
-[25] S4Vectors_0.27.12           BiocGenerics_0.35.4        
-[27] BiocStyle_2.17.0            simpleSingleCell_1.13.5    
+ [1] edgeR_3.31.4                limma_3.45.10              
+ [3] robustbase_0.93-6           scRNAseq_2.3.12            
+ [5] scater_1.17.4               ggplot2_3.3.2              
+ [7] ensembldb_2.13.1            AnnotationFilter_1.13.0    
+ [9] GenomicFeatures_1.41.2      AnnotationDbi_1.51.3       
+[11] AnnotationHub_2.21.2        BiocFileCache_1.13.1       
+[13] dbplyr_1.4.4                SingleCellExperiment_1.11.6
+[15] SummarizedExperiment_1.19.6 DelayedArray_0.15.7        
+[17] matrixStats_0.56.0          Matrix_1.2-18              
+[19] Biobase_2.49.0              GenomicRanges_1.41.6       
+[21] GenomeInfoDb_1.25.10        IRanges_2.23.10            
+[23] S4Vectors_0.27.12           BiocGenerics_0.35.4        
+[25] BiocStyle_2.17.0            simpleSingleCell_1.13.16   
 
 loaded via a namespace (and not attached):
-  [1] ggbeeswarm_0.6.0              colorspace_1.4-1             
-  [3] ellipsis_0.3.1                scuttle_0.99.10              
-  [5] XVector_0.29.3                BiocNeighbors_1.7.0          
-  [7] farver_2.0.3                  bit64_0.9-7                  
-  [9] interactiveDisplayBase_1.27.5 R.methodsS3_1.8.0            
- [11] codetools_0.2-16              knitr_1.29                   
- [13] Rsamtools_2.5.3               R.oo_1.23.0                  
- [15] graph_1.67.1                  HDF5Array_1.17.3             
- [17] shiny_1.5.0                   BiocManager_1.30.10          
- [19] compiler_4.0.2                httr_1.4.1                   
- [21] dqrng_0.2.1                   assertthat_0.2.1             
- [23] fastmap_1.0.1                 lazyeval_0.2.2               
- [25] later_1.1.0.1                 BiocSingular_1.5.0           
- [27] htmltools_0.5.0               prettyunits_1.1.1            
- [29] tools_4.0.2                   rsvd_1.0.3                   
- [31] gtable_0.3.0                  glue_1.4.1                   
- [33] GenomeInfoDbData_1.2.3        dplyr_1.0.0                  
- [35] rappdirs_0.3.1                Rcpp_1.0.4.6                 
- [37] rhdf5filters_1.1.1            vctrs_0.3.1                  
- [39] Biostrings_2.57.2             ExperimentHub_1.15.0         
- [41] rtracklayer_1.49.3            DelayedMatrixStats_1.11.1    
- [43] xfun_0.15                     stringr_1.4.0                
- [45] ps_1.3.3                      mime_0.9                     
- [47] lifecycle_0.2.0               irlba_2.3.3                  
- [49] XML_3.99-0.3                  DEoptimR_1.0-8               
- [51] zlibbioc_1.35.0               scales_1.1.1                 
- [53] hms_0.5.3                     promises_1.1.1               
- [55] ProtGenerics_1.21.0           rhdf5_2.33.4                 
- [57] yaml_2.2.1                    curl_4.3                     
- [59] memoise_1.1.0                 gridExtra_2.3                
- [61] biomaRt_2.45.1                stringi_1.4.6                
- [63] RSQLite_2.2.0                 highr_0.8                    
- [65] BiocVersion_3.12.0            BiocParallel_1.23.0          
- [67] rlang_0.4.6                   pkgconfig_2.0.3              
- [69] bitops_1.0-6                  evaluate_0.14                
- [71] lattice_0.20-41               Rhdf5lib_1.11.2              
- [73] purrr_0.3.4                   GenomicAlignments_1.25.3     
- [75] CodeDepends_0.6.5             labeling_0.3                 
- [77] cowplot_1.0.0                 bit_1.1-15.2                 
- [79] processx_3.4.2                tidyselect_1.1.0             
- [81] magrittr_1.5                  bookdown_0.20                
- [83] R6_2.4.1                      generics_0.0.2               
- [85] DBI_1.1.0                     pillar_1.4.4                 
- [87] withr_2.2.0                   RCurl_1.98-1.2               
- [89] tibble_3.0.1                  crayon_1.3.4                 
- [91] rmarkdown_2.3                 viridis_0.5.1                
- [93] progress_1.2.2                locfit_1.5-9.4               
- [95] grid_4.0.2                    blob_1.2.1                   
- [97] callr_3.4.3                   digest_0.6.25                
- [99] xtable_1.8-4                  httpuv_1.5.4                 
-[101] R.utils_2.9.2                 openssl_1.4.2                
-[103] munsell_0.5.0                 beeswarm_0.2.3               
-[105] viridisLite_0.3.0             vipor_0.4.5                  
-[107] askpass_1.1                  
+ [1] ggbeeswarm_0.6.0              colorspace_1.4-1             
+ [3] ellipsis_0.3.1                scuttle_0.99.12              
+ [5] XVector_0.29.3                BiocNeighbors_1.7.0          
+ [7] farver_2.0.3                  bit64_4.0.2                  
+ [9] interactiveDisplayBase_1.27.5 codetools_0.2-16             
+[11] knitr_1.29                    Rsamtools_2.5.3              
+[13] graph_1.67.1                  shiny_1.5.0                  
+[15] BiocManager_1.30.10           compiler_4.0.2               
+[17] httr_1.4.2                    assertthat_0.2.1             
+[19] fastmap_1.0.1                 lazyeval_0.2.2               
+[21] later_1.1.0.1                 BiocSingular_1.5.0           
+[23] htmltools_0.5.0               prettyunits_1.1.1            
+[25] tools_4.0.2                   rsvd_1.0.3                   
+[27] gtable_0.3.0                  glue_1.4.1                   
+[29] GenomeInfoDbData_1.2.3        dplyr_1.0.1                  
+[31] rappdirs_0.3.1                Rcpp_1.0.5                   
+[33] vctrs_0.3.2                   Biostrings_2.57.2            
+[35] ExperimentHub_1.15.1          rtracklayer_1.49.5           
+[37] DelayedMatrixStats_1.11.1     xfun_0.16                    
+[39] stringr_1.4.0                 ps_1.3.4                     
+[41] mime_0.9                      lifecycle_0.2.0              
+[43] irlba_2.3.3                   XML_3.99-0.5                 
+[45] DEoptimR_1.0-8                zlibbioc_1.35.0              
+[47] scales_1.1.1                  hms_0.5.3                    
+[49] promises_1.1.1                ProtGenerics_1.21.0          
+[51] yaml_2.2.1                    curl_4.3                     
+[53] memoise_1.1.0                 gridExtra_2.3                
+[55] biomaRt_2.45.2                stringi_1.4.6                
+[57] RSQLite_2.2.0                 highr_0.8                    
+[59] BiocVersion_3.12.0            BiocParallel_1.23.2          
+[61] rlang_0.4.7                   pkgconfig_2.0.3              
+[63] bitops_1.0-6                  evaluate_0.14                
+[65] lattice_0.20-41               purrr_0.3.4                  
+[67] GenomicAlignments_1.25.3      CodeDepends_0.6.5            
+[69] labeling_0.3                  cowplot_1.0.0                
+[71] bit_4.0.4                     processx_3.4.3               
+[73] tidyselect_1.1.0              magrittr_1.5                 
+[75] bookdown_0.20                 R6_2.4.1                     
+[77] generics_0.0.2                DBI_1.1.0                    
+[79] pillar_1.4.6                  withr_2.2.0                  
+[81] RCurl_1.98-1.2                tibble_3.0.3                 
+[83] crayon_1.3.4                  rmarkdown_2.3                
+[85] viridis_0.5.1                 progress_1.2.2               
+[87] locfit_1.5-9.4                grid_4.0.2                   
+[89] blob_1.2.1                    callr_3.4.3                  
+[91] digest_0.6.25                 xtable_1.8-4                 
+[93] httpuv_1.5.4                  openssl_1.4.2                
+[95] munsell_0.5.0                 beeswarm_0.2.3               
+[97] viridisLite_0.3.0             vipor_0.4.5                  
+[99] askpass_1.1                  
 ```
 </div>

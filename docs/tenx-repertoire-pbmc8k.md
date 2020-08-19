@@ -331,7 +331,7 @@ data.frame(
 ```
 R version 4.0.2 (2020-06-22)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.4 LTS
+Running under: Ubuntu 18.04.5 LTS
 
 Matrix products: default
 BLAS:   /home/biocbuild/bbs-3.12-bioc/R/lib/libRblas.so
@@ -350,28 +350,28 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] pheatmap_1.0.12             scran_1.17.3               
- [3] scater_1.17.2               ggplot2_3.3.2              
- [5] DropletUtils_1.9.2          SingleCellExperiment_1.11.6
- [7] SummarizedExperiment_1.19.5 DelayedArray_0.15.6        
+ [1] pheatmap_1.0.12             scran_1.17.15              
+ [3] scater_1.17.4               ggplot2_3.3.2              
+ [5] DropletUtils_1.9.10         SingleCellExperiment_1.11.6
+ [7] SummarizedExperiment_1.19.6 DelayedArray_0.15.7        
  [9] matrixStats_0.56.0          Matrix_1.2-18              
-[11] Biobase_2.49.0              GenomicRanges_1.41.5       
-[13] GenomeInfoDb_1.25.5         IRanges_2.23.10            
+[11] Biobase_2.49.0              GenomicRanges_1.41.6       
+[13] GenomeInfoDb_1.25.10        IRanges_2.23.10            
 [15] S4Vectors_0.27.12           BiocGenerics_0.35.4        
-[17] BiocFileCache_1.13.0        dbplyr_1.4.4               
-[19] BiocStyle_2.17.0            simpleSingleCell_1.13.5    
+[17] BiocFileCache_1.13.1        dbplyr_1.4.4               
+[19] BiocStyle_2.17.0            simpleSingleCell_1.13.16   
 
 loaded via a namespace (and not attached):
- [1] bitops_1.0-6              bit64_0.9-7              
+ [1] bitops_1.0-6              bit64_4.0.2              
  [3] RColorBrewer_1.1-2        RcppAnnoy_0.0.16         
- [5] httr_1.4.1                tools_4.0.2              
+ [5] httr_1.4.2                tools_4.0.2              
  [7] R6_2.4.1                  irlba_2.3.3              
  [9] vipor_0.4.5               HDF5Array_1.17.3         
 [11] uwot_0.1.8                DBI_1.1.0                
-[13] colorspace_1.4-1          rhdf5filters_1.1.1       
+[13] colorspace_1.4-1          rhdf5filters_1.1.2       
 [15] withr_2.2.0               gridExtra_2.3            
-[17] tidyselect_1.1.0          processx_3.4.2           
-[19] bit_1.1-15.2              curl_4.3                 
+[17] tidyselect_1.1.0          processx_3.4.3           
+[19] bit_4.0.4                 curl_4.3                 
 [21] compiler_4.0.2            graph_1.67.1             
 [23] BiocNeighbors_1.7.0       labeling_0.3             
 [25] bookdown_0.20             scales_1.1.1             
@@ -380,34 +380,34 @@ loaded via a namespace (and not attached):
 [31] rmarkdown_2.3             R.utils_2.9.2            
 [33] XVector_0.29.3            pkgconfig_2.0.3          
 [35] htmltools_0.5.0           highr_0.8                
-[37] limma_3.45.7              rlang_0.4.6              
+[37] limma_3.45.10             rlang_0.4.7              
 [39] RSQLite_2.2.0             DelayedMatrixStats_1.11.1
 [41] farver_2.0.3              generics_0.0.2           
-[43] BiocParallel_1.23.0       dplyr_1.0.0              
+[43] BiocParallel_1.23.2       dplyr_1.0.1              
 [45] R.oo_1.23.0               RCurl_1.98-1.2           
 [47] magrittr_1.5              BiocSingular_1.5.0       
-[49] GenomeInfoDbData_1.2.3    scuttle_0.99.10          
-[51] Rcpp_1.0.4.6              ggbeeswarm_0.6.0         
-[53] munsell_0.5.0             Rhdf5lib_1.11.2          
+[49] GenomeInfoDbData_1.2.3    scuttle_0.99.12          
+[51] Rcpp_1.0.5                ggbeeswarm_0.6.0         
+[53] munsell_0.5.0             Rhdf5lib_1.11.3          
 [55] viridis_0.5.1             lifecycle_0.2.0          
 [57] R.methodsS3_1.8.0         stringi_1.4.6            
 [59] yaml_2.2.1                edgeR_3.31.4             
 [61] zlibbioc_1.35.0           Rtsne_0.15               
-[63] rhdf5_2.33.4              grid_4.0.2               
+[63] rhdf5_2.33.7              grid_4.0.2               
 [65] blob_1.2.1                dqrng_0.2.1              
 [67] crayon_1.3.4              lattice_0.20-41          
 [69] cowplot_1.0.0             locfit_1.5-9.4           
 [71] CodeDepends_0.6.5         knitr_1.29               
-[73] ps_1.3.3                  pillar_1.4.4             
+[73] ps_1.3.4                  pillar_1.4.6             
 [75] igraph_1.2.5              codetools_0.2-16         
-[77] XML_3.99-0.3              glue_1.4.1               
+[77] XML_3.99-0.5              glue_1.4.1               
 [79] evaluate_0.14             BiocManager_1.30.10      
-[81] vctrs_0.3.1               gtable_0.3.0             
+[81] vctrs_0.3.2               gtable_0.3.0             
 [83] purrr_0.3.4               assertthat_0.2.1         
-[85] xfun_0.15                 rsvd_1.0.3               
+[85] xfun_0.16                 rsvd_1.0.3               
 [87] RSpectra_0.16-0           viridisLite_0.3.0        
-[89] tibble_3.0.1              beeswarm_0.2.3           
+[89] tibble_3.0.3              beeswarm_0.2.3           
 [91] memoise_1.1.0             statmod_1.4.34           
-[93] ellipsis_0.3.1           
+[93] bluster_0.99.1            ellipsis_0.3.1           
 ```
 </div>
