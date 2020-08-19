@@ -16,7 +16,7 @@ jobs:
         run: |
           stuff=$(curl -s https://bioconductor.org/packages/devel/workflows/html/simpleSingleCell.html | grep ".tar.gz" | sed "s/.*[^a-zA-Z]\\([a-zA-Z0-9\\.]*_[0-9\\.]*\\.tar\\.gz\\).*/\\1/" | uniq)
           curl -o tmp.tar.gz https://bioconductor.org/packages/devel/workflows/src/contrib/${stuff}
-          tar -xvf tmp.tar.gz  
+          tar -xf tmp.tar.gz  
           rm -rf docs
           mv simpleSingleCell/vignettes/OSCA/docs .
           echo osca-dev.bioconductor.org > docs/CNAME
