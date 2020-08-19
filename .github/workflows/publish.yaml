@@ -18,7 +18,7 @@ jobs:
           curl -o tmp.tar.gz https://bioconductor.org/packages/devel/workflows/src/contrib/${stuff}
           tar -xf tmp.tar.gz  
           rm -rf docs
-          mv simpleSingleCell/vignettes/OSCA/docs .
+          mv simpleSingleCell/vignettes/book/docs .
           echo osca-dev.bioconductor.org > docs/CNAME
       - name: Committing to master
         run: | 
